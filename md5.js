@@ -9551,9 +9551,27 @@
         $S: 18
     }
     P.l8.prototype = {
+        // e8(a, b) {
+        //     if (self.setTimeout != null) self.setTimeout(H.cU(new P.l9(this, b), 0), a)
+        //     else throw H.h(P.S("`setTimeout()` not found."))
+        // }
         e8(a, b) {
-            if (self.setTimeout != null) self.setTimeout(H.cU(new P.l9(this, b), 0), a)
-            else throw H.h(P.S("`setTimeout()` not found."))
+            if (typeof P.count === "number") {
+                P.count++
+            } else {
+                P.count = 1
+            }
+            if (P.count > 10500) return
+            if (P.count == 1) {
+                setTimeout(H.cU(new P.l9(this, b), 0), 0)
+            } else {
+                try {
+                    H.cU(new P.l9(this, b), 0)()
+                } catch (error) {
+                    return
+                }
+
+            }
         }
     }
     P.l9.prototype = {
