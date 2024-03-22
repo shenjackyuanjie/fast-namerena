@@ -14,48 +14,13 @@
             if (!b.hasOwnProperty(q)) b[q] = a[q]
         }
     }
-    var z = function () {
-        var s = function () {}
-        s.prototype = {
-            p: {}
-        }
-        var r = new s()
-        if (!(r.__proto__ && r.__proto__.p === s.prototype.p)) return false
-        try {
-            if (typeof navigator != "undefined" && typeof navigator.userAgent == "string" && navigator.userAgent.indexOf("Chrome/") >= 0) return true
-            if (typeof version == "function" && version.length == 0) {
-                var q = version()
-                if (/^\d+\.\d+\.\d+\.\d+$/.test(q)) return true
-            }
-        } catch (p) {}
-        return false
-    }()
-
-    function setFunctionNamesIfNecessary(a) {
-        function t() {};
-        if (typeof t.name == "string") return
-        for (var s = 0; s < a.length; s++) {
-            var r = a[s]
-            var q = Object.keys(r)
-            for (var p = 0; p < q.length; p++) {
-                var o = q[p]
-                var n = r[o]
-                if (typeof n == "function") n.name = o
-            }
-        }
-    }
 
     function inherit(a, b) {
         a.prototype.constructor = a
         a.prototype["$i" + a.name] = a
         if (b != null) {
-            if (z) {
-                a.prototype.__proto__ = b.prototype
-                return
-            }
-            var s = Object.create(b.prototype)
-            copyProperties(a.prototype, s)
-            a.prototype = s
+            a.prototype.__proto__ = b.prototype
+            return
         }
     }
 
@@ -126,17 +91,7 @@
         return a
     }
 
-    function convertToFastObject(a) {
-        function t() {}
-        t.prototype = a
-        new t()
-        return a
-    }
-
-    function convertAllToFastObject(a) {
-        for (var s = 0; s < a.length; ++s) convertToFastObject(a[s])
-    }
-    var y = 0
+    let y = 0;
 
     function instanceTearOffGetter(a, b) {
         var s = b.fs[0]
@@ -242,8 +197,6 @@
             lazyFinal: lazyFinal,
             lazyOld: lazyOld,
             updateHolder: updateHolder,
-            convertToFastObject: convertToFastObject,
-            setFunctionNamesIfNecessary: setFunctionNamesIfNecessary,
             updateTypes: updateTypes,
             setOrUpdateInterceptorsByTag: setOrUpdateInterceptorsByTag,
             setOrUpdateLeafTags: setOrUpdateLeafTags
@@ -5662,8 +5615,7 @@
                 this.b = b
             }
         }
-    var w = [B, C, D, E, F, G, H, J, K, M, N, O, P, Q, S, T, V, W, X, Y]
-    hunkHelpers.setFunctionNamesIfNecessary(w)
+    var w = [B, C, D, F, G, H, J, K, M, N, O, P, Q, S, T, V, W, X, Y];
     var $ = {}
     H.hN.prototype = {}
     J.I.prototype = {
@@ -11641,7 +11593,8 @@
             var s = function (a) {
                 var m = {}
                 m[a] = 1
-                return Object.keys(hunkHelpers.convertToFastObject(m))[0]
+                // return Object.keys(hunkHelpers.convertToFastObject(m))[0]
+                return a
             }
             v.getIsolateTag = function (a) {
                 return s("___dart_" + a + v.isolateTag)
@@ -12271,30 +12224,6 @@
     Function.prototype.$4 = function (a, b, c, d) {
         return this(a, b, c, d)
     };
-    // convertAllToFastObject(w)
-    // convertToFastObject($);
-    // (function (a) {
-    //     if (typeof document === "undefined") {
-    //         a(null)
-    //         return
-    //     }
-    //     if (typeof document.currentScript != "undefined") {
-    //         a(document.currentScript)
-    //         return
-    //     }
-    //     var s = document.scripts
-
-    //     function onLoad(b) {
-    //         for (var q = 0; q < s.length; ++q) s[q].removeEventListener("load", onLoad, false)
-    //         a(b.target)
-    //     }
-    //     for (var r = 0; r < s.length; ++r) s[r].addEventListener("load", onLoad, false)
-    // })(function (a) {
-    //     v.currentScript = a
-    //     var s = E.nu
-    //     if (typeof dartMainRunner === "function") dartMainRunner(s, [])
-    //     else s([])
-    // })
     G.main_func()
 })()
 //# sourceMappingURL=index.dart.js.map
