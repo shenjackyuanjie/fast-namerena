@@ -3836,7 +3836,10 @@
                 return P.au(H.a([r, q, p, o < 26 ? o + 65 : o + 71], t.i), 0, null)
             },
             w(a, b) {
-                return C.f.w(0, X.iJ(a, b))
+                let result = C.f.w(0, X.iJ(a, b))
+                console.log(a, b, result)
+                // return C.f.w(0, X.iJ(a, b))
+                return result
             },
             J(a) {
                 var s = $.jp.i(0, a)
@@ -11590,20 +11593,14 @@
     })();
     (function nativeSupport() {
         ! function () {
-            var s = function (a) {
-                var m = {}
-                m[a] = 1
-                // return Object.keys(hunkHelpers.convertToFastObject(m))[0]
-                return a
-            }
             v.getIsolateTag = function (a) {
-                return s("___dart_" + a + v.isolateTag)
+                return "___dart_" + a + v.isolateTag
             }
             var r = "___dart_isolate_tags_"
             var q = Object[r] || (Object[r] = Object.create(null))
             var p = "_ZxYxX"
             for (var o = 0;; o++) {
-                var n = s(p + "_" + o + "_")
+                let n = p + "_" + o + "_";
                 if (!(n in q)) {
                     q[n] = 1
                     v.isolateTag = n
