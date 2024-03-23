@@ -1,25 +1,25 @@
 (function dartProgram() {
-    function copyProperties(a, b) {
-        var s = Object.keys(a)
-        for (var r = 0; r < s.length; r++) {
-            var q = s[r]
-            b[q] = a[q]
+    function copyProperties(from, to) {
+        var keys = Object.keys(from)
+        for (var r = 0; r < keys.length; r++) {
+            var q = keys[r]
+            to[q] = from[q]
         }
     }
 
-    function mixinProperties(a, b) {
-        var s = Object.keys(a)
+    function mixinProperties(from, to) {
+        var s = Object.keys(from)
         for (var r = 0; r < s.length; r++) {
             var q = s[r]
-            if (!b.hasOwnProperty(q)) b[q] = a[q]
+            if (!to.hasOwnProperty(q)) to[q] = from[q]
         }
     }
 
-    function inherit(a, b) {
-        a.prototype.constructor = a
-        a.prototype["$i" + a.name] = a
-        if (b != null) {
-            a.prototype.__proto__ = b.prototype
+    function inherit(cls, sup) {
+        cls.prototype.constructor = cls
+        cls.prototype["$i" + cls.name] = cls
+        if (sup != null) {
+            cls.prototype.__proto__ = sup.prototype
             return
         }
     }
