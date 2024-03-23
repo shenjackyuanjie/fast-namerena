@@ -24,36 +24,36 @@
         }
     }
 
-    function inheritMany(a, b) {
-        for (var s = 0; s < b.length; s++) inherit(b[s], a)
+    function inheritMany(sup, classes) {
+        for (var s = 0; s < classes.length; s++) inherit(classes[s], sup)
     }
 
-    function mixin(a, b) {
-        mixinProperties(b.prototype, a.prototype)
-        a.prototype.constructor = a
+    function mixin(cls, mixin) {
+        mixinProperties(mixin.prototype, cls.prototype)
+        cls.prototype.constructor = cls
     }
 
-    function lazyOld(a, b, c, d) {
-        var s = a
-        a[b] = s
-        a[c] = function () {
-            a[c] = function () {
-                H.nI(b)
+    function lazyOld(holder, name, getter_name, initializer) {
+        var s = holder
+        holder[name] = s
+        holder[getter_name] = function () {
+            holder[getter_name] = function () {
+                H.nI(name)
             }
-            var r
-            var q = d
+            var result
+            var q = initializer
             try {
-                if (a[b] === s) {
-                    r = a[b] = q
-                    r = a[b] = d()
-                } else r = a[b]
+                if (holder[name] === s) {
+                    result = holder[name] = q
+                    result = holder[name] = initializer()
+                } else result = holder[name]
             } finally {
-                if (r === q) a[b] = null
-                a[c] = function () {
-                    return this[b]
+                if (result === q) holder[name] = null
+                holder[getter_name] = function () {
+                    return this[name]
                 }
             }
-            return r
+            return result
         }
     }
 
