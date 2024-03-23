@@ -1936,10 +1936,10 @@
             d7: function d7() {},
             d8: function d8() {},
             d9: function d9() {},
-            da: function da() {},
-            db: function db() {},
-            NativeUint8ClampedList: function bZ() {},
-            NativeUint8List: function aO() {},
+            NativeUint16List: function NativeUint16List() {},
+            NativeUint32List: function NativeUint32List() {},
+            NativeUint8ClampedList: function NativeUint8ClampedList() {},
+            NativeUint8List: function NativeUint8List() {},
             _NativeTypedArrayOfDouble_NativeTypedArray_ListMixin: function _NativeTypedArrayOfDouble_NativeTypedArray_ListMixin() {},
             _NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin: function _NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin() {},
             _NativeTypedArrayOfInt_NativeTypedArray_ListMixin: function _NativeTypedArrayOfInt_NativeTypedArray_ListMixin() {},
@@ -6871,7 +6871,7 @@
             return this.p(a, b, null)
         }
     }
-    H.da.prototype = {
+    H.NativeUint16List.prototype = {
         i(a, b) {
             H.ak(b, a, a.length)
             return a[b]
@@ -6883,7 +6883,7 @@
             return this.p(a, b, null)
         }
     }
-    H.db.prototype = {
+    H.NativeUint32List.prototype = {
         i(a, b) {
             H.ak(b, a, a.length)
             return a[b]
@@ -10756,7 +10756,7 @@
         r(H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin_FixedLengthListMixin, H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin)
         r(H.NativeTypedArrayOfInt, H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin_FixedLengthListMixin)
         q(H.NativeTypedArrayOfDouble, [H.d5, H.d6])
-        q(H.NativeTypedArrayOfInt, [H.d7, H.d8, H.d9, H.da, H.db, H.NativeUint8ClampedList, H.NativeUint8List])
+        q(H.NativeTypedArrayOfInt, [H.d7, H.d8, H.d9, H.NativeUint16List, H.NativeUint32List, H.NativeUint8ClampedList, H.NativeUint8List])
         r(H.cq, H.dN)
         r(P.ca, P.dL)
         r(P.fN, P.h5)
@@ -11646,8 +11646,8 @@
             Int16Array: H.d7,
             Int32Array: H.d8,
             Int8Array: H.d9,
-            Uint16Array: H.da,
-            Uint32Array: H.db,
+            Uint16Array: H.NativeUint16List,
+            Uint32Array: H.NativeUint32List,
             Uint8ClampedArray: H.NativeUint8ClampedList,
             CanvasPixelArray: H.NativeUint8ClampedList,
             Uint8Array: H.NativeUint8List,
