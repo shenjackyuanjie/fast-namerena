@@ -1956,7 +1956,7 @@
             cm: function cm() {},
             lG(a, b) {
                 var s = b.c
-                return s == null ? b.c = H.hW(a, b.z, true) : s
+                return s == null ? b.c = H._Universe__lookupQuestionRti(a, b.z, true) : s
             },
             je(a, b) {
                 var s = b.c
@@ -1986,17 +1986,17 @@
                         s = b.z
                         r = H.az(a, s, a0, a1)
                         if (r === s) return b
-                        return H.jw(a, r, true)
+                        return H._Universe__lookupStarRti(a, r, true)
                     case 7:
                         s = b.z
                         r = H.az(a, s, a0, a1)
                         if (r === s) return b
-                        return H.hW(a, r, true)
+                        return H._Universe__lookupQuestionRti(a, r, true)
                     case 8:
                         s = b.z
                         r = H.az(a, s, a0, a1)
                         if (r === s) return b
-                        return H.jv(a, r, true)
+                        return H._Universe__lookupFutureOrRti(a, r, true)
                     case 9:
                         q = b.Q
                         p = H.cy(a, q, a0, a1)
@@ -2066,7 +2066,7 @@
                     n = b.c,
                     m = H.mY(a, n, c, d)
                 if (q === r && o === p && m === n) return b
-                s = new H.dP()
+                s = new H._FunctionParameters()
                 s.a = q
                 s.b = o
                 s.c = m
@@ -2511,7 +2511,7 @@
                 a.eC.set(c, r)
                 return r
             },
-            jw(a, b, c) {
+            _Universe__lookupStarRti(a, b, c) {
                 var s, r = b.cy + "*",
                     q = a.eC.get(r)
                 if (q != null) return q
@@ -2533,7 +2533,7 @@
                 q.cy = c
                 return H.ax(a, q)
             },
-            hW(a, b, c) {
+            _Universe__lookupQuestionRti(a, b, c) {
                 var s, r = b.cy + "?",
                     q = a.eC.get(r)
                 if (q != null) return q
@@ -2565,7 +2565,7 @@
                 p.cy = c
                 return H.ax(a, p)
             },
-            jv(a, b, c) {
+            _Universe__lookupFutureOrRti(a, b, c) {
                 var s, r = b.cy + "/",
                     q = a.eC.get(r)
                 if (q != null) return q
@@ -2729,17 +2729,19 @@
                 }
             },
             _Parser_parse(parser) {
-                var t2, r, ch, t3, array, head, base, parameters, optional_positional, j, i, h, g = parser.r,
+                // t3 和 parameters 重复了, 也不知道为啥(
+                var t2, i, ch, t3, array, head, base, parameters, parameters_, optionalPositional, named, item
+                let source = parser.r,
                     t1 = parser.s
-                for (t2 = g.length, r = 0; r < t2;) {
-                    ch = g.charCodeAt(r)
-                    if (ch >= 48 && ch <= 57) r = H.m0(r + 1, ch, g, t1)
+                for (t2 = source.length, i = 0; i < t2;) {
+                    ch = source.charCodeAt(i)
+                    if (ch >= 48 && ch <= 57) i = H._Parser_handleDigit(i + 1, ch, source, t1)
                     else if ((((ch | 32) >>> 0) - 97 & 65535) < 26 || ch === 95 || ch === 36) {
-                        r = H._Parser_handleIdentifier(parser, r, g, t1, false)
+                        i = H._Parser_handleIdentifier(parser, i, source, t1, false)
                     } else if (ch === 46) {
-                        r = H._Parser_handleIdentifier(parser, r, g, t1, true)
+                        i = H._Parser_handleIdentifier(parser, i, source, t1, true)
                     } else {
-                        ++r
+                        ++i
                         switch (ch) {
                             case 44:
                                 break
@@ -2771,7 +2773,7 @@
                             case 62:
                                 t3 = parser.u
                                 array = t1.splice(parser.p)
-                                H.hT(parser.u, parser.e, array)
+                                H._Parser_toTypes(parser.u, parser.e, array)
                                 parser.p = t1.pop()
                                 head = t1.pop()
                                 if (typeof head == "string") t1.push(H.cr(t3, head, array))
@@ -2788,19 +2790,19 @@
                                 }
                                 break
                             case 38:
-                                H.m1(parser, t1)
+                                H._Parser_handleExtendedOperations(parser, t1)
                                 break
                             case 42:
                                 parameters = parser.u
-                                t1.push(H.jw(parameters, H._Parser_toType(parameters, parser.e, t1.pop()), parser.n))
+                                t1.push(H._Universe__lookupStarRti(parameters, H._Parser_toType(parameters, parser.e, t1.pop()), parser.n))
                                 break
                             case 63:
                                 parameters = parser.u
-                                t1.push(H.hW(parameters, H._Parser_toType(parameters, parser.e, t1.pop()), parser.n))
+                                t1.push(H._Universe__lookupQuestionRti(parameters, H._Parser_toType(parameters, parser.e, t1.pop()), parser.n))
                                 break
                             case 47:
                                 parameters = parser.u
-                                t1.push(H.jv(parameters, H._Parser_toType(parameters, parser.e, t1.pop()), parser.n))
+                                t1.push(H._Universe__lookupFutureOrRti(parameters, H._Parser_toType(parameters, parser.e, t1.pop()), parser.n))
                                 break
                             case 40:
                                 t1.push(parser.p)
@@ -2808,28 +2810,28 @@
                                 break
                             case 41:
                                 t3 = parser.u
-                                optional_positional = new H.dP()
-                                j = t3.sEA
-                                i = t3.sEA
+                                parameters_ = new H._FunctionParameters()
+                                optionalPositional = t3.sEA
+                                named = t3.sEA
                                 head = t1.pop()
                                 if (typeof head == "number") switch (head) {
                                     case -1:
-                                        j = t1.pop()
+                                        optionalPositional = t1.pop()
                                         break
                                     case -2:
-                                        i = t1.pop()
+                                        named = t1.pop()
                                         break
                                     default:
                                         t1.push(head)
                                         break
                                 } else t1.push(head)
                                 array = t1.splice(parser.p)
-                                H.hT(parser.u, parser.e, array)
+                                H._Parser_toTypes(parser.u, parser.e, array)
                                 parser.p = t1.pop()
-                                optional_positional.a = array
-                                optional_positional.b = j
-                                optional_positional.c = i
-                                t1.push(H.ju(t3, H._Parser_toType(t3, parser.e, t1.pop()), optional_positional))
+                                parameters_.a = array
+                                parameters_.b = optionalPositional
+                                parameters_.c = named
+                                t1.push(H.ju(t3, H._Parser_toType(t3, parser.e, t1.pop()), parameters_))
                                 break
                             case 91:
                                 t1.push(parser.p)
@@ -2837,7 +2839,7 @@
                                 break
                             case 93:
                                 array = t1.splice(parser.p)
-                                H.hT(parser.u, parser.e, array)
+                                H._Parser_toTypes(parser.u, parser.e, array)
                                 parser.p = t1.pop()
                                 t1.push(array)
                                 t1.push(-1)
@@ -2848,7 +2850,7 @@
                                 break
                             case 125:
                                 array = t1.splice(parser.p)
-                                H.m3(parser.u, parser.e, array)
+                                H._Parser_toTypesNamed(parser.u, parser.e, array)
                                 parser.p = t1.pop()
                                 t1.push(array)
                                 t1.push(-2)
@@ -2858,10 +2860,10 @@
                         }
                     }
                 }
-                h = t1.pop()
-                return H._Parser_toType(parser.u, parser.e, h)
+                item = t1.pop()
+                return H._Parser_toType(parser.u, parser.e, item)
             },
-            m0(a, b, c, d) {
+            _Parser_handleDigit(a, b, c, d) {
                 var s, r, q = b - 48
                 for (s = c.length; a < s; ++a) {
                     r = c.charCodeAt(a)
@@ -2895,7 +2897,7 @@
                 } else d.push(p)
                 return m
             },
-            m1(a, b) {
+            _Parser_handleExtendedOperations(a, b) {
                 var s = b.pop()
                 if (0 === s) {
                     b.push(H._Universe__lookupTerminalRti(a.u, 1, "0&"))
@@ -2912,11 +2914,11 @@
                 else if (typeof c == "number") return H.m2(a, b, c)
                 else return c
             },
-            hT(a, b, c) {
+            _Parser_toTypes(a, b, c) {
                 var s, r = c.length
                 for (s = 0; s < r; ++s) c[s] = H._Parser_toType(a, b, c[s])
             },
-            m3(a, b, c) {
+            _Parser_toTypesNamed(a, b, c) {
                 var s, r = c.length
                 for (s = 2; s < r; s += 3) c[s] = H._Parser_toType(a, b, c[s])
             },
@@ -3125,7 +3127,7 @@
                 _.y = 0
                 _.cy = _.cx = _.ch = _.Q = _.z = null
             },
-            dP: function dP() {
+            _FunctionParameters: function dP() {
                 this.c = this.b = this.a = null
             },
             e2: function e2(a) {
@@ -6947,7 +6949,7 @@
             return H.me(v.typeUniverse, this, a)
         }
     }
-    H.dP.prototype = {}
+    H._FunctionParameters.prototype = {}
     H.e2.prototype = {
         j(a) {
             return H._rtiToString(this.a, null)
@@ -10731,7 +10733,7 @@
             r = hunkHelpers.inherit,
             q = hunkHelpers.inheritMany
         r(P.m, null)
-        q(P.m, [H.Js_Const, J.I, J.bB, P.n, P.cg, H.aG, P.r, H.a5, P.cV, H.bJ, H.dC, H.bi, P.bV, H.bD, H.eD, H.fc, H.eY, H.bI, H.cp, H.fM, P.bb, H.eI, H.d1, H.b8, H.ch, H.dH, H.dv, H.fT, H.a1, H.dP, H.e2, P._TimerImpl, P.dI, P.cE, P.dL, P.bs, P.v, P.dJ, P.c6, P.dt, P.du, P.dX, P.h5, P.cu, P.fL, P.dS, P.k, P.e4, P.c4, P.cK, P.fr, P.fq, P.h2, P.h1, P.b2, P.b3, P.df, P.c5, P.fw, P.ey, P.u, P.dZ, P.bh, W.ep, W.hL, W.bt, W.bM, W.c0, W.co, W.e0, W.bK, W.fs, W.fQ, W.e5, P.fU, P.fk, P.W, P.eX, P.fJ, O.b6, O.eA, O.cS, O.ei, O.ej, O.en, O.el, O.fb, O.f5, Y.ag, N.cP, N.f0, S.dd, G.cY, G.d3, G.cH, Q.dV, V.dk, V.eC, D.f2, D.f1, Y.dm])
+        q(P.m, [H.Js_Const, J.I, J.bB, P.n, P.cg, H.aG, P.r, H.a5, P.cV, H.bJ, H.dC, H.bi, P.bV, H.bD, H.eD, H.fc, H.eY, H.bI, H.cp, H.fM, P.bb, H.eI, H.d1, H.b8, H.ch, H.dH, H.dv, H.fT, H.a1, H._FunctionParameters, H.e2, P._TimerImpl, P.dI, P.cE, P.dL, P.bs, P.v, P.dJ, P.c6, P.dt, P.du, P.dX, P.h5, P.cu, P.fL, P.dS, P.k, P.e4, P.c4, P.cK, P.fr, P.fq, P.h2, P.h1, P.b2, P.b3, P.df, P.c5, P.fw, P.ey, P.u, P.dZ, P.bh, W.ep, W.hL, W.bt, W.bM, W.c0, W.co, W.e0, W.bK, W.fs, W.fQ, W.e5, P.fU, P.fk, P.W, P.eX, P.fJ, O.b6, O.eA, O.cS, O.ei, O.ej, O.en, O.el, O.fb, O.f5, Y.ag, N.cP, N.f0, S.dd, G.cY, G.d3, G.cH, Q.dV, V.dk, V.eC, D.f2, D.f1, Y.dm])
         q(J.I, [J.cW, J.bQ, J.as, J.p, J.aJ, J.ar, H.bX, H.A, W.cQ, W.aE, W.eo, W.dM, W.er, W.es, W.c, W.bL, W.d4, W.dT, W.dW, W.e6, P.bR])
         q(J.as, [J.dh, J.av, J.ad])
         r(J.eE, J.p)
