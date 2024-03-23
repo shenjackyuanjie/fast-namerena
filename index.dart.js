@@ -2201,7 +2201,7 @@
             mx(a) {
                 var s = this
                 if (a == null) return H.hb(s)
-                return H.G(v.typeUniverse, H.instanceOrFunctionType(a, s), null, s, null)
+                return H._isSubtype(v.typeUniverse, H.instanceOrFunctionType(a, s), null, s, null)
             },
             mz(a) {
                 if (a == null) return true
@@ -2911,7 +2911,7 @@
             },
             _Parser_toType(a, b, c) {
                 if (typeof c == "string") return H.cr(a, c, a.sEA)
-                else if (typeof c == "number") return H.m2(a, b, c)
+                else if (typeof c == "number") return H._Parser_indexToType(a, b, c)
                 else return c
             },
             _Parser_toTypes(a, b, c) {
@@ -2922,7 +2922,7 @@
                 var s, r = c.length
                 for (s = 2; s < r; s += 3) c[s] = H._Parser_toType(a, b, c[s])
             },
-            m2(a, b, c) {
+            _Parser_indexToType(a, b, c) {
                 var s, r, q = b.y
                 if (q === 10) {
                     if (c === 0) return b.z
@@ -2938,7 +2938,7 @@
                 if (c <= s.length) return s[c - 1]
                 throw H.b(P.eg("Bad index " + c + " for " + b.j(0)))
             },
-            G(a, b, c, d, e) {
+            _isSubtype(a, b, c, d, e) {
                 var s, r, q, p, o, n, m, l, k, j
                 if (b === d) return true
                 if (!H.an(d))
@@ -2954,27 +2954,27 @@
                 if (s) return true
                 q = r === 13
                 if (q)
-                    if (H.G(a, c[b.z], c, d, e)) return true
+                    if (H._isSubtype(a, c[b.z], c, d, e)) return true
                 p = d.y
-                if (r === 6) return H.G(a, b.z, c, d, e)
+                if (r === 6) return H._isSubtype(a, b.z, c, d, e)
                 if (p === 6) {
                     s = d.z
-                    return H.G(a, b, c, s, e)
+                    return H._isSubtype(a, b, c, s, e)
                 }
                 if (r === 8) {
-                    if (!H.G(a, b.z, c, d, e)) return false
-                    return H.G(a, H.je(a, b), c, d, e)
+                    if (!H._isSubtype(a, b.z, c, d, e)) return false
+                    return H._isSubtype(a, H.je(a, b), c, d, e)
                 }
                 if (r === 7) {
-                    s = H.G(a, b.z, c, d, e)
+                    s = H._isSubtype(a, b.z, c, d, e)
                     return s
                 }
                 if (p === 8) {
-                    if (H.G(a, b, c, d.z, e)) return true
-                    return H.G(a, b, c, H.je(a, d), e)
+                    if (H._isSubtype(a, b, c, d.z, e)) return true
+                    return H._isSubtype(a, b, c, H.je(a, d), e)
                 }
                 if (p === 7) {
-                    s = H.G(a, b, c, d.z, e)
+                    s = H._isSubtype(a, b, c, d.z, e)
                     return s
                 }
                 if (q) return false
@@ -2992,14 +2992,14 @@
                     for (l = 0; l < m; ++l) {
                         k = o[l]
                         j = n[l]
-                        if (!H.G(a, k, c, j, e) || !H.G(a, j, e, k, c)) return false
+                        if (!H._isSubtype(a, k, c, j, e) || !H._isSubtype(a, j, e, k, c)) return false
                     }
-                    return H.jE(a, b.z, c, d.z, e)
+                    return H._isFunctionSubtype(a, b.z, c, d.z, e)
                 }
                 if (p === 11) {
                     if (b === t.g) return true
                     if (s) return false
-                    return H.jE(a, b, c, d, e)
+                    return H._isFunctionSubtype(a, b, c, d, e)
                 }
                 if (r === 9) {
                     if (p !== 9) return false
@@ -3007,9 +3007,9 @@
                 }
                 return false
             },
-            jE(a2, a3, a4, a5, a6) {
+            _isFunctionSubtype(a2, a3, a4, a5, a6) {
                 var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1
-                if (!H.G(a2, a3.z, a4, a5.z, a6)) return false
+                if (!H._isSubtype(a2, a3.z, a4, a5.z, a6)) return false
                 s = a3.Q
                 r = a5.Q
                 q = s.a
@@ -3025,15 +3025,15 @@
                 if (o + j < n + i) return false
                 for (h = 0; h < o; ++h) {
                     g = q[h]
-                    if (!H.G(a2, p[h], a6, g, a4)) return false
+                    if (!H._isSubtype(a2, p[h], a6, g, a4)) return false
                 }
                 for (h = 0; h < m; ++h) {
                     g = l[h]
-                    if (!H.G(a2, p[o + h], a6, g, a4)) return false
+                    if (!H._isSubtype(a2, p[o + h], a6, g, a4)) return false
                 }
                 for (h = 0; h < i; ++h) {
                     g = l[m + h]
-                    if (!H.G(a2, k[h], a6, g, a4)) return false
+                    if (!H._isSubtype(a2, k[h], a6, g, a4)) return false
                 }
                 f = s.c
                 e = r.c
@@ -3048,7 +3048,7 @@
                         if (a0 < a1) return false
                         if (a1 < a0) continue
                         g = f[b - 1]
-                        if (!H.G(a2, e[a + 2], a6, g, a4)) return false
+                        if (!H._isSubtype(a2, e[a + 2], a6, g, a4)) return false
                         break
                     }
                 }
@@ -3080,7 +3080,7 @@
                 for (s = 0; s < p; ++s) {
                     r = b[s]
                     q = e[s]
-                    if (!H.G(a, r, d, q, f)) return false
+                    if (!H._isSubtype(a, r, d, q, f)) return false
                 }
                 return true
             },
@@ -3140,7 +3140,7 @@
             jR(a) {
                 return t.x.b(a) || t.B.b(a) || t.J.b(a) || t.I.b(a) || t.a1.b(a) || t.cg.b(a) || t.bj.b(a)
             },
-            nz(a) {
+            print_string(a) {
                 if (typeof dartPrint == "function") {
                     dartPrint(a)
                     return
@@ -3597,7 +3597,7 @@
                     if (typeof k == "string") r.c = k
                 } catch (f) {
                     j = H.x(f)
-                    P.jW(j)
+                    P.print(j)
                 }
                 return r
             },
@@ -4923,8 +4923,8 @@
             ab(a, b, c) {
                 return new P.ey(a, b, c)
             },
-            jW(a) {
-                H.nz(H.d(J.aD(a)))
+            print(a) {
+                H.print_string(H.d(J.aD(a)))
             },
             lO(a) {
                 var s = t.N
@@ -9989,7 +9989,7 @@
                 j = e.a
                 j = j.style
                 j.display = "none"
-                P.jW(k)
+                P.print(k)
                 return
             }
             j = e.a.style
