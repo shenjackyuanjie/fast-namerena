@@ -3279,7 +3279,7 @@
                 if (typeof a == "string") return J.ar.prototype
                 if (a == null) return J.bQ.prototype
                 if (typeof a == "boolean") return J.cW.prototype
-                if (a.constructor == Array) return J.p.prototype
+                if (a.constructor == Array) return J.JSArray.prototype
                 if (typeof a != "object") {
                     if (typeof a == "function") return J.ad.prototype
                     return a
@@ -3290,7 +3290,7 @@
             t(a) {
                 if (typeof a == "string") return J.ar.prototype
                 if (a == null) return a
-                if (a.constructor == Array) return J.p.prototype
+                if (a.constructor == Array) return J.JSArray.prototype
                 if (typeof a != "object") {
                     if (typeof a == "function") return J.ad.prototype
                     return a
@@ -3300,7 +3300,7 @@
             },
             al(a) {
                 if (a == null) return a
-                if (a.constructor == Array) return J.p.prototype
+                if (a.constructor == Array) return J.JSArray.prototype
                 if (typeof a != "object") {
                     if (typeof a == "function") return J.ad.prototype
                     return a
@@ -3459,10 +3459,10 @@
             dh: function dh() {},
             av: function av() {},
             ad: function ad() {},
-            p: function p(a) {
+            JSArray: function p(a) {
                 this.$ti = a
             },
-            eE: function eE(a) {
+            JSUnmodifiableArray: function eE(a) {
                 this.$ti = a
             },
             ArrayIterator: function ArrayIterator(a, b) {
@@ -5675,7 +5675,7 @@
         },
         $iaI: 1
     }
-    J.p.prototype = {
+    J.JSArray.prototype = {
         D(a, b) {
             var s
             if (!!a.fixed$length) H.D(P.L("addAll"))
@@ -5794,7 +5794,7 @@
         },
         $ii: 1
     }
-    J.eE.prototype = {}
+    J.JSUnmodifiableArray.prototype = {}
     J.ArrayIterator.prototype = {
         gt() {
             return this.d
@@ -10725,9 +10725,9 @@
             q = hunkHelpers.inheritMany
         r(P.m, null)
         q(P.m, [H.Js_Const, J.Interceptor, J.ArrayIterator, P.n, P.cg, H.aG, P.r, H.a5, P.cV, H.bJ, H.dC, H.bi, P.bV, H.bD, H.eD, H.fc, H.eY, H.bI, H.cp, H.fM, P.bb, H.eI, H.d1, H.b8, H.ch, H.dH, H.dv, H.fT, H.a1, H._FunctionParameters, H.e2, P._TimerImpl, P.dI, P.cE, P.dL, P.bs, P.v, P.dJ, P.c6, P.dt, P.du, P.dX, P.h5, P.cu, P.fL, P.dS, P.k, P.e4, P.c4, P.cK, P.fr, P.fq, P.h2, P.h1, P.b2, P.b3, P.df, P.c5, P.fw, P.ey, P.u, P.dZ, P.bh, W.ep, W.hL, W.bt, W.bM, W.c0, W.co, W.e0, W.bK, W.fs, W.fQ, W.e5, P.fU, P.fk, P.W, P.eX, P.fJ, O.b6, O.eA, O.cS, O.ei, O.ej, O.en, O.el, O.fb, O.f5, Y.ag, N.cP, N.f0, S.dd, G.cY, G.d3, G.cH, Q.dV, V.dk, V.eC, D.f2, D.f1, Y.dm])
-        q(J.Interceptor, [J.cW, J.bQ, J.as, J.p, J.aJ, J.ar, H.bX, H.NativeTypedData, W.cQ, W.Blob, W.eo, W.dM, W.er, W.es, W.c, W.bL, W.d4, W.dT, W.dW, W.e6, P.bR])
+        q(J.Interceptor, [J.cW, J.bQ, J.as, J.JSArray, J.aJ, J.ar, H.bX, H.NativeTypedData, W.cQ, W.Blob, W.eo, W.dM, W.er, W.es, W.c, W.bL, W.d4, W.dT, W.dW, W.e6, P.bR])
         q(J.as, [J.dh, J.av, J.ad])
-        r(J.eE, J.p)
+        r(J.JSUnmodifiableArray, J.JSArray)
         q(J.aJ, [J.bP, J.cX])
         q(P.n, [H.d0, H.dn, H.c1, P.a6, H.d_, H.dB, H.dp, H.dN, P.cD, P.de, P.a_, P.dc, P.dD, P.dz, P.bg, P.cL, P.cN])
         r(P.bT, P.cg)
@@ -10934,7 +10934,7 @@
         C.d = W.b1.prototype
         C.v = W.aH.prototype
         C.R = J.Interceptor.prototype
-        C.c = J.p.prototype
+        C.c = J.JSArray.prototype
         C.a = J.bP.prototype
         C.j = J.aJ.prototype
         C.b = J.ar.prototype
