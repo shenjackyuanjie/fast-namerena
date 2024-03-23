@@ -716,7 +716,9 @@
             },
             ij(a) {
                 $.hs = a
-                if ($.ht != null) $.ea().aj("rld", [$.hD().i(0, "location")])
+                if ($.ht != null) {
+                    $.ea().aj("rld", [$.hD().i(0, "location")])
+                }
             },
             ny(a) {
                 var s, r, q, p
@@ -735,10 +737,17 @@
                 $.ii.ak(q)
                 p = X.kU(q)
                 window.sessionStorage.setItem("fSkN", p)
-                $.hD().aj("eval", [$.ht])
+                console.log("before eval", $.hD(), $.hD().a)
+                // $.hD().eval.apply(null, [$.ht])
+                $.hD().a.eval.apply(null, [$.ht])
+                // $.hD().aj("eval", [$.ht])
+                // window.eval($.ht)
+                // console.log($.hD().aj)
             },
             nL() {
-                if (!$.jT) $.ea().aj("rld", [$.hD().i(0, "location")])
+                if (!$.jT) {
+                    $.ea().aj("rld", [$.hD().i(0, "location")])
+                }
             },
             hm: function hm() {},
             cY: function cY(a, b) {
@@ -1670,7 +1679,7 @@
             },
             ng() {
                 var p, o, n, m = C.G()
-                
+
                 p = m.getTag
                 o = m.getUnknownTag
                 n = m.prototypeForTag
@@ -10841,93 +10850,93 @@
         g: "`null` encountered as the result from expression with type `Never`."
     }
     var t = (function rtii() {
-        var s = H.hk
+        var hK = H.hk
         return {
-            D: s("aY"),
-            x: s("aE"),
-            a: s("aF"),
-            k: s("bE<bj,@>"),
-            h: s("o"),
-            R: s("n"),
-            B: s("c"),
-            L: s("b5"),
-            Z: s("aI"),
-            c: s("ac<@>"),
-            I: s("bL"),
-            Q: s("p<Y>"),
-            s: s("p<h>"),
-            b: s("p<@>"),
-            t: s("p<l>"),
-            n: s("p<i<N*>*>"),
-            d: s("p<i<l*>*>"),
-            q: s("p<dk*>"),
-            r: s("p<dm*>"),
-            V: s("p<h*>"),
-            u: s("p<N*>"),
-            i: s("p<l*>"),
-            T: s("bQ"),
-            m: s("j1"),
-            g: s("ad"),
-            p: s("E<@>"),
-            F: s("aK<@>"),
-            M: s("ae<bj,@>"),
-            J: s("bR"),
-            j: s("i<@>"),
-            bC: s("z<@,@>"),
-            ce: s("F<h,h*>"),
-            c4: s("F<h*,h>"),
-            cB: s("bW"),
-            o: s("bX"),
-            E: s("R"),
-            ac: s("A"),
-            cr: s("aO"),
-            a1: s("j"),
-            P: s("u"),
-            K: s("m"),
-            bL: s("dg"),
-            a7: s("jc"),
-            H: s("c3<h>"),
-            ck: s("bf"),
-            N: s("h"),
-            bM: s("f"),
-            bg: s("bk"),
-            b7: s("a6"),
-            f: s("T"),
-            bX: s("jj"),
-            cC: s("av"),
-            cg: s("bn"),
-            bj: s("ai"),
-            d5: s("bp"),
-            ba: s("M"),
-            G: s("br<X*>"),
-            U: s("v<u>"),
-            aY: s("v<@>"),
-            aQ: s("v<l>"),
-            y: s("N"),
-            cb: s("O"),
-            z: s("@"),
-            v: s("@(m)"),
-            C: s("@(m,aP)"),
-            cp: s("l"),
-            c7: s("b_*"),
-            aS: s("b0*"),
-            bs: s("aH*"),
-            b8: s("e*"),
-            Y: s("b7*"),
-            W: s("W*"),
-            w: s("i<@>*"),
-            cq: s("i<i<h*>*>*"),
-            bW: s("i<h*>*"),
-            S: s("z<@,@>*"),
-            A: s("0&*"),
-            aM: s("j*"),
-            _: s("m*"),
-            X: s("h*"),
-            l: s("bl*"),
-            e: s("l*"),
-            bc: s("ac<u>?"),
-            O: s("m?"),
-            cY: s("nw")
+            D: hK("aY"),
+            x: hK("aE"),
+            a: hK("aF"),
+            k: hK("bE<bj,@>"),
+            h: hK("o"),
+            R: hK("n"),
+            B: hK("c"),
+            L: hK("b5"),
+            Z: hK("aI"),
+            c: hK("ac<@>"),
+            I: hK("bL"),
+            Q: hK("p<Y>"),
+            s: hK("p<h>"),
+            b: hK("p<@>"),
+            t: hK("p<l>"),
+            n: hK("p<i<N*>*>"),
+            d: hK("p<i<l*>*>"),
+            q: hK("p<dk*>"),
+            r: hK("p<dm*>"),
+            V: hK("p<h*>"),
+            u: hK("p<N*>"),
+            i: hK("p<l*>"),
+            T: hK("bQ"),
+            m: hK("j1"),
+            g: hK("ad"),
+            p: hK("E<@>"),
+            F: hK("aK<@>"),
+            M: hK("ae<bj,@>"),
+            J: hK("bR"),
+            j: hK("i<@>"),
+            bC: hK("z<@,@>"),
+            ce: hK("F<h,h*>"),
+            c4: hK("F<h*,h>"),
+            cB: hK("bW"),
+            o: hK("bX"),
+            E: hK("R"),
+            ac: hK("A"),
+            cr: hK("aO"),
+            a1: hK("j"),
+            P: hK("u"),
+            K: hK("m"),
+            bL: hK("dg"),
+            a7: hK("jc"),
+            H: hK("c3<h>"),
+            ck: hK("bf"),
+            N: hK("h"),
+            bM: hK("f"),
+            bg: hK("bk"),
+            b7: hK("a6"),
+            f: hK("T"),
+            bX: hK("jj"),
+            cC: hK("av"),
+            cg: hK("bn"),
+            bj: hK("ai"),
+            d5: hK("bp"),
+            ba: hK("M"),
+            G: hK("br<X*>"),
+            U: hK("v<u>"),
+            aY: hK("v<@>"),
+            aQ: hK("v<l>"),
+            y: hK("N"),
+            cb: hK("O"),
+            z: hK("@"),
+            v: hK("@(m)"),
+            C: hK("@(m,aP)"),
+            cp: hK("l"),
+            c7: hK("b_*"),
+            aS: hK("b0*"),
+            bs: hK("aH*"),
+            b8: hK("e*"),
+            Y: hK("b7*"),
+            W: hK("W*"),
+            w: hK("i<@>*"),
+            cq: hK("i<i<h*>*>*"),
+            bW: hK("i<h*>*"),
+            S: hK("z<@,@>*"),
+            A: hK("0&*"),
+            aM: hK("j*"),
+            _: hK("m*"),
+            X: hK("h*"),
+            l: hK("bl*"),
+            e: hK("l*"),
+            bc: hK("ac<u>?"),
+            O: hK("m?"),
+            cY: hK("nw")
         }
     })();
     (function constants() {
@@ -11486,7 +11495,10 @@
             return new G.hm().$0()
         })
         q($, "pe", "hD", function () {
-            return t.W.a($.ea().aj("cw", []))
+            // return t.W.a($.ea().aj("cw", []))
+            let result = t.W.a($.ea().aj("cw", []))
+            console.log("lazy $.hD", result, t.W, t.W.a, $.ea(), $.ea().aj("cw", []))
+            return result
         })
         q($, "pa", "iy", function () {
             return t.Y.a(W.nB(".mdframe"))
@@ -12143,7 +12155,7 @@
     G.main_func()
 })()
 
-window.addEventListener('message', function(event) {
+window.addEventListener('message', function (event) {
     // 这里是处理消息的代码
     console.log('Received message:', event.data);
     if (event.data === 'done_fight') {

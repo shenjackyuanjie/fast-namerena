@@ -13125,7 +13125,8 @@
             document_ = "" + (C.d.aI(m.offsetWidth) - C.d.aI(h.offsetWidth) - 8) + "px"
             d.marginLeft = document_
             if (W.ll(window.parent) !== window) {
-                new Z.jE(f, p, o, n, $.ay.h(0, J.J(J.J(f.z[0], 0), 0))).$0()
+                // new Z.jE(f, p, o, n, $.ay.h(0, J.J(J.J(f.z[0], 0), 0))).$0()
+                new Z.jE(f, p, o, n, $.ay.h(0, f.z[0][0][0])).$0()
             }
 
             // 显示 done_target
