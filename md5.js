@@ -14,22 +14,6 @@
             if (!b.hasOwnProperty(q)) b[q] = a[q]
         }
     }
-    var z = function () {
-        var s = function () {}
-        s.prototype = {
-            p: {}
-        }
-        var r = new s()
-        if (!(r.__proto__ && r.__proto__.p === s.prototype.p)) return false
-        try {
-            if (typeof navigator != "undefined" && typeof navigator.userAgent == "string" && navigator.userAgent.indexOf("Chrome/") >= 0) return true
-            if (typeof version == "function" && version.length == 0) {
-                var q = version()
-                if (/^\d+\.\d+\.\d+\.\d+$/.test(q)) return true
-            }
-        } catch (p) {}
-        return false
-    }()
 
     function setFunctionNamesIfNecessary(a) {
         function t() {};
@@ -49,13 +33,8 @@
         a.prototype.constructor = a
         a.prototype["$i" + a.name] = a
         if (b != null) {
-            if (z) {
-                a.prototype.__proto__ = b.prototype
-                return
-            }
-            var s = Object.create(b.prototype)
-            copyProperties(a.prototype, s)
-            a.prototype = s
+            a.prototype.__proto__ = b.prototype
+            return
         }
     }
 
@@ -126,16 +105,6 @@
         return a
     }
 
-    function convertToFastObject(a) {
-        function t() {}
-        t.prototype = a
-        new t()
-        return a
-    }
-
-    function convertAllToFastObject(a) {
-        for (var s = 0; s < a.length; ++s) convertToFastObject(a[s])
-    }
     var y = 0
 
     function instanceTearOffGetter(a, b) {
@@ -242,18 +211,12 @@
             lazyFinal: lazyFinal,
             lazyOld: lazyOld,
             updateHolder: updateHolder,
-            convertToFastObject: convertToFastObject,
-            setFunctionNamesIfNecessary: setFunctionNamesIfNecessary,
             updateTypes: updateTypes,
             setOrUpdateInterceptorsByTag: setOrUpdateInterceptorsByTag,
             setOrUpdateLeafTags: setOrUpdateLeafTags
         }
     }()
 
-    function initializeDeferredHunk(a) {
-        x = v.types.length
-        a(hunkHelpers, v, w, $)
-    }
     var A = {
             eR(a) {
                 var s = window.localStorage,
@@ -1004,7 +967,7 @@
                         } catch (d) {}
                         return null
                     }(a)
-                    return H.bR(a, new P.aS(!1, e, e, typeof s == "string" ? s.replace(/^RangeError:\s*/, "") : s))
+                    return H.bR(a, new P.aS(false, e, e, typeof s == "string" ? s.replace(/^RangeError:\s*/, "") : s))
                 }
                 if (typeof InternalError == "function" && a instanceof InternalError)
                     if (typeof s == "string" && s === "too much recursion") return new P.el()
@@ -2520,7 +2483,7 @@
                             case 44:
                                 break
                             case 58:
-                                f.push(!1)
+                                f.push(false)
                                 break
                             case 33:
                                 f.push(true)
@@ -3285,21 +3248,6 @@
             iT: function iT() {},
             iU: function iU(a) {
                 this.a = a
-            }
-        },
-        M = {
-            mB() {
-                var s = 0,
-                    r = P.am(t.z)
-                var $async$mB = P.an(function (a, b) {
-                    if (a === 1) return P.ai(b, r)
-                    while (true) switch (s) {
-                        case 0:
-                            Q.iE()
-                            return P.aj(null, r)
-                    }
-                })
-                return P.ak($async$mB, r)
             }
         },
         O = {
@@ -4260,7 +4208,7 @@
                 return new P.f2(a)
             },
             bz(a, b) {
-                return new P.aS(!1, null, b, a)
+                return new P.aS(false, null, b, a)
             },
             da(a, b, c) {
                 return new P.aS(true, a, b, c)
@@ -4456,7 +4404,7 @@
             p: function p() {}
         },
         Q = {
-            iE() {
+            main_func() {
                 var s = 0,
                     r = P.am(t.z),
                     q, p = 2,
@@ -4484,7 +4432,7 @@
                             p = 5
                             m = window.sessionStorage.getItem(O.eQ("k"))
                             l = X.f4(m, 0)
-                            k = O.oC(!1)
+                            k = O.oC(false)
                             a8 = t.i
                             j = H.b([], a8)
                             J.rr(j, H.b([1, 3, 0, 9], a8))
@@ -4492,10 +4440,12 @@
                             k.di(l)
                             i = C.e.bt(0, l)
                             h = T.rR(i)
-                            if (J.Y(J.J(J.J(h, 0)[0], 0), $.qc())) {
+                            // if (J.Y(J.J(J.J(h, 0)[0], 0), $.qc())) {
+                            if ($.qc() === h[0][0][0]) {
                                 $.vr = 6
                                 if (J.aw(h) === 2)
-                                    if (J.J(h, 1).length > 10 || J.lW(J.J(J.J(h, 1)[0], 0), O.j("S,AF", 5))) {
+                                    // if (J.J(h, 1).length > 10 || J.lW(J.J(J.J(h, 1)[0], 0), O.j("S,AF", 5))) {
+                                    if (h[1].length > 10 || J.lW(h[1][0][0], O.j("S,AF", 5))) {
                                         a8 = J.J(h, 1)
                                         a9 = H.b([], t.t)
                                         d = new X.iW(a9, new Float64Array(1))
@@ -8249,8 +8199,8 @@
                 this.b = b
             }
         }
-    var w = [A, C, F, H, J, L, M, O, P, Q, S, T, V, W, X, Y, Z]
-    hunkHelpers.setFunctionNamesIfNecessary(w)
+    // var w = [A, C, F, H, J, L, O, P, Q, S, T, V, W, X, Y, Z]
+
     var $ = {}
     H.m8.prototype = {}
     J.Interceptor.prototype = {
@@ -18870,7 +18820,7 @@
         C.r = H.b(make_const_list(["bind", "if", "ref", "repeat", "syntax"]), t.V)
         C.l = H.b(make_const_list(["A::href", "AREA::href", "BLOCKQUOTE::cite", "BODY::background", "COMMAND::icon", "DEL::cite", "FORM::action", "IMG::src", "INPUT::src", "INS::cite", "Q::cite", "VIDEO::poster"]), t.V)
         C.S = H.vp("N")
-        C.T = new P.kk(!1)
+        C.T = new P.kk(false)
     })();
     (function staticFields() {
         $.kU = null
@@ -19880,19 +19830,15 @@
     })();
     (function nativeSupport() {
         ! function () {
-            var s = function (a) {
-                var m = {}
-                m[a] = 1
-                return Object.keys(hunkHelpers.convertToFastObject(m))[0]
-            }
+
             v.getIsolateTag = function (a) {
-                return s("___dart_" + a + v.isolateTag)
+                return "___dart_" + a + v.isolateTag
             }
             var r = "___dart_isolate_tags_"
             var q = Object[r] || (Object[r] = Object.create(null))
             var p = "_ZxYxX"
             for (var o = 0;; o++) {
-                var n = s(p + "_" + o + "_")
+                var n = p + "_" + o + "_"
                 if (!(n in q)) {
                     q[n] = 1
                     v.isolateTag = n
@@ -20519,30 +20465,7 @@
     }
     Function.prototype.$6 = function (a, b, c, d, e, f) {
         return this(a, b, c, d, e, f)
-    }
-    convertAllToFastObject(w)
-    convertToFastObject($);
-    (function (a) {
-        if (typeof document === "undefined") {
-            a(null)
-            return
-        }
-        if (typeof document.currentScript != "undefined") {
-            a(document.currentScript)
-            return
-        }
-        var s = document.scripts
-
-        function onLoad(b) {
-            for (var q = 0; q < s.length; ++q) s[q].removeEventListener("load", onLoad, false)
-            a(b.target)
-        }
-        for (var r = 0; r < s.length; ++r) s[r].addEventListener("load", onLoad, false)
-    })(function (a) {
-        v.currentScript = a
-        var s = M.mB
-        if (typeof dartMainRunner === "function") dartMainRunner(s, [])
-        else s([])
-    })
+    };
+    Q.main_func()
 })()
 //# sourceMappingURL=md5.js.map
