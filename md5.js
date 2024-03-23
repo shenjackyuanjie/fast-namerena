@@ -7891,14 +7891,20 @@
                 H.mq(q, 0, null)
                 s = q.byteLength
                 r = C.c.ag(s - 0, 4)
-                return new Uint32Array(q, 0, r)[1]
+                let result = new Uint8Array(q, 0, r)[1]
+                // return new Uint32Array(q, 0, r)[1]
+                console.log("X.k", a, b, result)
+                return result
             },
             D(a, b) {
                 var s, r, q = new Uint8Array(H.on(X.f4(a, b))).buffer
                 H.mq(q, 0, null)
                 s = q.byteLength
                 r = C.c.ag(s - 0, 4)
-                return new Float32Array(q, 0, r)[1]
+                let result = new Float32Array(q, 0, r)[1]
+                // return new Float32Array(q, 0, r)[1]
+                console.log("X.D", a, b, result)
+                return result
             },
             je: function je() {},
             j9: function j9() {},
@@ -19445,7 +19451,8 @@
             return O.j("H<|dA6D5:4]j*v#HA'XH>zwoSP", 57)
         })
         r($, "yH", "qq", function () {
-            return O.j("0fc/5.@{T*a]T^#TU9!P(q*yRaP@yG*Vp>'aEnltB", 31)
+            // return O.j("0fc/5.@{T*a]T^#TU9!P(q*yRaP@yG*Vp>'aEnltB", 31)
+            return "https://deepmess.com/zh/namerena/"
         })
         r($, "zN", "nr", function () {
             return P.dD([O.j("JIi6cgXO*d_", 22), $.iH(), O.j("Fmi6Vr!~c@]4ElFk,dC", 55), $.mO(), O.j("OeQh>Rep f~;YzR^Y%E", 16), $.lK()], t.X, t.B)
