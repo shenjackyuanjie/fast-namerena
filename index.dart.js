@@ -3459,8 +3459,8 @@
             aD(a) {
                 return J.get_interceptor(a).j(a)
             },
-            ef(a) {
-                return J.a2(a).dF(a)
+            get_trim(a) {
+                return J.a2(a).trim_valid(a)
             },
             I: function I() {},
             cW: function cW() {},
@@ -3551,7 +3551,7 @@
             ld(a) {
                 var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e = ""
                 a = a
-                a = J.ef(a)
+                a = J.get_trim(a)
                 s = null
                 r = new O.cS($.iq())
                 q = null
@@ -5982,7 +5982,7 @@
         dD(a) {
             return a.toLowerCase()
         },
-        dF(a) {
+        trim_valid(a) {
             var s, r, q, p = a.trim(),
                 o = p.length
             if (o === 0) return p
@@ -10084,7 +10084,7 @@
             var s, r, q, p, o = this.dy.style
             o.toString
             C.d.T(o, C.d.N(o, "opacity"), "0", "")
-            o = J.ef(this.d.value)
+            o = J.get_trim(this.d.value)
             s = $.is()
             r = H.aW(o, s, "")
             q = H.setRuntimeTypeInfo(r.split("\n"), t.s)
@@ -10099,7 +10099,7 @@
         },
         aU(a) {
             var s = this,
-                r = J.ef(s.d.value),
+                r = J.get_trim(s.d.value),
                 q = $.is(),
                 p = H.aW(r, q, "")
             if (!C.b.R(s.ch.style.height, "0")) {
@@ -10279,7 +10279,7 @@
     }
     G.eK.prototype = {
         $1(a) {
-            return J.ef(a)
+            return J.get_trim(a)
         },
         $S: 39
     }
