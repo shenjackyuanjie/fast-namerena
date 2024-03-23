@@ -703,7 +703,8 @@
                     // s = O.w("k4w`nL1(zURGrm{kMa@1C`J^+LT,ubF", 27)
                     s = "go​ogle_experiment_mod1";
                     if ((window.localStorage.getItem(s) == null || C.a.n(window.localStorage.getItem(s).length, 100) !== 0) && $.i7.d != null) window.localStorage.setItem(s, new H.c3(H.setRuntimeTypeInfo($.i7.d.split(""), t.s), t.H).cZ(0))
-                    $.ht = J.iH($.id.d, "[1,3,0,9]", J.aD($.hA))
+                    // $.ht = J.iH($.id.d, "[1,3,0,9]", J.aD($.hA))
+                    $.ht = J.iH($.id.d, "[1, 3, 0, 9]", J.aD($.hA))
                     r = (self.URL || self.webkitURL).createObjectURL(W.iK([$.i8.d], "text/css"))
                     q = (self.URL || self.webkitURL).createObjectURL(W.iK([J.iH($.ib.d, "md5.css", r)], "text/html"))
                     $.iy().src = q
