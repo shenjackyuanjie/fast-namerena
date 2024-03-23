@@ -3058,26 +3058,26 @@
             },
             cV(a) {
                 if (typeof a == "number") {
-                    if (Math.floor(a) == a) return J.dz.prototype
+                    if (Math.floor(a) == a) return J.JsInt.prototype
                     return J.jF.prototype
                 }
-                if (typeof a == "string") return J.bD.prototype
+                if (typeof a == "string") return J.JsString.prototype
                 if (a == null) return J.cs.prototype
                 if (typeof a == "boolean") return J.fw.prototype
-                if (a.constructor == Array) return J.E.prototype
+                if (a.constructor == Array) return J.JsArray.prototype
                 if (typeof a != "object") {
-                    if (typeof a == "function") return J.bn.prototype
+                    if (typeof a == "function") return J.JavaScriptFunction.prototype
                     return a
                 }
                 if (a instanceof P.H) return a
                 return J.lu(a)
             },
             a3(a) {
-                if (typeof a == "string") return J.bD.prototype
+                if (typeof a == "string") return J.JsString.prototype
                 if (a == null) return a
-                if (a.constructor == Array) return J.E.prototype
+                if (a.constructor == Array) return J.JsArray.prototype
                 if (typeof a != "object") {
-                    if (typeof a == "function") return J.bn.prototype
+                    if (typeof a == "function") return J.JavaScriptFunction.prototype
                     return a
                 }
                 if (a instanceof P.H) return a
@@ -3085,36 +3085,36 @@
             },
             cW(a) {
                 if (a == null) return a
-                if (a.constructor == Array) return J.E.prototype
+                if (a.constructor == Array) return J.JsArray.prototype
                 if (typeof a != "object") {
-                    if (typeof a == "function") return J.bn.prototype
+                    if (typeof a == "function") return J.JavaScriptFunction.prototype
                     return a
                 }
                 if (a instanceof P.H) return a
                 return J.lu(a)
             },
             oA(a) {
-                if (typeof a == "number") return J.dA.prototype
-                if (typeof a == "string") return J.bD.prototype
+                if (typeof a == "number") return J.JsNumber.prototype
+                if (typeof a == "string") return J.JsString.prototype
                 if (a == null) return a
-                if (!(a instanceof P.H)) return J.bs.prototype
+                if (!(a instanceof P.H)) return J.UnknownJavaScriptObject.prototype
                 return a
             },
             aQ(a) {
-                if (typeof a == "string") return J.bD.prototype
+                if (typeof a == "string") return J.JsString.prototype
                 if (a == null) return a
-                if (!(a instanceof P.H)) return J.bs.prototype
+                if (!(a instanceof P.H)) return J.UnknownJavaScriptObject.prototype
                 return a
             },
             uR(a) {
                 if (a == null) return J.cs.prototype
-                if (!(a instanceof P.H)) return J.bs.prototype
+                if (!(a instanceof P.H)) return J.UnknownJavaScriptObject.prototype
                 return a
             },
             bv(a) {
                 if (a == null) return a
                 if (typeof a != "object") {
-                    if (typeof a == "function") return J.bn.prototype
+                    if (typeof a == "function") return J.JavaScriptFunction.prototype
                     return a
                 }
                 if (a instanceof P.H) return a
@@ -3122,7 +3122,7 @@
             },
             uS(a) {
                 if (a == null) return a
-                if (!(a instanceof P.H)) return J.bs.prototype
+                if (!(a instanceof P.H)) return J.UnknownJavaScriptObject.prototype
                 return a
             },
             iN(a, b) {
@@ -3241,14 +3241,14 @@
             rD(a) {
                 return J.aQ(a).dF(a)
             },
-            af: function af() {},
+            Interceptor: function af() {},
             fw: function fw() {},
             cs: function cs() {},
             bE: function bE() {},
-            fO: function fO() {},
-            bs: function bs() {},
-            bn: function bn() {},
-            E: function E(a) {
+            PlainJavaScriptObject: function fO() {},
+            UnknownJavaScriptObject: function bs() {},
+            JavaScriptFunction: function bn() {},
+            JsArray: function E(a) {
                 this.$ti = a
             },
             jG: function jG(a) {
@@ -3261,10 +3261,10 @@
                 _.c = 0
                 _.d = null
             },
-            dA: function dA() {},
-            dz: function dz() {},
+            JsNumber: function dA() {},
+            JsInt: function dz() {},
             jF: function jF() {},
-            bD: function bD() {}
+            JsString: function bD() {}
         },
         L = {
             iR: function iR(a, b, c, d, e, f, g) {
@@ -4483,7 +4483,7 @@
                             k = O.oC(!1)
                             a8 = t.i
                             j = H.b([], a8)
-                            J.rr(j, H.b([1,3,0,9], a8))
+                            J.rr(j, H.b([1, 3, 0, 9], a8))
                             k.bO(j)
                             k.di(l)
                             i = C.e.bt(0, l)
@@ -8249,7 +8249,7 @@
     hunkHelpers.setFunctionNamesIfNecessary(w)
     var $ = {}
     H.m8.prototype = {}
-    J.af.prototype = {
+    J.Interceptor.prototype = {
         aW(a, b) {
             return a === b
         },
@@ -8293,16 +8293,16 @@
         },
         $inM: 1
     }
-    J.fO.prototype = {}
-    J.bs.prototype = {}
-    J.bn.prototype = {
+    J.PlainJavaScriptObject.prototype = {}
+    J.UnknownJavaScriptObject.prototype = {}
+    J.JavaScriptFunction.prototype = {
         k(a) {
             var s = a[$.oR()]
             if (s == null) return this.dQ(a)
             return "JavaScript function for " + H.e(J.b4(s))
         }
     }
-    J.E.prototype = {
+    J.JsArray.prototype = {
         j(a, b) {
             if (!!a.fixed$length) H.G(P.S("add"))
             a.push(b)
@@ -8475,7 +8475,7 @@
             return true
         }
     }
-    J.dA.prototype = {
+    J.JsNumber.prototype = {
         bg(a, b) {
             var s
             if (typeof b != "number") throw H.h(H.R(b))
@@ -8587,11 +8587,11 @@
             return b > 31 ? 0 : a >>> b
         }
     }
-    J.dz.prototype = {
+    J.JsInt.prototype = {
         $il: 1
     }
     J.jF.prototype = {}
-    J.bD.prototype = {
+    J.JsString.prototype = {
         aQ(a, b) {
             if (!H.aP(b)) throw H.h(H.bQ(a, b))
             if (b < 0) throw H.h(H.bQ(a, b))
@@ -13193,7 +13193,7 @@
             var s = 0,
                 r = P.am(t.P),
                 q = this,
-                p, o, n
+                p, win_data, n
             var $async$$0 = P.an(function (a, b) {
                 if (a === 1) return P.ai(b, r)
                 while (true) switch (s) {
@@ -13203,8 +13203,16 @@
                         return P.a2(P.jo(P.fm(1, 0), n), $async$$0)
                     case 2:
                         p = Z.rV(q.b, q.c)
-                        o = P.dD(["winners", q.d, "all", q.a.z, "pic", p.toDataURL("image/png", null), "firstKill", q.e.e], n, n)
-                        J.m0(W.ll(window.parent), o, "*")
+                        win_data = P.dD(["winners",
+                            q.d,
+                            "all",
+                            q.a.z,
+                            "pic",
+                            p.toDataURL("image/png", null),
+                            "firstKill",
+                            q.e.e
+                        ], n, n)
+                        J.m0(W.ll(window.parent), win_data, "*")
                         return P.aj(null, r)
                 }
             })
@@ -18418,7 +18426,7 @@
         }
     };
     (function aliases() {
-        var s = J.af.prototype
+        var s = J.Interceptor.prototype
         s.dO = s.k
         s = J.bE.prototype
         s.dQ = s.k
@@ -18499,11 +18507,11 @@
             r = hunkHelpers.inherit,
             q = hunkHelpers.inheritMany
         r(P.H, null)
-        q(P.H, [H.m8, J.af, J.db, P.O, P.ev, P.L, H.cv, P.fv, H.du, H.hV, H.kh, H.jR, H.dt, H.eE, H.c_, P.aU, H.jK, H.fA, H.ct, H.ew, H.kz, H.bK, H.l3, H.aW, H.ib, H.iu, P.l8, P.i_, P.f3, P.i4, P.cN, P.U, P.i0, P.em, P.hO, P.hP, P.im, P.i1, P.i3, P.i7, P.ii, P.io, P.lf, P.eM, P.kV, P.ie, P.z, P.dY, P.fg, P.js, P.lc, P.lb, P.dq, P.c1, P.fM, P.el, P.kG, P.jm, P.N, P.iq, P.cH, W.j8, W.m5, W.cP, W.cr, W.dN, W.eD, W.is, W.dv, W.kE, W.l_, W.ix, P.l4, P.kw, P.eJ, P.jQ, P.kT, Y.dW, L.iR, V.iV, X.iW, S.fK, Z.fq, Z.jT, Z.ax, F.a_, F.n, T.x, T.u, T.dk, T.fo, T.b7, T.fr, T.bB, T.bm, T.aX, T.aq, T.bG, T.bL, T.fl])
-        q(J.af, [J.fw, J.cs, J.bE, J.E, J.dA, J.bD, H.dJ, H.ab, W.fn, W.bX, W.fe, W.i6, W.bb, W.ja, W.jb, W.o, W.c4, W.jL, W.ig, W.il, W.iy, W.iA])
-        q(J.bE, [J.fO, J.bs, J.bn])
-        r(J.jG, J.E)
-        q(J.dA, [J.dz, J.jF])
+        q(P.H, [H.m8, J.Interceptor, J.db, P.O, P.ev, P.L, H.cv, P.fv, H.du, H.hV, H.kh, H.jR, H.dt, H.eE, H.c_, P.aU, H.jK, H.fA, H.ct, H.ew, H.kz, H.bK, H.l3, H.aW, H.ib, H.iu, P.l8, P.i_, P.f3, P.i4, P.cN, P.U, P.i0, P.em, P.hO, P.hP, P.im, P.i1, P.i3, P.i7, P.ii, P.io, P.lf, P.eM, P.kV, P.ie, P.z, P.dY, P.fg, P.js, P.lc, P.lb, P.dq, P.c1, P.fM, P.el, P.kG, P.jm, P.N, P.iq, P.cH, W.j8, W.m5, W.cP, W.cr, W.dN, W.eD, W.is, W.dv, W.kE, W.l_, W.ix, P.l4, P.kw, P.eJ, P.jQ, P.kT, Y.dW, L.iR, V.iV, X.iW, S.fK, Z.fq, Z.jT, Z.ax, F.a_, F.n, T.x, T.u, T.dk, T.fo, T.b7, T.fr, T.bB, T.bm, T.aX, T.aq, T.bG, T.bL, T.fl])
+        q(J.Interceptor, [J.fw, J.cs, J.bE, J.JsArray, J.JsNumber, J.JsString, H.dJ, H.ab, W.fn, W.bX, W.fe, W.i6, W.bb, W.ja, W.jb, W.o, W.c4, W.jL, W.ig, W.il, W.iy, W.iA])
+        q(J.bE, [J.PlainJavaScriptObject, J.UnknownJavaScriptObject, J.JavaScriptFunction])
+        r(J.jG, J.JsArray)
+        q(J.JsNumber, [J.JsInt, J.jF])
         q(P.O, [H.fz, H.dO, P.bc, H.fx, H.hU, H.h3, H.i9, P.f2, P.fL, P.aS, P.hW, P.hS, P.bJ, P.fh, P.fj])
         r(P.dE, P.ev)
         q(P.dE, [H.cJ, W.az])
@@ -18763,24 +18771,24 @@
         }
     })();
     (function constants() {
-        var s = hunkHelpers.makeConstList
+        var make_const_list = hunkHelpers.makeConstList
         C.n = W.bY.prototype
         C.H = W.di.prototype
         C.k = W.fe.prototype
         C.i = W.co.prototype
         C.h = W.c0.prototype
-        C.J = J.af.prototype
-        C.a = J.E.prototype
-        C.c = J.dz.prototype
-        C.d = J.dA.prototype
-        C.b = J.bD.prototype
-        C.K = J.bn.prototype
+        C.J = J.Interceptor.prototype
+        C.a = J.JsArray.prototype
+        C.c = J.JsInt.prototype
+        C.d = J.JsNumber.prototype
+        C.b = J.JsString.prototype
+        C.K = J.JavaScriptFunction.prototype
         C.Q = W.dQ.prototype
-        C.t = J.fO.prototype
+        C.t = J.PlainJavaScriptObject.prototype
         C.R = W.ek.prototype
         C.j = W.ce.prototype
         C.u = W.en.prototype
-        C.m = J.bs.prototype
+        C.m = J.UnknownJavaScriptObject.prototype
         C.U = W.eq.prototype
         C.v = W.eH.prototype
         C.V = new P.js()
@@ -18831,12 +18839,12 @@
         C.G = new P.iq()
         C.I = new P.c1(0)
         C.L = new P.jJ(null)
-        C.M = H.b(s(["*::class", "*::dir", "*::draggable", "*::hidden", "*::id", "*::inert", "*::itemprop", "*::itemref", "*::itemscope", "*::lang", "*::spellcheck", "*::title", "*::translate", "A::accesskey", "A::coords", "A::hreflang", "A::name", "A::shape", "A::tabindex", "A::target", "A::type", "AREA::accesskey", "AREA::alt", "AREA::coords", "AREA::nohref", "AREA::shape", "AREA::tabindex", "AREA::target", "AUDIO::controls", "AUDIO::loop", "AUDIO::mediagroup", "AUDIO::muted", "AUDIO::preload", "BDO::dir", "BODY::alink", "BODY::bgcolor", "BODY::link", "BODY::text", "BODY::vlink", "BR::clear", "BUTTON::accesskey", "BUTTON::disabled", "BUTTON::name", "BUTTON::tabindex", "BUTTON::type", "BUTTON::value", "CANVAS::height", "CANVAS::width", "CAPTION::align", "COL::align", "COL::char", "COL::charoff", "COL::span", "COL::valign", "COL::width", "COLGROUP::align", "COLGROUP::char", "COLGROUP::charoff", "COLGROUP::span", "COLGROUP::valign", "COLGROUP::width", "COMMAND::checked", "COMMAND::command", "COMMAND::disabled", "COMMAND::label", "COMMAND::radiogroup", "COMMAND::type", "DATA::value", "DEL::datetime", "DETAILS::open", "DIR::compact", "DIV::align", "DL::compact", "FIELDSET::disabled", "FONT::color", "FONT::face", "FONT::size", "FORM::accept", "FORM::autocomplete", "FORM::enctype", "FORM::method", "FORM::name", "FORM::novalidate", "FORM::target", "FRAME::name", "H1::align", "H2::align", "H3::align", "H4::align", "H5::align", "H6::align", "HR::align", "HR::noshade", "HR::size", "HR::width", "HTML::version", "IFRAME::align", "IFRAME::frameborder", "IFRAME::height", "IFRAME::marginheight", "IFRAME::marginwidth", "IFRAME::width", "IMG::align", "IMG::alt", "IMG::border", "IMG::height", "IMG::hspace", "IMG::ismap", "IMG::name", "IMG::usemap", "IMG::vspace", "IMG::width", "INPUT::accept", "INPUT::accesskey", "INPUT::align", "INPUT::alt", "INPUT::autocomplete", "INPUT::autofocus", "INPUT::checked", "INPUT::disabled", "INPUT::inputmode", "INPUT::ismap", "INPUT::list", "INPUT::max", "INPUT::maxlength", "INPUT::min", "INPUT::multiple", "INPUT::name", "INPUT::placeholder", "INPUT::readonly", "INPUT::required", "INPUT::size", "INPUT::step", "INPUT::tabindex", "INPUT::type", "INPUT::usemap", "INPUT::value", "INS::datetime", "KEYGEN::disabled", "KEYGEN::keytype", "KEYGEN::name", "LABEL::accesskey", "LABEL::for", "LEGEND::accesskey", "LEGEND::align", "LI::type", "LI::value", "LINK::sizes", "MAP::name", "MENU::compact", "MENU::label", "MENU::type", "METER::high", "METER::low", "METER::max", "METER::min", "METER::value", "OBJECT::typemustmatch", "OL::compact", "OL::reversed", "OL::start", "OL::type", "OPTGROUP::disabled", "OPTGROUP::label", "OPTION::disabled", "OPTION::label", "OPTION::selected", "OPTION::value", "OUTPUT::for", "OUTPUT::name", "P::align", "PRE::width", "PROGRESS::max", "PROGRESS::min", "PROGRESS::value", "SELECT::autocomplete", "SELECT::disabled", "SELECT::multiple", "SELECT::name", "SELECT::required", "SELECT::size", "SELECT::tabindex", "SOURCE::type", "TABLE::align", "TABLE::bgcolor", "TABLE::border", "TABLE::cellpadding", "TABLE::cellspacing", "TABLE::frame", "TABLE::rules", "TABLE::summary", "TABLE::width", "TBODY::align", "TBODY::char", "TBODY::charoff", "TBODY::valign", "TD::abbr", "TD::align", "TD::axis", "TD::bgcolor", "TD::char", "TD::charoff", "TD::colspan", "TD::headers", "TD::height", "TD::nowrap", "TD::rowspan", "TD::scope", "TD::valign", "TD::width", "TEXTAREA::accesskey", "TEXTAREA::autocomplete", "TEXTAREA::cols", "TEXTAREA::disabled", "TEXTAREA::inputmode", "TEXTAREA::name", "TEXTAREA::placeholder", "TEXTAREA::readonly", "TEXTAREA::required", "TEXTAREA::rows", "TEXTAREA::tabindex", "TEXTAREA::wrap", "TFOOT::align", "TFOOT::char", "TFOOT::charoff", "TFOOT::valign", "TH::abbr", "TH::align", "TH::axis", "TH::bgcolor", "TH::char", "TH::charoff", "TH::colspan", "TH::headers", "TH::height", "TH::nowrap", "TH::rowspan", "TH::scope", "TH::valign", "TH::width", "THEAD::align", "THEAD::char", "THEAD::charoff", "THEAD::valign", "TR::align", "TR::bgcolor", "TR::char", "TR::charoff", "TR::valign", "TRACK::default", "TRACK::kind", "TRACK::label", "TRACK::srclang", "UL::compact", "UL::type", "VIDEO::controls", "VIDEO::height", "VIDEO::loop", "VIDEO::mediagroup", "VIDEO::muted", "VIDEO::preload", "VIDEO::width"]), t.V)
-        C.N = H.b(s(["", "", "", "", "", "", "", "", "", ""]), t.V)
-        C.O = H.b(s(["HEAD", "AREA", "BASE", "BASEFONT", "BR", "COL", "COLGROUP", "EMBED", "FRAME", "FRAMESET", "HR", "IMAGE", "IMG", "INPUT", "ISINDEX", "LINK", "META", "PARAM", "SOURCE", "STYLE", "TITLE", "WBR"]), t.V)
-        C.P = H.b(s([]), t.V)
-        C.r = H.b(s(["bind", "if", "ref", "repeat", "syntax"]), t.V)
-        C.l = H.b(s(["A::href", "AREA::href", "BLOCKQUOTE::cite", "BODY::background", "COMMAND::icon", "DEL::cite", "FORM::action", "IMG::src", "INPUT::src", "INS::cite", "Q::cite", "VIDEO::poster"]), t.V)
+        C.M = H.b(make_const_list(["*::class", "*::dir", "*::draggable", "*::hidden", "*::id", "*::inert", "*::itemprop", "*::itemref", "*::itemscope", "*::lang", "*::spellcheck", "*::title", "*::translate", "A::accesskey", "A::coords", "A::hreflang", "A::name", "A::shape", "A::tabindex", "A::target", "A::type", "AREA::accesskey", "AREA::alt", "AREA::coords", "AREA::nohref", "AREA::shape", "AREA::tabindex", "AREA::target", "AUDIO::controls", "AUDIO::loop", "AUDIO::mediagroup", "AUDIO::muted", "AUDIO::preload", "BDO::dir", "BODY::alink", "BODY::bgcolor", "BODY::link", "BODY::text", "BODY::vlink", "BR::clear", "BUTTON::accesskey", "BUTTON::disabled", "BUTTON::name", "BUTTON::tabindex", "BUTTON::type", "BUTTON::value", "CANVAS::height", "CANVAS::width", "CAPTION::align", "COL::align", "COL::char", "COL::charoff", "COL::span", "COL::valign", "COL::width", "COLGROUP::align", "COLGROUP::char", "COLGROUP::charoff", "COLGROUP::span", "COLGROUP::valign", "COLGROUP::width", "COMMAND::checked", "COMMAND::command", "COMMAND::disabled", "COMMAND::label", "COMMAND::radiogroup", "COMMAND::type", "DATA::value", "DEL::datetime", "DETAILS::open", "DIR::compact", "DIV::align", "DL::compact", "FIELDSET::disabled", "FONT::color", "FONT::face", "FONT::size", "FORM::accept", "FORM::autocomplete", "FORM::enctype", "FORM::method", "FORM::name", "FORM::novalidate", "FORM::target", "FRAME::name", "H1::align", "H2::align", "H3::align", "H4::align", "H5::align", "H6::align", "HR::align", "HR::noshade", "HR::size", "HR::width", "HTML::version", "IFRAME::align", "IFRAME::frameborder", "IFRAME::height", "IFRAME::marginheight", "IFRAME::marginwidth", "IFRAME::width", "IMG::align", "IMG::alt", "IMG::border", "IMG::height", "IMG::hspace", "IMG::ismap", "IMG::name", "IMG::usemap", "IMG::vspace", "IMG::width", "INPUT::accept", "INPUT::accesskey", "INPUT::align", "INPUT::alt", "INPUT::autocomplete", "INPUT::autofocus", "INPUT::checked", "INPUT::disabled", "INPUT::inputmode", "INPUT::ismap", "INPUT::list", "INPUT::max", "INPUT::maxlength", "INPUT::min", "INPUT::multiple", "INPUT::name", "INPUT::placeholder", "INPUT::readonly", "INPUT::required", "INPUT::size", "INPUT::step", "INPUT::tabindex", "INPUT::type", "INPUT::usemap", "INPUT::value", "INS::datetime", "KEYGEN::disabled", "KEYGEN::keytype", "KEYGEN::name", "LABEL::accesskey", "LABEL::for", "LEGEND::accesskey", "LEGEND::align", "LI::type", "LI::value", "LINK::sizes", "MAP::name", "MENU::compact", "MENU::label", "MENU::type", "METER::high", "METER::low", "METER::max", "METER::min", "METER::value", "OBJECT::typemustmatch", "OL::compact", "OL::reversed", "OL::start", "OL::type", "OPTGROUP::disabled", "OPTGROUP::label", "OPTION::disabled", "OPTION::label", "OPTION::selected", "OPTION::value", "OUTPUT::for", "OUTPUT::name", "P::align", "PRE::width", "PROGRESS::max", "PROGRESS::min", "PROGRESS::value", "SELECT::autocomplete", "SELECT::disabled", "SELECT::multiple", "SELECT::name", "SELECT::required", "SELECT::size", "SELECT::tabindex", "SOURCE::type", "TABLE::align", "TABLE::bgcolor", "TABLE::border", "TABLE::cellpadding", "TABLE::cellspacing", "TABLE::frame", "TABLE::rules", "TABLE::summary", "TABLE::width", "TBODY::align", "TBODY::char", "TBODY::charoff", "TBODY::valign", "TD::abbr", "TD::align", "TD::axis", "TD::bgcolor", "TD::char", "TD::charoff", "TD::colspan", "TD::headers", "TD::height", "TD::nowrap", "TD::rowspan", "TD::scope", "TD::valign", "TD::width", "TEXTAREA::accesskey", "TEXTAREA::autocomplete", "TEXTAREA::cols", "TEXTAREA::disabled", "TEXTAREA::inputmode", "TEXTAREA::name", "TEXTAREA::placeholder", "TEXTAREA::readonly", "TEXTAREA::required", "TEXTAREA::rows", "TEXTAREA::tabindex", "TEXTAREA::wrap", "TFOOT::align", "TFOOT::char", "TFOOT::charoff", "TFOOT::valign", "TH::abbr", "TH::align", "TH::axis", "TH::bgcolor", "TH::char", "TH::charoff", "TH::colspan", "TH::headers", "TH::height", "TH::nowrap", "TH::rowspan", "TH::scope", "TH::valign", "TH::width", "THEAD::align", "THEAD::char", "THEAD::charoff", "THEAD::valign", "TR::align", "TR::bgcolor", "TR::char", "TR::charoff", "TR::valign", "TRACK::default", "TRACK::kind", "TRACK::label", "TRACK::srclang", "UL::compact", "UL::type", "VIDEO::controls", "VIDEO::height", "VIDEO::loop", "VIDEO::mediagroup", "VIDEO::muted", "VIDEO::preload", "VIDEO::width"]), t.V)
+        C.N = H.b(make_const_list(["", "", "", "", "", "", "", "", "", ""]), t.V)
+        C.O = H.b(make_const_list(["HEAD", "AREA", "BASE", "BASEFONT", "BR", "COL", "COLGROUP", "EMBED", "FRAME", "FRAMESET", "HR", "IMAGE", "IMG", "INPUT", "ISINDEX", "LINK", "META", "PARAM", "SOURCE", "STYLE", "TITLE", "WBR"]), t.V)
+        C.P = H.b(make_const_list([]), t.V)
+        C.r = H.b(make_const_list(["bind", "if", "ref", "repeat", "syntax"]), t.V)
+        C.l = H.b(make_const_list(["A::href", "AREA::href", "BLOCKQUOTE::cite", "BODY::background", "COMMAND::icon", "DEL::cite", "FORM::action", "IMG::src", "INPUT::src", "INS::cite", "Q::cite", "VIDEO::poster"]), t.V)
         C.S = H.vp("N")
         C.T = new P.kk(!1)
     })();
@@ -19870,18 +19878,18 @@
             v.dispatchPropertyName = v.getIsolateTag("dispatch_record")
         }()
         hunkHelpers.setOrUpdateInterceptorsByTag({
-            DOMError: J.af,
-            DOMImplementation: J.af,
-            MediaError: J.af,
-            Navigator: J.af,
-            NavigatorConcurrentHardware: J.af,
-            NavigatorUserMediaError: J.af,
-            OverconstrainedError: J.af,
-            PositionError: J.af,
-            GeolocationPositionError: J.af,
-            Range: J.af,
-            TextMetrics: J.af,
-            SQLError: J.af,
+            DOMError: J.Interceptor,
+            DOMImplementation: J.Interceptor,
+            MediaError: J.Interceptor,
+            Navigator: J.Interceptor,
+            NavigatorConcurrentHardware: J.Interceptor,
+            NavigatorUserMediaError: J.Interceptor,
+            OverconstrainedError: J.Interceptor,
+            PositionError: J.Interceptor,
+            GeolocationPositionError: J.Interceptor,
+            Range: J.Interceptor,
+            TextMetrics: J.Interceptor,
+            SQLError: J.Interceptor,
             ArrayBuffer: H.dJ,
             DataView: H.ab,
             ArrayBufferView: H.ab,
