@@ -3225,7 +3225,7 @@
                 a.fixed$length = Array
                 return a
             },
-            j2(a) {
+            check_vaild_str(a) {
                 if (a < 256) switch (a) {
                     case 9:
                     case 10:
@@ -3263,21 +3263,21 @@
                         return false
                 }
             },
-            li(a, b) {
+            trim_start(a, b) {
                 var s, r
                 for (s = a.length; b < s;) {
                     r = C.b.q(a, b)
-                    if (r !== 32 && r !== 13 && !J.j2(r)) break;
+                    if (r !== 32 && r !== 13 && !J.check_vaild_str(r)) break;
                     ++b
                 }
                 return b
             },
-            lj(a, b) {
+            trim_end(a, b) {
                 var s, r
                 for (; b > 0; b = s) {
                     s = b - 1
                     r = C.b.K(a, s)
-                    if (r !== 32 && r !== 13 && !J.j2(r)) break
+                    if (r !== 32 && r !== 13 && !J.check_vaild_str(r)) break
                 }
                 return b
             },
@@ -5987,11 +5987,11 @@
                 o = p.length
             if (o === 0) return p
             if (this.q(p, 0) === 133) {
-                s = J.li(p, 1)
+                s = J.trim_start(p, 1)
                 if (s === o) return ""
             } else s = 0
             r = o - 1
-            q = this.K(p, r) === 133 ? J.lj(p, r) : o
+            q = this.K(p, r) === 133 ? J.trim_end(p, r) : o
             if (s === 0 && q === o) return p
             return p.substring(s, q)
         },
