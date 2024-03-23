@@ -3325,13 +3325,17 @@
                 return P.mh(H.b([r, q, p, o < 26 ? o + 65 : o + 71], t.i), 0, null)
             },
             j(a, b) {
-                let result = C.e.bt(0, X.f4(a, b));
-                console.log("O.j", a, b, result)
+                let result = C.e.bt(0, X.f4(a, b))
+                if (result === "频率: [2]%") {
+                    console.log("O.j", a, b, result)
+                }
                 return result
             },
             d(a) {
                 var s = $.od.h(0, a)
-                console.log("O.d", a, s);
+                if (s === "》 实力评分: [2]" || s === "》 胜率: [2]%") {
+                    console.log("O.d", a, s)
+                }
                 if (s == null) return ""
                 return s
             },
@@ -7634,7 +7638,7 @@
             },
             es(a, b, c, d) {
                 var s = W.uJ(new W.kF(c), t.aD)
-                if (s != null && true) J.rs(a, b, s, false)
+                if (s != null) J.rs(a, b, s, false)
                 return new W.ia(a, b, s, false)
             },
             oc(a) {
@@ -7884,7 +7888,7 @@
                 r = C.c.ag(s - 0, 4)
                 let result = new Uint32Array(q, 0, r)[1]
                 // return new Uint32Array(q, 0, r)[1]
-                console.log("X.k", a, b, result)
+                // console.log("X.k", a, b, result)
                 return result
             },
             D(a, b) {
@@ -7894,7 +7898,7 @@
                 r = C.c.ag(s - 0, 4)
                 let result = new Float32Array(q, 0, r)[1];
                 // return new Float32Array(q, 0, r)[1]
-                console.log("X.D", a, b, result)
+                // console.log("X.D", a, b, result)
                 return result
             },
             je: function je() {},
@@ -12509,6 +12513,8 @@
                     case 4:
                         a4 = H.b([], t.U)
                         o = H.b([], t.Y)
+                        // 》 胜率: [2]%
+                        // benchmarkRatio
                         a4.push(T.f(O.d("pkGN"), null, null, C.c.ag(p.ch, 100), null, 0, 0, 0))
                         if (p.ch >= p.d) p.eS()
                         q = new T.aq(a4, o)
@@ -12524,6 +12530,8 @@
             var s, r = this,
                 q = H.b([], t.U),
                 p = H.b([], t.Y)
+            // 》 实力评分: [2]
+            // benchmarkScore
             q.push(T.f(O.d("JkWn"), null, null, r.Q * 1e4 / r.d, null, 0, 1000, 100))
             r.y.push(new T.aq(q, p))
             if (r.x != null) {
@@ -12588,8 +12596,11 @@
                 }
                 p = this.b
                 s.push(T.f(a, p, o, q, o, 0, 1000, 100))
+                // benchmarkSkill
+                // 频率: [2]%
                 s.push(T.f(O.d("GJgn"), p, o, b * 100 / n.d, o, 0, 1000, 100))
                 n.y.push(new T.aq(s, r))
+                console.log("benchmark", a, b, n.d, s)
             }
         },
         $S: 29
@@ -13003,8 +13014,9 @@
                 r = C.d.aI(s.scrollHeight) - s.clientHeight
                 a = r - C.d.aI(s.scrollTop) < 50 || C.d.aI(s.scrollTop) / r > 0.95
             }
-            if (q.cx instanceof T.dX) q.fQ()
-            else {
+            if (q.cx instanceof T.dX) {
+                q.fQ()
+            } else {
                 s = q.db
                 if (s == null) {
                     s = Z.nS("row")
@@ -13028,11 +13040,11 @@
             return this.c5(true)
         },
         fQ() {
-            var s, r, q, p, o, n, m, l, k, j, i, h, g, f = this,
-                e = "click",
-                d = f.b,
-                c = document
-            d.appendChild(c.createElement("br"))
+            var s, r, q, p, o, n, m, l, k, j, i, h, g, f = this
+            // e = "click",
+            let d = f.b,
+                document_ = document
+            d.appendChild(document_.createElement("br"))
             s = f.cx.e.gb2()
             r = $.ay.h(0, s).a
             q = t.ak
@@ -13042,27 +13054,27 @@
             $.ay.aw(0, new Z.jA(r, p, n, o))
             C.a.bb(p, Z.oD())
             C.a.bb(o, Z.oD())
-            m = c.createElement("table")
+            m = document_.createElement("table")
             l = new Z.jz(m)
-            k = c.createElement("tr")
-            j = c.createElement("td")
+            k = document_.createElement("tr")
+            j = document_.createElement("td")
             k.appendChild(j)
             C.j.by(j, C.b.B(J.iN($.nh(), O.d("ePya")), $.nh()), $.bV())
             q = j.style
             q.minWidth = "112px"
             q = j.style
             q.height = "32px"
-            j = c.createElement("td")
+            j = document_.createElement("td")
             k.appendChild(j)
             j.textContent = O.d("AoUA")
             q = j.style
             q.width = "44px"
-            j = c.createElement("td")
+            j = document_.createElement("td")
             k.appendChild(j)
             j.textContent = O.d("aXIa")
             q = j.style
             q.width = "44px"
-            j = c.createElement("td")
+            j = document_.createElement("td")
             k.appendChild(j)
             j.textContent = O.d("MdQa")
             q = j.style
@@ -13071,19 +13083,19 @@
             q.background = "#FAFAFA"
             m.appendChild(k)
             for (q = p.length, i = 0; i < p.length; p.length === q || (0, H.F)(p), ++i) l.$1(p[i])
-            k = c.createElement("tr")
-            j = c.createElement("td")
+            k = document_.createElement("tr")
+            j = document_.createElement("td")
             k.appendChild(j)
             C.j.by(j, C.b.B(J.iN($.nf(), O.d("eFKN")), $.nf()), $.bV())
             q = j.style
             q.height = "32px"
-            j = c.createElement("td")
+            j = document_.createElement("td")
             k.appendChild(j)
             j.textContent = O.d("AoUA")
-            j = c.createElement("td")
+            j = document_.createElement("td")
             k.appendChild(j)
             j.textContent = O.d("aXIa")
-            j = c.createElement("td")
+            j = document_.createElement("td")
             k.appendChild(j)
             j.textContent = O.d("MdQa")
             q = k.style
@@ -13093,22 +13105,31 @@
             d.appendChild(m)
             h = Z.ae("buttonBar")
             d.appendChild(h)
-            g = c.createElement("button")
-            g.textContent = O.d("xPRN")
+
+            g = document_.createElement("button")
+            g.textContent = O.d("xPRN") // 返回
             h.appendChild(g)
-            W.es(g, e, new Z.jB(), false)
-            g = c.createElement("button")
-            g.textContent = O.d("KXmn")
+            W.es(g, "click", new Z.jB(), false)
+
+            g = document_.createElement("button")
+            g.textContent = O.d("KXmn") // 分享
             h.appendChild(g)
-            W.es(g, e, new Z.jC(), false)
-            g = c.createElement("button")
-            g.textContent = O.d("Zvon")
+            W.es(g, "click", new Z.jC(), false)
+
+            g = document_.createElement("button")
+            g.textContent = O.d("Zvon") // 帮助
             h.appendChild(g)
-            W.es(g, e, new Z.jD($.qq()), false)
+            W.es(g, "click", new Z.jD($.qq()), false)
+
             d = h.style
-            c = "" + (C.d.aI(m.offsetWidth) - C.d.aI(h.offsetWidth) - 8) + "px"
-            d.marginLeft = c
-            if (W.ll(window.parent) !== window) new Z.jE(f, p, o, n, $.ay.h(0, J.J(J.J(f.z[0], 0), 0))).$0()
+            document_ = "" + (C.d.aI(m.offsetWidth) - C.d.aI(h.offsetWidth) - 8) + "px"
+            d.marginLeft = document_
+            if (W.ll(window.parent) !== window) {
+                new Z.jE(f, p, o, n, $.ay.h(0, J.J(J.J(f.z[0], 0), 0))).$0()
+            }
+
+            // 显示 done_target
+            window.parent.postMessage("done_fight", "*")
         }
     }
     Z.jx.prototype = {
@@ -16489,6 +16510,8 @@
     T.dX.prototype = {}
     T.aq.prototype = {
         k(a) {
+            // return H.e(this.a)
+            console.log(a, this.a, H.e(this.a))
             return H.e(this.a)
         }
     }

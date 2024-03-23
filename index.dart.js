@@ -12142,4 +12142,15 @@
     };
     G.main_func()
 })()
+
+window.addEventListener('message', function(event) {
+    // 这里是处理消息的代码
+    console.log('Received message:', event.data);
+    if (event.data === 'done_fight') {
+        // 为 done_target 添加 done=true 属性
+        let done_target = document.getElementById('done_target');
+        done_target.setAttribute('done', 'true');
+    }
+});
+
 //# sourceMappingURL=index.dart.js.map
