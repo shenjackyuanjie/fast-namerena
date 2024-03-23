@@ -1153,30 +1153,30 @@
                 if (a instanceof H.bI) return H.aC(a, a.a)
                 if (typeof a !== "object") return a
                 if ("dartException" in a) return H.aC(a, a.dartException)
-                return H.n_(a)
+                return H._unwrapNonDartException(a)
             },
             aC(a, b) {
                 if (t.R.b(b))
                     if (b.$thrownJsError == null) b.$thrownJsError = a
                 return b
             },
-            n_(a) {
+            _unwrapNonDartException(ex) {
                 var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e = null
-                if (!("message" in a)) return a
-                s = a.message
-                if ("number" in a && typeof a.number == "number") {
-                    r = a.number
+                if (!("message" in ex)) return ex
+                s = ex.message
+                if ("number" in ex && typeof ex.number == "number") {
+                    r = ex.number
                     q = r & 65535
                     if ((C.a.O(r, 16) & 8191) === 10) switch (q) {
                         case 438:
-                            return H.aC(a, H.hO(H.d(s) + " (Error " + q + ")", e))
+                            return H.aC(ex, H.hO(H.d(s) + " (Error " + q + ")", e))
                         case 445:
                         case 5007:
                             p = H.d(s) + " (Error " + q + ")"
-                            return H.aC(a, new H.c2(p, e))
+                            return H.aC(ex, new H.c2(p, e))
                     }
                 }
-                if (a instanceof TypeError) {
+                if (ex instanceof TypeError) {
                     o = $.kn()
                     n = $.ko()
                     m = $.kp()
@@ -1188,12 +1188,12 @@
                     h = $.kw()
                     g = $.kv()
                     f = o.V(s)
-                    if (f != null) return H.aC(a, H.hO(s, f))
+                    if (f != null) return H.aC(ex, H.hO(s, f))
                     else {
                         f = n.V(s)
                         if (f != null) {
                             f.method = "call"
-                            return H.aC(a, H.hO(s, f))
+                            return H.aC(ex, H.hO(s, f))
                         } else {
                             f = m.V(s)
                             if (f == null) {
@@ -1218,24 +1218,24 @@
                                     } else p = true
                                 } else p = true
                             } else p = true
-                            if (p) return H.aC(a, new H.c2(s, f == null ? e : f.method))
+                            if (p) return H.aC(ex, new H.c2(s, f == null ? e : f.method))
                         }
                     }
-                    return H.aC(a, new H.dB(typeof s == "string" ? s : ""))
+                    return H.aC(ex, new H.dB(typeof s == "string" ? s : ""))
                 }
-                if (a instanceof RangeError) {
+                if (ex instanceof RangeError) {
                     if (typeof s == "string" && s.indexOf("call stack") !== -1) return new P.c5()
                     s = function (b) {
                         try {
                             return String(b)
                         } catch (d) {}
                         return null
-                    }(a)
-                    return H.aC(a, new P.a_(false, e, e, typeof s == "string" ? s.replace(/^RangeError:\s*/, "") : s))
+                    }(ex)
+                    return H.aC(ex, new P.a_(false, e, e, typeof s == "string" ? s.replace(/^RangeError:\s*/, "") : s))
                 }
-                if (typeof InternalError == "function" && a instanceof InternalError)
+                if (typeof InternalError == "function" && ex instanceof InternalError)
                     if (typeof s == "string" && s === "too much recursion") return new P.c5()
-                return a
+                return ex
             },
             am(a) {
                 var s
@@ -10148,6 +10148,7 @@
             r.d.focus()
         },
         // send "??" to iframe
+        // or call as send_fast
         d5(a) {
             J.iF(W.hY(this.cy.contentWindow), $.kd(), "*")
         },
