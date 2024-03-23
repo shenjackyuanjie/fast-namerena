@@ -4420,7 +4420,7 @@
                 this.b = b
                 this.c = c
             },
-            ir: function ir(a, b) {
+            _StructuredCloneDart2Js: function ir(a, b) {
                 this.a = a
                 this.b = b
             },
@@ -11538,7 +11538,7 @@
             return s
         },
         dt(a, b, c) {
-            a.postMessage(new P.ir([], []).aO(b), c)
+            a.postMessage(new P._StructuredCloneDart2Js([], []).aO(b), c)
             return
         }
     }
@@ -11768,7 +11768,7 @@
     }
     W.kE.prototype = {
         dt(a, b, c) {
-            this.a.postMessage(new P.ir([], []).aO(b), c)
+            this.a.postMessage(new P._StructuredCloneDart2Js([], []).aO(b), c)
         }
     }
     W.l_.prototype = {}
@@ -12076,7 +12076,7 @@
             return this.a
         }
     }
-    P.ir.prototype = {
+    P._StructuredCloneDart2Js.prototype = {
         eY(a, b) {
             var s, r, q, p
             for (s = Object.keys(a), r = s.length, q = 0; q < r; ++q) {
@@ -18571,7 +18571,7 @@
         r(W.i8, W.i2)
         r(W.ia, P.hO)
         r(W.it, W.eD)
-        r(P.ir, P.l4)
+        r(P._StructuredCloneDart2Js, P.l4)
         r(P.kx, P.kw)
         r(P.cF, P.p)
         r(Z.fW, Z.ax)
