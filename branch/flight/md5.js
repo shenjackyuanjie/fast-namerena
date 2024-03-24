@@ -3356,12 +3356,14 @@
                 P.mj(C.I, a)
             },
             mj(a, b) {
-                var s = C.c.ag(a.a, 1000)
-                return P.tZ(s < 0 ? 0 : s, b)
+                b.$0()
+                // var s = C.c.ag(a.a, 1000)
+                // return P.tZ(s < 0 ? 0 : s, b)
             },
             tZ(a, b) {
-                var s = new P.l8()
-                s.e8(a, b)
+                // var s = new P.l8()
+                // s.e8(a, b)
+                b.$0()
                 return s
             },
             am(a) {
@@ -3610,9 +3612,10 @@
                 P.iC(a, b)
             },
             mi(a, b) {
-                var s = $.P
-                if (s === C.f) return P.mj(a, b)
-                return P.mj(a, s.cf(b))
+                b.$0()
+                // var s = $.P
+                // if (s === C.f) return P.mj(a, b)
+                // return P.mj(a, s.cf(b))
             },
             iC(a, b) {
                 P.uC(new P.lo(a, b))
@@ -9568,32 +9571,8 @@
     }
     P.l8.prototype = {
         e8(a, b) {
-            // if (self.setTimeout != null) {
-            // self.setTimeout(H.convert_dart_closure_to_js_md5(new P.l9(this, b), 0), a)
-            // self.setTimeout(H.convert_dart_closure_to_js_md5(new P.l9(this, b), 0), 0)
             b.$0() // 草,这下…… 6
-            // } else {
-            //     throw H.wrap_expression(P.S("`setTimeout()` not found."))
-            // }
         }
-        // e8(a, b) {
-        //     if (typeof P.count === "number") {
-        //         P.count++
-        //     } else {
-        //         P.count = 1
-        //     }
-        //     if (P.count > 10500) return
-        //     if (P.count == 1) {
-        //         setTimeout(H.cU(new P.l9(this, b), 0), 0)
-        //     } else {
-        //         try {
-        //             H.cU(new P.l9(this, b), 0)()
-        //         } catch (error) {
-        //             return
-        //         }
-
-        //     }
-        // }
     }
     P.l9.prototype = {
         $0() {
