@@ -497,7 +497,8 @@
                 c.m(a3, d, c.h(a3, a5))
                 r = a4 + 1
                 q = a5 - 1
-                if (J.Y(a6.$2(a, a1), 0)) {
+                // if (J.Y(a6.$2(a, a1), 0)) {
+                if (a6.$2(a, a1) === 0) {
                     for (p = r; p <= q; ++p) {
                         o = c.h(a3, p)
                         n = a6.$2(o, a)
@@ -575,8 +576,14 @@
                 H.hL(a3, q + 2, a5, a6)
                 if (k) return
                 if (r < h && q > g) {
-                    for (; J.Y(a6.$2(c.h(a3, r), a), 0);) ++r
-                    for (; J.Y(a6.$2(c.h(a3, q), a1), 0);) --q
+                    // for (; J.Y(a6.$2(c.h(a3, r), a), 0);) {
+                    for (; a6.$2(c.h(a3, r), a) === 0;) {
+                        ++r
+                    }
+                    // for (; J.Y(a6.$2(c.h(a3, q), a1), 0);) {
+                    for (; a6.$2(c.h(a3, q), a1) === 0;) {
+                        --q
+                    }
                     for (p = r; p <= q; ++p) {
                         o = c.h(a3, p)
                         if (a6.$2(o, a) === 0) {
@@ -4446,7 +4453,8 @@
                                 if (J.aw(h) === 2)
                                     // if (J.J(h, 1).length > 10 || J.lW(J.J(J.J(h, 1)[0], 0), O.j("S,AF", 5))) {
                                     if (h[1].length > 10 || J.lW(h[1][0][0], LanData.j("S,AF", 5))) {
-                                        a8 = J.J(h, 1)
+                                        // a8 = J.J(h, 1)
+                                        a8 = h[1]
                                         a9 = H.b([], t.t)
                                         d = new X.iW(a9, new Float64Array(1))
                                         d.e_(a8)
@@ -4457,8 +4465,13 @@
                                         break
                                     } else {
                                         e = $.nk()
-                                        if (J.J(h, 0).length === 2 && J.Y(J.J(J.J(h, 0)[1], 0), $.cl())) e = $.cl()
-                                        a8 = J.J(h, 1)
+                                        // if (J.J(h, 0).length === 2 && J.Y(J.J(J.J(h, 0)[1], 0), $.cl())) {
+                                        if (h[0].length === 2 && h[0][1][0] === $.cl()) {
+                                            a8 = h[1]
+                                            e = $.cl()
+                                        }
+                                        // a8 = J.J(h, 1)
+                                        a8 = h[1]
                                         a9 = e
                                         a3 = H.b([], t.L)
                                         a4 = H.b([], t.V)
@@ -4472,8 +4485,10 @@
                                         s = 1
                                         break
                                     } if (J.aw(h) === 3) {
-                                    a8 = J.J(h, 1)
-                                    a9 = J.J(h, 2)
+                                    // a8 = J.J(h, 1)
+                                    a8 = h[1]
+                                    // a9 = J.J(h, 2)
+                                    a9 = h[2]
                                     a3 = t.L
                                     a4 = H.b([], a3)
                                     a3 = H.b([], a3)
@@ -5471,8 +5486,12 @@
                     e.a.push(T.f(LanData.d("toAn"), a, b, null, null, 0, 1000, 100))
                     for (n = a.y.a.e, m = n.length, p = 0; p < n.length; n.length === m || (0, H.F)(n), ++p) {
                         o = n[p]
-                        if (J.Y(o, b)) o.l = o.l + $.bx()
-                        else o.l = o.l - $.eX()
+                        // if (J.Y(o, b)) {
+                        if (o === b) {
+                            o.l = o.l + $.bx()
+                        } else {
+                            o.l = o.l - $.eX()
+                        }
                     }
                     return true
                 }
@@ -5629,7 +5648,8 @@
                     q = $.nq()
                     b[s] = H.iG(r, q, "", 0)
                 }
-                for (; J.Y(C.a.gbl(b), "");) {
+                // for (; J.Y(C.a.gbl(b), "");) {
+                for (; C.a.gbl(b) === "";) {
                     b.pop()
                     if (b.length === 0) return H.b([], d)
                 }
@@ -7764,6 +7784,7 @@
         },
         X = {
             dc(a) {
+                // 似乎是什么算号方法?
                 var s, r, q, p, o, n, m = a.length,
                     l = P.aL(C.d.R(m * 8 / 6.5), 0, true, t.B)
                 for (s = 0, r = 0, q = 0, p = 0, o = 0; o < m; ++o) {
@@ -7780,18 +7801,24 @@
                             r -= 14
                         }
                         n = p + 1
-                        l[p] = J.J($.iM(), C.c.V(q, 93))
+                        // l[p] = J.J($.iM(), C.c.V(q, 93))
+                        l[p] = $.iM()[C.c.V(q, 93)]
                         p = n + 1
-                        l[n] = J.J($.iM(), q / 93 | 0)
+                        // l[n] = J.J($.iM(), q / 93 | 0)
+                        l[n] = $.iM()[q / 93 | 0]
                     }
                 }
                 if (r > 0) {
                     n = p + 1
-                    l[p] = J.J($.iM(), C.c.V(s, 93))
+                    // l[p] = J.J($.iM(), C.c.V(s, 93))
+                    l[p] = $.iM()[C.c.V(s, 93)]
                     if (r > 7 || s > 92) {
                         p = n + 1
-                        l[n] = J.J($.iM(), s / 93 | 0)
-                    } else p = n
+                        // l[n] = J.J($.iM(), s / 93 | 0)
+                        l[n] = $.iM()[s / 93 | 0]
+                    } else {
+                        p = n
+                    }
                 }
                 C.a.sp(l, p)
                 return P.mh(l, 0, null)
@@ -7802,10 +7829,14 @@
                 for (s = J.aQ(a), r = 0, q = 0, p = -1, o = 0, n = 0; n < j; ++n) {
                     m = s.a8(a, n)
                     if (m > 126) continue
-                    l = J.J($.oS(), m)
-                    if (l === 93) continue
-                    if (p === -1) p = l
-                    else {
+                    // l = J.J($.oS(), m)
+                    l = $.oS()[m]
+                    if (l === 93) {
+                        continue
+                    }
+                    if (p === -1) {
+                        p = l
+                    } else {
                         p += l * 93
                         r |= C.c.bX(p, q)
                         q += (p & 8191) > 456 ? 13 : 14
@@ -10295,7 +10326,8 @@
             if (a == null) return -1
             s = a.length
             for (r = 0; r < s; ++r)
-                if (J.Y(a[r].a, b)) return r
+                // if (J.Y(a[r].a, b)) return r
+                if (a[r].a === b) return r
             return -1
         }
     }
@@ -11708,7 +11740,8 @@
                 r = s.c + 1,
                 q = s.b
             if (r < q) {
-                s.d = J.J(s.a, r)
+                // s.d = J.J(s.a, r)
+                s.d = s.a[r]
                 s.c = r
                 return true
             }
@@ -12363,9 +12396,11 @@
             return null
         },
         dZ(a, b) {
+            // 什么奇怪的算法?
             var s, r, q, p, o, n, m, l = this,
                 k = l.b
-            if (k.length === 2 && J.Y(J.J(k[0], 0), J.J(k[1], 0)) && J.Y(J.J(k[0], 1), J.J(k[1], 1))) {
+            // if (k.length === 2 && J.Y(J.J(k[0], 0), J.J(k[1], 0)) && J.Y(J.J(k[0], 1), J.J(k[1], 1))) {
+            if (k.length === 2 && (k[0][0] == k[1][0]) && (k[0][1] == k[1][1])) {
                 k.pop()
                 l.c = true
             }
@@ -12796,7 +12831,8 @@
             var s = b.data,
                 r = new P.kx([], [])
             r.c = true
-            if (J.Y(r.aO(s), $.iK())) {
+            // if (J.Y(r.aO(s), $.iK())) {
+            if (r.aO(s) === $.iK()) {
                 this.y = 2000
             }
         },
@@ -12830,7 +12866,8 @@
             n = P.aa(new H.y(H.b(C.e.bt(0, P.aa(new H.y(new H.a9(r, q), new HtmlRenderer.jx(a), p), true, p.i("M.E"))).split("\n"), t.s), new HtmlRenderer.jy(), o), true, o.i("M.E"))
             r = n.length
             if (r > 1) {
-                if (!J.Y(J.J(J.J(n[0], 0), 0), "")) {
+                // if (!J.Y(J.J(J.J(n[0], 0), 0), "")) {
+                if (n[0][0][0] !== "") {
                     for (m = 0; m < n.length; n.length === r || (0, H.F)(n), ++m) {
                         l = n[m]
                         q = J.a3(l)
@@ -12859,7 +12896,8 @@
                         g = k[m]
                         f = document.createElement("p")
                         f.classList.add("row")
-                        f.textContent = J.J(g, 1)
+                        // f.textContent = J.J(g, 1)
+                        f.textContent = g[1]
                         p.appendChild(f)
                     }
                 }
@@ -12881,9 +12919,11 @@
             } else {
                 e = n[0]
                 r = J.a3(e)
-                q = J.J(r.h(e, 0), 0)
+                // q = J.J(r.h(e, 0), 0)
+                q = r.h(e, 0)
                 r = r.h(e, 1)
-                d = J.J(r, 0)
+                // d = J.J(r, 0)
+                d = r[0]
                 if (!$.ay.J(0, d)) {
                     c = $.ay.h(0, q)
                     b = HtmlRenderer.t8(c.a, r, false)
@@ -13282,18 +13322,21 @@
                 i.r.appendChild(j.createElement("br"))
                 d.a = 5
                 C.h.cJ(k, H.oO(LanData.d("ezfN"), "[]", new HtmlRenderer.jV(d, b), h))
-                if (!J.Y(s.h(b, 12), "")) switch (s.h(b, 12)) {
-                    case "2":
-                        C.h.bk(k, e, C.b.B(" ", $.qC()), h, $.bV())
-                        break
-                    case "1":
-                        C.h.bk(k, e, C.b.B(" ", $.qB()), h, $.bV())
-                        break
-                    case "0":
-                        C.h.bk(k, e, C.b.B(" ", $.qA()), h, $.bV())
-                        break
-                    default:
-                        C.h.bk(k, e, C.b.B(" ", $.qv()), h, $.bV())
+                // if (!J.Y(s.h(b, 12), "")) {
+                if (s.h(b, 12) !== "") {
+                    switch (s.h(b, 12)) {
+                        case "2":
+                            C.h.bk(k, e, C.b.B(" ", $.qC()), h, $.bV())
+                            break
+                        case "1":
+                            C.h.bk(k, e, C.b.B(" ", $.qB()), h, $.bV())
+                            break
+                        case "0":
+                            C.h.bk(k, e, C.b.B(" ", $.qA()), h, $.bV())
+                            break
+                        default:
+                            C.h.bk(k, e, C.b.B(" ", $.qv()), h, $.bV())
+                    }
                 }
             }
             s = t.A
@@ -13333,7 +13376,8 @@
     }
     HtmlRenderer.jV.prototype = {
         $1(a) {
-            return HtmlRenderer.t9(J.J(this.b, this.a.a++))
+            // return HtmlRenderer.t9(J.J(this.b, this.a.a++))
+            return HtmlRenderer.t9(this.b[this.a.a++])
         },
         $S: 17
     }
@@ -13454,12 +13498,18 @@
                 } else s = false
             else s = false
             if (s) return true
-            if (J.J(J.J($.nv(), a), p.b) < 90) return false
+            // if (J.J(J.J($.nv(), a), p.b) < 90)
+            if ($.nv()[a][p.b] < 90) {
+                return false
+            }
             for (s = o.length, r = 0; r < s; ++r)
                 if (o[r] === a) return true
             for (r = 0; r < o.length; o.length === s || (0, H.F)(o), ++r) {
                 q = o[r]
-                if (J.J(J.J($.nv(), a), q) < 90) return false
+                // if (J.J(J.J($.nv(), a), q) < 90) {
+                if ($.nv()[a][q] < 90) {
+                    return false
+                }
             }
             return true
         },
@@ -15066,11 +15116,13 @@
     }
     T.h6.prototype = {
         aq(a, b, c, d, e) {
-            if (a > $.a() && J.Y(c, T.mE())) {
+            // if (a > $.a() && J.Y(c, T.mE())) {
+            if (a > $.a() && (c === T.mE())) {
                 e.a.push(T.f(LanData.d("HwtN"), this.r, null, null, null, a, 1000, 100))
                 return -a
             }
-            return a > $.a() && J.Y(c, T.oH()) ? $.a() : a
+            // return a > $.a() && J.Y(c, T.oH()) ? $.a() : a
+            return a > $.a() && (c === T.oH()) ? $.a() : a
         },
         W() {
             this.r.y2.j(0, this)
@@ -16589,10 +16641,16 @@
             var s, r = this
             if (a.length === r.t.length) {
                 for (s = $.ap(); s < r.t.length; ++s)
-                    if (J.Y(a[s - $.i()], r.E[s]) && a[s] > r.t[s]) r.t[s] = a[s]
+                    // if (J.Y(a[s - $.i()], r.E[s]) && a[s] > r.t[s]) {
+                    if ((a[s - $.i()] === r.E[s]) && a[s] > r.t[s]) {
+                        r.t[s] = a[s]
+                    }
                 if (r.a == r.b)
                     for (s = $.X(); s < r.t.length; ++s)
-                        if (J.Y(a[s - $.t()], r.E[s]) && a[s] > r.t[s]) r.t[s] = a[s]
+                        // if (J.Y(a[s - $.t()], r.E[s]) && a[s] > r.t[s]) {
+                        if ((a[s - $.t()] === r.E[s]) && a[s] > r.t[s]) {
+                            r.t[s] = a[s]
+                        }
             }
         },
         cg() {
@@ -18348,7 +18406,8 @@
         fj(a, b) {
             var s, r, q = a.length
             if (q === 1) {
-                if (!J.Y(a[0], b)) return a[0]
+                // if (!J.Y(a[0], b)) return a[0]
+                if (a[0] !== b) return a[0]
             } else if (q > 1) {
                 s = C.a.aT(a, b)
                 if (s < 0) return a[this.ax(a.length)]
