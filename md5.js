@@ -3383,7 +3383,7 @@
                     }
                 }
             },
-            an(a) {
+            _wrapJsFunctionForAsync(a) {
                 var s = function (b, c) {
                     return function (d, e) {
                         while (true) try {
@@ -3409,7 +3409,7 @@
                 }
                 return C.G
             },
-            jo(a, b) {
+            future_future_delayed(a, b) {
                 var s = new P.U($.P, b.i("U<0>"))
                 P.mi(a, new P.jp(null, s, b))
                 return s
@@ -4196,8 +4196,10 @@
                 if (a >= 10) return "" + a
                 return "0" + a
             },
-            fm(a, b) {
-                return new P.c1(1e6 * b + 1000 * a)
+            duration_sec_milsec(millsec, sec) {
+                // a: milliseconds
+                // b: seconds
+                return new P.Duration(1e6 * sec + 1000 * millsec)
             },
             jh(a) {
                 if (typeof a == "number" || H.lm(a) || a == null) return J.b4(a)
@@ -4262,7 +4264,7 @@
                 this.a = a
                 this.b = b
             },
-            c1: function c1(a) {
+            Duration: function c1(a) {
                 this.a = a
             },
             jc: function jc() {},
@@ -4410,7 +4412,7 @@
                     q, p = 2,
                     async_result_1, n = [],
                     m, l, k, j, raw_names, h, g, f, e, d, c, b, a, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, b0
-                var $async$iE = P.an(function (error_code, async_result) {
+                var $async$iE = P._wrapJsFunctionForAsync(function (error_code, async_result) {
                     if (error_code === 1) {
                         async_result_1 = async_result
                         async_goto = p
@@ -5725,7 +5727,7 @@
                 var s = 0,
                     r = P._makeAsyncAwaitCompleter(t.eF),
                     q, p, o, n, m, l, k, j, i, h
-                var $async$c2 = P.an(function (b, c) {
+                var $async$c2 = P._wrapJsFunctionForAsync(function (b, c) {
                     if (b === 1) return P.async_rethrow(c, r)
                     while (true) switch (s) {
                         case 0:
@@ -7936,7 +7938,7 @@
                 var s = 0,
                     r = P._makeAsyncAwaitCompleter(t.z),
                     q, p
-                var $async$jv = P.an(function (a, b) {
+                var $async$jv = P._wrapJsFunctionForAsync(function (a, b) {
                     if (a === 1) return P.async_rethrow(b, r)
                     while (true) switch (s) {
                         case 0:
@@ -10842,10 +10844,10 @@
             else return r + "-" + q + "-" + p + " " + o + ":" + n + ":" + m + "." + l
         }
     }
-    P.c1.prototype = {
+    P.Duration.prototype = {
         aW(a, b) {
             if (b == null) return false
-            return b instanceof P.c1 && this.a === b.a
+            return b instanceof P.Duration && this.a === b.a
         },
         gak(a) {
             return C.c.gak(this.a)
@@ -10856,7 +10858,7 @@
         k(a) {
             var s, r, q, p = new P.jd(),
                 o = this.a
-            if (o < 0) return "-" + new P.c1(0 - o).k(0)
+            if (o < 0) return "-" + new P.Duration(0 - o).k(0)
             s = p.$1(C.c.ag(o, 6e7) % 60)
             r = p.$1(C.c.ag(o, 1e6) % 60)
             q = new P.jc().$1(o % 1e6)
@@ -12267,20 +12269,20 @@
             // 胜率评分
             var async_goto = 0,
                 async_completer = P._makeAsyncAwaitCompleter(t.d),
-                q, p = this,
+                some_q, p = this,
                 o, n, m, l, k, j, i, h, g, f, e, d
-            var $async$O = P.an(function (a, b) {
+            var $async$O = P._wrapJsFunctionForAsync(function (a, b) {
                 if (a === 1) return P.async_rethrow(b, async_completer)
                 while (true) switch (async_goto) {
                     case 0:
                         d = p.x
                         if (d.length !== 0) {
-                            q = C.a.cu(d, 0)
+                            some_q = C.a.cu(d, 0)
                             async_goto = 1
                             break
                         }
                         if (p.z >= p.c) {
-                            q = null
+                            some_q = null
                             async_goto = 1
                             break
                         }
@@ -12298,10 +12300,10 @@
                         g = b
                         f = null
                     case 6:
-                        if (!true) {
-                            async_goto = 8
-                            break
-                        }
+                        // if (!true) {
+                        //     async_goto = 8
+                        //     break
+                        // }
                         async_goto = 9
                         return P._asyncAwait(g.O(), $async$O)
                     case 9:
@@ -12337,13 +12339,16 @@
                             d.push(new T.aq(o, m))
                             p.c *= 10
                         }
-                        q = new T.aq(n, l)
+                        some_q = new T.aq(n, l)
                         async_goto = 1
                         break
                     case 1:
-                        return P.async_return(q, async_completer)
+                        return P.async_return(some_q, async_completer)
                 }
             })
+            let stack = new Error().stack
+            console.log("L.iR.O", stack)
+
             return P._asyncStartSync($async$O, async_completer)
         },
         ae(a, b) {
@@ -12354,7 +12359,7 @@
                 r = P._makeAsyncAwaitCompleter(t.z),
                 q = this,
                 p, o, n, m, l
-            var $async$ae = P.an(function (c, d) {
+            var $async$ae = P._wrapJsFunctionForAsync(function (c, d) {
                 if (c === 1) return P.async_rethrow(d, r)
                 while (true) switch (s) {
                     case 0:
@@ -12469,7 +12474,7 @@
                 r = P._makeAsyncAwaitCompleter(t.d),
                 q, p = this,
                 o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, a3, a4
-            var $async$O = P.an(function (a5, a6) {
+            var $async$O = P._wrapJsFunctionForAsync(function (a5, a6) {
                 if (a5 === 1) return P.async_rethrow(a6, r)
                 while (true) switch (s) {
                     case 0:
@@ -12585,7 +12590,7 @@
                 r = P._makeAsyncAwaitCompleter(t.z),
                 q = this,
                 p, o, n, m, l
-            var $async$ae = P.an(function (c, d) {
+            var $async$ae = P._wrapJsFunctionForAsync(function (c, d) {
                 if (c === 1) return P.async_rethrow(d, r)
                 while (true) switch (s) {
                     case 0:
@@ -12689,7 +12694,7 @@
                 r = P._makeAsyncAwaitCompleter(t.d),
                 q, p = this,
                 o, n, m, l, k, j, i, h, g, f, e, d
-            var $async$O = P.an(function (a, b) {
+            var $async$O = P._wrapJsFunctionForAsync(function (a, b) {
                 if (a === 1) return P.async_rethrow(b, r)
                 while (true) switch (s) {
                     case 0:
@@ -12771,7 +12776,7 @@
                     case 16:
                         ++p.e
                         s = 18
-                        return P._asyncAwait(P.jo(new P.c1(1e6), t.z), $async$O)
+                        return P._asyncAwait(P.future_future_delayed(new P.Duration(1e6), t.z), $async$O)
                     case 18:
                         e = p.r
                         e[0] = Date.now() + 1
@@ -12813,7 +12818,7 @@
                 r = P._makeAsyncAwaitCompleter(t.z),
                 q = this,
                 p, o, n, m
-            var $async$ae = P.an(function (c, d) {
+            var $async$ae = P._wrapJsFunctionForAsync(function (c, d) {
                 if (c === 1) return P.async_rethrow(d, r)
                 while (true) switch (s) {
                     case 0:
@@ -12864,7 +12869,7 @@
             var s, r, q, this_ = this
             if (this_.a == null) return
             A.vo(this_.gfd())
-            this_.d = P.mi(P.fm(10, 0), this_.gbc(this_))
+            this_.d = P.mi(P.duration_sec_milsec(10, 0), this_.gbc(this_))
             W.es(window, "resize", this_.gff(this_), false)
             this_.ds(0, null)
             s = HtmlRenderer.add_p("row")
@@ -13020,25 +13025,28 @@
             }
         },
         b4() {
-            var s = 0,
-                r = P._makeAsyncAwaitCompleter(t.z),
+            var async_goto = 0,
+                async_complete = P._makeAsyncAwaitCompleter(t.z),
                 q, this_ = this,
                 o
-            var $async$b4 = P.an(function (a, b) {
-                if (a === 1) return P.async_rethrow(b, r)
-                while (true) switch (s) {
+            var $async$b4 = P._wrapJsFunctionForAsync(function (async_error_code, async_result) {
+                if (async_error_code === 1) return P.async_rethrow(async_result, async_complete)
+                while (true) switch (async_goto) {
                     case 0:
                         this_.d = null
                         o = this_.Q
-                        s = o == null || o.a.length === 0 ? 3 : 4
+                        async_goto = o == null || o.a.length === 0 ? 3 : 4
                         break
                     case 3:
-                        s = 5
+                        async_goto = 5
+                        // 输出 "实力评估中...[2]%"
                         return P._asyncAwait(this_.c.O(), $async$b4)
                     case 5:
-                        this_.Q = b
-                        s = 6
-                        return P._asyncAwait(P.jo(P.fm(1, 0), t.z), $async$b4)
+                        this_.Q = async_result
+                        async_goto = 6
+                        // return P._asyncAwait(P.jo(P.duration_sec_milsec(1, 0), t.z), $async$b4)
+                        return P._asyncAwait(P.future_future_delayed(P.duration_sec_milsec(0, 0), t.z), $async$b4)
+                        // break
                     case 6:
                         this_.db = null
                         this_.dx = true
@@ -13046,15 +13054,15 @@
                     case 4:
                         o = this_.Q
                         if (o == null) {
-                            s = 1
+                            async_goto = 1
                             break
                         }
                         this_.ft(C.a.cu(o.a, 0))
                     case 1:
-                        return P.async_return(q, r)
+                        return P.async_return(q, async_complete)
                 }
             })
-            return P._asyncStartSync($async$b4, r)
+            return P._asyncStartSync($async$b4, async_complete)
         },
         ft(a) {
             var s, r, q, p, this_ = this
@@ -13077,7 +13085,7 @@
             if (p) {
                 this_.c5(this_.cy)
                 this_.cy = false
-            } else this_.d = P.mi(P.fm(C.c.P(s, C.d.aI(Math.sqrt(q / 2))), 0), this_.gel())
+            } else this_.d = P.mi(P.duration_sec_milsec(C.c.P(s, C.d.aI(Math.sqrt(q / 2))), 0), this_.gel())
         },
         c5(a) {
             var s, r, this_ = this
@@ -13288,13 +13296,13 @@
                 r = P._makeAsyncAwaitCompleter(t.P),
                 q = this,
                 p, win_data, n
-            var $async$$0 = P.an(function (a, b) {
+            var $async$$0 = P._wrapJsFunctionForAsync(function (a, b) {
                 if (a === 1) return P.async_rethrow(b, r)
                 while (true) switch (s) {
                     case 0:
                         n = t.z
                         s = 2
-                        return P._asyncAwait(P.jo(P.fm(1, 0), n), $async$$0)
+                        return P._asyncAwait(P.future_future_delayed(P.duration_sec_milsec(1, 0), n), $async$$0)
                     case 2:
                         p = HtmlRenderer.rV(q.b, q.c)
                         win_data = P.dD(["winners",
@@ -16145,7 +16153,7 @@
                 r = P._makeAsyncAwaitCompleter(t.z),
                 q, p = this,
                 o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, b0, b1, b2, b3
-            var $async$bD = P.an(function (b4, b5) {
+            var $async$bD = P._wrapJsFunctionForAsync(function (b4, b5) {
                 if (b4 === 1) return P.async_rethrow(b5, r)
                 while (true) switch (s) {
                     case 0:
@@ -16288,12 +16296,12 @@
         bE() {
             var s = 0,
                 r = P._makeAsyncAwaitCompleter(t.z)
-            var $async$bE = P.an(function (a, b) {
+            var $async$bE = P._wrapJsFunctionForAsync(function (a, b) {
                 if (a === 1) return P.async_rethrow(b, r)
                 while (true) switch (s) {
                     case 0:
                         s = 2
-                        return P._asyncAwait(P.jo(P.fm($.C(), 0), t.z), $async$bE)
+                        return P._asyncAwait(P.future_future_delayed(P.duration_sec_milsec($.C(), 0), t.z), $async$bE)
                     case 2:
                         $.mc = $.a()
                         return P.async_return(null, r)
@@ -16320,7 +16328,7 @@
                 q, p = [],
                 o = this,
                 n, m, l, k, j, i, h, g, f
-            var $async$O = P.an(function (a, b) {
+            var $async$O = P._wrapJsFunctionForAsync(function (a, b) {
                 if (a === 1) return P.async_rethrow(b, r)
                 while (true) $async$outer: switch (s) {
                     case 0:
@@ -16384,7 +16392,7 @@
                 r = P._makeAsyncAwaitCompleter(t.z),
                 q = this,
                 p, o, n, m, l, k, j
-            var $async$ae = P.an(function (c, d) {
+            var $async$ae = P._wrapJsFunctionForAsync(function (c, d) {
                 if (c === 1) return P.async_rethrow(d, r)
                 while (true) switch (s) {
                     case 0:
@@ -16421,7 +16429,7 @@
                 r = P._makeAsyncAwaitCompleter(t.z),
                 q = this,
                 p, o, n
-            var $async$cq = P.an(function (c, d) {
+            var $async$cq = P._wrapJsFunctionForAsync(function (c, d) {
                 if (c === 1) return P.async_rethrow(d, r)
                 while (true) switch (s) {
                     case 0:
@@ -16740,7 +16748,7 @@
             var s = 0,
                 r = P._makeAsyncAwaitCompleter(t.z),
                 q = this
-            var $async$cg = P.an(function (a, b) {
+            var $async$cg = P._wrapJsFunctionForAsync(function (a, b) {
                 if (a === 1) return P.async_rethrow(b, r)
                 while (true) switch (s) {
                     case 0:
@@ -18625,7 +18633,7 @@
             inherit = hunkHelpers.inherit,
             inherit_many = hunkHelpers.inheritMany
         inherit(P.H, null)
-        inherit_many(P.H, [H.m8, J.Interceptor, J.db, P.O, P.ev, P.L, H.cv, P.fv, H.du, H.hV, H.kh, H.jR, H.dt, H.eE, H.c_, P.aU, H.jK, H.fA, H.ct, H.ew, H.kz, H.bK, H.l3, H.aW, H.ib, H.iu, P.l8, P.i_, P.f3, P.i4, P.cN, P.U, P.i0, P.em, P.hO, P.hP, P.im, P.i1, P.i3, P.i7, P.ii, P.io, P.lf, P.eM, P.kV, P.ie, P.z, P.dY, P.fg, P.js, P.lc, P.lb, P.dq, P.c1, P.fM, P.el, P.kG, P.jm, P.N, P.iq, P.cH, W.j8, W.m5, W.cP, W.cr, W.dN, W.eD, W.is, W.dv, W.kE, W.l_, W.ix, P.l4, P.kw, P.eJ, P.jQ, P.kT, Y.dW, L.iR, V.iV, X.iW, S.fK, HtmlRenderer.fq, HtmlRenderer.jT, HtmlRenderer.ax, Sgls.a_, Sgls.n, T.x, T.u, T.dk, T.fo, T.b7, T.fr, T.bB, T.bm, T.aX, T.aq, T.bG, T.bL, T.fl])
+        inherit_many(P.H, [H.m8, J.Interceptor, J.db, P.O, P.ev, P.L, H.cv, P.fv, H.du, H.hV, H.kh, H.jR, H.dt, H.eE, H.c_, P.aU, H.jK, H.fA, H.ct, H.ew, H.kz, H.bK, H.l3, H.aW, H.ib, H.iu, P.l8, P.i_, P.f3, P.i4, P.cN, P.U, P.i0, P.em, P.hO, P.hP, P.im, P.i1, P.i3, P.i7, P.ii, P.io, P.lf, P.eM, P.kV, P.ie, P.z, P.dY, P.fg, P.js, P.lc, P.lb, P.dq, P.Duration, P.fM, P.el, P.kG, P.jm, P.N, P.iq, P.cH, W.j8, W.m5, W.cP, W.cr, W.dN, W.eD, W.is, W.dv, W.kE, W.l_, W.ix, P.l4, P.kw, P.eJ, P.jQ, P.kT, Y.dW, L.iR, V.iV, X.iW, S.fK, HtmlRenderer.fq, HtmlRenderer.jT, HtmlRenderer.ax, Sgls.a_, Sgls.n, T.x, T.u, T.dk, T.fo, T.b7, T.fr, T.bB, T.bm, T.aX, T.aq, T.bG, T.bL, T.fl])
         inherit_many(J.Interceptor, [J.fw, J.cs, J.bE, J.JsArray, J.JsNumber, J.JsString, H.dJ, H.ab, W.fn, W.bX, W.fe, W.i6, W.bb, W.ja, W.jb, W.o, W.c4, W.jL, W.ig, W.il, W.iy, W.iA])
         inherit_many(J.bE, [J.PlainJavaScriptObject, J.UnknownJavaScriptObject, J.JavaScriptFunction])
         inherit(J.jG, J.JsArray)
@@ -18955,7 +18963,7 @@
         C.F = new P.kT()
         C.f = new P.kX()
         C.G = new P.iq()
-        C.I = new P.c1(0)
+        C.I = new P.Duration(0)
         C.L = new P.jJ(null)
         C.M = H.b(make_const_list(["*::class", "*::dir", "*::draggable", "*::hidden", "*::id", "*::inert", "*::itemprop", "*::itemref", "*::itemscope", "*::lang", "*::spellcheck", "*::title", "*::translate", "A::accesskey", "A::coords", "A::hreflang", "A::name", "A::shape", "A::tabindex", "A::target", "A::type", "AREA::accesskey", "AREA::alt", "AREA::coords", "AREA::nohref", "AREA::shape", "AREA::tabindex", "AREA::target", "AUDIO::controls", "AUDIO::loop", "AUDIO::mediagroup", "AUDIO::muted", "AUDIO::preload", "BDO::dir", "BODY::alink", "BODY::bgcolor", "BODY::link", "BODY::text", "BODY::vlink", "BR::clear", "BUTTON::accesskey", "BUTTON::disabled", "BUTTON::name", "BUTTON::tabindex", "BUTTON::type", "BUTTON::value", "CANVAS::height", "CANVAS::width", "CAPTION::align", "COL::align", "COL::char", "COL::charoff", "COL::span", "COL::valign", "COL::width", "COLGROUP::align", "COLGROUP::char", "COLGROUP::charoff", "COLGROUP::span", "COLGROUP::valign", "COLGROUP::width", "COMMAND::checked", "COMMAND::command", "COMMAND::disabled", "COMMAND::label", "COMMAND::radiogroup", "COMMAND::type", "DATA::value", "DEL::datetime", "DETAILS::open", "DIR::compact", "DIV::align", "DL::compact", "FIELDSET::disabled", "FONT::color", "FONT::face", "FONT::size", "FORM::accept", "FORM::autocomplete", "FORM::enctype", "FORM::method", "FORM::name", "FORM::novalidate", "FORM::target", "FRAME::name", "H1::align", "H2::align", "H3::align", "H4::align", "H5::align", "H6::align", "HR::align", "HR::noshade", "HR::size", "HR::width", "HTML::version", "IFRAME::align", "IFRAME::frameborder", "IFRAME::height", "IFRAME::marginheight", "IFRAME::marginwidth", "IFRAME::width", "IMG::align", "IMG::alt", "IMG::border", "IMG::height", "IMG::hspace", "IMG::ismap", "IMG::name", "IMG::usemap", "IMG::vspace", "IMG::width", "INPUT::accept", "INPUT::accesskey", "INPUT::align", "INPUT::alt", "INPUT::autocomplete", "INPUT::autofocus", "INPUT::checked", "INPUT::disabled", "INPUT::inputmode", "INPUT::ismap", "INPUT::list", "INPUT::max", "INPUT::maxlength", "INPUT::min", "INPUT::multiple", "INPUT::name", "INPUT::placeholder", "INPUT::readonly", "INPUT::required", "INPUT::size", "INPUT::step", "INPUT::tabindex", "INPUT::type", "INPUT::usemap", "INPUT::value", "INS::datetime", "KEYGEN::disabled", "KEYGEN::keytype", "KEYGEN::name", "LABEL::accesskey", "LABEL::for", "LEGEND::accesskey", "LEGEND::align", "LI::type", "LI::value", "LINK::sizes", "MAP::name", "MENU::compact", "MENU::label", "MENU::type", "METER::high", "METER::low", "METER::max", "METER::min", "METER::value", "OBJECT::typemustmatch", "OL::compact", "OL::reversed", "OL::start", "OL::type", "OPTGROUP::disabled", "OPTGROUP::label", "OPTION::disabled", "OPTION::label", "OPTION::selected", "OPTION::value", "OUTPUT::for", "OUTPUT::name", "P::align", "PRE::width", "PROGRESS::max", "PROGRESS::min", "PROGRESS::value", "SELECT::autocomplete", "SELECT::disabled", "SELECT::multiple", "SELECT::name", "SELECT::required", "SELECT::size", "SELECT::tabindex", "SOURCE::type", "TABLE::align", "TABLE::bgcolor", "TABLE::border", "TABLE::cellpadding", "TABLE::cellspacing", "TABLE::frame", "TABLE::rules", "TABLE::summary", "TABLE::width", "TBODY::align", "TBODY::char", "TBODY::charoff", "TBODY::valign", "TD::abbr", "TD::align", "TD::axis", "TD::bgcolor", "TD::char", "TD::charoff", "TD::colspan", "TD::headers", "TD::height", "TD::nowrap", "TD::rowspan", "TD::scope", "TD::valign", "TD::width", "TEXTAREA::accesskey", "TEXTAREA::autocomplete", "TEXTAREA::cols", "TEXTAREA::disabled", "TEXTAREA::inputmode", "TEXTAREA::name", "TEXTAREA::placeholder", "TEXTAREA::readonly", "TEXTAREA::required", "TEXTAREA::rows", "TEXTAREA::tabindex", "TEXTAREA::wrap", "TFOOT::align", "TFOOT::char", "TFOOT::charoff", "TFOOT::valign", "TH::abbr", "TH::align", "TH::axis", "TH::bgcolor", "TH::char", "TH::charoff", "TH::colspan", "TH::headers", "TH::height", "TH::nowrap", "TH::rowspan", "TH::scope", "TH::valign", "TH::width", "THEAD::align", "THEAD::char", "THEAD::charoff", "THEAD::valign", "TR::align", "TR::bgcolor", "TR::char", "TR::charoff", "TR::valign", "TRACK::default", "TRACK::kind", "TRACK::label", "TRACK::srclang", "UL::compact", "UL::type", "VIDEO::controls", "VIDEO::height", "VIDEO::loop", "VIDEO::mediagroup", "VIDEO::muted", "VIDEO::preload", "VIDEO::width"]), t.V)
         C.N = H.b(make_const_list(["", "", "", "", "", "", "", "", "", ""]), t.V)
