@@ -3874,7 +3874,7 @@
                 r = P.o7(b, s, ", ") + c
                 return r.charCodeAt(0) == 0 ? r : r
             },
-            m6(a, b, c) {
+            IterableBase_iterableToFullString(a, b, c) {
                 var s, r
                 if (P.mt(a)) return b + "..." + c
                 s = new P.cH(b)
@@ -8438,7 +8438,7 @@
             return false
         },
         k(a) {
-            return P.m6(a, "[", "]")
+            return P.IterableBase_iterableToFullString(a, "[", "]")
         },
         ga0(a) {
             return new J.db(a, a.length)
@@ -10392,7 +10392,7 @@
             return this.h(a, b)
         },
         k(a) {
-            return P.m6(a, "[", "]")
+            return P.IterableBase_iterableToFullString(a, "[", "]")
         }
     }
     P.dG.prototype = {}
@@ -10430,7 +10430,7 @@
             for (s = J.by(b); s.u();) this.j(0, s.gC())
         },
         k(a) {
-            return P.m6(this, "{", "}")
+            return P.IterableBase_iterableToFullString(this, "{", "}")
         }
     }
     P.eC.prototype = {
@@ -12968,9 +12968,11 @@
 
                 this_.b4()
                 this_.z = n
+                console.log("start fq.fe end")
                 for (r = n.length, m = 0; m < n.length; n.length === r || (0, H.F)(n), ++m) {
                     for (q = J.by(n[m]); q.u();) {
-                        console.log("fq.fe q type", typeof n[m])
+                        // console.log("fq.fe q type", typeof n[m])
+                        console.log(q, m, n, r)
                         J.ry(q.gC(), 4)
                     }
                 }
