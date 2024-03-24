@@ -9568,13 +9568,13 @@
     }
     P.l8.prototype = {
         e8(a, b) {
-            if (self.setTimeout != null) {
-                // self.setTimeout(H.convert_dart_closure_to_js_md5(new P.l9(this, b), 0), a)
-                self.setTimeout(H.convert_dart_closure_to_js_md5(new P.l9(this, b), 0), 0)
-                // b.$0() // 草,这下…… 6
-            } else {
-                throw H.wrap_expression(P.S("`setTimeout()` not found."))
-            }
+            // if (self.setTimeout != null) {
+            // self.setTimeout(H.convert_dart_closure_to_js_md5(new P.l9(this, b), 0), a)
+            // self.setTimeout(H.convert_dart_closure_to_js_md5(new P.l9(this, b), 0), 0)
+            b.$0() // 草,这下…… 6
+            // } else {
+            //     throw H.wrap_expression(P.S("`setTimeout()` not found."))
+            // }
         }
         // e8(a, b) {
         //     if (typeof P.count === "number") {
