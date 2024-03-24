@@ -13047,7 +13047,10 @@
             if (p) {
                 this_.c5(this_.cy)
                 this_.cy = false
-            } else this_.d = P.mi(P.fm(C.c.P(s, C.d.aI(Math.sqrt(q / 2))), 0), this_.gel())
+            } else {
+                // this_.d = P.mi(P.fm(C.c.P(s, C.d.aI(Math.sqrt(q / 2))), 0), this_.gel())
+                this.gel().$0()
+            }
         },
         c5(a) {
             var s, r, this_ = this
