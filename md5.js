@@ -1753,14 +1753,14 @@
                         m = b.Q
                         l = H.eP(a, m, a0, a1)
                         if (n === o && l === m) return b
-                        return H.mn(a, n, l)
+                        return H._Universe__lookupBindingRti(a, n, l)
                     case 11:
                         k = b.z
                         j = H.bP(a, k, a0, a1)
                         i = b.Q
                         h = H.uE(a, i, a0, a1)
                         if (j === k && h === i) return b
-                        return H.oi(a, j, h)
+                        return H._Universe__lookupFunctionRti(a, j, h)
                     case 12:
                         g = b.Q
                         a1 += g.length
@@ -1768,7 +1768,7 @@
                         o = b.z
                         n = H.bP(a, o, a0, a1)
                         if (f === g && n === o) return b
-                        return H.mo(a, n, f, true)
+                        return H._Universe__lookupGenericFunctionRti(a, n, f, true)
                     case 13:
                         e = b.z
                         if (e < a1) return b
@@ -1949,7 +1949,7 @@
             uh(a) {
                 var s = this
                 if (a == null) return H.ln(s)
-                return H.al(init.typeUniverse, H.oE(a, s), null, s, null)
+                return H._isSubtype(init.typeUniverse, H.oE(a, s), null, s, null)
             },
             uj(a) {
                 if (a == null) return true
@@ -2240,7 +2240,7 @@
                 s = c.cy
                 r = p.get(s)
                 if (r != null) return r
-                q = H.mn(universe, b, c.y === 10 ? c.Q : [c])
+                q = H._Universe__lookupBindingRti(universe, b, c.y === 10 ? c.Q : [c])
                 p.set(s, q)
                 return q
             },
@@ -2381,7 +2381,7 @@
                 a.eC.set(p, q)
                 return q
             },
-            mn(a, b, c) {
+            _Universe__lookupBindingRti(a, b, c) {
                 var s, r, q, p, o, n
                 if (b.y === 10) {
                     s = b.z
@@ -2402,7 +2402,7 @@
                 a.eC.set(q, n)
                 return n
             },
-            oi(a, b, c) {
+            _Universe__lookupFunctionRti(a, b, c) {
                 var s, r, q, p, o, n = b.cy,
                     m = c.a,
                     l = m.length,
@@ -2433,7 +2433,7 @@
                 a.eC.set(q, r)
                 return r
             },
-            mo(a, b, c, d) {
+            _Universe__lookupGenericFunctionRti(a, b, c, d) {
                 var s, r = b.cy + ("<" + H.iv(c) + ">"),
                     q = a.eC.get(r)
                 if (q != null) return q
@@ -2456,7 +2456,7 @@
                     if (q > 0) {
                         n = H.bP(a, b, r, 0)
                         m = H.eP(a, c, r, 0)
-                        return H.mo(a, n, m, c !== m)
+                        return H._Universe__lookupGenericFunctionRti(a, n, m, c !== m)
                     }
                 }
                 l = new H.aW(null, null)
@@ -2481,7 +2481,7 @@
                     f = a.s
                 for (s = g.length, r = 0; r < s;) {
                     q = g.charCodeAt(r)
-                    if (q >= 48 && q <= 57) r = H.tV(r + 1, q, g, f)
+                    if (q >= 48 && q <= 57) r = H._Parser_handleDigit(r + 1, q, g, f)
                     else if ((((q | 32) >>> 0) - 97 & 65535) < 26 || q === 95 || q === 36)
                         r = H._Parser_handleIdentifier(a, r, g, f, false)
                     else if (q === 46)
@@ -2519,7 +2519,7 @@
                             case 62:
                                 t3 = a.u
                                 array = f.splice(a.p)
-                                H.mm(a.u, a.e, array)
+                                H._Parser_toTypes(a.u, a.e, array)
                                 a.p = f.pop()
                                 head = f.pop()
                                 if (typeof head == "string") f.push(H._Universe__lookupInterfaceRti(t3, head, array))
@@ -2527,16 +2527,16 @@
                                     m = H._Parser_toType(t3, a.e, head)
                                     switch (m.y) {
                                         case 11:
-                                            f.push(H.mo(t3, m, array, a.n))
+                                            f.push(H._Universe__lookupGenericFunctionRti(t3, m, array, a.n))
                                             break
                                         default:
-                                            f.push(H.mn(t3, m, array))
+                                            f.push(H._Universe__lookupBindingRti(t3, m, array))
                                             break
                                     }
                                 }
                                 break
                             case 38:
-                                H.tW(a, f)
+                                H._Parser_handleExtendedOperations(a, f)
                                 break
                             case 42:
                                 l = a.u
@@ -2572,12 +2572,12 @@
                                         break
                                 } else f.push(head)
                                 array = f.splice(a.p)
-                                H.mm(a.u, a.e, array)
+                                H._Parser_toTypes(a.u, a.e, array)
                                 a.p = f.pop()
                                 k.a = array
                                 k.b = j
                                 k.c = i
-                                f.push(H.oi(t3, H._Parser_toType(t3, a.e, f.pop()), k))
+                                f.push(H._Universe__lookupFunctionRti(t3, H._Parser_toType(t3, a.e, f.pop()), k))
                                 break
                             case 91:
                                 f.push(a.p)
@@ -2585,7 +2585,7 @@
                                 break
                             case 93:
                                 array = f.splice(a.p)
-                                H.mm(a.u, a.e, array)
+                                H._Parser_toTypes(a.u, a.e, array)
                                 a.p = f.pop()
                                 f.push(array)
                                 f.push(-1)
@@ -2596,7 +2596,7 @@
                                 break
                             case 125:
                                 array = f.splice(a.p)
-                                H.tY(a.u, a.e, array)
+                                H._Parser_toTypesNamed(a.u, a.e, array)
                                 a.p = f.pop()
                                 f.push(array)
                                 f.push(-2)
@@ -2609,7 +2609,7 @@
                 h = f.pop()
                 return H._Parser_toType(a.u, a.e, h)
             },
-            tV(a, b, c, d) {
+            _Parser_handleDigit(a, b, c, d) {
                 var s, r, q = b - 48
                 for (s = c.length; a < s; ++a) {
                     r = c.charCodeAt(a)
@@ -2643,32 +2643,32 @@
                 } else d.push(p)
                 return m
             },
-            tW(a, b) {
-                var s = b.pop()
+            _Parser_handleExtendedOperations(a, stack) {
+                var s = stack.pop()
                 if (0 === s) {
-                    b.push(H._Universe__lookupTerminalRti(a.u, 1, "0&"))
+                    stack.push(H._Universe__lookupTerminalRti(a.u, 1, "0&"))
                     return
                 }
                 if (1 === s) {
-                    b.push(H._Universe__lookupTerminalRti(a.u, 4, "1&"))
+                    stack.push(H._Universe__lookupTerminalRti(a.u, 4, "1&"))
                     return
                 }
                 throw H.throw_error(P.iP("Unexpected extended operation " + H.e(s)))
             },
             _Parser_toType(a, b, c) {
                 if (typeof c == "string") return H._Universe__lookupInterfaceRti(a, c, a.sEA)
-                else if (typeof c == "number") return H.tX(a, b, c)
+                else if (typeof c == "number") return H._Parser_indexToType(a, b, c)
                 else return c
             },
-            mm(a, b, c) {
+            _Parser_toTypes(a, b, c) {
                 var s, r = c.length
                 for (s = 0; s < r; ++s) c[s] = H._Parser_toType(a, b, c[s])
             },
-            tY(a, b, c) {
+            _Parser_toTypesNamed(a, b, c) {
                 var s, r = c.length
                 for (s = 2; s < r; s += 3) c[s] = H._Parser_toType(a, b, c[s])
             },
-            tX(a, b, c) {
+            _Parser_indexToType(a, b, c) {
                 var s, r, q = b.y
                 if (q === 10) {
                     if (c === 0) return b.z
@@ -2684,7 +2684,7 @@
                 if (c <= s.length) return s[c - 1]
                 throw H.throw_error(P.iP("Bad index " + c + " for " + b.k(0)))
             },
-            al(a, b, c, d, e) {
+            _isSubtype(a, b, c, d, e) {
                 var s, r, q, p, o, n, m, l, k, j
                 if (b === d) return true
                 if (!H.bw(d))
@@ -2700,27 +2700,27 @@
                 if (s) return true
                 q = r === 13
                 if (q)
-                    if (H.al(a, c[b.z], c, d, e)) return true
+                    if (H._isSubtype(a, c[b.z], c, d, e)) return true
                 p = d.y
-                if (r === 6) return H.al(a, b.z, c, d, e)
+                if (r === 6) return H._isSubtype(a, b.z, c, d, e)
                 if (p === 6) {
                     s = d.z
-                    return H.al(a, b, c, s, e)
+                    return H._isSubtype(a, b, c, s, e)
                 }
                 if (r === 8) {
-                    if (!H.al(a, b.z, c, d, e)) return false
-                    return H.al(a, H.o2(a, b), c, d, e)
+                    if (!H._isSubtype(a, b.z, c, d, e)) return false
+                    return H._isSubtype(a, H.o2(a, b), c, d, e)
                 }
                 if (r === 7) {
-                    s = H.al(a, b.z, c, d, e)
+                    s = H._isSubtype(a, b.z, c, d, e)
                     return s
                 }
                 if (p === 8) {
-                    if (H.al(a, b, c, d.z, e)) return true
-                    return H.al(a, b, c, H.o2(a, d), e)
+                    if (H._isSubtype(a, b, c, d.z, e)) return true
+                    return H._isSubtype(a, b, c, H.o2(a, d), e)
                 }
                 if (p === 7) {
-                    s = H.al(a, b, c, d.z, e)
+                    s = H._isSubtype(a, b, c, d.z, e)
                     return s
                 }
                 if (q) return false
@@ -2738,7 +2738,7 @@
                     for (l = 0; l < m; ++l) {
                         k = o[l]
                         j = n[l]
-                        if (!H.al(a, k, c, j, e) || !H.al(a, j, e, k, c)) return false
+                        if (!H._isSubtype(a, k, c, j, e) || !H._isSubtype(a, j, e, k, c)) return false
                     }
                     return H.or(a, b.z, c, d.z, e)
                 }
@@ -2755,7 +2755,7 @@
             },
             or(a2, a3, a4, a5, a6) {
                 var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1
-                if (!H.al(a2, a3.z, a4, a5.z, a6)) return false
+                if (!H._isSubtype(a2, a3.z, a4, a5.z, a6)) return false
                 s = a3.Q
                 r = a5.Q
                 q = s.a
@@ -2771,15 +2771,15 @@
                 if (o + j < n + i) return false
                 for (h = 0; h < o; ++h) {
                     g = q[h]
-                    if (!H.al(a2, p[h], a6, g, a4)) return false
+                    if (!H._isSubtype(a2, p[h], a6, g, a4)) return false
                 }
                 for (h = 0; h < m; ++h) {
                     g = l[h]
-                    if (!H.al(a2, p[o + h], a6, g, a4)) return false
+                    if (!H._isSubtype(a2, p[o + h], a6, g, a4)) return false
                 }
                 for (h = 0; h < i; ++h) {
                     g = l[m + h]
-                    if (!H.al(a2, k[h], a6, g, a4)) return false
+                    if (!H._isSubtype(a2, k[h], a6, g, a4)) return false
                 }
                 f = s.c
                 e = r.c
@@ -2794,7 +2794,7 @@
                         if (a0 < a1) return false
                         if (a1 < a0) continue
                         g = f[b - 1]
-                        if (!H.al(a2, e[a + 2], a6, g, a4)) return false
+                        if (!H._isSubtype(a2, e[a + 2], a6, g, a4)) return false
                         break
                     }
                 }
@@ -2826,7 +2826,7 @@
                 for (s = 0; s < p; ++s) {
                     r = b[s]
                     q = e[s]
-                    if (!H.al(a, r, d, q, f)) return false
+                    if (!H._isSubtype(a, r, d, q, f)) return false
                 }
                 return true
             },
