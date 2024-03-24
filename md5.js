@@ -1018,7 +1018,7 @@
             },
             // MARK: convert_dart_closure_to_js_md5
             // convertDartClosureToJS
-            cU(a, b) {
+            convert_dart_closure_to_js_md5(a, b) {
                 var s
                 if (a == null) return null
                 s = a.$identity
@@ -3338,7 +3338,7 @@
                     s = self.document.createElement("div")
                     r = self.document.createElement("span")
                     q.a = null
-                    new self.MutationObserver(H.cU(new P.kB(q), 1)).observe(s, {
+                    new self.MutationObserver(H.convert_dart_closure_to_js_md5(new P.kB(q), 1)).observe(s, {
                         childList: true
                     })
                     return new P.kA(q, s, r)
@@ -3346,10 +3346,10 @@
                 return P.uM()
             },
             tP(a) {
-                self.scheduleImmediate(H.cU(new P.kC(a), 0))
+                self.scheduleImmediate(H.convert_dart_closure_to_js_md5(new P.kC(a), 0))
             },
             tQ(a) {
-                self.setImmediate(H.cU(new P.kD(a), 0))
+                self.setImmediate(H.convert_dart_closure_to_js_md5(new P.kD(a), 0))
             },
             tR(a) {
                 P.mj(C.I, a)
@@ -4396,7 +4396,7 @@
             vf(a, b) {
                 var s = new P.U($.P, b.i("U<0>")),
                     r = new P.cg(s, b.i("cg<0>"))
-                a.then(H.cU(new P.lE(r), 1), H.cU(new P.lF(r), 1))
+                a.then(H.convert_dart_closure_to_js_md5(new P.lE(r), 1), H.convert_dart_closure_to_js_md5(new P.lF(r), 1))
                 return s
             },
             jQ: function jQ(a) {
@@ -9556,7 +9556,7 @@
     P.l8.prototype = {
         e8(a, b) {
             if (self.setTimeout != null) {
-                self.setTimeout(H.cU(new P.l9(this, b), 0), a)
+                self.setTimeout(H.convert_dart_closure_to_js_md5(new P.l9(this, b), 0), a)
             } else throw H.throw_error(P.S("`setTimeout()` not found."))
         }
         // e8(a, b) {
@@ -11338,13 +11338,13 @@
         $io: 1
     }
     W.fn.prototype = {
-        eF(receiver, type, listener, listener) {
+        eF(receiver, type, listener, options) {
             if (listener != null) {
                 this.add_event_listener(receiver, type, listener, false)
             }
         },
-        add_event_listener(receiver, b, c, d) {
-            return receiver.addEventListener(b, H.cU(c, 1), false)
+        add_event_listener(receiver_, tyoe, listener, options) {
+            return receiver_.addEventListener(tyoe, H.convert_dart_closure_to_js_md5(listener, 1), false)
         }
     }
     W.cq.prototype = {
