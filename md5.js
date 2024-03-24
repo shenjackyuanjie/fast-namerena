@@ -245,7 +245,7 @@
                 f.getContext("2d").drawImage($.md, 0, 0)
                 s = J.cm(P.my(f.getContext("2d").getImageData(0, 0, 128, 128)))
                 for (r = t.i, q = 0; q < 38; ++q) {
-                    p = C.c.V(q, 8) * 64 + C.c.ag(q, 8) * 8192
+                    p = C.JsInt.V(q, 8) * 64 + C.JsInt.ag(q, 8) * 8192
                     o = H.b([], r)
                     for (n = 0; n < 16; ++n)
                         for (m = n * 512, l = 0; l < 16; ++l) {
@@ -419,10 +419,10 @@
                 }
             },
             ei(a3, a4, a5, a6) {
-                var s, r, q, p, o, n, m, l, k, j, i = C.c.ag(a5 - a4 + 1, 6),
+                var s, r, q, p, o, n, m, l, k, j, i = C.JsInt.ag(a5 - a4 + 1, 6),
                     h = a4 + i,
                     g = a5 - i,
-                    f = C.c.ag(a4 + a5, 2),
+                    f = C.JsInt.ag(a4 + a5, 2),
                     e = f - i,
                     d = f + i,
                     c = J.a3(a3),
@@ -738,7 +738,7 @@
                     if (!H.aP(q)) throw H.wrap_expression(H.R(q))
                     if (q <= 65535) p.push(q)
                     else if (q <= 1114111) {
-                        p.push(55296 + (C.c.am(q - 65536, 10) & 1023))
+                        p.push(55296 + (C.JsInt.am(q - 65536, 10) & 1023))
                         p.push(56320 + (q & 1023))
                     } else throw H.wrap_expression(H.R(q))
                 }
@@ -769,7 +769,7 @@
                 if (a <= 65535) return String.fromCharCode(a)
                 if (a <= 1114111) {
                     s = a - 65536
-                    return String.fromCharCode((C.c.am(s, 10) | 55296) >>> 0, s & 1023 | 56320)
+                    return String.fromCharCode((C.JsInt.am(s, 10) | 55296) >>> 0, s & 1023 | 56320)
                 }
                 throw H.wrap_expression(P.a8(a, 0, 1114111, null, null))
             },
@@ -896,7 +896,7 @@
                 if ("number" in a && typeof a.number == "number") {
                     r = a.number
                     q = r & 65535
-                    if ((C.c.am(r, 16) & 8191) === 10) switch (q) {
+                    if ((C.JsInt.am(r, 16) & 8191) === 10) switch (q) {
                         case 438:
                             return H.bR(a, H.m9(H.e(s) + " (Error " + q + ")", e))
                         case 445:
@@ -3262,10 +3262,10 @@
                 o = 1
                 for (; s.u();) {
                     n = s.d
-                    r = C.c.V((r + n + o) * 17, 52)
-                    q = C.c.V((q + n * r) * 23, 52)
-                    p = C.c.V((p + n + q) * 47, 52)
-                    o = C.c.V((o + n * p) * 13, 52)
+                    r = C.JsInt.V((r + n + o) * 17, 52)
+                    q = C.JsInt.V((q + n * r) * 23, 52)
+                    p = C.JsInt.V((p + n + q) * 47, 52)
+                    o = C.JsInt.V((o + n * p) * 13, 52)
                 }
                 r = r < 26 ? r + 65 : r + 71
                 q = q < 26 ? q + 65 : q + 71
@@ -3343,7 +3343,7 @@
                 P.Timer__createTimer(C.I, a)
             },
             Timer__createTimer(a, b) {
-                var s = C.c.ag(a.a, 1000)
+                var s = C.JsInt.ag(a.a, 1000)
                 return P.Timer_impl(s < 0 ? 0 : s, b)
             },
             Timer_impl(a, b) {
@@ -3411,7 +3411,7 @@
             },
             future_future_delayed(a, b) {
                 var s = new P.U($.P, b.i("U<0>"))
-                P.mi(a, new P.jp(null, s, b))
+                P.Timer_Timer(a, new P.jp(null, s, b))
                 return s
             },
             rM(a) {
@@ -3596,7 +3596,7 @@
             ux(a, b) {
                 P.iC(a, b)
             },
-            mi(a, b) {
+            Timer_Timer(a, b) {
                 var s = $.P
                 if (s === C.f) return P.Timer__createTimer(a, b)
                 return P.Timer__createTimer(a, s.cf(b))
@@ -4196,7 +4196,7 @@
                 if (a >= 10) return "" + a
                 return "0" + a
             },
-            duration_sec_milsec(millsec, sec) {
+            duration_milsec_sec(millsec, sec) {
                 // a: milliseconds
                 // b: seconds
                 return new P.Duration(1e6 * sec + 1000 * millsec)
@@ -4547,7 +4547,7 @@
             ty(a, b, c, d, e) {
                 var s, r, q, p = $.a()
                 if (c > p && !(a.fx <= p)) {
-                    s = C.c.P(c + $.i(), $.t())
+                    s = C.JsInt.P(c + $.i(), $.t())
                     p = a.fy
                     r = a.fx
                     q = p - r
@@ -4767,7 +4767,7 @@
                 var s = $.eW() + b - a,
                     r = $.ap()
                 if (s < r) s = r
-                if (s > $.au()) s = C.c.P(s, $.C()) + $.aI()
+                if (s > $.au()) s = C.JsInt.P(s, $.C()) + $.aI()
                 return c.n() <= s
             },
             f_(a) {
@@ -5777,7 +5777,7 @@
                     s = -$.i()
                     for (r = $.a(); q = $.ox, p = q.length, r < p; ++r) {
                         s += C.b.a8(q, r) - $.b2()
-                        $.lj.j(0, C.c.V(s * $.pF(), $.pn()) + $.p9() + p)
+                        $.lj.j(0, C.JsInt.V(s * $.pF(), $.pn()) + $.p9() + p)
                     }
                 }
                 return $.lj
@@ -7799,7 +7799,7 @@
                 var s, r, q, p, o, n, m = a.length,
                     l = P.aL(C.d.R(m * 8 / 6.5), 0, true, t.B)
                 for (s = 0, r = 0, q = 0, p = 0, o = 0; o < m; ++o) {
-                    s = (s | C.c.bX(a[o] & 255 ^ 0, r)) >>> 0
+                    s = (s | C.JsInt.bX(a[o] & 255 ^ 0, r)) >>> 0
                     r += 8
                     if (r > 13) {
                         q = s & 8191
@@ -7812,8 +7812,8 @@
                             r -= 14
                         }
                         n = p + 1
-                        // l[p] = J.J($.iM(), C.c.V(q, 93))
-                        l[p] = $.iM()[C.c.V(q, 93)]
+                        // l[p] = J.J($.iM(), C.JsInt.V(q, 93))
+                        l[p] = $.iM()[C.JsInt.V(q, 93)]
                         p = n + 1
                         // l[n] = J.J($.iM(), q / 93 | 0)
                         l[n] = $.iM()[q / 93 | 0]
@@ -7821,8 +7821,8 @@
                 }
                 if (r > 0) {
                     n = p + 1
-                    // l[p] = J.J($.iM(), C.c.V(s, 93))
-                    l[p] = $.iM()[C.c.V(s, 93)]
+                    // l[p] = J.J($.iM(), C.JsInt.V(s, 93))
+                    l[p] = $.iM()[C.JsInt.V(s, 93)]
                     if (r > 7 || s > 92) {
                         p = n + 1
                         // l[n] = J.J($.iM(), s / 93 | 0)
@@ -7849,7 +7849,7 @@
                         p = l
                     } else {
                         p += l * 93
-                        r |= C.c.bX(p, q)
+                        r |= C.JsInt.bX(p, q)
                         q += (p & 8191) > 456 ? 13 : 14
                         do {
                             k = o + 1
@@ -7867,7 +7867,7 @@
                 }
                 if (p !== -1) {
                     k = o + 1
-                    i[o] = ((r | C.c.bX(p, q)) ^ b) >>> 0
+                    i[o] = ((r | C.JsInt.bX(p, q)) ^ b) >>> 0
                     o = k
                 }
                 C.a.sp(i, o)
@@ -7877,7 +7877,7 @@
                 var s, r, q = new Uint8Array(H.on(X.f4(a, b))).buffer
                 H.mq(q, 0, null)
                 s = q.byteLength
-                r = C.c.ag(s - 0, 4)
+                r = C.JsInt.ag(s - 0, 4)
                 let result = new Uint32Array(q, 0, r)[1]
                 // return new Uint32Array(q, 0, r)[1]
                 // console.log("X.k", a, b, result)
@@ -7887,7 +7887,7 @@
                 var s, r, q = new Uint8Array(H.on(X.f4(a, b))).buffer
                 H.mq(q, 0, null)
                 s = q.byteLength
-                r = C.c.ag(s - 0, 4)
+                r = C.JsInt.ag(s - 0, 4)
                 let result = new Float32Array(q, 0, r)[1];
                 // return new Float32Array(q, 0, r)[1]
                 // console.log("X.D", a, b, result)
@@ -8021,8 +8021,8 @@
                     J.bj(s, 22, r + 4, C.d.R(l.go / 4), 2)
                     s.fillStyle = h
                     HtmlRenderer.ju(s, l, 0, r)
-                    HtmlRenderer.aA(s, C.c.k(l.c), 114, r + 5, 46, true)
-                    HtmlRenderer.aA(s, C.c.k(l.d), 160, r + 5, 46, true)
+                    HtmlRenderer.aA(s, C.JsInt.k(l.c), 114, r + 5, 46, true)
+                    HtmlRenderer.aA(s, C.JsInt.k(l.d), 160, r + 5, 46, true)
                     k = l.e
                     if (k != null) HtmlRenderer.ju(s, $.ay.h(0, k), 206, r)
                     r += 26
@@ -8046,8 +8046,8 @@
                     J.bj(s, 0, r, 320, 2)
                     s.fillStyle = h
                     HtmlRenderer.ju(s, j, 0, r)
-                    HtmlRenderer.aA(s, C.c.k(j.c), 114, r + 5, 46, true)
-                    HtmlRenderer.aA(s, C.c.k(j.d), 160, r + 5, 46, true)
+                    HtmlRenderer.aA(s, C.JsInt.k(j.c), 114, r + 5, 46, true)
+                    HtmlRenderer.aA(s, C.JsInt.k(j.d), 160, r + 5, 46, true)
                     o = j.e
                     if (o != null) HtmlRenderer.ju(s, $.ay.h(0, o), 206, r)
                     r += 26
@@ -10733,7 +10733,7 @@
         c3(a, b, c, d) {
             var s, r, q = this
             if (c - b > 1000) {
-                s = C.c.ag(b + c, 2)
+                s = C.JsInt.ag(b + c, 2)
                 r = q.c3(a, b, s, false)
                 if ((q.b & 1) !== 0) return r
                 return r + q.c3(a, s, c, d)
@@ -10825,11 +10825,11 @@
             return b instanceof P.dq && this.a === b.a && this.b === b.b
         },
         bg(a, b) {
-            return C.c.bg(this.a, b.a)
+            return C.JsInt.bg(this.a, b.a)
         },
         gak(a) {
             var s = this.a
-            return (s ^ C.c.am(s, 30)) & 1073741823
+            return (s ^ C.JsInt.am(s, 30)) & 1073741823
         },
         k(a) {
             var s = this,
@@ -10850,19 +10850,19 @@
             return b instanceof P.Duration && this.a === b.a
         },
         gak(a) {
-            return C.c.gak(this.a)
+            return C.JsInt.gak(this.a)
         },
         bg(a, b) {
-            return C.c.bg(this.a, b.a)
+            return C.JsInt.bg(this.a, b.a)
         },
         k(a) {
             var s, r, q, p = new P.jd(),
                 o = this.a
             if (o < 0) return "-" + new P.Duration(0 - o).k(0)
-            s = p.$1(C.c.ag(o, 6e7) % 60)
-            r = p.$1(C.c.ag(o, 1e6) % 60)
+            s = p.$1(C.JsInt.ag(o, 6e7) % 60)
+            r = p.$1(C.JsInt.ag(o, 1e6) % 60)
             q = new P.jc().$1(o % 1e6)
-            return "" + C.c.ag(o, 36e8) + ":" + H.e(s) + ":" + H.e(r) + "." + H.e(q)
+            return "" + C.JsInt.ag(o, 36e8) + ":" + H.e(s) + ":" + H.e(r) + "." + H.e(q)
         }
     }
     P.jc.prototype = {
@@ -12184,7 +12184,7 @@
             r = a.length
             for (q = 0; q < b; ++q)
                 for (p = 0, o = 0; o < 256; ++o) {
-                    n = a[C.c.V(o, r)]
+                    n = a[C.JsInt.V(o, r)]
                     m = l[o]
                     p = p + m + n & 255
                     l[o] = l[p]
@@ -12269,31 +12269,31 @@
             // 胜率评分
             var async_goto = 0,
                 async_completer = P._makeAsyncAwaitCompleter(t.d),
-                some_q, p = this,
+                some_q, this_ = this,
                 o, n, m, l, k, j, i, h, g, f, e, d
             var $async$O = P._wrapJsFunctionForAsync(function (a, b) {
                 if (a === 1) return P.async_rethrow(b, async_completer)
                 while (true) switch (async_goto) {
                     case 0:
-                        d = p.x
+                        d = this_.x
                         if (d.length !== 0) {
                             some_q = C.a.cu(d, 0)
                             async_goto = 1
                             break
                         }
-                        if (p.z >= p.c) {
+                        if (this_.z >= this_.c) {
                             some_q = null
                             async_goto = 1
                             break
                         }
-                        o = p.r, n = t.v, m = p.a, l = p.b, k = t.V, j = t.D, i = 0
+                        o = this_.r, n = t.v, m = this_.a, l = this_.b, k = t.V, j = t.D, i = 0
                     case 3:
                         if (!(i < 100)) {
                             async_goto = 4
                             break
                         }
-                        h = H.b([m, l, [H.b([H.e($.ni()) + p.d++, $.cl()], k)]], j)
-                        if (p.z === 0) h.pop()
+                        h = H.b([m, l, [H.b([H.e($.ni()) + this_.d++, $.cl()], k)]], j)
+                        if (this_.z === 0) h.pop()
                         async_goto = 5
                         return P._asyncAwait(T.c2(h), $async$O)
                     case 5:
@@ -12317,9 +12317,9 @@
                         async_goto = 6
                         break
                     case 8:
-                        if (C.a.w(o, n.a(f.a[0]).e.gb2())) ++p.y;
+                        if (C.a.w(o, n.a(f.a[0]).e.gb2())) ++this_.y;
                         ++i;
-                        ++p.z
+                        ++this_.z
                         async_goto = 3
                         break
                     case 4:
@@ -12329,15 +12329,15 @@
                         l = H.b([], m)
                         // 实力评估中...[2]%
                         // benchmarking
-                        n.push(T.f(LangData.get_lang("pkGN"), null, null, C.c.ag(p.z, 100), null, 0, 0, 0))
-                        if (p.z >= p.c) {
+                        n.push(T.f(LangData.get_lang("pkGN"), null, null, C.JsInt.ag(this_.z, 100), null, 0, 0, 0))
+                        if (this_.z >= this_.c) {
                             o = H.b([], o)
                             m = H.b([], m)
                             // 》 胜率: [2]%
                             // benchmarkRatio
-                            o.push(T.f(LangData.get_lang("Pnrn"), null, null, p.y * 100 / p.c, null, 0, 1000, 100))
+                            o.push(T.f(LangData.get_lang("Pnrn"), null, null, this_.y * 100 / this_.c, null, 0, 1000, 100))
                             d.push(new T.aq(o, m))
-                            p.c *= 10
+                            this_.c *= 10
                         }
                         some_q = new T.aq(n, l)
                         async_goto = 1
@@ -12550,7 +12550,7 @@
                         o = H.b([], t.Y)
                         // 实力评估中...[2]%
                         // benchmarking
-                        a4.push(T.f(LangData.get_lang("pkGN"), null, null, C.c.ag(p.ch, 100), null, 0, 0, 0))
+                        a4.push(T.f(LangData.get_lang("pkGN"), null, null, C.JsInt.ag(p.ch, 100), null, 0, 0, 0))
                         if (p.ch >= p.d) {
                             p.eS()
                         }
@@ -12679,7 +12679,7 @@
                     l = Math.pow(10, s)
                     for (k = t.V, j = 0; j < l; ++j) {
                         i = o.h(p, 0)
-                        h = C.b.fh(C.c.k(j), s, "0")
+                        h = C.b.fh(C.JsInt.k(j), s, "0")
                         i.toString
                         g = J.aw(i)
                         if (0 > g) H.throw_expression(P.a8(0, 0, g, "startIndex", null))
@@ -12869,7 +12869,7 @@
             var s, r, q, this_ = this
             if (this_.a == null) return
             A.vo(this_.gfd())
-            this_.d = P.mi(P.duration_sec_milsec(10, 0), this_.gbc(this_))
+            this_.d = P.Timer_Timer(P.duration_milsec_sec(10, 0), this_.gbc(this_))
             W.es(window, "resize", this_.gff(this_), false)
             this_.ds(0, null)
             s = HtmlRenderer.add_p("row")
@@ -13044,8 +13044,8 @@
                     case 5:
                         this_.Q = async_result
                         async_goto = 6
-                        // return P._asyncAwait(P.jo(P.duration_sec_milsec(1, 0), t.z), $async$b4)
-                        return P._asyncAwait(P.future_future_delayed(P.duration_sec_milsec(0, 0), t.z), $async$b4)
+                        // return P._asyncAwait(P.jo(P.duration_milsec_sec(1, 0), t.z), $async$b4)
+                        return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec(0, 0), t.z), $async$b4)
                         // break
                     case 6:
                         this_.db = null
@@ -13085,7 +13085,10 @@
             if (p) {
                 this_.c5(this_.cy)
                 this_.cy = false
-            } else this_.d = P.mi(P.duration_sec_milsec(C.c.P(s, C.d.aI(Math.sqrt(q / 2))), 0), this_.gel())
+            } else {
+                // this_.d = P.Timer_Timer(P.duration_milsec_sec(C.JsInt.P(s, C.d.aI(Math.sqrt(q / 2))), 0), this_.gel())
+                this_.d = P.Timer_Timer(P.duration_milsec_sec(0, 0), this_.gel())
+            }
         },
         c5(a) {
             var s, r, this_ = this
@@ -13113,7 +13116,7 @@
             }
             if (a) {
                 s = this_.b
-                s.scrollTop = C.c.aI(C.d.aI(s.scrollHeight) - s.clientHeight)
+                s.scrollTop = C.JsInt.aI(C.d.aI(s.scrollHeight) - s.clientHeight)
             }
         },
         em() {
@@ -13254,10 +13257,10 @@
             n.classList.add("namdtd")
             n = p.createElement("td")
             o.appendChild(n)
-            n.textContent = C.c.k(a.c)
+            n.textContent = C.JsInt.k(a.c)
             n = p.createElement("td")
             o.appendChild(n)
-            n.textContent = C.c.k(a.d)
+            n.textContent = C.JsInt.k(a.d)
             s = a.e
             if (s != null) {
                 r = $.ay.h(0, s)
@@ -13302,7 +13305,7 @@
                     case 0:
                         n = t.z
                         s = 2
-                        return P._asyncAwait(P.future_future_delayed(P.duration_sec_milsec(1, 0), n), $async$$0)
+                        return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec(1, 0), n), $async$$0)
                     case 2:
                         p = HtmlRenderer.rV(q.b, q.c)
                         win_data = P.dD(["winners",
@@ -14115,7 +14118,7 @@
             if (q.fx + q.dx < c.n()) {
                 q = k.f
                 o = $.i()
-                k.f = C.c.am(q, o) + o
+                k.f = C.JsInt.am(q, o) + o
             }
             q = C.a.dl(p.k1, new T.k9())
             if (q != null) q.f = C.d.R(Math.sqrt(H.ar(k.f)))
@@ -14242,7 +14245,7 @@
         v(a, b, c, d) {
             var s, r, q, p, o, n, m, l = this,
                 k = null
-            l.f = C.c.P(l.f + $.i(), $.t())
+            l.f = C.JsInt.P(l.f + $.i(), $.t())
             s = a[$.a()].a
             r = d.a
             r.push(T.f(LangData.get_lang("fcfa"), l.r, s, k, k, $.i(), 1000, 100))
@@ -14312,7 +14315,7 @@
                 g = a[$.a()].a,
                 f = d.a
             f.push(T.f(LangData.get_lang("lSVA"), i.r, g, h, h, $.i(), 1000, 100))
-            s = i.r.fr + C.c.P($.pG() - g.fx, $.B())
+            s = i.r.fr + C.JsInt.P($.pG() - g.fx, $.B())
             r = $.a()
             if (s < r) s = r
             if (!g.a7($.eZ(), c)) q = g.fx > $.a() && !g.A && !i.r.r2.J(0, $.a7()) && T.bW(s, g.dy + g.db, c)
@@ -14326,7 +14329,7 @@
             o = q.dx
             n = g.dy
             m = $.t()
-            l = C.c.P(o - C.c.P(n, m), m) + $.pL()
+            l = C.JsInt.P(o - C.JsInt.P(n, m), m) + $.pL()
             if (q.r2.J(0, $.a7())) l = i.r.dx + $.b1()
             k = $.q7()
             if (l > k) l = k
@@ -14735,7 +14738,7 @@
                     if (p.a3(b * (o - m * l), false, g.r, T.ad(), a1, a2) <= $.a()) return
                     c.push($.K())
                 }
-                r = C.c.V(r + (a1.n() & 3), a.length)
+                r = C.JsInt.V(r + (a1.n() & 3), a.length)
             }
         }
     }
@@ -14758,7 +14761,7 @@
         v(a, b, c, d) {
             var s, r, q, p, o, n, m, l = this,
                 k = null
-            l.f = C.c.P(l.f + $.i(), $.t())
+            l.f = C.JsInt.P(l.f + $.i(), $.t())
             s = a[$.a()].a
             r = C.d.R(T.I(l.r, true, c) / $.pZ())
             q = s.fy
@@ -14790,7 +14793,7 @@
     T.hu.prototype = {
         ao(a, b) {
             this.r = a
-            this.f = C.c.P(b, $.t()) + $.mU()
+            this.f = C.JsInt.P(b, $.t()) + $.mU()
         },
         v(a, b, c, d) {
             var s, r, q, p = this,
@@ -14918,7 +14921,7 @@
         },
         ar(a) {
             var s = this.x
-            s.cy = C.c.P(s.cy, $.t())
+            s.cy = C.JsInt.P(s.cy, $.t())
         },
         at(a, b) {
             var s = this.z - 1
@@ -15035,7 +15038,7 @@
         },
         aD(a, b, c, d) {
             this.aR = true
-            this.aj.r.aF(C.c.P(a, $.t()), b, T.ad(), c, d)
+            this.aj.r.aF(C.JsInt.P(a, $.t()), b, T.ad(), c, d)
             this.aR = false
         },
         b1(a, b, c, d) {
@@ -15482,9 +15485,9 @@
                 o = $.a()
                 if (p > o && r.fx > o) {
                     o = $.i()
-                    n = C.c.am(s, o)
+                    n = C.JsInt.am(s, o)
                     m = r.fx
-                    if (m >= r.fy) n = C.c.d5(n, $.t()) + o
+                    if (m >= r.fy) n = C.JsInt.d5(n, $.t()) + o
                     if (n > p) n = p
                     r.fx = m + n
                     o = LangData.get_lang("imin")
@@ -15545,7 +15548,7 @@
                 p = c.a
             p.push(T.f(LangData.get_lang("UFQa"), q, a, r, r, 0, 1000, 100))
             s = a.fr
-            s = T.oq(a) ? s + $.pd() : C.c.am(s, $.i())
+            s = T.oq(a) ? s + $.pd() : C.JsInt.am(s, $.i())
             if (b.n() < s) {
                 p.push(T.f(LangData.get_lang("kloA"), q, a, r, r, 0, 1000, 100))
                 return false
@@ -15681,7 +15684,7 @@
         },
         ar(a) {
             var s = this.fx
-            s.cy = C.c.P(s.cy, $.t())
+            s.cy = C.JsInt.P(s.cy, $.t())
         },
         at(a, b) {
             var s, r, q = this.fx
@@ -15955,7 +15958,7 @@
                 s.go.j(0, b)
             } else r.j(0, b)
             s.fx = s.fx + a
-            return C.c.P(a, $.ci())
+            return C.JsInt.P(a, $.ci())
         }
     }
     T.cy.prototype = {}
@@ -16206,7 +16209,7 @@
                             }
                         }
                         p.Q = i.length
-                        if (C.c.am(l.gp(l), $.Z()) > $.a()) {
+                        if (C.JsInt.am(l.gp(l), $.Z()) > $.a()) {
                             p.f = LangData.get_lang("CefA")
                             s = 1
                             break
@@ -16267,7 +16270,7 @@
                         o = P.aa(o, true, H.be(o).i("L.E"))
                         C.a.bb(o, T.mD())
                         p.c = o
-                        if (C.c.am(l.gp(l) + $.X(), $.C()) === $.a())
+                        if (C.JsInt.am(l.gp(l) + $.X(), $.C()) === $.a())
                             for (o = p.c, n = o.length, h = 0; h < n; ++h) {
                                 a2 = o[h]
                                 a2.I = a2.gbT()
@@ -16301,7 +16304,8 @@
                 while (true) switch (s) {
                     case 0:
                         s = 2
-                        return P._asyncAwait(P.future_future_delayed(P.duration_sec_milsec($.C(), 0), t.z), $async$bE)
+                        // return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec($.C(), 0), t.z), $async$bE)
+                        return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec(0, 0), t.z), $async$bE)
                     case 2:
                         $.mc = $.a()
                         return P.async_return(null, r)
@@ -16314,7 +16318,7 @@
                 q = r.ch,
                 p = $.i(),
                 o = r.c
-            p = C.c.V(q + p, o.length)
+            p = C.JsInt.V(q + p, o.length)
             r.ch = p
             J.rz(o[p], r.b, b)
             for (q = t.Y; p = b.b, p.length !== 0;) {
@@ -16650,7 +16654,7 @@
             var s, r, q, p = this
             if (p.fx <= $.a() || p.A) return false
             s = a.n()
-            r = (((s & 15) + 1) * ((C.c.am(s, 4) & 15) + 1) >>> 5) + 1
+            r = (((s & 15) + 1) * ((C.JsInt.am(s, 4) & 15) + 1) >>> 5) + 1
             q = p.go
             if (q >= r) {
                 p.go = q - r
@@ -16691,7 +16695,7 @@
             h.X = r
             q = $.ns()
             $.mc = q + 1
-            q = C.c.P(Math.abs(q), $.bx())
+            q = C.JsInt.P(Math.abs(q), $.bx())
             n = $.a()
             if (q > n) {
                 q = r.c
@@ -16931,7 +16935,7 @@
             var s = this
             s.F()
             s.fx = s.fy
-            s.go = C.c.P(s.fr, $.t())
+            s.go = C.JsInt.P(s.fr, $.t())
         },
         F() {
             var s, r = this
@@ -17149,10 +17153,10 @@
             var s, r = this.Y,
                 q = $.p4()
             if (r > q) {
-                s = C.c.P(r - q, $.a6())
+                s = C.JsInt.P(r - q, $.a6())
                 r = $.t()
-                if (s > r) return C.c.k(r)
-                else return C.c.k(s)
+                if (s > r) return C.JsInt.k(r)
+                else return C.JsInt.k(s)
             }
             return ""
         },
@@ -17184,7 +17188,7 @@
             if (a > $.q4()) {
                 return $.iK() // ??
             }
-            return C.c.k(a + s)
+            return C.JsInt.k(a + s)
         },
         gb2() {
             return this.e
@@ -17360,7 +17364,7 @@
             } else s = false
             if (s) {
                 s = o.r
-                r = C.c.am(s.dx - s.ch, $.t())
+                r = C.JsInt.am(s.dx - s.ch, $.t())
                 q = s.go
                 if (q >= r) {
                     s.go = q - r
@@ -17424,7 +17428,7 @@
         aq(a, b, c, d, e) {
             if (d.n() < this.f && this.r.bw(d)) {
                 e.a.push(T.f(LangData.get_lang("NIMn"), this.r, b, null, null, $.bg(), 1000, 100))
-                return C.c.P(a, $.t())
+                return C.JsInt.P(a, $.t())
             }
             return a
         },
@@ -17672,7 +17676,7 @@
                 o = c.n(),
                 n = p.f
             if ((o & 127) < n) {
-                p.f = C.c.P(n + $.i(), $.t())
+                p.f = C.JsInt.P(n + $.i(), $.t())
                 o = C.b.B(LangData.get_lang("DWRn"), $.ng())
                 n = p.r
                 s = d.a
@@ -17735,7 +17739,7 @@
                 }
                 r = p.f
                 q = s.x
-                if (r >= q) s.x = q + (c.ax($.i() + C.c.P(r * $.B(), $.C())) + $.i())
+                if (r >= q) s.x = q + (c.ax($.i() + C.JsInt.P(r * $.B(), $.C())) + $.i())
             }
             return a
         },
@@ -18046,7 +18050,7 @@
                     if (p == $.a()) {
                         q.f = $.C()
                         q.W()
-                    } else q.f = C.c.ez(p, $.i())
+                    } else q.f = C.JsInt.ez(p, $.i())
                 }
                 return
             }
@@ -18116,7 +18120,7 @@
             o = s.y
             q = o.a.e.length
             o = o.f.length
-            p = C.c.am(q - o, $.i()) - o
+            p = C.JsInt.am(q - o, $.i()) - o
             o = $.a()
             if (p > o) {
                 q = new T.ee(p, o)
@@ -18213,7 +18217,7 @@
             var s, r, q = this.r.y,
                 p = q.a.e.length
             q = q.f.length
-            s = C.c.am(p - q, $.i()) - q
+            s = C.JsInt.am(p - q, $.i()) - q
             if (s > $.a()) {
                 b.a.push($.K())
                 r = new T.ee(s, $.a())
@@ -18337,7 +18341,7 @@
             r = c[s] - a[s]
             s = $.a()
             if (m > s && j > s && r > s) {
-                q = d + C.c.V(m + j + r + $.q8(), $.B())
+                q = d + C.JsInt.V(m + j + r + $.q8(), $.B())
                 p = c[q]
                 o = b[q]
                 n = C.d.P(p - o, k) + l
@@ -18349,7 +18353,7 @@
             var s, r, q, p = this,
                 o = $.a()
             for (s = $.Z(), r = p.c; s < $.d1(); s += $.B()) o += p.cB(r.E, r.t, p.d, s)
-            r = C.c.P($.mY() - o, $.a4())
+            r = C.JsInt.P($.mY() - o, $.a4())
             p.f = r
             q = $.a()
             if (r < q) p.f = q
@@ -18462,7 +18466,7 @@
             var s, r, q, p, o, n, m = b.length
             for (s = this.c, r = 0; r < c; ++r)
                 for (q = 0, p = 0; p < 256; ++p) {
-                    o = b[C.c.V(p, m)]
+                    o = b[C.JsInt.V(p, m)]
                     n = s[p]
                     q = q + n + o & 255
                     s[p] = s[q]
@@ -18480,7 +18484,7 @@
                 for (p = 0; p < m; ++p) {
                     o = this.ax(m)
                     n = s[p]
-                    q = C.c.V(q + n + o, m)
+                    q = C.JsInt.V(q + n + o, m)
                     s[p] = s[q]
                     s[q] = n
                 }
@@ -18537,8 +18541,8 @@
             r = a
             do {
                 s = (s << 8 | this.n()) >>> 0
-                if (s >= a) s = C.c.V(s, a)
-                r = C.c.am(r, 8)
+                if (s >= a) s = C.JsInt.V(s, a)
+                r = C.JsInt.am(r, 8)
             } while (r !== 0)
             return s
         }
@@ -18905,7 +18909,7 @@
         C.h = W.c0.prototype
         C.J = J.Interceptor.prototype
         C.a = J.JsArray.prototype
-        C.c = J.JsInt.prototype
+        C.JsInt = J.JsInt.prototype
         C.d = J.JsNumber.prototype
         C.b = J.JsString.prototype
         C.K = J.JavaScriptFunction.prototype
@@ -19581,7 +19585,8 @@
             return X.D("KvLG}E$m7J", 7)
         })
         lazy_old($, "xc", "C", function () {
-            return X.k("T,tQQy%'LN", 76)
+            // return X.k("T,tQQy%'LN", 76)
+            return 4
         })
         lazy_old($, "wH", "eX", function () {
             return X.k("$YcaZZ:WUG", 36)
