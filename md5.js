@@ -1001,36 +1001,36 @@
                 }
                 return b
             },
-            v_(a, b, c, d, e, f) {
-                switch (b) {
+            v_(closure, numberOfArguments, arg1, arg2, arg3, arg4) {
+                switch (numberOfArguments) {
                     case 0:
-                        return a.$0()
+                        return closure.$0()
                     case 1:
-                        return a.$1(c)
+                        return closure.$1(arg1)
                     case 2:
-                        return a.$2(c, d)
+                        return closure.$2(arg1, arg2)
                     case 3:
-                        return a.$3(c, d, e)
+                        return closure.$3(arg1, arg2, arg3)
                     case 4:
-                        return a.$4(c, d, e, f)
+                        return closure.$4(arg1, arg2, arg3, arg4)
                 }
                 throw H.throw_error(new P.kG("Unsupported number of arguments for wrapped closure"))
             },
             // MARK: convert_dart_closure_to_js_md5
             // convertDartClosureToJS
-            convert_dart_closure_to_js_md5(a, b) {
-                var s
-                if (a == null) return null
-                s = a.$identity
+            convert_dart_closure_to_js_md5(closure, arity) {
+                var func
+                if (closure == null) return null
+                func = closure.$identity
                 // if (!!s) return s
-                if (s) return s
-                s = function (c, d, e) {
+                if (func) return func
+                func = function (c, d, e) {
                     return function (f, g, h, i) {
                         return e(c, d, f, g, h, i)
                     }
-                }(a, b, H.v_)
-                a.$identity = s
-                return s
+                }(closure, arity, H.v_)
+                closure.$identity = func
+                return func
             },
             rL(a2) {
                 var s, r, q, p, o, n, m, l, k, j, i = a2.co,
@@ -11346,9 +11346,10 @@
                 this.add_event_listener(receiver, type, listener, false)
             }
         },
-        add_event_listener(receiver_, type, listener, options) {
-            console.log("md5.js add event listener type:", type, "listener:", listener, receiver_, listener, options)
-            return receiver_.addEventListener(type, H.convert_dart_closure_to_js_md5(listener, 1), false)
+        add_event_listener(receiver, type, listener, options) {
+            console.log("md5.js add event listener type:", type, "receiver:", receiver, "listener:", listener, options)
+            console.log("receiver == window", receiver == window)
+            return receiver.addEventListener(type, H.convert_dart_closure_to_js_md5(listener, 1), false)
         }
     }
     W.cq.prototype = {

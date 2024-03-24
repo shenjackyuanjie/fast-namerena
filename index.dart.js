@@ -8706,6 +8706,7 @@
             if (c != null) this.add_event_listener(a, b, c, false)
         },
         add_event_listener(receiver, type, listener, options) {
+            // console.log("index.dart.js add event listener type:", type, "listener:", listener, receiver, listener, options)
             return receiver.addEventListener(type, H.convertDartClosureToJS(listener, 1), false)
         },
         cg(a, b, c, d) {
@@ -10154,6 +10155,7 @@
         // or call as send_fast
         d5(a) {
             // J.iF(W.hY(this.cy.contentWindow), $.kd(), "*")
+            console.log("sending ?? to iframe (fast call)")
             this.cy.contentWindow.postMessage("??", "*")
         },
         bD(a) {
@@ -11500,7 +11502,7 @@
         q($, "pe", "hD", function () {
             // return t.W.a($.ea().aj("cw", []))
             let result = t.W.a($.ea().aj("cw", []))
-            console.log("lazy $.hD", result, t.W, t.W.a, $.ea(), $.ea().aj("cw", []))
+            // console.log("lazy $.hD", result, t.W, t.W.a, $.ea(), $.ea().aj("cw", []))
             return result
         })
         q($, "pa", "iy", function () {
