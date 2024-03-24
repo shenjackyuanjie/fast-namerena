@@ -3190,6 +3190,7 @@
                 return J.bv(a).fv(a)
             },
             ry(a, b) {
+                // set a length -> b
                 return J.a3(a).sp(a, b)
             },
             m1(a, b) {
@@ -8462,7 +8463,7 @@
             return a[b]
         },
         m(a, b, c) {
-            if (!!a.immutable$list) H.throw_expression(P.S("indexed set"))
+            if (a.immutable$list) H.throw_expression(P.S("indexed set"))
             if (!H.aP(b)) throw H.wrap_expression(H.bQ(a, b))
             if (b >= a.length || b < 0) throw H.wrap_expression(H.bQ(a, b))
             a[b] = c
@@ -9785,6 +9786,7 @@
                 P.oN(new P.kM(p, s, r))
             }
         },
+        // 动画帧调用?
         cY(a) {
             var s = this,
                 r = s.bI()
@@ -12971,13 +12973,15 @@
                 this_.b4()
                 this_.z = n
                 console.log("start fq.fe end")
-                for (r = n.length, m = 0; m < n.length; n.length === r || (0, H.F)(n), ++m) {
-                    for (q = J.by(n[m]); q.u();) {
-                        // console.log("fq.fe q type", typeof n[m])
-                        console.log(q, m, n, r)
-                        J.ry(q.gC(), 4)
-                    }
-                }
+                // 合着压根不需要这操作是吧……
+                // for (r = n.length, m = 0; m < n.length; n.length === r || (0, H.F)(n), ++m) {
+                //     for (q = J.by(n[m]); q.u();) {
+                //         // console.log("fq.fe q type", typeof n[m])
+                //         console.log(q, m, n, r)
+                //         J.ry(q.gC(), 4)
+                //         // set length (J.ry)
+                //     }
+                // }
                 // q = J.by(n[0])
                 // q.u()
                 // J.ry(q.gC(), 4)
