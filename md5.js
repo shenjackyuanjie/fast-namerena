@@ -8186,7 +8186,7 @@
             jD: function jD(a) {
                 this.a = a
             },
-            jE: function jE(a, b, c, d, e) {
+            send_win_data: function jE(a, b, c, d, e) {
                 var _ = this
                 _.a = a
                 _.b = b
@@ -13131,7 +13131,7 @@
             d.marginLeft = document_
             if (W.ll(window.parent) !== window) {
                 // new Z.jE(f, p, o, n, $.ay.h(0, J.J(J.J(f.z[0], 0), 0))).$0()
-                new HtmlRenderer.jE(f, p, o, n, $.ay.h(0, f.z[0][0][0])).$0()
+                new HtmlRenderer.send_win_data(f, p, o, n, $.ay.h(0, f.z[0][0][0])).$0()
             }
 
             // 显示 done_target
@@ -13215,7 +13215,7 @@
         },
         $S: 6
     }
-    HtmlRenderer.jE.prototype = {
+    HtmlRenderer.send_win_data.prototype = {
         $0() {
             var s = 0,
                 r = P.am(t.P),
@@ -18584,7 +18584,7 @@
         inherit(H.dK, H.eB)
         inherit_many(H.dK, [H.fE, H.fF, H.fG, H.fH, H.fI, H.dL, H.cx])
         inherit(H.eI, H.i9)
-        inherit_many(H.j5, [P.kC, P.kD, P.l9, P.jp, P.kH, P.kO, P.kM, P.kJ, P.kN, P.kI, P.kR, P.kQ, P.kP, P.kf, P.l2, P.kW, P.lo, P.kY, P.km, P.kl, X.je, X.j9, HtmlRenderer.jE, Sgls.k4])
+        inherit_many(H.j5, [P.kC, P.kD, P.l9, P.jp, P.kH, P.kO, P.kM, P.kJ, P.kN, P.kI, P.kR, P.kQ, P.kP, P.kf, P.l2, P.kW, P.lo, P.kY, P.km, P.kl, X.je, X.j9, HtmlRenderer.send_win_data, Sgls.k4])
         inherit(P.cg, P.i4)
         inherit(P.cK, P.im)
         inherit(P.eF, P.em)
