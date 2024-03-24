@@ -8164,10 +8164,11 @@
                 _.f = _.e = false
                 _.r = 3
                 _.x = d
-                // _.y = 2
+                _.y = 2
                 // 既然加速之后就直接 2000
                 // 直接初始化为 2000 如何
-                _.y = 2000
+                // _.y = 2000
+                // 当我没说, 没用
                 _.Q = _.z = null
                 _.ch = 0
                 _.cx = null
@@ -11353,10 +11354,10 @@
             }
         },
         add_event_listener(receiver, type, listener, options) {
-            console.log("md5.js add event listener type:", type, "receiver:", receiver, "listener:", listener, options)
+            // console.log("md5.js add event listener type:", type, "receiver:", receiver, "listener:", listener, options)
             // console.log("receiver == window", receiver == window)
-            var stack = new Error().stack
-            console.log(stack)
+            // var stack = new Error().stack
+            // console.log(stack)
             receiver.addEventListener(type, H.convert_dart_closure_to_js_md5(listener, 1), false)
             // return receiver.addEventListener(type, listener, false)
         }
@@ -12958,17 +12959,24 @@
                 r += this_.r
 
                 // this_.y = r
+                // 这里才是有用的加速
                 this_.y = 2000
 
-                if (r > 2000) this_.y = 2000
+                // if (r > 2000) this_.y = 2000
 
                 if (this_.Q != null) return
 
                 this_.b4()
                 this_.z = n
-                for (r = n.length, m = 0; m < n.length; n.length === r || (0, H.F)(n), ++m)
-                // for (r = n.length, m = 0; m < n.length; n.length === plrlen || (0, H.F)(n), ++m)
-                    for (q = J.by(n[m]); q.u();) J.ry(q.gC(), 4)
+                for (r = n.length, m = 0; m < n.length; n.length === r || (0, H.F)(n), ++m) {
+                    for (q = J.by(n[m]); q.u();) {
+                        console.log("fq.fe q type", typeof n[m])
+                        J.ry(q.gC(), 4)
+                    }
+                }
+                // q = J.by(n[0])
+                // q.u()
+                // J.ry(q.gC(), 4)
             } else {
                 e = n[0]
                 r = J.a3(e)
