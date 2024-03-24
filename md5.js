@@ -3274,16 +3274,16 @@
             },
             j(a, b) {
                 let result = C.e.bt(0, X.f4(a, b))
-                if (result === "频率: [2]%") {
-                    console.log("O.j", a, b, result)
-                }
+                // if (result === "频率: [2]%") {
+                //     console.log("O.j", a, b, result)
+                // }
                 return result
             },
             get_lang(a) {
                 var s = $.od.h(0, a)
-                if (s === "》 实力评分: [2]" || s === "》 胜率: [2]%" || s === "实力评估中...[2]%") {
-                    console.log("O.d", a, s)
-                }
+                // if (s === "》 实力评分: [2]" || s === "》 胜率: [2]%" || s === "实力评估中...[2]%") {
+                //     console.log("O.d", a, s)
+                // }
                 if (s == null) return ""
                 return s
             },
@@ -12346,8 +12346,8 @@
                         return P.async_return(some_q, async_completer)
                 }
             })
-            let stack = new Error().stack
-            console.log("L.iR.O", stack)
+            // let stack = new Error().stack
+            // console.log("L.iR.O", stack)
 
             return P._asyncStartSync($async$O, async_completer)
         },
@@ -12470,63 +12470,63 @@
             if (q.length === 1) l.x = q[0]
         },
         O() {
-            var s = 0,
-                r = P._makeAsyncAwaitCompleter(t.d),
-                q, p = this,
+            var async_goto = 0,
+                async_completer = P._makeAsyncAwaitCompleter(t.d),
+                q, this_ = this,
                 o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, a3, a4
             var $async$O = P._wrapJsFunctionForAsync(function (a5, a6) {
-                if (a5 === 1) return P.async_rethrow(a6, r)
-                while (true) switch (s) {
+                if (a5 === 1) return P.async_rethrow(a6, async_completer)
+                while (true) switch (async_goto) {
                     case 0:
-                        a4 = p.y
+                        a4 = this_.y
                         if (a4.length !== 0) {
                             q = C.a.cu(a4, 0)
-                            s = 1
+                            async_goto = 1
                             break
                         }
-                        if (p.ch >= p.d) {
+                        if (this_.ch >= this_.d) {
                             q = null
-                            s = 1
+                            async_goto = 1
                             break
                         }
-                        a4 = p.r, o = t.v, n = p.z, m = p.b, l = p.a, k = t.V, j = t.D, i = 0
+                        a4 = this_.r, o = t.v, n = this_.z, m = this_.b, l = this_.a, k = t.V, j = t.D, i = 0
                     case 3:
                         if (!(i < 100)) {
-                            s = 4
+                            async_goto = 4
                             break
                         }
-                        if (m.length === 1 && !p.c) h = H.b([
-                            [m[0], H.b(["" + p.e++, l], k)],
-                            [H.b(["" + p.e++, l], k), H.b(["" + p.e++, l], k)]
+                        if (m.length === 1 && !this_.c) h = H.b([
+                            [m[0], H.b(["" + this_.e++, l], k)],
+                            [H.b(["" + this_.e++, l], k), H.b(["" + this_.e++, l], k)]
                         ], j)
                         else {
                             g = []
                             h = H.b([m, g], j)
-                            for (f = 0; f < m.length; ++f) g.push(H.b(["" + p.e++, l], k))
+                            for (f = 0; f < m.length; ++f) g.push(H.b(["" + this_.e++, l], k))
                         }
-                        s = 5
+                        async_goto = 5
                         return P._asyncAwait(T.c2(h), $async$O)
                     case 5:
                         e = a6
                         d = null
                     case 6:
-                        if (!true) {
-                            s = 8
-                            break
-                        }
-                        s = 9
+                        // if (!true) {
+                        //     async_goto = 8
+                        //     break
+                        // }
+                        async_goto = 9
                         return P._asyncAwait(e.O(), $async$O)
                     case 9:
                         c = a6
                         if (c == null) {
-                            s = 8
+                            async_goto = 8
                             break
                         }
                         for (b = c.a, a = b.length, a0 = 0; a0 < b.length; b.length === a || (0, H.F)(b), ++a0) {
                             a1 = b[a0]
                             if (a1.a > 0) {
                                 a2 = a1.e
-                                a2 = a2 != null && a2.gb2() == p.x
+                                a2 = a2 != null && a2.gb2() == this_.x
                             } else a2 = false
                             if (a2) {
                                 a3 = a1.d
@@ -12537,31 +12537,31 @@
                         }
                     case 7:
                         d = c
-                        s = 6
+                        async_goto = 6
                         break
                     case 8:
-                        if (C.a.w(a4, o.a(d.a[0]).e.gb2())) ++p.Q;
+                        if (C.a.w(a4, o.a(d.a[0]).e.gb2())) ++this_.Q;
                         ++i;
-                        ++p.ch
-                        s = 3
+                        ++this_.ch
+                        async_goto = 3
                         break
                     case 4:
                         a4 = H.b([], t.U)
                         o = H.b([], t.Y)
                         // 实力评估中...[2]%
                         // benchmarking
-                        a4.push(T.f(LangData.get_lang("pkGN"), null, null, C.JsInt.ag(p.ch, 100), null, 0, 0, 0))
-                        if (p.ch >= p.d) {
-                            p.eS()
+                        a4.push(T.f(LangData.get_lang("pkGN"), null, null, C.JsInt.ag(this_.ch, 100), null, 0, 0, 0))
+                        if (this_.ch >= this_.d) {
+                            this_.eS()
                         }
                         q = new T.aq(a4, o)
-                        s = 1
+                        async_goto = 1
                         break
                     case 1:
-                        return P.async_return(q, r)
+                        return P.async_return(q, async_completer)
                 }
             })
-            return P._asyncStartSync($async$O, r)
+            return P._asyncStartSync($async$O, async_completer)
         },
         // 实力评分 输出
         eS() {
@@ -12577,10 +12577,10 @@
                 s.a = this_.f[0].e
                 this_.z.aw(0, new V.j_(this_, s))
             }
-            console.log("iV.e5 this.d", this.d)
+            // console.log("iV.e5 this.d", this.d)
             // this.d => 下一个目标
             this_.d *= 10
-            console.log("iV.e5 this.d", this.d)
+            // console.log("iV.e5 this.d", this.d)
         },
         ae(a, b) {
             return this.dK(0, b)
@@ -12644,9 +12644,9 @@
                 // benchmarkSkill
                 s.push(T.f(LangData.get_lang("GJgn"), p, o, b * 100 / n.d, o, 0, 1000, 100))
                 n.y.push(new T.aq(s, r))
-                console.log("benchmark", a, b, n.d, s)
+                // console.log("benchmark", a, b, n.d, s)
                 let stack = new Error().stack
-                console.log(stack)
+                // console.log(stack)
             }
         },
         $S: 29
@@ -12776,8 +12776,9 @@
                     case 16:
                         ++this_.e
                         s = 18
-                        return P._asyncAwait(P.future_future_delayed(new P.Duration(1), t.z), $async$O)
+                        // return P._asyncAwait(P.future_future_delayed(new P.Duration(1), t.z), $async$O)
                         // return P._asyncAwait(P.future_future_delayed(new P.Duration(1e6), t.z), $async$O)
+                        break
                     case 18:
                         e = this_.r
                         e[0] = Date.now() + 1
@@ -12871,7 +12872,8 @@
             var s, r, q, this_ = this
             if (this_.a == null) return
             A.vo(this_.gfd())
-            this_.d = P.Timer_Timer(P.duration_milsec_sec(10, 0), this_.gbc(this_))
+            // this_.d = P.Timer_Timer(P.duration_milsec_sec(10, 0), this_.gbc(this_))
+            this_.d = P.Timer_Timer(P.duration_milsec_sec(0, 0), this_.gbc(this_))
             W.es(window, "resize", this_.gff(this_), false)
             this_.ds(0, null)
             s = HtmlRenderer.add_p("row")
@@ -12897,7 +12899,7 @@
             r.c = true
             // if (J.Y(r.aO(s), $.iK())) {
             // if (r.aO(s) === $.iK()) {
-            console.log("fq.fc", func_self, event, r.aO(s))
+            // console.log("fq.fc", func_self, event, r.aO(s))
             // event.data === ??
             if (r.aO(s) === "??") {
                 this.y = 2000
@@ -13047,8 +13049,8 @@
                         this_.Q = async_result
                         async_goto = 6
                         // return P._asyncAwait(P.jo(P.duration_milsec_sec(1, 0), t.z), $async$b4)
-                        return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec(0, 0), t.z), $async$b4)
-                        // break
+                        // return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec(0, 0), t.z), $async$b4)
+                        break
                     case 6:
                         this_.db = null
                         this_.dx = true
@@ -13064,6 +13066,7 @@
                         return P.async_return(q, async_complete)
                 }
             })
+            // console.log("输出 实力评分.ing")
             return P._asyncStartSync($async$b4, async_complete)
         },
         ft(a) {
@@ -13307,7 +13310,8 @@
                     case 0:
                         n = t.z
                         s = 2
-                        return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec(1, 0), n), $async$$0)
+                        // return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec(1, 0), n), $async$$0)
+                        break
                     case 2:
                         p = HtmlRenderer.rV(q.b, q.c)
                         win_data = P.dD(["winners",
@@ -16299,15 +16303,16 @@
             return P._asyncStartSync($async$bD, r)
         },
         bE() {
-            var s = 0,
+            var async_goto = 0,
                 r = P._makeAsyncAwaitCompleter(t.z)
             var $async$bE = P._wrapJsFunctionForAsync(function (a, b) {
                 if (a === 1) return P.async_rethrow(b, r)
-                while (true) switch (s) {
+                while (true) switch (async_goto) {
                     case 0:
-                        s = 2
+                        async_goto = 2
                         // return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec($.C(), 0), t.z), $async$bE)
-                        return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec(0, 0), t.z), $async$bE)
+                        // return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec(0, 0), t.z), $async$bE)
+                        break
                     case 2:
                         $.mc = $.a()
                         return P.async_return(null, r)
