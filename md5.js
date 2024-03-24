@@ -12843,14 +12843,14 @@
     }
     HtmlRenderer.fq.prototype = {
         e0(a) {
-            var s, r, q, p = this
-            if (p.a == null) return
-            A.vo(p.gfd())
-            p.d = P.mi(P.fm(10, 0), p.gbc(p))
-            W.es(window, "resize", p.gff(p), false)
-            p.ds(0, null)
+            var s, r, q, this_ = this
+            if (this_.a == null) return
+            A.vo(this_.gfd())
+            this_.d = P.mi(P.fm(10, 0), this_.gbc(this_))
+            W.es(window, "resize", this_.gff(this_), false)
+            this_.ds(0, null)
             s = HtmlRenderer.add_p("row")
-            r = p.b
+            r = this_.b
             r.appendChild(s)
             q = HtmlRenderer.add_span("welcome")
             q.textContent = LangData.d("CeaN")
@@ -12858,13 +12858,13 @@
             q = HtmlRenderer.add_span("welcome2")
             q.textContent = LangData.d("NosN")
             s.appendChild(q)
-            q = p.c
+            q = this_.c
             if (q.gbu(q) != null) {
                 q = q.gbu(q)
                 r.appendChild(document.createTextNode(q))
             }
             // 添加 event listener
-            W.es(window, "message", p.gfb(p), false)
+            W.es(window, "message", this_.gfb(this_), false)
         },
         fc(func_self, event) {
             var s = event.data,
@@ -12873,6 +12873,7 @@
             // if (J.Y(r.aO(s), $.iK())) {
             // if (r.aO(s) === $.iK()) {
             console.log("fq.fc", func_self, event, r.aO(s))
+            // event.data === ??
             if (r.aO(s) === "??") {
                 this.y = 2000
             }
@@ -12947,12 +12948,22 @@
                 r.appendChild(q.createElement("hr"))
                 r.appendChild(q.createElement("br"))
                 q = $.ay
+                // r -> 中间变量
+                // this.y -> plrlen
+                // this.r -> preboost
                 q = this_.y = q.gp(q)
+
                 r = q > 10 ? this_.y = 10 : q
+
                 r += this_.r
-                this_.y = r
+
+                // this_.y = r
+                this_.y = 2000
+
                 if (r > 2000) this_.y = 2000
+
                 if (this_.Q != null) return
+
                 this_.b4()
                 this_.z = n
                 for (r = n.length, m = 0; m < n.length; n.length === r || (0, H.F)(n), ++m)
@@ -12982,34 +12993,34 @@
         b4() {
             var s = 0,
                 r = P.am(t.z),
-                q, p = this,
+                q, this_ = this,
                 o
             var $async$b4 = P.an(function (a, b) {
                 if (a === 1) return P.ai(b, r)
                 while (true) switch (s) {
                     case 0:
-                        p.d = null
-                        o = p.Q
+                        this_.d = null
+                        o = this_.Q
                         s = o == null || o.a.length === 0 ? 3 : 4
                         break
                     case 3:
                         s = 5
-                        return P.a2(p.c.O(), $async$b4)
+                        return P.a2(this_.c.O(), $async$b4)
                     case 5:
-                        p.Q = b
+                        this_.Q = b
                         s = 6
                         return P.a2(P.jo(P.fm(1, 0), t.z), $async$b4)
                     case 6:
-                        p.db = null
-                        p.dx = true
-                        p.ch = 1800
+                        this_.db = null
+                        this_.dx = true
+                        this_.ch = 1800
                     case 4:
-                        o = p.Q
+                        o = this_.Q
                         if (o == null) {
                             s = 1
                             break
                         }
-                        p.ft(C.a.cu(o.a, 0))
+                        this_.ft(C.a.cu(o.a, 0))
                     case 1:
                         return P.aj(q, r)
                 }
@@ -13017,54 +13028,54 @@
             return P.ak($async$b4, r)
         },
         ft(a) {
-            var s, r, q, p, o = this
+            var s, r, q, p, this_ = this
             if (a == $.K()) {
-                o.db = null
-                o.cy = true
-                o.b4()
+                this_.db = null
+                this_.cy = true
+                this_.b4()
                 return
             }
             s = a.b
-            r = o.ch
+            r = this_.ch
             if (s < r) s = r
-            o.ch = a.c
-            o.cx = a
-            q = o.y
+            this_.ch = a.c
+            this_.cx = a
+            q = this_.y
             if (q >= 2000) {
-                p = o.Q
+                p = this_.Q
                 p = !(p == null || p.a.length === 0)
             } else p = false
             if (p) {
-                o.c5(o.cy)
-                o.cy = false
-            } else o.d = P.mi(P.fm(C.c.P(s, C.d.aI(Math.sqrt(q / 2))), 0), o.gel())
+                this_.c5(this_.cy)
+                this_.cy = false
+            } else this_.d = P.mi(P.fm(C.c.P(s, C.d.aI(Math.sqrt(q / 2))), 0), this_.gel())
         },
         c5(a) {
-            var s, r, q = this
+            var s, r, this_ = this
             if (a) {
-                s = q.b
+                s = this_.b
                 r = C.d.aI(s.scrollHeight) - s.clientHeight
                 a = r - C.d.aI(s.scrollTop) < 50 || C.d.aI(s.scrollTop) / r > 0.95
             }
-            if (q.cx instanceof T.dX) {
-                q.fQ()
+            if (this_.cx instanceof T.dX) {
+                this_.fQ()
             } else {
-                s = q.db
+                s = this_.db
                 if (s == null) {
                     s = HtmlRenderer.add_p("row")
-                    q.db = s
-                    q.b.appendChild(s)
-                    if (q.dx) q.dx = false
+                    this_.db = s
+                    this_.b.appendChild(s)
+                    if (this_.dx) this_.dx = false
                     else {
-                        s = q.db;
+                        s = this_.db;
                         (s && C.Q).cJ(s, "\u2003")
                     }
                 } else s.appendChild(document.createTextNode(", "))
-                q.db.appendChild(HtmlRenderer.uI(q.cx))
-                q.b4()
+                this_.db.appendChild(HtmlRenderer.uI(this_.cx))
+                this_.b4()
             }
             if (a) {
-                s = q.b
+                s = this_.b
                 s.scrollTop = C.c.aI(C.d.aI(s.scrollHeight) - s.clientHeight)
             }
         },
@@ -13072,12 +13083,12 @@
             return this.c5(true)
         },
         fQ() {
-            var s, r, q, p, o, n, m, l, k, j, i, h, g, f = this
+            var s, r, q, p, o, n, m, l, k, j, i, h, g, this_ = this
             // e = "click",
-            let d = f.b,
+            let d = this_.b,
                 document_ = document
             d.appendChild(document_.createElement("br"))
-            s = f.cx.e.gb2()
+            s = this_.cx.e.gb2()
             r = $.ay.h(0, s).a
             q = t.ak
             p = H.b([], q)
@@ -13158,7 +13169,7 @@
             d.marginLeft = document_
             if (W.ll(window.parent) !== window) {
                 // new Z.jE(f, p, o, n, $.ay.h(0, J.J(J.J(f.z[0], 0), 0))).$0()
-                new HtmlRenderer.send_win_data(f, p, o, n, $.ay.h(0, f.z[0][0][0])).$0()
+                new HtmlRenderer.send_win_data(this_, p, o, n, $.ay.h(0, this_.z[0][0][0])).$0()
             }
 
             // 显示 done_target
@@ -13186,12 +13197,12 @@
     }
     HtmlRenderer.jA.prototype = {
         $2(a, b) {
-            var s = this
+            var this_ = this
             if (b.b == null)
-                if (b.a === s.a) {
-                    s.b.push(b)
-                    s.c.push(b.db)
-                } else s.d.push(b)
+                if (b.a === this_.a) {
+                    this_.b.push(b)
+                    this_.c.push(b.db)
+                } else this_.d.push(b)
         },
         $S: 37
     }
