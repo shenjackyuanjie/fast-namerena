@@ -8424,7 +8424,10 @@
         w(a, b) {
             var s
             for (s = 0; s < a.length; ++s)
-                if (J.Y(a[s], b)) return true
+                // if (J.Y(a[s], b)) return true
+                if (a[s] === b) {
+                    return true
+                }
             return false
         },
         k(a) {
@@ -11343,8 +11346,9 @@
                 this.add_event_listener(receiver, type, listener, false)
             }
         },
-        add_event_listener(receiver_, tyoe, listener, options) {
-            return receiver_.addEventListener(tyoe, H.convert_dart_closure_to_js_md5(listener, 1), false)
+        add_event_listener(receiver_, type, listener, options) {
+            console.log("md5.js add event listener type:", type, "listener:", listener, receiver_, listener, options)
+            return receiver_.addEventListener(type, H.convert_dart_closure_to_js_md5(listener, 1), false)
         }
     }
     W.cq.prototype = {
@@ -12531,6 +12535,7 @@
             })
             return P.ak($async$O, r)
         },
+        // 实力评分 输出
         eS() {
             var s, r = this,
                 q = H.b([], t.U),
@@ -12589,18 +12594,21 @@
         }
     }
     V.j_.prototype = {
+        // 频率 输出
         $2(a, b) {
-            var s, r, q, p, o = null,
+            var s, r, get_quote, p, o = null,
                 n = this.a
             if (b / n.d > 0.005) {
                 s = H.b([], t.U)
                 r = H.b([], t.Y)
-                q = $.iK() // ??
+                get_quote = $.iK()
+                // $.iK = ??
+                // J.lW
                 if (J.lW(a, $.ne())) {
-                    q = "0"
+                    get_quote = "0"
                 }
                 p = this.b
-                s.push(T.f(a, p, o, q, o, 0, 1000, 100))
+                s.push(T.f(a, p, o, get_quote, o, 0, 1000, 100))
                 // benchmarkSkill
                 // 频率: [2]%
                 s.push(T.f(LangData.d("GJgn"), p, o, b * 100 / n.d, o, 0, 1000, 100))
@@ -12852,7 +12860,9 @@
                 r = new P.kx([], [])
             r.c = true
             // if (J.Y(r.aO(s), $.iK())) {
-            if (r.aO(s) === $.iK()) {
+            // if (r.aO(s) === $.iK()) {
+            console.log("fq.fc", a, b, r.aO(s))
+            if (r.aO(s) === "??") {
                 this.y = 2000
             }
         },
@@ -15282,7 +15292,8 @@
             for (s = $.a(); s < r.length; ++s) r[s].W()
         },
         cE() {
-            return $.iK()
+            // return $.iK()
+            return "??"
         },
         gaS() {
             return []
@@ -17110,7 +17121,9 @@
         },
         aY(a) {
             var s = $.mU()
-            if (a > $.q4()) return $.iK()
+            if (a > $.q4()) {
+                return $.iK() // ??
+            }
             return C.c.k(a + s)
         },
         gb2() {

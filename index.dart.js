@@ -8703,10 +8703,10 @@
     }
     W.cQ.prototype = {
         cw(a, b, c, d) {
-            if (c != null) this.c4(a, b, c, false)
+            if (c != null) this.add_event_listener(a, b, c, false)
         },
-        c4(a, b, c, d) {
-            return a.addEventListener(b, H.convertDartClosureToJS(c, 1), false)
+        add_event_listener(receiver, type, listener, options) {
+            return receiver.addEventListener(type, H.convertDartClosureToJS(listener, 1), false)
         },
         cg(a, b, c, d) {
             return a.removeEventListener(b, H.convertDartClosureToJS(c, 1), false)
@@ -10153,7 +10153,8 @@
         // send "??" to iframe
         // or call as send_fast
         d5(a) {
-            J.iF(W.hY(this.cy.contentWindow), $.kd(), "*")
+            // J.iF(W.hY(this.cy.contentWindow), $.kd(), "*")
+            this.cy.contentWindow.postMessage("??", "*")
         },
         bD(a) {
             var s, r, q, p, o, n, m, l, k = this,
