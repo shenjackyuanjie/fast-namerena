@@ -246,7 +246,7 @@
                 s = J.cm(P.my(f.getContext("2d").getImageData(0, 0, 128, 128)))
                 for (r = t.i, q = 0; q < 38; ++q) {
                     p = C.c.V(q, 8) * 64 + C.c.ag(q, 8) * 8192
-                    o = H.set_run_time_type_info([], r)
+                    o = H.b([], r)
                     for (n = 0; n < 16; ++n)
                         for (m = n * 512, l = 0; l < 16; ++l) {
                             k = p + l * 4 + m
@@ -258,8 +258,8 @@
                 }
                 for (q = 0; q < 8; ++q) {
                     p = q * 64 + 57344
-                    i = H.set_run_time_type_info([], r)
-                    h = H.set_run_time_type_info([], r)
+                    i = H.b([], r)
+                    h = H.b([], r)
                     for (n = 0; n < 16; ++n)
                         for (m = n * 512, l = 0; l < 16; ++l) {
                             k = p + l * 4 + m
@@ -287,7 +287,7 @@
             ts(a) {
                 var s, r, q, p, o, n, m, l, k, j, i, h, g, f = C.d.V(a[0], $.me.length),
                     e = t.i,
-                    d = H.set_run_time_type_info([], e)
+                    d = H.b([], e)
                 d.push(C.d.V(a[1], $.dZ.length))
                 s = a[2]
                 r = $.dZ.length
@@ -317,7 +317,7 @@
                 n.toString
                 n.fillStyle = "rgba(" + s + ", " + r + ", " + k + ", 1)"
                 n.fillRect(1, 1, 14, 14)
-                j = H.set_run_time_type_info([], e)
+                j = H.b([], e)
                 i = new Sgls.k6(j, m, d)
                 for (p = o, h = 0; h < d.length; ++h) {
                     o = p + 1
@@ -352,7 +352,7 @@
             },
             tu(a, b) {
                 var s, r, q, p
-                Sgls.o4(a, $.me[b], H.set_run_time_type_info([64, 64, 64], t.i))
+                Sgls.o4(a, $.me[b], H.b([64, 64, 64], t.i))
                 s = P.my(a.getImageData(0, 0, 16, 16))
                 r = $.o5[b]
                 for (q = J.bv(s), p = 0; p < 256; ++p) q.gck(s)[p * 4 + 3] = r[p]
@@ -732,7 +732,7 @@
                 return s
             },
             tl(a) {
-                var s, r, q, p = H.set_run_time_type_info([], t.dC)
+                var s, r, q, p = H.b([], t.dC)
                 for (s = a.length, r = 0; r < a.length; a.length === s || (0, H.F)(a), ++r) {
                     q = a[r]
                     if (!H.aP(q)) throw H.wrap_expression(H.R(q))
@@ -845,7 +845,7 @@
                 var s, r, q, p, o, n
                 a = H.oM(a.replace(String({}), "$receiver$"))
                 s = a.match(/\\\$[a-zA-Z]+\\\$/g)
-                if (s == null) s = H.set_run_time_type_info([], t.s)
+                if (s == null) s = H.b([], t.s)
                 r = s.indexOf("\\$arguments\\$")
                 q = s.indexOf("\\$argumentsExpr\\$")
                 p = s.indexOf("\\$expr\\$")
@@ -1806,7 +1806,7 @@
                 s.c = m
                 return s
             },
-            set_run_time_type_info(a, b) {
+            b(a, b) {
                 a[init.arrayRti] = b
                 return a
             },
@@ -1963,13 +1963,13 @@
             Au(a) {
                 var s = this
                 if (a == null) return a
-                else if (s.set_run_time_type_info(a)) return a
+                else if (s.b(a)) return a
                 H.oo(a, s)
             },
             ui(a) {
                 var s = this
                 if (a == null) return a
-                else if (s.set_run_time_type_info(a)) return a
+                else if (s.b(a)) return a
                 H.oo(a, s)
             },
             oo(a, b) {
@@ -2093,7 +2093,7 @@
                 if (a6 != null) {
                     s = a6.length
                     if (a5 == null) {
-                        a5 = H.set_run_time_type_info([], t.s)
+                        a5 = H.b([], t.s)
                         r = null
                     } else r = a5.length
                     q = a5.length
@@ -2949,10 +2949,10 @@
             },
             t_(a, b) {
                 if (!H.aP(a) || a < 0) throw H.wrap_expression(P.bz("Length must be a non-negative integer: " + H.e(a), null))
-                return H.set_run_time_type_info(new Array(a), b.i("E<0>"))
+                return H.b(new Array(a), b.i("E<0>"))
             },
             t0(a, b) {
-                return J.nL(H.set_run_time_type_info(a, b.i("E<0>")))
+                return J.nL(H.b(a, b.i("E<0>")))
             },
             nL(a) {
                 a.fixed$length = Array
@@ -3269,7 +3269,7 @@
                 r = r < 26 ? r + 65 : r + 71
                 q = q < 26 ? q + 65 : q + 71
                 p = p < 26 ? p + 65 : p + 71
-                return P.mh(H.set_run_time_type_info([r, q, p, o < 26 ? o + 65 : o + 71], t.i), 0, null)
+                return P.mh(H.b([r, q, p, o < 26 ? o + 65 : o + 71], t.i), 0, null)
             },
             j(a, b) {
                 let result = C.e.bt(0, X.f4(a, b))
@@ -3291,7 +3291,7 @@
             },
             lA: function lA() {},
             fZ(a) {
-                var s = H.set_run_time_type_info([0], t.i)
+                var s = H.b([0], t.i)
                 C.a.a5(s, C.e.gaB().ab(a))
                 return s
             },
@@ -3308,7 +3308,7 @@
                 if (a) {
                     s = new Y.dW()
                     s.bd(C.e.gaB().ab(q), 2)
-                    s.di(H.set_run_time_type_info([32, 46, 189, 177, 148, 32], t.i))
+                    s.di(H.b([32, 46, 189, 177, 148, 32], t.i))
                     return s
                 } else {
                     r = new Y.dW()
@@ -3851,7 +3851,7 @@
                     if (b === "(" && c === ")") return "(...)"
                     return b + "..." + c
                 }
-                s = H.set_run_time_type_info([], t.s)
+                s = H.b([], t.s)
                 $.ch.push(a)
                 try {
                     P.uu(a, s)
@@ -4129,8 +4129,8 @@
             },
             t4(a, b) {
                 var s, r
-                if (Array.isArray(a)) return H.set_run_time_type_info(a.slice(0), b.i("E<0>"))
-                s = H.set_run_time_type_info([], b.i("E<0>"))
+                if (Array.isArray(a)) return H.b(a.slice(0), b.i("E<0>"))
+                s = H.b([], b.i("E<0>"))
                 for (r = J.by(a); r.u();) s.push(r.gC())
                 return s
             },
@@ -4427,7 +4427,7 @@
                             a2 = window.localStorage.getItem("go​ogle_experiment_mod1")
                             // console.log("a2", a2)
                             if (a2 != null) {
-                                $.ox = new H.a9(H.set_run_time_type_info(a2.split(""), t.s), t.bJ).f3(0)
+                                $.ox = new H.a9(H.b(a2.split(""), t.s), t.bJ).f3(0)
                             }
                             // console.log("$.ox === a2", $.ox === a2)
                             // console.log($.ox)
@@ -4443,8 +4443,8 @@
                             k = LangData.oC(false)
                             console.log("k:", k)
                             a8 = t.i
-                            j = H.set_run_time_type_info([], a8)
-                            J.rr(j, H.set_run_time_type_info([1, 3, 0, 9], a8))
+                            j = H.b([], a8)
+                            J.rr(j, H.b([1, 3, 0, 9], a8))
                             k.bO(j)
                             k.di(l)
                             raw_names = C.e.bt(0, l)
@@ -4460,7 +4460,7 @@
                                     if (h[1].length > 10 || J.lW(h[1][0][0], LangData.j("S,AF", 5))) {
                                         // a8 = J.J(h, 1)
                                         a8 = h[1]
-                                        a9 = H.set_run_time_type_info([], t.t)
+                                        a9 = H.b([], t.t)
                                         d = new X.iW(a9, new Float64Array(1))
                                         d.e_(a8)
                                         g = d
@@ -4478,9 +4478,9 @@
                                         // a8 = J.J(h, 1)
                                         a8 = h[1]
                                         a9 = e
-                                        a3 = H.set_run_time_type_info([], t.L)
-                                        a4 = H.set_run_time_type_info([], t.V)
-                                        a5 = H.set_run_time_type_info([], t.M)
+                                        a3 = H.b([], t.L)
+                                        a4 = H.b([], t.V)
+                                        a5 = H.b([], t.M)
                                         g = new V.iV(a9, a8, a3, a4, a5, P.cu(t.X, t.B), new Float64Array(1))
                                         g.dZ(a8, a9)
                                         d = g
@@ -4495,10 +4495,10 @@
                                     // a9 = J.J(h, 2)
                                     a9 = h[2]
                                     a3 = t.L
-                                    a4 = H.set_run_time_type_info([], a3)
-                                    a3 = H.set_run_time_type_info([], a3)
-                                    a5 = H.set_run_time_type_info([], t.V)
-                                    a6 = H.set_run_time_type_info([], t.M)
+                                    a4 = H.b([], a3)
+                                    a3 = H.b([], a3)
+                                    a5 = H.b([], t.V)
+                                    a6 = H.b([], t.M)
                                     g = new L.iR(a8, a9, a4, a3, a5, a6, new Float64Array(1))
                                     g.dY(a8, a9)
                                     b = g
@@ -4601,8 +4601,8 @@
                     c = a4.d,
                     b = $.a(),
                     a = $.T(),
-                    a0 = H.set_run_time_type_info([], t.q),
-                    a1 = H.set_run_time_type_info([], t.H),
+                    a0 = H.b([], t.q),
+                    a1 = H.b([], t.H),
                     a2 = P.a0(t.X, t.W),
                     a3 = new Sgls.c(t.n)
                 a3.c = a3
@@ -4632,17 +4632,17 @@
                 l.c = l
                 l.b = l
                 k = t.i
-                j = H.set_run_time_type_info([], k)
-                i = H.set_run_time_type_info([], k)
-                h = H.set_run_time_type_info([], k)
-                k = H.set_run_time_type_info([], k)
+                j = H.b([], k)
+                i = H.b([], k)
+                h = H.b([], k)
+                k = H.b([], k)
                 g = $.a()
                 g = new T.dR(f, e, d, c, b, a, a0, a1, a2, a3, s, r, q, p, o, n, m, l, j, i, h, k, g, g, g, $.W(), g)
                 g.a1(f, e, d, c)
                 g.cm = a4
                 g.e = T.fD(a4 instanceof T.dR ? g.a6 = a4.a6 : g.a6 = a4)
                 f = a4.t
-                f = H.set_run_time_type_info(f.slice(0), H.a1(f))
+                f = H.b(f.slice(0), H.a1(f))
                 g.t = f
                 return g
             },
@@ -4745,14 +4745,14 @@
             I(a, b, c) {
                 var s, r, q, p, o = b ? a.dx : a.ch,
                     n = t.i,
-                    m = H.set_run_time_type_info([c.n() & 127, c.n() & 127, c.n() & 127, o + $.au(), o], n)
+                    m = H.b([c.n() & 127, c.n() & 127, c.n() & 127, o + $.au(), o], n)
                 C.a.aJ(m)
                 s = m[$.t()]
                 m = c.n()
                 r = $.au()
                 q = c.n()
                 p = $.au()
-                n = H.set_run_time_type_info([(m & 63) + r, (q & 63) + p, o + p], n)
+                n = H.b([(m & 63) + r, (q & 63) + p, o + p], n)
                 C.a.aJ(n)
                 return s * n[$.i()] * a.id
             },
@@ -4778,8 +4778,8 @@
                 if (a5 == $.nk()) {
                     s = $.a()
                     r = $.T()
-                    q = H.set_run_time_type_info([], t.q)
-                    p = H.set_run_time_type_info([], t.H)
+                    q = H.b([], t.q)
+                    p = H.b([], t.H)
                     o = P.a0(t.X, t.W)
                     n = new Sgls.c(t.n)
                     n.c = n
@@ -4809,10 +4809,10 @@
                     f.c = f
                     f.b = f
                     e = t.i
-                    d = H.set_run_time_type_info([], e)
-                    c = H.set_run_time_type_info([], e)
-                    b = H.set_run_time_type_info([], e)
-                    e = H.set_run_time_type_info([], e)
+                    d = H.b([], e)
+                    c = H.b([], e)
+                    b = H.b([], e)
+                    e = H.b([], e)
                     a = $.a()
                     a = new T.fU(a4, a5, a4, a3, s, r, q, p, o, n, m, l, k, j, i, h, g, f, d, c, b, e, a, a, a, $.W(), a)
                     a.a1(a4, a5, a4, a3)
@@ -4822,8 +4822,8 @@
                 if (a5 == $.qR()) {
                     s = $.a()
                     r = $.T()
-                    q = H.set_run_time_type_info([], t.q)
-                    p = H.set_run_time_type_info([], t.H)
+                    q = H.b([], t.q)
+                    p = H.b([], t.H)
                     o = P.a0(t.X, t.W)
                     n = new Sgls.c(t.n)
                     n.c = n
@@ -4853,10 +4853,10 @@
                     f.c = f
                     f.b = f
                     e = t.i
-                    d = H.set_run_time_type_info([], e)
-                    c = H.set_run_time_type_info([], e)
-                    b = H.set_run_time_type_info([], e)
-                    e = H.set_run_time_type_info([], e)
+                    d = H.b([], e)
+                    c = H.b([], e)
+                    b = H.b([], e)
+                    e = H.b([], e)
                     a = $.a()
                     a = new T.fV(a4, a5, a4, a3, s, r, q, p, o, n, m, l, k, j, i, h, g, f, d, c, b, e, a, a, a, $.W(), a)
                     a.a1(a4, a5, a4, a3)
@@ -4870,8 +4870,8 @@
                         q = H.e(a4) + H.e($.aD())
                         p = $.a()
                         o = $.T()
-                        n = H.set_run_time_type_info([], t.q)
-                        m = H.set_run_time_type_info([], t.H)
+                        n = H.b([], t.q)
+                        m = H.b([], t.H)
                         l = P.a0(t.X, t.W)
                         k = new Sgls.c(t.n)
                         k.c = k
@@ -4901,10 +4901,10 @@
                         c.c = c
                         c.b = c
                         b = t.i
-                        a = H.set_run_time_type_info([], b)
-                        a0 = H.set_run_time_type_info([], b)
-                        a1 = H.set_run_time_type_info([], b)
-                        b = H.set_run_time_type_info([], b)
+                        a = H.b([], b)
+                        a0 = H.b([], b)
+                        a1 = H.b([], b)
+                        b = H.b([], b)
                         a2 = $.a()
                         a2 = new T.df(r, a4, s, q, a3, p, o, n, m, l, k, j, i, h, g, f, e, d, c, a, a0, a1, b, a2, a2, a2, $.W(), a2)
                         a2.a1(a4, s, q, a3)
@@ -4915,8 +4915,8 @@
                         r = H.e(a4) + H.e($.aD())
                         q = $.a()
                         p = $.T()
-                        o = H.set_run_time_type_info([], t.q)
-                        n = H.set_run_time_type_info([], t.H)
+                        o = H.b([], t.q)
+                        n = H.b([], t.H)
                         m = P.a0(t.X, t.W)
                         l = new Sgls.c(t.n)
                         l.c = l
@@ -4946,10 +4946,10 @@
                         d.c = d
                         d.b = d
                         c = t.i
-                        b = H.set_run_time_type_info([], c)
-                        a = H.set_run_time_type_info([], c)
-                        a0 = H.set_run_time_type_info([], c)
-                        c = H.set_run_time_type_info([], c)
+                        b = H.b([], c)
+                        a = H.b([], c)
+                        a0 = H.b([], c)
+                        c = H.b([], c)
                         a1 = $.a()
                         a1 = new T.fc(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                         a1.a1(a4, s, r, a3)
@@ -4960,8 +4960,8 @@
                         r = H.e(a4) + H.e($.aD())
                         q = $.a()
                         p = $.T()
-                        o = H.set_run_time_type_info([], t.q)
-                        n = H.set_run_time_type_info([], t.H)
+                        o = H.b([], t.q)
+                        n = H.b([], t.H)
                         m = P.a0(t.X, t.W)
                         l = new Sgls.c(t.n)
                         l.c = l
@@ -4991,10 +4991,10 @@
                         d.c = d
                         d.b = d
                         c = t.i
-                        b = H.set_run_time_type_info([], c)
-                        a = H.set_run_time_type_info([], c)
-                        a0 = H.set_run_time_type_info([], c)
-                        c = H.set_run_time_type_info([], c)
+                        b = H.b([], c)
+                        a = H.b([], c)
+                        a0 = H.b([], c)
+                        c = H.b([], c)
                         a1 = $.a()
                         a1 = new T.f9(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                         a1.a1(a4, s, r, a3)
@@ -5005,8 +5005,8 @@
                         r = H.e(a4) + H.e($.aD())
                         q = $.a()
                         p = $.T()
-                        o = H.set_run_time_type_info([], t.q)
-                        n = H.set_run_time_type_info([], t.H)
+                        o = H.b([], t.q)
+                        n = H.b([], t.H)
                         m = P.a0(t.X, t.W)
                         l = new Sgls.c(t.n)
                         l.c = l
@@ -5036,10 +5036,10 @@
                         d.c = d
                         d.b = d
                         c = t.i
-                        b = H.set_run_time_type_info([], c)
-                        a = H.set_run_time_type_info([], c)
-                        a0 = H.set_run_time_type_info([], c)
-                        c = H.set_run_time_type_info([], c)
+                        b = H.b([], c)
+                        a = H.b([], c)
+                        a0 = H.b([], c)
+                        c = H.b([], c)
                         a1 = $.a()
                         a1 = new T.fd(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                         a1.a1(a4, s, r, a3)
@@ -5051,8 +5051,8 @@
                         r = H.e(a4) + H.e($.aD())
                         q = $.a()
                         p = $.T()
-                        o = H.set_run_time_type_info([], t.q)
-                        n = H.set_run_time_type_info([], t.H)
+                        o = H.b([], t.q)
+                        n = H.b([], t.H)
                         m = P.a0(t.X, t.W)
                         l = new Sgls.c(t.n)
                         l.c = l
@@ -5082,10 +5082,10 @@
                         d.c = d
                         d.b = d
                         c = t.i
-                        b = H.set_run_time_type_info([], c)
-                        a = H.set_run_time_type_info([], c)
-                        a0 = H.set_run_time_type_info([], c)
-                        c = H.set_run_time_type_info([], c)
+                        b = H.b([], c)
+                        a = H.b([], c)
+                        a0 = H.b([], c)
+                        c = H.b([], c)
                         a1 = $.a()
                         a1 = new T.f8(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                         a1.a1(a4, s, r, a3)
@@ -5096,8 +5096,8 @@
                         r = H.e(a4) + H.e($.aD())
                         q = $.a()
                         p = $.T()
-                        o = H.set_run_time_type_info([], t.q)
-                        n = H.set_run_time_type_info([], t.H)
+                        o = H.b([], t.q)
+                        n = H.b([], t.H)
                         m = P.a0(t.X, t.W)
                         l = new Sgls.c(t.n)
                         l.c = l
@@ -5127,10 +5127,10 @@
                         d.c = d
                         d.b = d
                         c = t.i
-                        b = H.set_run_time_type_info([], c)
-                        a = H.set_run_time_type_info([], c)
-                        a0 = H.set_run_time_type_info([], c)
-                        c = H.set_run_time_type_info([], c)
+                        b = H.b([], c)
+                        a = H.b([], c)
+                        a0 = H.b([], c)
+                        c = H.b([], c)
                         a1 = $.a()
                         a1 = new T.f6(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                         a1.a1(a4, s, r, a3)
@@ -5141,8 +5141,8 @@
                         r = H.e(a4) + H.e($.aD())
                         q = $.a()
                         p = $.T()
-                        o = H.set_run_time_type_info([], t.q)
-                        n = H.set_run_time_type_info([], t.H)
+                        o = H.b([], t.q)
+                        n = H.b([], t.H)
                         m = P.a0(t.X, t.W)
                         l = new Sgls.c(t.n)
                         l.c = l
@@ -5172,10 +5172,10 @@
                         d.c = d
                         d.b = d
                         c = t.i
-                        b = H.set_run_time_type_info([], c)
-                        a = H.set_run_time_type_info([], c)
-                        a0 = H.set_run_time_type_info([], c)
-                        c = H.set_run_time_type_info([], c)
+                        b = H.b([], c)
+                        a = H.b([], c)
+                        a0 = H.b([], c)
+                        c = H.b([], c)
                         a1 = $.a()
                         a1 = new T.f5(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                         a1.a1(a4, s, r, a3)
@@ -5186,8 +5186,8 @@
                         r = H.e(a4) + H.e($.aD())
                         q = $.a()
                         p = $.T()
-                        o = H.set_run_time_type_info([], t.q)
-                        n = H.set_run_time_type_info([], t.H)
+                        o = H.b([], t.q)
+                        n = H.b([], t.H)
                         m = P.a0(t.X, t.W)
                         l = new Sgls.c(t.n)
                         l.c = l
@@ -5217,10 +5217,10 @@
                         d.c = d
                         d.b = d
                         c = t.i
-                        b = H.set_run_time_type_info([], c)
-                        a = H.set_run_time_type_info([], c)
-                        a0 = H.set_run_time_type_info([], c)
-                        c = H.set_run_time_type_info([], c)
+                        b = H.b([], c)
+                        a = H.b([], c)
+                        a0 = H.b([], c)
+                        c = H.b([], c)
                         a1 = $.a()
                         a1 = new T.de(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                         a1.a1(a4, s, r, a3)
@@ -5231,8 +5231,8 @@
                         r = H.e(a4) + H.e($.aD())
                         q = $.a()
                         p = $.T()
-                        o = H.set_run_time_type_info([], t.q)
-                        n = H.set_run_time_type_info([], t.H)
+                        o = H.b([], t.q)
+                        n = H.b([], t.H)
                         m = P.a0(t.X, t.W)
                         l = new Sgls.c(t.n)
                         l.c = l
@@ -5262,10 +5262,10 @@
                         d.c = d
                         d.b = d
                         c = t.i
-                        b = H.set_run_time_type_info([], c)
-                        a = H.set_run_time_type_info([], c)
-                        a0 = H.set_run_time_type_info([], c)
-                        c = H.set_run_time_type_info([], c)
+                        b = H.b([], c)
+                        a = H.b([], c)
+                        a0 = H.b([], c)
+                        c = H.b([], c)
                         a1 = $.a()
                         a1 = new T.f7(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                         a1.a1(a4, s, r, a3)
@@ -5276,8 +5276,8 @@
                         r = H.e(a4) + H.e($.aD())
                         q = $.a()
                         p = $.T()
-                        o = H.set_run_time_type_info([], t.q)
-                        n = H.set_run_time_type_info([], t.H)
+                        o = H.b([], t.q)
+                        n = H.b([], t.H)
                         m = P.a0(t.X, t.W)
                         l = new Sgls.c(t.n)
                         l.c = l
@@ -5307,10 +5307,10 @@
                         d.c = d
                         d.b = d
                         c = t.i
-                        b = H.set_run_time_type_info([], c)
-                        a = H.set_run_time_type_info([], c)
-                        a0 = H.set_run_time_type_info([], c)
-                        c = H.set_run_time_type_info([], c)
+                        b = H.b([], c)
+                        a = H.b([], c)
+                        a0 = H.b([], c)
+                        c = H.b([], c)
                         a1 = $.a()
                         a1 = new T.fa(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                         a1.a1(a4, s, r, a3)
@@ -5322,8 +5322,8 @@
                         r = H.e(r) + H.e($.aD())
                         q = $.a()
                         p = $.T()
-                        o = H.set_run_time_type_info([], t.q)
-                        n = H.set_run_time_type_info([], t.H)
+                        o = H.b([], t.q)
+                        n = H.b([], t.H)
                         m = P.a0(t.X, t.W)
                         l = new Sgls.c(t.n)
                         l.c = l
@@ -5353,10 +5353,10 @@
                         d.c = d
                         d.b = d
                         c = t.i
-                        b = H.set_run_time_type_info([], c)
-                        a = H.set_run_time_type_info([], c)
-                        a0 = H.set_run_time_type_info([], c)
-                        c = H.set_run_time_type_info([], c)
+                        b = H.b([], c)
+                        a = H.b([], c)
+                        a0 = H.b([], c)
+                        c = H.b([], c)
                         a1 = $.a()
                         a1 = new T.fR(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                         a1.a1(a4, s, r, a3)
@@ -5370,8 +5370,8 @@
                         r = $.nr().h(0, a4)
                         q = $.a()
                         p = $.T()
-                        o = H.set_run_time_type_info([], t.q)
-                        n = H.set_run_time_type_info([], t.H)
+                        o = H.b([], t.q)
+                        n = H.b([], t.H)
                         m = P.a0(t.X, t.W)
                         l = new Sgls.c(t.n)
                         l.c = l
@@ -5401,10 +5401,10 @@
                         d.c = d
                         d.b = d
                         c = t.i
-                        b = H.set_run_time_type_info([], c)
-                        a = H.set_run_time_type_info([], c)
-                        a0 = H.set_run_time_type_info([], c)
-                        c = H.set_run_time_type_info([], c)
+                        b = H.b([], c)
+                        a = H.b([], c)
+                        a0 = H.b([], c)
+                        c = H.b([], c)
                         a1 = $.a()
                         a1 = new T.fP(r, a4, s, a4, a7, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                         a1.a1(a4, s, a4, a7)
@@ -5414,8 +5414,8 @@
                     s = $.cl()
                     r = $.a()
                     q = $.T()
-                    p = H.set_run_time_type_info([], t.q)
-                    o = H.set_run_time_type_info([], t.H)
+                    p = H.b([], t.q)
+                    o = H.b([], t.H)
                     n = P.a0(t.X, t.W)
                     m = new Sgls.c(t.n)
                     m.c = m
@@ -5445,10 +5445,10 @@
                     e.c = e
                     e.b = e
                     d = t.i
-                    c = H.set_run_time_type_info([], d)
-                    b = H.set_run_time_type_info([], d)
-                    a = H.set_run_time_type_info([], d)
-                    d = H.set_run_time_type_info([], d)
+                    c = H.b([], d)
+                    b = H.b([], d)
+                    a = H.b([], d)
+                    d = H.b([], d)
                     a0 = $.a()
                     a0 = new T.fQ(a4, s, a4, a7, r, q, p, o, n, m, l, k, j, i, h, g, f, e, c, b, a, d, a0, a0, a0, $.W(), a0)
                     a0.a1(a4, s, a4, a7)
@@ -5551,8 +5551,8 @@
                     e = H.e(a2) + H.e($.aD()),
                     d = $.a(),
                     c = $.T(),
-                    b = H.set_run_time_type_info([], t.q),
-                    a = H.set_run_time_type_info([], t.H),
+                    b = H.b([], t.q),
+                    a = H.b([], t.H),
                     a0 = P.a0(t.X, t.W),
                     a1 = new Sgls.c(t.n)
                 a1.c = a1
@@ -5582,10 +5582,10 @@
                 l.c = l
                 l.b = l
                 k = t.i
-                j = H.set_run_time_type_info([], k)
-                i = H.set_run_time_type_info([], k)
-                h = H.set_run_time_type_info([], k)
-                k = H.set_run_time_type_info([], k)
+                j = H.b([], k)
+                i = H.b([], k)
+                h = H.b([], k)
+                k = H.b([], k)
                 g = $.a()
                 g = new T.bZ(f, a2, a3, e, null, d, c, b, a, a0, a1, s, r, q, p, o, n, m, l, j, i, h, k, g, g, g, $.W(), g)
                 g.a1(a2, a3, e, null)
@@ -5597,8 +5597,8 @@
                     e = H.e(a3) + H.e($.aD()),
                     d = $.a(),
                     c = $.T(),
-                    b = H.set_run_time_type_info([], t.q),
-                    a = H.set_run_time_type_info([], t.H),
+                    b = H.b([], t.q),
+                    a = H.b([], t.H),
                     a0 = P.a0(t.X, t.W),
                     a1 = new Sgls.c(t.n)
                 a1.c = a1
@@ -5628,10 +5628,10 @@
                 l.c = l
                 l.b = l
                 k = t.i
-                j = H.set_run_time_type_info([], k)
-                i = H.set_run_time_type_info([], k)
-                h = H.set_run_time_type_info([], k)
-                k = H.set_run_time_type_info([], k)
+                j = H.b([], k)
+                i = H.b([], k)
+                h = H.b([], k)
+                k = H.b([], k)
                 g = $.a()
                 g = new T.fb(a2, f, a3, a4, e, null, d, c, b, a, a0, a1, s, r, q, p, o, n, m, l, j, i, h, k, g, g, g, $.W(), g)
                 g.a1(a3, a4, e, null)
@@ -5643,7 +5643,7 @@
             parse_names(a) {
                 var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e = null,
                     d = t.E,
-                    c = H.set_run_time_type_info([], d),
+                    c = H.b([], d),
                     b = C.b.cK(a, $.r_())
                 for (s = $.a(); s < b.length; ++s) {
                     r = b[s]
@@ -5656,22 +5656,22 @@
                 // for (; J.Y(C.a.gbl(b), "");) {
                 for (; C.a.gbl(b) === "";) {
                     b.pop()
-                    if (b.length === 0) return H.set_run_time_type_info([], d)
+                    if (b.length === 0) return H.b([], d)
                 }
                 p = C.a.w(b, "") && true
                 d = t.t
-                o = H.set_run_time_type_info([], d)
+                o = H.b([], d)
                 for (s = $.a(), r = t.V, q = !p, n = e; s < b.length; ++s) {
                     m = b[s]
                     if (m === "") {
                         if (o.length !== 0) c.push(o)
-                        o = H.set_run_time_type_info([], d)
+                        o = H.b([], d)
                         n = e
                         continue
                     }
                     if (q) {
                         if (o.length !== 0) c.push(o)
-                        o = H.set_run_time_type_info([], d)
+                        o = H.b([], d)
                     }
                     l = $.lO()
                     m.toString
@@ -5701,9 +5701,9 @@
                             if (0 > f) H.throw_expression(P.a8(0, 0, g.gp(l), e, e))
                             l = H.iF(l, i, 0)
                         } else l = true
-                        if (l) o.push(H.set_run_time_type_info([h[$.a()], null, j], r))
-                        else o.push(H.set_run_time_type_info([h[$.a()], h[$.i()], j], r))
-                    } else if (C.b.bA(m, " ")) o.push(H.set_run_time_type_info([C.b.ay(m, $.i()), n, j], r))
+                        if (l) o.push(H.b([h[$.a()], null, j], r))
+                        else o.push(H.b([h[$.a()], h[$.i()], j], r))
+                    } else if (C.b.bA(m, " ")) o.push(H.b([C.b.ay(m, $.i()), n, j], r))
                     else {
                         if (s + $.i() < b.length) {
                             l = $.n5()
@@ -5712,7 +5712,7 @@
                         } else l = false
                         if (l) n = m
                         else {
-                            o.push(H.set_run_time_type_info([m, null, j], r))
+                            o.push(H.b([m, null, j], r))
                             n = e
                         }
                     }
@@ -5729,12 +5729,12 @@
                     while (true) switch (s) {
                         case 0:
                             k = t.eV
-                            j = H.set_run_time_type_info([], k)
+                            j = H.b([], k)
                             i = t.L
-                            h = H.set_run_time_type_info([], i)
-                            k = H.set_run_time_type_info([], k)
-                            i = H.set_run_time_type_info([], i)
-                            p = H.set_run_time_type_info([], t.gr)
+                            h = H.b([], i)
+                            k = H.b([], k)
+                            i = H.b([], i)
+                            p = H.b([], t.gr)
                             o = $.a()
                             n = $.i()
                             m = -n
@@ -5782,7 +5782,7 @@
             lC(a) {
                 var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e = {},
                     d = $.a(),
-                    c = H.set_run_time_type_info([d, d, d, d, d, d], t.i),
+                    c = H.b([d, d, d, d, d, d], t.i),
                     b = $.a()
                 e.a = -$.t()
                 e.b = -$.i()
@@ -5913,8 +5913,8 @@
             nT(a0, a1, a2, a3) {
                 var s, r, q, p, o, n, m, l, k, j, i, h, g, f = $.a(),
                     e = $.T(),
-                    d = H.set_run_time_type_info([], t.q),
-                    c = H.set_run_time_type_info([], t.H),
+                    d = H.b([], t.q),
+                    c = H.b([], t.H),
                     b = P.a0(t.X, t.W),
                     a = new Sgls.c(t.n)
                 a.c = a
@@ -5944,10 +5944,10 @@
                 l.c = l
                 l.b = l
                 k = t.i
-                j = H.set_run_time_type_info([], k)
-                i = H.set_run_time_type_info([], k)
-                h = H.set_run_time_type_info([], k)
-                k = H.set_run_time_type_info([], k)
+                j = H.b([], k)
+                i = H.b([], k)
+                h = H.b([], k)
+                k = H.b([], k)
                 g = $.a()
                 g = new T.u(a0, a1, a2, a3, f, e, d, c, b, a, s, r, q, p, o, n, m, l, j, i, h, k, g, g, g, $.W(), g)
                 g.a1(a0, a1, a2, a3)
@@ -7648,7 +7648,7 @@
             oh() {
                 var s = t.N,
                     r = P.nQ(C.r, s),
-                    q = H.set_run_time_type_info(["TEMPLATE"], t.s)
+                    q = H.b(["TEMPLATE"], t.s)
                 s = new W.it(r, P.c5(s), P.c5(s), P.c5(s), null)
                 s.e7(null, new H.y(C.r, new W.l7(), t.fj), q, null)
                 return s
@@ -8101,7 +8101,7 @@
             uI(a) {
                 var s, r, q, p, o, n, m, l, k, j, i, h, g, f = a.a
                 if (f > 0 && a.e != null) $.ay.h(0, a.e.gb2()).dc(f)
-                s = H.set_run_time_type_info([], t.j)
+                s = H.b([], t.j)
                 r = HtmlRenderer.add_span("u")
                 C.R.by(r, H.oO(a.d, $.rm(), new HtmlRenderer.lq(new HtmlRenderer.lp(s, a), a), null), $.bV())
                 for (f = s.length, q = t.A, p = 0; p < s.length; s.length === f || (0, H.F)(s), ++p) {
@@ -8378,8 +8378,8 @@
             if (b > s) throw H.wrap_expression(P.a8(b, 0, s, "start", null))
             if (c == null) c = s
             else if (c < b || c > s) throw H.wrap_expression(P.a8(c, b, s, "end", null))
-            if (b === c) return H.set_run_time_type_info([], H.a1(a))
-            return H.set_run_time_type_info(a.slice(b, c), H.a1(a))
+            if (b === c) return H.b([], H.a1(a))
+            return H.b(a.slice(b, c), H.a1(a))
         },
         cL(a, b) {
             return this.al(a, b, null)
@@ -8640,12 +8640,12 @@
         },
         cK(a, b) {
             if (b == null) H.throw_expression(H.R(b))
-            if (typeof b == "string") return H.set_run_time_type_info(a.split(b), t.s)
-            else if (b instanceof H.ct && b.gep().exec("").length - 2 === 0) return H.set_run_time_type_info(a.split(b.b), t.s)
+            if (typeof b == "string") return H.b(a.split(b), t.s)
+            else if (b instanceof H.ct && b.gep().exec("").length - 2 === 0) return H.b(a.split(b.b), t.s)
             else return this.ek(a, b)
         },
         ek(a, b) {
-            var s, r, q, p, o, n, m = H.set_run_time_type_info([], t.s)
+            var s, r, q, p, o, n, m = H.b([], t.s)
             for (s = J.lU(b, a), s = s.ga0(s), r = 0, q = 1; s.u();) {
                 p = s.gC()
                 o = p.gbc(p)
@@ -10478,7 +10478,7 @@
         },
         bF() {
             var s = this.c
-            if (s == null) s = this.c = H.set_run_time_type_info(Object.keys(this.a), t.s)
+            if (s == null) s = this.c = H.b(Object.keys(this.a), t.s)
             return s
         },
         es(a) {
@@ -11260,7 +11260,7 @@
                 if (d == null) {
                     s = $.nJ
                     if (s == null) {
-                        s = H.set_run_time_type_info([], t.x)
+                        s = H.b([], t.x)
                         r = new W.dN(s)
                         s.push(W.oc(null))
                         s.push(W.oh())
@@ -11480,7 +11480,7 @@
             }
         },
         gad(a) {
-            var s = H.set_run_time_type_info([], t.s)
+            var s = H.b([], t.s)
             this.aw(a, new W.kd(s))
             return s
         },
@@ -11621,7 +11621,7 @@
         gad(a) {
             var s, r, q, p, o, n, m = this.a.attributes
             m.toString
-            s = H.set_run_time_type_info([], t.s)
+            s = H.b([], t.s)
             for (r = m.length, q = t.h9, p = 0; p < r; ++p) {
                 o = q.a(m[p])
                 if (o.namespaceURI == null) {
@@ -11873,7 +11873,7 @@
                     if (typeof console != "undefined") window.console.warn(s)
                     return
                 } s = f.gad(f)
-            r = H.set_run_time_type_info(s.slice(0), H.a1(s))
+            r = H.b(s.slice(0), H.a1(s))
             for (q = f.gad(f).length - 1, s = f.a; q >= 0; --q) {
                 p = r[q]
                 o = m.a
@@ -12144,7 +12144,7 @@
         aA(a, b, c, d) {
             var s, r, q, p, o, n
             if (d == null) {
-                s = H.set_run_time_type_info([], t.x)
+                s = H.b([], t.x)
                 d = new W.dN(s)
                 s.push(W.oc(null))
                 s.push(W.oh())
@@ -12169,7 +12169,7 @@
         bd(a, b) {
             var s, r, q, p, o, n, m, l = new Array(256)
             l.fixed$length = Array
-            l = this.c = H.set_run_time_type_info(l, t.i)
+            l = this.c = H.b(l, t.i)
             for (s = 0; s < 256; ++s) l[s] = s
             r = a.length
             for (q = 0; q < b; ++q)
@@ -12282,7 +12282,7 @@
                             async_goto = 4
                             break
                         }
-                        h = H.set_run_time_type_info([m, l, [H.set_run_time_type_info([H.e($.ni()) + p.d++, $.cl()], k)]], j)
+                        h = H.b([m, l, [H.b([H.e($.ni()) + p.d++, $.cl()], k)]], j)
                         if (p.z === 0) h.pop()
                         async_goto = 5
                         return P._asyncAwait(T.c2(h), $async$O)
@@ -12313,17 +12313,16 @@
                         async_goto = 3
                         break
                     case 4:
-
                         o = t.U
-                        n = H.set_run_time_type_info([], o)
+                        n = H.b([], o)
                         m = t.Y
-                        l = H.set_run_time_type_info([], m)
+                        l = H.b([], m)
                         // 实力评估中...[2]%
                         // benchmarking
                         n.push(T.f(LangData.d("pkGN"), null, null, C.c.ag(p.z, 100), null, 0, 0, 0))
                         if (p.z >= p.c) {
-                            o = H.set_run_time_type_info([], o)
-                            m = H.set_run_time_type_info([], m)
+                            o = H.b([], o)
+                            m = H.b([], m)
                             // 》 胜率: [2]%
                             // benchmarkRatio
                             o.push(T.f(LangData.d("Pnrn"), null, null, p.y * 100 / p.c, null, 0, 1000, 100))
@@ -12331,7 +12330,6 @@
                             p.c *= 10
                         }
                         q = new T.aq(n, l)
-
                         async_goto = 1
                         break
                     case 1:
@@ -12484,14 +12482,14 @@
                             s = 4
                             break
                         }
-                        if (m.length === 1 && !p.c) h = H.set_run_time_type_info([
-                            [m[0], H.set_run_time_type_info(["" + p.e++, l], k)],
-                            [H.set_run_time_type_info(["" + p.e++, l], k), H.set_run_time_type_info(["" + p.e++, l], k)]
+                        if (m.length === 1 && !p.c) h = H.b([
+                            [m[0], H.b(["" + p.e++, l], k)],
+                            [H.b(["" + p.e++, l], k), H.b(["" + p.e++, l], k)]
                         ], j)
                         else {
                             g = []
-                            h = H.set_run_time_type_info([m, g], j)
-                            for (f = 0; f < m.length; ++f) g.push(H.set_run_time_type_info(["" + p.e++, l], k))
+                            h = H.b([m, g], j)
+                            for (f = 0; f < m.length; ++f) g.push(H.b(["" + p.e++, l], k))
                         }
                         s = 5
                         return P._asyncAwait(T.c2(h), $async$O)
@@ -12535,8 +12533,8 @@
                         s = 3
                         break
                     case 4:
-                        a4 = H.set_run_time_type_info([], t.U)
-                        o = H.set_run_time_type_info([], t.Y)
+                        a4 = H.b([], t.U)
+                        o = H.b([], t.Y)
                         // 实力评估中...[2]%
                         // benchmarking
                         a4.push(T.f(LangData.d("pkGN"), null, null, C.c.ag(p.ch, 100), null, 0, 0, 0))
@@ -12555,8 +12553,8 @@
         // 实力评分 输出
         eS() {
             var s, this_ = this,
-                q = H.set_run_time_type_info([], t.U),
-                p = H.set_run_time_type_info([], t.Y)
+                q = H.b([], t.U),
+                p = H.b([], t.Y)
             // 》 实力评分: [2]
             // benchmarkScore
             q.push(T.f(LangData.d("JkWn"), null, null, this_.Q * 1e4 / this_.d, null, 0, 1000, 100))
@@ -12619,8 +12617,8 @@
             var s, r, get_quote, p, o = null,
                 n = this.a
             if (b / n.d > 0.005) {
-                s = H.set_run_time_type_info([], t.U)
-                r = H.set_run_time_type_info([], t.Y)
+                s = H.b([], t.U)
+                r = H.b([], t.Y)
                 get_quote = $.iK()
                 // $.iK = ??
                 // J.lW
@@ -12672,7 +12670,7 @@
                         i.toString
                         g = J.aw(i)
                         if (0 > g) H.throw_expression(P.a8(0, 0, g, "startIndex", null))
-                        r.push(H.set_run_time_type_info([H.iG(i, m, h, 0), o.h(p, 1), o.h(p, 2)], k))
+                        r.push(H.b([H.iG(i, m, h, 0), o.h(p, 1), o.h(p, 2)], k))
                     }
                     return
                 } else r.push(p)
@@ -12696,8 +12694,8 @@
                         }
                         if (e < 0) {
                             p.b = 0
-                            e = H.set_run_time_type_info([], t.U)
-                            o = H.set_run_time_type_info([], t.Y)
+                            e = H.b([], t.U)
+                            o = H.b([], t.Y)
                             e.push($.K())
                             if (d.length >>> 13 > 0) {
                                 e.push(T.f(LangData.d("BUaa"), null, null, null, null, 0, 1000, 100))
@@ -12715,7 +12713,7 @@
                         }
                         l = d[m]
                         p.b = m + 1
-                        k = H.set_run_time_type_info([H.set_run_time_type_info([l, H.set_run_time_type_info(["" + p.c++, "\x02"], e)], o), H.set_run_time_type_info([H.set_run_time_type_info(["" + p.c++, "\x02"], e), H.set_run_time_type_info(["" + p.c++, "\x02"], e)], o)], n)
+                        k = H.b([H.b([l, H.b(["" + p.c++, "\x02"], e)], o), H.b([H.b(["" + p.c++, "\x02"], e), H.b(["" + p.c++, "\x02"], e)], o)], n)
                         s = 5
                         return P._asyncAwait(T.c2(k), $async$O)
                     case 5:
@@ -12783,8 +12781,8 @@
                         s = 3
                         break
                     case 4:
-                        e = H.set_run_time_type_info([], t.U)
-                        o = H.set_run_time_type_info([], t.Y)
+                        e = H.b([], t.U)
+                        o = H.b([], t.Y)
                         e.push($.K())
                         if (p.b >= d.length) {
                             e.push(T.f(LangData.d("tdaa"), null, null, null, null, 0, 1000, 100))
@@ -12917,7 +12915,7 @@
             q = H.a1(r).i("a9<1>")
             p = q.i("y<M.E,l*>")
             o = t.bQ
-            n = P.aa(new H.y(H.set_run_time_type_info(C.e.bt(0, P.aa(new H.y(new H.a9(r, q), new HtmlRenderer.jx(this_), p), true, p.i("M.E"))).split("\n"), t.s), new HtmlRenderer.jy(), o), true, o.i("M.E"))
+            n = P.aa(new H.y(H.b(C.e.bt(0, P.aa(new H.y(new H.a9(r, q), new HtmlRenderer.jx(this_), p), true, p.i("M.E"))).split("\n"), t.s), new HtmlRenderer.jy(), o), true, o.i("M.E"))
             r = n.length
             if (r > 1) {
                 // if (!J.Y(J.J(J.J(n[0], 0), 0), "")) {
@@ -12929,7 +12927,7 @@
                         for (q = q.ga0(l); q.u();)
                             if (J.aw(q.gC()) > 7) this_.f = true
                     }
-                    k = H.set_run_time_type_info([], t.t)
+                    k = H.b([], t.t)
                     for (r = n.length, q = this_.a, p = this_.b, m = 0; m < n.length; n.length === r || (0, H.F)(n), ++m) {
                         l = n[m]
                         o = J.a3(l)
@@ -13114,8 +13112,8 @@
             s = this_.cx.e.gb2()
             r = $.ay.h(0, s).a
             q = t.ak
-            p = H.set_run_time_type_info([], q)
-            o = H.set_run_time_type_info([], q)
+            p = H.b([], q)
+            o = H.b([], q)
             n = []
             $.ay.aw(0, new HtmlRenderer.jA(r, p, n, o))
             C.a.bb(p, HtmlRenderer.oD())
@@ -13208,13 +13206,13 @@
     HtmlRenderer.jy.prototype = {
         $1(a) {
             var s = t.dG
-            return P.aa(new H.y(H.set_run_time_type_info(a.split("\r"), t.s), new HtmlRenderer.jw(), s), true, s.i("M.E"))
+            return P.aa(new H.y(H.b(a.split("\r"), t.s), new HtmlRenderer.jw(), s), true, s.i("M.E"))
         },
         $S: 35
     }
     HtmlRenderer.jw.prototype = {
         $1(a) {
-            return H.set_run_time_type_info(a.split("\t"), t.s)
+            return H.b(a.split("\t"), t.s)
         },
         $S: 36
     }
@@ -13530,11 +13528,11 @@
         $0() {
             var s, r, q, p, o, n, m, l, k, j, i, h = new Array($.d7())
             h.fixed$length = Array
-            s = H.set_run_time_type_info(h, t.gt)
+            s = H.b(h, t.gt)
             for (h = t.he, r = 0; q = $.d7(), r < q; ++r) {
                 q = new Array(q)
                 q.fixed$length = Array
-                q = H.set_run_time_type_info(q, h)
+                q = H.b(q, h)
                 s[r] = q
                 q[r] = 0
             }
@@ -13747,7 +13745,7 @@
             return this.aX(a, b)
         },
         aa(a, b, c) {
-            return H.set_run_time_type_info([], t.F)
+            return H.b([], t.F)
         },
         v(a, b, c, d) {
             var s = this,
@@ -13803,7 +13801,7 @@
             return this.bx(a, b, c, true)
         },
         aa(a, b, c) {
-            if (this.fy != null) return H.set_run_time_type_info([], t.F)
+            if (this.fy != null) return H.b([], t.F)
             return this.dU(0, b, c)
         },
         v(a, b, c, d) {
@@ -13925,7 +13923,7 @@
             return this.aX(a, b)
         },
         aa(a, b, c) {
-            return H.set_run_time_type_info([], t.F)
+            return H.b([], t.F)
         },
         v(a, b, c, d) {
             var s = this,
@@ -14063,7 +14061,7 @@
         },
         aU() {
             var s = this.cm.q
-            s = H.set_run_time_type_info(s.slice(0), H.a1(s))
+            s = H.b(s.slice(0), H.a1(s))
             this.q = s
             this.ci()
         },
@@ -14077,7 +14075,7 @@
     }
     T.e4.prototype = {
         aa(a, b, c) {
-            return H.set_run_time_type_info([], t.F)
+            return H.b([], t.F)
         },
         v(a, b, c, d) {
             var s, r, q, p, o, n, m, l, k = this,
@@ -14514,7 +14512,7 @@
             return this.aX(a, b)
         },
         aa(a, b, c) {
-            return H.set_run_time_type_info([], t.F)
+            return H.b([], t.F)
         },
         v(a, b, c, d) {
             var s = this,
@@ -14648,7 +14646,7 @@
         v(a, b, c, d) {
             var s, r, q, p, o, n = c.n() < 128 ? $.X() : $.C(),
                 m = t.j,
-                l = H.set_run_time_type_info([], m),
+                l = H.b([], m),
                 k = $.a()
             while (true) {
                 if (!(k < n && k < a.length)) break
@@ -14657,7 +14655,7 @@
             }
             s = LangData.d("QQLa")
             r = this.r
-            m = H.set_run_time_type_info(l.slice(0), m)
+            m = H.b(l.slice(0), m)
             q = d.a
             q.push(T.f(s, r, null, null, m, $.i(), 1000, 100))
             for (k = $.a(); k < l.length; ++k) {
@@ -14826,7 +14824,7 @@
             return this.aX(a, b)
         },
         aa(a, b, c) {
-            return H.set_run_time_type_info([], t.F)
+            return H.b([], t.F)
         },
         v(a7, a8, a9, b0) {
             var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, a3, a4, a5 = this,
@@ -14840,8 +14838,8 @@
             q = q.c
             o = $.a()
             n = $.T()
-            m = H.set_run_time_type_info([], t.q)
-            l = H.set_run_time_type_info([], t.H)
+            m = H.b([], t.q)
+            l = H.b([], t.H)
             k = P.a0(t.X, t.W)
             j = new Sgls.c(t.n)
             j.c = j
@@ -14871,10 +14869,10 @@
             b.c = b
             b.b = b
             a = t.i
-            a0 = H.set_run_time_type_info([], a)
-            a1 = H.set_run_time_type_info([], a)
-            a2 = H.set_run_time_type_info([], a)
-            a = H.set_run_time_type_info([], a)
+            a0 = H.b([], a)
+            a1 = H.b([], a)
+            a2 = H.b([], a)
+            a = H.b([], a)
             a3 = $.a()
             a4 = new T.fS(r, p, q, a6, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a0, a1, a2, a, a3, a3, a3, $.W(), a3)
             a4.a1(r, p, q, a6)
@@ -15045,7 +15043,7 @@
             return (s == null || s.fx <= $.a()) && this.aX(a, b)
         },
         aa(a, b, c) {
-            return H.set_run_time_type_info([], t.F)
+            return H.b([], t.F)
         },
         v(a6, a7, a8, a9) {
             var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, a3 = this,
@@ -15060,8 +15058,8 @@
                 r = r.c
                 p = $.a()
                 o = $.T()
-                n = H.set_run_time_type_info([], t.q)
-                m = H.set_run_time_type_info([], t.H)
+                n = H.b([], t.q)
+                m = H.b([], t.H)
                 l = P.a0(t.X, t.W)
                 k = new Sgls.c(t.n)
                 k.c = k
@@ -15091,10 +15089,10 @@
                 c.c = c
                 c.b = c
                 b = t.i
-                a = H.set_run_time_type_info([], b)
-                a0 = H.set_run_time_type_info([], b)
-                a1 = H.set_run_time_type_info([], b)
-                b = H.set_run_time_type_info([], b)
+                a = H.b([], b)
+                a0 = H.b([], b)
+                a1 = H.b([], b)
+                b = H.b([], b)
                 a2 = $.a()
                 a2 = new T.fT(s, q, r, a4, p, o, n, m, l, k, j, i, h, g, f, e, d, c, a, a0, a1, b, a2, a2, a2, $.W(), a2)
                 a2.a1(s, q, r, a4)
@@ -15175,7 +15173,7 @@
     T.f5.prototype = {
         gan() {
             var s = $.bg()
-            return H.set_run_time_type_info([s, $.lI(), s, $.Z(), $.lK(), $.C(), s, $.q5()], t.i)
+            return H.b([s, $.lI(), s, $.Z(), $.lK(), $.C(), s, $.q5()], t.i)
         },
         ac() {
             var s, r
@@ -15214,11 +15212,11 @@
         },
         v(a, b, c, d) {
             var s, r, q, p, o, n, m = t.j,
-                l = H.set_run_time_type_info([], m)
+                l = H.b([], m)
             for (s = $.a(); s < a.length; ++s) l.push(a[s].a)
             r = LangData.d("PRrA")
             q = this.r
-            m = H.set_run_time_type_info(l.slice(0), m)
+            m = H.b(l.slice(0), m)
             p = d.a
             p.push(T.f(r, q, null, null, m, $.i(), 1000, 100))
             o = T.I(this.r, true, c) * $.mQ() / (l.length + $.b0())
@@ -15299,7 +15297,7 @@
                 p = q[s]
                 if (p < $.aR()) q[s] = p + $.at()
             }
-            q = H.set_run_time_type_info([], t.i)
+            q = H.b([], t.i)
             C.a.a5(q, n.t)
             n.E = q
         },
@@ -15345,7 +15343,7 @@
             return []
         },
         gaG() {
-            return H.set_run_time_type_info([$.d2(), $.aE(), $.aJ(), $.eZ(), $.bh(), $.d3(), $.bi(), $.bS()], t.V)
+            return H.b([$.d2(), $.aE(), $.aJ(), $.eZ(), $.bh(), $.d3(), $.bi(), $.bS()], t.V)
         },
         a7(a, b) {
             if (C.a.w(this.gaS(), a)) return b.n() < 240
@@ -15356,10 +15354,10 @@
     T.f6.prototype = {
         gan() {
             var s = $.a()
-            return H.set_run_time_type_info([s, $.aI(), -$.mT(), $.as(), s, $.mV(), $.lI(), $.po()], t.i)
+            return H.b([s, $.aI(), -$.mT(), $.as(), s, $.mV(), $.lI(), $.po()], t.i)
         },
         gaS() {
-            return H.set_run_time_type_info([$.aE()], t.V)
+            return H.b([$.aE()], t.V)
         },
         ac() {
             var s = new T.hb(this, -$.i(), $.a())
@@ -15437,10 +15435,10 @@
                 r = $.n2(),
                 q = $.a(),
                 p = $.cY()
-            return H.set_run_time_type_info([s, r, q, p, q, p, q, $.a6()], t.i)
+            return H.b([s, r, q, p, q, p, q, $.a6()], t.i)
         },
         gaG() {
-            return H.set_run_time_type_info([$.aE(), $.aJ(), $.d3()], t.V)
+            return H.b([$.aE(), $.aJ(), $.d3()], t.V)
         },
         ac() {
             var s = $.a()
@@ -15579,10 +15577,10 @@
     }
     T.f8.prototype = {
         gan() {
-            return H.set_run_time_type_info([$.aI(), $.iI(), $.mN(), $.mW(), $.Z(), $.mL(), $.mT(), $.mJ()], t.i)
+            return H.b([$.aI(), $.iI(), $.mN(), $.mW(), $.Z(), $.mL(), $.mT(), $.mJ()], t.i)
         },
         gaG() {
-            return H.set_run_time_type_info([$.d2(), $.eZ(), $.d3(), $.bT(), $.bi(), $.bS()], t.V)
+            return H.b([$.d2(), $.eZ(), $.d3(), $.bT(), $.bi(), $.bS()], t.V)
         },
         a7(a, b) {
             if (a == $.bh()) return false
@@ -15628,11 +15626,11 @@
         },
         v(a, b, c, d) {
             var s, r, q, p, o, n, m = t.j,
-                l = H.set_run_time_type_info([], m)
+                l = H.b([], m)
             for (s = $.a(); s < a.length; ++s) l.push(a[s].a)
             r = LangData.d("UeNa")
             q = this.r
-            m = H.set_run_time_type_info(l.slice(0), m)
+            m = H.b(l.slice(0), m)
             p = d.a
             p.push(T.f(r, q, null, null, m, $.i(), 1000, 100))
             o = T.I(this.r, true, c) * $.mQ() / (l.length + $.b0())
@@ -15649,10 +15647,10 @@
     T.de.prototype = {
         gan() {
             var s = $.a()
-            return H.set_run_time_type_info([s, $.q2(), $.Z(), -$.as(), s, $.b1(), s, $.cZ()], t.i)
+            return H.b([s, $.q2(), $.Z(), -$.as(), s, $.b1(), s, $.cZ()], t.i)
         },
         gaG() {
-            return H.set_run_time_type_info([$.d2(), $.eZ(), $.bh(), $.d3()], t.V)
+            return H.b([$.d2(), $.eZ(), $.bh(), $.d3()], t.V)
         },
         ac() {
             var s = $.T(),
@@ -15742,7 +15740,7 @@
     }
     T.df.prototype = {
         gan() {
-            return H.set_run_time_type_info([$.a(), $.lL(), $.d1(), $.mX(), $.iI(), $.iH(), $.eT(), $.n0()], t.i)
+            return H.b([$.a(), $.lL(), $.d1(), $.mX(), $.iI(), $.iH(), $.eT(), $.n0()], t.i)
         },
         F() {
             var s = this
@@ -15753,7 +15751,7 @@
             return []
         },
         gaG() {
-            return H.set_run_time_type_info([$.d2()], t.V)
+            return H.b([$.d2()], t.V)
         },
         a7(a, b) {
             if (a == $.lP()) return false
@@ -15792,7 +15790,7 @@
             return a.n() < 128
         },
         aa(a, b, c) {
-            return H.set_run_time_type_info([], t.F)
+            return H.b([], t.F)
         },
         v(a, b, c, d) {
             var s, r, q = this,
@@ -15870,13 +15868,13 @@
     }
     T.f9.prototype = {
         gan() {
-            return H.set_run_time_type_info([-$.B(), $.eW(), $.pv(), $.pY(), $.X(), $.ap(), $.cY(), -$.lK()], t.i)
+            return H.b([-$.B(), $.eW(), $.pv(), $.pY(), $.X(), $.ap(), $.cY(), -$.lK()], t.i)
         },
         gaS() {
-            return H.set_run_time_type_info([$.d2(), $.lP()], t.V)
+            return H.b([$.d2(), $.lP()], t.V)
         },
         gaG() {
-            return H.set_run_time_type_info([$.aJ(), $.aE()], t.V)
+            return H.b([$.aJ(), $.aE()], t.V)
         },
         ac() {
             this.k3 = T.hE(this)
@@ -15887,13 +15885,13 @@
     }
     T.fa.prototype = {
         gan() {
-            return H.set_run_time_type_info([$.pX(), $.pI(), $.n0(), $.q_(), $.pV(), $.pU(), $.a(), $.q1()], t.i)
+            return H.b([$.pX(), $.pI(), $.n0(), $.q_(), $.pV(), $.pU(), $.a(), $.q1()], t.i)
         },
         gaS() {
-            return H.set_run_time_type_info([$.eZ(), $.d3()], t.V)
+            return H.b([$.eZ(), $.d3()], t.V)
         },
         gaG() {
-            return H.set_run_time_type_info([$.aJ(), $.bi(), $.bS()], t.V)
+            return H.b([$.aJ(), $.bi(), $.bS()], t.V)
         },
         ac() {
             var s = $.a(),
@@ -15950,13 +15948,13 @@
         gan() {
             var s = $.a4(),
                 r = $.mN()
-            return H.set_run_time_type_info([s, r, $.X(), $.mL(), $.lL(), r, $.cY(), $.n_()], t.i)
+            return H.b([s, r, $.X(), $.mL(), $.lL(), r, $.cY(), $.n_()], t.i)
         },
         gaS() {
-            return H.set_run_time_type_info([], t.V)
+            return H.b([], t.V)
         },
         gaG() {
-            return H.set_run_time_type_info([$.bT()], t.V)
+            return H.b([$.bT()], t.V)
         },
         ac() {
             this.k3 = T.hE(this)
@@ -16058,13 +16056,13 @@
                 r = $.a4(),
                 q = $.eS(),
                 p = $.a()
-            return H.set_run_time_type_info([s, -r, q, p, s, -$.eT(), r, p], t.i)
+            return H.b([s, -r, q, p, s, -$.eT(), r, p], t.i)
         },
         gaS() {
-            return H.set_run_time_type_info([], t.V)
+            return H.b([], t.V)
         },
         gaG() {
-            return H.set_run_time_type_info([$.bT()], t.V)
+            return H.b([$.bT()], t.V)
         },
         ac() {
             var s, r
@@ -16083,13 +16081,13 @@
     }
     T.fd.prototype = {
         gan() {
-            return H.set_run_time_type_info([$.pt(), $.d1(), $.mX(), $.n2(), $.bg(), $.X(), $.at(), $.eW()], t.i)
+            return H.b([$.pt(), $.d1(), $.mX(), $.n2(), $.bg(), $.X(), $.at(), $.eW()], t.i)
         },
         gaS() {
-            return H.set_run_time_type_info([], t.V)
+            return H.b([], t.V)
         },
         gaG() {
-            return H.set_run_time_type_info([], t.V)
+            return H.b([], t.V)
         },
         ac() {
             var s, r
@@ -16143,11 +16141,11 @@
                 if (b4 === 1) return P.async_rethrow(b5, r)
                 while (true) switch (s) {
                     case 0:
-                        b3 = H.set_run_time_type_info([], t.V)
+                        b3 = H.b([], t.V)
                         for (o = p.x, n = o.length, m = t.eG, l = p.r, k = p.z, j = t.L, i = p.a, h = 0; h < o.length; o.length === n || (0, H.F)(o), ++h) {
                             g = o[h]
-                            f = H.set_run_time_type_info([], j)
-                            e = new T.b7(p, f, H.set_run_time_type_info([], j), H.set_run_time_type_info([], j), H.set_run_time_type_info([], j))
+                            f = H.b([], j)
+                            e = new T.b7(p, f, H.b([], j), H.b([], j), H.b([], j))
                             for (d = (g && C.a).ga0(g); d.u();) {
                                 c = d.gC()
                                 if (!(c instanceof T.u))
@@ -16206,7 +16204,7 @@
                         a7 = P.aa(o, true, H.be(o).i("L.E"))
                         C.a.aJ(a7)
                         if (b3.length !== 0) {
-                            a8 = H.set_run_time_type_info(a7.slice(0), H.a1(a7))
+                            a8 = H.b(a7.slice(0), H.a1(a7))
                             C.a.a5(a8, b3)
                             C.a.aJ(a8)
                         } else a8 = a7
@@ -16238,15 +16236,15 @@
                             e = i[h]
                             n = e.c
                             m = H.a1(n)
-                            k = H.set_run_time_type_info(n.slice(0), m)
+                            k = H.b(n.slice(0), m)
                             e.d = k
-                            n = H.set_run_time_type_info(n.slice(0), m)
+                            n = H.b(n.slice(0), m)
                             if (!!n.immutable$list) H.throw_expression(P.S("sort"))
                             m = n.length - 1
                             if (m - 0 <= 32) H.ej(n, 0, m, T.mD())
                             else H.ei(n, 0, m, T.mD())
                             e.e = n
-                            n = H.set_run_time_type_info(n.slice(0), H.a1(n))
+                            n = H.b(n.slice(0), H.a1(n))
                             e.f = n
                         }
                         o = l.gfP(l)
@@ -16258,7 +16256,7 @@
                                 a2 = o[h]
                                 a2.I = a2.gbT()
                             }
-                        o = H.set_run_time_type_info(i.slice(0), H.a1(i))
+                        o = H.b(i.slice(0), H.a1(i))
                         C.a.bb(o, T.v4())
                         p.d = o
                         for (n = o.length, m = t.i, l = p.e, h = 0; h < o.length; o.length === n || (0, H.F)(o), ++h) {
@@ -16269,7 +16267,7 @@
                                 f = a2.e
                                 i.bO(C.e.gaB().ab(f))
                             }
-                            p.b.bO(H.set_run_time_type_info([$.a()], m))
+                            p.b.bO(H.b([$.a()], m))
                             C.a.a5(l, b1.f)
                         }
                         for (o = p.c, n = o.length, h = 0; h < o.length; o.length === n || (0, H.F)(o), ++h) o[h].l = p.b.n()
@@ -16304,7 +16302,7 @@
             r.ch = p
             J.rz(o[p], r.b, b)
             for (q = t.Y; p = b.b, p.length !== 0;) {
-                b.b = H.set_run_time_type_info([], q)
+                b.b = H.b([], q)
                 for (o = p.length, s = 0; s < p.length; p.length === o || (0, H.F)(p), ++s) p[s].$2(r.b, b)
             }
         },
@@ -16323,7 +16321,7 @@
                             s = 1
                             break
                         }
-                        n = new T.aq(H.set_run_time_type_info([], t.U), H.set_run_time_type_info([], t.Y))
+                        n = new T.aq(H.b([], t.U), H.b([], t.Y))
                         k = o.cy
                         s = k != null ? 3 : 4
                         break
@@ -16694,7 +16692,7 @@
                 else r.push(j)
             }
             s = h.t
-            s = H.set_run_time_type_info(s.slice(0), H.a1(s))
+            s = H.b(s.slice(0), H.a1(s))
             h.E = s
             h.ac()
             h.k2 = h.X.dH(h.k1, t.c5)
@@ -17144,10 +17142,10 @@
         },
         dE() {
             var s, r, q, p, o = this,
-                n = H.set_run_time_type_info([], t.V)
+                n = H.b([], t.V)
             if (o instanceof T.cz) n = C.N
             else {
-                s = H.set_run_time_type_info([], t.i)
+                s = H.b([], t.i)
                 for (r = $.Z(); r < $.d1(); r += $.B()) {
                     q = C.a.al(o.E, r, r + $.B())
                     if (!!q.immutable$list) H.throw_expression(P.S("sort"))
@@ -17299,7 +17297,7 @@
         aa(a, b, c) {
             var s, r, q, p, o = this,
                 n = b ? o.gb8() : o.gb7(),
-                m = H.set_run_time_type_info([], t.L),
+                m = H.b([], t.L),
                 l = $.a(),
                 k = -n
             while (true) {
@@ -17318,7 +17316,7 @@
                 }
             }
             if (m.length === 0) return null
-            r = H.set_run_time_type_info([], t.F)
+            r = H.b([], t.F)
             for (q = m.length, p = 0; p < m.length; m.length === q || (0, H.F)(m), ++p) {
                 s = m[p]
                 r.push(new T.bG(s, o.a9(s, b, c)))
@@ -17613,7 +17611,7 @@
                 n = o.r2
                 r = t.Q.a(n.h(0, $.d6()))
                 if (r == null) {
-                    r = new T.dV(o, H.set_run_time_type_info([], t.gN))
+                    r = new T.dV(o, H.b([], t.gN))
                     n.m(0, $.d6(), r)
                     o.y1.j(0, r)
                 }
@@ -17844,8 +17842,8 @@
                 r = r.c
                 p = $.a()
                 o = $.T()
-                n = H.set_run_time_type_info([], t.q)
-                m = H.set_run_time_type_info([], t.H)
+                n = H.b([], t.q)
+                m = H.b([], t.H)
                 l = P.a0(t.X, t.W)
                 k = new Sgls.c(t.n)
                 k.c = k
@@ -17875,10 +17873,10 @@
                 c.c = c
                 c.b = c
                 b = t.i
-                a = H.set_run_time_type_info([], b)
-                a0 = H.set_run_time_type_info([], b)
-                a1 = H.set_run_time_type_info([], b)
-                b = H.set_run_time_type_info([], b)
+                a = H.b([], b)
+                a0 = H.b([], b)
+                a1 = H.b([], b)
+                b = H.b([], b)
                 a2 = $.a()
                 a3 = new T.fX(s, q, r, a5, p, o, n, m, l, k, j, i, h, g, f, e, d, c, a, a0, a1, b, a2, a2, a2, $.W(), a2)
                 a3.a1(s, q, r, a5)
@@ -17901,7 +17899,7 @@
                 b = new T.V(a2)
                 b.a = a3.e
                 b.d = a2
-                r.push(T.f(q, s, b, a6, H.set_run_time_type_info([a6], t.j), 0, 1000, 100))
+                r.push(T.f(q, s, b, a6, H.b([a6], t.j), 0, 1000, 100))
                 return true
             }
             return false
@@ -17954,7 +17952,7 @@
             this.r.G.j(0, this.fr)
         },
         aa(a, b, c) {
-            return H.set_run_time_type_info([], t.F)
+            return H.b([], t.F)
         },
         v(a, b, c, d) {
             var s, r, q, p = this
@@ -18204,7 +18202,7 @@
                 b.a.push($.K())
                 r = new T.ee(s, $.a())
                 r.ao(this.r, $.i())
-                r.v(H.set_run_time_type_info([], t.F), true, a, b)
+                r.v(H.b([], t.F), true, a, b)
             }
         }
     }
@@ -18214,7 +18212,7 @@
             return (a.n() & 63) + this.f > this.r.fr
         },
         aa(a, b, c) {
-            return H.set_run_time_type_info([], t.F)
+            return H.b([], t.F)
         },
         v(a, b, c, d) {
             var s, r, q, p, o = this,
@@ -18263,7 +18261,7 @@
             this.cN(a)
             s = $.p2()
             r = $.a()
-            this.r = H.set_run_time_type_info([s, r, s, r, r, r, r, r], t.i)
+            this.r = H.b([s, r, s, r, r, r, r, r], t.i)
         },
         b6() {
             var s = this.c,
@@ -18459,7 +18457,7 @@
         dH(a, b) {
             var s, r, q, p, o, n, m = a.length
             if (m <= 1) return a
-            s = H.set_run_time_type_info([], t.i)
+            s = H.b([], t.i)
             C.a.sp(s, m)
             for (r = 0; r < m; ++r) s[r] = r
             for (q = 0, r = 0; r < 2; ++r)
@@ -18951,12 +18949,12 @@
         C.G = new P.iq()
         C.I = new P.c1(0)
         C.L = new P.jJ(null)
-        C.M = H.set_run_time_type_info(make_const_list(["*::class", "*::dir", "*::draggable", "*::hidden", "*::id", "*::inert", "*::itemprop", "*::itemref", "*::itemscope", "*::lang", "*::spellcheck", "*::title", "*::translate", "A::accesskey", "A::coords", "A::hreflang", "A::name", "A::shape", "A::tabindex", "A::target", "A::type", "AREA::accesskey", "AREA::alt", "AREA::coords", "AREA::nohref", "AREA::shape", "AREA::tabindex", "AREA::target", "AUDIO::controls", "AUDIO::loop", "AUDIO::mediagroup", "AUDIO::muted", "AUDIO::preload", "BDO::dir", "BODY::alink", "BODY::bgcolor", "BODY::link", "BODY::text", "BODY::vlink", "BR::clear", "BUTTON::accesskey", "BUTTON::disabled", "BUTTON::name", "BUTTON::tabindex", "BUTTON::type", "BUTTON::value", "CANVAS::height", "CANVAS::width", "CAPTION::align", "COL::align", "COL::char", "COL::charoff", "COL::span", "COL::valign", "COL::width", "COLGROUP::align", "COLGROUP::char", "COLGROUP::charoff", "COLGROUP::span", "COLGROUP::valign", "COLGROUP::width", "COMMAND::checked", "COMMAND::command", "COMMAND::disabled", "COMMAND::label", "COMMAND::radiogroup", "COMMAND::type", "DATA::value", "DEL::datetime", "DETAILS::open", "DIR::compact", "DIV::align", "DL::compact", "FIELDSET::disabled", "FONT::color", "FONT::face", "FONT::size", "FORM::accept", "FORM::autocomplete", "FORM::enctype", "FORM::method", "FORM::name", "FORM::novalidate", "FORM::target", "FRAME::name", "H1::align", "H2::align", "H3::align", "H4::align", "H5::align", "H6::align", "HR::align", "HR::noshade", "HR::size", "HR::width", "HTML::version", "IFRAME::align", "IFRAME::frameborder", "IFRAME::height", "IFRAME::marginheight", "IFRAME::marginwidth", "IFRAME::width", "IMG::align", "IMG::alt", "IMG::border", "IMG::height", "IMG::hspace", "IMG::ismap", "IMG::name", "IMG::usemap", "IMG::vspace", "IMG::width", "INPUT::accept", "INPUT::accesskey", "INPUT::align", "INPUT::alt", "INPUT::autocomplete", "INPUT::autofocus", "INPUT::checked", "INPUT::disabled", "INPUT::inputmode", "INPUT::ismap", "INPUT::list", "INPUT::max", "INPUT::maxlength", "INPUT::min", "INPUT::multiple", "INPUT::name", "INPUT::placeholder", "INPUT::readonly", "INPUT::required", "INPUT::size", "INPUT::step", "INPUT::tabindex", "INPUT::type", "INPUT::usemap", "INPUT::value", "INS::datetime", "KEYGEN::disabled", "KEYGEN::keytype", "KEYGEN::name", "LABEL::accesskey", "LABEL::for", "LEGEND::accesskey", "LEGEND::align", "LI::type", "LI::value", "LINK::sizes", "MAP::name", "MENU::compact", "MENU::label", "MENU::type", "METER::high", "METER::low", "METER::max", "METER::min", "METER::value", "OBJECT::typemustmatch", "OL::compact", "OL::reversed", "OL::start", "OL::type", "OPTGROUP::disabled", "OPTGROUP::label", "OPTION::disabled", "OPTION::label", "OPTION::selected", "OPTION::value", "OUTPUT::for", "OUTPUT::name", "P::align", "PRE::width", "PROGRESS::max", "PROGRESS::min", "PROGRESS::value", "SELECT::autocomplete", "SELECT::disabled", "SELECT::multiple", "SELECT::name", "SELECT::required", "SELECT::size", "SELECT::tabindex", "SOURCE::type", "TABLE::align", "TABLE::bgcolor", "TABLE::border", "TABLE::cellpadding", "TABLE::cellspacing", "TABLE::frame", "TABLE::rules", "TABLE::summary", "TABLE::width", "TBODY::align", "TBODY::char", "TBODY::charoff", "TBODY::valign", "TD::abbr", "TD::align", "TD::axis", "TD::bgcolor", "TD::char", "TD::charoff", "TD::colspan", "TD::headers", "TD::height", "TD::nowrap", "TD::rowspan", "TD::scope", "TD::valign", "TD::width", "TEXTAREA::accesskey", "TEXTAREA::autocomplete", "TEXTAREA::cols", "TEXTAREA::disabled", "TEXTAREA::inputmode", "TEXTAREA::name", "TEXTAREA::placeholder", "TEXTAREA::readonly", "TEXTAREA::required", "TEXTAREA::rows", "TEXTAREA::tabindex", "TEXTAREA::wrap", "TFOOT::align", "TFOOT::char", "TFOOT::charoff", "TFOOT::valign", "TH::abbr", "TH::align", "TH::axis", "TH::bgcolor", "TH::char", "TH::charoff", "TH::colspan", "TH::headers", "TH::height", "TH::nowrap", "TH::rowspan", "TH::scope", "TH::valign", "TH::width", "THEAD::align", "THEAD::char", "THEAD::charoff", "THEAD::valign", "TR::align", "TR::bgcolor", "TR::char", "TR::charoff", "TR::valign", "TRACK::default", "TRACK::kind", "TRACK::label", "TRACK::srclang", "UL::compact", "UL::type", "VIDEO::controls", "VIDEO::height", "VIDEO::loop", "VIDEO::mediagroup", "VIDEO::muted", "VIDEO::preload", "VIDEO::width"]), t.V)
-        C.N = H.set_run_time_type_info(make_const_list(["", "", "", "", "", "", "", "", "", ""]), t.V)
-        C.O = H.set_run_time_type_info(make_const_list(["HEAD", "AREA", "BASE", "BASEFONT", "BR", "COL", "COLGROUP", "EMBED", "FRAME", "FRAMESET", "HR", "IMAGE", "IMG", "INPUT", "ISINDEX", "LINK", "META", "PARAM", "SOURCE", "STYLE", "TITLE", "WBR"]), t.V)
-        C.P = H.set_run_time_type_info(make_const_list([]), t.V)
-        C.r = H.set_run_time_type_info(make_const_list(["bind", "if", "ref", "repeat", "syntax"]), t.V)
-        C.l = H.set_run_time_type_info(make_const_list(["A::href", "AREA::href", "BLOCKQUOTE::cite", "BODY::background", "COMMAND::icon", "DEL::cite", "FORM::action", "IMG::src", "INPUT::src", "INS::cite", "Q::cite", "VIDEO::poster"]), t.V)
+        C.M = H.b(make_const_list(["*::class", "*::dir", "*::draggable", "*::hidden", "*::id", "*::inert", "*::itemprop", "*::itemref", "*::itemscope", "*::lang", "*::spellcheck", "*::title", "*::translate", "A::accesskey", "A::coords", "A::hreflang", "A::name", "A::shape", "A::tabindex", "A::target", "A::type", "AREA::accesskey", "AREA::alt", "AREA::coords", "AREA::nohref", "AREA::shape", "AREA::tabindex", "AREA::target", "AUDIO::controls", "AUDIO::loop", "AUDIO::mediagroup", "AUDIO::muted", "AUDIO::preload", "BDO::dir", "BODY::alink", "BODY::bgcolor", "BODY::link", "BODY::text", "BODY::vlink", "BR::clear", "BUTTON::accesskey", "BUTTON::disabled", "BUTTON::name", "BUTTON::tabindex", "BUTTON::type", "BUTTON::value", "CANVAS::height", "CANVAS::width", "CAPTION::align", "COL::align", "COL::char", "COL::charoff", "COL::span", "COL::valign", "COL::width", "COLGROUP::align", "COLGROUP::char", "COLGROUP::charoff", "COLGROUP::span", "COLGROUP::valign", "COLGROUP::width", "COMMAND::checked", "COMMAND::command", "COMMAND::disabled", "COMMAND::label", "COMMAND::radiogroup", "COMMAND::type", "DATA::value", "DEL::datetime", "DETAILS::open", "DIR::compact", "DIV::align", "DL::compact", "FIELDSET::disabled", "FONT::color", "FONT::face", "FONT::size", "FORM::accept", "FORM::autocomplete", "FORM::enctype", "FORM::method", "FORM::name", "FORM::novalidate", "FORM::target", "FRAME::name", "H1::align", "H2::align", "H3::align", "H4::align", "H5::align", "H6::align", "HR::align", "HR::noshade", "HR::size", "HR::width", "HTML::version", "IFRAME::align", "IFRAME::frameborder", "IFRAME::height", "IFRAME::marginheight", "IFRAME::marginwidth", "IFRAME::width", "IMG::align", "IMG::alt", "IMG::border", "IMG::height", "IMG::hspace", "IMG::ismap", "IMG::name", "IMG::usemap", "IMG::vspace", "IMG::width", "INPUT::accept", "INPUT::accesskey", "INPUT::align", "INPUT::alt", "INPUT::autocomplete", "INPUT::autofocus", "INPUT::checked", "INPUT::disabled", "INPUT::inputmode", "INPUT::ismap", "INPUT::list", "INPUT::max", "INPUT::maxlength", "INPUT::min", "INPUT::multiple", "INPUT::name", "INPUT::placeholder", "INPUT::readonly", "INPUT::required", "INPUT::size", "INPUT::step", "INPUT::tabindex", "INPUT::type", "INPUT::usemap", "INPUT::value", "INS::datetime", "KEYGEN::disabled", "KEYGEN::keytype", "KEYGEN::name", "LABEL::accesskey", "LABEL::for", "LEGEND::accesskey", "LEGEND::align", "LI::type", "LI::value", "LINK::sizes", "MAP::name", "MENU::compact", "MENU::label", "MENU::type", "METER::high", "METER::low", "METER::max", "METER::min", "METER::value", "OBJECT::typemustmatch", "OL::compact", "OL::reversed", "OL::start", "OL::type", "OPTGROUP::disabled", "OPTGROUP::label", "OPTION::disabled", "OPTION::label", "OPTION::selected", "OPTION::value", "OUTPUT::for", "OUTPUT::name", "P::align", "PRE::width", "PROGRESS::max", "PROGRESS::min", "PROGRESS::value", "SELECT::autocomplete", "SELECT::disabled", "SELECT::multiple", "SELECT::name", "SELECT::required", "SELECT::size", "SELECT::tabindex", "SOURCE::type", "TABLE::align", "TABLE::bgcolor", "TABLE::border", "TABLE::cellpadding", "TABLE::cellspacing", "TABLE::frame", "TABLE::rules", "TABLE::summary", "TABLE::width", "TBODY::align", "TBODY::char", "TBODY::charoff", "TBODY::valign", "TD::abbr", "TD::align", "TD::axis", "TD::bgcolor", "TD::char", "TD::charoff", "TD::colspan", "TD::headers", "TD::height", "TD::nowrap", "TD::rowspan", "TD::scope", "TD::valign", "TD::width", "TEXTAREA::accesskey", "TEXTAREA::autocomplete", "TEXTAREA::cols", "TEXTAREA::disabled", "TEXTAREA::inputmode", "TEXTAREA::name", "TEXTAREA::placeholder", "TEXTAREA::readonly", "TEXTAREA::required", "TEXTAREA::rows", "TEXTAREA::tabindex", "TEXTAREA::wrap", "TFOOT::align", "TFOOT::char", "TFOOT::charoff", "TFOOT::valign", "TH::abbr", "TH::align", "TH::axis", "TH::bgcolor", "TH::char", "TH::charoff", "TH::colspan", "TH::headers", "TH::height", "TH::nowrap", "TH::rowspan", "TH::scope", "TH::valign", "TH::width", "THEAD::align", "THEAD::char", "THEAD::charoff", "THEAD::valign", "TR::align", "TR::bgcolor", "TR::char", "TR::charoff", "TR::valign", "TRACK::default", "TRACK::kind", "TRACK::label", "TRACK::srclang", "UL::compact", "UL::type", "VIDEO::controls", "VIDEO::height", "VIDEO::loop", "VIDEO::mediagroup", "VIDEO::muted", "VIDEO::preload", "VIDEO::width"]), t.V)
+        C.N = H.b(make_const_list(["", "", "", "", "", "", "", "", "", ""]), t.V)
+        C.O = H.b(make_const_list(["HEAD", "AREA", "BASE", "BASEFONT", "BR", "COL", "COLGROUP", "EMBED", "FRAME", "FRAMESET", "HR", "IMAGE", "IMG", "INPUT", "ISINDEX", "LINK", "META", "PARAM", "SOURCE", "STYLE", "TITLE", "WBR"]), t.V)
+        C.P = H.b(make_const_list([]), t.V)
+        C.r = H.b(make_const_list(["bind", "if", "ref", "repeat", "syntax"]), t.V)
+        C.l = H.b(make_const_list(["A::href", "AREA::href", "BLOCKQUOTE::cite", "BODY::background", "COMMAND::icon", "DEL::cite", "FORM::action", "IMG::src", "INPUT::src", "INS::cite", "Q::cite", "VIDEO::poster"]), t.V)
         C.S = H.vp("N")
         C.T = new P.kk(false)
     })();
@@ -18976,7 +18974,7 @@
         $.eO = null
         $.ms = false
         $.P = C.f
-        $.ch = H.set_run_time_type_info([], H.find_type("E<H>"))
+        $.ch = H.b([], H.find_type("E<H>"))
         $.bA = null
         $.m4 = null
         $.nJ = null
@@ -18999,12 +18997,12 @@
         $.e_ = 0
         $.mf = function () {
             var s = t.i
-            return H.set_run_time_type_info([H.set_run_time_type_info([255, 255, 255], s), H.set_run_time_type_info([255, 255, 255], s), H.set_run_time_type_info([0, 0, 0], s), H.set_run_time_type_info([0, 180, 0], s), H.set_run_time_type_info([0, 255, 0], s), H.set_run_time_type_info([255, 0, 0], s), H.set_run_time_type_info([255, 192, 0], s), H.set_run_time_type_info([255, 255, 0], s), H.set_run_time_type_info([0, 224, 128], s), H.set_run_time_type_info([255, 0, 128], s), H.set_run_time_type_info([255, 108, 0], s), H.set_run_time_type_info([0, 108, 255], s), H.set_run_time_type_info([0, 192, 255], s), H.set_run_time_type_info([0, 255, 255], s), H.set_run_time_type_info([128, 120, 255], s), H.set_run_time_type_info([128, 224, 255], s), H.set_run_time_type_info([255, 0, 255], s), H.set_run_time_type_info([40, 40, 255], s), H.set_run_time_type_info([128, 0, 255], s), H.set_run_time_type_info([0, 144, 0], s), H.set_run_time_type_info([144, 0, 0], s)], t.f)
+            return H.b([H.b([255, 255, 255], s), H.b([255, 255, 255], s), H.b([0, 0, 0], s), H.b([0, 180, 0], s), H.b([0, 255, 0], s), H.b([255, 0, 0], s), H.b([255, 192, 0], s), H.b([255, 255, 0], s), H.b([0, 224, 128], s), H.b([255, 0, 128], s), H.b([255, 108, 0], s), H.b([0, 108, 255], s), H.b([0, 192, 255], s), H.b([0, 255, 255], s), H.b([128, 120, 255], s), H.b([128, 224, 255], s), H.b([255, 0, 255], s), H.b([40, 40, 255], s), H.b([128, 0, 255], s), H.b([0, 144, 0], s), H.b([144, 0, 0], s)], t.f)
         }()
         $.md = null
-        $.dZ = H.set_run_time_type_info([], t.f)
-        $.me = H.set_run_time_type_info([], t.f)
-        $.o5 = H.set_run_time_type_info([], t.f)
+        $.dZ = H.b([], t.f)
+        $.me = H.b([], t.f)
+        $.o5 = H.b([], t.f)
         $.od = function () {
             var s = t.X
             return P.cu(s, s)
@@ -19948,19 +19946,19 @@
             return $.a()
         })
         lazy_old($, "zH", "r1", function () {
-            return H.set_run_time_type_info([$.iL(), $.n8(), $.qk(), $.n6(), $.n9(), $.no(), $.nm(), $.nb(), $.qa(), $.nn(), $.qW(), $.np(), $.qi(), $.nj(), $.qr(), $.qs(), $.qU()], t.V)
+            return H.b([$.iL(), $.n8(), $.qk(), $.n6(), $.n9(), $.no(), $.nm(), $.nb(), $.qa(), $.nn(), $.qW(), $.np(), $.qi(), $.nj(), $.qr(), $.qs(), $.qU()], t.V)
         })
         lazy_old($, "zQ", "r5", function () {
             return $.pA()
         })
         lazy_old($, "zY", "r6", function () {
-            return C.a.f5(H.set_run_time_type_info(LangData.d("ezfN").split("[]"), t.s), new T.kb(), t.X).fL(0)
+            return C.a.f5(H.b(LangData.d("ezfN").split("[]"), t.s), new T.kb(), t.X).fL(0)
         })
         lazy_old($, "Ac", "rj", function () {
             return P.dD([LangData.j("e%XTi8O%`kSB", 94), new T.kq(), LangData.j("yz*^A*wx}^-:r`d", 95), new T.kr(), LangData.j("^dYkSp{^[&&o2d0:E2E", 59), new T.ks(), LangData.j("~47]&y= +_5ji7P", 85), new T.kt(), LangData.j("l+&iUIpO;.M(}FX", 23), new T.ku()], t.X, H.find_type("bL*(m*,u*)*"))
         })
         lazy_old($, "Ad", "rk", function () {
-            return H.set_run_time_type_info([$.iL(), $.n8(), $.n6(), $.n9(), $.no(), $.nm(), $.nb(), $.nn(), $.np(), $.nj(), $.qg(), $.qj(), $.qt(), $.qX(), $.qf(), $.qN(), $.qd(), $.qT(), $.qV(), $.ql(), $.qS(), $.qe()], t.V)
+            return H.b([$.iL(), $.n8(), $.n6(), $.n9(), $.no(), $.nm(), $.nb(), $.nn(), $.np(), $.nj(), $.qg(), $.qj(), $.qt(), $.qX(), $.qf(), $.qN(), $.qd(), $.qT(), $.qV(), $.ql(), $.qS(), $.qe()], t.V)
         })
         lazy_old($, "AA", "nx", function () {
             return new P.cK(null, null, null, H.find_type("cK<m*>"))
