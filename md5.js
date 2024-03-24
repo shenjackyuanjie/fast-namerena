@@ -1016,11 +1016,14 @@
                 }
                 throw H.throw_error(new P.kG("Unsupported number of arguments for wrapped closure"))
             },
+            // MARK: convert_dart_closure_to_js_md5
+            // convertDartClosureToJS
             cU(a, b) {
                 var s
                 if (a == null) return null
                 s = a.$identity
-                if (!!s) return s
+                // if (!!s) return s
+                if (s) return s
                 s = function (c, d, e) {
                     return function (f, g, h, i) {
                         return e(c, d, f, g, h, i)
@@ -11335,11 +11338,13 @@
         $io: 1
     }
     W.fn.prototype = {
-        eF(a, b, c, d) {
-            if (c != null) this.eb(a, b, c, false)
+        eF(receiver, type, listener, listener) {
+            if (listener != null) {
+                this.add_event_listener(receiver, type, listener, false)
+            }
         },
-        eb(a, b, c, d) {
-            return a.addEventListener(b, H.cU(c, 1), false)
+        add_event_listener(receiver, b, c, d) {
+            return receiver.addEventListener(b, H.cU(c, 1), false)
         }
     }
     W.cq.prototype = {
