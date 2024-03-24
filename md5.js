@@ -1024,9 +1024,9 @@
                 func = closure.$identity
                 // if (!!s) return s
                 if (func) return func
-                func = function (c, d, e) {
-                    return function (f, g, h, i) {
-                        return e(c, d, f, g, h, i)
+                func = function (closure_, arity_, invoker) {
+                    return function (arg1, arg2, arg3, arg4) {
+                        return invoker(closure_, arity_, arg1, arg2, arg3, arg4)
                     }
                 }(closure, arity, H.invokeClosure)
                 closure.$identity = func
@@ -11348,8 +11348,11 @@
         },
         add_event_listener(receiver, type, listener, options) {
             console.log("md5.js add event listener type:", type, "receiver:", receiver, "listener:", listener, options)
-            console.log("receiver == window", receiver == window)
-            return receiver.addEventListener(type, H.convert_dart_closure_to_js_md5(listener, 1), false)
+            // console.log("receiver == window", receiver == window)
+            var stack = new Error().stack
+            console.log(stack)
+            receiver.addEventListener(type, H.convert_dart_closure_to_js_md5(listener, 1), false)
+            // return receiver.addEventListener(type, listener, false)
         }
     }
     W.cq.prototype = {
