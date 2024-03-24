@@ -7625,8 +7625,11 @@
                 return s
             },
             es(a, b, c, d) {
+                // 设置 event listener
                 var s = W.uJ(new W.kF(c), t.aD)
-                if (s != null) J.rs(a, b, s, false)
+                if (s != null) {
+                    J.rs(a, b, s, false)
+                }
                 return new W.ia(a, b, s, false)
             },
             oc(a) {
@@ -8161,7 +8164,10 @@
                 _.f = _.e = false
                 _.r = 3
                 _.x = d
-                _.y = 2
+                // _.y = 2
+                // 既然加速之后就直接 2000
+                // 直接初始化为 2000 如何
+                _.y = 2000
                 _.Q = _.z = null
                 _.ch = 0
                 _.cx = null
@@ -12857,15 +12863,16 @@
                 q = q.gbu(q)
                 r.appendChild(document.createTextNode(q))
             }
+            // 添加 event listener
             W.es(window, "message", p.gfb(p), false)
         },
-        fc(a, b) {
-            var s = b.data,
+        fc(func_self, event) {
+            var s = event.data,
                 r = new P.kx([], [])
             r.c = true
             // if (J.Y(r.aO(s), $.iK())) {
             // if (r.aO(s) === $.iK()) {
-            console.log("fq.fc", a, b, r.aO(s))
+            console.log("fq.fc", func_self, event, r.aO(s))
             if (r.aO(s) === "??") {
                 this.y = 2000
             }
@@ -12890,14 +12897,14 @@
             this.c.ae(0, this.x)
         },
         fe(a0) {
-            var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a = this
+            var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, this_ = this
             if (a0.length < 6) return
             s = X.f4(a0, 0)
             r = C.a.al(s, 0, s.length - 8)
             q = H.a1(r).i("a9<1>")
             p = q.i("y<M.E,l*>")
             o = t.bQ
-            n = P.aa(new H.y(H.b(C.e.bt(0, P.aa(new H.y(new H.a9(r, q), new HtmlRenderer.jx(a), p), true, p.i("M.E"))).split("\n"), t.s), new HtmlRenderer.jy(), o), true, o.i("M.E"))
+            n = P.aa(new H.y(H.b(C.e.bt(0, P.aa(new H.y(new H.a9(r, q), new HtmlRenderer.jx(this_), p), true, p.i("M.E"))).split("\n"), t.s), new HtmlRenderer.jy(), o), true, o.i("M.E"))
             r = n.length
             if (r > 1) {
                 // if (!J.Y(J.J(J.J(n[0], 0), 0), "")) {
@@ -12905,20 +12912,20 @@
                     for (m = 0; m < n.length; n.length === r || (0, H.F)(n), ++m) {
                         l = n[m]
                         q = J.a3(l)
-                        if (q.gp(l) > 1) a.e = true
+                        if (q.gp(l) > 1) this_.e = true
                         for (q = q.ga0(l); q.u();)
-                            if (J.aw(q.gC()) > 7) a.f = true
+                            if (J.aw(q.gC()) > 7) this_.f = true
                     }
                     k = H.b([], t.t)
-                    for (r = n.length, q = a.a, p = a.b, m = 0; m < n.length; n.length === r || (0, H.F)(n), ++m) {
+                    for (r = n.length, q = this_.a, p = this_.b, m = 0; m < n.length; n.length === r || (0, H.F)(n), ++m) {
                         l = n[m]
                         o = J.a3(l)
                         if (o.gp(l) === 1 && J.aw(o.h(l, 0)) < 3) {
                             if (J.aw(o.h(l, 0)) > 1) k.push(o.h(l, 0))
                             continue
                         }
-                        o = a.e
-                        j = a.f
+                        o = this_.e
+                        j = this_.f
                         i = document.createElement("div")
                         i.classList.add("plrg_list")
                         h = new HtmlRenderer.jT(i)
@@ -12935,20 +12942,21 @@
                         p.appendChild(f)
                     }
                 }
-                r = a.b
+                r = this_.b
                 q = document
                 r.appendChild(q.createElement("hr"))
                 r.appendChild(q.createElement("br"))
                 q = $.ay
-                q = a.y = q.gp(q)
-                r = q > 10 ? a.y = 10 : q
-                r += a.r
-                a.y = r
-                if (r > 2000) a.y = 2000
-                if (a.Q != null) return
-                a.b4()
-                a.z = n
+                q = this_.y = q.gp(q)
+                r = q > 10 ? this_.y = 10 : q
+                r += this_.r
+                this_.y = r
+                if (r > 2000) this_.y = 2000
+                if (this_.Q != null) return
+                this_.b4()
+                this_.z = n
                 for (r = n.length, m = 0; m < n.length; n.length === r || (0, H.F)(n), ++m)
+                // for (r = n.length, m = 0; m < n.length; n.length === plrlen || (0, H.F)(n), ++m)
                     for (q = J.by(n[m]); q.u();) J.ry(q.gC(), 4)
             } else {
                 e = n[0]
