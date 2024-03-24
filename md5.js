@@ -1,3 +1,5 @@
+let why_ns = 0;
+
 (function dartProgram() {
     function copyProperties(a, b) {
         var s = Object.keys(a)
@@ -16366,7 +16368,7 @@
                         this_.cx = true
                         async_goto = 5
                         // return P._asyncAwait(this_.bE(), $async$O)
-                        $.mc = 0 // 来自bE
+                        $.mc = 0 // 来自bE()
                     case 5:
                         result_ = n
                         async_goto = 1
@@ -16494,7 +16496,8 @@
             var s, r, q = this,
                 p = q.a
             if (!C.a.w(p.c, a)) {
-                $.mc = $.ns() - 1
+                // $.mc = $.ns() - 1
+                why_ns -= 1
                 C.a.j(p.c, a)
             }
             s = p.e
@@ -16704,8 +16707,11 @@
             r = new LangData.b9()
             r.bd(LangData.fZ(h.b), $.i())
             h.X = r
-            q = $.ns()
-            $.mc = q + 1
+            // q = $.ns()
+            // $.mc = q + 1
+            q = why_ns
+            why_ns += 1
+            
             q = C.JsInt.P(Math.abs(q), $.bx())
             n = $.a()
             if (q > n) {
@@ -19970,7 +19976,8 @@
             return P.o_()
         })
         lazy_old($, "mc", "ns", function () {
-            return $.a()
+            // return $.a()
+            return 0
         })
         lazy_old($, "ta", "r2", function () {
             return $.mb + $.d_()
