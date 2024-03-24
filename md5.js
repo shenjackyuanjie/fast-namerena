@@ -1896,7 +1896,7 @@
                 var s, r, q, p = this,
                     o = t.K
                 if (p === o) return H.cQ(p, a, H.uq)
-                if (!H.bw(p))
+                if (!H.isStrongTopType(p))
                     if (!(p === t.c)) o = p === o
                 else o = true
                 else o = true
@@ -1924,7 +1924,7 @@
             },
             uk(a) {
                 var s, r, q = this
-                if (!H.bw(q))
+                if (!H.isStrongTopType(q))
                     if (!(q === t.c)) s = q === t.K
                 else s = true
                 else s = true
@@ -1936,7 +1936,7 @@
             },
             ln(a) {
                 var s, r = a.y
-                if (!H.bw(a))
+                if (!H.isStrongTopType(a))
                     if (!(a === t.c))
                         if (!(a === t.aw))
                             if (r !== 7) s = r === 8 && H.ln(a.z) || a === t.P || a === t.T
@@ -2271,7 +2271,7 @@
                 var s, r, q
                 if (d) {
                     s = b.y
-                    if (!H.bw(b)) r = b === t.P || b === t.T || s === 7 || s === 6
+                    if (!H.isStrongTopType(b)) r = b === t.P || b === t.T || s === 7 || s === 6
                     else r = true
                     if (r) return b
                 }
@@ -2293,7 +2293,7 @@
                 var s, r, q, p
                 if (d) {
                     s = b.y
-                    if (!H.bw(b))
+                    if (!H.isStrongTopType(b))
                         if (!(b === t.P || b === t.T))
                             if (s !== 7) r = s === 8 && H.lz(b.z)
                     else r = true
@@ -2325,7 +2325,7 @@
                 var s, r, q
                 if (d) {
                     s = b.y
-                    if (!H.bw(b))
+                    if (!H.isStrongTopType(b))
                         if (!(b === t.c)) r = b === t.K
                     else r = true
                     else r = true
@@ -2687,14 +2687,14 @@
             _isSubtype(a, b, c, d, e) {
                 var s, r, q, p, o, n, m, l, k, j
                 if (b === d) return true
-                if (!H.bw(d))
+                if (!H.isStrongTopType(d))
                     if (!(d === t.c)) s = d === t.K
                 else s = true
                 else s = true
                 if (s) return true
                 r = b.y
                 if (r === 4) return true
-                if (H.bw(b)) return false
+                if (H.isStrongTopType(b)) return false
                 if (b.y !== 1) s = b === t.P || b === t.T
                 else s = true
                 if (s) return true
@@ -2740,20 +2740,20 @@
                         j = n[l]
                         if (!H._isSubtype(a, k, c, j, e) || !H._isSubtype(a, j, e, k, c)) return false
                     }
-                    return H.or(a, b.z, c, d.z, e)
+                    return H._isFunctionSubtype(a, b.z, c, d.z, e)
                 }
                 if (p === 11) {
                     if (b === t.O) return true
                     if (s) return false
-                    return H.or(a, b, c, d, e)
+                    return H._isFunctionSubtype(a, b, c, d, e)
                 }
                 if (r === 9) {
                     if (p !== 9) return false
-                    return H.un(a, b, c, d, e)
+                    return H._isFunctionSubtype(a, b, c, d, e)
                 }
                 return false
             },
-            or(a2, a3, a4, a5, a6) {
+            _isFunctionSubtype(a2, a3, a4, a5, a6) {
                 var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1
                 if (!H._isSubtype(a2, a3.z, a4, a5.z, a6)) return false
                 s = a3.Q
@@ -2800,7 +2800,7 @@
                 }
                 return true
             },
-            un(a, b, c, d, e) {
+            _isFunctionSubtype(a, b, c, d, e) {
                 var s, r, q, p, o, n, m, l = b.z,
                     k = d.z
                 for (; l !== k;) {
@@ -2833,7 +2833,7 @@
             lz(a) {
                 var s, r = a.y
                 if (!(a === t.P || a === t.T))
-                    if (!H.bw(a))
+                    if (!H.isStrongTopType(a))
                         if (r !== 7)
                             if (!(r === 6 && H.lz(a.z))) s = r === 8 && H.lz(a.z)
                 else s = true
@@ -2844,13 +2844,13 @@
             },
             v0(a) {
                 var s
-                if (!H.bw(a))
+                if (!H.isStrongTopType(a))
                     if (!(a === t.c)) s = a === t.K
                 else s = true
                 else s = true
                 return s
             },
-            bw(a) {
+            isStrongTopType(a) {
                 var s = a.y
                 return s === 2 || s === 3 || s === 4 || s === 5 || a === t.cK
             },
