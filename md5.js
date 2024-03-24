@@ -224,7 +224,7 @@
                 s.setItem(r, a)
                 s = $.nx()
                 r = s.b
-                if (r >= 4) H.G(s.ee())
+                if (r >= 4) H.throw_expression(s.ee())
                 if ((r & 1) !== 0) s.cc(a)
                 else if ((r & 3) === 0) s.en().j(0, new P.er(a))
             },
@@ -398,7 +398,7 @@
         H = {
             m8: function m8() {},
             ls(a, b, c) {
-                if (a == null) throw H.throw_error(new H.dO(b, c.i("dO<0>")))
+                if (a == null) throw H.wrap_expression(new H.dO(b, c.i("dO<0>")))
                 return a
             },
             t5(a, b, c, d) {
@@ -694,7 +694,7 @@
                 else if (false === a) return "false"
                 else if (a == null) return "null"
                 s = J.b4(a)
-                if (typeof s != "string") throw H.throw_error(H.R(a))
+                if (typeof s != "string") throw H.wrap_expression(H.R(a))
                 return s
             },
             dU(a) {
@@ -707,7 +707,7 @@
             },
             tk(a, b) {
                 var s, r
-                if (typeof a != "string") H.G(H.R(a))
+                if (typeof a != "string") H.throw_expression(H.R(a))
                 s = /^\s*[+-]?((0x[a-f0-9]+)|(\d+)|([a-z0-9]+))\s*$/i.exec(a)
                 if (s == null) return null
                 r = s[3]
@@ -749,12 +749,12 @@
                 var s, r, q, p = H.b([], t.dC)
                 for (s = a.length, r = 0; r < a.length; a.length === s || (0, H.F)(a), ++r) {
                     q = a[r]
-                    if (!H.aP(q)) throw H.throw_error(H.R(q))
+                    if (!H.aP(q)) throw H.wrap_expression(H.R(q))
                     if (q <= 65535) p.push(q)
                     else if (q <= 1114111) {
                         p.push(55296 + (C.c.am(q - 65536, 10) & 1023))
                         p.push(56320 + (q & 1023))
-                    } else throw H.throw_error(H.R(q))
+                    } else throw H.wrap_expression(H.R(q))
                 }
                 return H.nY(p)
             },
@@ -762,8 +762,8 @@
                 var s, r, q
                 for (s = a.length, r = 0; r < s; ++r) {
                     q = a[r]
-                    if (!H.aP(q)) throw H.throw_error(H.R(q))
-                    if (q < 0) throw H.throw_error(H.R(q))
+                    if (!H.aP(q)) throw H.wrap_expression(H.R(q))
+                    if (q < 0) throw H.wrap_expression(H.R(q))
                     if (q > 65535) return H.tl(a)
                 }
                 return H.nY(a)
@@ -785,7 +785,7 @@
                     s = a - 65536
                     return String.fromCharCode((C.c.am(s, 10) | 55296) >>> 0, s & 1023 | 56320)
                 }
-                throw H.throw_error(P.a8(a, 0, 1114111, null, null))
+                throw H.wrap_expression(P.a8(a, 0, 1114111, null, null))
             },
             aG(a) {
                 if (a.date === void 0) a.date = new Date(a.a)
@@ -829,10 +829,10 @@
                 return new P.aS(true, a, null, null)
             },
             ar(a) {
-                if (typeof a != "number") throw H.throw_error(H.R(a))
+                if (typeof a != "number") throw H.wrap_expression(H.R(a))
                 return a
             },
-            throw_error(a) {
+            wrap_expression(a) {
                 var s, r
                 if (a == null) a = new P.fL()
                 s = new Error()
@@ -849,11 +849,11 @@
             vn() {
                 return J.b4(this.dartException)
             },
-            G(a) {
-                throw H.throw_error(a)
+            throw_expression(a) {
+                throw H.wrap_expression(a)
             },
             F(a) {
-                throw H.throw_error(P.aK(a))
+                throw H.wrap_expression(P.aK(a))
             },
             br(a) {
                 var s, r, q, p, o, n
@@ -1014,7 +1014,7 @@
                     case 4:
                         return closure.$4(arg1, arg2, arg3, arg4)
                 }
-                throw H.throw_error(new P.kG("Unsupported number of arguments for wrapped closure"))
+                throw H.wrap_expression(new P.kG("Unsupported number of arguments for wrapped closure"))
             },
             // MARK: convert_dart_closure_to_js_md5
             // convertDartClosureToJS
@@ -1090,14 +1090,14 @@
             rH(a, b, c) {
                 if (typeof a == "number") return a
                 if (typeof a == "string") {
-                    if (b) throw H.throw_error("Cannot compute signature for static tearoff.")
+                    if (b) throw H.wrap_expression("Cannot compute signature for static tearoff.")
                     return function (d, e) {
                         return function () {
                             return e(this, d)
                         }
                     }(a, H.rF)
                 }
-                throw H.throw_error("Error in functionType of tearoff")
+                throw H.wrap_expression("Error in functionType of tearoff")
             },
             rI(a, b, c, d) {
                 var s = H.nF
@@ -1173,7 +1173,7 @@
                     r = H.rG
                 switch (b ? -1 : a) {
                     case 0:
-                        throw H.throw_error(new H.h3("Intercepted function with no arguments."))
+                        throw H.wrap_expression(new H.h3("Intercepted function with no arguments."))
                     case 1:
                         return function (e, f, g) {
                             return function () {
@@ -1259,10 +1259,10 @@
                     q = o[r]
                     if (p[q] === a) return q
                 }
-                throw H.throw_error(P.bz("Field name " + a + " not found.", null))
+                throw H.wrap_expression(P.bz("Field name " + a + " not found.", null))
             },
             vl(a) {
-                throw H.throw_error(new P.fj(a))
+                throw H.wrap_expression(new P.fj(a))
             },
             uT(a) {
                 return init.getIsolateTag(a)
@@ -1338,7 +1338,7 @@
                     return o.i
                 }
                 if (p === "+") return H.oK(a, s)
-                if (p === "*") throw H.throw_error(P.hT(n))
+                if (p === "*") throw H.wrap_expression(P.hT(n))
                 if (init.leafTags[n] === true) {
                     o = H.lB(s)
                     Object.defineProperty(Object.getPrototypeOf(a), init.dispatchPropertyName, {
@@ -1439,7 +1439,7 @@
                         }
                     }(a, s + r + q + p + o)
                 if (n instanceof RegExp) return n
-                throw H.throw_error(P.jn("Illegal RegExp pattern (" + String(n) + ")", a, null))
+                throw H.wrap_expression(P.jn("Illegal RegExp pattern (" + String(n) + ")", a, null))
             },
             iF(a, b, c) {
                 var s
@@ -1486,7 +1486,7 @@
             oO(a, b, c, d) {
                 var s, r, q, p
                 if (typeof b == "string") return H.vi(a, b, c, H.uv())
-                if (!t.eh.b(b)) throw H.throw_error(P.da(b, "pattern", "is not a Pattern"))
+                if (!t.eh.b(b)) throw H.wrap_expression(P.da(b, "pattern", "is not a Pattern"))
                 for (s = J.lU(b, a), s = s.ga0(s), r = 0, q = ""; s.u();) {
                     p = s.gC()
                     q = q + H.e(H.mv(C.b.af(a, r, p.gbc(p)))) + H.e(c.$1(p))
@@ -1533,7 +1533,7 @@
                     return H.mG(a, s, s + b.length, c)
                 }
                 if (b instanceof H.ct) return d === 0 ? a.replace(b.b, H.oz(c)) : H.vk(a, b, c, d)
-                if (b == null) H.G(H.R(b))
+                if (b == null) H.throw_expression(H.R(b))
                 r = J.rt(b, a, d)
                 q = r.ga0(r)
                 if (!q.u()) return a
@@ -1665,7 +1665,7 @@
                 _.d = null
             },
             mq(a, b, c) {
-                if (!H.aP(b)) throw H.throw_error(P.bz("Invalid view offsetInBytes " + H.e(b), null))
+                if (!H.aP(b)) throw H.wrap_expression(P.bz("Invalid view offsetInBytes " + H.e(b), null))
             },
             on(a) {
                 return a
@@ -1677,13 +1677,13 @@
                 return s
             },
             bt(a, b, c) {
-                if (a >>> 0 !== a || a >= c) throw H.throw_error(H.bQ(b, a))
+                if (a >>> 0 !== a || a >= c) throw H.wrap_expression(H.bQ(b, a))
             },
             ug(a, b, c) {
                 var s
                 if (!(a >>> 0 !== a)) s = b >>> 0 !== b || a > b || b > c
                 else s = true
-                if (s) throw H.throw_error(H.uP(a, b, c))
+                if (s) throw H.wrap_expression(H.uP(a, b, c))
                 return b
             },
             dJ: function dJ() {},
@@ -1779,7 +1779,7 @@
                         if (d == null) return b
                         return d
                     default:
-                        throw H.throw_error(P.iP("Attempted to substitute unexpected RTI kind " + c))
+                        throw H.wrap_expression(P.iP("Attempted to substitute unexpected RTI kind " + c))
                 }
             },
             eP(a, b, c, d) {
@@ -1987,7 +1987,7 @@
                 H.oo(a, s)
             },
             oo(a, b) {
-                throw H.throw_error(H.u_(H.ob(a, H.oE(a, b), H.aH(b, null))))
+                throw H.wrap_expression(H.u_(H.ob(a, H.oE(a, b), H.aH(b, null))))
             },
             ob(a, b, c) {
                 var s = P.jh(a),
@@ -2018,84 +2018,84 @@
             Ag(a) {
                 if (true === a) return true
                 if (false === a) return false
-                throw H.throw_error(H.aC(a, "bool"))
+                throw H.wrap_expression(H.aC(a, "bool"))
             },
             Ai(a) {
                 if (true === a) return true
                 if (false === a) return false
                 if (a == null) return a
-                throw H.throw_error(H.aC(a, "bool"))
+                throw H.wrap_expression(H.aC(a, "bool"))
             },
             Ah(a) {
                 if (true === a) return true
                 if (false === a) return false
                 if (a == null) return a
-                throw H.throw_error(H.aC(a, "bool?"))
+                throw H.wrap_expression(H.aC(a, "bool?"))
             },
             Aj(a) {
                 if (typeof a == "number") return a
-                throw H.throw_error(H.aC(a, "double"))
+                throw H.wrap_expression(H.aC(a, "double"))
             },
             Al(a) {
                 if (typeof a == "number") return a
                 if (a == null) return a
-                throw H.throw_error(H.aC(a, "double"))
+                throw H.wrap_expression(H.aC(a, "double"))
             },
             Ak(a) {
                 if (typeof a == "number") return a
                 if (a == null) return a
-                throw H.throw_error(H.aC(a, "double?"))
+                throw H.wrap_expression(H.aC(a, "double?"))
             },
             aP(a) {
                 return typeof a == "number" && Math.floor(a) === a
             },
             Am(a) {
                 if (typeof a == "number" && Math.floor(a) === a) return a
-                throw H.throw_error(H.aC(a, "int"))
+                throw H.wrap_expression(H.aC(a, "int"))
             },
             Ao(a) {
                 if (typeof a == "number" && Math.floor(a) === a) return a
                 if (a == null) return a
-                throw H.throw_error(H.aC(a, "int"))
+                throw H.wrap_expression(H.aC(a, "int"))
             },
             An(a) {
                 if (typeof a == "number" && Math.floor(a) === a) return a
                 if (a == null) return a
-                throw H.throw_error(H.aC(a, "int?"))
+                throw H.wrap_expression(H.aC(a, "int?"))
             },
             up(a) {
                 return typeof a == "number"
             },
             Ap(a) {
                 if (typeof a == "number") return a
-                throw H.throw_error(H.aC(a, "num"))
+                throw H.wrap_expression(H.aC(a, "num"))
             },
             Ar(a) {
                 if (typeof a == "number") return a
                 if (a == null) return a
-                throw H.throw_error(H.aC(a, "num"))
+                throw H.wrap_expression(H.aC(a, "num"))
             },
             Aq(a) {
                 if (typeof a == "number") return a
                 if (a == null) return a
-                throw H.throw_error(H.aC(a, "num?"))
+                throw H.wrap_expression(H.aC(a, "num?"))
             },
             ur(a) {
                 return typeof a == "string"
             },
             As(a) {
                 if (typeof a == "string") return a
-                throw H.throw_error(H.aC(a, "String"))
+                throw H.wrap_expression(H.aC(a, "String"))
             },
             lg(a) {
                 if (typeof a == "string") return a
                 if (a == null) return a
-                throw H.throw_error(H.aC(a, "String"))
+                throw H.wrap_expression(H.aC(a, "String"))
             },
             At(a) {
                 if (typeof a == "string") return a
                 if (a == null) return a
-                throw H.throw_error(H.aC(a, "String?"))
+                throw H.wrap_expression(H.aC(a, "String?"))
             },
             uB(a, b) {
                 var s, r, q
@@ -2641,7 +2641,7 @@
                     o = a.e
                     if (o.y === 10) o = o.z
                     n = H.ua(s, o.z)[p]
-                    if (n == null) H.G('No "' + p + '" in "' + H.tq(o) + '"')
+                    if (n == null) H.throw_expression('No "' + p + '" in "' + H.tq(o) + '"')
                     d.push(H._Universe_evalInEnvironment(s, o, n))
                 } else d.push(p)
                 return m
@@ -2656,7 +2656,7 @@
                     stack.push(H._Universe__lookupTerminalRti(a.u, 4, "1&"))
                     return
                 }
-                throw H.throw_error(P.iP("Unexpected extended operation " + H.e(s)))
+                throw H.wrap_expression(P.iP("Unexpected extended operation " + H.e(s)))
             },
             _Parser_toType(a, b, c) {
                 if (typeof c == "string") return H._Universe__lookupInterfaceRti(a, c, a.sEA)
@@ -2682,10 +2682,10 @@
                     b = b.z
                     q = b.y
                 } else if (c === 0) return b
-                if (q !== 9) throw H.throw_error(P.iP("Indexed base must be an interface type"))
+                if (q !== 9) throw H.wrap_expression(P.iP("Indexed base must be an interface type"))
                 s = b.Q
                 if (c <= s.length) return s[c - 1]
-                throw H.throw_error(P.iP("Bad index " + c + " for " + b.k(0)))
+                throw H.wrap_expression(P.iP("Bad index " + c + " for " + b.k(0)))
             },
             _isSubtype(a, b, c, d, e) {
                 var s, r, q, p, o, n, m, l, k, j
@@ -2903,7 +2903,7 @@
                 throw "Unable to print message: " + String(a)
             },
             vm(a) {
-                return H.G(new H.fz("Field '" + H.e(a) + "' has been assigned during initialization."))
+                return H.throw_expression(new H.fz("Field '" + H.e(a) + "' has been assigned during initialization."))
             }
         },
         J = {
@@ -2927,7 +2927,7 @@
                     if (true === s) return a
                     r = Object.getPrototypeOf(a)
                     if (s === r) return n.i
-                    if (n.e === r) throw H.throw_error(P.hT("Return interceptor for " + H.e(s(a, n))))
+                    if (n.e === r) throw H.wrap_expression(P.hT("Return interceptor for " + H.e(s(a, n))))
                 }
                 q = a.constructor
                 if (q == null) p = null
@@ -2957,12 +2957,12 @@
                 return C.m
             },
             rZ(a, b) {
-                if (!H.aP(a)) throw H.throw_error(P.da(a, "length", "is not an integer"))
-                if (a < 0 || a > 4294967295) throw H.throw_error(P.a8(a, 0, 4294967295, "length", null))
+                if (!H.aP(a)) throw H.wrap_expression(P.da(a, "length", "is not an integer"))
+                if (a < 0 || a > 4294967295) throw H.wrap_expression(P.a8(a, 0, 4294967295, "length", null))
                 return J.t0(new Array(a), b)
             },
             t_(a, b) {
-                if (!H.aP(a) || a < 0) throw H.throw_error(P.bz("Length must be a non-negative integer: " + H.e(a), null))
+                if (!H.aP(a) || a < 0) throw H.wrap_expression(P.bz("Length must be a non-negative integer: " + H.e(a), null))
                 return H.b(new Array(a), b.i("E<0>"))
             },
             t0(a, b) {
@@ -3534,7 +3534,7 @@
             uz(a, b) {
                 if (t.C.b(a)) return b.ct(a)
                 if (t.J.b(a)) return a
-                throw H.throw_error(P.da(a, "onError", u.c))
+                throw H.wrap_expression(P.da(a, "onError", u.c))
             },
             uw() {
                 var s, r
@@ -3603,7 +3603,7 @@
                 if (b == null) b = P.uN()
                 if (t.da.b(b)) return a.ct(b)
                 if (t.aX.b(b)) return b
-                throw H.throw_error(P.bz("handleError callback must take either an Object (the error), or both an Object (the error) and a StackTrace.", null))
+                throw H.wrap_expression(P.bz("handleError callback must take either an Object (the error), or both an Object (the error) and a StackTrace.", null))
             },
             ux(a, b) {
                 P.iC(a, b)
@@ -4017,7 +4017,7 @@
                 } catch (r) {
                     s = H.a5(r)
                     q = P.jn(String(s), null, null)
-                    throw H.throw_error(q)
+                    throw H.wrap_expression(q)
                 }
                 q = P.lk(p)
                 return q
@@ -4124,7 +4124,7 @@
             oF(a) {
                 var s = H.tk(a, null)
                 if (s != null) return s
-                throw H.throw_error(P.jn(a, null, null))
+                throw H.wrap_expression(P.jn(a, null, null))
             },
             rQ(a) {
                 if (a instanceof H.c_) return a.k(0)
@@ -4160,18 +4160,18 @@
             },
             tK(a, b, c) {
                 var s, r, q, p, o = null
-                if (b < 0) throw H.throw_error(P.a8(b, 0, a.length, o, o))
+                if (b < 0) throw H.wrap_expression(P.a8(b, 0, a.length, o, o))
                 s = c == null
-                if (!s && c < b) throw H.throw_error(P.a8(c, b, a.length, o, o))
+                if (!s && c < b) throw H.wrap_expression(P.a8(c, b, a.length, o, o))
                 r = J.by(a)
                 for (q = 0; q < b; ++q)
-                    if (!r.u()) throw H.throw_error(P.a8(b, 0, q, o, o))
+                    if (!r.u()) throw H.wrap_expression(P.a8(b, 0, q, o, o))
                 p = []
                 if (s)
                     for (; r.u();) p.push(r.gC())
                 else
                     for (q = b; q < c; ++q) {
-                        if (!r.u()) throw H.throw_error(P.a8(c, b, q, o, o))
+                        if (!r.u()) throw H.wrap_expression(P.a8(c, b, q, o, o))
                         p.push(r.gC())
                     }
                 return H.nZ(p)
@@ -4236,19 +4236,19 @@
                 return new P.cD(b, c, true, a, d, "Invalid value")
             },
             tp(a, b, c, d) {
-                if (a < b || a > c) throw H.throw_error(P.a8(a, b, c, d, null))
+                if (a < b || a > c) throw H.wrap_expression(P.a8(a, b, c, d, null))
                 return a
             },
             cE(a, b, c) {
-                if (0 > a || a > c) throw H.throw_error(P.a8(a, 0, c, "start", null))
+                if (0 > a || a > c) throw H.wrap_expression(P.a8(a, 0, c, "start", null))
                 if (b != null) {
-                    if (a > b || b > c) throw H.throw_error(P.a8(b, a, c, "end", null))
+                    if (a > b || b > c) throw H.wrap_expression(P.a8(b, a, c, "end", null))
                     return b
                 }
                 return c
             },
             to(a, b) {
-                if (a < 0) throw H.throw_error(P.a8(a, 0, null, b, null))
+                if (a < 0) throw H.wrap_expression(P.a8(a, 0, null, b, null))
                 return a
             },
             ft(a, b, c, d, e) {
@@ -5688,7 +5688,7 @@
                     }
                     l = $.lO()
                     m.toString
-                    if (l == null) H.G(H.R(l))
+                    if (l == null) H.throw_expression(H.R(l))
                     if (H.iF(m, l, 0)) {
                         k = C.b.aT(m, $.lO())
                         j = C.b.dF(C.b.ay(m, k + $.i()))
@@ -5697,7 +5697,7 @@
                         m = H.iG(l, i, "", 0)
                     } else j = e
                     l = $.n3()
-                    if (l == null) H.G(H.R(l))
+                    if (l == null) H.throw_expression(H.R(l))
                     if (H.iF(m, l, 0)) {
                         h = C.b.cK(m, $.n3())
                         if (J.m1(h[$.a()], " ")) {
@@ -5708,10 +5708,10 @@
                             l = h[$.i()]
                             i = $.n5()
                             l.toString
-                            if (i == null) H.G(H.R(i))
+                            if (i == null) H.throw_expression(H.R(i))
                             g = J.a3(l)
                             f = g.gp(l)
-                            if (0 > f) H.G(P.a8(0, 0, g.gp(l), e, e))
+                            if (0 > f) H.throw_expression(P.a8(0, 0, g.gp(l), e, e))
                             l = H.iF(l, i, 0)
                         } else l = true
                         if (l) o.push(H.b([h[$.a()], null, j], r))
@@ -5720,7 +5720,7 @@
                     else {
                         if (s + $.i() < b.length) {
                             l = $.n5()
-                            if (l == null) H.G(H.R(l))
+                            if (l == null) H.throw_expression(H.R(l))
                             l = !H.iF(m, l, 0) && J.m1(b[s + $.i()], " ")
                         } else l = false
                         if (l) n = m
@@ -8314,24 +8314,24 @@
     }
     J.JsArray.prototype = {
         j(a, b) {
-            if (!!a.fixed$length) H.G(P.S("add"))
+            if (!!a.fixed$length) H.throw_expression(P.S("add"))
             a.push(b)
         },
         cu(a, b) {
             var s
-            if (!!a.fixed$length) H.G(P.S("removeAt"))
+            if (!!a.fixed$length) H.throw_expression(P.S("removeAt"))
             s = a.length
-            if (b >= s) throw H.throw_error(P.k0(b, null))
+            if (b >= s) throw H.wrap_expression(P.k0(b, null))
             return a.splice(b, 1)[0]
         },
         co(a, b, c) {
-            if (!!a.fixed$length) H.G(P.S("insert"))
-            if (b < 0 || b > a.length) throw H.throw_error(P.k0(b, null))
+            if (!!a.fixed$length) H.throw_expression(P.S("insert"))
+            if (b < 0 || b > a.length) throw H.wrap_expression(P.k0(b, null))
             a.splice(b, 0, c)
         },
         U(a, b) {
             var s
-            if (!!a.fixed$length) H.G(P.S("remove"))
+            if (!!a.fixed$length) H.throw_expression(P.S("remove"))
             for (s = 0; s < a.length; ++s)
                 if (J.Y(a[s], b)) {
                     a.splice(s, 1)
@@ -8340,7 +8340,7 @@
         },
         a5(a, b) {
             var s, r
-            if (!!a.fixed$length) H.G(P.S("addAll"))
+            if (!!a.fixed$length) H.throw_expression(P.S("addAll"))
             if (Array.isArray(b)) {
                 this.ea(a, b)
                 return
@@ -8350,7 +8350,7 @@
         ea(a, b) {
             var s, r = b.length
             if (r === 0) return
-            if (a === b) throw H.throw_error(P.aK(a))
+            if (a === b) throw H.wrap_expression(P.aK(a))
             for (s = 0; s < r; ++s) a.push(b[s])
         },
         f5(a, b, c) {
@@ -8363,11 +8363,11 @@
         },
         dz(a, b) {
             var s, r, q = a.length
-            if (q === 0) throw H.throw_error(H.fu())
+            if (q === 0) throw H.wrap_expression(H.fu())
             s = a[0]
             for (r = 1; r < q; ++r) {
                 s = b.$2(s, a[r])
-                if (q !== a.length) throw H.throw_error(P.aK(a))
+                if (q !== a.length) throw H.wrap_expression(P.aK(a))
             }
             return s
         },
@@ -8376,21 +8376,21 @@
             for (s = 0; s < q; ++s) {
                 r = a[s]
                 if (b.$1(r)) return r
-                if (a.length !== q) throw H.throw_error(P.aK(a))
+                if (a.length !== q) throw H.wrap_expression(P.aK(a))
             }
-            throw H.throw_error(H.fu())
+            throw H.wrap_expression(H.fu())
         },
         ai(a, b) {
             return a[b]
         },
         al(a, b, c) {
             var s
-            if (b == null) H.G(H.R(b))
-            if (!H.aP(b)) throw H.throw_error(H.R(b))
+            if (b == null) H.throw_expression(H.R(b))
+            if (!H.aP(b)) throw H.wrap_expression(H.R(b))
             s = a.length
-            if (b > s) throw H.throw_error(P.a8(b, 0, s, "start", null))
+            if (b > s) throw H.wrap_expression(P.a8(b, 0, s, "start", null))
             if (c == null) c = s
-            else if (c < b || c > s) throw H.throw_error(P.a8(c, b, s, "end", null))
+            else if (c < b || c > s) throw H.wrap_expression(P.a8(c, b, s, "end", null))
             if (b === c) return H.b([], H.a1(a))
             return H.b(a.slice(b, c), H.a1(a))
         },
@@ -8399,23 +8399,23 @@
         },
         geT(a) {
             if (a.length > 0) return a[0]
-            throw H.throw_error(H.fu())
+            throw H.wrap_expression(H.fu())
         },
         gbl(a) {
             var s = a.length
             if (s > 0) return a[s - 1]
-            throw H.throw_error(H.fu())
+            throw H.wrap_expression(H.fu())
         },
         df(a, b) {
             var s, r = a.length
             for (s = 0; s < r; ++s) {
                 if (b.$1(a[s])) return true
-                if (a.length !== r) throw H.throw_error(P.aK(a))
+                if (a.length !== r) throw H.wrap_expression(P.aK(a))
             }
             return false
         },
         bb(a, b) {
-            if (!!a.immutable$list) H.G(P.S("sort"))
+            if (!!a.immutable$list) H.throw_expression(P.S("sort"))
             H.tJ(a, b == null ? J.bO() : b)
         },
         aJ(a) {
@@ -8450,19 +8450,21 @@
             return a.length
         },
         sp(a, b) {
-            if (!!a.fixed$length) H.G(P.S("set length"))
-            if (!H.aP(b)) throw H.throw_error(P.da(b, "newLength", null))
+            if (a.fixed$length) {
+                H.throw_expression(P.S("set length"))
+            }
+            if (!H.aP(b)) throw H.wrap_expression(P.da(b, "newLength", null))
             a.length = b
         },
         h(a, b) {
-            if (!H.aP(b)) throw H.throw_error(H.bQ(a, b))
-            if (b >= a.length || b < 0) throw H.throw_error(H.bQ(a, b))
+            if (!H.aP(b)) throw H.wrap_expression(H.bQ(a, b))
+            if (b >= a.length || b < 0) throw H.wrap_expression(H.bQ(a, b))
             return a[b]
         },
         m(a, b, c) {
-            if (!!a.immutable$list) H.G(P.S("indexed set"))
-            if (!H.aP(b)) throw H.throw_error(H.bQ(a, b))
-            if (b >= a.length || b < 0) throw H.throw_error(H.bQ(a, b))
+            if (!!a.immutable$list) H.throw_expression(P.S("indexed set"))
+            if (!H.aP(b)) throw H.wrap_expression(H.bQ(a, b))
+            if (b >= a.length || b < 0) throw H.wrap_expression(H.bQ(a, b))
             a[b] = c
         },
         $iA: 1,
@@ -8477,7 +8479,7 @@
             var s, r = this,
                 q = r.a,
                 p = q.length
-            if (r.b !== p) throw H.throw_error(H.F(q))
+            if (r.b !== p) throw H.wrap_expression(H.F(q))
             s = r.c
             if (s >= p) {
                 r.d = null
@@ -8491,7 +8493,7 @@
     J.JsNumber.prototype = {
         bg(a, b) {
             var s
-            if (typeof b != "number") throw H.throw_error(H.R(b))
+            if (typeof b != "number") throw H.wrap_expression(H.R(b))
             if (a < b) return -1
             else if (a > b) return 1
             else if (a === b) {
@@ -8520,7 +8522,7 @@
             } else if (a >= -2147483648) return a | 0
             r = Math.ceil(a)
             if (isFinite(r)) return r
-            throw H.throw_error(P.S("" + a + ".ceil()"))
+            throw H.wrap_expression(P.S("" + a + ".ceil()"))
         },
         eW(a) {
             var s, r
@@ -8532,13 +8534,13 @@
             }
             r = Math.floor(a)
             if (isFinite(r)) return r
-            throw H.throw_error(P.S("" + a + ".floor()"))
+            throw H.wrap_expression(P.S("" + a + ".floor()"))
         },
         aI(a) {
             if (a > 0) {
                 if (a !== 1 / 0) return Math.round(a)
             } else if (a > -1 / 0) return 0 - Math.round(0 - a)
-            throw H.throw_error(P.S("" + a + ".round()"))
+            throw H.wrap_expression(P.S("" + a + ".round()"))
         },
         k(a) {
             if (a === 0 && 1 / a < 0) return "-0.0"
@@ -8555,7 +8557,7 @@
         },
         V(a, b) {
             var s
-            if (typeof b != "number") throw H.throw_error(H.R(b))
+            if (typeof b != "number") throw H.wrap_expression(H.R(b))
             s = a % b
             if (s === 0) return 0
             if (s > 0) return s
@@ -8563,7 +8565,7 @@
             else return s + b
         },
         P(a, b) {
-            if (typeof b != "number") throw H.throw_error(H.R(b))
+            if (typeof b != "number") throw H.wrap_expression(H.R(b))
             if ((a | 0) === a)
                 if (b >= 1 || b < -1) return a / b | 0
             return this.d6(a, b)
@@ -8577,11 +8579,11 @@
             if (s > 0) {
                 if (s !== 1 / 0) return Math.floor(s)
             } else if (s > -1 / 0) return Math.ceil(s)
-            throw H.throw_error(P.S("Result of truncating division is " + H.e(s) + ": " + H.e(a) + " ~/ " + b))
+            throw H.wrap_expression(P.S("Result of truncating division is " + H.e(s) + ": " + H.e(a) + " ~/ " + b))
         },
         bX(a, b) {
-            if (typeof b != "number") throw H.throw_error(H.R(b))
-            if (b < 0) throw H.throw_error(H.R(b))
+            if (typeof b != "number") throw H.wrap_expression(H.R(b))
+            if (b < 0) throw H.wrap_expression(H.R(b))
             return b > 31 ? 0 : a << b >>> 0
         },
         ez(a, b) {
@@ -8606,18 +8608,18 @@
     J.jF.prototype = {}
     J.JsString.prototype = {
         aQ(a, b) {
-            if (!H.aP(b)) throw H.throw_error(H.bQ(a, b))
-            if (b < 0) throw H.throw_error(H.bQ(a, b))
-            if (b >= a.length) H.G(H.bQ(a, b))
+            if (!H.aP(b)) throw H.wrap_expression(H.bQ(a, b))
+            if (b < 0) throw H.wrap_expression(H.bQ(a, b))
+            if (b >= a.length) H.throw_expression(H.bQ(a, b))
             return a.charCodeAt(b)
         },
         a8(a, b) {
-            if (b >= a.length) throw H.throw_error(H.bQ(a, b))
+            if (b >= a.length) throw H.wrap_expression(H.bQ(a, b))
             return a.charCodeAt(b)
         },
         bK(a, b, c) {
             var s = b.length
-            if (c > s) throw H.throw_error(P.a8(c, 0, s, null, null))
+            if (c > s) throw H.wrap_expression(P.a8(c, 0, s, null, null))
             return new H.ip(b, a, c)
         },
         de(a, b) {
@@ -8626,7 +8628,7 @@
         dq(a, b, c) {
             var s, r, q = null,
                 p = b.length
-            if (c > p) throw H.throw_error(P.a8(c, 0, p, q, q))
+            if (c > p) throw H.wrap_expression(P.a8(c, 0, p, q, q))
             s = a.length
             if (c + s > p) return q
             for (r = 0; r < s; ++r)
@@ -8634,12 +8636,12 @@
             return new H.bK(c, a)
         },
         B(a, b) {
-            if (typeof b != "string") throw H.throw_error(P.da(b, null, null))
+            if (typeof b != "string") throw H.wrap_expression(P.da(b, null, null))
             return a + b
         },
         cl(a, b) {
             var s, r
-            if (typeof b != "string") H.G(H.R(b))
+            if (typeof b != "string") H.throw_expression(H.R(b))
             s = b.length
             r = a.length
             if (s > r) return false
@@ -8650,7 +8652,7 @@
             return H.iG(a, b, c, 0)
         },
         cK(a, b) {
-            if (b == null) H.G(H.R(b))
+            if (b == null) H.throw_expression(H.R(b))
             if (typeof b == "string") return H.b(a.split(b), t.s)
             else if (b instanceof H.ct && b.gep().exec("").length - 2 === 0) return H.b(a.split(b.b), t.s)
             else return this.ek(a, b)
@@ -8679,7 +8681,7 @@
             return J.rw(b, a, 0) != null
         },
         af(a, b, c) {
-            if (!H.aP(b)) H.G(H.R(b))
+            if (!H.aP(b)) H.throw_expression(H.R(b))
             return a.substring(b, P.cE(b, c, a.length))
         },
         ay(a, b) {
@@ -8705,7 +8707,7 @@
             var s, r
             if (0 >= b) return ""
             if (b === 1 || a.length === 0) return a
-            if (b !== b >>> 0) throw H.throw_error(C.D)
+            if (b !== b >>> 0) throw H.wrap_expression(C.D)
             for (s = a, r = ""; true;) {
                 if ((b & 1) === 1) r = s + r
                 b = b >>> 1
@@ -8721,7 +8723,7 @@
         },
         aT(a, b) {
             var s, r, q
-            if (b == null) H.G(H.R(b))
+            if (b == null) H.throw_expression(H.R(b))
             s = a.length
             if (typeof b == "string") return a.indexOf(b, 0)
             for (r = J.aQ(b), q = 0; q <= s; ++q)
@@ -8730,9 +8732,9 @@
         },
         dh(a, b, c) {
             var s
-            if (b == null) H.G(H.R(b))
+            if (b == null) H.throw_expression(H.R(b))
             s = a.length
-            if (c > s) throw H.throw_error(P.a8(c, 0, s, null, null))
+            if (c > s) throw H.wrap_expression(P.a8(c, 0, s, null, null))
             return H.iF(a, b, c)
         },
         w(a, b) {
@@ -8740,7 +8742,7 @@
         },
         bg(a, b) {
             var s
-            if (typeof b != "string") throw H.throw_error(H.R(b))
+            if (typeof b != "string") throw H.wrap_expression(H.R(b))
             if (a === b) s = 0
             else s = a < b ? -1 : 1
             return s
@@ -8796,16 +8798,16 @@
             if (b.length !== 0) {
                 if (o === 0) return ""
                 s = H.e(p.ai(0, 0))
-                if (o !== p.gp(p)) throw H.throw_error(P.aK(p))
+                if (o !== p.gp(p)) throw H.wrap_expression(P.aK(p))
                 for (r = s, q = 1; q < o; ++q) {
                     r = r + b + H.e(p.ai(0, q))
-                    if (o !== p.gp(p)) throw H.throw_error(P.aK(p))
+                    if (o !== p.gp(p)) throw H.wrap_expression(P.aK(p))
                 }
                 return r.charCodeAt(0) == 0 ? r : r
             } else {
                 for (q = 0, r = ""; q < o; ++q) {
                     r += H.e(p.ai(0, q))
-                    if (o !== p.gp(p)) throw H.throw_error(P.aK(p))
+                    if (o !== p.gp(p)) throw H.wrap_expression(P.aK(p))
                 }
                 return r.charCodeAt(0) == 0 ? r : r
             }
@@ -8832,7 +8834,7 @@
                 q = r.a,
                 p = J.a3(q),
                 o = p.gp(q)
-            if (r.b !== o) throw H.throw_error(P.aK(q))
+            if (r.b !== o) throw H.wrap_expression(P.aK(q))
             s = r.c
             if (s >= o) {
                 r.d = null
@@ -8895,15 +8897,15 @@
     }
     H.du.prototype = {
         sp(a, b) {
-            throw H.throw_error(P.S("Cannot change the length of a fixed-length list"))
+            throw H.wrap_expression(P.S("Cannot change the length of a fixed-length list"))
         }
     }
     H.hV.prototype = {
         m(a, b, c) {
-            throw H.throw_error(P.S("Cannot modify an unmodifiable list"))
+            throw H.wrap_expression(P.S("Cannot modify an unmodifiable list"))
         },
         sp(a, b) {
-            throw H.throw_error(P.S("Cannot change the length of an unmodifiable list"))
+            throw H.wrap_expression(P.S("Cannot change the length of an unmodifiable list"))
         }
     }
     H.cJ.prototype = {}
@@ -9140,7 +9142,7 @@
                 q = s.r
             for (; r != null;) {
                 b.$2(r.a, r.b)
-                if (q !== s.r) throw H.throw_error(P.aK(s))
+                if (q !== s.r) throw H.wrap_expression(P.aK(s))
                 r = r.c
             }
         },
@@ -9249,7 +9251,7 @@
         u() {
             var s, r = this,
                 q = r.a
-            if (r.b !== q.r) throw H.throw_error(P.aK(q))
+            if (r.b !== q.r) throw H.wrap_expression(P.aK(q))
             s = r.c
             if (s == null) {
                 r.d = null
@@ -9299,14 +9301,14 @@
         },
         eU(a) {
             var s
-            if (typeof a != "string") H.G(H.R(a))
+            if (typeof a != "string") H.throw_expression(H.R(a))
             s = this.b.exec(a)
             if (s == null) return null
             return new H.ew(s)
         },
         bK(a, b, c) {
             var s = b.length
-            if (c > s) throw H.throw_error(P.a8(c, 0, s, null, null))
+            if (c > s) throw H.wrap_expression(P.a8(c, 0, s, null, null))
             return new H.hZ(this, b, c)
         },
         de(a, b) {
@@ -9383,7 +9385,7 @@
             return this.a + this.c.length
         },
         cF(a) {
-            if (a !== 0) throw H.throw_error(P.k0(a, null))
+            if (a !== 0) throw H.wrap_expression(P.k0(a, null))
             return this.c
         },
         $ic7: 1,
@@ -9567,7 +9569,7 @@
         e8(a, b) {
             if (self.setTimeout != null) {
                 self.setTimeout(H.convert_dart_closure_to_js_md5(new P.l9(this, b), 0), a)
-            } else throw H.throw_error(P.S("`setTimeout()` not found."))
+            } else throw H.wrap_expression(P.S("`setTimeout()` not found."))
         }
         // e8(a, b) {
         //     if (typeof P.count === "number") {
@@ -9650,7 +9652,7 @@
             var s
             H.ls(a, "error", t.K)
             s = this.a
-            if ((s.a & 30) !== 0) throw H.throw_error(P.cd("Future already completed"))
+            if ((s.a & 30) !== 0) throw H.wrap_expression(P.cd("Future already completed"))
             if (b == null) b = P.m2(a)
             s.cT(a, b)
         },
@@ -9661,7 +9663,7 @@
     P.cg.prototype = {
         bM(a, b) {
             var s = this.a
-            if ((s.a & 30) !== 0) throw H.throw_error(P.cd("Future already completed"))
+            if ((s.a & 30) !== 0) throw H.wrap_expression(P.cd("Future already completed"))
             s.cS(b)
         }
     }
@@ -9681,8 +9683,8 @@
                 return p
             } catch (s) {
                 if (t.eK.b(H.a5(s))) {
-                    if ((this.c & 1) !== 0) throw H.throw_error(P.bz("The error handler of Future.then must return a value of the returned future's type", "onError"))
-                    throw H.throw_error(P.bz("The error handler of Future.catchError must return a value of the future's type", "onError"))
+                    if ((this.c & 1) !== 0) throw H.wrap_expression(P.bz("The error handler of Future.then must return a value of the returned future's type", "onError"))
+                    throw H.wrap_expression(P.bz("The error handler of Future.catchError must return a value of the future's type", "onError"))
                 } else throw s
             }
         }
@@ -9691,7 +9693,7 @@
         cz(a, b, c) {
             var s, r, q = $.P
             if (q === C.f) {
-                if (b != null && !t.C.b(b) && !t.J.b(b)) throw H.throw_error(P.da(b, "onError", u.c))
+                if (b != null && !t.C.b(b) && !t.J.b(b)) throw H.wrap_expression(P.da(b, "onError", u.c))
             } else if (b != null) b = P.uz(b, q)
             s = new P.U(q, c.i("U<0>"))
             r = b == null ? 1 : 3
@@ -10022,7 +10024,7 @@
         },
         eA(a, b, c, d) {
             var s, r, q, p, o, n = this
-            if ((n.b & 3) !== 0) throw H.throw_error(P.cd("Stream has already been listened to."))
+            if ((n.b & 3) !== 0) throw H.wrap_expression(P.cd("Stream has already been listened to."))
             s = $.P
             r = d ? 1 : 0
             P.tS(s, b)
@@ -10190,7 +10192,7 @@
     P.lf.prototype = {}
     P.lo.prototype = {
         $0() {
-            var s = H.throw_error(this.a)
+            var s = H.wrap_expression(this.a)
             s.stack = J.b4(this.b)
             throw s
         },
@@ -10368,7 +10370,7 @@
             var s = this,
                 r = s.c,
                 q = s.a
-            if (s.b !== q.r) throw H.throw_error(P.aK(q))
+            if (s.b !== q.r) throw H.wrap_expression(P.aK(q))
             else if (r == null) {
                 s.d = null
                 return false
@@ -10476,7 +10478,7 @@
                     o.b[q] = p
                 }
                 b.$2(q, p)
-                if (s !== o.c) throw H.throw_error(P.aK(o))
+                if (s !== o.c) throw H.wrap_expression(P.aK(o))
             }
         },
         bF() {
@@ -10719,7 +10721,7 @@
             if ((q & 1) !== 0) {
                 p = P.uc(q)
                 o.b = 0
-                throw H.throw_error(P.jn(p, a, b + o.c))
+                throw H.wrap_expression(P.jn(p, a, b + o.c))
             }
             return r
         },
@@ -11072,9 +11074,9 @@
         },
         gba(a) {
             var s, r = this.ga0(this)
-            if (!r.u()) throw H.throw_error(H.fu())
+            if (!r.u()) throw H.wrap_expression(H.fu())
             s = r.gC()
-            if (r.u()) throw H.throw_error(H.rY())
+            if (r.u()) throw H.wrap_expression(H.rY())
             return s
         },
         ai(a, b) {
@@ -11085,7 +11087,7 @@
                 if (b === r) return q;
                 ++r
             }
-            throw H.throw_error(P.ft(b, this, "index", null, r))
+            throw H.wrap_expression(P.ft(b, this, "index", null, r))
         },
         k(a) {
             return P.rX(this, "(", ")")
@@ -11254,7 +11256,7 @@
                     s.insertBefore(r, a.nextSibling)
                     break
                 default:
-                    H.G(P.bz("Invalid position " + b, null))
+                    H.throw_expression(P.bz("Invalid position " + b, null))
             }
         },
         aA(a, b, c, d) {
@@ -11280,7 +11282,7 @@
                     s.a = d
                     c = s
                 }
-            } else if (d != null) throw H.throw_error(P.bz("validator can only be passed if treeSanitizer is null", null))
+            } else if (d != null) throw H.wrap_expression(P.bz("validator can only be passed if treeSanitizer is null", null))
             if ($.bA == null) {
                 s = document
                 r = s.implementation.createHTMLDocument("")
@@ -11394,8 +11396,8 @@
         gba(a) {
             var s = this.a,
                 r = s.childNodes.length
-            if (r === 0) throw H.throw_error(P.cd("No elements"))
-            if (r > 1) throw H.throw_error(P.cd("More than one element"))
+            if (r === 0) throw H.wrap_expression(P.cd("No elements"))
+            if (r > 1) throw H.wrap_expression(P.cd("More than one element"))
             s = s.firstChild
             s.toString
             return s
@@ -11423,7 +11425,7 @@
             return this.a.childNodes.length
         },
         sp(a, b) {
-            throw H.throw_error(P.S("Cannot set length on immutable List."))
+            throw H.wrap_expression(P.S("Cannot set length on immutable List."))
         },
         h(a, b) {
             return this.a.childNodes[b]
@@ -11445,14 +11447,14 @@
             return a.length
         },
         h(a, b) {
-            if (b >>> 0 !== b || b >= a.length) throw H.throw_error(P.ft(b, a, null, null, null))
+            if (b >>> 0 !== b || b >= a.length) throw H.wrap_expression(P.ft(b, a, null, null, null))
             return a[b]
         },
         m(a, b, c) {
-            throw H.throw_error(P.S("Cannot assign element of immutable List."))
+            throw H.wrap_expression(P.S("Cannot assign element of immutable List."))
         },
         sp(a, b) {
-            throw H.throw_error(P.S("Cannot resize immutable List."))
+            throw H.wrap_expression(P.S("Cannot resize immutable List."))
         },
         ai(a, b) {
             return a[b]
@@ -11571,14 +11573,14 @@
             return a.length
         },
         h(a, b) {
-            if (b >>> 0 !== b || b >= a.length) throw H.throw_error(P.ft(b, a, null, null, null))
+            if (b >>> 0 !== b || b >= a.length) throw H.wrap_expression(P.ft(b, a, null, null, null))
             return a[b]
         },
         m(a, b, c) {
-            throw H.throw_error(P.S("Cannot assign element of immutable List."))
+            throw H.wrap_expression(P.S("Cannot assign element of immutable List."))
         },
         sp(a, b) {
-            throw H.throw_error(P.S("Cannot resize immutable List."))
+            throw H.wrap_expression(P.S("Cannot resize immutable List."))
         },
         ai(a, b) {
             return a[b]
@@ -11592,19 +11594,19 @@
             return a.length
         },
         h(a, b) {
-            if (b >>> 0 !== b || b >= a.length) throw H.throw_error(P.ft(b, a, null, null, null))
+            if (b >>> 0 !== b || b >= a.length) throw H.wrap_expression(P.ft(b, a, null, null, null))
             return a[b]
         },
         m(a, b, c) {
-            throw H.throw_error(P.S("Cannot assign element of immutable List."))
+            throw H.wrap_expression(P.S("Cannot assign element of immutable List."))
         },
         sp(a, b) {
-            throw H.throw_error(P.S("Cannot resize immutable List."))
+            throw H.wrap_expression(P.S("Cannot resize immutable List."))
         },
         gbl(a) {
             var s = a.length
             if (s > 0) return a[s - 1]
-            throw H.throw_error(P.cd("No elements"))
+            throw H.wrap_expression(P.cd("No elements"))
         },
         ai(a, b) {
             return a[b]
@@ -11924,7 +11926,7 @@
                     } else q = false
                     if (q) {
                         q = P.cd("Corrupt HTML")
-                        throw H.throw_error(q)
+                        throw H.wrap_expression(q)
                     }
                 } catch (o) {
                     H.a5(o)
@@ -11971,7 +11973,7 @@
             if (typeof a == "number") return a
             if (typeof a == "string") return a
             if (a instanceof P.dq) return new Date(a.a)
-            if (t.fv.b(a)) throw H.throw_error(P.hT("structured clone of RegExp"))
+            if (t.fv.b(a)) throw H.wrap_expression(P.hT("structured clone of RegExp"))
             if (t.c8.b(a)) return a
             if (t.fK.b(a)) return a
             if (t.I.b(a)) return a
@@ -12004,7 +12006,7 @@
                 p.eY(a, new P.l6(o, p))
                 return o.b
             }
-            throw H.throw_error(P.hT("structured clone of other type"))
+            throw H.wrap_expression(P.hT("structured clone of other type"))
         },
         eL(a, b) {
             var s, r = J.a3(a),
@@ -12048,11 +12050,11 @@
                 s = a.getTime()
                 if (Math.abs(s) <= 864e13) r = false
                 else r = true
-                if (r) H.G(P.bz("DateTime is outside valid range: " + s, null))
+                if (r) H.throw_expression(P.bz("DateTime is outside valid range: " + s, null))
                 H.ls(true, "isUtc", t.y)
                 return new P.dq(s, true)
             }
-            if (a instanceof RegExp) throw H.throw_error(P.hT("structured clone of RegExp"))
+            if (a instanceof RegExp) throw H.wrap_expression(P.hT("structured clone of RegExp"))
             if (typeof Promise != "undefined" && a instanceof Promise) return P.vf(a, t.z)
             q = Object.getPrototypeOf(a)
             if (q === Object.prototype || q === null) {
@@ -12136,7 +12138,7 @@
     }
     P.kT.prototype = {
         ax(a) {
-            if (a <= 0 || a > 4294967296) throw H.throw_error(P.tn("max must be in range 0 < max \u2264 2^32, was " + H.e(a)))
+            if (a <= 0 || a > 4294967296) throw H.wrap_expression(P.tn("max must be in range 0 < max \u2264 2^32, was " + H.e(a)))
             return Math.random() * a >>> 0
         }
     }
@@ -12660,7 +12662,7 @@
                         h = C.b.fh(C.c.k(j), s, "0")
                         i.toString
                         g = J.aw(i)
-                        if (0 > g) H.G(P.a8(0, 0, g, "startIndex", null))
+                        if (0 > g) H.throw_expression(P.a8(0, 0, g, "startIndex", null))
                         r.push(H.b([H.iG(i, m, h, 0), o.h(p, 1), o.h(p, 2)], k))
                     }
                     return
@@ -13638,7 +13640,7 @@
         },
         bH(a, b) {
             var s
-            if (b.a != null) throw H.throw_error(P.cd("MEntry is already in a MList"))
+            if (b.a != null) throw H.wrap_expression(P.cd("MEntry is already in a MList"))
             b.a = this
             s = a.gaE()
             s.sbq(b)
@@ -16228,7 +16230,7 @@
                             k = H.b(n.slice(0), m)
                             e.d = k
                             n = H.b(n.slice(0), m)
-                            if (!!n.immutable$list) H.G(P.S("sort"))
+                            if (!!n.immutable$list) H.throw_expression(P.S("sort"))
                             m = n.length - 1
                             if (m - 0 <= 32) H.ej(n, 0, m, T.mD())
                             else H.ei(n, 0, m, T.mD())
@@ -16481,7 +16483,7 @@
                 q = r[p].y
                 if (q.f.length === r.length) {
                     s.cy = q
-                    H.G(q)
+                    H.throw_expression(q)
                 }
             }
         },
@@ -16555,19 +16557,19 @@
                 q = s.e
             if (q != null) {
                 q = q.k(0)
-                if (typeof q != "string") H.G(H.R(q))
+                if (typeof q != "string") H.throw_expression(H.R(q))
                 r = H.mF(r, "[Dn.n0]", q)
             }
             q = s.f
             if (q != null) {
                 q = q.k(0)
-                if (typeof q != "string") H.G(H.R(q))
+                if (typeof q != "string") H.throw_expression(H.R(q))
                 r = H.mF(r, "[Dn.n1]", q)
             }
             q = s.x
             if (q != null) {
                 q = J.b4(q)
-                if (typeof q != "string") H.G(H.R(q))
+                if (typeof q != "string") H.throw_expression(H.R(q))
                 r = H.mF(r, "[Dn.n2]", q)
             }
             return r
@@ -16690,9 +16692,9 @@
             var s, r = this,
                 q = r.a,
                 p = q.length
-            if (p > $.b3()) throw H.throw_error(p)
+            if (p > $.b3()) throw H.wrap_expression(p)
             p = r.b.length
-            if (p > $.au()) throw H.throw_error(p)
+            if (p > $.au()) throw H.wrap_expression(p)
             q = T.lC(q)
             p = T.lC(r.b)
             s = $.a4()
@@ -16749,7 +16751,7 @@
             for (s = $.Z(); s < $.d1(); s += $.B()) {
                 r = o.q
                 q = C.a.al(o.t, s, s + $.B())
-                if (!!q.immutable$list) H.G(P.S("sort"))
+                if (!!q.immutable$list) H.throw_expression(P.S("sort"))
                 p = q.length - 1
                 if (p - 0 <= 32) H.ej(q, 0, p, J.bO())
                 else H.ei(q, 0, p, J.bO())
@@ -16848,7 +16850,7 @@
                 if (!(n < $.aR() && n < o.k2.length)) break
                 s = o.k2[n]
                 r = C.a.al(a, m, m + $.C())
-                if (!!r.immutable$list) H.G(P.S("sort"))
+                if (!!r.immutable$list) H.throw_expression(P.S("sort"))
                 q = r.length - 1
                 if (q - 0 <= 32) H.ej(r, 0, q, J.bO())
                 else H.ei(r, 0, q, J.bO())
@@ -16857,7 +16859,7 @@
                 r = $.a()
                 if (p > r) {
                     r = C.a.al(b, m, m + $.C())
-                    if (!!r.immutable$list) H.G(P.S("sort"))
+                    if (!!r.immutable$list) H.throw_expression(P.S("sort"))
                     q = r.length - 1
                     if (q - 0 <= 32) H.ej(r, 0, q, J.bO())
                     else H.ei(r, 0, q, J.bO())
@@ -17137,7 +17139,7 @@
                 s = H.b([], t.i)
                 for (r = $.Z(); r < $.d1(); r += $.B()) {
                     q = C.a.al(o.E, r, r + $.B())
-                    if (!!q.immutable$list) H.G(P.S("sort"))
+                    if (!!q.immutable$list) H.throw_expression(P.S("sort"))
                     p = q.length - 1
                     if (p - 0 <= 32) H.ej(q, 0, p, J.bO())
                     else H.ei(q, 0, p, J.bO())
