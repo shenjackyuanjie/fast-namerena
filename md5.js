@@ -14,21 +14,7 @@
             if (!b.hasOwnProperty(q)) b[q] = a[q]
         }
     }
-
-    function setFunctionNamesIfNecessary(a) {
-        function t() {};
-        if (typeof t.name == "string") return
-        for (var s = 0; s < a.length; s++) {
-            var r = a[s]
-            var q = Object.keys(r)
-            for (var p = 0; p < q.length; p++) {
-                var o = q[p]
-                var n = r[o]
-                if (typeof n == "function") n.name = o
-            }
-        }
-    }
-
+    
     function inherit(a, b) {
         a.prototype.constructor = a
         a.prototype["$i" + a.name] = a

@@ -572,18 +572,10 @@
     <style id="pstyle">
     </style>
     <script>
-        var lanfile = "./lang/zh.json";
-        var adfile = "./gAd.md";
+        var lanfile = "./assets/zh.json";
+        var adfile = "./assets/gAd.md";
         var ls = window.localStorage;
-        if (navigator.languages == undefined) {
-            navigator.languages = [navigator.language];
-        }
-        for (var i in navigator.languages) {
-            if (navigator.languages[i].substring(0, 2) === "zh") {
-                lanfile = "./lang/zh.json";
-                break;
-            }
-        }
+
         var customlanpos = window.location.search.lastIndexOf("l=");
         if (customlanpos > 0) {
             lanfile = decodeURIComponent(window.location.search.substring(customlanpos + 2));
