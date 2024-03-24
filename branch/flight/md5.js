@@ -11341,10 +11341,10 @@
             }
         },
         add_event_listener(receiver, type, listener, options) {
-            // console.log("md5.js add event listener type:", type, "receiver:", receiver, "listener:", listener, options)
+            console.log("md5.js add event listener type:", type, "receiver:", receiver, "listener:", listener, options)
             // console.log("receiver == window", receiver == window)
-            // var stack = new Error().stack
-            // console.log(stack)
+            var stack = new Error().stack
+            console.log(stack)
             receiver.addEventListener(type, H.convert_dart_closure_to_js_md5(listener, 1), false)
             // return receiver.addEventListener(type, listener, false)
         }

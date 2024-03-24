@@ -10128,28 +10128,28 @@
             s.d.value = p
         },
         ar(a) {
-            var s, r = this
+            var s, this_ = this
             window.location.hash = ""
-            s = r.dy.style
+            s = this_.dy.style
             s.toString
             C.d.T(s, C.d.N(s, "opacity"), "0", "")
-            s = r.c.style
+            s = this_.c.style
             s.display = "none"
-            s = r.b.style
+            s = this_.b.style
             s.display = "none"
-            s = r.f.style
+            s = this_.f.style
             s.display = ""
-            r.fx.bt(null)
+            this_.fx.bt(null)
         },
         aT(a) {
-            var s, r = this
-            if (r.fx.cE()) return
-            r.ar(null)
-            s = r.b.style
+            var s, this_ = this
+            if (this_.fx.cE()) return
+            this_.ar(null)
+            s = this_.b.style
             s.display = ""
-            s = r.f.style
+            s = this_.f.style
             s.display = "none"
-            r.d.focus()
+            this_.d.focus()
         },
         // send "??" to iframe
         // or call as send_fast
@@ -10210,35 +10210,35 @@
             }
         },
         df(a, b) {
-            var s, r, q, p = this,
+            var s, r, q, this_ = this,
                 o = "button",
                 n = t.S
             if (n.b(new P.dF([], []).br(b.data, true))) {
                 s = n.a(new P.dF([], []).br(b.data, true))
                 n = J.t(s)
                 r = t.w
-                if (r.b(n.i(s, "add"))) p.cz(r.a(n.i(s, "add")), false)
+                if (r.b(n.i(s, "add"))) this_.cz(r.a(n.i(s, "add")), false)
                 else if (r.b(n.i(s, "winners")) && r.b(n.i(s, "all"))) {
-                    ++p.fx.f
+                    ++this_.fx.f
                     r = J.aX(r.a(n.i(s, "all")), new G.eO(), t.cq)
-                    p.k2 = P.af(r, true, r.$ti.k("C.E"))
+                    this_.k2 = P.af(r, true, r.$ti.k("C.E"))
                     if (W.hY(window.parent) !== window) {
                         n.P(s, "pic")
                         n.P(s, "firstKill")
-                        r = p.k2
+                        r = this_.k2
                         r.toString
                         q = H.aj(r).k("F<1,i<@>*>")
                         n.m(s, "all", P.af(new H.F(r, new G.eP(), q), true, q.k("C.E")))
                         J.iF(W.hY(window.parent), s, "*")
                     }
-                    n = p.r.style
+                    n = this_.r.style
                     n.display = ""
-                    n = p.y.style
+                    n = this_.y.style
                     n.display = "none"
-                } else if (J.a3(n.i(s, o), "share")) p.bD(null)
-                else if (J.a3(n.i(s, o), "refresh")) p.aT(null)
+                } else if (J.a3(n.i(s, o), "share")) this_.bD(null)
+                else if (J.a3(n.i(s, o), "refresh")) this_.aT(null)
                 else if (J.a3(n.i(s, o), "showLoader")) {
-                    n = p.dy.style
+                    n = this_.dy.style
                     n.toString
                     C.d.T(n, C.d.N(n, "opacity"), "0.3", "")
                 }
