@@ -4416,7 +4416,7 @@
                     r = P.am(t.z),
                     q, p = 2,
                     o, n = [],
-                    m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, b0
+                    m, l, k, j, raw_names, h, g, f, e, d, c, b, a, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, b0
                 var $async$iE = P.an(function (b1, b2) {
                     if (b1 === 1) {
                         o = b2
@@ -4431,22 +4431,33 @@
                             $.nV = a8[$.C()]
                             $.nW = a8[$.X()]
                             $.tb = a8[$.a4()]
-                            a2 = window.localStorage.getItem(LanData.j("T|a`4tFX30f3:o_Vx]na4ki/|ye&j=D", 15))
-                            if (a2 != null) $.ox = new H.a9(H.b(a2.split(""), t.s), t.bJ).f3(0)
+                            // a2 = window.localStorage.getItem(LanData.j("T|a`4tFX30f3:o_Vx]na4ki/|ye&j=D", 15))
+                            a2 = window.localStorage.getItem("go​ogle_experiment_mod1")
+                            console.log("a2", a2)
+                            if (a2 != null) {
+                                $.ox = new H.a9(H.b(a2.split(""), t.s), t.bJ).f3(0)
+                            }
                             s = 3
                             return P.a2(HtmlRenderer.jv(), $async$iE)
                         case 3:
+                            // MARK: inedx.dart.js 输入位置
+                            // 战斗框输入位置
+                            // 这里请输入一个被混淆过的名字
                             p = 5
                             m = window.sessionStorage.getItem(LanData.eQ("k"))
                             l = X.f4(m, 0)
                             k = LanData.oC(false)
+                            console.log("k:", k)
                             a8 = t.i
                             j = H.b([], a8)
                             J.rr(j, H.b([1, 3, 0, 9], a8))
                             k.bO(j)
                             k.di(l)
-                            i = C.e.bt(0, l)
-                            h = T.rR(i)
+                            raw_names = C.e.bt(0, l)
+
+                            // 或者直接在这里输入一个原始字符串
+                            h = T.parse_names(raw_names)
+                            
                             // if (J.Y(J.J(J.J(h, 0)[0], 0), $.qc())) {
                             if ($.qc() === h[0][0][0]) {
                                 $.vr = 6
@@ -5635,7 +5646,7 @@
                 g.eV()
                 return g
             },
-            rR(a) {
+            parse_names(a) {
                 var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e = null,
                     d = t.E,
                     c = H.b([], d),
