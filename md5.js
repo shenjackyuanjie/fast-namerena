@@ -1001,7 +1001,7 @@
                 }
                 return b
             },
-            v_(closure, numberOfArguments, arg1, arg2, arg3, arg4) {
+            invokeClosure(closure, numberOfArguments, arg1, arg2, arg3, arg4) {
                 switch (numberOfArguments) {
                     case 0:
                         return closure.$0()
@@ -1028,7 +1028,7 @@
                     return function (f, g, h, i) {
                         return e(c, d, f, g, h, i)
                     }
-                }(closure, arity, H.v_)
+                }(closure, arity, H.invokeClosure)
                 closure.$identity = func
                 return func
             },
