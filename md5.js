@@ -1701,11 +1701,11 @@
             eB: function eB() {},
             tr(a, b) {
                 var s = b.c
-                return s == null ? b.c = H.mp(a, b.z, true) : s
+                return s == null ? b.c = H._Universe__lookupQuestionRti(a, b.z, true) : s
             },
             o2(a, b) {
                 var s = b.c
-                return s == null ? b.c = H.eK(a, "bl", [b.z]) : s
+                return s == null ? b.c = H._Universe__lookupInterfaceRti(a, "bl", [b.z]) : s
             },
             o3(a) {
                 var s = a.y
@@ -1731,22 +1731,22 @@
                         s = b.z
                         r = H.bP(a, s, a0, a1)
                         if (r === s) return b
-                        return H.ok(a, r, true)
+                        return H._Universe__lookupStarRti(a, r, true)
                     case 7:
                         s = b.z
                         r = H.bP(a, s, a0, a1)
                         if (r === s) return b
-                        return H.mp(a, r, true)
+                        return H._Universe__lookupQuestionRti(a, r, true)
                     case 8:
                         s = b.z
                         r = H.bP(a, s, a0, a1)
                         if (r === s) return b
-                        return H.oj(a, r, true)
+                        return H._Universe__lookupFutureOrRti(a, r, true)
                     case 9:
                         q = b.Q
                         p = H.eP(a, q, a0, a1)
                         if (p === q) return b
-                        return H.eK(a, b.z, p)
+                        return H._Universe__lookupInterfaceRti(a, b.z, p)
                     case 10:
                         o = b.z
                         n = H.bP(a, o, a0, a1)
@@ -2206,7 +2206,7 @@
                     r = H._Universe__lookupTerminalRti(universe, 5, "#")
                     q = H.ld(s)
                     for (p = 0; p < s; ++p) q[p] = r
-                    o = H.eK(universe, b, q)
+                    o = H._Universe__lookupInterfaceRti(universe, b, q)
                     n[b] = o
                     return o
                 } else return m
@@ -2221,7 +2221,7 @@
                 var s, r = universe.eC,
                     q = r.get(b)
                 if (q != null) return q
-                s = H.og(H.oe(universe, null, b, c))
+                s = H._Parser_parse(H.oe(universe, null, b, c))
                 r.set(b, s)
                 return s
             },
@@ -2230,7 +2230,7 @@
                 if (q == null) q = b.ch = new Map()
                 s = q.get(c)
                 if (s != null) return s
-                r = H.og(H.oe(universe, b, c, true))
+                r = H._Parser_parse(H.oe(universe, b, c, true))
                 q.set(c, r)
                 return r
             },
@@ -2259,7 +2259,7 @@
                 a.eC.set(c, r)
                 return r
             },
-            ok(a, b, c) {
+            _Universe__lookupStarRti(a, b, c) {
                 var s, r = b.cy + "*",
                     q = a.eC.get(r)
                 if (q != null) return q
@@ -2281,7 +2281,7 @@
                 q.cy = c
                 return H._Universe__installTypeTests(a, q)
             },
-            mp(a, b, c) {
+            _Universe__lookupQuestionRti(a, b, c) {
                 var s, r = b.cy + "?",
                     q = a.eC.get(r)
                 if (q != null) return q
@@ -2313,7 +2313,7 @@
                 p.cy = c
                 return H._Universe__installTypeTests(a, p)
             },
-            oj(a, b, c) {
+            _Universe__lookupFutureOrRti(a, b, c) {
                 var s, r = b.cy + "/",
                     q = a.eC.get(r)
                 if (q != null) return q
@@ -2330,7 +2330,7 @@
                     else r = true
                     else r = true
                     if (r || b === t.K) return b
-                    else if (s === 1) return H.eK(a, "bl", [b])
+                    else if (s === 1) return H._Universe__lookupInterfaceRti(a, "bl", [b])
                     else if (b === t.P || b === t.T) return t.bG
                 }
                 q = new H.aW(null, null)
@@ -2339,7 +2339,7 @@
                 q.cy = c
                 return H._Universe__installTypeTests(a, q)
             },
-            u5(a, b) {
+            _Universe__lookupGenericFunctionParameterRti(a, b) {
                 var s, r, q = "" + b + "^",
                     p = a.eC.get(q)
                 if (p != null) return p
@@ -2366,7 +2366,7 @@
                 }
                 return s
             },
-            eK(a, b, c) {
+            _Universe__lookupInterfaceRti(a, b, c) {
                 var s, r, q, p = b
                 if (c.length > 0) p += "<" + H.iv(c) + ">"
                 s = a.eC.get(p)
@@ -2476,14 +2476,16 @@
                     n: d
                 }
             },
-            og(a) {
-                var s, r, q, p, o, n, m, l, k, j, i, h, g = a.r,
+            _Parser_parse(a) {
+                var s, r, q, t3, array, head, m, l, k, j, i, h, g = a.r,
                     f = a.s
                 for (s = g.length, r = 0; r < s;) {
                     q = g.charCodeAt(r)
                     if (q >= 48 && q <= 57) r = H.tV(r + 1, q, g, f)
-                    else if ((((q | 32) >>> 0) - 97 & 65535) < 26 || q === 95 || q === 36) r = H.of(a, r, g, f, false)
-                    else if (q === 46) r = H.of(a, r, g, f, true)
+                    else if ((((q | 32) >>> 0) - 97 & 65535) < 26 || q === 95 || q === 36)
+                        r = H._Parser_handleIdentifier(a, r, g, f, false)
+                    else if (q === 46)
+                        r = H._Parser_handleIdentifier(a, r, g, f, true)
                     else {
                         ++r
                         switch (q) {
@@ -2496,10 +2498,10 @@
                                 f.push(true)
                                 break
                             case 59:
-                                f.push(H.bM(a.u, a.e, f.pop()))
+                                f.push(H._Parser_toType(a.u, a.e, f.pop()))
                                 break
                             case 94:
-                                f.push(H.u5(a.u, f.pop()))
+                                f.push(H._Universe__lookupGenericFunctionParameterRti(a.u, f.pop()))
                                 break
                             case 35:
                                 f.push(H._Universe__lookupTerminalRti(a.u, 5, "#"))
@@ -2515,20 +2517,20 @@
                                 a.p = f.length
                                 break
                             case 62:
-                                p = a.u
-                                o = f.splice(a.p)
-                                H.mm(a.u, a.e, o)
+                                t3 = a.u
+                                array = f.splice(a.p)
+                                H.mm(a.u, a.e, array)
                                 a.p = f.pop()
-                                n = f.pop()
-                                if (typeof n == "string") f.push(H.eK(p, n, o))
+                                head = f.pop()
+                                if (typeof head == "string") f.push(H._Universe__lookupInterfaceRti(t3, head, array))
                                 else {
-                                    m = H.bM(p, a.e, n)
+                                    m = H._Parser_toType(t3, a.e, head)
                                     switch (m.y) {
                                         case 11:
-                                            f.push(H.mo(p, m, o, a.n))
+                                            f.push(H.mo(t3, m, array, a.n))
                                             break
                                         default:
-                                            f.push(H.mn(p, m, o))
+                                            f.push(H.mn(t3, m, array))
                                             break
                                     }
                                 }
@@ -2538,27 +2540,27 @@
                                 break
                             case 42:
                                 l = a.u
-                                f.push(H.ok(l, H.bM(l, a.e, f.pop()), a.n))
+                                f.push(H._Universe__lookupStarRti(l, H._Parser_toType(l, a.e, f.pop()), a.n))
                                 break
                             case 63:
                                 l = a.u
-                                f.push(H.mp(l, H.bM(l, a.e, f.pop()), a.n))
+                                f.push(H._Universe__lookupQuestionRti(l, H._Parser_toType(l, a.e, f.pop()), a.n))
                                 break
                             case 47:
                                 l = a.u
-                                f.push(H.oj(l, H.bM(l, a.e, f.pop()), a.n))
+                                f.push(H._Universe__lookupFutureOrRti(l, H._Parser_toType(l, a.e, f.pop()), a.n))
                                 break
                             case 40:
                                 f.push(a.p)
                                 a.p = f.length
                                 break
                             case 41:
-                                p = a.u
+                                t3 = a.u
                                 k = new H.ib()
-                                j = p.sEA
-                                i = p.sEA
-                                n = f.pop()
-                                if (typeof n == "number") switch (n) {
+                                j = t3.sEA
+                                i = t3.sEA
+                                head = f.pop()
+                                if (typeof head == "number") switch (head) {
                                     case -1:
                                         j = f.pop()
                                         break
@@ -2566,26 +2568,26 @@
                                         i = f.pop()
                                         break
                                     default:
-                                        f.push(n)
+                                        f.push(head)
                                         break
-                                } else f.push(n)
-                                o = f.splice(a.p)
-                                H.mm(a.u, a.e, o)
+                                } else f.push(head)
+                                array = f.splice(a.p)
+                                H.mm(a.u, a.e, array)
                                 a.p = f.pop()
-                                k.a = o
+                                k.a = array
                                 k.b = j
                                 k.c = i
-                                f.push(H.oi(p, H.bM(p, a.e, f.pop()), k))
+                                f.push(H.oi(t3, H._Parser_toType(t3, a.e, f.pop()), k))
                                 break
                             case 91:
                                 f.push(a.p)
                                 a.p = f.length
                                 break
                             case 93:
-                                o = f.splice(a.p)
-                                H.mm(a.u, a.e, o)
+                                array = f.splice(a.p)
+                                H.mm(a.u, a.e, array)
                                 a.p = f.pop()
-                                f.push(o)
+                                f.push(array)
                                 f.push(-1)
                                 break
                             case 123:
@@ -2593,10 +2595,10 @@
                                 a.p = f.length
                                 break
                             case 125:
-                                o = f.splice(a.p)
-                                H.tY(a.u, a.e, o)
+                                array = f.splice(a.p)
+                                H.tY(a.u, a.e, array)
                                 a.p = f.pop()
-                                f.push(o)
+                                f.push(array)
                                 f.push(-2)
                                 break
                             default:
@@ -2605,7 +2607,7 @@
                     }
                 }
                 h = f.pop()
-                return H.bM(a.u, a.e, h)
+                return H._Parser_toType(a.u, a.e, h)
             },
             tV(a, b, c, d) {
                 var s, r, q = b - 48
@@ -2617,7 +2619,7 @@
                 d.push(q)
                 return a
             },
-            of(a, b, c, d, e) {
+            _Parser_handleIdentifier(a, b, c, d, e) {
                 var s, r, q, p, o, n, m = b + 1
                 for (s = c.length; m < s; ++m) {
                     r = c.charCodeAt(m)
@@ -2653,18 +2655,18 @@
                 }
                 throw H.throw_error(P.iP("Unexpected extended operation " + H.e(s)))
             },
-            bM(a, b, c) {
-                if (typeof c == "string") return H.eK(a, c, a.sEA)
+            _Parser_toType(a, b, c) {
+                if (typeof c == "string") return H._Universe__lookupInterfaceRti(a, c, a.sEA)
                 else if (typeof c == "number") return H.tX(a, b, c)
                 else return c
             },
             mm(a, b, c) {
                 var s, r = c.length
-                for (s = 0; s < r; ++s) c[s] = H.bM(a, b, c[s])
+                for (s = 0; s < r; ++s) c[s] = H._Parser_toType(a, b, c[s])
             },
             tY(a, b, c) {
                 var s, r = c.length
-                for (s = 2; s < r; s += 3) c[s] = H.bM(a, b, c[s])
+                for (s = 2; s < r; s += 3) c[s] = H._Parser_toType(a, b, c[s])
             },
             tX(a, b, c) {
                 var s, r, q = b.y
@@ -4459,7 +4461,7 @@
 
                             // 或者直接在这里输入一个原始字符串
                             h = T.parse_names(raw_names)
-                            
+
                             // if (J.Y(J.J(J.J(h, 0)[0], 0), $.qc())) {
                             if ($.qc() === h[0][0][0]) {
                                 $.vr = 6
