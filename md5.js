@@ -7920,17 +7920,17 @@
             }
         },
         HtmlRenderer = {
-            hM(a) {
+            add_span(a) {
                 var s = document.createElement("span")
                 s.classList.add(a)
                 return s
             },
-            ae(a) {
+            add_div(a) {
                 var s = document.createElement("div")
                 s.classList.add(a)
                 return s
             },
-            nS(a) {
+            add_p(a) {
                 var s = document.createElement("p")
                 s.classList.add(a)
                 return s
@@ -8077,12 +8077,12 @@
                 return a
             },
             t7(a, b, c) {
-                var s = HtmlRenderer.ae("plr_list"),
-                    r = HtmlRenderer.ae("sgl"),
-                    q = HtmlRenderer.ae("name"),
-                    p = HtmlRenderer.ae("maxhp"),
-                    o = HtmlRenderer.ae("oldhp"),
-                    n = HtmlRenderer.ae("hp"),
+                var s = HtmlRenderer.add_div("plr_list"),
+                    r = HtmlRenderer.add_div("sgl"),
+                    q = HtmlRenderer.add_div("name"),
+                    p = HtmlRenderer.add_div("maxhp"),
+                    o = HtmlRenderer.add_div("oldhp"),
+                    n = HtmlRenderer.add_div("hp"),
                     m = $.jU + 1
                 $.jU = m
                 m = new HtmlRenderer.ax(a, s, r, q, p, o, n, m)
@@ -8090,12 +8090,12 @@
                 return m
             },
             t8(a, b, c) {
-                var s = HtmlRenderer.ae("plr_list"),
-                    r = HtmlRenderer.ae("sgl"),
-                    q = HtmlRenderer.ae("name"),
-                    p = HtmlRenderer.ae("maxhp"),
-                    o = HtmlRenderer.ae("oldhp"),
-                    n = HtmlRenderer.ae("hp"),
+                var s = HtmlRenderer.add_div("plr_list"),
+                    r = HtmlRenderer.add_div("sgl"),
+                    q = HtmlRenderer.add_div("name"),
+                    p = HtmlRenderer.add_div("maxhp"),
+                    o = HtmlRenderer.add_div("oldhp"),
+                    n = HtmlRenderer.add_div("hp"),
                     m = $.jU + 1
                 $.jU = m
                 m = new HtmlRenderer.fW(a, s, r, q, p, o, n, m)
@@ -8106,7 +8106,7 @@
                 var s, r, q, p, o, n, m, l, k, j, i, h, g, f = a.a
                 if (f > 0 && a.e != null) $.ay.h(0, a.e.gb2()).dc(f)
                 s = H.b([], t.j)
-                r = HtmlRenderer.hM("u")
+                r = HtmlRenderer.add_span("u")
                 C.R.by(r, H.oO(a.d, $.rm(), new HtmlRenderer.lq(new HtmlRenderer.lp(s, a), a), null), $.bV())
                 for (f = s.length, q = t.A, p = 0; p < s.length; s.length === f || (0, H.F)(s), ++p) {
                     o = s[p]
@@ -12823,13 +12823,13 @@
             p.d = P.mi(P.fm(10, 0), p.gbc(p))
             W.es(window, "resize", p.gff(p), false)
             p.ds(0, null)
-            s = HtmlRenderer.nS("row")
+            s = HtmlRenderer.add_p("row")
             r = p.b
             r.appendChild(s)
-            q = HtmlRenderer.hM("welcome")
+            q = HtmlRenderer.add_span("welcome")
             q.textContent = LangData.d("CeaN")
             s.appendChild(q)
-            q = HtmlRenderer.hM("welcome2")
+            q = HtmlRenderer.add_span("welcome2")
             q.textContent = LangData.d("NosN")
             s.appendChild(q)
             q = p.c
@@ -13021,7 +13021,7 @@
             } else {
                 s = q.db
                 if (s == null) {
-                    s = HtmlRenderer.nS("row")
+                    s = HtmlRenderer.add_p("row")
                     q.db = s
                     q.b.appendChild(s)
                     if (q.dx) q.dx = false
@@ -13105,7 +13105,7 @@
             m.appendChild(k)
             for (q = o.length, i = 0; i < o.length; o.length === q || (0, H.F)(o), ++i) l.$1(o[i])
             d.appendChild(m)
-            h = HtmlRenderer.ae("buttonBar")
+            h = HtmlRenderer.add_div("buttonBar")
             d.appendChild(h)
 
             g = document_.createElement("button")
@@ -13247,8 +13247,8 @@
     HtmlRenderer.jT.prototype = {
         e3(a, b, c) {
             var s, r, q, p, o = this
-            if (b || c) o.b = HtmlRenderer.ae("plrg_body_gouped")
-            else o.b = HtmlRenderer.ae("plrg_body")
+            if (b || c) o.b = HtmlRenderer.add_div("plrg_body_gouped")
+            else o.b = HtmlRenderer.add_div("plrg_body")
             for (s = J.by(a), r = o.a; s.u();) {
                 q = s.gC()
                 if (J.aw(q) < 2) return
@@ -13276,8 +13276,8 @@
                 f = '<div class="name"> ',
                 e = "beforeend"
             i.cy = "pid" + i.cx
-            if (c) i.r = HtmlRenderer.ae("plr1")
-            else i.r = HtmlRenderer.ae("plr0")
+            if (c) i.r = HtmlRenderer.add_div("plr1")
+            else i.r = HtmlRenderer.add_div("plr0")
             s = J.a3(b)
             i.db = s.h(b, 0)
             i.dx = s.h(b, 1)
@@ -13311,7 +13311,7 @@
             m = J.m_(i.dy, "+")
             if (m > -1) {
                 q = i.r
-                l = HtmlRenderer.hM("small")
+                l = HtmlRenderer.add_span("small")
                 l.textContent = J.nB(i.dy, m)
                 q.appendChild(l)
                 i.r.appendChild(document.createTextNode(" "))
@@ -13319,14 +13319,14 @@
             i.fr = g + i.cy + '">' + H.e(i.x.outerHTML) + f + C.o.ab(i.dx) + " </div></div>"
             i.fx = g + i.cy + '">' + H.e(i.x.outerHTML) + f + C.o.ab(i.dx) + ' </div><div class="maxhp" style="width: ' + n + '" /></div>'
             if (c) {
-                k = HtmlRenderer.ae("detail")
+                k = HtmlRenderer.add_div("detail")
                 q = i.r
                 l = LangData.d("BxJN") + (" " + H.e(i.go))
                 j = document
                 q.appendChild(j.createTextNode(l))
                 if (p != null) {
                     q = i.r
-                    l = HtmlRenderer.hM("small")
+                    l = HtmlRenderer.add_span("small")
                     l.textContent = p
                     q.appendChild(l)
                 }
