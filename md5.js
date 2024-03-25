@@ -16323,6 +16323,7 @@ let why_ns = 0;
             // })
             // return P._asyncStartSync($async$bE, r)
             // $.mc = $.a()
+            why_ns = 0
             $.mc = 0
         },
         fz(a, b) {
@@ -16368,6 +16369,7 @@ let why_ns = 0;
                         this_.cx = true
                         async_goto = 5
                         // return P._asyncAwait(this_.bE(), $async$O)
+                        why_ns = 0
                         $.mc = 0 // 来自bE()
                     case 5:
                         result_ = n
