@@ -7160,7 +7160,7 @@ let why_ns = 0;
             MPlr: function dF() {
                 this.a = this.c = this.b = null
             },
-            dp: function dp() {
+            DPlr: function dp() {
                 this.a = null
             },
             bB: function bB(a) {
@@ -8143,7 +8143,7 @@ let why_ns = 0;
                             n.appendChild(h)
                             n.appendChild(i)
                         }
-                    } else if (o instanceof T.dp) q.a(r.querySelector(".name")).classList.add("namedie")
+                    } else if (o instanceof T.DPlr) q.a(r.querySelector(".name")).classList.add("namedie")
                 }
                 return r
             },
@@ -13494,7 +13494,7 @@ let why_ns = 0;
                 this.a.push(a)
                 return s.fx
             }
-            if (a instanceof T.dp) {
+            if (a instanceof T.DPlr) {
                 s = $.ay.h(0, a.a)
                 r = this.b.e
                 if (r != null) {
@@ -16581,7 +16581,7 @@ let why_ns = 0;
             this.c = a.fy
         }
     }
-    T.dp.prototype = {}
+    T.DPlr.prototype = {}
     T.bB.prototype = {
         k(a) {
             return J.b4(this.a)
@@ -17184,7 +17184,7 @@ let why_ns = 0;
                 p = d.a
             p.push($.K())
             s = q.cD()
-            r = new T.dp()
+            r = new T.DPlr()
             r.a = q.e
             p.push(T.RunUpdate(s, b, r, null, null, $.b1(), 1000, 100))
             for (p = q.L, p = new Sgls.a_(p, p.b, p.$ti.i("a_<1*>")); p.u();)
@@ -18774,7 +18774,7 @@ let why_ns = 0;
         inherit(T.fR, T.cy)
         inherit(T.fb, T.bZ)
         inherit(T.eg, T.e3)
-        inherit_many(T.IPlr, [T.NPlr, T.HPlr, T.MPlr, T.dp])
+        inherit_many(T.IPlr, [T.NPlr, T.HPlr, T.MPlr, T.DPlr])
         inherit_many(T.aX, [T.h2, T.dX])
         inherit(T.fY, T.cB)
         inherit(T.cA, T.ah)
