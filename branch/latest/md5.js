@@ -3277,7 +3277,7 @@ let why_ns = 0;
             j(a, b) {
                 let result = C.e.bt(0, X.f4(a, b))
                 // if (result === "频率: [2]%") {
-                //     console.log("O.j", a, b, result)
+                    console.log("O.j", a, b, result)
                 // }
                 return result
             },
@@ -16432,8 +16432,8 @@ let why_ns = 0;
                         p = C.e.gaB().ab(m)
                         o = H.b_(p).i("a9<z.E>")
                         j = o.i("y<M.E,l*>")
-                        C.a.a5(j, H.fJ(n.buffer, $.a(), null))
                         j = P.aa(new H.y(new H.a9(p, o), new T.jl(q), j), true, j.i("M.E"))
+                        C.a.a5(j, H.fJ(n.buffer, $.a(), null))
                         A.eR(X.dc(j))
                         return P.async_return(null, r)
                 }
@@ -19292,16 +19292,19 @@ let why_ns = 0;
             return LangData.j("CXmc>1nB", 39)
         })
         lazy_old($, "ze", "qM", function () {
-            return LangData.j("qnQymy)B", 38)
+            // return LangData.j("qnQymy)B", 38)
+            return "shadow"
         })
         lazy_old($, "zl", "qQ", function () {
             return LangData.j("WG/z.8^B", 55)
         })
         lazy_old($, "yE", "na", function () {
-            return LangData.j("EMzI&'T=]Q:wUF", 13)
+            // return LangData.j("EMzI&'T=]Q:wUF", 13)
+            return "minionCount"
         })
         lazy_old($, "y6", "n4", function () {
-            return LangData.j("1m3tkgG&,{P", 97)
+            // return LangData.j("1m3tkgG&,{P", 97)
+            return "bossName_"
         })
         lazy_old($, "yB", "lQ", function () {
             return LangData.j("6ct2H)A", 11)

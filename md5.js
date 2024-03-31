@@ -16432,8 +16432,8 @@ let why_ns = 0;
                         p = C.e.gaB().ab(m)
                         o = H.b_(p).i("a9<z.E>")
                         j = o.i("y<M.E,l*>")
-                        C.a.a5(j, H.fJ(n.buffer, $.a(), null))
                         j = P.aa(new H.y(new H.a9(p, o), new T.jl(q), j), true, j.i("M.E"))
+                        C.a.a5(j, H.fJ(n.buffer, $.a(), null))
                         A.eR(X.dc(j))
                         return P.async_return(null, r)
                 }
