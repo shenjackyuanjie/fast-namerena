@@ -3282,7 +3282,7 @@ let why_ns = 0;
             get_lang(a) {
                 var s = $.od.h(0, a)
                 // if (s === "》 实力评分: [2]" || s === "》 胜率: [2]%" || s === "实力评估中...[2]%") {
-                // console.log("O.d", a, s)
+                console.log("O.d", a, s)
                 // }
                 if (s == null) return ""
                 return s
@@ -13489,6 +13489,8 @@ let why_ns = 0;
             if (a instanceof T.NPlr) return $.ay.h(0, a.a).fr
             if (a instanceof T.HPlr) {
                 s = $.ay.h(0, a.a)
+                // plv.updateHp(obj.newHp);
+                console.log("lp.$1", s)
                 s.bU(a.d)
                 a.b = s.cy
                 this.a.push(a)
