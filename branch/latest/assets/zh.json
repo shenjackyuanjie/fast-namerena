@@ -140,7 +140,7 @@
     "HP": "HP",
     "detail": " 攻 [] 防 [] 速 [] 敏 [] 魔 [] 抗 [] 智 []",
     "inputTitle": "名字竞技场",
-    "inputPlaceholder": "每行输入一个名字  \n  \n组队对战时用空行隔开组队",
+    "inputPlaceholder": "修改by shenjackyuanjie\n\n版本: latest\n可能会有一些问题, 稳定版请使用根目录下版本",
     "startFight": "开 始",
     "closeTitle": "关闭",
     "fastTitle": "快进",
