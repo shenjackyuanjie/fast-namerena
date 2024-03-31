@@ -13051,8 +13051,8 @@ let why_ns = 0;
                         this_.Q = async_result
                         async_goto = 6
                         // return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec(1, 0), t.z), $async$b4)
-                        // return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec(0, 0), t.z), $async$b4)
-                        break
+                        return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec(0, 0), t.z), $async$b4)
+                        // break
                     case 6:
                         this_.db = null
                         this_.dx = true
@@ -13313,7 +13313,8 @@ let why_ns = 0;
                         n = t.z
                         s = 2
                         // return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec(1, 0), n), $async$$0)
-                        break
+                        return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec(0, 0), n), $async$$0)
+                        // break
                     case 2:
                         p = HtmlRenderer.rV(q.b, q.c)
                         win_data = P.dD(["winners",
