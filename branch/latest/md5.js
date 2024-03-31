@@ -3401,9 +3401,9 @@ let why_ns = 0;
             },
             async_error(a, b) {
                 var s = H.ls(a, "error", t.K)
-                return new P.f3(s, b == null ? P.m2(a) : b)
+                return new P.f3(s, b == null ? P.AsyncError_defaultStackTrace(a) : b)
             },
-            m2(a) {
+            AsyncError_defaultStackTrace(a) {
                 var s
                 if (t.u.b(a)) {
                     s = a.gbz()
@@ -9608,7 +9608,7 @@ let why_ns = 0;
         },
         cj(a, b) {
             var s
-            if (b == null) b = P.m2(a)
+            if (b == null) b = P.AsyncError_defaultStackTrace(a)
             s = this.a
             if (this.b) s.be(a, b)
             else s.cT(a, b)
@@ -9653,7 +9653,7 @@ let why_ns = 0;
             H.ls(a, "error", t.K)
             s = this.a
             if ((s.a & 30) !== 0) throw H.wrap_expression(P.cd("Future already completed"))
-            if (b == null) b = P.m2(a)
+            if (b == null) b = P.AsyncError_defaultStackTrace(a)
             s.cT(a, b)
         },
         dg(a) {
