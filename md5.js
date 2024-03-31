@@ -685,7 +685,7 @@ let why_ns = 0;
                 if (typeof s != "string") throw H.wrap_expression(H.R(a))
                 return s
             },
-            dU(a) {
+            Primitives_objectHashCode(a) {
                 var s = a.$identityHash
                 if (s == null) {
                     s = Math.random() * 0x3fffffff | 0
@@ -978,7 +978,7 @@ let why_ns = 0;
             },
             vd(a) {
                 if (a == null || typeof a != "object") return J.lZ(a)
-                else return H.dU(a)
+                else return H.Primitives_objectHashCode(a)
             },
             uQ(a, b) {
                 var s, r, q, p = a.length
@@ -3276,15 +3276,13 @@ let why_ns = 0;
             },
             j(a, b) {
                 let result = C.e.bt(0, X.f4(a, b))
-                // if (result === "频率: [2]%") {
-                //     console.log("O.j", a, b, result)
-                // }
+                // console.log("O.j", a, b, result)
                 return result
             },
             get_lang(a) {
                 var s = $.od.h(0, a)
                 // if (s === "》 实力评分: [2]" || s === "》 胜率: [2]%" || s === "实力评估中...[2]%") {
-                //     console.log("O.d", a, s)
+                // console.log("O.d", a, s)
                 // }
                 if (s == null) return ""
                 return s
@@ -3354,7 +3352,7 @@ let why_ns = 0;
                 return s
             },
             _makeAsyncAwaitCompleter(a) {
-                return new P.i_(new P.U($.P, a.i("U<0>")), a.i("i_<0>"))
+                return new P.i_(new P._Future($.P, a.i("U<0>")), a.i("i_<0>"))
             },
             _asyncStartSync(a, b) {
                 a.$2(0, null)
@@ -3373,37 +3371,37 @@ let why_ns = 0;
             _awaitOnObject(a, b) {
                 var s, r, q = new P.lh(b),
                     p = new P.li(b)
-                if (a instanceof P.U) a.d7(q, p, t.z)
+                if (a instanceof P._Future) a.d7(q, p, t.z)
                 else {
                     s = t.z
                     if (t.h.b(a)) a.cz(q, p, s)
                     else {
-                        r = new P.U($.P, t.eI)
+                        r = new P._Future($.P, t.eI)
                         r.a = 8
                         r.c = a
                         r.d7(q, p, s)
                     }
                 }
             },
-            _wrapJsFunctionForAsync(a) {
-                var s = function (b, c) {
-                    return function (d, e) {
+            _wrapJsFunctionForAsync(func) {
+                var protected = function (fn, error_) {
+                    return function (error_code, async_result) {
                         while (true) try {
-                            b(d, e)
+                            fn(error_code, async_result)
                             break
-                        } catch (r) {
-                            e = r
-                            d = c
+                        } catch (error) {
+                            async_result = error
+                            error_code = error_
                         }
                     }
-                }(a, 1)
-                return $.P.ct(new P.lr(s))
+                }(func, 1)
+                return $.P.ct(new P._wrapJsFunctionForAsync_closure(protected))
             },
             async_error(a, b) {
                 var s = H.ls(a, "error", t.K)
-                return new P.f3(s, b == null ? P.m2(a) : b)
+                return new P.f3(s, b == null ? P.AsyncError_defaultStackTrace(a) : b)
             },
-            m2(a) {
+            AsyncError_defaultStackTrace(a) {
                 var s
                 if (t.u.b(a)) {
                     s = a.gbz()
@@ -3412,12 +3410,12 @@ let why_ns = 0;
                 return C.G
             },
             future_future_delayed(a, b) {
-                var s = new P.U($.P, b.i("U<0>"))
+                var s = new P._Future($.P, b.i("U<0>"))
                 P.Timer_Timer(a, new P.jp(null, s, b))
                 return s
             },
             rM(a) {
-                return new P.cg(new P.U($.P, a.i("U<0>")), a.i("cg<0>"))
+                return new P.cg(new P._Future($.P, a.i("U<0>")), a.i("cg<0>"))
             },
             mk(a, b) {
                 var s, r
@@ -3490,7 +3488,7 @@ let why_ns = 0;
                         } else q = false
                         if (q) {
                             h = r.a.b
-                            if (e instanceof P.U)
+                            if (e instanceof P._Future)
                                 if ((e.a & 24) !== 0) {
                                     g = h.c
                                     h.c = null
@@ -3676,7 +3674,7 @@ let why_ns = 0;
             li: function li(a) {
                 this.a = a
             },
-            lr: function lr(a) {
+            _wrapJsFunctionForAsync_closure: function lr(a) {
                 this.a = a
             },
             f3: function f3(a, b) {
@@ -3702,7 +3700,7 @@ let why_ns = 0;
                 _.e = d
                 _.$ti = e
             },
-            U: function U(a, b) {
+            _Future: function U(a, b) {
                 var _ = this
                 _.a = 0
                 _.b = a
@@ -4386,7 +4384,7 @@ let why_ns = 0;
                 this.c = false
             },
             vf(a, b) {
-                var s = new P.U($.P, b.i("U<0>")),
+                var s = new P._Future($.P, b.i("U<0>")),
                     r = new P.cg(s, b.i("cg<0>"))
                 a.then(H.convert_dart_closure_to_js_md5(new P.lE(r), 1), H.convert_dart_closure_to_js_md5(new P.lF(r), 1))
                 return s
@@ -4556,10 +4554,10 @@ let why_ns = 0;
                     if (s > q) s = q
                     a.fx = r + s
                     p = LangData.get_lang("imin")
-                    r = new T.V(r)
+                    r = new T.HPlr(r)
                     r.a = a.e
                     r.d = a.fx
-                    e.a.push(T.f(p, a, r, new T.bm(s), null, s, 1000, 100))
+                    e.a.push(T.RunUpdate(p, a, r, new T.HRecover(s), null, s, 1000, 100))
                 }
             },
             nC(a) {
@@ -4575,7 +4573,7 @@ let why_ns = 0;
                     if (s == null) {
                         s = T.nC(b)
                         s.aP(0)
-                        e.a.push(T.f(C.b.B(LangData.get_lang("jIRA"), $.nc()), a, b, null, null, $.a6(), 1000, 100))
+                        e.a.push(T.RunUpdate(C.b.B(LangData.get_lang("jIRA"), $.nc()), a, b, null, null, $.a6(), 1000, 100))
                     } else s.fr = s.fr + 1
                     if (a.r2.J(0, $.a7())) s.fr = s.fr + 1
                 }
@@ -4672,7 +4670,7 @@ let why_ns = 0;
                         s.z = s.z + $.Z()
                         s.Q = s.Q + 1
                     }
-                    e.a.push(T.f(C.b.B(LangData.get_lang("spfN"), $.qx()), a, b, null, null, $.a6(), 1000, 100))
+                    e.a.push(T.RunUpdate(C.b.B(LangData.get_lang("spfN"), $.qx()), a, b, null, null, $.a6(), 1000, 100))
                 }
             },
             tD(a, b, c, d, e) {
@@ -4724,7 +4722,7 @@ let why_ns = 0;
                         b.F()
                     } else s.y = s.y + $.cX()
                     if (a.r2.J(0, $.a7())) s.y = s.y + $.bx()
-                    r = T.f(C.b.B(LangData.get_lang("HBga"), $.qF()), a, b, null, null, $.bg(), 1000, 100)
+                    r = T.RunUpdate(C.b.B(LangData.get_lang("HBga"), $.qF()), a, b, null, null, $.bg(), 1000, 100)
                     e.a.push(r)
                 }
             },
@@ -4744,7 +4742,7 @@ let why_ns = 0;
                         r.z = $.C()
                         r.r = a
                     }
-                    e.a.push(T.f(C.b.B(LangData.get_lang("Okln"), $.qH()), a, b, null, null, $.a6(), 1000, 100))
+                    e.a.push(T.RunUpdate(C.b.B(LangData.get_lang("Okln"), $.qH()), a, b, null, null, $.a6(), 1000, 100))
                 }
             },
             I(a, b, c) {
@@ -5493,7 +5491,7 @@ let why_ns = 0;
                     b.x2.j(0, r.k1)
                     b.x1.j(0, r.k2)
                     b.F()
-                    e.a.push(T.f(LangData.get_lang("toAn"), a, b, null, null, 0, 1000, 100))
+                    e.a.push(T.RunUpdate(LangData.get_lang("toAn"), a, b, null, null, 0, 1000, 100))
                     for (n = a.y.a.e, m = n.length, p = 0; p < n.length; n.length === m || (0, H.F)(n), ++p) {
                         o = n[p]
                         // if (J.Y(o, b)) {
@@ -5523,27 +5521,27 @@ let why_ns = 0;
                     p = b.n()
                 if (p < $.b1()) {
                     s = c.a
-                    s.push(T.f(LangData.get_lang("yZbn"), a, r, r, r, 0, q, 100))
+                    s.push(T.RunUpdate(LangData.get_lang("yZbn"), a, r, r, r, 0, q, 100))
                 } else if (p < $.ci()) {
                     s = c.a
-                    s.push(T.f(LangData.get_lang("PdCA"), a, r, r, r, 0, q, 100))
+                    s.push(T.RunUpdate(LangData.get_lang("PdCA"), a, r, r, r, 0, q, 100))
                 } else if (p < $.mJ()) {
                     s = c.a
-                    s.push(T.f(LangData.get_lang("gjTN"), a, r, r, r, 0, q, 100))
+                    s.push(T.RunUpdate(LangData.get_lang("gjTN"), a, r, r, r, 0, q, 100))
                 } else if (p < $.pc()) {
                     s = c.a
-                    s.push(T.f(LangData.get_lang("xraA"), a, r, r, r, 0, q, 100))
+                    s.push(T.RunUpdate(LangData.get_lang("xraA"), a, r, r, r, 0, q, 100))
                 } else {
                     s = c.a
-                    if (p < $.pp()) s.push(T.f(LangData.get_lang("OBXn"), a, r, r, r, 0, q, 100))
-                    else s.push(T.f(LangData.get_lang("fNKA"), a, r, r, r, 0, q, 100))
+                    if (p < $.pp()) s.push(T.RunUpdate(LangData.get_lang("OBXn"), a, r, r, r, 0, q, 100))
+                    else s.push(T.RunUpdate(LangData.get_lang("fNKA"), a, r, r, r, 0, q, 100))
                 }
-                s.push(T.f(LangData.get_lang("hXqA"), a, r, r, r, 0, q, 100))
+                s.push(T.RunUpdate(LangData.get_lang("hXqA"), a, r, r, r, 0, q, 100))
             },
             tG(a, b, c, d, e) {
                 if (t.r.a(b.r2.h(0, $.d5())) == null && !(b instanceof T.de)) {
                     T.nO(a, b).aP(0)
-                    e.a.push(T.f(LangData.get_lang("JnTA"), a, b, null, null, 0, 1000, 100))
+                    e.a.push(T.RunUpdate(LangData.get_lang("JnTA"), a, b, null, null, 0, 1000, 100))
                 }
             },
             tH(a, b) {
@@ -5761,9 +5759,11 @@ let why_ns = 0;
                     r = $.a()
                 return T.nX(s[r], b.e[r])
             },
-            f(a, b, c, d, e, f, g, h) {
-                var s = new T.aX(f, g, h, a, b, c, e, d)
-                s.aK(a, b, c, d, e, f, g, h)
+            RunUpdate(message, caster, c, d, e, f, delay0, delay1) {
+                var s = new T.aX(f, 0, 0, message, caster, c, e, d)
+                // var s = new T.aX(f, delay0, delay1, message, caster, c, e, d)
+                // s.aK(message, caster, c, d, e, f, delay0, delay1)
+                s.aK(message, caster, c, d, e, f, 0, 0)
                 return s
             },
             aO(a, b, c) {
@@ -5954,7 +5954,7 @@ let why_ns = 0;
                 h = H.b([], k)
                 k = H.b([], k)
                 g = $.a()
-                g = new T.u(a0, a1, a2, a3, f, e, d, c, b, a, s, r, q, p, o, n, m, l, j, i, h, k, g, g, g, $.W(), g)
+                g = new T.Plr(a0, a1, a2, a3, f, e, d, c, b, a, s, r, q, p, o, n, m, l, j, i, h, k, g, g, g, $.W(), g)
                 g.a1(a0, a1, a2, a3)
                 return g
             },
@@ -7147,26 +7147,26 @@ let why_ns = 0;
                 _.e = d
                 _.f = e
             },
-            fr: function fr() {},
-            bF: function bF() {
+            IPlr: function fr() {},
+            NPlr: function bF() {
                 this.a = null
             },
-            V: function V(a) {
+            HPlr: function V(a) {
                 var _ = this
                 _.b = null
                 _.c = a
                 _.a = _.d = null
             },
-            dF: function dF() {
+            MPlr: function dF() {
                 this.a = this.c = this.b = null
             },
-            dp: function dp() {
+            DPlr: function dp() {
                 this.a = null
             },
-            bB: function bB(a) {
+            HDamage: function bB(a) {
                 this.a = a
             },
-            bm: function bm(a) {
+            HRecover: function bm(a) {
                 this.a = a
             },
             aX: function aX(a, b, c, d, e, f, g, h) {
@@ -7211,7 +7211,7 @@ let why_ns = 0;
                 this.b = b
             },
             aM: function aM() {},
-            u: function u(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
+            Plr: function u(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
                 var _ = this
                 _.a = a
                 _.b = b
@@ -8111,7 +8111,7 @@ let why_ns = 0;
                 C.R.by(r, H.oO(a.d, $.rm(), new HtmlRenderer.lq(new HtmlRenderer.lp(s, a), a), null), $.bV())
                 for (f = s.length, q = t.A, p = 0; p < s.length; s.length === f || (0, H.F)(s), ++p) {
                     o = s[p]
-                    if (o instanceof T.V) {
+                    if (o instanceof T.HPlr) {
                         n = q.a(r.querySelector("." + H.e(o.b) + " > .maxhp"))
                         m = o.c
                         if (m >= o.d) {
@@ -8143,7 +8143,7 @@ let why_ns = 0;
                             n.appendChild(h)
                             n.appendChild(i)
                         }
-                    } else if (o instanceof T.dp) q.a(r.querySelector(".name")).classList.add("namedie")
+                    } else if (o instanceof T.DPlr) q.a(r.querySelector(".name")).classList.add("namedie")
                 }
                 return r
             },
@@ -8256,7 +8256,7 @@ let why_ns = 0;
             return a === b
         },
         gak(a) {
-            return H.dU(a)
+            return H.Primitives_objectHashCode(a)
         },
         k(a) {
             return "Instance of '" + H.e(H.jZ(a)) + "'"
@@ -8436,7 +8436,7 @@ let why_ns = 0;
             return new J.db(a, a.length)
         },
         gak(a) {
-            return H.dU(a)
+            return H.Primitives_objectHashCode(a)
         },
         gp(a) {
             return a.length
@@ -9008,7 +9008,7 @@ let why_ns = 0;
             return this.$_target === b.$_target && this.a === b.a
         },
         gak(a) {
-            return (H.vd(this.a) ^ H.dU(this.$_target)) >>> 0
+            return (H.vd(this.a) ^ H.Primitives_objectHashCode(this.$_target)) >>> 0
         },
         k(a) {
             return "Closure '" + H.e(this.$_name) + "' of " + ("Instance of '" + H.e(H.jZ(this.a)) + "'")
@@ -9608,7 +9608,7 @@ let why_ns = 0;
         },
         cj(a, b) {
             var s
-            if (b == null) b = P.m2(a)
+            if (b == null) b = P.AsyncError_defaultStackTrace(a)
             s = this.a
             if (this.b) s.be(a, b)
             else s.cT(a, b)
@@ -9626,7 +9626,7 @@ let why_ns = 0;
         },
         $S: 60
     }
-    P.lr.prototype = {
+    P._wrapJsFunctionForAsync_closure.prototype = {
         $2(a, b) {
             this.a(a, b)
         },
@@ -9653,7 +9653,7 @@ let why_ns = 0;
             H.ls(a, "error", t.K)
             s = this.a
             if ((s.a & 30) !== 0) throw H.wrap_expression(P.cd("Future already completed"))
-            if (b == null) b = P.m2(a)
+            if (b == null) b = P.AsyncError_defaultStackTrace(a)
             s.cT(a, b)
         },
         dg(a) {
@@ -9689,13 +9689,13 @@ let why_ns = 0;
             }
         }
     }
-    P.U.prototype = {
+    P._Future.prototype = {
         cz(a, b, c) {
             var s, r, q = $.P
             if (q === C.f) {
                 if (b != null && !t.C.b(b) && !t.J.b(b)) throw H.wrap_expression(P.da(b, "onError", u.c))
             } else if (b != null) b = P.uz(b, q)
-            s = new P.U(q, c.i("U<0>"))
+            s = new P._Future(q, c.i("U<0>"))
             r = b == null ? 1 : 3
             this.c0(new P.cN(s, r, a, b, this.$ti.i("@<1>").aL(c).i("cN<1,2>")))
             return s
@@ -9704,7 +9704,7 @@ let why_ns = 0;
             return this.cz(a, null, b)
         },
         d7(a, b, c) {
-            var s = new P.U($.P, c.i("U<0>"))
+            var s = new P._Future($.P, c.i("U<0>"))
             this.c0(new P.cN(s, 19, a, b, this.$ti.i("@<1>").aL(c).i("cN<1,2>")))
             return s
         },
@@ -9911,7 +9911,7 @@ let why_ns = 0;
                 o.b = true
                 return
             }
-            if (l instanceof P.U && (l.a & 24) !== 0) {
+            if (l instanceof P._Future && (l.a & 24) !== 0) {
                 if ((l.a & 16) !== 0) {
                     q = m.a
                     q.c = l.c
@@ -9979,7 +9979,7 @@ let why_ns = 0;
     P.em.prototype = {
         gp(a) {
             var s = {},
-                r = new P.U($.P, t.fJ)
+                r = new P._Future($.P, t.fJ)
             s.a = 0
             this.dn(new P.ke(s, this), true, new P.kf(s, r), r.geg())
             return r
@@ -10060,7 +10060,7 @@ let why_ns = 0;
     P.cK.prototype = {}
     P.cM.prototype = {
         gak(a) {
-            return (H.dU(this.a) ^ 892482866) >>> 0
+            return (H.Primitives_objectHashCode(this.a) ^ 892482866) >>> 0
         },
         aW(a, b) {
             if (b == null) return false
@@ -11115,7 +11115,7 @@ let why_ns = 0;
             return this === b
         },
         gak(a) {
-            return H.dU(this)
+            return H.Primitives_objectHashCode(this)
         },
         k(a) {
             return "Instance of '" + H.e(H.jZ(this)) + "'"
@@ -12331,13 +12331,13 @@ let why_ns = 0;
                         l = H.b([], m)
                         // 实力评估中...[2]%
                         // benchmarking
-                        n.push(T.f(LangData.get_lang("pkGN"), null, null, C.JsInt.ag(this_.z, 100), null, 0, 0, 0))
+                        n.push(T.RunUpdate(LangData.get_lang("pkGN"), null, null, C.JsInt.ag(this_.z, 100), null, 0, 0, 0))
                         if (this_.z >= this_.c) {
                             o = H.b([], o)
                             m = H.b([], m)
                             // 》 胜率: [2]%
                             // benchmarkRatio
-                            o.push(T.f(LangData.get_lang("Pnrn"), null, null, this_.y * 100 / this_.c, null, 0, 1000, 100))
+                            o.push(T.RunUpdate(LangData.get_lang("Pnrn"), null, null, this_.y * 100 / this_.c, null, 0, 1000, 100))
                             d.push(new T.aq(o, m))
                             this_.c *= 10
                         }
@@ -12552,7 +12552,7 @@ let why_ns = 0;
                         o = H.b([], t.Y)
                         // 实力评估中...[2]%
                         // benchmarking
-                        a4.push(T.f(LangData.get_lang("pkGN"), null, null, C.JsInt.ag(this_.ch, 100), null, 0, 0, 0))
+                        a4.push(T.RunUpdate(LangData.get_lang("pkGN"), null, null, C.JsInt.ag(this_.ch, 100), null, 0, 0, 0))
                         if (this_.ch >= this_.d) {
                             this_.eS()
                         }
@@ -12572,10 +12572,10 @@ let why_ns = 0;
                 p = H.b([], t.Y)
             // 》 实力评分: [2]
             // benchmarkScore
-            q.push(T.f(LangData.get_lang("JkWn"), null, null, this_.Q * 1e4 / this_.d, null, 0, 1000, 100))
+            q.push(T.RunUpdate(LangData.get_lang("JkWn"), null, null, this_.Q * 1e4 / this_.d, null, 0, 1000, 100))
             this_.y.push(new T.aq(q, p))
             if (this_.x != null) {
-                s = new T.bF()
+                s = new T.NPlr()
                 s.a = this_.f[0].e
                 this_.z.aw(0, new V.j_(this_, s))
             }
@@ -12641,10 +12641,10 @@ let why_ns = 0;
                     get_quote = "0"
                 }
                 p = this.b
-                s.push(T.f(a, p, o, get_quote, o, 0, 1000, 100))
+                s.push(T.RunUpdate(a, p, o, get_quote, o, 0, 1000, 100))
                 // 频率: [2]%
                 // benchmarkSkill
-                s.push(T.f(LangData.get_lang("GJgn"), p, o, b * 100 / n.d, o, 0, 1000, 100))
+                s.push(T.RunUpdate(LangData.get_lang("GJgn"), p, o, b * 100 / n.d, o, 0, 1000, 100))
                 n.y.push(new T.aq(s, r))
                 // console.log("benchmark", a, b, n.d, s)
                 let stack = new Error().stack
@@ -12693,11 +12693,11 @@ let why_ns = 0;
         },
         O() {
             var async_goto = 0,
-                r = P._makeAsyncAwaitCompleter(t.d),
+                async_completer = P._makeAsyncAwaitCompleter(t.d),
                 q, this_ = this,
                 o, n, m, l, k, j, i, h, g, f, e, d
             var $async$O = P._wrapJsFunctionForAsync(function (a, b) {
-                if (a === 1) return P.async_rethrow(b, r)
+                if (a === 1) return P.async_rethrow(b, async_completer)
                 while (true) switch (async_goto) {
                     case 0:
                         e = this_.b
@@ -12713,9 +12713,9 @@ let why_ns = 0;
                             o = H.b([], t.Y)
                             e.push($.K())
                             if (d.length >>> 13 > 0) {
-                                e.push(T.f(LangData.get_lang("BUaa"), null, null, null, null, 0, 1000, 100))
+                                e.push(T.RunUpdate(LangData.get_lang("BUaa"), null, null, null, null, 0, 1000, 100))
                                 this_.b = d.length + 1
-                            } else e.push(T.f(LangData.get_lang("UZBn"), null, null, null, null, 0, 1000, 100))
+                            } else e.push(T.RunUpdate(LangData.get_lang("UZBn"), null, null, null, null, 0, 1000, 100))
                             q = new T.aq(e, o)
                             async_goto = 1
                             break
@@ -12802,18 +12802,18 @@ let why_ns = 0;
                         o = H.b([], t.Y)
                         e.push($.K())
                         if (this_.b >= d.length) {
-                            e.push(T.f(LangData.get_lang("tdaa"), null, null, null, null, 0, 1000, 100))
-                            if (this_.e === 0) e.push(T.f(LangData.get_lang("lIYA"), null, null, null, null, 0, 1000, 100))
+                            e.push(T.RunUpdate(LangData.get_lang("tdaa"), null, null, null, null, 0, 1000, 100))
+                            if (this_.e === 0) e.push(T.RunUpdate(LangData.get_lang("lIYA"), null, null, null, null, 0, 1000, 100))
                         }
                         q = new T.aq(e, o)
                         async_goto = 1
                         break
                     case 1:
-                        return P.async_return(q, r)
+                        return P.async_return(q, async_completer)
                 }
             })
             console.log("X.iW.O")
-            return P._asyncStartSync($async$O, r)
+            return P._asyncStartSync($async$O, async_completer)
         },
         ae(a, b) {
             return this.dL(0, b)
@@ -12996,7 +12996,7 @@ let why_ns = 0;
 
                 this_.b4()
                 this_.z = n
-                console.log("start fq.fe end")
+                // console.log("start fq.fe end")
                 // 合着压根不需要这操作是吧……
                 // for (r = n.length, m = 0; m < n.length; n.length === r || (0, H.F)(n), ++m) {
                 //     for (q = J.by(n[m]); q.u();) {
@@ -13051,8 +13051,8 @@ let why_ns = 0;
                         this_.Q = async_result
                         async_goto = 6
                         // return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec(1, 0), t.z), $async$b4)
-                        // return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec(0, 0), t.z), $async$b4)
-                        break
+                        return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec(0, 0), t.z), $async$b4)
+                        // break
                     case 6:
                         this_.db = null
                         this_.dx = true
@@ -13313,7 +13313,8 @@ let why_ns = 0;
                         n = t.z
                         s = 2
                         // return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec(1, 0), n), $async$$0)
-                        break
+                        return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec(0, 0), n), $async$$0)
+                        // break
                     case 2:
                         p = HtmlRenderer.rV(q.b, q.c)
                         win_data = P.dD(["winners",
@@ -13486,15 +13487,17 @@ let why_ns = 0;
     HtmlRenderer.lp.prototype = {
         $1(a) {
             var s, r, q
-            if (a instanceof T.bF) return $.ay.h(0, a.a).fr
-            if (a instanceof T.V) {
+            if (a instanceof T.NPlr) return $.ay.h(0, a.a).fr
+            if (a instanceof T.HPlr) {
                 s = $.ay.h(0, a.a)
+                // plv.updateHp(obj.newHp);
+                // console.log("lp.$1", s)
                 s.bU(a.d)
                 a.b = s.cy
                 this.a.push(a)
                 return s.fx
             }
-            if (a instanceof T.dp) {
+            if (a instanceof T.DPlr) {
                 s = $.ay.h(0, a.a)
                 r = this.b.e
                 if (r != null) {
@@ -13508,7 +13511,7 @@ let why_ns = 0;
                 this.a.push(a)
                 return s.fr
             }
-            if (a instanceof T.dF) {
+            if (a instanceof T.MPlr) {
                 s = $.ay.h(0, a.a)
                 s.bU(a.b)
                 r = "" + C.d.R(a.c / 4) + "px"
@@ -13517,8 +13520,8 @@ let why_ns = 0;
                 s.fx = '<div class="plr_body ' + s.cy + '"><div class="sgl ' + H.e(Sgls.o6(s.fy)) + '"></div>' + H.e(s.y.outerHTML) + '<div class="maxhp" style="width: ' + r + '" /></div>'
                 return s.fr
             }
-            if (a instanceof T.bB) return '<div class="damage">' + H.e(a.a) + "</div>"
-            if (a instanceof T.bm) return '<div class="recover">' + H.e(a.a) + "</div>"
+            if (a instanceof T.HDamage) return '<div class="damage">' + H.e(a.a) + "</div>"
+            if (a instanceof T.HRecover) return '<div class="recover">' + H.e(a.a) + "</div>"
             return J.b4(a)
         },
         $S: 42
@@ -13756,7 +13759,7 @@ let why_ns = 0;
             var s = a[$.a()].a,
                 r = T.I(this.r, true, c),
                 q = $.ph()
-            d.a.push(T.f(LangData.get_lang("FfpA"), this.r, s, null, null, $.i(), 1000, 100))
+            d.a.push(T.RunUpdate(LangData.get_lang("FfpA"), this.r, s, null, null, $.i(), 1000, 100))
             s.a3(r * q, true, this.r, T.v6(), c, d)
         }
     }
@@ -13780,7 +13783,7 @@ let why_ns = 0;
                 q = LangData.get_lang("zEuN"),
                 p = s.r,
                 o = d.a
-            o.push(T.f(q, p, p, r, r, $.i(), 1000, 100))
+            o.push(T.RunUpdate(q, p, p, r, r, $.i(), 1000, 100))
             s.r.rx.j(0, s.fr)
             s.r.r2.m(0, $.lN(), s)
             if (s.r.r2.J(0, $.a7())) {
@@ -13793,7 +13796,7 @@ let why_ns = 0;
             q.l = q.l + $.lM()
             q = C.b.B(LangData.get_lang("gIKN"), $.qu())
             p = s.r
-            o.push(T.f(q, p, p, r, r, 0, 1000, 100))
+            o.push(T.RunUpdate(q, p, p, r, r, 0, 1000, 100))
         },
         ar(a) {
             a.id = a.id * this.fx
@@ -13837,7 +13840,7 @@ let why_ns = 0;
                 n = p.fy
             if (n == null) {
                 p.fy = a[$.a()].a
-                d.a.push(T.f(LangData.get_lang("RmAN"), p.r, p.fy, o, o, $.i(), 1000, 100))
+                d.a.push(T.RunUpdate(LangData.get_lang("RmAN"), p.r, p.fy, o, o, $.i(), 1000, 100))
                 p.r.x1.j(0, p.fr)
                 n = p.r
                 n.l = n.l + n.dx * $.B()
@@ -13849,14 +13852,16 @@ let why_ns = 0;
                 p.ah(0)
                 if (n.fx > $.a()) {
                     s = d.a
-                    s.push(T.f(LangData.get_lang("iLaN"), p.r, n, o, o, $.i(), 1000, 100))
+                    s.push(T.RunUpdate(LangData.get_lang("iLaN"), p.r, n, o, o, $.i(), 1000, 100))
                     r = T.I(p.r, true, c)
                     q = T.I(p.r, true, c)
                     if (q > r) r = q
                     q = T.I(p.r, true, c)
                     if (q > r) r = q
                     if (n.a7($.d2(), c)) {
-                        s.push(T.f(LangData.get_lang("BtqN"), n, p.r, o, o, 0, 1000, 100))
+                        // dodge (通用回避)
+                        // [0][回避]了攻击
+                        s.push(T.RunUpdate(LangData.get_lang("BtqN"), n, p.r, o, o, 0, 1000, 100))
                         return
                     }
                     n.bN(r * $.mZ(), true, p.r, T.ad(), c, d)
@@ -13915,7 +13920,7 @@ let why_ns = 0;
             s = a[$.a()].a
             r = T.I(p.r, false, c)
             q = $.eV()
-            d.a.push(T.f(LangData.get_lang("UeAn"), p.r, s, null, null, 0, 1000, 100))
+            d.a.push(T.RunUpdate(LangData.get_lang("UeAn"), p.r, s, null, null, 0, 1000, 100))
             s.a3(r * q, false, p.r, T.ad(), c, d)
             if (p.fr == $.a()) p.K(null, d)
         },
@@ -13938,7 +13943,7 @@ let why_ns = 0;
         v(a, b, c, d) {
             var s = a[$.a()].a,
                 r = T.I(this.r, true, c)
-            d.a.push(T.f(LangData.get_lang("wnjN"), this.r, s, null, null, $.i(), 1000, 100))
+            d.a.push(T.RunUpdate(LangData.get_lang("wnjN"), this.r, s, null, null, $.i(), 1000, 100))
             s.a3(r, true, this.r, T.v7(), c, d)
         }
     }
@@ -13956,7 +13961,7 @@ let why_ns = 0;
             var s = this,
                 r = LangData.get_lang("yUxA"),
                 q = s.r
-            d.a.push(T.f(r, q, q, null, null, $.i(), 1000, 100))
+            d.a.push(T.RunUpdate(r, q, q, null, null, $.i(), 1000, 100))
             s.fy = s.fy + $.t()
             s.r.x2.j(0, s.fx)
             s.r.rx.j(0, s.fr)
@@ -14044,11 +14049,15 @@ let why_ns = 0;
                 p = null,
                 o = a[$.a()].a,
                 n = d.a
-            n.push(T.f(LangData.get_lang("UUan"), q.r, o, p, p, $.i(), 1000, 100))
+            // sklCharm
+            // [0]使用[魅惑]
+            n.push(T.RunUpdate(LangData.get_lang("UUan"), q.r, o, p, p, $.i(), 1000, 100))
             if (!o.a7($.aE(), c)) s = o.fx > $.a() && !o.A && T.bW(q.r.dx, o.db + o.dy, c)
             else s = true
             if (s) {
-                n.push(T.f(LangData.get_lang("BtqN"), o, q.r, p, p, $.as(), 1000, 100))
+                // dodge (通用回避)
+                // [0][回避]了攻击
+                n.push(T.RunUpdate(LangData.get_lang("BtqN"), o, q.r, p, p, $.as(), 1000, 100))
                 return
             }
             r = t.o.a(o.r2.h(0, $.aE()))
@@ -14061,7 +14070,9 @@ let why_ns = 0;
                 else r.z = r.z + 1
             }
             if (q.r.r2.J(0, $.a7())) r.z = r.z + $.B()
-            n.push(T.f(C.b.B(LangData.get_lang("yjhn"), $.nd()), q.r, o, p, p, $.cZ(), 1000, 100))
+            // sklCharmHit
+            // [1]被[魅惑]了
+            n.push(T.RunUpdate(C.b.B(LangData.get_lang("yjhn"), $.nd()), q.r, o, p, p, $.cZ(), 1000, 100))
         }
     }
     T.dI.prototype = {
@@ -14131,18 +14142,18 @@ let why_ns = 0;
             q = C.a.dl(p.k1, new T.k9())
             if (q != null) q.f = C.d.R(Math.sqrt(H.ar(k.f)))
             q = LangData.get_lang("yWWn")
-            o = new T.dF()
+            o = new T.MPlr()
             o.cO(k.r)
             n = d.a
-            n.push(T.f(q, o, k.r, j, j, $.a6(), 1000, 100))
+            n.push(T.RunUpdate(q, o, k.r, j, j, $.a6(), 1000, 100))
             k.r.y.aZ(p)
             o = LangData.get_lang("pKQn")
             q = k.r
             m = p.fx
-            l = new T.V(m)
+            l = new T.HPlr(m)
             l.a = p.e
             l.d = m
-            n.push(T.f(o, q, l, j, j, 0, 1000, 100))
+            n.push(T.RunUpdate(o, q, l, j, j, 0, 1000, 100))
         }
     }
     T.k9.prototype = {
@@ -14160,7 +14171,7 @@ let why_ns = 0;
             if (p > q) q = p
             p = T.I(s.r, false, c) * $.pg()
             if (p > q) q = p
-            d.a.push(T.f(LangData.get_lang("mFkn"), s.r, r, null, null, $.i(), 1000, 100))
+            d.a.push(T.RunUpdate(LangData.get_lang("mFkn"), s.r, r, null, null, $.i(), 1000, 100))
             r.a3(q, false, s.r, T.ad(), c, d)
         }
     }
@@ -14171,7 +14182,7 @@ let why_ns = 0;
         aq(a, b, c, d, e) {
             var s = this
             if (a > $.a() && (d.n() & 63) < s.z) {
-                e.a.push(T.f(LangData.get_lang("wTSa"), s.r, s.x, null, null, 0, 1000, 100))
+                e.a.push(T.RunUpdate(LangData.get_lang("wTSa"), s.r, s.x, null, null, 0, 1000, 100))
                 a *= s.Q
             }
             return a
@@ -14213,7 +14224,7 @@ let why_ns = 0;
         v(a, b, c, d) {
             var s = a[$.a()].a,
                 r = T.I(this.r, true, c)
-            d.a.push(T.f(LangData.get_lang("AqCN"), this.r, s, null, null, $.i(), 1000, 100))
+            d.a.push(T.RunUpdate(LangData.get_lang("AqCN"), this.r, s, null, null, $.i(), 1000, 100))
             s.a3(r, true, this.r, T.v9(), c, d)
         }
     }
@@ -14229,9 +14240,12 @@ let why_ns = 0;
                 p = a[$.a()].a,
                 o = T.I(s.r, true, c),
                 n = d.a
-            n.push(T.f(LangData.get_lang("cDPa"), s.r, p, r, r, $.as(), 1000, 100))
+            // sklDisperse [0]使用[净化]
+            n.push(T.RunUpdate(LangData.get_lang("cDPa"), s.r, p, r, r, $.as(), 1000, 100))
             if (p.a7($.lP(), c)) {
-                n.push(T.f(LangData.get_lang("BtqN"), p, s.r, r, r, $.as(), 1000, 100))
+                // dodge (通用回避)
+                // [0][回避]了攻击
+                n.push(T.RunUpdate(LangData.get_lang("BtqN"), p, s.r, r, r, $.as(), 1000, 100))
                 return
             }
             n = p.r2
@@ -14256,11 +14270,13 @@ let why_ns = 0;
             l.f = C.JsInt.P(l.f + $.i(), $.t())
             s = a[$.a()].a
             r = d.a
-            r.push(T.f(LangData.get_lang("fcfa"), l.r, s, k, k, $.i(), 1000, 100))
+            r.push(T.RunUpdate(LangData.get_lang("fcfa"), l.r, s, k, k, $.i(), 1000, 100))
             if (!s.a7($.d3(), c)) q = s.fx > $.a() && !s.A && !l.r.r2.J(0, $.a7()) && T.bW(l.r.dx, s.dy + s.cx + s.db, c)
             else q = true
             if (q) {
-                r.push(T.f(LangData.get_lang("BtqN"), s, l.r, k, k, $.as(), 1000, 100))
+                // dodge (通用回避)
+                // [0][回避]了攻击
+                r.push(T.RunUpdate(LangData.get_lang("BtqN"), s, l.r, k, k, $.as(), 1000, 100))
                 return
             }
             if (l.r.r2.J(0, $.a7())) {
@@ -14278,13 +14294,13 @@ let why_ns = 0;
             if (n > m) q.fx = m
             q = C.b.B(LangData.get_lang("RQta"), $.qD())
             n = l.r
-            m = new T.V(p)
+            m = new T.HPlr(p)
             m.a = n.e
             m.d = n.fx
-            n = new T.V(o)
+            n = new T.HPlr(o)
             n.a = s.e
             n.d = s.fx
-            r.push(T.f(q, m, n, k, k, (o - p) * $.t(), 1000, 100))
+            r.push(T.RunUpdate(q, m, n, k, k, (o - p) * $.t(), 1000, 100))
             s.cr(o - s.fx, o, l.r, c, d)
         }
     }
@@ -14301,7 +14317,7 @@ let why_ns = 0;
             s = T.I(this.r, true, c)
             r = $.mM()
             q = o.b
-            d.a.push(T.f(LangData.get_lang("mAoA"), this.r, p, null, null, $.i(), 1000, 100))
+            d.a.push(T.RunUpdate(LangData.get_lang("mAoA"), this.r, p, null, null, $.i(), 1000, 100))
             p.a3(s * (r + q), true, this.r, T.oJ(), c, d)
         }
     }
@@ -14322,14 +14338,16 @@ let why_ns = 0;
                 h = null,
                 g = a[$.a()].a,
                 f = d.a
-            f.push(T.f(LangData.get_lang("lSVA"), i.r, g, h, h, $.i(), 1000, 100))
+            f.push(T.RunUpdate(LangData.get_lang("lSVA"), i.r, g, h, h, $.i(), 1000, 100))
             s = i.r.fr + C.JsInt.P($.pG() - g.fx, $.B())
             r = $.a()
             if (s < r) s = r
             if (!g.a7($.eZ(), c)) q = g.fx > $.a() && !g.A && !i.r.r2.J(0, $.a7()) && T.bW(s, g.dy + g.db, c)
             else q = true
             if (q) {
-                f.push(T.f(LangData.get_lang("BtqN"), g, i.r, h, h, $.as(), 1000, 100))
+                // dodge (通用回避)
+                // [0][回避]了攻击
+                f.push(T.RunUpdate(LangData.get_lang("BtqN"), g, i.r, h, h, $.as(), 1000, 100))
                 return
             }
             p = g.fx
@@ -14348,10 +14366,10 @@ let why_ns = 0;
             j = p - o
             o = LangData.get_lang("Hxra")
             q = i.r
-            n = new T.V(p)
+            n = new T.HPlr(p)
             n.a = g.e
             n.d = g.fx
-            f.push(T.f(o, q, n, new T.bB(l), h, j, 1000, 100))
+            f.push(T.RunUpdate(o, q, n, new T.HDamage(l), h, j, 1000, 100))
             if (j > $.a()) g.cr(j, p, i.r, c, d)
         }
     }
@@ -14410,7 +14428,7 @@ let why_ns = 0;
                 o = null,
                 n = a[$.a()].a,
                 m = d.a
-            m.push(T.f(LangData.get_lang("pHka"), p.r, n, o, o, $.a6(), 1000, 100))
+            m.push(T.RunUpdate(LangData.get_lang("pHka"), p.r, n, o, o, $.a6(), 1000, 100))
             s = p.r
             s.l = s.l + s.cy
             s = n.r2
@@ -14429,7 +14447,7 @@ let why_ns = 0;
                 r.z = s + q
                 r.Q = r.Q + q
             }
-            m.push(T.f(C.b.B(LangData.get_lang("DDWN"), $.qE()), p.r, n, o, o, 0, 1000, 100))
+            m.push(T.RunUpdate(C.b.B(LangData.get_lang("DDWN"), $.qE()), p.r, n, o, o, 0, 1000, 100))
         }
     }
     T.e8.prototype = {
@@ -14458,15 +14476,15 @@ let why_ns = 0;
             q = s.fy - s.fx
             if (r > q) r = q
             k = d.a
-            k.push(T.f(LangData.get_lang("Yiea"), l.r, s, null, null, r, 1000, 100))
+            k.push(T.RunUpdate(LangData.get_lang("Yiea"), l.r, s, null, null, r, 1000, 100))
             p = s.fx
             s.fx = p + r
             o = LangData.get_lang("imin")
             n = l.r
-            m = new T.V(p)
+            m = new T.HPlr(p)
             m.a = s.e
             m.d = s.fx
-            k.push(T.f(o, n, m, new T.bm(r), null, 0, 1000, 100))
+            k.push(T.RunUpdate(o, n, m, new T.HRecover(r), null, 0, 1000, 100))
             s.bL(l.r, d)
         }
     }
@@ -14526,7 +14544,7 @@ let why_ns = 0;
             var s = a[$.a()].a,
                 r = T.I(this.r, true, c),
                 q = $.p0()
-            d.a.push(T.f(LangData.get_lang("yMvn"), this.r, s, null, null, $.i(), 1000, 100))
+            d.a.push(T.RunUpdate(LangData.get_lang("yMvn"), this.r, s, null, null, $.i(), 1000, 100))
             s.a3(r * q, true, this.r, T.mE(), c, d)
         }
     }
@@ -14547,7 +14565,7 @@ let why_ns = 0;
                 q = LangData.get_lang("syPN"),
                 p = s.r,
                 o = d.a
-            o.push(T.f(q, p, p, r, r, $.a6(), 1000, 100))
+            o.push(T.RunUpdate(q, p, p, r, r, $.a6(), 1000, 100))
             s.r.y2.j(0, s.fr)
             s.r.x2.j(0, s.fx)
             s.r.rx.j(0, s.fy)
@@ -14567,7 +14585,7 @@ let why_ns = 0;
             q.l = q.l - $.eX()
             q = C.b.B(LangData.get_lang("RCnN"), $.qG())
             p = s.r
-            o.push(T.f(q, p, p, r, r, 0, 1000, 100))
+            o.push(T.RunUpdate(q, p, p, r, r, 0, 1000, 100))
         },
         aq(a, b, c, d, e) {
             var s = $.a()
@@ -14636,7 +14654,7 @@ let why_ns = 0;
                 p = s * (r + (q - r) * $.oX()) / q
                 n.y = s - p
                 o = C.d.R(p / (m.dx + $.au()))
-                b.a.push(T.f(LangData.get_lang("nEWa"), n.r, m, null, null, 0, 1000, 100))
+                b.a.push(T.RunUpdate(LangData.get_lang("nEWa"), n.r, m, null, null, 0, 1000, 100))
                 m.aF(o, n.r, T.ad(), a, b)
                 m = n.z - 1
                 n.z = m
@@ -14659,7 +14677,7 @@ let why_ns = 0;
         v(a, b, c, d) {
             var s = a[$.a()].a,
                 r = T.I(this.r, true, c)
-            d.a.push(T.f(LangData.get_lang("efnA"), this.r, s, null, null, $.i(), 1000, 100))
+            d.a.push(T.RunUpdate(LangData.get_lang("efnA"), this.r, s, null, null, $.i(), 1000, 100))
             s.a3(r, true, this.r, T.vb(), c, d)
         }
     }
@@ -14684,7 +14702,7 @@ let why_ns = 0;
             r = this.r
             m = H.b(l.slice(0), m)
             q = d.a
-            q.push(T.f(s, r, null, null, m, $.i(), 1000, 100))
+            q.push(T.RunUpdate(s, r, null, null, m, $.i(), 1000, 100))
             for (k = $.a(); k < l.length; ++k) {
                 m = T.I(this.r, true, c)
                 s = $.px()
@@ -14775,8 +14793,8 @@ let why_ns = 0;
             q = s.fy
             if (r > q) r = q
             p = d.a
-            p.push(T.f(LangData.get_lang("FXSa"), l.r, s, k, k, $.i(), 1000, 100))
-            p.push(T.f(C.b.B(LangData.get_lang("rFJa"), $.ng()), l.r, s, k, k, r + $.a6(), 1000, 100))
+            p.push(T.RunUpdate(LangData.get_lang("FXSa"), l.r, s, k, k, $.i(), 1000, 100))
+            p.push(T.RunUpdate(C.b.B(LangData.get_lang("rFJa"), $.ng()), l.r, s, k, k, r + $.a6(), 1000, 100))
             s.fx = r
             o = s.y
             if (!C.a.w(o.f, s)) {
@@ -14792,10 +14810,10 @@ let why_ns = 0;
             }
             o = LangData.get_lang("imin")
             n = l.r
-            m = new T.V($.a())
+            m = new T.HPlr($.a())
             m.a = s.e
             m.d = s.fx
-            p.push(T.f(o, n, m, new T.bm(r), k, 0, 1000, 100))
+            p.push(T.RunUpdate(o, n, m, new T.HRecover(r), k, 0, 1000, 100))
         }
     }
     T.hu.prototype = {
@@ -14808,11 +14826,13 @@ let why_ns = 0;
                 o = null,
                 n = a[$.a()].a,
                 m = d.a
-            m.push(T.f(LangData.get_lang("dxVA"), p.r, n, o, o, 0, 1000, 100))
+            m.push(T.RunUpdate(LangData.get_lang("dxVA"), p.r, n, o, o, 0, 1000, 100))
             if (!n.a7($.aJ(), c)) s = n.fx > $.a() && !n.A && T.bW(p.r.dx, n.dy, c)
             else s = true
             if (s) {
-                m.push(T.f(LangData.get_lang("BtqN"), n, p.r, o, o, $.as(), 1000, 100))
+                // dodge (通用回避)
+                // [0][回避]了攻击
+                m.push(T.RunUpdate(LangData.get_lang("BtqN"), n, p.r, o, o, $.as(), 1000, 100))
                 return
             }
             r = t.aJ.a(n.r2.h(0, $.aJ()))
@@ -14821,7 +14841,7 @@ let why_ns = 0;
                 r.fr = $.C()
                 r.aP(0)
             } else r.fr = r.fr + $.C()
-            m.push(T.f(C.b.B(LangData.get_lang("jIRA"), $.nc()), p.r, n, o, o, 0, 1000, 100))
+            m.push(T.RunUpdate(C.b.B(LangData.get_lang("jIRA"), $.nc()), p.r, n, o, o, 0, 1000, 100))
             m = p.r
             q = m.fx
             m.fx = $.a()
@@ -14854,13 +14874,15 @@ let why_ns = 0;
             return H.b([], t.F)
         },
         v(a7, a8, a9, b0) {
-            var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, a3, a4, a5 = this,
+            var s, shadow_name, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, a3, a4, this_ = this,
                 a6 = null
-            a5.f = C.d.R(a5.f * $.mI())
+            this_.f = C.d.R(this_.f * $.mI())
             s = b0.a
-            s.push(T.f(LangData.get_lang("USvA"), a5.r, a6, a6, a6, $.a6(), 1000, 100))
-            r = H.e(a5.r.a) + "?" + H.e($.qM())
-            q = a5.r
+            s.push(T.RunUpdate(LangData.get_lang("USvA"), this_.r, a6, a6, a6, $.a6(), 1000, 100))
+            shadow_name = H.e(this_.r.a) + "?" + H.e($.qM())
+            // r = name + "?" + "shadow"
+            // console.log("T.hB.v", shadow_name, a5.r.a, H.e($.qM()))
+            q = this_.r
             p = q.b
             q = q.c
             o = $.a()
@@ -14901,26 +14923,26 @@ let why_ns = 0;
             a2 = H.b([], a)
             a = H.b([], a)
             a3 = $.a()
-            a4 = new T.fS(r, p, q, a6, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a0, a1, a2, a, a3, a3, a3, $.W(), a3)
-            a4.a1(r, p, q, a6)
+            a4 = new T.fS(shadow_name, p, q, a6, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a0, a1, a2, a, a3, a3, a3, $.W(), a3)
+            a4.a1(shadow_name, p, q, a6)
             a4.a6 = new T.cp(a4)
-            a4.aj = a5
-            a4.e = T.fD(a5.r)
+            a4.aj = this_
+            a4.e = T.fD(this_.r)
             a4.r = LangData.get_lang("VdSN")
-            q = a5.r
+            q = this_.r
             a4.y = q.y
             q.L.j(0, a4.a6)
             a4.az()
-            if (a5.r.r2.J(0, $.a7())) a4.l = $.bx()
+            if (this_.r.r2.J(0, $.a7())) a4.l = $.bx()
             else a4.l = -$.bx()
-            a5.r.y.aZ(a4)
-            r = LangData.get_lang("wHun")
-            q = a5.r
+            this_.r.y.aZ(a4)
+            shadow_name = LangData.get_lang("wHun")
+            q = this_.r
             p = a4.fx
-            o = new T.V(p)
+            o = new T.HPlr(p)
             o.a = a4.e
             o.d = p
-            s.push(T.f(r, q, o, a6, a6, 0, 1000, 100))
+            s.push(T.RunUpdate(shadow_name, q, o, a6, a6, 0, 1000, 100))
         }
     }
     T.eh.prototype = {
@@ -14972,11 +14994,13 @@ let why_ns = 0;
                 p = null,
                 o = a[$.a()].a,
                 n = d.a
-            n.push(T.f(LangData.get_lang("hdla"), q.r, o, p, p, $.i(), 1000, 100))
+            n.push(T.RunUpdate(LangData.get_lang("hdla"), q.r, o, p, p, $.i(), 1000, 100))
             if (!o.a7($.bi(), c)) s = o.fx > $.a() && !o.A && T.bW(q.r.dx, o.dy, c)
             else s = true
             if (s) {
-                n.push(T.f(LangData.get_lang("BtqN"), o, q.r, p, p, $.as(), 1000, 100))
+                // dodge (通用回避)
+                // [0][回避]了攻击
+                n.push(T.RunUpdate(LangData.get_lang("BtqN"), o, q.r, p, p, $.as(), 1000, 100))
                 return
             }
             o.l = o.l - (o.cy + $.au())
@@ -14991,7 +15015,7 @@ let why_ns = 0;
                 o.F()
             } else r.z = r.z + $.t()
             if (q.r.r2.J(0, $.a7())) r.z = r.z + $.C()
-            n.push(T.f(C.b.B(LangData.get_lang("YNva"), $.qJ()), q.r, o, p, p, $.a6(), 1000, 100))
+            n.push(T.RunUpdate(C.b.B(LangData.get_lang("YNva"), $.qJ()), q.r, o, p, p, $.a6(), 1000, 100))
         }
     }
     T.hj.prototype = {
@@ -15003,7 +15027,7 @@ let why_ns = 0;
             s = T.I(n.r, true, c)
             r = $.mZ()
             q = l.b
-            d.a.push(T.f(LangData.get_lang("Ycen"), n.r, m, null, null, 0, 1000, 100))
+            d.a.push(T.RunUpdate(LangData.get_lang("Ycen"), n.r, m, null, null, 0, 1000, 100))
             p = n.r
             o = p.fx
             p.fx = $.a()
@@ -15073,14 +15097,14 @@ let why_ns = 0;
             return H.b([], t.F)
         },
         v(a6, a7, a8, a9) {
-            var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, a3 = this,
+            var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, this_ = this,
                 a4 = null,
                 a5 = a9.a
-            a5.push(T.f(LangData.get_lang("sCza"), a3.r, a4, a4, a4, $.a6(), 1000, 100))
-            s = a3.fr
+            a5.push(T.RunUpdate(LangData.get_lang("sCza"), this_.r, a4, a4, a4, $.a6(), 1000, 100))
+            s = this_.fr
             if (s == null) {
-                s = H.e(a3.r.a) + "?" + H.e($.qQ())
-                r = a3.r
+                s = H.e(this_.r.a) + "?" + H.e($.qQ())
+                r = this_.r
                 q = r.b
                 r = r.c
                 p = $.a()
@@ -15124,33 +15148,35 @@ let why_ns = 0;
                 a2 = new T.fT(s, q, r, a4, p, o, n, m, l, k, j, i, h, g, f, e, d, c, a, a0, a1, b, a2, a2, a2, $.W(), a2)
                 a2.a1(s, q, r, a4)
                 a2.a6 = new T.cp(a2)
-                a2.aj = a3
-                a2.e = T.fD(a3.r)
-                a3.fr = a2
-                a2.r = LangData.get_lang("DxYn")
-                a2 = a3.fr
-                a2.y = a3.r.y
+                a2.aj = this_
+                a2.e = T.fD(this_.r)
+                this_.fr = a2
+                // sklSummonName
+                a2.r = LangData.get_lang("DxYn") // 使魔
+                a2 = this_.fr
+                a2.y = this_.r.y
                 a2.az()
             } else {
                 s.bP()
                 s.bs()
                 s.cn()
             }
-            a3.r.L.j(0, a3.fr.a6)
-            a3.fr.l = a8.n() * $.C()
-            if (a3.r.r2.J(0, $.a7())) {
-                a3.fr.bi.D()
-                a3.fr.l = $.bx()
+            this_.r.L.j(0, this_.fr.a6)
+            this_.fr.l = a8.n() * $.C()
+            if (this_.r.r2.J(0, $.a7())) {
+                this_.fr.bi.D()
+                this_.fr.l = $.bx()
             }
-            a3.r.y.aZ(a3.fr)
-            s = LangData.get_lang("qhOn")
-            r = a3.r
-            q = a3.fr
+            this_.r.y.aZ(this_.fr)
+            // sklSummoned
+            s = LangData.get_lang("qhOn") // 召唤出[1]
+            r = this_.r
+            q = this_.fr
             p = q.fx
-            o = new T.V(p)
+            o = new T.HPlr(p)
             o.a = q.e
             o.d = p
-            a5.push(T.f(s, r, o, a4, a4, 0, 1000, 100))
+            a5.push(T.RunUpdate(s, r, o, a4, a4, 0, 1000, 100))
         }
     }
     T.hI.prototype = {
@@ -15160,7 +15186,7 @@ let why_ns = 0;
                 i = 1000,
                 h = a[$.a()].a,
                 g = d.a
-            g.push(T.f(LangData.get_lang("hyoA"), k.r, h, j, j, $.i(), i, 100))
+            g.push(T.RunUpdate(LangData.get_lang("hyoA"), k.r, h, j, j, $.i(), i, 100))
             s = $.B() + (c.n() & 3)
             r = $.ci() + k.r.db
             for (q = $.a(), p = q, o = false; q < s; ++q) {
@@ -15175,6 +15201,8 @@ let why_ns = 0;
                             m.aK(p, h, n, j, j, 0, i, 100)
                             g.push(m)
                         } else {
+                            // dodge (通用回避)
+                            // [0][回避]了攻击
                             p = LangData.get_lang("BtqN")
                             n = k.r
                             m = new T.aX(0, i, 100, p, h, n, j, j)
@@ -15219,7 +15247,7 @@ let why_ns = 0;
         aq(a, b, c, d, e) {
             // if (a > $.a() && J.Y(c, T.mE())) {
             if (a > $.a() && (c === T.mE())) {
-                e.a.push(T.f(LangData.get_lang("HwtN"), this.r, null, null, null, a, 1000, 100))
+                e.a.push(T.RunUpdate(LangData.get_lang("HwtN"), this.r, null, null, null, a, 1000, 100))
                 return -a
             }
             // return a > $.a() && J.Y(c, T.oH()) ? $.a() : a
@@ -15245,7 +15273,7 @@ let why_ns = 0;
             q = this.r
             m = H.b(l.slice(0), m)
             p = d.a
-            p.push(T.f(r, q, null, null, m, $.i(), 1000, 100))
+            p.push(T.RunUpdate(r, q, null, null, m, $.i(), 1000, 100))
             o = T.I(this.r, true, c) * $.mQ() / (l.length + $.b0())
             for (s = $.a(); s < l.length; ++s) {
                 n = l[s]
@@ -15413,14 +15441,14 @@ let why_ns = 0;
             if (r === -q && a.length === q) {
                 m.fx = q
                 r = d.a
-                r.push(T.f(LangData.get_lang("uMZa"), m.r, l, l, l, 0, k, 100))
+                r.push(T.RunUpdate(LangData.get_lang("uMZa"), m.r, l, l, l, 0, k, 100))
                 r.push($.K())
             }
             r = m.fx
             q = $.a()
             if (r > q) {
                 m.fx = r - 1
-                d.a.push(T.f(LangData.get_lang("Gikn"), m.r, l, l, l, 0, k, 100))
+                d.a.push(T.RunUpdate(LangData.get_lang("Gikn"), m.r, l, l, l, 0, k, 100))
                 return
             }
             p = s.fx
@@ -15430,23 +15458,23 @@ let why_ns = 0;
             r = o === n && r === q
             q = d.a
             if (r) {
-                q.push(T.f(LangData.get_lang("dEsa"), m.r, l, l, l, 0, k, 100))
-                q.push(T.f(LangData.get_lang("RmQa"), m.r, l, l, l, l, $.eS(), $.lH()))
-                q.push(T.f(LangData.get_lang("imLn"), m.r, l, l, l, 0, k, 100))
+                q.push(T.RunUpdate(LangData.get_lang("dEsa"), m.r, l, l, l, 0, k, 100))
+                q.push(T.RunUpdate(LangData.get_lang("RmQa"), m.r, l, l, l, l, $.eS(), $.lH()))
+                q.push(T.RunUpdate(LangData.get_lang("imLn"), m.r, l, l, l, 0, k, 100))
                 r = LangData.get_lang("woia")
                 o = m.r
-                n = new T.V(p)
+                n = new T.HPlr(p)
                 n.a = s.e
                 n.d = s.fx
-                q.push(T.f(r, o, n, new T.bB(p), l, p + $.b3(), k, 100))
+                q.push(T.RunUpdate(r, o, n, new T.HDamage(p), l, p + $.b3(), k, 100))
             } else {
                 m.fx = n
                 r = LangData.get_lang("MtDN")
                 o = m.r
-                n = new T.V(p)
+                n = new T.HPlr(p)
                 n.a = s.e
                 n.d = s.fx
-                q.push(T.f(r, o, n, new T.bB(p), l, p + $.b3(), k, 100))
+                q.push(T.RunUpdate(r, o, n, new T.HDamage(p), l, p + $.b3(), k, 100))
             }
             s.bm(p, m.r, c, d)
             r = m.r
@@ -15488,7 +15516,7 @@ let why_ns = 0;
                 s = C.d.R((T.I(k, true, a) + l.go * $.b3()) / T.d9(k, true, a))
                 r = l.fr
                 q = b.a
-                q.push(T.f(LangData.get_lang("VZaN"), r, k, null, null, 0, 1000, 100))
+                q.push(T.RunUpdate(LangData.get_lang("VZaN"), r, k, null, null, 0, 1000, 100))
                 p = k.aF(s, r, T.ad(), a, b)
                 o = $.a()
                 if (p > o && r.fx > o) {
@@ -15499,10 +15527,10 @@ let why_ns = 0;
                     if (n > p) n = p
                     r.fx = m + n
                     o = LangData.get_lang("imin")
-                    m = new T.V(m)
+                    m = new T.HPlr(m)
                     m.a = r.e
                     m.d = r.fx
-                    q.push(T.f(o, r, m, new T.bm(n), null, 0, 1000, 100))
+                    q.push(T.RunUpdate(o, r, m, new T.HRecover(n), null, 0, 1000, 100))
                 }
             }
             if (l.fy > $.a4()) {
@@ -15547,18 +15575,18 @@ let why_ns = 0;
             q = k.fr
             p = k.fx
             m = d.a
-            if (r > $.t()) m.push(T.f(LangData.get_lang("Ojba"), q, p, j, j, 0, i, 100))
-            else m.push(T.f(LangData.get_lang("JBrN"), q, p, j, j, 0, i, 100))
+            if (r > $.t()) m.push(T.RunUpdate(LangData.get_lang("Ojba"), q, p, j, j, 0, i, 100))
+            else m.push(T.RunUpdate(LangData.get_lang("JBrN"), q, p, j, j, 0, i, 100))
         },
         fH(a, b, c) {
             var s, r = null,
                 q = this.fx,
                 p = c.a
-            p.push(T.f(LangData.get_lang("UFQa"), q, a, r, r, 0, 1000, 100))
+            p.push(T.RunUpdate(LangData.get_lang("UFQa"), q, a, r, r, 0, 1000, 100))
             s = a.fr
             s = T.oq(a) ? s + $.pd() : C.JsInt.am(s, $.i())
             if (b.n() < s) {
-                p.push(T.f(LangData.get_lang("kloA"), q, a, r, r, 0, 1000, 100))
+                p.push(T.RunUpdate(LangData.get_lang("kloA"), q, a, r, r, 0, 1000, 100))
                 return false
             } else return T.j7(this.fr, a, this.go, b, c)
         },
@@ -15595,7 +15623,7 @@ let why_ns = 0;
             var s = a[$.a()].a,
                 r = this.fr,
                 q = T.I(r, false, c)
-            d.a.push(T.f(LangData.get_lang("EYAn"), r, s, null, null, 0, 1000, 100))
+            d.a.push(T.RunUpdate(LangData.get_lang("EYAn"), r, s, null, null, 0, 1000, 100))
             s.a3(q, false, r, T.v8(), c, d)
         },
         gap() {
@@ -15634,7 +15662,7 @@ let why_ns = 0;
                 s = (a & s) >>> 0 === s
             } else s = false
             if (s) {
-                e.a.push(T.f(LangData.get_lang("iOkN"), this.r, null, null, null, a, 1000, 100))
+                e.a.push(T.RunUpdate(LangData.get_lang("iOkN"), this.r, null, null, null, a, 1000, 100))
                 return -a
             }
             return a
@@ -15659,7 +15687,7 @@ let why_ns = 0;
             q = this.r
             m = H.b(l.slice(0), m)
             p = d.a
-            p.push(T.f(r, q, null, null, m, $.i(), 1000, 100))
+            p.push(T.RunUpdate(r, q, null, null, m, $.i(), 1000, 100))
             o = T.I(this.r, true, c) * $.mQ() / (l.length + $.b0())
             for (s = $.a(); s < l.length; ++s) {
                 n = l[s]
@@ -15699,7 +15727,7 @@ let why_ns = 0;
             if (q.fx > $.a()) {
                 s = this.fr
                 r = C.d.R(T.I(s, true, a) / T.d9(q, true, a))
-                b.a.push(T.f(LangData.get_lang("sPnN"), s, q, null, null, 0, 1000, 100))
+                b.a.push(T.RunUpdate(LangData.get_lang("sPnN"), s, q, null, null, 0, 1000, 100))
                 q.aF(r, s, T.ad(), a, b)
             }
         },
@@ -15741,7 +15769,7 @@ let why_ns = 0;
         aD(a, b, c, d) {
             if (t.r.a(b.r2.h(0, $.d5())) == null) {
                 T.nO(this.r, b).aP(0)
-                d.a.push(T.f(LangData.get_lang("JnTA"), this.r, b, null, null, 0, 1000, 100))
+                d.a.push(T.RunUpdate(LangData.get_lang("JnTA"), this.r, b, null, null, 0, 1000, 100))
             }
         },
         $iah: 1
@@ -15758,7 +15786,7 @@ let why_ns = 0;
             s = p.fr
             r = T.I(s, false, c)
             q = p.fx
-            d.a.push(T.f(LangData.get_lang("EYAn"), s, o, null, null, 0, 1000, 100))
+            d.a.push(T.RunUpdate(LangData.get_lang("EYAn"), s, o, null, null, 0, 1000, 100))
             if (o.a3(r * q, false, s, T.va(), c, d) > $.a()) p.fx = $.T()
         },
         gap() {
@@ -15828,20 +15856,20 @@ let why_ns = 0;
             s = n.aC = n.aC + 1
             if (s === $.i()) {
                 s = d.a
-                s.push(T.f(LangData.get_lang("iRhA"), q.r, p, p, p, 0, o, 100))
+                s.push(T.RunUpdate(LangData.get_lang("iRhA"), q.r, p, p, p, 0, o, 100))
                 n.F()
-                s.push(T.f(LangData.get_lang("zqHn"), q.r, p, p, p, 0, o, 100))
+                s.push(T.RunUpdate(LangData.get_lang("zqHn"), q.r, p, p, p, 0, o, 100))
             } else {
                 r = d.a
                 if (s === $.t()) {
-                    r.push(T.f(LangData.get_lang("LJOA"), q.r, p, p, p, 0, o, 100))
+                    r.push(T.RunUpdate(LangData.get_lang("LJOA"), q.r, p, p, p, 0, o, 100))
                     n.aj.f = $.cZ()
-                    r.push(T.f(LangData.get_lang("cZhN"), q.r, p, p, p, 0, o, 100))
+                    r.push(T.RunUpdate(LangData.get_lang("cZhN"), q.r, p, p, p, 0, o, 100))
                 } else {
-                    r.push(T.f(LangData.get_lang("ovXA"), q.r, p, p, p, 0, o, 100))
+                    r.push(T.RunUpdate(LangData.get_lang("ovXA"), q.r, p, p, p, 0, o, 100))
                     s = n.aR
                     s.Q = s.Q + 1
-                    r.push(T.f(LangData.get_lang("FshN"), q.r, p, n.aR.Q, p, 0, o, 100))
+                    r.push(T.RunUpdate(LangData.get_lang("FshN"), q.r, p, n.aR.Q, p, 0, o, 100))
                 }
             }
             n.l = n.l + $.lH()
@@ -15869,14 +15897,14 @@ let why_ns = 0;
                 q.dA(0, d)
                 o = LangData.get_lang("IUIN")
                 s = q.r
-                r = new T.V($.a())
+                r = new T.HPlr($.a())
                 r.a = s.e
                 r.d = s.fx
-                r = T.f(o, r, p, p, p, 0, 1000, 100)
+                r = T.RunUpdate(o, r, p, p, p, 0, 1000, 100)
                 r.b = $.lJ()
                 o = d.a
                 o.push(r)
-                o.push(T.f(LangData.get_lang("FshN"), q.r, p, q.Q, p, 0, 1000, 100))
+                o.push(T.RunUpdate(LangData.get_lang("FshN"), q.r, p, q.Q, p, 0, 1000, 100))
                 q.dd(c, d)
                 return true
             }
@@ -15938,9 +15966,9 @@ let why_ns = 0;
                 n = null
             if (o.fx / (o.fy.a + o.go.a / $.B() + $.i()) > $.mP()) {
                 s = d.a
-                s.push(T.f(LangData.get_lang("dlfA"), o.r, n, n, n, n, $.eS(), $.lH()))
+                s.push(T.RunUpdate(LangData.get_lang("dlfA"), o.r, n, n, n, n, $.eS(), $.lH()))
                 s.push($.K())
-                s.push(T.f(LangData.get_lang("tHLa"), o.r, n, n, n, 0, 1000, 100))
+                s.push(T.RunUpdate(LangData.get_lang("tHLa"), o.r, n, n, n, 0, 1000, 100))
                 s = o.r
                 s.y.dj(s)
                 return
@@ -15953,7 +15981,7 @@ let why_ns = 0;
             r = a[$.a()].a
             s = T.I(o.r, false, c)
             q = $.cY()
-            d.a.push(T.f(LangData.get_lang("EYAn"), o.r, r, n, n, 0, 1000, 100))
+            d.a.push(T.RunUpdate(LangData.get_lang("EYAn"), o.r, r, n, n, 0, 1000, 100))
             r.a3(s * q, false, o.r, T.ad(), c, d)
             for (s = o.r.y.a.e, q = s.length, p = 0; p < q; ++p) s[p].l = $.a()
             o.r.l = $.pb()
@@ -16046,7 +16074,7 @@ let why_ns = 0;
             l.r.r2.m(0, $.iJ(), new T.hF())
             s = d.a
             s.push($.K())
-            s.push(T.f(LangData.get_lang("BJOA"), l.r, k, k, k, 0, 1000, 100))
+            s.push(T.RunUpdate(LangData.get_lang("BJOA"), l.r, k, k, k, 0, 1000, 100))
             r = t.b8
             q = r.a(l.r)
             p = T.nD(q, q.a, q.b)
@@ -16062,14 +16090,14 @@ let why_ns = 0;
             l.r.y.aZ(o)
             r = LangData.get_lang("eHVA")
             q = p.fx
-            n = new T.V(q)
+            n = new T.HPlr(q)
             n.a = p.e
             n.d = q
             q = o.fx
-            m = new T.V(q)
+            m = new T.HPlr(q)
             m.a = o.e
             m.d = q
-            s.push(T.f(r, n, m, k, k, 0, 1000, 100))
+            s.push(T.RunUpdate(r, n, m, k, k, 0, 1000, 100))
             return false
         },
         W() {
@@ -16141,7 +16169,7 @@ let why_ns = 0;
             var s, r, q, p, o = null,
                 n = a[$.a()].a,
                 m = d.a
-            m.push(T.f(LangData.get_lang("wneN"), this.r, n, o, o, $.i(), 1000, 100))
+            m.push(T.RunUpdate(LangData.get_lang("wneN"), this.r, n, o, o, $.i(), 1000, 100))
             s = n.y.c.length
             r = $.B()
             if (s < r) s = r
@@ -16155,7 +16183,7 @@ let why_ns = 0;
                 q.r = p.z
                 q.z = q.z + s
             }
-            m.push(T.f(C.b.B(LangData.get_lang("yjhn"), $.nd()), this.r, n, o, o, $.cZ(), 1000, 100))
+            m.push(T.RunUpdate(C.b.B(LangData.get_lang("yjhn"), $.nd()), this.r, n, o, o, $.cZ(), 1000, 100))
         }
     }
     T.fo.prototype = {
@@ -16176,7 +16204,7 @@ let why_ns = 0;
                             e = new T.b7(p, f, H.b([], j), H.b([], j), H.b([], j))
                             for (d = (g && C.a).ga0(g); d.u();) {
                                 c = d.gC()
-                                if (!(c instanceof T.u))
+                                if (!(c instanceof T.Plr))
                                     if (m.b(c) && J.aw(c) >= $.t()) {
                                         b = J.a3(c)
                                         b.h(c, $.a())
@@ -16509,9 +16537,12 @@ let why_ns = 0;
                 else s.push(a)
                 if (p.db > -$.i()) p.cq(a, q)
             }
-            if (!C.a.w(q.e, a)) C.a.j(q.e, a)
-            if (!C.a.w(q.d, a)) C.a.j(q.d, a)
-            if (!C.a.w(q.f, a)) C.a.j(q.f, a)
+            // if (!C.a.w(q.e, a)) C.a.j(q.e, a)
+            // if (!C.a.w(q.d, a)) C.a.j(q.d, a)
+            // if (!C.a.w(q.f, a)) C.a.j(q.f, a)
+            if (!q.e.includes(a)) q.e.push(a)
+            if (!q.d.includes(a)) q.d.push(a)
+            if (!q.f.includes(a)) q.f.push(a)
         },
         dj(a) {
             var s, r, q, p
@@ -16536,7 +16567,7 @@ let why_ns = 0;
             return "[" + H.e(this.c[$.a()].r) + "]"
         }
     }
-    T.fr.prototype = {
+    T.IPlr.prototype = {
         k(a) {
             return this.a
         },
@@ -16544,74 +16575,79 @@ let why_ns = 0;
             return this.a
         }
     }
-    T.bF.prototype = {}
-    T.V.prototype = {}
-    T.dF.prototype = {
+    T.NPlr.prototype = {}
+    T.HPlr.prototype = {}
+    T.MPlr.prototype = {
         cO(a) {
             this.a = a.e
             this.b = a.fx
             this.c = a.fy
         }
     }
-    T.dp.prototype = {}
-    T.bB.prototype = {
+    T.DPlr.prototype = {}
+    T.HDamage.prototype = {
         k(a) {
             return J.b4(this.a)
         }
     }
-    T.bm.prototype = {
+    T.HRecover.prototype = {
         k(a) {
             return J.b4(this.a)
         }
     }
     T.aX.prototype = {
         aK(a, b, c, d, e, f, g, h) {
-            var s, r, q, p = this,
-                o = p.e
-            if (o instanceof T.u) {
-                s = new T.bF()
-                s.a = o.e
-                p.e = s
+            var s, r, q, this_ = this,
+                tmp = this_.e
+            // caster
+            if (tmp instanceof T.Plr) {
+                s = new T.NPlr()
+                s.a = tmp.e
+                this_.e = s
             }
-            o = p.f
-            if (o instanceof T.u) {
-                s = new T.bF()
-                s.a = o.e
-                p.f = s
+            // target
+            tmp = this_.f
+            if (tmp instanceof T.Plr) {
+                s = new T.NPlr()
+                s.a = tmp.e
+                this_.f = s
             }
-            o = p.x
-            if (o instanceof T.u) {
-                s = new T.bF()
-                s.a = o.e
-                p.x = s
+            // param
+            tmp = this_.x
+            if (tmp instanceof T.Plr) {
+                s = new T.NPlr()
+                s.a = tmp.e
+                this_.x = s
             }
-            o = p.r
-            if (o != null)
-                for (r = $.a(); r < o.length; ++r) {
-                    s = o[r]
-                    if (s instanceof T.u) {
-                        q = new T.bF()
+            // targets2
+            tmp = this_.r
+            if (tmp != null)
+                for (r = $.a(); r < tmp.length; ++r) {
+                    s = tmp[r]
+                    if (s instanceof T.Plr) {
+                        q = new T.NPlr()
                         q.a = s.e
-                        o[r] = q
+                        tmp[r] = q
                     }
                 }
         },
+        // to string
         k(a) {
-            var s = this,
-                r = s.d,
-                q = s.e
+            var _this = this,
+                r = _this.d,
+                q = _this.e
             if (q != null) {
                 q = q.k(0)
                 if (typeof q != "string") H.throw_expression(H.R(q))
                 r = H.mF(r, "[Dn.n0]", q)
             }
-            q = s.f
+            q = _this.f
             if (q != null) {
                 q = q.k(0)
                 if (typeof q != "string") H.throw_expression(H.R(q))
                 r = H.mF(r, "[Dn.n1]", q)
             }
-            q = s.x
+            q = _this.x
             if (q != null) {
                 q = J.b4(q)
                 if (typeof q != "string") H.throw_expression(H.R(q))
@@ -16625,7 +16661,7 @@ let why_ns = 0;
     T.aq.prototype = {
         k(a) {
             // return H.e(this.a)
-            console.log(a, this.a, H.e(this.a))
+            // console.log(a, this.a, H.e(this.a))
             return H.e(this.a)
         }
     }
@@ -16662,7 +16698,7 @@ let why_ns = 0;
         },
         $ibC: 1
     }
-    T.u.prototype = {
+    T.Plr.prototype = {
         a7(a, b) {
             return false
         },
@@ -16679,41 +16715,43 @@ let why_ns = 0;
             return false
         },
         a1(a, b, c, d) {
-            var s, r, q, p, o, n, m, l, k, j, i, h = this
-            h.I = h.gfJ()
-            s = h.r = h.a
-            r = h.b
-            if (r != null && r !== "" && r !== s) r = h.e = H.e(s) + "@" + H.e(h.b)
-            else {
-                h.e = h.b = s
+            var s, r, q, p, o, n, m, l, k, j, i, this_ = this
+            this_.I = this_.gfJ()
+            s = this_.r = this_.a
+            r = this_.b
+            if (r != null && r !== "" && r !== s) {
+                r = this_.e = H.e(s) + "@" + H.e(this_.b)
+            } else {
+                this_.e = this_.b = s
                 r = s
             }
-            h.f = r
-            q = h.d
+            this_.f = r
+            q = this_.d
             if (q != null && q !== "") {
-                h.f = H.e(r) + "+" + H.e(q)
+                this_.f = H.e(r) + "+" + H.e(q)
                 r = $.rj()
-                if (r.J(0, q)) p = r.h(0, q).$2(q, h)
-                else if (J.nz(q, $.cl())) {
-                    p = new T.j2(q, h, P.aL($.av(), $.a(), false, t.B))
+                if (r.J(0, q)) {
+                    p = r.h(0, q).$2(q, this_)
+                } else if (J.nz(q, $.cl())) {
+                    p = new T.j2(q, this_, P.aL($.av(), $.a(), false, t.B))
                     p.a = q
                     p.a = C.b.af(q, $.a(), q.length - $.i())
-                } else p = T.tN(q, h)
+                } else p = T.tN(q, this_)
                 o = new LangData.b9()
                 o.bd(LangData.fZ(p.a), $.t())
                 p.b3(o)
-                h.r1 = p
+                this_.r1 = p
             }
-            if (J.lW(s, " ")) h.r = s.split(" ")[$.a()]
-            if (h.c == null) h.c = h.b
+            if (J.lW(s, " ")) this_.r = s.split(" ")[$.a()]
+            if (this_.c == null) this_.c = this_.b
             r = new LangData.b9()
-            r.bd(LangData.fZ(h.b), $.i())
-            h.X = r
+            r.bd(LangData.fZ(this_.b), $.i())
+            this_.X = r
             // q = $.ns()
             // $.mc = q + 1
             q = why_ns
             why_ns += 1
-            
+
             q = C.JsInt.P(Math.abs(q), $.bx())
             n = $.a()
             if (q > n) {
@@ -16724,17 +16762,17 @@ let why_ns = 0;
                 q[l] = m
             }
             r.dB(0, LangData.fZ(s), $.t())
-            for (s = h.X.c, s.length, r = h.a2, k = 0; k < 256; ++k) {
+            for (s = this_.X.c, s.length, r = this_.a2, k = 0; k < 256; ++k) {
                 j = s[k]
                 i = (j * $.nW + $.nV & $.mP()) >>> 0
-                if (i >= $.mb && i < $.r2()) C.a.j(h.t, (i + $.r3() * $.r4().ax($.eX()) & $.b2()) >>> 0)
+                if (i >= $.mb && i < $.r2()) C.a.j(this_.t, (i + $.r3() * $.r4().ax($.eX()) & $.b2()) >>> 0)
                 else r.push(j)
             }
-            s = h.t
+            s = this_.t
             s = H.b(s.slice(0), H.a1(s))
-            h.E = s
-            h.ac()
-            h.k2 = h.X.dH(h.k1, t.c5)
+            this_.E = s
+            this_.ac()
+            this_.k2 = this_.X.dH(this_.k1, t.c5)
         },
         bf() {
             var s, r = this,
@@ -16752,18 +16790,18 @@ let why_ns = 0;
             return C.d.aI(a * ($.T() - this.x / b))
         },
         cA(a) {
-            var s, r = this
-            if (a.length === r.t.length) {
-                for (s = $.ap(); s < r.t.length; ++s)
+            var s, this_ = this
+            if (a.length === this_.t.length) {
+                for (s = $.ap(); s < this_.t.length; ++s)
                     // if (J.Y(a[s - $.i()], r.E[s]) && a[s] > r.t[s]) {
-                    if ((a[s - $.i()] === r.E[s]) && a[s] > r.t[s]) {
-                        r.t[s] = a[s]
+                    if ((a[s - $.i()] === this_.E[s]) && a[s] > this_.t[s]) {
+                        this_.t[s] = a[s]
                     }
-                if (r.a == r.b)
-                    for (s = $.X(); s < r.t.length; ++s)
+                if (this_.a == this_.b)
+                    for (s = $.X(); s < this_.t.length; ++s)
                         // if (J.Y(a[s - $.t()], r.E[s]) && a[s] > r.t[s]) {
-                        if ((a[s - $.t()] === r.E[s]) && a[s] > r.t[s]) {
-                            r.t[s] = a[s]
+                        if ((a[s - $.t()] === this_.E[s]) && a[s] > this_.t[s]) {
+                            this_.t[s] = a[s]
                         }
             }
         },
@@ -17086,7 +17124,9 @@ let why_ns = 0;
                 q = c.ch + c.db
             }
             if (p.fx > $.a() && !p.A && T.bW(q, r, e)) {
-                f.a.push(T.f(LangData.get_lang("BtqN"), p, c, null, null, $.as(), 1000, 100))
+                // dodge (通用回避)
+                // [0][回避]了攻击
+                f.a.push(T.RunUpdate(LangData.get_lang("BtqN"), p, c, null, null, $.as(), 1000, 100))
                 return $.a()
             }
             return p.bN(a, b, c, d, e, f)
@@ -17103,16 +17143,16 @@ let why_ns = 0;
                 q = n.fy
                 if (r > q) n.fx = q
                 r = LangData.get_lang("imin")
-                q = new T.V(s)
+                q = new T.HPlr(s)
                 q.a = n.e
                 q.d = n.fx
-                e.a.push(T.f(r, b, q, new T.bm(-a), null, 0, 1000, 100))
+                e.a.push(T.RunUpdate(r, b, q, new T.HRecover(-a), null, 0, 1000, 100))
                 return $.a()
             }
             p = LangData.get_lang("kZsn")
             r = $.a()
             if (a === r) {
-                e.a.push(T.f(C.b.B(C.b.fu(p, "1", "0"), $.ne()), n, n, new T.bB($.a()), null, $.Z(), 1000, 100))
+                e.a.push(T.RunUpdate(C.b.B(C.b.fu(p, "1", "0"), $.ne()), n, n, new T.HDamage($.a()), null, $.Z(), 1000, 100))
                 return $.a()
             }
             s = n.fx
@@ -17121,10 +17161,10 @@ let why_ns = 0;
             if (q <= r) n.fx = r
             if (a >= $.eU()) p = C.b.B(p, $.qz())
             else if (a >= $.cZ()) p = C.b.B(p, $.qy())
-            r = new T.V(s)
+            r = new T.HPlr(s)
             r.a = n.e
             r.d = n.fx
-            o = T.f(p, b, r, new T.bB(a), null, a, 1000, 100)
+            o = T.RunUpdate(p, b, r, new T.HDamage(a), null, a, 1000, 100)
             if (a > $.pr()) o.b = $.d0()
             else o.b = $.eS() + a * $.t()
             e.a.push(o)
@@ -17147,9 +17187,9 @@ let why_ns = 0;
                 p = d.a
             p.push($.K())
             s = q.cD()
-            r = new T.dp()
+            r = new T.DPlr()
             r.a = q.e
-            p.push(T.f(s, b, r, null, null, $.b1(), 1000, 100))
+            p.push(T.RunUpdate(s, b, r, null, null, $.b1(), 1000, 100))
             for (p = q.L, p = new Sgls.a_(p, p.b, p.$ti.i("a_<1*>")); p.u();)
                 if (p.b.b1(a, b, c, d)) break
             if (q.fx > $.a()) return
@@ -17388,13 +17428,13 @@ let why_ns = 0;
                 if (q >= r) {
                     s.go = q - r
                     p = T.I(s, true, c)
-                    d.a.push(T.f(LangData.get_lang("VQhA"), o.r, m, n, n, 0, 1000, 100))
+                    d.a.push(T.RunUpdate(LangData.get_lang("VQhA"), o.r, m, n, n, 0, 1000, 100))
                     m.a3(p, true, o.r, T.ad(), c, d)
                     return
                 }
             }
             p = T.I(o.r, false, c)
-            d.a.push(T.f(LangData.get_lang("EYAn"), o.r, m, n, n, 0, 1000, 100))
+            d.a.push(T.RunUpdate(LangData.get_lang("EYAn"), o.r, m, n, n, 0, 1000, 100))
             m.a3(p, false, o.r, T.oH(), c, d)
         }
     }
@@ -17402,7 +17442,7 @@ let why_ns = 0;
         v(a, b, c, d) {
             var s = a[$.a()].a,
                 r = T.I(this.r, false, c)
-            d.a.push(T.f(LangData.get_lang("EYAn"), this.r, s, null, null, 0, 1000, 100))
+            d.a.push(T.RunUpdate(LangData.get_lang("EYAn"), this.r, s, null, null, 0, 1000, 100))
             s.a3(r, false, this.r, T.ad(), c, d)
         }
     }
@@ -17434,7 +17474,7 @@ let why_ns = 0;
                 r = $.K()
                 q = b.a
                 q.push(r)
-                q.push(T.f(C.b.B(LangData.get_lang("VgaN"), $.qw()), p.r, p.cx, null, null, $.i(), 1000, 100))
+                q.push(T.RunUpdate(C.b.B(LangData.get_lang("VgaN"), $.qw()), p.r, p.cx, null, null, $.i(), 1000, 100))
                 p.cx.a3(s, false, p.r, T.ad(), a, b)
             }
         },
@@ -17446,7 +17486,7 @@ let why_ns = 0;
         },
         aq(a, b, c, d, e) {
             if (d.n() < this.f && this.r.bw(d)) {
-                e.a.push(T.f(LangData.get_lang("NIMn"), this.r, b, null, null, $.bg(), 1000, 100))
+                e.a.push(T.RunUpdate(LangData.get_lang("NIMn"), this.r, b, null, null, $.bg(), 1000, 100))
                 return C.JsInt.P(a, $.t())
             }
             return a
@@ -17473,7 +17513,7 @@ let why_ns = 0;
                 s.r.F()
                 r = LangData.get_lang("oIIa")
                 q = s.r
-                d.a.push(T.f(r, q, q, null, null, $.Z(), 1000, 100))
+                d.a.push(T.RunUpdate(r, q, q, null, null, $.Z(), 1000, 100))
             }
         },
         aN(a, b, c, d) {
@@ -17554,11 +17594,11 @@ let why_ns = 0;
                     k.r.F()
                     r = c.a
                     r.push($.K())
-                    r.push(T.f(LangData.get_lang("yGkN"), k.r, a, j, j, $.a6(), $.d0(), 100))
+                    r.push(T.RunUpdate(LangData.get_lang("yGkN"), k.r, a, j, j, $.a6(), $.d0(), 100))
                     q = LangData.get_lang("PGSN")
-                    p = new T.dF()
+                    p = new T.MPlr()
                     p.cO(k.r)
-                    r.push(T.f(q, p, a, j, j, 0, 1000, 100))
+                    r.push(T.RunUpdate(q, p, a, j, j, 0, 1000, 100))
                     return true
                 }
             }
@@ -17606,7 +17646,7 @@ let why_ns = 0;
             var s, r, q, p = this.dG(f)
             if (p != null) {
                 s = p.r
-                g.a.push(T.f(LangData.get_lang("JzmA"), s, d, null, null, $.bg(), 1000, 100))
+                g.a.push(T.RunUpdate(LangData.get_lang("JzmA"), s, d, null, null, $.bg(), 1000, 100))
                 a = s.du(a, b, c, e, f, g)
                 r = $.ao()
                 if (a == r) return r
@@ -17673,7 +17713,7 @@ let why_ns = 0;
             if (f.n() < q.f && f.n() < 128 && q.r.bw(f)) {
                 s = T.I(q.r, true, f) * $.b0()
                 if (s > a) s = a
-                g.a.push(T.f(C.b.B(LangData.get_lang("lnNA"), $.qI()), q.r, c, null, null, $.as(), $.d0(), 100))
+                g.a.push(T.RunUpdate(C.b.B(LangData.get_lang("lnNA"), $.qI()), q.r, c, null, null, $.as(), $.d0(), 100))
                 c.a3(s, true, q.r, e, f, g)
                 r = q.r
                 r.l = r.l - $.mY()
@@ -17699,15 +17739,15 @@ let why_ns = 0;
                 o = C.b.B(LangData.get_lang("DWRn"), $.ng())
                 n = p.r
                 s = d.a
-                s.push(T.f(o, n, n, null, null, $.b3(), $.d0(), 100))
+                s.push(T.RunUpdate(o, n, n, null, null, $.b3(), $.d0(), 100))
                 p.r.fx = (c.n() & 15) + 1
                 n = LangData.get_lang("imin")
                 o = p.r
-                r = new T.V($.a())
+                r = new T.HPlr($.a())
                 r.a = o.e
                 q = o.fx
                 r.d = q
-                s.push(T.f(n, o, r, new T.bm(q), null, 0, 1000, 100))
+                s.push(T.RunUpdate(n, o, r, new T.HRecover(q), null, 0, 1000, 100))
                 return true
             }
             return false
@@ -17789,10 +17829,10 @@ let why_ns = 0;
                 o.push($.K())
                 n = LangData.get_lang("TRcn")
                 r = q.r
-                o.push(T.f(n, r, r, p, p, $.a6(), $.d0(), 100))
+                o.push(T.RunUpdate(n, r, r, p, p, $.a6(), $.d0(), 100))
                 r = C.b.B(LangData.get_lang("iTtn"), $.qK())
                 n = q.r
-                o.push(T.f(r, n, n, p, p, 0, 1000, 100))
+                o.push(T.RunUpdate(r, n, n, p, p, 0, 1000, 100))
                 n = q.r
                 n.l = n.l + $.lM()
             }
@@ -17931,14 +17971,14 @@ let why_ns = 0;
                 a4.r.y.aZ(a3)
                 r = a8.a
                 r.push($.K())
-                r.push(T.f(LangData.get_lang("apma"), a4.r, a6, a5, a5, $.a6(), $.d0(), 100))
+                r.push(T.RunUpdate(LangData.get_lang("apma"), a4.r, a6, a5, a5, $.a6(), $.d0(), 100))
                 q = LangData.get_lang("kXba")
                 s = a4.r
                 a2 = a3.fx
-                b = new T.V(a2)
+                b = new T.HPlr(a2)
                 b.a = a3.e
                 b.d = a2
-                r.push(T.f(q, s, b, a6, H.b([a6], t.j), 0, 1000, 100))
+                r.push(T.RunUpdate(q, s, b, a6, H.b([a6], t.j), 0, 1000, 100))
                 return true
             }
             return false
@@ -17995,7 +18035,7 @@ let why_ns = 0;
         },
         v(a, b, c, d) {
             var s, r, q, p = this
-            d.a.push(T.f(LangData.get_lang("NbSn"), p.r, p.fx, null, null, $.as(), 1000, 100))
+            d.a.push(T.RunUpdate(LangData.get_lang("NbSn"), p.r, p.fx, null, null, $.as(), 1000, 100))
             s = p.fx
             s.aF(s.fx, p.r, T.ad(), c, d)
             s = p.r
@@ -18132,7 +18172,7 @@ let why_ns = 0;
                 r = o.length
                 s.bL(s, d)
                 if (o.length !== r) {
-                    C.a.co(o, r, T.f(LangData.get_lang("UeyA"), s, null, null, null, $.a6(), 1000, 100))
+                    C.a.co(o, r, T.RunUpdate(LangData.get_lang("UeyA"), s, null, null, null, $.a6(), 1000, 100))
                     o.push($.K())
                 }
             }
@@ -18206,7 +18246,7 @@ let why_ns = 0;
                 j = null
             k.r.l = c.n() * $.C() + $.cX()
             s = d.a
-            s.push(T.f(LangData.get_lang("UeyA"), k.r, j, j, j, $.a6(), 1000, 100))
+            s.push(T.RunUpdate(LangData.get_lang("UeyA"), k.r, j, j, j, $.a6(), 1000, 100))
             for (r = $.a(), q = k.fr; r < q; ++r) {
                 p = T.nU(k.r)
                 p.y = k.r.y
@@ -18217,7 +18257,7 @@ let why_ns = 0;
                 o = LangData.get_lang("pKQn")
                 n = k.r
                 m = p.fx
-                l = new T.V(m)
+                l = new T.HPlr(m)
                 l.a = p.e
                 l.d = m
                 m = new T.aX(0, 1000, 100, o, n, l, j, j)
@@ -18258,9 +18298,9 @@ let why_ns = 0;
                 n = null,
                 m = 1000,
                 l = d.a
-            l.push(T.f(LangData.get_lang("Rdya"), o.r, n, n, n, 0, m, 100))
+            l.push(T.RunUpdate(LangData.get_lang("Rdya"), o.r, n, n, n, 0, m, 100))
             if (c.n() < 64) {
-                l.push(T.f(LangData.get_lang("ibDN"), o.r, n, n, n, 0, m, 100))
+                l.push(T.RunUpdate(LangData.get_lang("ibDN"), o.r, n, n, n, 0, m, 100))
                 o.fr = o.fr - 1
             } else {
                 s = c.ax($.ap())
@@ -18269,19 +18309,19 @@ let why_ns = 0;
                 p = q.q
                 p[s] = p[s] + r
                 q.F()
-                l.push(T.f("[" + H.e($.r6()[s]) + "]" + LangData.get_lang("zbya"), o.r, n, r, n, 0, m, 100))
+                l.push(T.RunUpdate("[" + H.e($.r6()[s]) + "]" + LangData.get_lang("zbya"), o.r, n, r, n, 0, m, 100))
             }
             q = o.r
             q.l = q.l + $.cX()
             q = o.fr - (c.n() & 3)
             o.fr = q
             if (q <= $.a()) {
-                l.push(T.f(LangData.get_lang("ToLa"), o.r, n, n, n, 0, m, 100))
+                l.push(T.RunUpdate(LangData.get_lang("ToLa"), o.r, n, n, n, 0, m, 100))
                 if (o.f < $.as()) {
-                    l.push(T.f(LangData.get_lang("BcJa"), o.r, n, n, n, 0, m, 100))
+                    l.push(T.RunUpdate(LangData.get_lang("BcJa"), o.r, n, n, n, 0, m, 100))
                     o.f = $.a()
                 } else {
-                    l.push(T.f(LangData.get_lang("kHPN"), o.r, n, n, n, 0, m, 100))
+                    l.push(T.RunUpdate(LangData.get_lang("kHPN"), o.r, n, n, n, 0, m, 100))
                     o.f = $.i()
                 }
                 o.r.aF((c.n() & 31) + $.aR(), o.r, T.ad(), c, d)
@@ -18587,7 +18627,7 @@ let why_ns = 0;
         s.dX = s.aM
         s = T.cz.prototype
         s.cM = s.a7
-        s = T.u.prototype
+        s = T.Plr.prototype
         s.bB = s.aU
         s.dS = s.bP
         s.dR = s.bs
@@ -18621,7 +18661,7 @@ let why_ns = 0;
         r(P, "uM", "tR", 4)
         q(P, "ow", "uD", 0)
         s(P, "uN", "ux", 9)
-        p(P.U.prototype, "geg", "be", 9)
+        p(P._Future.prototype, "geg", "be", 9)
         o(W, "uV", 4, null, ["$4"], ["tT"], 20, 0)
         o(W, "uW", 4, null, ["$4"], ["tU"], 20, 0)
         s(HtmlRenderer, "oD", "rU", 62)
@@ -18647,7 +18687,7 @@ let why_ns = 0;
         o(T, "ad", 5, null, ["$5"], ["tx"], 1, 0)
         o(T, "oH", 5, null, ["$5"], ["tz"], 1, 0)
         k(T.dl.prototype, "gf9", 0, 5, null, ["$5"], ["fa"], 1, 0, 0)
-        j(i = T.u.prototype, "gfJ", "fK", 19)
+        j(i = T.Plr.prototype, "gfJ", "fK", 19)
         j(i, "gbT", "dE", 19)
         p(T.cb.prototype, "gdr", "f8", 54)
     })();
@@ -18656,7 +18696,7 @@ let why_ns = 0;
             inherit = hunkHelpers.inherit,
             inherit_many = hunkHelpers.inheritMany
         inherit(P.H, null)
-        inherit_many(P.H, [H.m8, J.Interceptor, J.db, P.O, P.ev, P.L, H.cv, P.fv, H.du, H.hV, H.kh, H.jR, H.dt, H.eE, H.c_, P.aU, H.jK, H.fA, H.ct, H.ew, H.kz, H.bK, H.l3, H.aW, H.ib, H.iu, P.l8, P.i_, P.f3, P.i4, P.cN, P.U, P.i0, P.em, P.hO, P.hP, P.im, P.i1, P.i3, P.i7, P.ii, P.io, P.lf, P.eM, P.kV, P.ie, P.z, P.dY, P.fg, P.js, P.lc, P.lb, P.dq, P.Duration, P.fM, P.el, P.kG, P.jm, P.N, P.iq, P.cH, W.j8, W.m5, W.cP, W.cr, W.dN, W.eD, W.is, W.dv, W.kE, W.l_, W.ix, P.l4, P.kw, P.eJ, P.jQ, P.kT, Y.dW, L.iR, V.iV, X.iW, S.fK, HtmlRenderer.fq, HtmlRenderer.jT, HtmlRenderer.ax, Sgls.a_, Sgls.n, T.x, T.u, T.dk, T.fo, T.b7, T.fr, T.bB, T.bm, T.aX, T.aq, T.bG, T.bL, T.fl])
+        inherit_many(P.H, [H.m8, J.Interceptor, J.db, P.O, P.ev, P.L, H.cv, P.fv, H.du, H.hV, H.kh, H.jR, H.dt, H.eE, H.c_, P.aU, H.jK, H.fA, H.ct, H.ew, H.kz, H.bK, H.l3, H.aW, H.ib, H.iu, P.l8, P.i_, P.f3, P.i4, P.cN, P._Future, P.i0, P.em, P.hO, P.hP, P.im, P.i1, P.i3, P.i7, P.ii, P.io, P.lf, P.eM, P.kV, P.ie, P.z, P.dY, P.fg, P.js, P.lc, P.lb, P.dq, P.Duration, P.fM, P.el, P.kG, P.jm, P.N, P.iq, P.cH, W.j8, W.m5, W.cP, W.cr, W.dN, W.eD, W.is, W.dv, W.kE, W.l_, W.ix, P.l4, P.kw, P.eJ, P.jQ, P.kT, Y.dW, L.iR, V.iV, X.iW, S.fK, HtmlRenderer.fq, HtmlRenderer.jT, HtmlRenderer.ax, Sgls.a_, Sgls.n, T.x, T.Plr, T.dk, T.fo, T.b7, T.IPlr, T.HDamage, T.HRecover, T.aX, T.aq, T.bG, T.bL, T.fl])
         inherit_many(J.Interceptor, [J.fw, J.cs, J.bE, J.JsArray, J.JsNumber, J.JsString, H.dJ, H.ab, W.fn, W.bX, W.fe, W.i6, W.bb, W.ja, W.jb, W.o, W.c4, W.jL, W.ig, W.il, W.iy, W.iA])
         inherit_many(J.bE, [J.PlainJavaScriptObject, J.UnknownJavaScriptObject, J.JavaScriptFunction])
         inherit(J.jG, J.JsArray)
@@ -18675,7 +18715,7 @@ let why_ns = 0;
         inherit_many(H.kg, [H.kc, H.dg])
         inherit(P.dG, P.aU)
         inherit_many(P.dG, [H.aT, P.ic, W.i2])
-        inherit_many(H.j6, [H.lw, P.li, P.lr, P.kL, P.jM, W.kd, W.le, P.l5, P.l6, P.ky, V.j_, HtmlRenderer.jA, Sgls.k7, LangData.lA, T.ka, T.jX, T.jY, T.k2, T.kq, T.kr, T.ks, T.kt, T.ku])
+        inherit_many(H.j6, [H.lw, P.li, P._wrapJsFunctionForAsync_closure, P.kL, P.jM, W.kd, W.le, P.l5, P.l6, P.ky, V.j_, HtmlRenderer.jA, Sgls.k7, LangData.lA, T.ka, T.jX, T.jY, T.k2, T.kq, T.kr, T.ks, T.kt, T.ku])
         inherit(H.hZ, P.dy)
         inherit(H.cw, H.ab)
         inherit_many(H.cw, [H.ey, H.eA])
@@ -18729,7 +18769,7 @@ let why_ns = 0;
         inherit_many(T.b5, [T.e1, T.h5, T.h7, T.dd, T.h9, T.ha, T.e3, T.e4, T.e5, T.hf, T.hh, T.hi, T.cc, T.e7, T.hk, T.e8, T.e9, T.ho, T.ht, T.hv, T.ec, T.hx, T.hu, T.hB, T.hG, T.hj, T.hH, T.hI, T.e2, T.hb, T.dl, T.hd, T.hm, T.dB, T.hp, T.hr, T.hA, T.h8, T.hD, T.bI, T.hg, T.ee, T.hz])
         inherit_many(T.aZ, [T.dj, T.dw, T.dx, T.eh, T.bd, T.h1])
         inherit_many(T.x, [T.dI, T.c3, T.hF, T.fC, T.hY])
-        inherit_many(T.u, [T.dR, T.aM, T.cz, T.fP, T.fU, T.fV, T.fQ, T.cy])
+        inherit_many(T.Plr, [T.dR, T.aM, T.cz, T.fP, T.fU, T.fV, T.fQ, T.cy])
         inherit_many(T.aB, [T.dn, T.dT, T.ik])
         inherit_many(T.bq, [T.dS, T.b8])
         inherit_many(T.aM, [T.fS, T.fT, T.fX])
@@ -18737,7 +18777,7 @@ let why_ns = 0;
         inherit(T.fR, T.cy)
         inherit(T.fb, T.bZ)
         inherit(T.eg, T.e3)
-        inherit_many(T.fr, [T.bF, T.V, T.dF, T.dp])
+        inherit_many(T.IPlr, [T.NPlr, T.HPlr, T.MPlr, T.DPlr])
         inherit_many(T.aX, [T.h2, T.dX])
         inherit(T.fY, T.cB)
         inherit(T.cA, T.ah)
@@ -19238,7 +19278,8 @@ let why_ns = 0;
             return LangData.j("<R;2&`|zWV", 30)
         })
         lazy_old($, "ym", "eZ", function () {
-            return LangData.j("U|,?M", 1)
+            // return LangData.j("U|,?M", 1)
+            return "half"
         })
         lazy_old($, "y7", "a7", function () {
             return LangData.j("@k%.*'GC", 5)
@@ -19292,16 +19333,19 @@ let why_ns = 0;
             return LangData.j("CXmc>1nB", 39)
         })
         lazy_old($, "ze", "qM", function () {
-            return LangData.j("qnQymy)B", 38)
+            // return LangData.j("qnQymy)B", 38)
+            return "shadow"
         })
         lazy_old($, "zl", "qQ", function () {
             return LangData.j("WG/z.8^B", 55)
         })
         lazy_old($, "yE", "na", function () {
-            return LangData.j("EMzI&'T=]Q:wUF", 13)
+            // return LangData.j("EMzI&'T=]Q:wUF", 13)
+            return "minionCount"
         })
         lazy_old($, "y6", "n4", function () {
-            return LangData.j("1m3tkgG&,{P", 97)
+            // return LangData.j("1m3tkgG&,{P", 97)
+            return "bossName_"
         })
         lazy_old($, "yB", "lQ", function () {
             return LangData.j("6ct2H)A", 11)
@@ -19493,7 +19537,8 @@ let why_ns = 0;
             return LangData.j("SWAyuI%B&,6%p;k8VH,Nd %*JE53*T,AxA#v{MB", 44)
         })
         lazy_old($, "yU", "qw", function () {
-            return LangData.j("Gc[I~fhNT#6]XuGrfUx.`fSI=!'?Pa~kiiRw<W:o&UY", 14)
+            // return LangData.j("Gc[I~fhNT#6]XuGrfUx.`fSI=!'?Pa~kiiRw<W:o&UY", 14)
+            return "<div class=\"smile s_counter\"></div>"
         })
         lazy_old($, "z7", "qI", function () {
             return LangData.j(">)z*M_<GhK0#T? P13VEIrAGEEjU3&ibv`7H'#?+@iM", 93)
@@ -19523,7 +19568,7 @@ let why_ns = 0;
         })
         lazy_old($, "zR", "K", function () {
             var q = null
-            return T.f("\n", q, q, q, q, 0, 1000, 100)
+            return T.RunUpdate("\n", q, q, q, q, 0, 1000, 100)
         })
         lazy_old($, "vq", "rp", function () {
             return $.mS()
@@ -20644,7 +20689,7 @@ let why_ns = 0;
     Function.prototype.$6 = function (a, b, c, d, e, f) {
         return this(a, b, c, d, e, f)
     };
-    console.log(X.k("IIq4zN_QaD", 19), "X.k(\"IIq4zN_QaD\", 19)")
+    // console.log(X.k("IIq4zN_QaD", 19), "X.k(\"IIq4zN_QaD\", 19)")
     Q.main_func()
 })()
 //# sourceMappingURL=md5.js.map

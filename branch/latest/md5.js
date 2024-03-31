@@ -3282,7 +3282,7 @@ let why_ns = 0;
             get_lang(a) {
                 var s = $.od.h(0, a)
                 // if (s === "》 实力评分: [2]" || s === "》 胜率: [2]%" || s === "实力评估中...[2]%") {
-                console.log("O.d", a, s)
+                // console.log("O.d", a, s)
                 // }
                 if (s == null) return ""
                 return s
@@ -12996,7 +12996,7 @@ let why_ns = 0;
 
                 this_.b4()
                 this_.z = n
-                console.log("start fq.fe end")
+                // console.log("start fq.fe end")
                 // 合着压根不需要这操作是吧……
                 // for (r = n.length, m = 0; m < n.length; n.length === r || (0, H.F)(n), ++m) {
                 //     for (q = J.by(n[m]); q.u();) {
@@ -13491,7 +13491,7 @@ let why_ns = 0;
             if (a instanceof T.HPlr) {
                 s = $.ay.h(0, a.a)
                 // plv.updateHp(obj.newHp);
-                console.log("lp.$1", s)
+                // console.log("lp.$1", s)
                 s.bU(a.d)
                 a.b = s.cy
                 this.a.push(a)
@@ -16661,7 +16661,7 @@ let why_ns = 0;
     T.aq.prototype = {
         k(a) {
             // return H.e(this.a)
-            console.log(a, this.a, H.e(this.a))
+            // console.log(a, this.a, H.e(this.a))
             return H.e(this.a)
         }
     }
