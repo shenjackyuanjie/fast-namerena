@@ -4556,7 +4556,7 @@ let why_ns = 0;
                     if (s > q) s = q
                     a.fx = r + s
                     p = LangData.get_lang("imin")
-                    r = new T.V(r)
+                    r = new T.HPlr(r)
                     r.a = a.e
                     r.d = a.fx
                     e.a.push(T.RunUpdate(p, a, r, new T.bm(s), null, s, 1000, 100))
@@ -7151,13 +7151,13 @@ let why_ns = 0;
             NPlr: function bF() {
                 this.a = null
             },
-            V: function V(a) {
+            HPlr: function V(a) {
                 var _ = this
                 _.b = null
                 _.c = a
                 _.a = _.d = null
             },
-            dF: function dF() {
+            MPlr: function dF() {
                 this.a = this.c = this.b = null
             },
             dp: function dp() {
@@ -8111,7 +8111,7 @@ let why_ns = 0;
                 C.R.by(r, H.oO(a.d, $.rm(), new HtmlRenderer.lq(new HtmlRenderer.lp(s, a), a), null), $.bV())
                 for (f = s.length, q = t.A, p = 0; p < s.length; s.length === f || (0, H.F)(s), ++p) {
                     o = s[p]
-                    if (o instanceof T.V) {
+                    if (o instanceof T.HPlr) {
                         n = q.a(r.querySelector("." + H.e(o.b) + " > .maxhp"))
                         m = o.c
                         if (m >= o.d) {
@@ -13487,7 +13487,7 @@ let why_ns = 0;
         $1(a) {
             var s, r, q
             if (a instanceof T.NPlr) return $.ay.h(0, a.a).fr
-            if (a instanceof T.V) {
+            if (a instanceof T.HPlr) {
                 s = $.ay.h(0, a.a)
                 s.bU(a.d)
                 a.b = s.cy
@@ -13508,7 +13508,7 @@ let why_ns = 0;
                 this.a.push(a)
                 return s.fr
             }
-            if (a instanceof T.dF) {
+            if (a instanceof T.MPlr) {
                 s = $.ay.h(0, a.a)
                 s.bU(a.b)
                 r = "" + C.d.R(a.c / 4) + "px"
@@ -14139,7 +14139,7 @@ let why_ns = 0;
             q = C.a.dl(p.k1, new T.k9())
             if (q != null) q.f = C.d.R(Math.sqrt(H.ar(k.f)))
             q = LangData.get_lang("yWWn")
-            o = new T.dF()
+            o = new T.MPlr()
             o.cO(k.r)
             n = d.a
             n.push(T.RunUpdate(q, o, k.r, j, j, $.a6(), 1000, 100))
@@ -14147,7 +14147,7 @@ let why_ns = 0;
             o = LangData.get_lang("pKQn")
             q = k.r
             m = p.fx
-            l = new T.V(m)
+            l = new T.HPlr(m)
             l.a = p.e
             l.d = m
             n.push(T.RunUpdate(o, q, l, j, j, 0, 1000, 100))
@@ -14291,10 +14291,10 @@ let why_ns = 0;
             if (n > m) q.fx = m
             q = C.b.B(LangData.get_lang("RQta"), $.qD())
             n = l.r
-            m = new T.V(p)
+            m = new T.HPlr(p)
             m.a = n.e
             m.d = n.fx
-            n = new T.V(o)
+            n = new T.HPlr(o)
             n.a = s.e
             n.d = s.fx
             r.push(T.RunUpdate(q, m, n, k, k, (o - p) * $.t(), 1000, 100))
@@ -14363,7 +14363,7 @@ let why_ns = 0;
             j = p - o
             o = LangData.get_lang("Hxra")
             q = i.r
-            n = new T.V(p)
+            n = new T.HPlr(p)
             n.a = g.e
             n.d = g.fx
             f.push(T.RunUpdate(o, q, n, new T.bB(l), h, j, 1000, 100))
@@ -14478,7 +14478,7 @@ let why_ns = 0;
             s.fx = p + r
             o = LangData.get_lang("imin")
             n = l.r
-            m = new T.V(p)
+            m = new T.HPlr(p)
             m.a = s.e
             m.d = s.fx
             k.push(T.RunUpdate(o, n, m, new T.bm(r), null, 0, 1000, 100))
@@ -14807,7 +14807,7 @@ let why_ns = 0;
             }
             o = LangData.get_lang("imin")
             n = l.r
-            m = new T.V($.a())
+            m = new T.HPlr($.a())
             m.a = s.e
             m.d = s.fx
             p.push(T.RunUpdate(o, n, m, new T.bm(r), k, 0, 1000, 100))
@@ -14936,7 +14936,7 @@ let why_ns = 0;
             shadow_name = LangData.get_lang("wHun")
             q = this_.r
             p = a4.fx
-            o = new T.V(p)
+            o = new T.HPlr(p)
             o.a = a4.e
             o.d = p
             s.push(T.RunUpdate(shadow_name, q, o, a6, a6, 0, 1000, 100))
@@ -15170,7 +15170,7 @@ let why_ns = 0;
             r = this_.r
             q = this_.fr
             p = q.fx
-            o = new T.V(p)
+            o = new T.HPlr(p)
             o.a = q.e
             o.d = p
             a5.push(T.RunUpdate(s, r, o, a4, a4, 0, 1000, 100))
@@ -15460,7 +15460,7 @@ let why_ns = 0;
                 q.push(T.RunUpdate(LangData.get_lang("imLn"), m.r, l, l, l, 0, k, 100))
                 r = LangData.get_lang("woia")
                 o = m.r
-                n = new T.V(p)
+                n = new T.HPlr(p)
                 n.a = s.e
                 n.d = s.fx
                 q.push(T.RunUpdate(r, o, n, new T.bB(p), l, p + $.b3(), k, 100))
@@ -15468,7 +15468,7 @@ let why_ns = 0;
                 m.fx = n
                 r = LangData.get_lang("MtDN")
                 o = m.r
-                n = new T.V(p)
+                n = new T.HPlr(p)
                 n.a = s.e
                 n.d = s.fx
                 q.push(T.RunUpdate(r, o, n, new T.bB(p), l, p + $.b3(), k, 100))
@@ -15524,7 +15524,7 @@ let why_ns = 0;
                     if (n > p) n = p
                     r.fx = m + n
                     o = LangData.get_lang("imin")
-                    m = new T.V(m)
+                    m = new T.HPlr(m)
                     m.a = r.e
                     m.d = r.fx
                     q.push(T.RunUpdate(o, r, m, new T.bm(n), null, 0, 1000, 100))
@@ -15894,7 +15894,7 @@ let why_ns = 0;
                 q.dA(0, d)
                 o = LangData.get_lang("IUIN")
                 s = q.r
-                r = new T.V($.a())
+                r = new T.HPlr($.a())
                 r.a = s.e
                 r.d = s.fx
                 r = T.RunUpdate(o, r, p, p, p, 0, 1000, 100)
@@ -16087,11 +16087,11 @@ let why_ns = 0;
             l.r.y.aZ(o)
             r = LangData.get_lang("eHVA")
             q = p.fx
-            n = new T.V(q)
+            n = new T.HPlr(q)
             n.a = p.e
             n.d = q
             q = o.fx
-            m = new T.V(q)
+            m = new T.HPlr(q)
             m.a = o.e
             m.d = q
             s.push(T.RunUpdate(r, n, m, k, k, 0, 1000, 100))
@@ -16573,8 +16573,8 @@ let why_ns = 0;
         }
     }
     T.NPlr.prototype = {}
-    T.V.prototype = {}
-    T.dF.prototype = {
+    T.HPlr.prototype = {}
+    T.MPlr.prototype = {
         cO(a) {
             this.a = a.e
             this.b = a.fx
@@ -17140,7 +17140,7 @@ let why_ns = 0;
                 q = n.fy
                 if (r > q) n.fx = q
                 r = LangData.get_lang("imin")
-                q = new T.V(s)
+                q = new T.HPlr(s)
                 q.a = n.e
                 q.d = n.fx
                 e.a.push(T.RunUpdate(r, b, q, new T.bm(-a), null, 0, 1000, 100))
@@ -17158,7 +17158,7 @@ let why_ns = 0;
             if (q <= r) n.fx = r
             if (a >= $.eU()) p = C.b.B(p, $.qz())
             else if (a >= $.cZ()) p = C.b.B(p, $.qy())
-            r = new T.V(s)
+            r = new T.HPlr(s)
             r.a = n.e
             r.d = n.fx
             o = T.RunUpdate(p, b, r, new T.bB(a), null, a, 1000, 100)
@@ -17593,7 +17593,7 @@ let why_ns = 0;
                     r.push($.K())
                     r.push(T.RunUpdate(LangData.get_lang("yGkN"), k.r, a, j, j, $.a6(), $.d0(), 100))
                     q = LangData.get_lang("PGSN")
-                    p = new T.dF()
+                    p = new T.MPlr()
                     p.cO(k.r)
                     r.push(T.RunUpdate(q, p, a, j, j, 0, 1000, 100))
                     return true
@@ -17740,7 +17740,7 @@ let why_ns = 0;
                 p.r.fx = (c.n() & 15) + 1
                 n = LangData.get_lang("imin")
                 o = p.r
-                r = new T.V($.a())
+                r = new T.HPlr($.a())
                 r.a = o.e
                 q = o.fx
                 r.d = q
@@ -17972,7 +17972,7 @@ let why_ns = 0;
                 q = LangData.get_lang("kXba")
                 s = a4.r
                 a2 = a3.fx
-                b = new T.V(a2)
+                b = new T.HPlr(a2)
                 b.a = a3.e
                 b.d = a2
                 r.push(T.RunUpdate(q, s, b, a6, H.b([a6], t.j), 0, 1000, 100))
@@ -18254,7 +18254,7 @@ let why_ns = 0;
                 o = LangData.get_lang("pKQn")
                 n = k.r
                 m = p.fx
-                l = new T.V(m)
+                l = new T.HPlr(m)
                 l.a = p.e
                 l.d = m
                 m = new T.aX(0, 1000, 100, o, n, l, j, j)
@@ -18774,7 +18774,7 @@ let why_ns = 0;
         inherit(T.fR, T.cy)
         inherit(T.fb, T.bZ)
         inherit(T.eg, T.e3)
-        inherit_many(T.IPlr, [T.NPlr, T.V, T.dF, T.dp])
+        inherit_many(T.IPlr, [T.NPlr, T.HPlr, T.MPlr, T.dp])
         inherit_many(T.aX, [T.h2, T.dX])
         inherit(T.fY, T.cB)
         inherit(T.cA, T.ah)
