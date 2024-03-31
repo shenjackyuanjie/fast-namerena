@@ -685,7 +685,7 @@ let why_ns = 0;
                 if (typeof s != "string") throw H.wrap_expression(H.R(a))
                 return s
             },
-            dU(a) {
+            Primitives_objectHashCode(a) {
                 var s = a.$identityHash
                 if (s == null) {
                     s = Math.random() * 0x3fffffff | 0
@@ -978,7 +978,7 @@ let why_ns = 0;
             },
             vd(a) {
                 if (a == null || typeof a != "object") return J.lZ(a)
-                else return H.dU(a)
+                else return H.Primitives_objectHashCode(a)
             },
             uQ(a, b) {
                 var s, r, q, p = a.length
@@ -8256,7 +8256,7 @@ let why_ns = 0;
             return a === b
         },
         gak(a) {
-            return H.dU(a)
+            return H.Primitives_objectHashCode(a)
         },
         k(a) {
             return "Instance of '" + H.e(H.jZ(a)) + "'"
@@ -8436,7 +8436,7 @@ let why_ns = 0;
             return new J.db(a, a.length)
         },
         gak(a) {
-            return H.dU(a)
+            return H.Primitives_objectHashCode(a)
         },
         gp(a) {
             return a.length
@@ -9008,7 +9008,7 @@ let why_ns = 0;
             return this.$_target === b.$_target && this.a === b.a
         },
         gak(a) {
-            return (H.vd(this.a) ^ H.dU(this.$_target)) >>> 0
+            return (H.vd(this.a) ^ H.Primitives_objectHashCode(this.$_target)) >>> 0
         },
         k(a) {
             return "Closure '" + H.e(this.$_name) + "' of " + ("Instance of '" + H.e(H.jZ(this.a)) + "'")
@@ -10060,7 +10060,7 @@ let why_ns = 0;
     P.cK.prototype = {}
     P.cM.prototype = {
         gak(a) {
-            return (H.dU(this.a) ^ 892482866) >>> 0
+            return (H.Primitives_objectHashCode(this.a) ^ 892482866) >>> 0
         },
         aW(a, b) {
             if (b == null) return false
@@ -11115,7 +11115,7 @@ let why_ns = 0;
             return this === b
         },
         gak(a) {
-            return H.dU(this)
+            return H.Primitives_objectHashCode(this)
         },
         k(a) {
             return "Instance of '" + H.e(H.jZ(this)) + "'"
