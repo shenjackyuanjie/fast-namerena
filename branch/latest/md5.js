@@ -3284,7 +3284,7 @@ let why_ns = 0;
             get_lang(a) {
                 var s = $.od.h(0, a)
                 // if (s === "》 实力评分: [2]" || s === "》 胜率: [2]%" || s === "实力评估中...[2]%") {
-                //     console.log("O.d", a, s)
+                    console.log("O.d", a, s)
                 // }
                 if (s == null) return ""
                 return s
@@ -13856,6 +13856,8 @@ let why_ns = 0;
                     q = T.I(p.r, true, c)
                     if (q > r) r = q
                     if (n.a7($.d2(), c)) {
+                        // dodge (通用回避)
+                        // [0][回避]了攻击
                         s.push(T.f(LangData.get_lang("BtqN"), n, p.r, o, o, 0, 1000, 100))
                         return
                     }
@@ -14044,10 +14046,14 @@ let why_ns = 0;
                 p = null,
                 o = a[$.a()].a,
                 n = d.a
+            // sklCharm
+            // [0]使用[魅惑]
             n.push(T.f(LangData.get_lang("UUan"), q.r, o, p, p, $.i(), 1000, 100))
             if (!o.a7($.aE(), c)) s = o.fx > $.a() && !o.A && T.bW(q.r.dx, o.db + o.dy, c)
             else s = true
             if (s) {
+                // dodge (通用回避)
+                // [0][回避]了攻击
                 n.push(T.f(LangData.get_lang("BtqN"), o, q.r, p, p, $.as(), 1000, 100))
                 return
             }
@@ -14061,6 +14067,8 @@ let why_ns = 0;
                 else r.z = r.z + 1
             }
             if (q.r.r2.J(0, $.a7())) r.z = r.z + $.B()
+            // sklCharmHit
+            // [1]被[魅惑]了
             n.push(T.f(C.b.B(LangData.get_lang("yjhn"), $.nd()), q.r, o, p, p, $.cZ(), 1000, 100))
         }
     }
@@ -14229,8 +14237,11 @@ let why_ns = 0;
                 p = a[$.a()].a,
                 o = T.I(s.r, true, c),
                 n = d.a
+            // sklDisperse [0]使用[净化]
             n.push(T.f(LangData.get_lang("cDPa"), s.r, p, r, r, $.as(), 1000, 100))
             if (p.a7($.lP(), c)) {
+                // dodge (通用回避)
+                // [0][回避]了攻击
                 n.push(T.f(LangData.get_lang("BtqN"), p, s.r, r, r, $.as(), 1000, 100))
                 return
             }
@@ -14260,6 +14271,8 @@ let why_ns = 0;
             if (!s.a7($.d3(), c)) q = s.fx > $.a() && !s.A && !l.r.r2.J(0, $.a7()) && T.bW(l.r.dx, s.dy + s.cx + s.db, c)
             else q = true
             if (q) {
+                // dodge (通用回避)
+                // [0][回避]了攻击
                 r.push(T.f(LangData.get_lang("BtqN"), s, l.r, k, k, $.as(), 1000, 100))
                 return
             }
@@ -14329,6 +14342,8 @@ let why_ns = 0;
             if (!g.a7($.eZ(), c)) q = g.fx > $.a() && !g.A && !i.r.r2.J(0, $.a7()) && T.bW(s, g.dy + g.db, c)
             else q = true
             if (q) {
+                // dodge (通用回避)
+                // [0][回避]了攻击
                 f.push(T.f(LangData.get_lang("BtqN"), g, i.r, h, h, $.as(), 1000, 100))
                 return
             }
@@ -14812,6 +14827,8 @@ let why_ns = 0;
             if (!n.a7($.aJ(), c)) s = n.fx > $.a() && !n.A && T.bW(p.r.dx, n.dy, c)
             else s = true
             if (s) {
+                // dodge (通用回避)
+                // [0][回避]了攻击
                 m.push(T.f(LangData.get_lang("BtqN"), n, p.r, o, o, $.as(), 1000, 100))
                 return
             }
@@ -14861,7 +14878,7 @@ let why_ns = 0;
             s.push(T.f(LangData.get_lang("USvA"), this_.r, a6, a6, a6, $.a6(), 1000, 100))
             r = H.e(this_.r.a) + "?" + H.e($.qM())
             // r = name + "?" + "shadow"
-            // console.log("T.hB.v", r, H.e(a5.r.a), H.e($.qM()))
+            console.log("T.hB.v", r, a5.r.a, H.e($.qM()))
             q = this_.r
             p = q.b
             q = q.c
@@ -14978,6 +14995,8 @@ let why_ns = 0;
             if (!o.a7($.bi(), c)) s = o.fx > $.a() && !o.A && T.bW(q.r.dx, o.dy, c)
             else s = true
             if (s) {
+                // dodge (通用回避)
+                // [0][回避]了攻击
                 n.push(T.f(LangData.get_lang("BtqN"), o, q.r, p, p, $.as(), 1000, 100))
                 return
             }
@@ -15075,14 +15094,14 @@ let why_ns = 0;
             return H.b([], t.F)
         },
         v(a6, a7, a8, a9) {
-            var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, a3 = this,
+            var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, this_ = this,
                 a4 = null,
                 a5 = a9.a
-            a5.push(T.f(LangData.get_lang("sCza"), a3.r, a4, a4, a4, $.a6(), 1000, 100))
-            s = a3.fr
+            a5.push(T.f(LangData.get_lang("sCza"), this_.r, a4, a4, a4, $.a6(), 1000, 100))
+            s = this_.fr
             if (s == null) {
-                s = H.e(a3.r.a) + "?" + H.e($.qQ())
-                r = a3.r
+                s = H.e(this_.r.a) + "?" + H.e($.qQ())
+                r = this_.r
                 q = r.b
                 r = r.c
                 p = $.a()
@@ -15126,28 +15145,30 @@ let why_ns = 0;
                 a2 = new T.fT(s, q, r, a4, p, o, n, m, l, k, j, i, h, g, f, e, d, c, a, a0, a1, b, a2, a2, a2, $.W(), a2)
                 a2.a1(s, q, r, a4)
                 a2.a6 = new T.cp(a2)
-                a2.aj = a3
-                a2.e = T.fD(a3.r)
-                a3.fr = a2
-                a2.r = LangData.get_lang("DxYn")
-                a2 = a3.fr
-                a2.y = a3.r.y
+                a2.aj = this_
+                a2.e = T.fD(this_.r)
+                this_.fr = a2
+                // sklSummonName
+                a2.r = LangData.get_lang("DxYn") // 使魔
+                a2 = this_.fr
+                a2.y = this_.r.y
                 a2.az()
             } else {
                 s.bP()
                 s.bs()
                 s.cn()
             }
-            a3.r.L.j(0, a3.fr.a6)
-            a3.fr.l = a8.n() * $.C()
-            if (a3.r.r2.J(0, $.a7())) {
-                a3.fr.bi.D()
-                a3.fr.l = $.bx()
+            this_.r.L.j(0, this_.fr.a6)
+            this_.fr.l = a8.n() * $.C()
+            if (this_.r.r2.J(0, $.a7())) {
+                this_.fr.bi.D()
+                this_.fr.l = $.bx()
             }
-            a3.r.y.aZ(a3.fr)
-            s = LangData.get_lang("qhOn")
-            r = a3.r
-            q = a3.fr
+            this_.r.y.aZ(this_.fr)
+            // sklSummoned
+            s = LangData.get_lang("qhOn") // 召唤出[1]
+            r = this_.r
+            q = this_.fr
             p = q.fx
             o = new T.V(p)
             o.a = q.e
@@ -15177,6 +15198,8 @@ let why_ns = 0;
                             m.aK(p, h, n, j, j, 0, i, 100)
                             g.push(m)
                         } else {
+                            // dodge (通用回避)
+                            // [0][回避]了攻击
                             p = LangData.get_lang("BtqN")
                             n = k.r
                             m = new T.aX(0, i, 100, p, h, n, j, j)
@@ -17088,6 +17111,8 @@ let why_ns = 0;
                 q = c.ch + c.db
             }
             if (p.fx > $.a() && !p.A && T.bW(q, r, e)) {
+                // dodge (通用回避)
+                // [0][回避]了攻击
                 f.a.push(T.f(LangData.get_lang("BtqN"), p, c, null, null, $.as(), 1000, 100))
                 return $.a()
             }
