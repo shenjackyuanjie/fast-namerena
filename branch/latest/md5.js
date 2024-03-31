@@ -4559,7 +4559,7 @@ let why_ns = 0;
                     r = new T.HPlr(r)
                     r.a = a.e
                     r.d = a.fx
-                    e.a.push(T.RunUpdate(p, a, r, new T.bm(s), null, s, 1000, 100))
+                    e.a.push(T.RunUpdate(p, a, r, new T.HRecover(s), null, s, 1000, 100))
                 }
             },
             nC(a) {
@@ -7163,10 +7163,10 @@ let why_ns = 0;
             DPlr: function dp() {
                 this.a = null
             },
-            bB: function bB(a) {
+            HDamage: function bB(a) {
                 this.a = a
             },
-            bm: function bm(a) {
+            HRecover: function bm(a) {
                 this.a = a
             },
             aX: function aX(a, b, c, d, e, f, g, h) {
@@ -13517,8 +13517,8 @@ let why_ns = 0;
                 s.fx = '<div class="plr_body ' + s.cy + '"><div class="sgl ' + H.e(Sgls.o6(s.fy)) + '"></div>' + H.e(s.y.outerHTML) + '<div class="maxhp" style="width: ' + r + '" /></div>'
                 return s.fr
             }
-            if (a instanceof T.bB) return '<div class="damage">' + H.e(a.a) + "</div>"
-            if (a instanceof T.bm) return '<div class="recover">' + H.e(a.a) + "</div>"
+            if (a instanceof T.HDamage) return '<div class="damage">' + H.e(a.a) + "</div>"
+            if (a instanceof T.HRecover) return '<div class="recover">' + H.e(a.a) + "</div>"
             return J.b4(a)
         },
         $S: 42
@@ -14366,7 +14366,7 @@ let why_ns = 0;
             n = new T.HPlr(p)
             n.a = g.e
             n.d = g.fx
-            f.push(T.RunUpdate(o, q, n, new T.bB(l), h, j, 1000, 100))
+            f.push(T.RunUpdate(o, q, n, new T.HDamage(l), h, j, 1000, 100))
             if (j > $.a()) g.cr(j, p, i.r, c, d)
         }
     }
@@ -14481,7 +14481,7 @@ let why_ns = 0;
             m = new T.HPlr(p)
             m.a = s.e
             m.d = s.fx
-            k.push(T.RunUpdate(o, n, m, new T.bm(r), null, 0, 1000, 100))
+            k.push(T.RunUpdate(o, n, m, new T.HRecover(r), null, 0, 1000, 100))
             s.bL(l.r, d)
         }
     }
@@ -14810,7 +14810,7 @@ let why_ns = 0;
             m = new T.HPlr($.a())
             m.a = s.e
             m.d = s.fx
-            p.push(T.RunUpdate(o, n, m, new T.bm(r), k, 0, 1000, 100))
+            p.push(T.RunUpdate(o, n, m, new T.HRecover(r), k, 0, 1000, 100))
         }
     }
     T.hu.prototype = {
@@ -15463,7 +15463,7 @@ let why_ns = 0;
                 n = new T.HPlr(p)
                 n.a = s.e
                 n.d = s.fx
-                q.push(T.RunUpdate(r, o, n, new T.bB(p), l, p + $.b3(), k, 100))
+                q.push(T.RunUpdate(r, o, n, new T.HDamage(p), l, p + $.b3(), k, 100))
             } else {
                 m.fx = n
                 r = LangData.get_lang("MtDN")
@@ -15471,7 +15471,7 @@ let why_ns = 0;
                 n = new T.HPlr(p)
                 n.a = s.e
                 n.d = s.fx
-                q.push(T.RunUpdate(r, o, n, new T.bB(p), l, p + $.b3(), k, 100))
+                q.push(T.RunUpdate(r, o, n, new T.HDamage(p), l, p + $.b3(), k, 100))
             }
             s.bm(p, m.r, c, d)
             r = m.r
@@ -15527,7 +15527,7 @@ let why_ns = 0;
                     m = new T.HPlr(m)
                     m.a = r.e
                     m.d = r.fx
-                    q.push(T.RunUpdate(o, r, m, new T.bm(n), null, 0, 1000, 100))
+                    q.push(T.RunUpdate(o, r, m, new T.HRecover(n), null, 0, 1000, 100))
                 }
             }
             if (l.fy > $.a4()) {
@@ -16582,12 +16582,12 @@ let why_ns = 0;
         }
     }
     T.DPlr.prototype = {}
-    T.bB.prototype = {
+    T.HDamage.prototype = {
         k(a) {
             return J.b4(this.a)
         }
     }
-    T.bm.prototype = {
+    T.HRecover.prototype = {
         k(a) {
             return J.b4(this.a)
         }
@@ -17143,13 +17143,13 @@ let why_ns = 0;
                 q = new T.HPlr(s)
                 q.a = n.e
                 q.d = n.fx
-                e.a.push(T.RunUpdate(r, b, q, new T.bm(-a), null, 0, 1000, 100))
+                e.a.push(T.RunUpdate(r, b, q, new T.HRecover(-a), null, 0, 1000, 100))
                 return $.a()
             }
             p = LangData.get_lang("kZsn")
             r = $.a()
             if (a === r) {
-                e.a.push(T.RunUpdate(C.b.B(C.b.fu(p, "1", "0"), $.ne()), n, n, new T.bB($.a()), null, $.Z(), 1000, 100))
+                e.a.push(T.RunUpdate(C.b.B(C.b.fu(p, "1", "0"), $.ne()), n, n, new T.HDamage($.a()), null, $.Z(), 1000, 100))
                 return $.a()
             }
             s = n.fx
@@ -17161,7 +17161,7 @@ let why_ns = 0;
             r = new T.HPlr(s)
             r.a = n.e
             r.d = n.fx
-            o = T.RunUpdate(p, b, r, new T.bB(a), null, a, 1000, 100)
+            o = T.RunUpdate(p, b, r, new T.HDamage(a), null, a, 1000, 100)
             if (a > $.pr()) o.b = $.d0()
             else o.b = $.eS() + a * $.t()
             e.a.push(o)
@@ -17744,7 +17744,7 @@ let why_ns = 0;
                 r.a = o.e
                 q = o.fx
                 r.d = q
-                s.push(T.RunUpdate(n, o, r, new T.bm(q), null, 0, 1000, 100))
+                s.push(T.RunUpdate(n, o, r, new T.HRecover(q), null, 0, 1000, 100))
                 return true
             }
             return false
@@ -18693,7 +18693,7 @@ let why_ns = 0;
             inherit = hunkHelpers.inherit,
             inherit_many = hunkHelpers.inheritMany
         inherit(P.H, null)
-        inherit_many(P.H, [H.m8, J.Interceptor, J.db, P.O, P.ev, P.L, H.cv, P.fv, H.du, H.hV, H.kh, H.jR, H.dt, H.eE, H.c_, P.aU, H.jK, H.fA, H.ct, H.ew, H.kz, H.bK, H.l3, H.aW, H.ib, H.iu, P.l8, P.i_, P.f3, P.i4, P.cN, P._Future, P.i0, P.em, P.hO, P.hP, P.im, P.i1, P.i3, P.i7, P.ii, P.io, P.lf, P.eM, P.kV, P.ie, P.z, P.dY, P.fg, P.js, P.lc, P.lb, P.dq, P.Duration, P.fM, P.el, P.kG, P.jm, P.N, P.iq, P.cH, W.j8, W.m5, W.cP, W.cr, W.dN, W.eD, W.is, W.dv, W.kE, W.l_, W.ix, P.l4, P.kw, P.eJ, P.jQ, P.kT, Y.dW, L.iR, V.iV, X.iW, S.fK, HtmlRenderer.fq, HtmlRenderer.jT, HtmlRenderer.ax, Sgls.a_, Sgls.n, T.x, T.Plr, T.dk, T.fo, T.b7, T.IPlr, T.bB, T.bm, T.aX, T.aq, T.bG, T.bL, T.fl])
+        inherit_many(P.H, [H.m8, J.Interceptor, J.db, P.O, P.ev, P.L, H.cv, P.fv, H.du, H.hV, H.kh, H.jR, H.dt, H.eE, H.c_, P.aU, H.jK, H.fA, H.ct, H.ew, H.kz, H.bK, H.l3, H.aW, H.ib, H.iu, P.l8, P.i_, P.f3, P.i4, P.cN, P._Future, P.i0, P.em, P.hO, P.hP, P.im, P.i1, P.i3, P.i7, P.ii, P.io, P.lf, P.eM, P.kV, P.ie, P.z, P.dY, P.fg, P.js, P.lc, P.lb, P.dq, P.Duration, P.fM, P.el, P.kG, P.jm, P.N, P.iq, P.cH, W.j8, W.m5, W.cP, W.cr, W.dN, W.eD, W.is, W.dv, W.kE, W.l_, W.ix, P.l4, P.kw, P.eJ, P.jQ, P.kT, Y.dW, L.iR, V.iV, X.iW, S.fK, HtmlRenderer.fq, HtmlRenderer.jT, HtmlRenderer.ax, Sgls.a_, Sgls.n, T.x, T.Plr, T.dk, T.fo, T.b7, T.IPlr, T.HDamage, T.HRecover, T.aX, T.aq, T.bG, T.bL, T.fl])
         inherit_many(J.Interceptor, [J.fw, J.cs, J.bE, J.JsArray, J.JsNumber, J.JsString, H.dJ, H.ab, W.fn, W.bX, W.fe, W.i6, W.bb, W.ja, W.jb, W.o, W.c4, W.jL, W.ig, W.il, W.iy, W.iA])
         inherit_many(J.bE, [J.PlainJavaScriptObject, J.UnknownJavaScriptObject, J.JavaScriptFunction])
         inherit(J.jG, J.JsArray)
