@@ -14878,7 +14878,7 @@ let why_ns = 0;
             s.push(T.RunUpdate(LangData.get_lang("USvA"), this_.r, a6, a6, a6, $.a6(), 1000, 100))
             shadow_name = H.e(this_.r.a) + "?" + H.e($.qM())
             // r = name + "?" + "shadow"
-            console.log("T.hB.v", shadow_name, a5.r.a, H.e($.qM()))
+            // console.log("T.hB.v", shadow_name, a5.r.a, H.e($.qM()))
             q = this_.r
             p = q.b
             q = q.c
