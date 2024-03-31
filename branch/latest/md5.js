@@ -3385,19 +3385,19 @@ let why_ns = 0;
                     }
                 }
             },
-            _wrapJsFunctionForAsync(a) {
-                var s = function (b, c) {
-                    return function (d, e) {
+            _wrapJsFunctionForAsync(func) {
+                var protected = function (fn, error_) {
+                    return function (error_code, async_result) {
                         while (true) try {
-                            b(d, e)
+                            fn(error_code, async_result)
                             break
-                        } catch (r) {
-                            e = r
-                            d = c
+                        } catch (error) {
+                            async_result = error
+                            error_code = error_
                         }
                     }
-                }(a, 1)
-                return $.P.ct(new P.lr(s))
+                }(func, 1)
+                return $.P.ct(new P._wrapJsFunctionForAsync_closure(protected))
             },
             async_error(a, b) {
                 var s = H.ls(a, "error", t.K)
@@ -3676,7 +3676,7 @@ let why_ns = 0;
             li: function li(a) {
                 this.a = a
             },
-            lr: function lr(a) {
+            _wrapJsFunctionForAsync_closure: function lr(a) {
                 this.a = a
             },
             f3: function f3(a, b) {
@@ -9626,7 +9626,7 @@ let why_ns = 0;
         },
         $S: 60
     }
-    P.lr.prototype = {
+    P._wrapJsFunctionForAsync_closure.prototype = {
         $2(a, b) {
             this.a(a, b)
         },
@@ -18707,7 +18707,7 @@ let why_ns = 0;
         inherit_many(H.kg, [H.kc, H.dg])
         inherit(P.dG, P.aU)
         inherit_many(P.dG, [H.aT, P.ic, W.i2])
-        inherit_many(H.j6, [H.lw, P.li, P.lr, P.kL, P.jM, W.kd, W.le, P.l5, P.l6, P.ky, V.j_, HtmlRenderer.jA, Sgls.k7, LangData.lA, T.ka, T.jX, T.jY, T.k2, T.kq, T.kr, T.ks, T.kt, T.ku])
+        inherit_many(H.j6, [H.lw, P.li, P._wrapJsFunctionForAsync_closure, P.kL, P.jM, W.kd, W.le, P.l5, P.l6, P.ky, V.j_, HtmlRenderer.jA, Sgls.k7, LangData.lA, T.ka, T.jX, T.jY, T.k2, T.kq, T.kr, T.ks, T.kt, T.ku])
         inherit(H.hZ, P.dy)
         inherit(H.cw, H.ab)
         inherit_many(H.cw, [H.ey, H.eA])
