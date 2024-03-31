@@ -7148,7 +7148,7 @@ let why_ns = 0;
                 _.f = e
             },
             fr: function fr() {},
-            bF: function bF() {
+            NPlr: function bF() {
                 this.a = null
             },
             V: function V(a) {
@@ -12575,7 +12575,7 @@ let why_ns = 0;
             q.push(T.RunUpdate(LangData.get_lang("JkWn"), null, null, this_.Q * 1e4 / this_.d, null, 0, 1000, 100))
             this_.y.push(new T.aq(q, p))
             if (this_.x != null) {
-                s = new T.bF()
+                s = new T.NPlr()
                 s.a = this_.f[0].e
                 this_.z.aw(0, new V.j_(this_, s))
             }
@@ -13486,7 +13486,7 @@ let why_ns = 0;
     HtmlRenderer.lp.prototype = {
         $1(a) {
             var s, r, q
-            if (a instanceof T.bF) return $.ay.h(0, a.a).fr
+            if (a instanceof T.NPlr) return $.ay.h(0, a.a).fr
             if (a instanceof T.V) {
                 s = $.ay.h(0, a.a)
                 s.bU(a.d)
@@ -16572,7 +16572,7 @@ let why_ns = 0;
             return this.a
         }
     }
-    T.bF.prototype = {}
+    T.NPlr.prototype = {}
     T.V.prototype = {}
     T.dF.prototype = {
         cO(a) {
@@ -16597,19 +16597,19 @@ let why_ns = 0;
             var s, r, q, p = this,
                 o = p.e
             if (o instanceof T.u) {
-                s = new T.bF()
+                s = new T.NPlr()
                 s.a = o.e
                 p.e = s
             }
             o = p.f
             if (o instanceof T.u) {
-                s = new T.bF()
+                s = new T.NPlr()
                 s.a = o.e
                 p.f = s
             }
             o = p.x
             if (o instanceof T.u) {
-                s = new T.bF()
+                s = new T.NPlr()
                 s.a = o.e
                 p.x = s
             }
@@ -16618,7 +16618,7 @@ let why_ns = 0;
                 for (r = $.a(); r < o.length; ++r) {
                     s = o[r]
                     if (s instanceof T.u) {
-                        q = new T.bF()
+                        q = new T.NPlr()
                         q.a = s.e
                         o[r] = q
                     }
@@ -18769,7 +18769,7 @@ let why_ns = 0;
         inherit(T.fR, T.cy)
         inherit(T.fb, T.bZ)
         inherit(T.eg, T.e3)
-        inherit_many(T.fr, [T.bF, T.V, T.dF, T.dp])
+        inherit_many(T.fr, [T.NPlr, T.V, T.dF, T.dp])
         inherit_many(T.aX, [T.h2, T.dX])
         inherit(T.fY, T.cB)
         inherit(T.cA, T.ah)
