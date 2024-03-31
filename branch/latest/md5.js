@@ -3277,14 +3277,14 @@ let why_ns = 0;
             j(a, b) {
                 let result = C.e.bt(0, X.f4(a, b))
                 // if (result === "频率: [2]%") {
-                    console.log("O.j", a, b, result)
+                    // console.log("O.j", a, b, result)
                 // }
                 return result
             },
             get_lang(a) {
                 var s = $.od.h(0, a)
                 // if (s === "》 实力评分: [2]" || s === "》 胜率: [2]%" || s === "实力评估中...[2]%") {
-                    console.log("O.d", a, s)
+                    // console.log("O.d", a, s)
                 // }
                 if (s == null) return ""
                 return s
@@ -16711,8 +16711,9 @@ let why_ns = 0;
             this_.I = this_.gfJ()
             s = this_.r = this_.a
             r = this_.b
-            if (r != null && r !== "" && r !== s) r = this_.e = H.e(s) + "@" + H.e(this_.b)
-            else {
+            if (r != null && r !== "" && r !== s) {
+                r = this_.e = H.e(s) + "@" + H.e(this_.b)
+            } else {
                 this_.e = this_.b = s
                 r = s
             }
@@ -16721,8 +16722,9 @@ let why_ns = 0;
             if (q != null && q !== "") {
                 this_.f = H.e(r) + "+" + H.e(q)
                 r = $.rj()
-                if (r.J(0, q)) p = r.h(0, q).$2(q, this_)
-                else if (J.nz(q, $.cl())) {
+                if (r.J(0, q)) {
+                    p = r.h(0, q).$2(q, this_)
+                } else if (J.nz(q, $.cl())) {
                     p = new T.j2(q, this_, P.aL($.av(), $.a(), false, t.B))
                     p.a = q
                     p.a = C.b.af(q, $.a(), q.length - $.i())
@@ -16741,7 +16743,7 @@ let why_ns = 0;
             // $.mc = q + 1
             q = why_ns
             why_ns += 1
-            
+
             q = C.JsInt.P(Math.abs(q), $.bx())
             n = $.a()
             if (q > n) {
@@ -20679,7 +20681,7 @@ let why_ns = 0;
     Function.prototype.$6 = function (a, b, c, d, e, f) {
         return this(a, b, c, d, e, f)
     };
-    console.log(X.k("IIq4zN_QaD", 19), "X.k(\"IIq4zN_QaD\", 19)")
+    // console.log(X.k("IIq4zN_QaD", 19), "X.k(\"IIq4zN_QaD\", 19)")
     Q.main_func()
 })()
 //# sourceMappingURL=md5.js.map
