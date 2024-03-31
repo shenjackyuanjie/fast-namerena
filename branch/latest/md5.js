@@ -14854,13 +14854,15 @@ let why_ns = 0;
             return H.b([], t.F)
         },
         v(a7, a8, a9, b0) {
-            var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, a3, a4, a5 = this,
+            var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, a3, a4, this_ = this,
                 a6 = null
-            a5.f = C.d.R(a5.f * $.mI())
+            this_.f = C.d.R(this_.f * $.mI())
             s = b0.a
-            s.push(T.f(LangData.get_lang("USvA"), a5.r, a6, a6, a6, $.a6(), 1000, 100))
-            r = H.e(a5.r.a) + "?" + H.e($.qM())
-            q = a5.r
+            s.push(T.f(LangData.get_lang("USvA"), this_.r, a6, a6, a6, $.a6(), 1000, 100))
+            r = H.e(this_.r.a) + "?" + H.e($.qM())
+            // r = name + "?" + "shadow"
+            // console.log("T.hB.v", r, H.e(a5.r.a), H.e($.qM()))
+            q = this_.r
             p = q.b
             q = q.c
             o = $.a()
@@ -14904,18 +14906,18 @@ let why_ns = 0;
             a4 = new T.fS(r, p, q, a6, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a0, a1, a2, a, a3, a3, a3, $.W(), a3)
             a4.a1(r, p, q, a6)
             a4.a6 = new T.cp(a4)
-            a4.aj = a5
-            a4.e = T.fD(a5.r)
+            a4.aj = this_
+            a4.e = T.fD(this_.r)
             a4.r = LangData.get_lang("VdSN")
-            q = a5.r
+            q = this_.r
             a4.y = q.y
             q.L.j(0, a4.a6)
             a4.az()
-            if (a5.r.r2.J(0, $.a7())) a4.l = $.bx()
+            if (this_.r.r2.J(0, $.a7())) a4.l = $.bx()
             else a4.l = -$.bx()
-            a5.r.y.aZ(a4)
+            this_.r.y.aZ(a4)
             r = LangData.get_lang("wHun")
-            q = a5.r
+            q = this_.r
             p = a4.fx
             o = new T.V(p)
             o.a = a4.e
@@ -19238,7 +19240,8 @@ let why_ns = 0;
             return LangData.j("<R;2&`|zWV", 30)
         })
         lazy_old($, "ym", "eZ", function () {
-            return LangData.j("U|,?M", 1)
+            // return LangData.j("U|,?M", 1)
+            return "half"
         })
         lazy_old($, "y7", "a7", function () {
             return LangData.j("@k%.*'GC", 5)
@@ -19496,7 +19499,8 @@ let why_ns = 0;
             return LangData.j("SWAyuI%B&,6%p;k8VH,Nd %*JE53*T,AxA#v{MB", 44)
         })
         lazy_old($, "yU", "qw", function () {
-            return LangData.j("Gc[I~fhNT#6]XuGrfUx.`fSI=!'?Pa~kiiRw<W:o&UY", 14)
+            // return LangData.j("Gc[I~fhNT#6]XuGrfUx.`fSI=!'?Pa~kiiRw<W:o&UY", 14)
+            return "<div class=\"smile s_counter\"></div>"
         })
         lazy_old($, "z7", "qI", function () {
             return LangData.j(">)z*M_<GhK0#T? P13VEIrAGEEjU3&ibv`7H'#?+@iM", 93)
