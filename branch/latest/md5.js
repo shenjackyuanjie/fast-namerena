@@ -3276,15 +3276,13 @@ let why_ns = 0;
             },
             j(a, b) {
                 let result = C.e.bt(0, X.f4(a, b))
-                // if (result === "频率: [2]%") {
-                    // console.log("O.j", a, b, result)
-                // }
+                // console.log("O.j", a, b, result)
                 return result
             },
             get_lang(a) {
                 var s = $.od.h(0, a)
                 // if (s === "》 实力评分: [2]" || s === "》 胜率: [2]%" || s === "实力评估中...[2]%") {
-                    // console.log("O.d", a, s)
+                // console.log("O.d", a, s)
                 // }
                 if (s == null) return ""
                 return s
@@ -5762,8 +5760,10 @@ let why_ns = 0;
                 return T.nX(s[r], b.e[r])
             },
             RunUpdate(message, caster, c, d, e, f, delay0, delay1) {
-                var s = new T.aX(f, delay0, delay1, message, caster, c, e, d)
-                s.aK(message, caster, c, d, e, f, delay0, delay1)
+                var s = new T.aX(f, 0, 0, message, caster, c, e, d)
+                // var s = new T.aX(f, delay0, delay1, message, caster, c, e, d)
+                // s.aK(message, caster, c, d, e, f, delay0, delay1)
+                s.aK(message, caster, c, d, e, f, 0, 0)
                 return s
             },
             aO(a, b, c) {
@@ -12693,11 +12693,11 @@ let why_ns = 0;
         },
         O() {
             var async_goto = 0,
-                r = P._makeAsyncAwaitCompleter(t.d),
+                async_completer = P._makeAsyncAwaitCompleter(t.d),
                 q, this_ = this,
                 o, n, m, l, k, j, i, h, g, f, e, d
             var $async$O = P._wrapJsFunctionForAsync(function (a, b) {
-                if (a === 1) return P.async_rethrow(b, r)
+                if (a === 1) return P.async_rethrow(b, async_completer)
                 while (true) switch (async_goto) {
                     case 0:
                         e = this_.b
@@ -12809,11 +12809,11 @@ let why_ns = 0;
                         async_goto = 1
                         break
                     case 1:
-                        return P.async_return(q, r)
+                        return P.async_return(q, async_completer)
                 }
             })
             console.log("X.iW.O")
-            return P._asyncStartSync($async$O, r)
+            return P._asyncStartSync($async$O, async_completer)
         },
         ae(a, b) {
             return this.dL(0, b)
