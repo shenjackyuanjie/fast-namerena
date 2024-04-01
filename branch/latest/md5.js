@@ -333,7 +333,7 @@ var A = {
             $.nt().bM(0, "")
         },
         tt(a) {
-            var s, r, q = new LangData.b9()
+            var s, r, q = new LangData.SuperRC4()
             q.bd(LangData.fZ(a), 2)
             s = q.c
             s.toString
@@ -3354,7 +3354,7 @@ var A = {
             C.a.a5(s, C.e.gaB().ab(a))
             return s
         },
-        b9: function b9() {
+        SuperRC4: function b9() {
             this.b = this.a = 0
             this.c = null
         },
@@ -16204,7 +16204,7 @@ T.fo.prototype = {
                     } else a8 = a7
                     o = C.a.aV(a8, "\r")
                     a9 = C.e.gaB().ab(o)
-                    o = new LangData.b9()
+                    o = new LangData.SuperRC4()
                     o.bd(a9, $.i())
                     p.b = o
                     o.bO(a9)
@@ -16675,14 +16675,14 @@ T.Plr.prototype = {
                 p.a = q
                 p.a = C.b.af(q, 0, q.length - $.i())
             } else p = T.tN(q, this_)
-            o = new LangData.b9()
+            o = new LangData.SuperRC4()
             o.bd(LangData.fZ(p.a), $.t())
             p.b3(o)
             this_.r1 = p
         }
         if (J.lW(s, " ")) this_.r = s.split(" ")[0]
         if (this_.c == null) this_.c = this_.b
-        r = new LangData.b9()
+        r = new LangData.SuperRC4()
         r.bd(LangData.fZ(this_.b), $.i())
         this_.X = r
         // q = $.ns()
@@ -18466,7 +18466,7 @@ T.kv.prototype = {
 }
 T.ij.prototype = {}
 T.ik.prototype = {}
-LangData.b9.prototype = {
+LangData.SuperRC4.prototype = {
     dB(a, b, c) {
         var s, r, q, p, o, n, m = b.length
         for (s = this.c, r = 0; r < c; ++r)
@@ -18735,7 +18735,7 @@ LangData.k_.prototype = {
     inherit_many(T.bL, [T.j2, T.eo, T.jq, T.jN, T.k1, T.ep, T.kv])
     inherit(T.hy, T.ea)
     inherit(T.hc, T.cb)
-    inherit(LangData.b9, Y.RC4)
+    inherit(LangData.SuperRC4, Y.RC4)
     mixin(H.cJ, H.hV)
     mixin(H.ey, P.z)
     mixin(H.ez, H.du)
