@@ -12110,6 +12110,7 @@ P.p.prototype = {
 }
 Y.RC4.prototype = {
     bd(a, b) {
+        // init
         var s, r, q, p, o, n, m, l = new Array(256)
         l.fixed$length = Array
         l = this.c = H.b(l, t.i)
@@ -12141,6 +12142,7 @@ Y.RC4.prototype = {
         }
     },
     di(a) {
+        // init?
         var s, r, q, p, o, n, m = this,
             l = a.length
         for (s = 0; s < l; ++s) {
@@ -12156,7 +12158,8 @@ Y.RC4.prototype = {
             m.b = q + n & 255
         }
     },
-    n() { // r127
+    n() { 
+        // next byte from ShadowR
         var _this = this,
             r = _this.a = _this.a + 1 & 255,
             q = _this.b,
@@ -18468,6 +18471,7 @@ T.ij.prototype = {}
 T.ik.prototype = {}
 LangData.SuperRC4.prototype = {
     dB(a, b, c) {
+        // init rc4
         var s, r, q, p, o, n, m = b.length
         for (s = this.c, r = 0; r < c; ++r)
             for (q = 0, p = 0; p < 256; ++p) {
@@ -18494,6 +18498,7 @@ LangData.SuperRC4.prototype = {
                 s[q] = n
             }
         m = t.fh.aL(b.i("0*")).i("y<1,2>")
+        // return X.map((e) => list[e]).toList();
         return P.aa(new H.y(s, new LangData.k_(a, b), m), true, m.i("M.E"))
     },
     fi(a) {
