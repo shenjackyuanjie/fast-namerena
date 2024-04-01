@@ -12801,6 +12801,7 @@ let why_ns = 0;
                         e = H.b([], t.U)
                         o = H.b([], t.Y)
                         e.push($.K())
+                        // 评分输出
                         if (this_.b >= d.length) {
                             e.push(T.RunUpdate(LangData.get_lang("tdaa"), null, null, null, null, 0, 1000, 100))
                             if (this_.e === 0) e.push(T.RunUpdate(LangData.get_lang("lIYA"), null, null, null, null, 0, 1000, 100))

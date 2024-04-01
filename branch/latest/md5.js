@@ -3334,7 +3334,7 @@ var A = {
         },
         j(a, b) {
             let result = C.e.bt(0, X.f4(a, b))
-            // console.log("O.j", a, b, result)
+            console.log("O.j", a, b, result)
             return result
         },
         get_lang(a) {
@@ -12732,6 +12732,10 @@ X.iW.prototype = {
                     e = H.b([], t.U)
                     o = H.b([], t.Y)
                     e.push($.K())
+                    // 评分输出
+                    if (from_node) {
+                        console.log("outputing score")
+                    }
                     if (this_.b >= d.length) {
                         e.push(T.RunUpdate(LangData.get_lang("tdaa"), null, null, null, null, 0, 1000, 100))
                         if (this_.e === 0) e.push(T.RunUpdate(LangData.get_lang("lIYA"), null, null, null, null, 0, 1000, 100))
@@ -18105,6 +18109,8 @@ T.h0.prototype = {
             r = o.length
             s.bL(s, d)
             if (o.length !== r) {
+                // weaponRModifierUse
+                // [0]使用[属性修改器]
                 C.a.co(o, r, T.RunUpdate(LangData.get_lang("UeyA"), s, null, null, null, $.a6(), 1000, 100))
                 o.push($.K())
             }
@@ -18179,6 +18185,8 @@ T.ee.prototype = {
             j = null
         k.r.l = c.n() * $.C() + $.cX()
         s = d.a
+        // weaponRModifierUse
+        // [0]使用[属性修改器]
         s.push(T.RunUpdate(LangData.get_lang("UeyA"), k.r, j, j, j, $.a6(), 1000, 100))
         for (r = $.a(), q = k.fr; r < q; ++r) {
             p = T.nU(k.r)
@@ -18187,6 +18195,8 @@ T.ee.prototype = {
             p.l = c.n() * $.C() + $.cX()
             k.r.y.aZ(p)
             s.push($.K())
+            // sklCloned
+            // 出现一个新的[1]
             o = LangData.get_lang("pKQn")
             n = k.r
             m = p.fx
@@ -19180,19 +19190,23 @@ var t = (function rtii() {
         return LangData.j("bB", 89)
     })
     lazy_old($, "y0", "lO", function () {
-        return LangData.j("YA", 51)
+        // return LangData.j("YA", 51)
+        return "+"
     })
     lazy_old($, "y3", "n3", function () {
-        return LangData.j("CA", 66)
+        // return LangData.j("CA", 66)
+        return "@"
     })
     lazy_old($, "y4", "aD", function () {
-        return LangData.j("{[A", 63)
+        // return LangData.j("{[A", 63)
+        return "@!"
     })
     lazy_old($, "ya", "n5", function () {
         return LangData.j("DA", 57)
     })
     lazy_old($, "yh", "qc", function () {
-        return LangData.j("l1C~5RJB", 71)
+        // return LangData.j("l1C~5RJB", 71)
+        return "!test!"
     })
     lazy_old($, "zm", "nk", function () {
         return LangData.j("lA", 39)
