@@ -2,8 +2,9 @@
 // let window = window;
 
 let name_input = "test\ntest2";
-
+let assets_data;
 let from_node = typeof window == "undefined";
+
 if (from_node) {
     console.log("Running from node");
 
@@ -32,6 +33,24 @@ if (from_node) {
         ],
     };
     self = window;
+
+    // 读取文件
+    let fs = require("fs");
+    let path = require("path");
+    let assets_path = path.join(__dirname, "assets");
+    
+    // 加载 zh.json
+    let lang_path = path.join(assets_path, "zh.json");
+    let lang_data = fs.readFileSync(lang_path, "utf-8");
+    
+    // 加载 gAd.md
+    let gAd_path = path.join(assets_path, "gAd.md");
+    let gAd_data = fs.readFileSync(gAd_path, "utf-8");
+
+    assets_data = {
+        "lang": lang_data,
+        "gAd": gAd_data,
+    }
 }
 
 let why_ns = 0;
