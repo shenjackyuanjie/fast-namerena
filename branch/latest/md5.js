@@ -10,25 +10,26 @@ if (from_node) {
     // 整一套虚拟的window和document
     // 但说实话十分生草
     window = {
-        // localStorage: {
-
-        // },
-        // sessionStorage: {
-
-        // },
     };
 
     let fake_element = {
         style: {},
-        styleSheets: [],
+        styleSheets: [
+            "something"
+        ],
         length: 0,
+        addEventListener: function () { },
     }
 
     document = {
         createElement: function (tag) {
             return fake_element;
         },
-        styleSheets: [],
+        styleSheets: [
+            {
+                "some": "thing"
+            }
+        ],
     };
     self = window;
 }
@@ -3146,6 +3147,10 @@ var A = {
             return J.cW(a).a5(a, b)
         },
         rs(a, b, c, d) {
+            if (from_node) {
+                console.log("rs", a, "|", b, "|", c, "|", d)
+                return
+            }
             return J.bv(a).eF(a, b, c, d)
         },
         lU(a, b) {
