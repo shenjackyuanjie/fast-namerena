@@ -5603,10 +5603,15 @@ var A = {
                     if (o.length !== 0) c.push(o)
                     o = H.b([], d)
                 }
+                // if contains "+"
+                // weapon
                 l = $.lO()
                 m.toString
-                if (l == null) H.throw_expression(H.R(l))
-                if (H.iF(m, l, 0)) {
+                // if (l == null) H.throw_expression(H.R(l))
+                // if (H.iF(m, l, 0)) {
+                console.log("reaching weapon zone")
+                if (m.contains("+")) {
+                    console.log("reach weapon zone")
                     k = C.b.aT(m, $.lO())
                     j = C.b.dF(C.b.ay(m, k + $.i()))
                     l = C.b.af(m, 0, k)
@@ -12831,6 +12836,7 @@ HtmlRenderer.fq.prototype = {
             r.appendChild(document.createTextNode(q))
         }
         // 添加 event listener
+        console.log("HtmlRenderer.fq adding event listener for message")
         W.es(window, "message", this_.gfb(this_), false)
     },
     fc(func_self, event) {
@@ -12865,6 +12871,7 @@ HtmlRenderer.fq.prototype = {
         this.c.ae(0, this.x)
     },
     fe(a0) {
+        // run update
         var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, this_ = this
         if (a0.length < 6) return
         s = X.f4(a0, 0)
@@ -13264,7 +13271,11 @@ HtmlRenderer.send_win_data.prototype = {
                         "firstKill",
                         q.e.e
                     ], n, n)
+                    // send win_data to parent
                     J.m0(W.ll(window.parent), win_data, "*")
+                    if (from_node) {
+                        // 怎么着输出一下 win_data
+                    }
                     return P.async_return(null, r)
             }
         })
@@ -17352,7 +17363,7 @@ T.q.prototype = {
 }
 T.ActionSkill.prototype = {
     au(a, b) { // prob
-        return (a.n() & 127) < this.f
+        return (a.n() & 127) < this.f // this.level
     }
 }
 T.h8.prototype = {
