@@ -12156,13 +12156,13 @@ Y.dW.prototype = {
             m.b = q + n & 255
         }
     },
-    n() {
-        var s = this,
-            r = s.a = s.a + 1 & 255,
-            q = s.b,
-            p = s.c,
+    n() { // r127
+        var _this = this,
+            r = _this.a = _this.a + 1 & 255,
+            q = _this.b,
+            p = _this.c,
             o = p[r]
-        q = s.b = q + o & 255
+        q = _this.b = q + o & 255
         p[r] = p[q]
         p[q] = o
         return p[p[r] + p[q] & 255]
@@ -15099,7 +15099,8 @@ T.hH.prototype = {
             s.cn()
         }
         this_.r.L.j(0, this_.fr.a6)
-        this_.fr.l = a8.n() * $.C()
+        // this_.fr.l = a8.n() * $.C()
+        this_.fr.l = a8.n() * 4
         if (this_.r.r2.J(0, $.a7())) {
             this_.fr.bi.D()
             this_.fr.l = $.bx()
@@ -17347,7 +17348,7 @@ T.q.prototype = {
     }
 }
 T.ActionSkill.prototype = {
-    au(a, b) {
+    au(a, b) { // prob
         return (a.n() & 127) < this.f
     }
 }
