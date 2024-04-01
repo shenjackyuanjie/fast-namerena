@@ -1,10 +1,15 @@
+// let document = document;
+// let window = window;
+
+let name_input = "test\ntest2";
+
 let from_node = typeof window == "undefined";
 if (from_node) {
     console.log("Running from node");
 
-    let name_input = "test\ntest2";
-
-    let window = {
+    // 整一套虚拟的window和document
+    // 但说实话十分生草
+    window = {
         // localStorage: {
 
         // },
@@ -13,6 +18,19 @@ if (from_node) {
         // },
     };
 
+    let fake_element = {
+        style: {},
+        styleSheets: [],
+        length: 0,
+    }
+
+    document = {
+        createElement: function (tag) {
+            return fake_element;
+        },
+        styleSheets: [],
+    };
+    self = window;
 }
 
 let why_ns = 0;
@@ -3372,6 +3390,7 @@ var A = {
         },
         _asyncStartSync(a, b) {
             a.$2(0, null)
+            // a(0, null)
             b.b = true
             return b.a
         },
@@ -3403,6 +3422,9 @@ var A = {
             var protected = function (fn, error_) {
                 return function (error_code, async_result) {
                     while (true) try {
+                        if (from_node) {
+                            console.log("O._wrapJsFunctionForAsync", error_code, async_result)
+                        }
                         fn(error_code, async_result)
                         break
                     } catch (error) {
@@ -7833,8 +7855,12 @@ var A = {
                         s = 2
                         return P._asyncAwait($.nt().a, $async$jv)
                     case 2:
-                        p = window.sessionStorage.getItem(LangData.eQ("ll"))
-                        if (typeof p == "string") LangData.v1(t.cF.a(C.C.bt(0, p)))
+                        if (from_node) {
+                            console.log("from_node", from_node)
+                        } else {
+                            p = window.sessionStorage.getItem(LangData.eQ("ll"))
+                            if (typeof p == "string") LangData.v1(t.cF.a(C.C.bt(0, p)))
+                        }
                         return P.async_return(null, r)
                 }
             })
@@ -13431,7 +13457,9 @@ Sgls.k7.prototype = {
         r = H.e(a) + "@!"
         $.k8.m(0, r, s)
         $.mg.m(0, r, q)
-        t.w.a(C.v.gbl(document.styleSheets)).insertRule("div." + s + ' { background-image:url("' + q + '"); }', $.e_ - 1)
+        if (!from_node) {
+            t.w.a(C.v.gbl(document.styleSheets)).insertRule("div." + s + ' { background-image:url("' + q + '"); }', $.e_ - 1)
+        }
     },
     $S: 65
 }
@@ -20573,7 +20601,7 @@ Function.prototype.$6 = function (a, b, c, d, e, f) {
 
 function main() {
     var async_goto = 0,
-        r = P._makeAsyncAwaitCompleter(t.z),
+        async_completer = P._makeAsyncAwaitCompleter(t.z),
         q, p = 2,
         async_result_1, n = [],
         m, l, k, j, raw_names, h, g, f, e, d, c, b, a, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, b0
@@ -20586,6 +20614,8 @@ function main() {
             case 0:
                 if (from_node) {
                     console.log("initing from node")
+                    $.ox = ""
+                    // 后面填一下这玩意
                 } else {
                     a8 = LangData.oC(true).c
                     a9 = a8[$.B()]
@@ -20601,8 +20631,6 @@ function main() {
                         $.ox = new H.a9(H.b(a2.split(""), t.s), t.bJ).f3(0)
                     }
                 }
-                // console.log("$.ox === a2", $.ox === a2)
-                // console.log($.ox)
                 async_goto = 3
                 return P._asyncAwait(HtmlRenderer.static_init(), $async$iE)
             case 3:
@@ -20610,17 +20638,21 @@ function main() {
                 // 战斗框输入位置
                 // 这里请输入一个被混淆过的名字
                 p = 5
-                m = window.sessionStorage.getItem(LangData.eQ("k"))
-                l = X.f4(m, 0)
-                k = LangData.oC(false)
-                console.log("k:", k)
-                a8 = t.i
-                j = H.b([], a8)
-                J.rr(j, H.b([1, 3, 0, 9], a8))
-                k.bO(j)
-                k.di(l)
-                raw_names = C.e.bt(0, l)
-
+                if (from_node) {
+                    raw_names = name_input
+                    console.log("node input:", raw_names)
+                } else {
+                    m = window.sessionStorage.getItem(LangData.eQ("k"))
+                    l = X.f4(m, 0)
+                    k = LangData.oC(false)
+                    console.log("k:", k)
+                    a8 = t.i
+                    j = H.b([], a8)
+                    J.rr(j, H.b([1, 3, 0, 9], a8))
+                    k.bO(j)
+                    k.di(l)
+                    raw_names = C.e.bt(0, l)
+                }
                 // 或者直接在这里输入一个原始字符串
                 h = T.parse_names(raw_names)
 
@@ -20701,12 +20733,12 @@ function main() {
                 break
             case 7:
             case 1:
-                return P.async_return(q, r)
+                return P.async_return(q, async_completer)
             case 2:
-                return P.async_rethrow(async_result_1, r)
+                return P.async_rethrow(async_result_1, async_completer)
         }
     })
-    return P._asyncStartSync($async$iE, r)
+    return P._asyncStartSync($async$iE, async_completer)
 }
 
 main() // 执行main函数
