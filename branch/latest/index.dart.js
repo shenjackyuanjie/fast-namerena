@@ -10110,6 +10110,13 @@
                 r = s.fy.e
                 if (r != null) G.ij(p + "\n\n" + r)
                 else {
+                    /* 
+                    if (emptyBossClick > 2) {
+                      run('$str\n\nRinick+属性修改器');
+                    } else {
+                      ++emptyBossClick;
+                      return;
+                    }*/
                     r = s.k1
                     if (r > 2) G.ij(p + "\n\nRinick+\u5c5e\u6027\u4fee\u6539\u5668")
                     else {
