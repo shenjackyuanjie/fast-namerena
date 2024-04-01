@@ -2,7 +2,10 @@
 // let window = window;
 
 let name_input = "test\ntest2";
-let assets_data;
+let assets_data = {
+    lang: null,
+    gAd: null,
+};
 let from_node = typeof window == "undefined";
 
 if (from_node) {
@@ -44,10 +47,8 @@ if (from_node) {
     let gAd_path = path.join(assets_path, "gAd.md");
     let gAd_data = fs.readFileSync(gAd_path, "utf-8");
 
-    assets_data = {
-        "lang": lang_data,
-        "gAd": gAd_data,
-    }
+    assets_data.lang = lang_data;
+    assets_data.gAd = gAd_data;
 }
 
 let why_ns = 0;
@@ -7896,7 +7897,9 @@ var A = {
                         }
                     case 2:
                         if (from_node) {
-                            console.log("from_node", from_node)
+                            console.log("loading gAd data")
+                            // 暂时有问题, 还得调试
+                            LangData.v1(t.cF.a(C.C.bt(0, assets_data.gAd)))
                         } else {
                             p = window.sessionStorage.getItem(LangData.eQ("ll"))
                             if (typeof p == "string") LangData.v1(t.cF.a(C.C.bt(0, p)))
