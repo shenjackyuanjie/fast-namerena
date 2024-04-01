@@ -762,7 +762,7 @@ var A = {
         },
         tc(a) {
             var s, r, q, p
-            if (a instanceof P.H) return H.aH(H.b_(a), null)
+            if (a instanceof P.Object) return H.aH(H.b_(a), null)
             if (J.cV(a) === C.J || t.bI.b(a)) {
                 s = C.p(a)
                 r = s !== "Object" && s !== ""
@@ -1884,7 +1884,7 @@ var A = {
         },
         b_(a) {
             var s
-            if (a instanceof P.H) {
+            if (a instanceof P.Object) {
                 s = a.$ti
                 return s != null ? s : H.mr(a)
             }
@@ -2004,7 +2004,7 @@ var A = {
             var s, r = this
             if (a == null) return H.ln(r)
             s = r.r
-            if (a instanceof P.H) return !!a[s]
+            if (a instanceof P.Object) return !!a[s]
             return !!J.cV(a)[s]
         },
         uo(a) {
@@ -2013,7 +2013,7 @@ var A = {
             if (typeof a != "object") return false
             if (Array.isArray(a)) return true
             s = r.r
-            if (a instanceof P.H) return !!a[s]
+            if (a instanceof P.Object) return !!a[s]
             return !!J.cV(a)[s]
         },
         Au(a) {
@@ -3086,7 +3086,7 @@ var A = {
                 if (typeof a == "function") return J.JavaScriptFunction.prototype
                 return a
             }
-            if (a instanceof P.H) return a
+            if (a instanceof P.Object) return a
             return J.lu(a)
         },
         a3(a) {
@@ -3097,7 +3097,7 @@ var A = {
                 if (typeof a == "function") return J.JavaScriptFunction.prototype
                 return a
             }
-            if (a instanceof P.H) return a
+            if (a instanceof P.Object) return a
             return J.lu(a)
         },
         cW(a) {
@@ -3107,25 +3107,25 @@ var A = {
                 if (typeof a == "function") return J.JavaScriptFunction.prototype
                 return a
             }
-            if (a instanceof P.H) return a
+            if (a instanceof P.Object) return a
             return J.lu(a)
         },
         oA(a) {
             if (typeof a == "number") return J.JsNumber.prototype
             if (typeof a == "string") return J.JsString.prototype
             if (a == null) return a
-            if (!(a instanceof P.H)) return J.UnknownJavaScriptObject.prototype
+            if (!(a instanceof P.Object)) return J.UnknownJavaScriptObject.prototype
             return a
         },
         aQ(a) {
             if (typeof a == "string") return J.JsString.prototype
             if (a == null) return a
-            if (!(a instanceof P.H)) return J.UnknownJavaScriptObject.prototype
+            if (!(a instanceof P.Object)) return J.UnknownJavaScriptObject.prototype
             return a
         },
         uR(a) {
             if (a == null) return J.cs.prototype
-            if (!(a instanceof P.H)) return J.UnknownJavaScriptObject.prototype
+            if (!(a instanceof P.Object)) return J.UnknownJavaScriptObject.prototype
             return a
         },
         bv(a) {
@@ -3134,12 +3134,12 @@ var A = {
                 if (typeof a == "function") return J.JavaScriptFunction.prototype
                 return a
             }
-            if (a instanceof P.H) return a
+            if (a instanceof P.Object) return a
             return J.lu(a)
         },
         uS(a) {
             if (a == null) return a
-            if (!(a instanceof P.H)) return J.UnknownJavaScriptObject.prototype
+            if (!(a instanceof P.Object)) return J.UnknownJavaScriptObject.prototype
             return a
         },
         iN(a, b) {
@@ -4389,7 +4389,7 @@ var A = {
         L: function L() {},
         fv: function fv() {},
         N: function N() {},
-        H: function H() {},
+        Object: function H() {},
         iq: function iq() {},
         cH: function cH(a) {
             this.a = a
@@ -11034,13 +11034,13 @@ P.L.prototype = {
 P.fv.prototype = {}
 P.N.prototype = {
     gak(a) {
-        return P.H.prototype.gak.call(this, this)
+        return P.Object.prototype.gak.call(this, this)
     },
     k(a) {
         return "null"
     }
 }
-P.H.prototype = {
+P.Object.prototype = {
     $iH: 1,
     aW(a, b) {
         return this === b
@@ -18641,8 +18641,8 @@ LangData.k_.prototype = {
     var mixin = hunkHelpers.mixin,
         inherit = hunkHelpers.inherit,
         inherit_many = hunkHelpers.inheritMany
-    inherit(P.H, null)
-    inherit_many(P.H, [H.m8, J.Interceptor, J.db, P.O, P.ev, P.L, H.cv, P.fv, H.du, H.hV, H.kh, H.jR, H.dt, H.eE, H.c_, P.aU, H.jK, H.fA, H.ct, H.ew, H.kz, H.bK, H.l3, H.aW, H.ib, H.iu, P.l8, P.i_, P.f3, P.i4, P.cN, P._Future, P.i0, P.em, P.hO, P.hP, P.im, P.i1, P.i3, P.i7, P.ii, P.io, P.lf, P.eM, P.kV, P.ie, P.z, P.dY, P.fg, P.js, P.lc, P.lb, P.dq, P.Duration, P.fM, P.el, P.kG, P.jm, P.N, P.iq, P.cH, W.j8, W.m5, W.cP, W.cr, W.dN, W.eD, W.is, W.dv, W.kE, W.l_, W.ix, P.l4, P.kw, P.eJ, P.jQ, P.kT, Y.RC4, L.iR, V.iV, X.iW, S.fK, HtmlRenderer.fq, HtmlRenderer.jT, HtmlRenderer.ax, Sgls.a_, Sgls.n, T.x, T.Plr, T.dk, T.fo, T.b7, T.IPlr, T.HDamage, T.HRecover, T.aX, T.aq, T.bG, T.bL, T.fl])
+    inherit(P.Object, null)
+    inherit_many(P.Object, [H.m8, J.Interceptor, J.db, P.O, P.ev, P.L, H.cv, P.fv, H.du, H.hV, H.kh, H.jR, H.dt, H.eE, H.c_, P.aU, H.jK, H.fA, H.ct, H.ew, H.kz, H.bK, H.l3, H.aW, H.ib, H.iu, P.l8, P.i_, P.f3, P.i4, P.cN, P._Future, P.i0, P.em, P.hO, P.hP, P.im, P.i1, P.i3, P.i7, P.ii, P.io, P.lf, P.eM, P.kV, P.ie, P.z, P.dY, P.fg, P.js, P.lc, P.lb, P.dq, P.Duration, P.fM, P.el, P.kG, P.jm, P.N, P.iq, P.cH, W.j8, W.m5, W.cP, W.cr, W.dN, W.eD, W.is, W.dv, W.kE, W.l_, W.ix, P.l4, P.kw, P.eJ, P.jQ, P.kT, Y.RC4, L.iR, V.iV, X.iW, S.fK, HtmlRenderer.fq, HtmlRenderer.jT, HtmlRenderer.ax, Sgls.a_, Sgls.n, T.x, T.Plr, T.dk, T.fo, T.b7, T.IPlr, T.HDamage, T.HRecover, T.aX, T.aq, T.bG, T.bL, T.fl])
     inherit_many(J.Interceptor, [J.fw, J.cs, J.bE, J.JsArray, J.JsNumber, J.JsString, H.dJ, H.ab, W.fn, W.bX, W.fe, W.i6, W.bb, W.ja, W.jb, W.o, W.c4, W.jL, W.ig, W.il, W.iy, W.iA])
     inherit_many(J.bE, [J.PlainJavaScriptObject, J.UnknownJavaScriptObject, J.JavaScriptFunction])
     inherit(J.jG, J.JsArray)
