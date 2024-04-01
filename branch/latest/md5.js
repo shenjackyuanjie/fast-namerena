@@ -1,3 +1,20 @@
+let from_node = typeof window == "undefined";
+if (from_node) {
+    console.log("Running from node");
+
+    let name_input = "test\ntest2";
+
+    let window = {
+        // localStorage: {
+
+        // },
+        // sessionStorage: {
+            
+        // },
+    };
+
+}
+
 let why_ns = 0;
 
 (function dartProgram() {
@@ -4419,18 +4436,22 @@ let why_ns = 0;
                     }
                     while (true) switch (async_goto) {
                         case 0:
-                            a8 = LangData.oC(true).c
-                            a9 = a8[$.B()]
-                            $.mb = a9
-                            $.ta = a9 + $.d_()
-                            $.nV = a8[$.C()]
-                            $.nW = a8[$.X()]
-                            $.tb = a8[$.a4()]
-                            // a2 = window.localStorage.getItem(LanData.j("T|a`4tFX30f3:o_Vx]na4ki/|ye&j=D", 15))
-                            a2 = window.localStorage.getItem("go​ogle_experiment_mod1")
-                            // console.log("a2", a2)
-                            if (a2 != null) {
-                                $.ox = new H.a9(H.b(a2.split(""), t.s), t.bJ).f3(0)
+                            if (from_node) {
+                                console.log("initing from node")
+                            } else {
+                                a8 = LangData.oC(true).c
+                                a9 = a8[$.B()]
+                                $.mb = a9
+                                $.ta = a9 + $.d_()
+                                $.nV = a8[$.C()]
+                                $.nW = a8[$.X()]
+                                $.tb = a8[$.a4()]
+                                // a2 = window.localStorage.getItem(LanData.j("T|a`4tFX30f3:o_Vx]na4ki/|ye&j=D", 15))
+                                a2 = window.localStorage.getItem("go​ogle_experiment_mod1")
+                                // console.log("a2", a2)
+                                if (a2 != null) {
+                                    $.ox = new H.a9(H.b(a2.split(""), t.s), t.bJ).f3(0)
+                                }
                             }
                             // console.log("$.ox === a2", $.ox === a2)
                             // console.log($.ox)
