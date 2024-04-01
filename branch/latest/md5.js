@@ -4472,7 +4472,7 @@ var A = {
     },
     T = {
         ty(a, b, c, d, e) {
-            var s, r, q, p = $.a()
+            var s, r, q, p = 0
             if (c > p && !(a.fx <= p)) {
                 s = C.JsInt.P(c + $.i(), $.t())
                 p = a.fy
@@ -4488,12 +4488,12 @@ var A = {
             }
         },
         nC(a) {
-            var s = new T.dd($.i(), $.a())
+            var s = new T.dd($.i(), 0)
             s.r = a
             return s
         },
         tA(a, b, c, d, e) {
-            var s, r = $.a()
+            var s, r = 0
             if (c > r && !(b.fx <= r)) {
                 if (b.a7($.aJ(), d)) return
                 s = t.aJ.a(b.r2.h(0, $.aJ()))
@@ -4516,7 +4516,7 @@ var A = {
             s = a.r2
             r = t.f5.a(s.h(0, $.na()))
             if (r == null) {
-                r = new T.dI($.a())
+                r = new T.dI(0)
                 s.m(0, $.na(), r)
             }
             s = H.e(a.a) + "?"
@@ -4529,7 +4529,7 @@ var A = {
                 e = a4.b,
                 d = a4.c,
                 c = a4.d,
-                b = $.a(),
+                b = 0,
                 a = $.T(),
                 a0 = H.b([], t.q),
                 a1 = H.b([], t.H),
@@ -4566,7 +4566,7 @@ var A = {
             i = H.b([], k)
             h = H.b([], k)
             k = H.b([], k)
-            g = $.a()
+            g = 0
             g = new T.dR(f, e, d, c, b, a, a0, a1, a2, a3, s, r, q, p, o, n, m, l, j, i, h, k, g, g, g, $.W(), g)
             g.a1(f, e, d, c)
             g.cm = a4
@@ -4577,7 +4577,7 @@ var A = {
             return g
         },
         tC(a, b, c, d, e) {
-            var s, r = $.a()
+            var s, r = 0
             if (c > r && !(b.fx <= r)) {
                 if (b.a7($.bh(), d)) return
                 r = b.r2
@@ -4602,27 +4602,27 @@ var A = {
         },
         tD(a, b, c, d, e) {
             var s, r, q, p, o
-            if (c > $.a()) {
+            if (c > 0) {
                 s = b.r2
                 r = s.gad(s)
                 q = P.aa(r, true, H.be(r).i("L.E"))
                 C.a.aJ(q)
                 for (r = q.length, p = 0; p < q.length; q.length === r || (0, H.F)(q), ++p) {
                     o = s.h(0, q[p])
-                    if (o.gT() > $.a()) o.K(a, e)
+                    if (o.gT() > 0) o.K(a, e)
                 }
                 s = b.go
                 r = $.au()
                 if (s > r) b.go = s - r
                 else {
                     r = $.at()
-                    if (s > r) b.go = $.a()
+                    if (s > r) b.go = 0
                     else b.go = s - r
                 }
             }
         },
         tE(a, b, c, d, e) {
-            var s, r = $.a()
+            var s, r = 0
             if (c > r && !(b.fx <= r)) {
                 if (b.a7($.eY(), d)) return
                 r = b.r2
@@ -4635,7 +4635,7 @@ var A = {
             }
         },
         tF(a, b, c, d, e) {
-            var s, r = $.a()
+            var s, r = 0
             if (c > r && !(b.fx <= r)) {
                 if (b.a7($.bS(), d)) return
                 r = b.r2
@@ -4655,7 +4655,7 @@ var A = {
         },
         tI(a, b, c, d, e) {
             var s, r
-            if (c > $.C() && !(b.fx <= $.a())) {
+            if (c > $.C() && !(b.fx <= 0)) {
                 if (b.a7($.bT(), d)) return
                 s = b.r2
                 r = t.ax.a(s.h(0, $.bT()))
@@ -4706,7 +4706,7 @@ var A = {
         jS(a4, a5, a6, a7) {
             var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, a3 = null
             if (a5 == $.nk()) {
-                s = $.a()
+                s = 0
                 r = $.T()
                 q = H.b([], t.q)
                 p = H.b([], t.H)
@@ -4743,14 +4743,14 @@ var A = {
                 c = H.b([], e)
                 b = H.b([], e)
                 e = H.b([], e)
-                a = $.a()
+                a = 0
                 a = new T.fU(a4, a5, a4, a3, s, r, q, p, o, n, m, l, k, j, i, h, g, f, d, c, b, e, a, a, a, $.W(), a)
                 a.a1(a4, a5, a4, a3)
                 a.e4(a4, a5, a6)
                 return a
             }
             if (a5 == $.qR()) {
-                s = $.a()
+                s = 0
                 r = $.T()
                 q = H.b([], t.q)
                 p = H.b([], t.H)
@@ -4787,7 +4787,7 @@ var A = {
                 c = H.b([], e)
                 b = H.b([], e)
                 e = H.b([], e)
-                a = $.a()
+                a = 0
                 a = new T.fV(a4, a5, a4, a3, s, r, q, p, o, n, m, l, k, j, i, h, g, f, d, c, b, e, a, a, a, $.W(), a)
                 a.a1(a4, a5, a4, a3)
                 a.e5(a4, a5)
@@ -4796,9 +4796,9 @@ var A = {
             s = $.cl()
             if (a5 == s) {
                 if (a4 == $.lQ()) {
-                    r = $.a()
+                    r = 0
                     q = H.e(a4) + H.e($.aD())
-                    p = $.a()
+                    p = 0
                     o = $.T()
                     n = H.b([], t.q)
                     m = H.b([], t.H)
@@ -4835,7 +4835,7 @@ var A = {
                     a0 = H.b([], b)
                     a1 = H.b([], b)
                     b = H.b([], b)
-                    a2 = $.a()
+                    a2 = 0
                     a2 = new T.df(r, a4, s, q, a3, p, o, n, m, l, k, j, i, h, g, f, e, d, c, a, a0, a1, b, a2, a2, a2, $.W(), a2)
                     a2.a1(a4, s, q, a3)
                     a2.av(a4, s)
@@ -4843,7 +4843,7 @@ var A = {
                 }
                 if (a4 == $.qP()) {
                     r = H.e(a4) + H.e($.aD())
-                    q = $.a()
+                    q = 0
                     p = $.T()
                     o = H.b([], t.q)
                     n = H.b([], t.H)
@@ -4880,7 +4880,7 @@ var A = {
                     a = H.b([], c)
                     a0 = H.b([], c)
                     c = H.b([], c)
-                    a1 = $.a()
+                    a1 = 0
                     a1 = new T.fc(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                     a1.a1(a4, s, r, a3)
                     a1.av(a4, s)
@@ -4888,7 +4888,7 @@ var A = {
                 }
                 if (a4 == $.qo()) {
                     r = H.e(a4) + H.e($.aD())
-                    q = $.a()
+                    q = 0
                     p = $.T()
                     o = H.b([], t.q)
                     n = H.b([], t.H)
@@ -4925,7 +4925,7 @@ var A = {
                     a = H.b([], c)
                     a0 = H.b([], c)
                     c = H.b([], c)
-                    a1 = $.a()
+                    a1 = 0
                     a1 = new T.f9(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                     a1.a1(a4, s, r, a3)
                     a1.av(a4, s)
@@ -4933,7 +4933,7 @@ var A = {
                 }
                 if (a4 == $.qY()) {
                     r = H.e(a4) + H.e($.aD())
-                    q = $.a()
+                    q = 0
                     p = $.T()
                     o = H.b([], t.q)
                     n = H.b([], t.H)
@@ -4970,7 +4970,7 @@ var A = {
                     a = H.b([], c)
                     a0 = H.b([], c)
                     c = H.b([], c)
-                    a1 = $.a()
+                    a1 = 0
                     a1 = new T.fd(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                     a1.a1(a4, s, r, a3)
                     a1.av(a4, s)
@@ -4979,7 +4979,7 @@ var A = {
                 if (a4 == $.qO()) return T.rE(a4, s)
                 if (a4 == $.qh()) {
                     r = H.e(a4) + H.e($.aD())
-                    q = $.a()
+                    q = 0
                     p = $.T()
                     o = H.b([], t.q)
                     n = H.b([], t.H)
@@ -5016,7 +5016,7 @@ var A = {
                     a = H.b([], c)
                     a0 = H.b([], c)
                     c = H.b([], c)
-                    a1 = $.a()
+                    a1 = 0
                     a1 = new T.f8(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                     a1.a1(a4, s, r, a3)
                     a1.av(a4, s)
@@ -5024,7 +5024,7 @@ var A = {
                 }
                 if (a4 == $.qb()) {
                     r = H.e(a4) + H.e($.aD())
-                    q = $.a()
+                    q = 0
                     p = $.T()
                     o = H.b([], t.q)
                     n = H.b([], t.H)
@@ -5061,7 +5061,7 @@ var A = {
                     a = H.b([], c)
                     a0 = H.b([], c)
                     c = H.b([], c)
-                    a1 = $.a()
+                    a1 = 0
                     a1 = new T.f6(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                     a1.a1(a4, s, r, a3)
                     a1.av(a4, s)
@@ -5069,7 +5069,7 @@ var A = {
                 }
                 if (a4 == $.q9()) {
                     r = H.e(a4) + H.e($.aD())
-                    q = $.a()
+                    q = 0
                     p = $.T()
                     o = H.b([], t.q)
                     n = H.b([], t.H)
@@ -5106,7 +5106,7 @@ var A = {
                     a = H.b([], c)
                     a0 = H.b([], c)
                     c = H.b([], c)
-                    a1 = $.a()
+                    a1 = 0
                     a1 = new T.f5(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                     a1.a1(a4, s, r, a3)
                     a1.av(a4, s)
@@ -5114,7 +5114,7 @@ var A = {
                 }
                 if (a4 == $.d5()) {
                     r = H.e(a4) + H.e($.aD())
-                    q = $.a()
+                    q = 0
                     p = $.T()
                     o = H.b([], t.q)
                     n = H.b([], t.H)
@@ -5151,7 +5151,7 @@ var A = {
                     a = H.b([], c)
                     a0 = H.b([], c)
                     c = H.b([], c)
-                    a1 = $.a()
+                    a1 = 0
                     a1 = new T.de(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                     a1.a1(a4, s, r, a3)
                     a1.av(a4, s)
@@ -5159,7 +5159,7 @@ var A = {
                 }
                 if (a4 == $.ck()) {
                     r = H.e(a4) + H.e($.aD())
-                    q = $.a()
+                    q = 0
                     p = $.T()
                     o = H.b([], t.q)
                     n = H.b([], t.H)
@@ -5196,7 +5196,7 @@ var A = {
                     a = H.b([], c)
                     a0 = H.b([], c)
                     c = H.b([], c)
-                    a1 = $.a()
+                    a1 = 0
                     a1 = new T.f7(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                     a1.a1(a4, s, r, a3)
                     a1.av(a4, s)
@@ -5204,7 +5204,7 @@ var A = {
                 }
                 if (a4 == $.qL()) {
                     r = H.e(a4) + H.e($.aD())
-                    q = $.a()
+                    q = 0
                     p = $.T()
                     o = H.b([], t.q)
                     n = H.b([], t.H)
@@ -5241,7 +5241,7 @@ var A = {
                     a = H.b([], c)
                     a0 = H.b([], c)
                     c = H.b([], c)
-                    a1 = $.a()
+                    a1 = 0
                     a1 = new T.fa(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                     a1.a1(a4, s, r, a3)
                     a1.av(a4, s)
@@ -5250,7 +5250,7 @@ var A = {
                 r = $.ni()
                 if (J.m1(a4, r)) {
                     r = H.e(r) + H.e($.aD())
-                    q = $.a()
+                    q = 0
                     p = $.T()
                     o = H.b([], t.q)
                     n = H.b([], t.H)
@@ -5287,7 +5287,7 @@ var A = {
                     a = H.b([], c)
                     a0 = H.b([], c)
                     c = H.b([], c)
-                    a1 = $.a()
+                    a1 = 0
                     a1 = new T.fR(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                     a1.a1(a4, s, r, a3)
                     r = a1.r = C.b.ay(a4, $.X())
@@ -5298,7 +5298,7 @@ var A = {
                 if ($.nr().J(0, a4)) {
                     s = $.cl()
                     r = $.nr().h(0, a4)
-                    q = $.a()
+                    q = 0
                     p = $.T()
                     o = H.b([], t.q)
                     n = H.b([], t.H)
@@ -5335,14 +5335,14 @@ var A = {
                     a = H.b([], c)
                     a0 = H.b([], c)
                     c = H.b([], c)
-                    a1 = $.a()
+                    a1 = 0
                     a1 = new T.fP(r, a4, s, a4, a7, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                     a1.a1(a4, s, a4, a7)
                     a1.e1(a4, s, r, a7)
                     return a1
                 }
                 s = $.cl()
-                r = $.a()
+                r = 0
                 q = $.T()
                 p = H.b([], t.q)
                 o = H.b([], t.H)
@@ -5379,7 +5379,7 @@ var A = {
                 b = H.b([], d)
                 a = H.b([], d)
                 d = H.b([], d)
-                a0 = $.a()
+                a0 = 0
                 a0 = new T.fQ(a4, s, a4, a7, r, q, p, o, n, m, l, k, j, i, h, g, f, e, c, b, a, d, a0, a0, a0, $.W(), a0)
                 a0.a1(a4, s, a4, a7)
                 a0.e2(a4, s, a4, a7)
@@ -5400,7 +5400,7 @@ var A = {
             if (l != null) s = l.b && !l.c.w(0, c)
             else s = true
             if (s) {
-                s = $.a()
+                s = 0
                 r = new T.dl(a, b, s, c, s)
                 r.k1 = new T.b8(r)
                 r.k2 = new T.ca(r)
@@ -5436,7 +5436,7 @@ var A = {
             if (b.r2.h(0, $.ck()) == null && (d.n() & 63) + 1 < c) T.j7(a, b, $.bg(), d, e)
         },
         nO(a, b) {
-            var s = new T.dB(a, b, $.a())
+            var s = new T.dB(a, b, 0)
             s.fy = new T.b8(s)
             s.go = new T.bd(s)
             s.id = new T.ca(s)
@@ -5472,14 +5472,14 @@ var A = {
             }
         },
         tH(a, b) {
-            var s = new T.ea(b, $.a())
+            var s = new T.ea(b, 0)
             s.r = a
             return s
         },
         rE(a2, a3) {
-            var s, r, q, p, o, n, m, l, k, j, i, h, g, f = $.a(),
+            var s, r, q, p, o, n, m, l, k, j, i, h, g, f = 0,
                 e = H.e(a2) + H.e($.aD()),
-                d = $.a(),
+                d = 0,
                 c = $.T(),
                 b = H.b([], t.q),
                 a = H.b([], t.H),
@@ -5516,16 +5516,16 @@ var A = {
             i = H.b([], k)
             h = H.b([], k)
             k = H.b([], k)
-            g = $.a()
+            g = 0
             g = new T.bZ(f, a2, a3, e, null, d, c, b, a, a0, a1, s, r, q, p, o, n, m, l, j, i, h, k, g, g, g, $.W(), g)
             g.a1(a2, a3, e, null)
             g.av(a2, a3)
             return g
         },
         nD(a2, a3, a4) {
-            var s, r, q, p, o, n, m, l, k, j, i, h, g, f = $.a(),
+            var s, r, q, p, o, n, m, l, k, j, i, h, g, f = 0,
                 e = H.e(a3) + H.e($.aD()),
-                d = $.a(),
+                d = 0,
                 c = $.T(),
                 b = H.b([], t.q),
                 a = H.b([], t.H),
@@ -5562,7 +5562,7 @@ var A = {
             i = H.b([], k)
             h = H.b([], k)
             k = H.b([], k)
-            g = $.a()
+            g = 0
             g = new T.fb(a2, f, a3, a4, e, null, d, c, b, a, a0, a1, s, r, q, p, o, n, m, l, j, i, h, k, g, g, g, $.W(), g)
             g.a1(a3, a4, e, null)
             g.av(a3, a4)
@@ -5575,7 +5575,7 @@ var A = {
                 d = t.E,
                 c = H.b([], d),
                 b = C.b.cK(a, $.r_())
-            for (s = $.a(); s < b.length; ++s) {
+            for (s = 0; s < b.length; ++s) {
                 r = b[s]
                 q = $.r0()
                 r.toString
@@ -5591,7 +5591,7 @@ var A = {
             p = C.a.w(b, "") && true
             d = t.t
             o = H.b([], d)
-            for (s = $.a(), r = t.V, q = !p, n = e; s < b.length; ++s) {
+            for (s = 0, r = t.V, q = !p, n = e; s < b.length; ++s) {
                 m = b[s]
                 if (m === "") {
                     if (o.length !== 0) c.push(o)
@@ -5609,7 +5609,7 @@ var A = {
                 if (H.iF(m, l, 0)) {
                     k = C.b.aT(m, $.lO())
                     j = C.b.dF(C.b.ay(m, k + $.i()))
-                    l = C.b.af(m, $.a(), k)
+                    l = C.b.af(m, 0, k)
                     i = $.nq()
                     m = H.iG(l, i, "", 0)
                 } else j = e
@@ -5617,8 +5617,8 @@ var A = {
                 if (l == null) H.throw_expression(H.R(l))
                 if (H.iF(m, l, 0)) {
                     h = C.b.cK(m, $.n3())
-                    if (J.m1(h[$.a()], " ")) {
-                        l = $.a()
+                    if (J.m1(h[0], " ")) {
+                        l = 0
                         h[l] = J.nB(h[l], $.i())
                     }
                     if (!J.Y(h[$.i()], "")) {
@@ -5631,8 +5631,8 @@ var A = {
                         if (0 > f) H.throw_expression(P.a8(0, 0, g.gp(l), e, e))
                         l = H.iF(l, i, 0)
                     } else l = true
-                    if (l) o.push(H.b([h[$.a()], null, j], r))
-                    else o.push(H.b([h[$.a()], h[$.i()], j], r))
+                    if (l) o.push(H.b([h[0], null, j], r))
+                    else o.push(H.b([h[0], h[$.i()], j], r))
                 } else if (C.b.bA(m, " ")) o.push(H.b([C.b.ay(m, $.i()), n, j], r))
                 else {
                     if (s + $.i() < b.length) {
@@ -5665,7 +5665,7 @@ var A = {
                         k = H.b([], k)
                         i = H.b([], i)
                         p = H.b([], t.gr)
-                        o = $.a()
+                        o = 0
                         n = $.i()
                         m = -n
                         l = new T.fo(j, h, k, i, new H.aT(t.d5), a, p, o, m, m, new Float64Array(n))
@@ -5683,7 +5683,7 @@ var A = {
         },
         rT(a, b) {
             var s = a.e,
-                r = $.a()
+                r = 0
             return T.nX(s[r], b.e[r])
         },
         RunUpdate(message, caster, c, d, e, f, delay0, delay1) {
@@ -5704,7 +5704,7 @@ var A = {
             if ($.lj == null) {
                 $.lj = P.c5(t.B)
                 s = -$.i()
-                for (r = $.a(); q = $.ox, p = q.length, r < p; ++r) {
+                for (r = 0; q = $.ox, p = q.length, r < p; ++r) {
                     s += C.b.a8(q, r) - $.b2()
                     $.lj.j(0, C.JsInt.V(s * $.pF(), $.pn()) + $.p9() + p)
                 }
@@ -5713,9 +5713,9 @@ var A = {
         },
         lC(a) {
             var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e = {},
-                d = $.a(),
+                d = 0,
                 c = H.b([d, d, d, d, d, d], t.i),
-                b = $.a()
+                b = 0
             e.a = -$.t()
             e.b = -$.i()
             e.c = b
@@ -5729,7 +5729,7 @@ var A = {
                     }
                     if (q !== $.mW()) p = q >= $.aI() && q <= $.pO()
                     else p = true
-                    if (p) s.$1($.a())
+                    if (p) s.$1(0)
                     else if (q >= $.q6() && q <= $.p5()) s.$1($.i())
                     else if (q >= $.pT() && q <= $.q3()) s.$1($.t())
                     else s.$1($.B())
@@ -5737,17 +5737,17 @@ var A = {
                 else {
                     p = $.X()
                     o = c[p]
-                    if (o > $.a()) c[p] = o + 1
+                    if (o > 0) c[p] = o + 1
                     s.$1(p)
                 }
             }
             d = $.t()
             if (b > d) {
-                p = $.a()
+                p = 0
                 c[p] = c[p] + b
             }
             n = e.a
-            m = $.a()
+            m = 0
             if (n < m) {
                 e.a = m
                 n = m
@@ -5830,7 +5830,7 @@ var A = {
                 g = g * $.b0() + $.eW()
             } else if (g < $.eW()) g = g * $.b0() + $.cY()
             g -= $.at()
-            if (g > $.a()) return g / ($.rp() - T.mw().a)
+            if (g > 0) return g / ($.rp() - T.mw().a)
             else {
                 d = $.rq()
                 if (g < -d) return (g + d) / ($.pD() + d - T.mw().a)
@@ -5839,11 +5839,11 @@ var A = {
         },
         nX(a, b) {
             var s = a.Q - b.Q
-            if (s !== $.a()) return s
+            if (s !== 0) return s
             return J.lV(a.e, b.e)
         },
         nT(a0, a1, a2, a3) {
-            var s, r, q, p, o, n, m, l, k, j, i, h, g, f = $.a(),
+            var s, r, q, p, o, n, m, l, k, j, i, h, g, f = 0,
                 e = $.T(),
                 d = H.b([], t.q),
                 c = H.b([], t.H),
@@ -5880,7 +5880,7 @@ var A = {
             i = H.b([], k)
             h = H.b([], k)
             k = H.b([], k)
-            g = $.a()
+            g = 0
             g = new T.Plr(a0, a1, a2, a3, f, e, d, c, b, a, s, r, q, p, o, n, m, l, j, i, h, k, g, g, g, $.W(), g)
             g.a1(a0, a1, a2, a3)
             return g
@@ -5891,22 +5891,22 @@ var A = {
         tx(a, b, c, d, e) {},
         tz(a, b, c, d, e) {},
         cG(a) {
-            var s = new T.h8($.a())
+            var s = new T.h8(0)
             s.r = a
             return s
         },
         hE(a) {
-            var s = new T.hD($.a())
+            var s = new T.hD(0)
             s.r = a
             return s
         },
         ma(a, b) {
-            var s = new T.jN(a, b, P.aL($.av(), $.a(), false, t.B))
+            var s = new T.jN(a, b, P.aL($.av(), 0, false, t.B))
             s.a = a
             return s
         },
         tN(a, b) {
-            var s = new T.bL(a, b, P.aL($.av(), $.a(), false, t.B))
+            var s = new T.bL(a, b, P.aL($.av(), 0, false, t.B))
             s.a = a
             return s
         },
@@ -13693,7 +13693,7 @@ T.e1.prototype = {
         return this.aX(a, b)
     },
     v(a, b, c, d) {
-        var s = a[$.a()].a,
+        var s = a[0].a,
             r = T.I(this.r, true, c),
             q = $.ph()
         d.a.push(T.RunUpdate(LangData.get_lang("FfpA"), this.r, s, null, null, $.i(), 1000, 100))
@@ -13776,7 +13776,7 @@ T.h7.prototype = {
             o = null,
             n = p.fy
         if (n == null) {
-            p.fy = a[$.a()].a
+            p.fy = a[0].a
             d.a.push(T.RunUpdate(LangData.get_lang("RmAN"), p.r, p.fy, o, o, $.i(), 1000, 100))
             p.r.x1.j(0, p.fr)
             n = p.r
@@ -13787,7 +13787,7 @@ T.h7.prototype = {
             else s.G.j(0, p.fx)
         } else {
             p.ah(0)
-            if (n.fx > $.a()) {
+            if (n.fx > 0) {
                 s = d.a
                 s.push(T.RunUpdate(LangData.get_lang("iLaN"), p.r, n, o, o, $.i(), 1000, 100))
                 r = T.I(p.r, true, c)
@@ -13813,7 +13813,7 @@ T.h7.prototype = {
     },
     aN(a, b, c, d) {
         var s = this.fy
-        if (s != null && s.fx > $.a()) return this
+        if (s != null && s.fx > 0) return this
         else this.ah(0)
         return null
     },
@@ -13845,7 +13845,7 @@ T.dd.prototype = {
         var s, r = this
         r.D()
         r.r.r2.U(0, $.aJ())
-        if (r.r.fx > $.a()) {
+        if (r.r.fx > 0) {
             s = b.a
             s.push($.K())
             s.push(T.aO(LangData.get_lang("cHVa"), a, r.r))
@@ -13854,12 +13854,12 @@ T.dd.prototype = {
     v(a, b, c, d) {
         var s, r, q, p = this
         p.fr = p.fr - 1
-        s = a[$.a()].a
+        s = a[0].a
         r = T.I(p.r, false, c)
         q = $.eV()
         d.a.push(T.RunUpdate(LangData.get_lang("UeAn"), p.r, s, null, null, 0, 1000, 100))
         s.a3(r * q, false, p.r, T.ad(), c, d)
-        if (p.fr == $.a()) p.K(null, d)
+        if (p.fr == 0) p.K(null, d)
     },
     $ix: 1,
     $iaV: 1
@@ -13878,7 +13878,7 @@ T.h9.prototype = {
         return r.h(0, $.aJ()) != null || r.h(0, $.aE()) != null ? s / $.eV() : s
     },
     v(a, b, c, d) {
-        var s = a[$.a()].a,
+        var s = a[0].a,
             r = T.I(this.r, true, c)
         d.a.push(T.RunUpdate(LangData.get_lang("wnjN"), this.r, s, null, null, $.i(), 1000, 100))
         s.a3(r, true, this.r, T.v7(), c, d)
@@ -13910,7 +13910,7 @@ T.ha.prototype = {
     at(a, b) {
         var s = this.fy - 1
         this.fy = s
-        if (s <= $.a()) this.K(null, b)
+        if (s <= 0) this.K(null, b)
     },
     ar(a) {
         a.id = a.id * $.B()
@@ -13942,7 +13942,7 @@ T.dj.prototype = {
     at(a, b) {
         var s = this.z - 1
         this.z = s
-        if (s === $.a()) this.K(null, b)
+        if (s === 0) this.K(null, b)
     },
     aP(a) {
         var s = this,
@@ -13959,7 +13959,7 @@ T.dj.prototype = {
         s.r2.U(0, $.aE())
         this.y.D()
         s.F()
-        if (s.fx > $.a()) {
+        if (s.fx > 0) {
             r = b.a
             r.push($.K())
             r.push(T.aO(LangData.get_lang("EsXa"), a, s))
@@ -13984,12 +13984,12 @@ T.e3.prototype = {
     v(a, b, c, d) {
         var s, r, q = this,
             p = null,
-            o = a[$.a()].a,
+            o = a[0].a,
             n = d.a
         // sklCharm
         // [0]使用[魅惑]
         n.push(T.RunUpdate(LangData.get_lang("UUan"), q.r, o, p, p, $.i(), 1000, 100))
-        if (!o.a7($.aE(), c)) s = o.fx > $.a() && !o.A && T.bW(q.r.dx, o.db + o.dy, c)
+        if (!o.a7($.aE(), c)) s = o.fx > 0 && !o.A && T.bW(q.r.dx, o.db + o.dy, c)
         else s = true
         if (s) {
             // dodge (通用回避)
@@ -14014,7 +14014,7 @@ T.e3.prototype = {
 }
 T.dI.prototype = {
     gT() {
-        return $.a()
+        return 0
     }
 }
 T.dR.prototype = {
@@ -14026,7 +14026,7 @@ T.dR.prototype = {
             n = o.length,
             m = this.cm
         if (n === m.k1.length)
-            for (s = $.a(); s < n; ++s) {
+            for (s = 0; s < n; ++s) {
                 r = o[s]
                 q = r.f
                 p = m.k1[s].f
@@ -14058,7 +14058,7 @@ T.e4.prototype = {
         k.f = C.d.R(k.f * ((c.n() & 63) + $.au()) / $.cj())
         if (!k.r.r2.J(0, $.a7())) {
             s = k.r.q
-            for (r = $.a(); q = $.ap(), r < q; ++r) s[r] = C.d.R(s[r] * $.p1())
+            for (r = 0; q = $.ap(), r < q; ++r) s[r] = C.d.R(s[r] * $.p1())
             s[q] = C.d.R(s[q] * $.b0())
             q = k.r
             q.fx = C.d.R(q.fx * $.b0())
@@ -14102,7 +14102,7 @@ T.k9.prototype = {
 T.e5.prototype = {
     v(a, b, c, d) {
         var s = this,
-            r = a[$.a()].a,
+            r = a[0].a,
             q = T.I(s.r, false, c) * $.pf(),
             p = T.I(s.r, false, c) * $.eV()
         if (p > q) q = p
@@ -14118,7 +14118,7 @@ T.dn.prototype = {
     },
     aq(a, b, c, d, e) {
         var s = this
-        if (a > $.a() && (d.n() & 63) < s.z) {
+        if (a > 0 && (d.n() & 63) < s.z) {
             e.a.push(T.RunUpdate(LangData.get_lang("wTSa"), s.r, s.x, null, null, 0, 1000, 100))
             a *= s.Q
         }
@@ -14134,7 +14134,7 @@ T.dn.prototype = {
         s.r2.U(0, $.bh())
         s.rx.U(0, this.y)
         s.F()
-        if (s.fx > $.a()) {
+        if (s.fx > 0) {
             r = b.a
             r.push($.K())
             r.push(T.aO(LangData.get_lang("yULA"), a, s))
@@ -14159,7 +14159,7 @@ T.hf.prototype = {
         return a.r2.h(0, $.bh()) != null ? s / $.t() : s
     },
     v(a, b, c, d) {
-        var s = a[$.a()].a,
+        var s = a[0].a,
             r = T.I(this.r, true, c)
         d.a.push(T.RunUpdate(LangData.get_lang("AqCN"), this.r, s, null, null, $.i(), 1000, 100))
         s.a3(r, true, this.r, T.v9(), c, d)
@@ -14174,7 +14174,7 @@ T.hh.prototype = {
         var s = this,
             r = null,
             q = "Dt.shield",
-            p = a[$.a()].a,
+            p = a[0].a,
             o = T.I(s.r, true, c),
             n = d.a
         // sklDisperse [0]使用[净化]
@@ -14205,10 +14205,10 @@ T.hi.prototype = {
         var s, r, q, p, o, n, m, l = this,
             k = null
         l.f = C.JsInt.P(l.f + $.i(), $.t())
-        s = a[$.a()].a
+        s = a[0].a
         r = d.a
         r.push(T.RunUpdate(LangData.get_lang("fcfa"), l.r, s, k, k, $.i(), 1000, 100))
-        if (!s.a7($.d3(), c)) q = s.fx > $.a() && !s.A && !l.r.r2.J(0, $.a7()) && T.bW(l.r.dx, s.dy + s.cx + s.db, c)
+        if (!s.a7($.d3(), c)) q = s.fx > 0 && !s.A && !l.r.r2.J(0, $.a7()) && T.bW(l.r.dx, s.dy + s.cx + s.db, c)
         else q = true
         if (q) {
             // dodge (通用回避)
@@ -14219,7 +14219,7 @@ T.hi.prototype = {
         if (l.r.r2.J(0, $.a7())) {
             q = l.r
             q.l = q.l + s.l
-            s.l = $.a()
+            s.l = 0
         }
         q = l.r
         p = q.fx
@@ -14248,7 +14248,7 @@ T.c3.prototype = {
 }
 T.cc.prototype = {
     v(a, b, c, d) {
-        var s, r, q, p = a[$.a()].a,
+        var s, r, q, p = a[0].a,
             o = t.a.a(p.r2.h(0, $.eY()))
         if (o == null) o = new T.c3($.ao())
         s = T.I(this.r, true, c)
@@ -14273,13 +14273,13 @@ T.e7.prototype = {
     v(a, b, c, d) {
         var s, r, q, p, o, n, m, l, k, j, i = this,
             h = null,
-            g = a[$.a()].a,
+            g = a[0].a,
             f = d.a
         f.push(T.RunUpdate(LangData.get_lang("lSVA"), i.r, g, h, h, $.i(), 1000, 100))
         s = i.r.fr + C.JsInt.P($.pG() - g.fx, $.B())
-        r = $.a()
+        r = 0
         if (s < r) s = r
-        if (!g.a7($.eZ(), c)) q = g.fx > $.a() && !g.A && !i.r.r2.J(0, $.a7()) && T.bW(s, g.dy + g.db, c)
+        if (!g.a7($.eZ(), c)) q = g.fx > 0 && !g.A && !i.r.r2.J(0, $.a7()) && T.bW(s, g.dy + g.db, c)
         else q = true
         if (q) {
             // dodge (通用回避)
@@ -14307,7 +14307,7 @@ T.e7.prototype = {
         n.a = g.e
         n.d = g.fx
         f.push(T.RunUpdate(o, q, n, new T.HDamage(l), h, j, 1000, 100))
-        if (j > $.a()) g.cr(j, p, i.r, c, d)
+        if (j > 0) g.cr(j, p, i.r, c, d)
     }
 }
 T.dw.prototype = {
@@ -14321,7 +14321,7 @@ T.dw.prototype = {
     at(a, b) {
         var s = this.Q - 1
         this.Q = s
-        if (s === $.a()) this.K(null, b)
+        if (s === 0) this.K(null, b)
     },
     K(a, b) {
         var s, r
@@ -14330,7 +14330,7 @@ T.dw.prototype = {
         s.r2.U(0, $.d4())
         this.y.D()
         s.F()
-        if (s.fx > $.a()) {
+        if (s.fx > 0) {
             r = b.a
             r.push($.K())
             r.push(T.aO(LangData.get_lang("wlqa"), a, s))
@@ -14363,7 +14363,7 @@ T.hk.prototype = {
     v(a, b, c, d) {
         var s, r, q, p = this,
             o = null,
-            n = a[$.a()].a,
+            n = a[0].a,
             m = d.a
         m.push(T.RunUpdate(LangData.get_lang("pHka"), p.r, n, o, o, $.a6(), 1000, 100))
         s = p.r
@@ -14408,7 +14408,7 @@ T.e8.prototype = {
         var s, r, q, p, o, n, m, l = this,
             k = l.f
         if (k > $.av()) l.f = k - 1
-        s = a[$.a()].a
+        s = a[0].a
         r = C.d.R(T.I(l.r, true, c) / $.pQ())
         q = s.fy - s.fx
         if (r > q) r = q
@@ -14428,7 +14428,7 @@ T.e8.prototype = {
 T.ka.prototype = {
     $2(a, b) {
         var s
-        if (b.gT() < $.a()) {
+        if (b.gT() < 0) {
             s = this.a
             s.a = s.a + $.au()
         }
@@ -14444,7 +14444,7 @@ T.dx.prototype = {
     },
     fo(a, b, c) {
         var s, r = this,
-            q = $.a()
+            q = 0
         if (a > q) {
             s = r.y
             if (s > q) {
@@ -14452,7 +14452,7 @@ T.dx.prototype = {
                 return q
             } else if (a + r.r.l >= $.bx()) {
                 r.K(null, c)
-                return $.a()
+                return 0
             }
         }
         return a
@@ -14464,7 +14464,7 @@ T.dx.prototype = {
         s.r2.U(0, $.bS())
         this.x.D()
         s.F()
-        if (s.fx > $.a()) {
+        if (s.fx > 0) {
             r = b.a
             r.push($.K())
             r.push(T.aO(LangData.get_lang("aQYN"), a, s))
@@ -14478,7 +14478,7 @@ T.e9.prototype = {
         return a.r2.h(0, $.bS()) != null ? s / $.t() : s
     },
     v(a, b, c, d) {
-        var s = a[$.a()].a,
+        var s = a[0].a,
             r = T.I(this.r, true, c),
             q = $.p0()
         d.a.push(T.RunUpdate(LangData.get_lang("yMvn"), this.r, s, null, null, $.i(), 1000, 100))
@@ -14525,7 +14525,7 @@ T.ho.prototype = {
         o.push(T.RunUpdate(q, p, p, r, r, 0, 1000, 100))
     },
     aq(a, b, c, d, e) {
-        var s = $.a()
+        var s = 0
         if (a > s) {
             s = this.go
             if (a <= s) {
@@ -14543,7 +14543,7 @@ T.ho.prototype = {
         var s = this,
             r = s.id - 1
         s.id = r
-        if (r === $.a()) {
+        if (r === 0) {
             s.K(null, b)
             r = s.r
             r.l = r.l - $.d_()
@@ -14573,7 +14573,7 @@ T.ho.prototype = {
             q = p.r
             s.push(T.aO(r, q, q))
         }
-        p.go = p.id = $.a()
+        p.go = p.id = 0
     },
     $ix: 1
 }
@@ -14584,7 +14584,7 @@ T.dS.prototype = {
     at(a, b) {
         var s, r, q, p, o, n = this,
             m = n.x
-        if (m.fx > $.a()) {
+        if (m.fx > 0) {
             s = n.y
             r = $.i()
             q = n.z
@@ -14595,14 +14595,14 @@ T.dS.prototype = {
             m.aF(o, n.r, T.ad(), a, b)
             m = n.z - 1
             n.z = m
-            if (m === $.a()) n.K(null, b)
+            if (m === 0) n.K(null, b)
         }
     },
     K(a, b) {
         var s, r = this.x
         r.r2.U(0, $.bT())
         this.D()
-        if (r.fx > $.a()) {
+        if (r.fx > 0) {
             s = b.a
             s.push($.K())
             s.push(T.aO(LangData.get_lang("hIga"), a, r))
@@ -14612,7 +14612,7 @@ T.dS.prototype = {
 }
 T.ht.prototype = {
     v(a, b, c, d) {
-        var s = a[$.a()].a,
+        var s = a[0].a,
             r = T.I(this.r, true, c)
         d.a.push(T.RunUpdate(LangData.get_lang("efnA"), this.r, s, null, null, $.i(), 1000, 100))
         s.a3(r, true, this.r, T.vb(), c, d)
@@ -14629,7 +14629,7 @@ T.hv.prototype = {
         var s, r, q, p, o, n = c.n() < 128 ? $.X() : $.C(),
             m = t.j,
             l = H.b([], m),
-            k = $.a()
+            k = 0
         while (true) {
             if (!(k < n && k < a.length)) break
             l.push(a[k].a);
@@ -14640,13 +14640,13 @@ T.hv.prototype = {
         m = H.b(l.slice(0), m)
         q = d.a
         q.push(T.RunUpdate(s, r, null, null, m, $.i(), 1000, 100))
-        for (k = $.a(); k < l.length; ++k) {
+        for (k = 0; k < l.length; ++k) {
             m = T.I(this.r, true, c)
             s = $.px()
             r = l.length
             p = $.p_()
             o = l[k]
-            if (o.fx > $.a()) {
+            if (o.fx > 0) {
                 q.push($.K())
                 o.a3(m * s / (r + p), true, this.r, T.ad(), c, d)
             }
@@ -14667,13 +14667,13 @@ T.ec.prototype = {
             d = a1.n() < 128 ? $.B() : $.t(),
             c = a.length,
             b = $.B()
-        if (c > b) a = (a && C.a).al(a, $.a(), b)
+        if (c > b) a = (a && C.a).al(a, 0, b)
         for (c = a.length, s = 0; s < c; ++s) a[s].b = $.ao()
-        r = $.a()
+        r = 0
         for (c = a2.a, q = r; q < d; ++q) {
             b = g.r
             p = b.fx
-            o = $.a()
+            o = 0
             if (!(p > o && !b.A)) return
             n = a[r]
             p = n.a
@@ -14684,7 +14684,7 @@ T.ec.prototype = {
                 m = n.b
                 l = $.oY()
                 n.b = m + 1
-                if (q === $.a()) {
+                if (q === 0) {
                     k = LangData.get_lang("yGEA")
                     j = g.r
                     i = new T.aX(0, e, 100, k, j, p, f, f)
@@ -14698,7 +14698,7 @@ T.ec.prototype = {
                     h.aK(k, j, p, f, f, i, e, 100)
                     c.push(h)
                 }
-                if (p.a3(b * (o - m * l), false, g.r, T.ad(), a1, a2) <= $.a()) return
+                if (p.a3(b * (o - m * l), false, g.r, T.ad(), a1, a2) <= 0) return
                 c.push($.K())
             }
             r = C.JsInt.V(r + (a1.n() & 3), a.length)
@@ -14710,7 +14710,7 @@ T.hx.prototype = {
         return a.b5(this.r.z.e)
     },
     as(a, b) {
-        return a.fx <= $.a() && !(a instanceof T.aM) && !a.r2.J(0, $.iJ())
+        return a.fx <= 0 && !(a instanceof T.aM) && !a.r2.J(0, $.iJ())
     },
     a9(a, b, c) {
         var s
@@ -14725,7 +14725,7 @@ T.hx.prototype = {
         var s, r, q, p, o, n, m, l = this,
             k = null
         l.f = C.JsInt.P(l.f + $.i(), $.t())
-        s = a[$.a()].a
+        s = a[0].a
         r = C.d.R(T.I(l.r, true, c) / $.pZ())
         q = s.fy
         if (r > q) r = q
@@ -14740,14 +14740,14 @@ T.hx.prototype = {
             n = n.e
             if (!C.a.w(n, s)) {
                 m = o.f
-                if (m.length > $.a()) C.a.co(n, C.a.aT(n, C.a.gbl(m)) + $.i(), s)
+                if (m.length > 0) C.a.co(n, C.a.aT(n, C.a.gbl(m)) + $.i(), s)
                 else n.push(s)
             }
             C.a.j(o.f, s)
         }
         o = LangData.get_lang("imin")
         n = l.r
-        m = new T.HPlr($.a())
+        m = new T.HPlr(0)
         m.a = s.e
         m.d = s.fx
         p.push(T.RunUpdate(o, n, m, new T.HRecover(r), k, 0, 1000, 100))
@@ -14761,10 +14761,10 @@ T.hu.prototype = {
     v(a, b, c, d) {
         var s, r, q, p = this,
             o = null,
-            n = a[$.a()].a,
+            n = a[0].a,
             m = d.a
         m.push(T.RunUpdate(LangData.get_lang("dxVA"), p.r, n, o, o, 0, 1000, 100))
-        if (!n.a7($.aJ(), c)) s = n.fx > $.a() && !n.A && T.bW(p.r.dx, n.dy, c)
+        if (!n.a7($.aJ(), c)) s = n.fx > 0 && !n.A && T.bW(p.r.dx, n.dy, c)
         else s = true
         if (s) {
             // dodge (通用回避)
@@ -14781,7 +14781,7 @@ T.hu.prototype = {
         m.push(T.RunUpdate(C.b.B(LangData.get_lang("jIRA"), $.nc()), p.r, n, o, o, 0, 1000, 100))
         m = p.r
         q = m.fx
-        m.fx = $.a()
+        m.fx = 0
         m.bm(q, o, c, d)
     }
 }
@@ -14791,7 +14791,7 @@ T.fS.prototype = {
     },
     ac() {
         this.k3 = T.cG(this)
-        this.k1.push(new T.hu($.a()))
+        this.k1.push(new T.hu(0))
     },
     aU() {
         var s, r
@@ -14822,7 +14822,7 @@ T.hB.prototype = {
         q = this_.r
         p = q.b
         q = q.c
-        o = $.a()
+        o = 0
         n = $.T()
         m = H.b([], t.q)
         l = H.b([], t.H)
@@ -14859,7 +14859,7 @@ T.hB.prototype = {
         a1 = H.b([], a)
         a2 = H.b([], a)
         a = H.b([], a)
-        a3 = $.a()
+        a3 = 0
         a4 = new T.fS(shadow_name, p, q, a6, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a0, a1, a2, a, a3, a3, a3, $.W(), a3)
         a4.a1(shadow_name, p, q, a6)
         a4.a6 = new T.cp(a4)
@@ -14893,7 +14893,7 @@ T.eh.prototype = {
     at(a, b) {
         var s = this.z - 1
         this.z = s
-        if (s === $.a()) this.K(null, b)
+        if (s === 0) this.K(null, b)
     },
     K(a, b) {
         var s, r
@@ -14902,7 +14902,7 @@ T.eh.prototype = {
         s.r2.U(0, $.bi())
         this.y.D()
         s.F()
-        if (s.fx > $.a()) {
+        if (s.fx > 0) {
             r = b.a
             r.push($.K())
             r.push(T.aO(LangData.get_lang("EJLN"), a, s))
@@ -14929,10 +14929,10 @@ T.hG.prototype = {
     v(a, b, c, d) {
         var s, r, q = this,
             p = null,
-            o = a[$.a()].a,
+            o = a[0].a,
             n = d.a
         n.push(T.RunUpdate(LangData.get_lang("hdla"), q.r, o, p, p, $.i(), 1000, 100))
-        if (!o.a7($.bi(), c)) s = o.fx > $.a() && !o.A && T.bW(q.r.dx, o.dy, c)
+        if (!o.a7($.bi(), c)) s = o.fx > 0 && !o.A && T.bW(q.r.dx, o.dy, c)
         else s = true
         if (s) {
             // dodge (通用回避)
@@ -14958,7 +14958,7 @@ T.hG.prototype = {
 T.hj.prototype = {
     v(a, b, c, d) {
         var s, r, q, p, o, n = this,
-            m = a[$.a()].a,
+            m = a[0].a,
             l = t.a.a(m.r2.h(0, $.eY()))
         if (l == null) l = new T.c3($.ao())
         s = T.I(n.r, true, c)
@@ -14967,7 +14967,7 @@ T.hj.prototype = {
         d.a.push(T.RunUpdate(LangData.get_lang("Ycen"), n.r, m, null, null, 0, 1000, 100))
         p = n.r
         o = p.fx
-        p.fx = $.a()
+        p.fx = 0
         m.a3(s * (r + q), true, p, T.oJ(), c, d)
         n.r.bm(o, null, c, d)
     }
@@ -14982,7 +14982,7 @@ T.fT.prototype = {
         s = this.q
         r = $.ap()
         s[r] = C.d.P(s[r], $.B())
-        r = $.a()
+        r = 0
         s[r] = r
         q = $.i()
         p = this.aj.r.q
@@ -14994,9 +14994,9 @@ T.fT.prototype = {
     ac() {
         this.k3 = T.cG(this)
         var s = this.k1
-        s.push(new T.cc($.a()))
-        s.push(new T.cc($.a()))
-        s.push(new T.hj($.a()))
+        s.push(new T.cc(0))
+        s.push(new T.cc(0))
+        s.push(new T.hj(0))
     },
     bP() {
         var s, r = this
@@ -15013,7 +15013,7 @@ T.fT.prototype = {
     b1(a, b, c, d) {
         var s = this,
             r = s.fx,
-            q = $.a()
+            q = 0
         if (r > q) {
             s.fx = q
             if (!s.aR) s.bm(r, null, c, d)
@@ -15028,7 +15028,7 @@ T.hH.prototype = {
         if (b)
             if (this.r.fx < $.b3()) return false
         s = this.fr
-        return (s == null || s.fx <= $.a()) && this.aX(a, b)
+        return (s == null || s.fx <= 0) && this.aX(a, b)
     },
     aa(a, b, c) {
         return H.b([], t.F)
@@ -15044,7 +15044,7 @@ T.hH.prototype = {
             r = this_.r
             q = r.b
             r = r.c
-            p = $.a()
+            p = 0
             o = $.T()
             n = H.b([], t.q)
             m = H.b([], t.H)
@@ -15081,7 +15081,7 @@ T.hH.prototype = {
             a0 = H.b([], b)
             a1 = H.b([], b)
             b = H.b([], b)
-            a2 = $.a()
+            a2 = 0
             a2 = new T.fT(s, q, r, a4, p, o, n, m, l, k, j, i, h, g, f, e, d, c, a, a0, a1, b, a2, a2, a2, $.W(), a2)
             a2.a1(s, q, r, a4)
             a2.a6 = new T.cp(a2)
@@ -15121,16 +15121,16 @@ T.hI.prototype = {
         var s, r, q, p, o, n, m, l, k = this,
             j = null,
             i = 1000,
-            h = a[$.a()].a,
+            h = a[0].a,
             g = d.a
         g.push(T.RunUpdate(LangData.get_lang("hyoA"), k.r, h, j, j, $.i(), i, 100))
         s = $.B() + (c.n() & 3)
         r = $.ci() + k.r.db
-        for (q = $.a(), p = q, o = false; q < s; ++q) {
+        for (q = 0, p = q, o = false; q < s; ++q) {
             n = k.r
             if (n.fx > p && !n.A && h.fx > p) {
                 g.push($.K())
-                if (h.fx > $.a() && !h.A && T.bW(r, h.dy + h.db, c)) {
+                if (h.fx > 0 && !h.A && T.bW(r, h.dy + h.db, c)) {
                     if (o) {
                         p = LangData.get_lang("EORN")
                         n = k.r
@@ -15154,7 +15154,7 @@ T.hI.prototype = {
                 l = g.length
                 m = k.r
                 m = h.aF(h.aq(C.d.R(p * n / T.d9(h, true, c)), m, T.ad(), c, d), m, T.ad(), c, d)
-                n = $.a()
+                n = 0
                 if (m > n) o = true
                 g[l].b = $.mR()
                 p = n
@@ -15171,24 +15171,24 @@ T.f5.prototype = {
         var s, r
         this.k3 = T.cG(this)
         s = this.k1
-        s.push(new T.h6($.a()))
-        r = new T.e2($.a())
+        s.push(new T.h6(0))
+        r = new T.e2(0)
         r.f = $.pW()
         s.push(r)
-        r = new T.e9($.a())
+        r = new T.e9(0)
         r.f = $.b3()
         s.push(r)
     }
 }
 T.h6.prototype = {
     aq(a, b, c, d, e) {
-        // if (a > $.a() && J.Y(c, T.mE())) {
-        if (a > $.a() && (c === T.mE())) {
+        // if (a > 0 && J.Y(c, T.mE())) {
+        if (a > 0 && (c === T.mE())) {
             e.a.push(T.RunUpdate(LangData.get_lang("HwtN"), this.r, null, null, null, a, 1000, 100))
             return -a
         }
-        // return a > $.a() && J.Y(c, T.oH()) ? $.a() : a
-        return a > $.a() && (c === T.oH()) ? $.a() : a
+        // return a > 0 && J.Y(c, T.oH()) ? 0 : a
+        return a > 0 && (c === T.oH()) ? 0 : a
     },
     W() {
         this.r.y2.j(0, this)
@@ -15205,16 +15205,16 @@ T.e2.prototype = {
     v(a, b, c, d) {
         var s, r, q, p, o, n, m = t.j,
             l = H.b([], m)
-        for (s = $.a(); s < a.length; ++s) l.push(a[s].a)
+        for (s = 0; s < a.length; ++s) l.push(a[s].a)
         r = LangData.get_lang("PRrA")
         q = this.r
         m = H.b(l.slice(0), m)
         p = d.a
         p.push(T.RunUpdate(r, q, null, null, m, $.i(), 1000, 100))
         o = T.I(this.r, true, c) * $.mQ() / (l.length + $.b0())
-        for (s = $.a(); s < l.length; ++s) {
+        for (s = 0; s < l.length; ++s) {
             n = l[s]
-            if (n.fx > $.a()) {
+            if (n.fx > 0) {
                 p.push($.K())
                 n.a3(o, true, this.r, T.mE(), c, d)
             }
@@ -15252,7 +15252,7 @@ T.fP.prototype = {
 T.fU.prototype = {
     e4(a, b, c) {
         var s, r, q
-        for (s = $.a(); s < $.b1(); ++s) {
+        for (s = 0; s < $.b1(); ++s) {
             r = this.t
             q = r[s]
             if (q < $.cY()) r[s] = $.b2() - q
@@ -15265,7 +15265,7 @@ T.fU.prototype = {
 T.fV.prototype = {
     e5(a, b) {
         var s, r, q
-        for (s = $.a(); s < $.b1(); ++s) {
+        for (s = 0; s < $.b1(); ++s) {
             r = this.t
             q = r[s]
             if (q < $.at()) r[s] = $.b2() - q
@@ -15310,22 +15310,22 @@ T.cz.prototype = {
         var s, r, q = this
         q.bB()
         if (q.gan() != null)
-            for (s = $.a(); r = q.q, s < r.length; ++s) r[s] = r[s] + q.gan()[s]
+            for (s = 0; r = q.q, s < r.length; ++s) r[s] = r[s] + q.gan()[s]
     },
     dm(a, b) {
         var s, r, q
-        for (s = $.a(), r = this.k1; s < r.length; ++s) {
+        for (s = 0, r = this.k1; s < r.length; ++s) {
             q = r[s]
             q.ao(this, q.f)
         }
     },
     bs() {
         var s, r, q, p
-        for (s = $.a(), r = this.k1, q = this.k4; s < r.length; ++s) {
+        for (s = 0, r = this.k1, q = this.k4; s < r.length; ++s) {
             p = r[s]
             if (p instanceof T.b5) q.push(p)
         }
-        for (s = $.a(); s < r.length; ++s) r[s].W()
+        for (s = 0; s < r.length; ++s) r[s].W()
     },
     cE() {
         // return $.iK()
@@ -15345,14 +15345,14 @@ T.cz.prototype = {
 }
 T.f6.prototype = {
     gan() {
-        var s = $.a()
+        var s = 0
         return H.b([s, $.aI(), -$.mT(), $.as(), s, $.mV(), $.lI(), $.po()], t.i)
     },
     gaS() {
         return H.b([$.aE()], t.V)
     },
     ac() {
-        var s = new T.hb(this, -$.i(), $.a())
+        var s = new T.hb(this, -$.i(), 0)
         s.r = this
         this.k3 = s
     }
@@ -15372,7 +15372,7 @@ T.hb.prototype = {
             l = null,
             k = 1000
         for (; a == null;) a = m.aa(0, true, c)
-        s = a[$.a()].a
+        s = a[0].a
         r = m.fx
         q = $.i()
         if (r === -q && a.length === q) {
@@ -15382,7 +15382,7 @@ T.hb.prototype = {
             r.push($.K())
         }
         r = m.fx
-        q = $.a()
+        q = 0
         if (r > q) {
             m.fx = r - 1
             d.a.push(T.RunUpdate(LangData.get_lang("Gikn"), m.r, l, l, l, 0, k, 100))
@@ -15425,7 +15425,7 @@ T.f7.prototype = {
     gan() {
         var s = $.Z(),
             r = $.n2(),
-            q = $.a(),
+            q = 0,
             p = $.cY()
         return H.b([s, r, q, p, q, p, q, $.a6()], t.i)
     },
@@ -15433,14 +15433,14 @@ T.f7.prototype = {
         return H.b([$.aE(), $.aJ(), $.d3()], t.V)
     },
     ac() {
-        var s = $.a()
+        var s = 0
         this.k3 = new T.hd(this, s)
         this.k1.push(new T.he(s))
     }
 }
 T.dk.prototype = {
     gT() {
-        return $.a()
+        return 0
     },
     K(a, b) {},
     $ix: 1
@@ -15449,13 +15449,13 @@ T.dl.prototype = {
     at(a, b) {
         var s, r, q, p, o, n, m, l = this,
             k = l.fx
-        if (k.fx > $.a() && l.fy > $.i()) {
+        if (k.fx > 0 && l.fy > $.i()) {
             s = C.d.R((T.I(k, true, a) + l.go * $.b3()) / T.d9(k, true, a))
             r = l.fr
             q = b.a
             q.push(T.RunUpdate(LangData.get_lang("VZaN"), r, k, null, null, 0, 1000, 100))
             p = k.aF(s, r, T.ad(), a, b)
-            o = $.a()
+            o = 0
             if (p > o && r.fx > o) {
                 o = $.i()
                 n = C.JsInt.am(s, o)
@@ -15482,9 +15482,9 @@ T.dl.prototype = {
         var s, r, q, p, o, n, m, l, k = this,
             j = null,
             i = 1000
-        if (k.fy == $.a() || c.n() > k.fx.fr) {
+        if (k.fy == 0 || c.n() > k.fx.fr) {
             k.fy = k.fy + (c.n() & 3)
-            for (s = $.a(), r = k.fx, q = k.fr, p = t.cu; s < $.X(); ++s) {
+            for (s = 0, r = k.fx, q = k.fr, p = t.cu; s < $.X(); ++s) {
                 o = c.b5(q.y.a.e)
                 if (o !== r && o != q) {
                     n = p.a(o.r2.h(0, $.ck()))
@@ -15557,7 +15557,7 @@ T.he.prototype = {
 }
 T.hd.prototype = {
     v(a, b, c, d) {
-        var s = a[$.a()].a,
+        var s = a[0].a,
             r = this.fr,
             q = T.I(r, false, c)
         d.a.push(T.RunUpdate(LangData.get_lang("EYAn"), r, s, null, null, 0, 1000, 100))
@@ -15582,8 +15582,8 @@ T.f8.prototype = {
         var s, r
         this.k3 = T.cG(this)
         s = this.k1
-        s.push(new T.hn($.a()))
-        r = new T.hm($.a())
+        s.push(new T.hn(0))
+        r = new T.hm(0)
         r.f = $.aI()
         s.push(r)
     }
@@ -15594,7 +15594,7 @@ T.hn.prototype = {
     },
     aq(a, b, c, d, e) {
         var s
-        if (a > $.a()) {
+        if (a > 0) {
             s = $.i()
             s = (a & s) >>> 0 === s
         } else s = false
@@ -15619,16 +15619,16 @@ T.hm.prototype = {
     v(a, b, c, d) {
         var s, r, q, p, o, n, m = t.j,
             l = H.b([], m)
-        for (s = $.a(); s < a.length; ++s) l.push(a[s].a)
+        for (s = 0; s < a.length; ++s) l.push(a[s].a)
         r = LangData.get_lang("UeNa")
         q = this.r
         m = H.b(l.slice(0), m)
         p = d.a
         p.push(T.RunUpdate(r, q, null, null, m, $.i(), 1000, 100))
         o = T.I(this.r, true, c) * $.mQ() / (l.length + $.b0())
-        for (s = $.a(); s < l.length; ++s) {
+        for (s = 0; s < l.length; ++s) {
             n = l[s]
-            if (n.fx > $.a()) {
+            if (n.fx > 0) {
                 p.push($.K())
                 m = this.r
                 n.aF(n.aq(C.d.R(o / T.d9(n, true, c)), m, T.ad(), c, d), m, T.ad(), c, d)
@@ -15638,7 +15638,7 @@ T.hm.prototype = {
 }
 T.de.prototype = {
     gan() {
-        var s = $.a()
+        var s = 0
         return H.b([s, $.q2(), $.Z(), -$.as(), s, $.b1(), s, $.cZ()], t.i)
     },
     gaG() {
@@ -15646,14 +15646,14 @@ T.de.prototype = {
     },
     ac() {
         var s = $.T(),
-            r = $.a()
+            r = 0
         this.k3 = new T.hp(this, s, r)
         this.k1.push(new T.hq(r))
     }
 }
 T.dB.prototype = {
     gT() {
-        return $.a()
+        return 0
     },
     ar(a) {
         var s = this.fx
@@ -15661,7 +15661,7 @@ T.dB.prototype = {
     },
     at(a, b) {
         var s, r, q = this.fx
-        if (q.fx > $.a()) {
+        if (q.fx > 0) {
             s = this.fr
             r = C.d.R(T.I(s, true, a) / T.d9(q, true, a))
             b.a.push(T.RunUpdate(LangData.get_lang("sPnN"), s, q, null, null, 0, 1000, 100))
@@ -15714,7 +15714,7 @@ T.hq.prototype = {
 T.hp.prototype = {
     v(a, b, c, d) {
         var s, r, q, p = this,
-            o = a[$.a()].a
+            o = a[0].a
         if (t.r.a(o.r2.h(0, $.d5())) != null && c.n() < 128) {
             T.nP(p.fr, c, d)
             p.fx = p.fx + $.b0()
@@ -15724,7 +15724,7 @@ T.hp.prototype = {
         r = T.I(s, false, c)
         q = p.fx
         d.a.push(T.RunUpdate(LangData.get_lang("EYAn"), s, o, null, null, 0, 1000, 100))
-        if (o.a3(r * q, false, s, T.va(), c, d) > $.a()) p.fx = $.T()
+        if (o.a3(r * q, false, s, T.va(), c, d) > 0) p.fx = $.T()
     },
     gap() {
         return this.fr
@@ -15732,12 +15732,12 @@ T.hp.prototype = {
 }
 T.df.prototype = {
     gan() {
-        return H.b([$.a(), $.lL(), $.d1(), $.mX(), $.iI(), $.iH(), $.eT(), $.n0()], t.i)
+        return H.b([0, $.lL(), $.d1(), $.mX(), $.iI(), $.iH(), $.eT(), $.n0()], t.i)
     },
     F() {
         var s = this
         s.dT()
-        if (s.aC > $.a()) s.id = s.id * $.mM()
+        if (s.aC > 0) s.id = s.id * $.mM()
     },
     gaS() {
         return []
@@ -15752,7 +15752,7 @@ T.df.prototype = {
     ac() {
         var s, r, q = this
         q.k3 = T.hE(q)
-        s = $.a()
+        s = 0
         q.aj = new T.cc(s)
         s = new T.hr(q, s)
         s.r = q
@@ -15814,7 +15814,7 @@ T.hr.prototype = {
     K(a, b) {
         var s = this.fr
         s.r2.U(0, $.lQ())
-        s.aC = s.aj.f = $.a()
+        s.aC = s.aj.f = 0
         s.F()
     },
     $ix: 1
@@ -15829,12 +15829,12 @@ T.ea.prototype = {
             p = null,
             o = q.Q - 1
         q.Q = o
-        if (o > $.a()) {
+        if (o > 0) {
             q.r.bL(p, d)
             q.dA(0, d)
             o = LangData.get_lang("IUIN")
             s = q.r
-            r = new T.HPlr($.a())
+            r = new T.HPlr(0)
             r.a = s.e
             r.d = s.fx
             r = T.RunUpdate(o, r, p, p, p, 0, 1000, 100)
@@ -15870,14 +15870,14 @@ T.f9.prototype = {
     },
     ac() {
         this.k3 = T.hE(this)
-        var s = new T.e1($.a())
+        var s = new T.e1(0)
         s.f = $.ci()
         this.k1.push(s)
     }
 }
 T.fa.prototype = {
     gan() {
-        return H.b([$.pX(), $.pI(), $.n0(), $.q_(), $.pV(), $.pU(), $.a(), $.q1()], t.i)
+        return H.b([$.pX(), $.pI(), $.n0(), $.q_(), $.pV(), $.pU(), 0, $.q1()], t.i)
     },
     gaS() {
         return H.b([$.eZ(), $.d3()], t.V)
@@ -15886,9 +15886,9 @@ T.fa.prototype = {
         return H.b([$.aJ(), $.bi(), $.bS()], t.V)
     },
     ac() {
-        var s = $.a(),
+        var s = 0,
             r = t.cr
-        r = new T.hA(s, s, P.c5(r), P.c5(r), $.a())
+        r = new T.hA(s, s, P.c5(r), P.c5(r), 0)
         r.id = new T.dT(1 / 0, r)
         this.k3 = r
         this.k1.push(r)
@@ -15915,12 +15915,12 @@ T.hA.prototype = {
             o.fr = s + 1
             return
         }
-        r = a[$.a()].a
+        r = a[0].a
         s = T.I(o.r, false, c)
         q = $.cY()
         d.a.push(T.RunUpdate(LangData.get_lang("EYAn"), o.r, r, n, n, 0, 1000, 100))
         r.a3(s * q, false, o.r, T.ad(), c, d)
-        for (s = o.r.y.a.e, q = s.length, p = 0; p < q; ++p) s[p].l = $.a()
+        for (s = o.r.y.a.e, q = s.length, p = 0; p < q; ++p) s[p].l = 0
         o.r.l = $.pb()
     },
     aq(a, b, c, d, e) {
@@ -15950,7 +15950,7 @@ T.bZ.prototype = {
     },
     ac() {
         this.k3 = T.hE(this)
-        this.k1.push(new T.ef($.a()))
+        this.k1.push(new T.ef(0))
     }
 }
 T.fb.prototype = {
@@ -15960,13 +15960,13 @@ T.fb.prototype = {
     eV() {
         var s, r, q, p = this
         if (p.aC == $.i()) {
-            for (s = $.a(); r = $.Z(), s < r; ++s) p.t[s] = $.aR()
+            for (s = 0; r = $.Z(), s < r; ++s) p.t[s] = $.aR()
             for (s = r; s < $.b1(); ++s) {
                 q = p.t
                 q[s] = (q[s] | $.aR()) >>> 0
             }
         } else {
-            for (s = $.a(); r = $.Z(), s < r; ++s) p.t[s] = -$.X()
+            for (s = 0; r = $.Z(), s < r; ++s) p.t[s] = -$.X()
             for (s = r; s < $.b1(); ++s) {
                 q = p.t
                 q[s] = (q[s] | $.at()) >>> 0
@@ -15981,12 +15981,12 @@ T.fb.prototype = {
         q.aC = q.dk.aC + $.i()
         q.k3 = T.cG(q)
         s = q.k1
-        if (q.aC == $.i()) s.push(new T.ef($.a()))
+        if (q.aC == $.i()) s.push(new T.ef(0))
         else {
-            r = new T.e7($.a())
+            r = new T.e7(0)
             r.f = $.at()
             s.push(r)
-            r = new T.e8($.a())
+            r = new T.e8(0)
             r.f = $.at()
             s.push(r)
         }
@@ -15998,7 +15998,7 @@ T.fb.prototype = {
 }
 T.hF.prototype = {
     gT() {
-        return $.a()
+        return 0
     }
 }
 T.ef.prototype = {
@@ -16047,7 +16047,7 @@ T.fc.prototype = {
         var s = $.Z(),
             r = $.a4(),
             q = $.eS(),
-            p = $.a()
+            p = 0
         return H.b([s, -r, q, p, s, -$.eT(), r, p], t.i)
     },
     gaS() {
@@ -16060,13 +16060,13 @@ T.fc.prototype = {
         var s, r
         this.k3 = T.hE(this)
         s = this.k1
-        r = new T.ec($.a())
+        r = new T.ec(0)
         r.f = $.aI()
         s.push(r)
-        r = new T.e5($.a())
+        r = new T.e5(0)
         r.f = $.aI()
         s.push(r)
-        r = new T.cb($.a())
+        r = new T.cb(0)
         r.f = $.aI()
         s.push(r)
     }
@@ -16085,13 +16085,13 @@ T.fd.prototype = {
         var s, r
         this.k3 = T.hE(this)
         s = this.k1
-        r = new T.eg($.a())
+        r = new T.eg(0)
         r.f = $.eX()
         s.push(r)
-        r = new T.e6($.a())
+        r = new T.e6(0)
         r.f = $.aI()
         s.push(r)
-        r = new T.ed($.a())
+        r = new T.ed(0)
         r.f = $.aI()
         s.push(r)
     }
@@ -16104,7 +16104,7 @@ T.eg.prototype = {
     },
     v(a, b, c, d) {
         var s, r, q, p, o = null,
-            n = a[$.a()].a,
+            n = a[0].a,
             m = d.a
         m.push(T.RunUpdate(LangData.get_lang("wneN"), this.r, n, o, o, $.i(), 1000, 100))
         s = n.y.c.length
@@ -16144,7 +16144,7 @@ T.fo.prototype = {
                             if (!(c instanceof T.Plr))
                                 if (m.b(c) && J.aw(c) >= $.t()) {
                                     b = J.a3(c)
-                                    b.h(c, $.a())
+                                    b.h(c, 0)
                                     b.h(c, $.i())
                                     a = b.gp(c)
                                     a0 = $.t()
@@ -16152,9 +16152,9 @@ T.fo.prototype = {
                                     if (typeof b.h(c, $.i()) == "string") {
                                         a = J.aw(b.h(c, $.i()))
                                         a0 = $.i()
-                                        a = a === a0 && J.ny(b.h(c, a0), $.a()) < $.pC()
+                                        a = a === a0 && J.ny(b.h(c, a0), 0) < $.pC()
                                     } else a = false
-                                    a2 = a ? T.jS(b.h(c, $.a()), b.h(c, $.i()), p, a1) : T.nT(b.h(c, $.a()), b.h(c, $.i()), e.b, a1)
+                                    a2 = a ? T.jS(b.h(c, 0), b.h(c, $.i()), p, a1) : T.nT(b.h(c, 0), b.h(c, $.i()), e.b, a1)
                                     if (a2 instanceof T.cy) {
                                         b3.push(a2.e)
                                         k.push(a2)
@@ -16170,7 +16170,7 @@ T.fo.prototype = {
                         if (f.length !== 0) {
                             i.push(e)
                             a3 = f.length
-                            for (a4 = $.a(); a4 < a3; ++a4) {
+                            for (a4 = 0; a4 < a3; ++a4) {
                                 a2 = f[a4]
                                 for (a5 = a4 + $.i(); a5 < a3; ++a5) {
                                     a6 = f[a5]
@@ -16183,7 +16183,7 @@ T.fo.prototype = {
                         }
                     }
                     p.Q = i.length
-                    if (C.JsInt.am(l.gp(l), $.Z()) > $.a()) {
+                    if (C.JsInt.am(l.gp(l), $.Z()) > 0) {
                         p.f = LangData.get_lang("CefA")
                         async_goto = 1
                         break
@@ -16244,7 +16244,7 @@ T.fo.prototype = {
                     o = P.aa(o, true, H.be(o).i("L.E"))
                     C.a.bb(o, T.mD())
                     p.c = o
-                    if (C.JsInt.am(l.gp(l) + $.X(), $.C()) === $.a())
+                    if (C.JsInt.am(l.gp(l) + $.X(), $.C()) === 0)
                         for (o = p.c, n = o.length, h = 0; h < n; ++h) {
                             a2 = o[h]
                             a2.I = a2.gbT()
@@ -16260,7 +16260,7 @@ T.fo.prototype = {
                             f = a2.e
                             i.bO(C.e.gaB().ab(f))
                         }
-                        p.b.bO(H.b([$.a()], m))
+                        p.b.bO(H.b([0], m))
                         C.a.a5(l, b1.f)
                     }
                     for (o = p.c, n = o.length, h = 0; h < o.length; o.length === n || (0, H.F)(o), ++h) o[h].l = p.b.n()
@@ -16282,12 +16282,12 @@ T.fo.prototype = {
         //             return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec(0, 0), t.z), $async$bE)
         //             // break
         //         case 2:
-        //             $.mc = $.a()
+        //             $.mc = 0
         //             return P.async_return(null, r)
         //     }
         // })
         // return P._asyncStartSync($async$bE, r)
-        // $.mc = $.a()
+        // $.mc = 0
         why_ns = 0
         $.mc = 0
     },
@@ -16324,9 +16324,9 @@ T.fo.prototype = {
                     async_goto = k != null ? 3 : 4
                     break
                 case 3:
-                    k = k.c[$.a()]
+                    k = k.c[0]
                     j = LangData.get_lang("eTpN")
-                    i = $.a()
+                    i = 0
                     h = $.lJ()
                     g = new T.dX(i, h, 100, j, k, null, null, null)
                     g.aK(j, k, null, null, null, i, h, 100)
@@ -16384,7 +16384,7 @@ T.fo.prototype = {
                     p = Date.now()
                     o = $.bx()
                     n = q.dx
-                    n[$.a()] = p + o
+                    n[0] = p + o
                     o = q.a
                     m = new H.y(o, new T.jk(), H.a1(o).i("y<1,m*>")).aV(0, "\n")
                     p = q.z
@@ -16398,7 +16398,7 @@ T.fo.prototype = {
                     o = H.b_(p).i("a9<z.E>")
                     j = o.i("y<M.E,l*>")
                     j = P.aa(new H.y(new H.a9(p, o), new T.jl(q), j), true, j.i("M.E"))
-                    C.a.a5(j, H.fJ(n.buffer, $.a(), null))
+                    C.a.a5(j, H.fJ(n.buffer, 0, null))
                     A.eR(X.dc(j))
                     return P.async_return(null, r)
             }
@@ -16422,7 +16422,7 @@ T.fo.prototype = {
                     p = H.b_(n).i("a9<z.E>")
                     o = p.i("y<M.E,l*>")
                     o = P.aa(new H.y(new H.a9(n, p), new T.ji(q), o), true, o.i("M.E"))
-                    C.a.a5(o, H.fJ(q.dx.buffer, $.a(), null))
+                    C.a.a5(o, H.fJ(q.dx.buffer, 0, null))
                     A.eR(X.dc(o))
                     return P.async_return(null, r)
             }
@@ -16470,7 +16470,7 @@ T.b7.prototype = {
         s = p.e
         if (!C.a.w(s, a)) {
             r = q.f
-            if (r.length > $.a()) C.a.co(s, C.a.aT(s, C.a.gbl(r)) + $.i(), a)
+            if (r.length > 0) C.a.co(s, C.a.aT(s, C.a.gbl(r)) + $.i(), a)
             else s.push(a)
             if (p.db > -$.i()) p.cq(a, q)
         }
@@ -16490,7 +16490,7 @@ T.b7.prototype = {
         if (s.ch <= C.a.aT(s.c, a)) --s.ch
         C.a.U(s.c, a)
         q = this.f.length
-        p = $.a()
+        p = 0
         if (q === p) {
             s.Q = s.Q - 1
             q = r[p].y
@@ -16501,7 +16501,7 @@ T.b7.prototype = {
         }
     },
     k(a) {
-        return "[" + H.e(this.c[$.a()].r) + "]"
+        return "[" + H.e(this.c[0].r) + "]"
     }
 }
 T.IPlr.prototype = {
@@ -16559,7 +16559,7 @@ T.aX.prototype = {
         // targets2
         tmp = this_.r
         if (tmp != null)
-            for (r = $.a(); r < tmp.length; ++r) {
+            for (r = 0; r < tmp.length; ++r) {
                 s = tmp[r]
                 if (s instanceof T.Plr) {
                     q = new T.NPlr()
@@ -16619,7 +16619,7 @@ T.aM.prototype = {
     b1(a, b, c, d) {
         var s = this,
             r = s.fx,
-            q = $.a()
+            q = 0
         if (r > q) {
             s.fx = q
             s.bm(r, null, c, d)
@@ -16641,7 +16641,7 @@ T.Plr.prototype = {
     },
     bw(a) {
         var s, r, q, p = this
-        if (p.fx <= $.a() || p.A) return false
+        if (p.fx <= 0 || p.A) return false
         s = a.n()
         r = (((s & 15) + 1) * ((C.JsInt.am(s, 4) & 15) + 1) >>> 5) + 1
         q = p.go
@@ -16670,16 +16670,16 @@ T.Plr.prototype = {
             if (r.J(0, q)) {
                 p = r.h(0, q).$2(q, this_)
             } else if (J.nz(q, $.cl())) {
-                p = new T.j2(q, this_, P.aL($.av(), $.a(), false, t.B))
+                p = new T.j2(q, this_, P.aL($.av(), 0, false, t.B))
                 p.a = q
-                p.a = C.b.af(q, $.a(), q.length - $.i())
+                p.a = C.b.af(q, 0, q.length - $.i())
             } else p = T.tN(q, this_)
             o = new LangData.b9()
             o.bd(LangData.fZ(p.a), $.t())
             p.b3(o)
             this_.r1 = p
         }
-        if (J.lW(s, " ")) this_.r = s.split(" ")[$.a()]
+        if (J.lW(s, " ")) this_.r = s.split(" ")[0]
         if (this_.c == null) this_.c = this_.b
         r = new LangData.b9()
         r.bd(LangData.fZ(this_.b), $.i())
@@ -16690,7 +16690,7 @@ T.Plr.prototype = {
         why_ns += 1
 
         q = C.JsInt.P(Math.abs(q), $.bx())
-        n = $.a()
+        n = 0
         if (q > n) {
             q = r.c
             m = q[n]
@@ -16781,7 +16781,7 @@ T.Plr.prototype = {
             C.a.j(r, q[$.i()])
         }
         r = o.q
-        q = C.a.al(o.t, $.a(), $.Z())
+        q = C.a.al(o.t, 0, $.Z())
         C.a.aJ(q)
         C.a.j(r, C.a.dz(C.a.al(q, $.B(), $.ap()), new T.jX()) + $.mK())
     },
@@ -16805,25 +16805,25 @@ T.Plr.prototype = {
         var s, r, q
         this.k3 = T.cG(this)
         s = this.k1
-        s.push(new T.cc($.a()))
-        s.push(new T.e9($.a()))
-        s.push(new T.hI($.a()))
-        s.push(new T.hv($.a()))
-        s.push(new T.e1($.a()))
-        s.push(new T.ht($.a()))
-        s.push(new T.ec($.a()))
-        s.push(new T.e5($.a()))
-        s.push(new T.e7($.a()))
-        s.push(new T.hi($.a()))
-        s.push(new T.h9($.a()))
-        s.push(new T.e3($.a()))
-        s.push(new T.hk($.a()))
-        s.push(new T.hG($.a()))
-        s.push(new T.hf($.a()))
-        s.push(new T.e8($.a()))
-        s.push(new T.hx($.a()))
-        s.push(new T.hh($.a()))
-        r = $.a()
+        s.push(new T.cc(0))
+        s.push(new T.e9(0))
+        s.push(new T.hI(0))
+        s.push(new T.hv(0))
+        s.push(new T.e1(0))
+        s.push(new T.ht(0))
+        s.push(new T.ec(0))
+        s.push(new T.e5(0))
+        s.push(new T.e7(0))
+        s.push(new T.hi(0))
+        s.push(new T.h9(0))
+        s.push(new T.e3(0))
+        s.push(new T.hk(0))
+        s.push(new T.hG(0))
+        s.push(new T.hf(0))
+        s.push(new T.e8(0))
+        s.push(new T.hx(0))
+        s.push(new T.hh(0))
+        r = 0
         r = new T.ho(r, r, r)
         q = new T.dT(1 / 0, r)
         r.fr = q
@@ -16831,45 +16831,45 @@ T.Plr.prototype = {
         r.fy = new T.bd(r)
         q.r = $.lG()
         s.push(r)
-        r = $.a()
+        r = 0
         r = new T.ha(r, r)
         r.fr = new T.bd(r)
         r.fx = new T.b8(r)
         s.push(r)
-        r = new T.h5($.pj(), $.a())
+        r = new T.h5($.pj(), 0)
         r.fr = new T.bd(r)
         s.push(r)
-        r = new T.h7($.a())
+        r = new T.h7(0)
         r.fr = new T.ca(r)
         r.fx = new T.cA(r)
         s.push(r)
-        s.push(new T.hH($.a()))
-        s.push(new T.e4($.a()))
-        s.push(new T.hB($.a()))
-        s.push(new T.e6($.a()))
-        s.push(new T.eb($.a()))
-        s.push(new T.ed($.a()))
-        s.push(new T.hw($.a()))
-        s.push(new T.hC($.a()))
-        s.push(new T.cb($.a()))
-        s.push(new T.hs($.a()))
-        s.push(new T.hK($.a()))
-        r = new T.hJ($.a())
+        s.push(new T.hH(0))
+        s.push(new T.e4(0))
+        s.push(new T.hB(0))
+        s.push(new T.e6(0))
+        s.push(new T.eb(0))
+        s.push(new T.ed(0))
+        s.push(new T.hw(0))
+        s.push(new T.hC(0))
+        s.push(new T.cb(0))
+        s.push(new T.hs(0))
+        s.push(new T.hK(0))
+        r = new T.hJ(0)
         r.Q = new T.bd(r)
         s.push(r)
-        r = new T.hl($.a())
+        r = new T.hl(0)
         r.ch = new T.bd(r)
         r.Q = new T.ca(r)
         s.push(r)
-        s.push(new T.bI($.a()))
-        s.push(new T.bI($.a()))
-        s.push(new T.bI($.a()))
-        s.push(new T.bI($.a()))
-        s.push(new T.bI($.a()))
+        s.push(new T.bI(0))
+        s.push(new T.bI(0))
+        s.push(new T.bI(0))
+        s.push(new T.bI(0))
+        s.push(new T.bI(0))
     },
     dm(a, b) {
         var s, r, q, p, o = this,
-            n = $.a(),
+            n = 0,
             m = n
         while (true) {
             if (!(n < $.aR() && n < o.k2.length)) break
@@ -16879,30 +16879,30 @@ T.Plr.prototype = {
             q = r.length - 1
             if (q - 0 <= 32) H.ej(r, 0, q, J.bO())
             else H.ei(r, 0, q, J.bO())
-            p = r[$.a()] - $.Z()
+            p = r[0] - $.Z()
             s.ao(o, p)
-            r = $.a()
+            r = 0
             if (p > r) {
                 r = C.a.al(b, m, m + $.C())
                 if (!!r.immutable$list) H.throw_expression(P.UnsupportError("sort"))
                 q = r.length - 1
                 if (q - 0 <= 32) H.ej(r, 0, q, J.bO())
                 else H.ei(r, 0, q, J.bO())
-                q = $.a()
+                q = 0
                 if (r[q] - $.Z() <= q) s.e = true
             }++n
             m += $.C()
         }
-        for (; r = o.k2, n < r.length; ++n) r[n].ao(o, $.a())
+        for (; r = o.k2, n < r.length; ++n) r[n].ao(o, 0)
     },
     bs() {
         var s, r, q, p, o, n, m, l = this
-        for (s = $.a(), r = l.k4; q = l.k2, s < q.length; ++s) {
+        for (s = 0, r = l.k4; q = l.k2, s < q.length; ++s) {
             p = q[s]
-            if (p.f > $.a() && p instanceof T.b5) r.push(p)
+            if (p.f > 0 && p instanceof T.b5) r.push(p)
         }
         q = r.length
-        o = $.a()
+        o = 0
         if (q > o)
             for (s = q - $.i(); s >= o; --s) {
                 n = r[s]
@@ -16922,9 +16922,9 @@ T.Plr.prototype = {
             r = l.t
             m.$3(q, r[$.n_()], r[$.b2()])
         }
-        for (s = $.a(), r = l.k1; s < r.length; ++s) {
+        for (s = 0, r = l.k1; s < r.length; ++s) {
             p = r[s]
-            if (p.f > $.a()) p.W()
+            if (p.f > 0) p.W()
         }
     },
     cn() {
@@ -16935,7 +16935,7 @@ T.Plr.prototype = {
     },
     F() {
         var s, r = this
-        r.ch = r.b0(r.q[$.a()], $.cj())
+        r.ch = r.b0(r.q[0], $.cj())
         r.cx = r.b0(r.q[$.i()], $.cj())
         r.cy = r.b0(r.q[$.t()], $.cj()) + $.eU()
         r.db = r.b0(r.q[$.B()], $.cj())
@@ -16951,13 +16951,13 @@ T.Plr.prototype = {
     },
     ci() {
         var s, r, q, p, o, n, m, l, k, j, i = this,
-            h = i.M = $.a()
+            h = i.M = 0
         for (s = h; r = $.ap(), h < r; ++h) {
             s += i.q[h]
             i.M = s
         }
         q = i.q
-        p = q[$.a()]
+        p = q[0]
         o = q[$.i()]
         n = $.t()
         m = q[n]
@@ -16970,7 +16970,7 @@ T.Plr.prototype = {
     },
     dN(a, b, c) {
         var s, r, q, p = this
-        if (p.fx <= $.a()) return
+        if (p.fx <= 0) return
         s = p.cy * (b.n() & 3)
         r = p.ry
         if (!r.gbv(r))
@@ -16986,7 +16986,7 @@ T.Plr.prototype = {
         var s, r, q, p, o, n, m, l = this,
             k = null,
             j = (b.n() & 63) < l.fr
-        $.a()
+        0
         s = l.fn(j, b, c)
         if (l.A) return
         if (s == null) {
@@ -17018,7 +17018,7 @@ T.Plr.prototype = {
         n.Z = false
         for (s = n.r2, r = s.gad(s), r = P.aa(r, true, H.be(r).i("L.E")), C.a.aJ(r), q = r.length, p = 0; p < r.length; r.length === q || (0, H.F)(r), ++p) {
             o = r[p]
-            if (s.h(0, o).gT() < $.a()) {
+            if (s.h(0, o).gT() < 0) {
                 s.h(0, o).K(a, b)
                 s.U(0, o)
             }
@@ -17053,7 +17053,7 @@ T.Plr.prototype = {
     a3(a, b, c, d, e, f) {
         var s, r, q, p = this
         a = p.du(a, b, c, d, e, f)
-        if (a == $.ao()) return $.a()
+        if (a == $.ao()) return 0
         s = p.db
         if (b) {
             r = p.dy + s
@@ -17062,11 +17062,11 @@ T.Plr.prototype = {
             r = p.cx + s
             q = c.ch + c.db
         }
-        if (p.fx > $.a() && !p.A && T.bW(q, r, e)) {
+        if (p.fx > 0 && !p.A && T.bW(q, r, e)) {
             // dodge (通用回避)
             // [0][回避]了攻击
             f.a.push(T.RunUpdate(LangData.get_lang("BtqN"), p, c, null, null, $.as(), 1000, 100))
-            return $.a()
+            return 0
         }
         return p.bN(a, b, c, d, e, f)
     },
@@ -17075,7 +17075,7 @@ T.Plr.prototype = {
     },
     aF(a, b, c, d, e) {
         var s, r, q, p, o, n = this
-        if (a < $.a()) {
+        if (a < 0) {
             s = n.fx
             r = s - a
             n.fx = r
@@ -17086,13 +17086,13 @@ T.Plr.prototype = {
             q.a = n.e
             q.d = n.fx
             e.a.push(T.RunUpdate(r, b, q, new T.HRecover(-a), null, 0, 1000, 100))
-            return $.a()
+            return 0
         }
         p = LangData.get_lang("kZsn")
-        r = $.a()
+        r = 0
         if (a === r) {
-            e.a.push(T.RunUpdate(C.b.B(C.b.fu(p, "1", "0"), $.ne()), n, n, new T.HDamage($.a()), null, $.Z(), 1000, 100))
-            return $.a()
+            e.a.push(T.RunUpdate(C.b.B(C.b.fu(p, "1", "0"), $.ne()), n, n, new T.HDamage(0), null, $.Z(), 1000, 100))
+            return 0
         }
         s = n.fx
         q = s - a
@@ -17113,7 +17113,7 @@ T.Plr.prototype = {
     cr(a, b, c, d, e) {
         var s
         for (s = this.G, s = new Sgls.a_(s, s.b, s.$ti.i("a_<1*>")); s.u();) s.b.aD(a, c, d, e)
-        if (this.fx <= $.a()) {
+        if (this.fx <= 0) {
             this.bm(b, c, d, e)
             return b
         } else return a
@@ -17131,9 +17131,9 @@ T.Plr.prototype = {
         p.push(T.RunUpdate(s, b, r, null, null, $.b1(), 1000, 100))
         for (p = q.L, p = new Sgls.a_(p, p.b, p.$ti.i("a_<1*>")); p.u();)
             if (p.b.b1(a, b, c, d)) break
-        if (q.fx > $.a()) return
+        if (q.fx > 0) return
         q.y.dj(q)
-        if (b != null && b.fx > $.a()) b.bS(q, c, d)
+        if (b != null && b.fx > 0) b.bS(q, c, d)
     },
     bS(a, b, c) {
         var s
@@ -17172,14 +17172,14 @@ T.Plr.prototype = {
                 else H.ei(q, 0, p, J.bO())
                 s.push(q[$.i()])
             }
-            q = C.a.al(o.E, $.a(), $.Z())
+            q = C.a.al(o.E, 0, $.Z())
             C.a.aJ(q)
             s.push(C.a.dz(C.a.al(q, $.B(), $.ap()), new T.jY()) + $.mK())
-            for (r = $.a(); r < s.length; ++r)
+            for (r = 0; r < s.length; ++r)
                 if (o.q[r] > s[r]) n.push(H.e($.lO()) + H.e(o.q[r] - s[r]))
             else n.push("")
         }
-        return H.e(o.e) + "\t" + H.e(o.r) + "\t" + H.e(o.c) + "\t" + H.e(o.f) + "\t" + H.e(o.fy) + n[$.ap()] + "\t" + H.e(o.aY(o.q[$.a()])) + n[$.a()] + "\t" + H.e(o.aY(o.q[$.i()])) + n[$.i()] + "\t" + H.e(o.aY(o.q[$.t()])) + n[$.t()] + "\t" + H.e(o.aY(o.q[$.B()])) + n[$.B()] + "\t" + H.e(o.aY(o.q[$.C()])) + n[$.C()] + "\t" + H.e(o.aY(o.q[$.X()])) + n[$.X()] + "\t" + H.e(o.aY(o.q[$.a4()])) + n[$.a4()] + "\t" + H.e(o.cE())
+        return H.e(o.e) + "\t" + H.e(o.r) + "\t" + H.e(o.c) + "\t" + H.e(o.f) + "\t" + H.e(o.fy) + n[$.ap()] + "\t" + H.e(o.aY(o.q[0])) + n[0] + "\t" + H.e(o.aY(o.q[$.i()])) + n[$.i()] + "\t" + H.e(o.aY(o.q[$.t()])) + n[$.t()] + "\t" + H.e(o.aY(o.q[$.B()])) + n[$.B()] + "\t" + H.e(o.aY(o.q[$.C()])) + n[$.C()] + "\t" + H.e(o.aY(o.q[$.X()])) + n[$.X()] + "\t" + H.e(o.aY(o.q[$.a4()])) + n[$.a4()] + "\t" + H.e(o.cE())
     },
     aY(a) {
         var s = $.mU()
@@ -17201,7 +17201,7 @@ T.jX.prototype = {
 T.jW.prototype = {
     $3(a, b, c) {
         var s = a.f
-        if (s > $.a() && !a.e) {
+        if (s > 0 && !a.e) {
             a.f = s + Math.min(Math.min(H.ar(b), H.ar(c)), s)
             a.e = true
         }
@@ -17284,7 +17284,7 @@ T.q.prototype = {
     ao(a, b) {
         var s
         this.r = a
-        s = $.a()
+        s = 0
         if (b > s) this.f = b
         else this.f = s
     },
@@ -17316,7 +17316,7 @@ T.q.prototype = {
         var s, r, q, p, o = this,
             n = b ? o.gb8() : o.gb7(),
             m = H.b([], t.L),
-            l = $.a(),
+            l = 0,
             k = -n
         while (true) {
             if (!(l <= n && k <= n)) break
@@ -17355,7 +17355,7 @@ T.h8.prototype = {
     v(a, b, c, d) {
         var s, r, q, p, o = this,
             n = null,
-            m = a[$.a()].a
+            m = a[0].a
         if (b) {
             s = o.r
             s = s.dx > s.ch
@@ -17379,7 +17379,7 @@ T.h8.prototype = {
 }
 T.hD.prototype = {
     v(a, b, c, d) {
-        var s = a[$.a()].a,
+        var s = a[0].a,
             r = T.I(this.r, false, c)
         d.a.push(T.RunUpdate(LangData.get_lang("EYAn"), this.r, s, null, null, 0, 1000, 100))
         s.a3(r, false, this.r, T.ad(), c, d)
@@ -17408,7 +17408,7 @@ T.cb.prototype = {
         var s, r, q, p = this
         p.Q = false
         p.ch = null
-        if (p.cx.fx > $.a() && p.r.bw(a)) {
+        if (p.cx.fx > 0 && p.r.bw(a)) {
             s = T.I(p.r, false, a)
             r = $.K()
             q = b.a
@@ -17444,7 +17444,7 @@ T.hl.prototype = {
     aD(a, b, c, d) {
         var s = this,
             r = s.f,
-            q = $.a()
+            q = 0
         if (r <= q || s.ch.a != null) return
         r = s.r
         if (r.fx > q && !r.A && r.z.f.length > $.i() && (c.n() & 63) < s.f) {
@@ -17478,7 +17478,7 @@ T.hl.prototype = {
 }
 T.fC.prototype = {
     gT() {
-        return $.a()
+        return 0
     }
 }
 T.hs.prototype = {
@@ -17489,14 +17489,14 @@ T.hs.prototype = {
         var s, r, q, p, o, n, m, l, k = this,
             j = null
         if ((b.n() & 63) < k.f) {
-            for (s = $.a(), r = k.r.q, q = r.length, p = a.q, o = false; s < q; ++s) {
+            for (s = 0, r = k.r.q, q = r.length, p = a.q, o = false; s < q; ++s) {
                 n = p[s]
                 if (n > r[s]) {
                     r[s] = n
                     o = true
                 }
             }
-            s = $.a()
+            s = 0
             r = a.k1
             while (true) {
                 q = k.r.k1
@@ -17508,7 +17508,7 @@ T.hs.prototype = {
                 q = l.f
                 p = m.f
                 if (q > p) {
-                    if (p === $.a()) {
+                    if (p === 0) {
                         m.f = q
                         if (m instanceof T.b5) k.r.k4.push(m)
                         m.W()
@@ -17520,13 +17520,13 @@ T.hs.prototype = {
             q = k.r
             if (r > q.go) {
                 q.go = r
-                a.go = $.a()
+                a.go = 0
             }
             r = a.l
             p = q.l
             if (r > p) {
                 q.l = p + r
-                a.l = $.a()
+                a.l = 0
             }
             if (o) {
                 a.r2.m(0, $.iJ(), new T.fC())
@@ -17547,7 +17547,7 @@ T.hs.prototype = {
 }
 T.dV.prototype = {
     gT() {
-        return $.a()
+        return 0
     },
     dG(a) {
         var s, r, q, p, o, n = this
@@ -17617,7 +17617,7 @@ T.eb.prototype = {
     cI(a) {
         var s, r, q = this,
             p = q.aa(0, (a.n() & 127) < q.r.fr, a),
-            o = p != null ? p[$.a()].a : null,
+            o = p != null ? p[0].a : null,
             n = q.Q
         if (n == o) return
         if (n != null) {
@@ -17648,7 +17648,7 @@ T.eb.prototype = {
 T.ed.prototype = {
     dv(a, b, c, d, e, f, g) {
         var s, r, q = this
-        if (c.fx <= $.a()) return a
+        if (c.fx <= 0) return a
         if (f.n() < q.f && f.n() < 128 && q.r.bw(f)) {
             s = T.I(q.r, true, f) * $.b0()
             if (s > a) s = a
@@ -17682,7 +17682,7 @@ T.hw.prototype = {
             p.r.fx = (c.n() & 15) + 1
             n = LangData.get_lang("imin")
             o = p.r
-            r = new T.HPlr($.a())
+            r = new T.HPlr(0)
             r.a = o.e
             q = o.fx
             r.d = q
@@ -17702,13 +17702,13 @@ T.e0.prototype = {
     },
     gT() {
         var s = this.x,
-            r = $.a()
+            r = 0
         if (s > r) return $.i()
         return r
     },
     aq(a, b, c, d, e) {
         var s = this.x,
-            r = $.a()
+            r = 0
         if (s == r) return a
         if (a > s) {
             this.x = r
@@ -17727,11 +17727,11 @@ T.e0.prototype = {
 T.hC.prototype = {
     aN(a, b, c, d) {
         var s, r, q, p = this
-        if (p.f > $.a()) {
+        if (p.f > 0) {
             s = t.eb.a(p.r.r2.h(0, $.lR()))
             if (s == null) {
                 r = p.r
-                s = new T.e0(r, $.a())
+                s = new T.e0(r, 0)
                 r.r2.m(0, $.lR(), s)
                 p.r.y2.j(0, s)
             }
@@ -17754,7 +17754,7 @@ T.hJ.prototype = {
         var s, r, q = this,
             p = null,
             o = q.f,
-            n = $.a()
+            n = 0
         if (o <= n || q.Q.a != null) return
         s = $.aR()
         r = $.b2()
@@ -17784,7 +17784,7 @@ T.hJ.prototype = {
         r.r.r2.U(0, $.nl())
         r.Q.D()
         r.r.F()
-        if (r.r.fx > $.a()) {
+        if (r.r.fx > 0) {
             s = b.a
             s.push($.K())
             s.push(T.aO(LangData.get_lang("Ebza"), a, r.r))
@@ -17810,7 +17810,7 @@ T.hJ.prototype = {
 T.bI.prototype = {
     ao(a, b) {
         this.r = a
-        this.f = $.a()
+        this.f = 0
     },
     au(a, b) {
         return false
@@ -17833,7 +17833,7 @@ T.fX.prototype = {
         var s, r
         this.bB()
         s = this.q
-        r = $.a()
+        r = 0
         s[r] = r
         s[$.a4()] = r
         r = $.ap()
@@ -17842,7 +17842,7 @@ T.fX.prototype = {
 }
 T.hY.prototype = {
     gT() {
-        return $.a()
+        return 0
     }
 }
 T.hK.prototype = {
@@ -17858,7 +17858,7 @@ T.hK.prototype = {
             r = a4.r
             q = r.b
             r = r.c
-            p = $.a()
+            p = 0
             o = $.T()
             n = H.b([], t.q)
             m = H.b([], t.H)
@@ -17895,7 +17895,7 @@ T.hK.prototype = {
             a0 = H.b([], b)
             a1 = H.b([], b)
             b = H.b([], b)
-            a2 = $.a()
+            a2 = 0
             a3 = new T.fX(s, q, r, a5, p, o, n, m, l, k, j, i, h, g, f, e, d, c, a, a0, a1, b, a2, a2, a2, $.W(), a2)
             a3.a1(s, q, r, a5)
             a3.a6 = new T.cp(a3)
@@ -17938,7 +17938,7 @@ T.j2.prototype = {
         s = d + $.t()
         r = c[s]
         s = a[s]
-        for (q = $.a(), p = q; p < $.B(); ++p) {
+        for (q = 0, p = q; p < $.B(); ++p) {
             o = d + p
             n = c[o]
             m = b[o]
@@ -17961,7 +17961,7 @@ T.j2.prototype = {
 T.hg.prototype = {
     au(a, b) {
         var s = this.fx
-        if (s != null && s.fx > $.a())
+        if (s != null && s.fx > 0)
             if (b) return s.y != this.r.y
         else return a.n() < 128
         return false
@@ -17980,13 +17980,13 @@ T.hg.prototype = {
         s = p.r
         s.cy = s.cy - $.cX()
         r = s.go
-        q = $.a()
+        q = 0
         if (r > q) s.go = q
         p.fx = null
     },
     aD(a, b, c, d) {
         var s
-        if (a > $.a()) {
+        if (a > 0) {
             s = this.r
             s = b != s && T.bW(b.fr + b.dy, s.fr + s.dx, c)
         } else s = false
@@ -17995,7 +17995,7 @@ T.hg.prototype = {
 }
 T.eo.prototype = {
     b6() {
-        var s, r = new T.hg($.a())
+        var s, r = new T.hg(0)
         r.e = true
         r.fr = new T.cA(r)
         s = this.c
@@ -18007,7 +18007,7 @@ T.eo.prototype = {
 }
 T.fl.prototype = {
     gT() {
-        return $.a()
+        return 0
     },
     K(a, b) {},
     $ix: 1
@@ -18035,7 +18035,7 @@ T.k1.prototype = {
         r = r[q]
         s = $.r5()
         if (r < s) p[q] = s - r
-        else p[q] = $.a()
+        else p[q] = 0
         this.dV()
     },
     b6() {
@@ -18045,17 +18045,17 @@ T.k1.prototype = {
             for (l = l.k2, s = l.length, r = 0; r < l.length; l.length === s || (0, H.F)(l), ++r) {
                 q = l[r]
                 p = q.f
-                if (p == $.a()) {
+                if (p == 0) {
                     q.f = $.C()
                     q.W()
                 } else q.f = C.JsInt.ez(p, $.i())
             }
             return
         }
-        for (s = [$.a(), $.t(), $.eT(), $.iH(), $.pu(), $.iI(), $.at(), $.pH(), $.lL()], r = 0; r < 9; ++r) {
+        for (s = [0, $.t(), $.eT(), $.iH(), $.pu(), $.iI(), $.at(), $.pH(), $.lL()], r = 0; r < 9; ++r) {
             o = s[r]
             q = l.k2[o]
-            if (q.f == $.a()) {
+            if (q.f == 0) {
                 q.f = $.av()
                 q.W()
             } else H.ve(J.b4(o))
@@ -18064,24 +18064,24 @@ T.k1.prototype = {
             q = s[r]
             if (!(q instanceof T.b5)) {
                 n = q.f
-                if (n == $.a()) {
+                if (n == 0) {
                     q.f = $.aR()
                     q.W()
                 } else q.f = n + $.aR()
             }
         }
-        m = new T.e2($.a())
+        m = new T.e2(0)
         m.ao(l, $.as())
         s = l.k1
         s.push(m)
         p = l.k2;
         (p && C.a).j(p, m)
-        m = new T.eg($.a())
+        m = new T.eg(0)
         m.ao(l, $.Z())
         s.push(m)
         p = l.k2;
         (p && C.a).j(p, m)
-        m = new T.hy($.t(), $.a())
+        m = new T.hy($.t(), 0)
         m.r = l
         $.av()
         s.push(m)
@@ -18121,7 +18121,7 @@ T.h0.prototype = {
         q = o.a.e.length
         o = o.f.length
         p = C.JsInt.am(q - o, $.i()) - o
-        o = $.a()
+        o = 0
         if (p > o) {
             q = new T.ee(p, o)
             q.ao(s, o)
@@ -18132,7 +18132,7 @@ T.h0.prototype = {
 }
 T.k2.prototype = {
     $2(a, b) {
-        if (b.gT() < $.a()) this.a.a = true
+        if (b.gT() < 0) this.a.a = true
     },
     $S: 16
 }
@@ -18142,7 +18142,7 @@ T.h1.prototype = {
     },
     ar(a) {
         var s = a.q,
-            r = $.a(),
+            r = 0,
             q = s[r],
             p = $.b2()
         if (q < p) {
@@ -18190,7 +18190,7 @@ T.ee.prototype = {
         // weaponRModifierUse
         // [0]使用[属性修改器]
         s.push(T.RunUpdate(LangData.get_lang("UeyA"), k.r, j, j, j, $.a6(), 1000, 100))
-        for (r = $.a(), q = k.fr; r < q; ++r) {
+        for (r = 0, q = k.fr; r < q; ++r) {
             p = T.nU(k.r)
             p.y = k.r.y
             p.az()
@@ -18213,7 +18213,7 @@ T.ee.prototype = {
 }
 T.hy.prototype = {
     dA(a, b) {
-        C.a.sp(this.r.q, $.a())
+        C.a.sp(this.r.q, 0)
         this.r.aU()
         this.r.cn()
     },
@@ -18222,9 +18222,9 @@ T.hy.prototype = {
             p = q.a.e.length
         q = q.f.length
         s = C.JsInt.am(p - q, $.i()) - q
-        if (s > $.a()) {
+        if (s > 0) {
             b.a.push($.K())
-            r = new T.ee(s, $.a())
+            r = new T.ee(s, 0)
             r.ao(this.r, $.i())
             r.v(H.b([], t.F), true, a, b)
         }
@@ -18232,7 +18232,7 @@ T.hy.prototype = {
 }
 T.hz.prototype = {
     au(a, b) {
-        if (this.f == $.a()) return false
+        if (this.f == 0) return false
         return (a.n() & 63) + this.f > this.r.fr
     },
     aa(a, b, c) {
@@ -18260,11 +18260,11 @@ T.hz.prototype = {
         q.l = q.l + $.cX()
         q = o.fr - (c.n() & 3)
         o.fr = q
-        if (q <= $.a()) {
+        if (q <= 0) {
             l.push(T.RunUpdate(LangData.get_lang("ToLa"), o.r, n, n, n, 0, m, 100))
             if (o.f < $.as()) {
                 l.push(T.RunUpdate(LangData.get_lang("BcJa"), o.r, n, n, n, 0, m, 100))
-                o.f = $.a()
+                o.f = 0
             } else {
                 l.push(T.RunUpdate(LangData.get_lang("kHPN"), o.r, n, n, n, 0, m, 100))
                 o.f = $.i()
@@ -18284,13 +18284,13 @@ T.ep.prototype = {
         var s, r
         this.cN(a)
         s = $.p2()
-        r = $.a()
+        r = 0
         this.r = H.b([s, r, s, r, r, r, r, r], t.i)
     },
     b6() {
         var s = this.c,
             r = s.k2,
-            q = new T.hz($.B(), $.a())
+            q = new T.hz($.B(), 0)
         q.e = true
         q.ao(s, $.d1());
         (r && C.a).j(r, q)
@@ -18315,7 +18315,7 @@ T.bL.prototype = {
             p = P.aa(new H.y(e, new T.kp(), s), true, s.i("M.E"))
             p[r] = $.iH()
         }
-        o = $.a()
+        o = 0
         for (e = p.length, n = o, m = n, l = 0; l < e; ++l) {
             k = p[l]
             if (k > o) {
@@ -18328,12 +18328,12 @@ T.bL.prototype = {
         j = (e && C.a).al(e, o, $.av())
         C.a.aJ(j)
         i = j[$.i()] + j[$.C()] + n
-        for (k = $.a(), h = i; e = $.ap(), k < e; ++k) {
+        for (k = 0, h = i; e = $.ap(), k < e; ++k) {
             g = C.d.P(i * p[k], m)
             h -= g * $.B()
             f.r[k] = g
         }
-        if (p[e] > $.a()) f.r[e] = h
+        if (p[e] > 0) f.r[e] = h
     },
     cB(a, b, c, d) {
         var s, r, q, p, o, n, m = c[d] - a[d],
@@ -18343,7 +18343,7 @@ T.bL.prototype = {
         k = $.t()
         s = d + k
         r = c[s] - a[s]
-        s = $.a()
+        s = 0
         if (m > s && j > s && r > s) {
             q = d + C.JsInt.V(m + j + r + $.q8(), $.B())
             p = c[q]
@@ -18355,16 +18355,16 @@ T.bL.prototype = {
     },
     bn() {
         var s, r, q, p = this,
-            o = $.a()
+            o = 0
         for (s = $.Z(), r = p.c; s < $.d1(); s += $.B()) o += p.cB(r.E, r.t, p.d, s)
         r = C.JsInt.P($.mY() - o, $.a4())
         p.f = r
-        q = $.a()
+        q = 0
         if (r < q) p.f = q
     },
     cs() {
         var s, r, q
-        for (s = $.a(), r = this.c; s < $.av(); ++s) {
+        for (s = 0, r = this.c; s < $.av(); ++s) {
             q = r.q
             q[s] = q[s] + this.r[s]
         }
@@ -18373,13 +18373,13 @@ T.bL.prototype = {
     b6() {
         var s = this.c.k1[this.e],
             r = s.f
-        if (r == $.a()) s.e = true
+        if (r == 0) s.e = true
         s.f = r + this.f
     }
 }
 T.kq.prototype = {
     $2(a, b) {
-        var s = new T.ep(a, b, P.aL($.av(), $.a(), false, t.B))
+        var s = new T.ep(a, b, P.aL($.av(), 0, false, t.B))
         s.a = a
         return s
     },
@@ -18387,7 +18387,7 @@ T.kq.prototype = {
 }
 T.kr.prototype = {
     $2(a, b) {
-        var s = new T.eo(a, b, P.aL($.av(), $.a(), false, t.B))
+        var s = new T.eo(a, b, P.aL($.av(), 0, false, t.B))
         s.a = a
         return s
     },
@@ -18397,7 +18397,7 @@ T.ks.prototype = {
     $2(a, b) {
         var s
         if (b.b == $.iL()) {
-            s = new T.k1(a, b, P.aL($.av(), $.a(), false, t.B))
+            s = new T.k1(a, b, P.aL($.av(), 0, false, t.B))
             s.a = a
             return s
         } else return T.ma(a, b)
@@ -18408,7 +18408,7 @@ T.kt.prototype = {
     $2(a, b) {
         var s
         if (C.a.w($.r1(), b.b)) {
-            s = new T.jq(a, b, P.aL($.av(), $.a(), false, t.B))
+            s = new T.jq(a, b, P.aL($.av(), 0, false, t.B))
             s.a = a
             return s
         } else return T.ma(a, b)
@@ -18419,7 +18419,7 @@ T.ku.prototype = {
     $2(a, b) {
         var s
         if (C.a.w($.rk(), b.b)) {
-            s = new T.kv(a, b, P.aL($.av(), $.a(), false, t.B))
+            s = new T.kv(a, b, P.aL($.av(), 0, false, t.B))
             s.a = a
             return s
         } else return T.ma(a, b)
@@ -18435,7 +18435,7 @@ T.ko.prototype = {
 T.kp.prototype = {
     $1(a) {
         if (a > $.pN()) return a - $.b1()
-        return $.a()
+        return 0
     },
     $S: 2
 }
@@ -18457,7 +18457,7 @@ T.kv.prototype = {
     b3(a) {},
     bn() {},
     b6() {
-        var s = new T.hc($.a()),
+        var s = new T.hc(0),
             r = this.c
         s.ao(r, $.i())
         r.k1.push(s)
@@ -19976,14 +19976,14 @@ var t = (function rtii() {
         return P.o_()
     })
     lazy_old($, "mc", "ns", function () {
-        // return $.a()
+        // return 0
         return 0
     })
     lazy_old($, "ta", "r2", function () {
         return $.mb + $.d_()
     })
     lazy_old($, "tb", "r3", function () {
-        return $.a()
+        return 0
     })
     lazy_old($, "zH", "r1", function () {
         return H.b([$.iL(), $.n8(), $.qk(), $.n6(), $.n9(), $.no(), $.nm(), $.nb(), $.qa(), $.nn(), $.qW(), $.np(), $.qi(), $.nj(), $.qr(), $.qs(), $.qU()], t.V)
