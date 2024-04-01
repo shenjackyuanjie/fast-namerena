@@ -10,8 +10,7 @@ if (from_node) {
 
     // 整一套虚拟的window和document
     // 但说实话十分生草
-    window = {
-    };
+    window = {};
 
     let fake_element = {
         style: {},
@@ -19,18 +18,16 @@ if (from_node) {
             "something"
         ],
         length: 0,
-        addEventListener: function () { },
+        addEventListener: function () {},
     }
 
     document = {
         createElement: function (tag) {
             return fake_element;
         },
-        styleSheets: [
-            {
-                "some": "thing"
-            }
-        ],
+        styleSheets: [{
+            "some": "thing"
+        }],
     };
     self = window;
 
@@ -38,11 +35,11 @@ if (from_node) {
     let fs = require("fs");
     let path = require("path");
     let assets_path = path.join(__dirname, "assets");
-    
+
     // 加载 zh.json
     let lang_path = path.join(assets_path, "zh.json");
     let lang_data = fs.readFileSync(lang_path, "utf-8");
-    
+
     // 加载 gAd.md
     let gAd_path = path.join(assets_path, "gAd.md");
     let gAd_data = fs.readFileSync(gAd_path, "utf-8");
@@ -5603,21 +5600,24 @@ var A = {
                     if (o.length !== 0) c.push(o)
                     o = H.b([], d)
                 }
-                // if contains "+"
+                // if includes "+"
                 // weapon
                 l = $.lO()
                 m.toString
                 // if (l == null) H.throw_expression(H.R(l))
-                // if (H.iF(m, l, 0)) {
                 console.log("reaching weapon zone")
-                if (m.contains("+")) {
-                    console.log("reach weapon zone")
+                // if (H.iF(m, l, 0)) {
+                if (m.includes("+")) {
+                    // console.log("reach weapon zone")
                     k = C.b.aT(m, $.lO())
                     j = C.b.dF(C.b.ay(m, k + $.i()))
                     l = C.b.af(m, 0, k)
                     i = $.nq()
                     m = H.iG(l, i, "", 0)
-                } else j = e
+                } else {
+                    j = e
+                }
+                console.log("weapon: " + j)
                 l = $.n3()
                 if (l == null) H.throw_expression(H.R(l))
                 if (H.iF(m, l, 0)) {
@@ -7869,20 +7869,27 @@ var A = {
             return s
         },
         static_init() {
-            var s = 0,
+            if (from_node) {
+                console.log("reaching HtmlRenderer.static_init")
+            }
+            var async_goto = 0,
                 r = P._makeAsyncAwaitCompleter(t.z),
                 q, p
             var $async$jv = P._wrapJsFunctionForAsync(function (a, b) {
                 if (a === 1) return P.async_rethrow(b, r)
-                while (true) switch (s) {
+                while (true) switch (async_goto) {
                     case 0:
-                        Sgls.tw()
-                        q = W.nK()
-                        $.md = q
-                        W.es(q, "load", Sgls.vg(), false)
-                        $.md.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACAAgMAAAC+UIlYAAAADFBMVEX/AAD/AP8A/wD///8SU+EWAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wwaCg0BGtaVrQAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAADHUlEQVRYw+2WPY6jMBTHLejhMNOu4BRkpTTp5xIgzQGmilKmSjFUkbZFCpp6tN3mHGikpAK8/r/nZwhxMlllViOtFsWxsX/2+7SNKj941E7r/lr5Q6BNuW5iqqtv3xLlBtKW67jpd3XY75SyAF4wAwMAwpqLAVgEADuDANOu4iahCQ7AIAaUSrBalbYEDCI+BESPiyJk0KukmCnlzMybHHVXLD4M9w35oIJC6R4FbVm6UNw2QB0UoQcIawGaoIg9QNwI0AZF6gHSVgAdFNoDmH4BXp88gOl7FeD92QOYvvcTYDBvAAE5ET4AYpySPgCKOjO9gDHVOcoLGGc5V3sB424XLC9gAvYZ+WAT1Joa0KahxEWWx/0AkKntAJhBQANApjYEcDZhx+kB2JKpdTQA2GEjoGLzEidCN0kVW4BmKCilegGedRttU0RTgBpKhQ544iC+DkADpWIHFJwGwQCY5SFGACwPMU5JUtAoKkDFZicjoI5gqjOTze5HAOeFA2r0hWOAM+tiLCQ3z2LxGedDnVSjnNwqFU3OKDho6KDTltu049SuhYtT3os4Bu0BKjuOrTCFdjPaOERHVinMxip0HsixPPKLYvmKTxS5M0aeVWxBnWzjJqrCOhks4B3nAAwCOgNEBJaXg4vFWBGiJBSUg4sVFSWtmc5UAGyqNdM6CsvKwWWdZR01cfXI3dbVk2BNA/Yp+WCX5TSPxncFiZAXB5ivALIGXwM+ALcuANQ/Ht5+ngHbsI4AoK7eHpKrK5zcmxd18FkhLicdrgGkw00ioOhVJcfA2Eynw6UVnA5j4CYzT4J1fz5cGnDfD38RkM+DLwTc7f/VwLXb/37g/nz4D/yTwEuWPWbmKTN6ynI5K7P5JkNZZtlMLbWe5Vp3m1x35jdfLg6zfL/q8l/fu4XWB7XW+ghgpQHoPTrzwwJtKoo6TGPNHUcZcIA0FlwfLgLTIitfBES3rwROlLQvh8VkkDyJP+PFPZy0niyPmly90XoON6/sLDuhWx8WRwrWS949IlAIGIK1ybs5grXer44U7pKjXdKfCTe9I9zzzew3hQ1VpfX/zmMAAAAASUVORK5CYII="
-                        s = 2
-                        return P._asyncAwait($.nt().a, $async$jv)
+                        if (from_node) {
+
+                        } else {
+                            Sgls.tw()
+                            q = W.nK()
+                            $.md = q
+                            W.es(q, "load", Sgls.vg(), false)
+                            $.md.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACAAgMAAAC+UIlYAAAADFBMVEX/AAD/AP8A/wD///8SU+EWAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wwaCg0BGtaVrQAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAADHUlEQVRYw+2WPY6jMBTHLejhMNOu4BRkpTTp5xIgzQGmilKmSjFUkbZFCpp6tN3mHGikpAK8/r/nZwhxMlllViOtFsWxsX/2+7SNKj941E7r/lr5Q6BNuW5iqqtv3xLlBtKW67jpd3XY75SyAF4wAwMAwpqLAVgEADuDANOu4iahCQ7AIAaUSrBalbYEDCI+BESPiyJk0KukmCnlzMybHHVXLD4M9w35oIJC6R4FbVm6UNw2QB0UoQcIawGaoIg9QNwI0AZF6gHSVgAdFNoDmH4BXp88gOl7FeD92QOYvvcTYDBvAAE5ET4AYpySPgCKOjO9gDHVOcoLGGc5V3sB424XLC9gAvYZ+WAT1Joa0KahxEWWx/0AkKntAJhBQANApjYEcDZhx+kB2JKpdTQA2GEjoGLzEidCN0kVW4BmKCilegGedRttU0RTgBpKhQ544iC+DkADpWIHFJwGwQCY5SFGACwPMU5JUtAoKkDFZicjoI5gqjOTze5HAOeFA2r0hWOAM+tiLCQ3z2LxGedDnVSjnNwqFU3OKDho6KDTltu049SuhYtT3os4Bu0BKjuOrTCFdjPaOERHVinMxip0HsixPPKLYvmKTxS5M0aeVWxBnWzjJqrCOhks4B3nAAwCOgNEBJaXg4vFWBGiJBSUg4sVFSWtmc5UAGyqNdM6CsvKwWWdZR01cfXI3dbVk2BNA/Yp+WCX5TSPxncFiZAXB5ivALIGXwM+ALcuANQ/Ht5+ngHbsI4AoK7eHpKrK5zcmxd18FkhLicdrgGkw00ioOhVJcfA2Eynw6UVnA5j4CYzT4J1fz5cGnDfD38RkM+DLwTc7f/VwLXb/37g/nz4D/yTwEuWPWbmKTN6ynI5K7P5JkNZZtlMLbWe5Vp3m1x35jdfLg6zfL/q8l/fu4XWB7XW+ghgpQHoPTrzwwJtKoo6TGPNHUcZcIA0FlwfLgLTIitfBES3rwROlLQvh8VkkDyJP+PFPZy0niyPmly90XoON6/sLDuhWx8WRwrWS949IlAIGIK1ybs5grXer44U7pKjXdKfCTe9I9zzzew3hQ1VpfX/zmMAAAAASUVORK5CYII="
+                            async_goto = 2
+                            return P._asyncAwait($.nt().a, $async$jv)
+                        }
                     case 2:
                         if (from_node) {
                             console.log("from_node", from_node)
@@ -12163,7 +12170,7 @@ Y.RC4.prototype = {
             m.b = q + n & 255
         }
     },
-    n() { 
+    n() {
         // next byte from ShadowR
         var _this = this,
             r = _this.a = _this.a + 1 & 255,
@@ -12836,7 +12843,7 @@ HtmlRenderer.fq.prototype = {
             r.appendChild(document.createTextNode(q))
         }
         // 添加 event listener
-        console.log("HtmlRenderer.fq adding event listener for message")
+        // console.log("HtmlRenderer.fq adding event listener for message")
         W.es(window, "message", this_.gfb(this_), false)
     },
     fc(func_self, event) {
@@ -13273,9 +13280,9 @@ HtmlRenderer.send_win_data.prototype = {
                     ], n, n)
                     // send win_data to parent
                     J.m0(W.ll(window.parent), win_data, "*")
-                    if (from_node) {
-                        // 怎么着输出一下 win_data
-                    }
+                    // if (from_node) {
+                    //     // 怎么着输出一下 win_data
+                    // }
                     return P.async_return(null, r)
             }
         })
@@ -17363,7 +17370,8 @@ T.q.prototype = {
 }
 T.ActionSkill.prototype = {
     au(a, b) { // prob
-        return (a.n() & 127) < this.f // this.level
+        // this.level
+        return (a.n() & 127) < this.f
     }
 }
 T.h8.prototype = {
@@ -18611,7 +18619,7 @@ LangData.k_.prototype = {
         q = hunkHelpers._static_0,
         p = hunkHelpers._instance_2u,
         o = hunkHelpers.installStaticTearOff,
-        n = hunkHelpers._instance_1i,
+        instance_1i = hunkHelpers._instance_1i,
         m = hunkHelpers._instance_0i,
         l = hunkHelpers._instance_1u,
         k = hunkHelpers.installInstanceTearOff,
@@ -18628,8 +18636,8 @@ LangData.k_.prototype = {
     o(W, "uW", 4, null, ["$4"], ["tU"], 20, 0)
     s(HtmlRenderer, "oD", "rU", 62)
     var i
-    n(i = HtmlRenderer.fq.prototype, "gfb", "fc", 31)
-    n(i, "gff", "ds", 8)
+    instance_1i(i = HtmlRenderer.fq.prototype, "gfb", "fc", 31)
+    instance_1i(i, "gff", "ds", 8)
     m(i, "gbc", "dI", 0)
     l(i, "gfd", "fe", 33)
     k(i, "gel", 0, 0, null, ["$1", "$0"], ["c5", "em"], 34, 0, 0)
@@ -20700,8 +20708,8 @@ function main() {
                 // 这里请输入一个被混淆过的名字
                 p = 5
                 if (from_node) {
-                    raw_names = name_input
                     console.log("node input:", raw_names)
+                    raw_names = name_input
                 } else {
                     m = window.sessionStorage.getItem(LangData.eQ("k"))
                     l = X.f4(m, 0)
