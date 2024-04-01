@@ -7229,7 +7229,7 @@ var A = {
             this.b = b
         },
         q: function q() {},
-        b5: function b5() {},
+        ActionSkill: function b5() {},
         h8: function h8(a) {
             var _ = this
             _.e = false
@@ -15323,7 +15323,7 @@ T.cz.prototype = {
         var s, r, q, p
         for (s = 0, r = this.k1, q = this.k4; s < r.length; ++s) {
             p = r[s]
-            if (p instanceof T.b5) q.push(p)
+            if (p instanceof T.ActionSkill) q.push(p)
         }
         for (s = 0; s < r.length; ++s) r[s].W()
     },
@@ -16899,7 +16899,7 @@ T.Plr.prototype = {
         var s, r, q, p, o, n, m, l = this
         for (s = 0, r = l.k4; q = l.k2, s < q.length; ++s) {
             p = q[s]
-            if (p.f > 0 && p instanceof T.b5) r.push(p)
+            if (p.f > 0 && p instanceof T.ActionSkill) r.push(p)
         }
         q = r.length
         o = 0
@@ -17346,7 +17346,7 @@ T.q.prototype = {
         return this.r
     }
 }
-T.b5.prototype = {
+T.ActionSkill.prototype = {
     au(a, b) {
         return (a.n() & 127) < this.f
     }
@@ -17510,7 +17510,7 @@ T.hs.prototype = {
                 if (q > p) {
                     if (p === 0) {
                         m.f = q
-                        if (m instanceof T.b5) k.r.k4.push(m)
+                        if (m instanceof T.ActionSkill) k.r.k4.push(m)
                         m.W()
                     } else m.f = q
                     o = true
@@ -18062,7 +18062,7 @@ T.k1.prototype = {
         }
         for (s = l.k2, p = s.length, r = 0; r < s.length; s.length === p || (0, H.F)(s), ++r) {
             q = s[r]
-            if (!(q instanceof T.b5)) {
+            if (!(q instanceof T.ActionSkill)) {
                 n = q.f
                 if (n == 0) {
                     q.f = $.aR()
@@ -18581,7 +18581,7 @@ LangData.k_.prototype = {
     s.bC = s.a9
     s.bZ = s.bx
     s.dU = s.aa
-    s = T.b5.prototype
+    s = T.ActionSkill.prototype
     s.aX = s.au
     s = T.bL.prototype
     s.cN = s.b3
@@ -18710,8 +18710,8 @@ LangData.k_.prototype = {
     inherit(P.cF, P.p)
     inherit(HtmlRenderer.fW, HtmlRenderer.ax)
     inherit_many(Sgls.n, [T.q, T.aZ, T.aB, T.bq, T.cB, T.bH, T.ah, T.aV, T.aF])
-    inherit_many(T.q, [T.b5, T.h6, T.he, T.hn, T.hq, T.ea, T.ef, T.cb, T.e6, T.hl, T.hs, T.eb, T.ed, T.hw, T.hC, T.hJ, T.hK])
-    inherit_many(T.b5, [T.e1, T.h5, T.h7, T.dd, T.h9, T.ha, T.e3, T.e4, T.e5, T.hf, T.hh, T.hi, T.cc, T.e7, T.hk, T.e8, T.e9, T.ho, T.ht, T.hv, T.ec, T.hx, T.hu, T.hB, T.hG, T.hj, T.hH, T.hI, T.e2, T.hb, T.dl, T.hd, T.hm, T.dB, T.hp, T.hr, T.hA, T.h8, T.hD, T.SkillVoid, T.hg, T.ee, T.hz])
+    inherit_many(T.q, [T.ActionSkill, T.h6, T.he, T.hn, T.hq, T.ea, T.ef, T.cb, T.e6, T.hl, T.hs, T.eb, T.ed, T.hw, T.hC, T.hJ, T.hK])
+    inherit_many(T.ActionSkill, [T.e1, T.h5, T.h7, T.dd, T.h9, T.ha, T.e3, T.e4, T.e5, T.hf, T.hh, T.hi, T.cc, T.e7, T.hk, T.e8, T.e9, T.ho, T.ht, T.hv, T.ec, T.hx, T.hu, T.hB, T.hG, T.hj, T.hH, T.hI, T.e2, T.hb, T.dl, T.hd, T.hm, T.dB, T.hp, T.hr, T.hA, T.h8, T.hD, T.SkillVoid, T.hg, T.ee, T.hz])
     inherit_many(T.aZ, [T.dj, T.dw, T.dx, T.eh, T.bd, T.h1])
     inherit_many(T.x, [T.dI, T.c3, T.hF, T.fC, T.hY])
     inherit_many(T.Plr, [T.dR, T.aM, T.cz, T.fP, T.fU, T.fV, T.fQ, T.cy])
