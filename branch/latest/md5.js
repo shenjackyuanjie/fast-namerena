@@ -16800,6 +16800,8 @@ T.Plr.prototype = {
         s.S.ah(0)
     },
     ac() {
+        // create skills
+        // createSkills
         var s, r, q
         this.k3 = T.cG(this)
         s = this.k1
@@ -19202,7 +19204,8 @@ var t = (function rtii() {
         return "@!"
     })
     lazy_old($, "ya", "n5", function () {
-        return LangData.j("DA", 57)
+        // return LangData.j("DA", 57)
+        return ":"
     })
     lazy_old($, "yh", "qc", function () {
         // return LangData.j("l1C~5RJB", 71)
@@ -19238,7 +19241,8 @@ var t = (function rtii() {
         return LangData.j("OZFE", 74)
     })
     lazy_old($, "y_", "lN", function () {
-        return LangData.j("w1{fb_W(wTt-B", 16)
+        // return LangData.j("w1{fb_W(wTt-B", 16)
+        return "accumulate"
     })
     lazy_old($, "yK", "bT", function () {
         return LangData.j("PGOv0X*A", 77)
@@ -19265,7 +19269,8 @@ var t = (function rtii() {
         return LangData.j("V_%Fz%}cF", 48)
     })
     lazy_old($, "zg", "lR", function () {
-        return LangData.j("LGI)Za A", 74)
+        // return LangData.j("LGI)Za A", 74)
+        return "shield"
     })
     lazy_old($, "yL", "d6", function () {
         return LangData.j("r9sG{s5|C", 36)
@@ -19460,7 +19465,8 @@ var t = (function rtii() {
         return LangData.j("[IwfNb&!5RS,05|n#na1Jbyuc9[0Gb?M`.w)|/~zD", 7)
     })
     lazy_old($, "yV", "qx", function () {
-        return LangData.j("ai[u(+{WLzw?FbpUW~44<j{#'ZHo<,YST,twmLV9D", 72)
+        // return LangData.j("ai[u(+{WLzw?FbpUW~44<j{#'ZHo<,YST,twmLV9D", 72)
+        return "<div class=\"smile s_curse\"></div>"
     })
     lazy_old($, "z1", "qD", function () {
         return LangData.j("m^Jd-SooyPlLaL/Ysyzz;S1Xa8kh4Zid1[SY;Ez^Jd8D", 59)
