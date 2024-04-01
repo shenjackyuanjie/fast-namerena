@@ -7314,7 +7314,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        bI: function bI(a) {
+        SkillVoid: function bI(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -16861,11 +16861,11 @@ T.Plr.prototype = {
         r.ch = new T.bd(r)
         r.Q = new T.ca(r)
         s.push(r)
-        s.push(new T.bI(0))
-        s.push(new T.bI(0))
-        s.push(new T.bI(0))
-        s.push(new T.bI(0))
-        s.push(new T.bI(0))
+        s.push(new T.SkillVoid(0))
+        s.push(new T.SkillVoid(0))
+        s.push(new T.SkillVoid(0))
+        s.push(new T.SkillVoid(0))
+        s.push(new T.SkillVoid(0))
     },
     dm(a, b) {
         var s, r, q, p, o = this,
@@ -17807,7 +17807,7 @@ T.hJ.prototype = {
     $ix: 1,
     $iah: 1
 }
-T.bI.prototype = {
+T.SkillVoid.prototype = {
     ao(a, b) {
         this.r = a
         this.f = 0
@@ -18711,7 +18711,7 @@ LangData.k_.prototype = {
     inherit(HtmlRenderer.fW, HtmlRenderer.ax)
     inherit_many(Sgls.n, [T.q, T.aZ, T.aB, T.bq, T.cB, T.bH, T.ah, T.aV, T.aF])
     inherit_many(T.q, [T.b5, T.h6, T.he, T.hn, T.hq, T.ea, T.ef, T.cb, T.e6, T.hl, T.hs, T.eb, T.ed, T.hw, T.hC, T.hJ, T.hK])
-    inherit_many(T.b5, [T.e1, T.h5, T.h7, T.dd, T.h9, T.ha, T.e3, T.e4, T.e5, T.hf, T.hh, T.hi, T.cc, T.e7, T.hk, T.e8, T.e9, T.ho, T.ht, T.hv, T.ec, T.hx, T.hu, T.hB, T.hG, T.hj, T.hH, T.hI, T.e2, T.hb, T.dl, T.hd, T.hm, T.dB, T.hp, T.hr, T.hA, T.h8, T.hD, T.bI, T.hg, T.ee, T.hz])
+    inherit_many(T.b5, [T.e1, T.h5, T.h7, T.dd, T.h9, T.ha, T.e3, T.e4, T.e5, T.hf, T.hh, T.hi, T.cc, T.e7, T.hk, T.e8, T.e9, T.ho, T.ht, T.hv, T.ec, T.hx, T.hu, T.hB, T.hG, T.hj, T.hH, T.hI, T.e2, T.hb, T.dl, T.hd, T.hm, T.dB, T.hp, T.hr, T.hA, T.h8, T.hD, T.SkillVoid, T.hg, T.ee, T.hz])
     inherit_many(T.aZ, [T.dj, T.dw, T.dx, T.eh, T.bd, T.h1])
     inherit_many(T.x, [T.dI, T.c3, T.hF, T.fC, T.hY])
     inherit_many(T.Plr, [T.dR, T.aM, T.cz, T.fP, T.fU, T.fV, T.fQ, T.cy])
