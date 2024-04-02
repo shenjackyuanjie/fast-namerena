@@ -1,7 +1,8 @@
 // let document = document;
 // let window = window;
 
-'use strict';
+// 'use strict';
+// 兼容nodejs, 要不然 window = {}; 会崩
 
 let name_input = "test\ntest2";
 let assets_data = {
@@ -10,8 +11,12 @@ let assets_data = {
 };
 
 let run_env = {
-
+    from_code: (typeof window == "undefined"),
+    is_node: (typeof Bun == "undefined"),
+    is_bun: (typeof Bun != "undefined"),
 };
+
+console.log("run_env", run_env);
 
 let from_code = typeof window == "undefined";
 
