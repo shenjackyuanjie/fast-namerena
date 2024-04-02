@@ -18,15 +18,11 @@ let run_env = {
 
 console.log("run_env", run_env);
 
-let from_code = typeof window == "undefined";
-
-
-if (from_code) {
-    console.log("Running from node");
+if (run_env.from_code) {
+    console.log("Running from code");
 
     // 整一套虚拟的window和document
     // 但说实话十分生草
-    window = {};
 
     let fake_element = {
         style: {},
@@ -45,7 +41,6 @@ if (from_code) {
             "some": "thing"
         }],
     };
-    self = window;
 
     // 读取文件
     let fs = require("fs");
@@ -3177,7 +3172,7 @@ var A = {
             return J.cW(a).a5(a, b)
         },
         rs(a, b, c, d) {
-            if (from_code) {
+            if (run_env.from_code) {
                 console.log("rs", a, "|", b, "|", c, "|", d)
                 return
             }
@@ -3457,7 +3452,7 @@ var A = {
             var protected_func = function (fn, error_) {
                 return function (error_code, async_result) {
                     while (true) try {
-                        if (from_code) {
+                        if (run_env.from_code) {
                             console.log("O._wrapJsFunctionForAsync", error_code, async_result)
                         }
                         fn(error_code, async_result)
@@ -7885,7 +7880,7 @@ var A = {
             return s
         },
         static_init() {
-            if (from_code) {
+            if (run_env.from_code) {
                 console.log("reaching HtmlRenderer.static_init")
             }
             var async_goto = 0,
@@ -7895,7 +7890,7 @@ var A = {
                 if (a === 1) return P.async_rethrow(b, r)
                 while (true) switch (async_goto) {
                     case 0:
-                        if (from_code) {
+                        if (run_env.from_code) {
                             // 直接忽略这里的 wait
                             async_goto = 2
                         } else {
@@ -7909,7 +7904,7 @@ var A = {
                             return P._asyncAwait($.nt().a, $async$jv)
                         }
                     case 2:
-                        if (from_code) {
+                        if (run_env.from_code) {
                             console.log("loading gAd data")
                             // 暂时有问题, 还得调试
                             // LangData.v1(t.cF.a(C.C.bt(0, assets_data.gAd)))
@@ -12771,7 +12766,7 @@ X.iW.prototype = {
                     o = H.b([], t.Y)
                     e.push($.K())
                     // 评分输出
-                    if (from_code) {
+                    if (run_env.from_code) {
                         console.log("outputing score")
                     }
                     if (this_.b >= d.length) {
@@ -13529,7 +13524,7 @@ Sgls.k7.prototype = {
         r = H.e(a) + "@!"
         $.k8.m(0, r, s)
         $.mg.m(0, r, q)
-        if (!from_code) {
+        if (!run_env.from_code) {
             t.w.a(C.v.gbl(document.styleSheets)).insertRule("div." + s + ' { background-image:url("' + q + '"); }', $.e_ - 1)
         }
     },
@@ -20704,7 +20699,7 @@ function main() {
         }
         while (true) switch (async_goto) {
             case 0:
-                if (from_code) {
+                if (run_env.from_code) {
                     console.log("initing from node")
                     $.ox = ""
                     // 后面填一下这玩意
