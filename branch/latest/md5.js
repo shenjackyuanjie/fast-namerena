@@ -1,14 +1,22 @@
 // let document = document;
 // let window = window;
 
+'use strict';
+
 let name_input = "test\ntest2";
 let assets_data = {
     lang: null,
     gAd: null,
 };
-let from_node = typeof window == "undefined";
 
-if (from_node) {
+let run_env = {
+
+};
+
+let from_code = typeof window == "undefined";
+
+
+if (from_code) {
     console.log("Running from node");
 
     // 整一套虚拟的window和document
@@ -3164,7 +3172,7 @@ var A = {
             return J.cW(a).a5(a, b)
         },
         rs(a, b, c, d) {
-            if (from_node) {
+            if (from_code) {
                 console.log("rs", a, "|", b, "|", c, "|", d)
                 return
             }
@@ -3343,7 +3351,7 @@ var A = {
             if (s == null) return ""
             return s
         },
-        v1(a) {
+        load_lang(a) {
             J.lY(a, new LangData.lA())
         },
         lA: function lA() {},
@@ -3441,10 +3449,10 @@ var A = {
             }
         },
         _wrapJsFunctionForAsync(func) {
-            var protected = function (fn, error_) {
+            var protected_func = function (fn, error_) {
                 return function (error_code, async_result) {
                     while (true) try {
-                        if (from_node) {
+                        if (from_code) {
                             console.log("O._wrapJsFunctionForAsync", error_code, async_result)
                         }
                         fn(error_code, async_result)
@@ -3455,7 +3463,7 @@ var A = {
                     }
                 }
             }(func, 1)
-            return $.P.ct(new P._wrapJsFunctionForAsync_closure(protected))
+            return $.P.ct(new P._wrapJsFunctionForAsync_closure(protected_func))
         },
         async_error(a, b) {
             var s = H.ls(a, "error", t.K)
@@ -7872,7 +7880,7 @@ var A = {
             return s
         },
         static_init() {
-            if (from_node) {
+            if (from_code) {
                 console.log("reaching HtmlRenderer.static_init")
             }
             var async_goto = 0,
@@ -7882,7 +7890,7 @@ var A = {
                 if (a === 1) return P.async_rethrow(b, r)
                 while (true) switch (async_goto) {
                     case 0:
-                        if (from_node) {
+                        if (from_code) {
                             // 直接忽略这里的 wait
                             async_goto = 2
                         } else {
@@ -7896,13 +7904,16 @@ var A = {
                             return P._asyncAwait($.nt().a, $async$jv)
                         }
                     case 2:
-                        if (from_node) {
+                        if (from_code) {
                             console.log("loading gAd data")
                             // 暂时有问题, 还得调试
-                            LangData.v1(t.cF.a(C.C.bt(0, assets_data.gAd)))
+                            // LangData.v1(t.cF.a(C.C.bt(0, assets_data.gAd)))
+                            // LangData.v1(assets_data.gAd)
                         } else {
                             p = window.sessionStorage.getItem(LangData.eQ("ll"))
-                            if (typeof p == "string") LangData.v1(t.cF.a(C.C.bt(0, p)))
+                            if (typeof p == "string") {
+                                LangData.load_lang(t.cF.a(C.C.bt(0, p)))
+                            }
                         }
                         return P.async_return(null, r)
                 }
@@ -12755,7 +12766,7 @@ X.iW.prototype = {
                     o = H.b([], t.Y)
                     e.push($.K())
                     // 评分输出
-                    if (from_node) {
+                    if (from_code) {
                         console.log("outputing score")
                     }
                     if (this_.b >= d.length) {
@@ -13513,7 +13524,7 @@ Sgls.k7.prototype = {
         r = H.e(a) + "@!"
         $.k8.m(0, r, s)
         $.mg.m(0, r, q)
-        if (!from_node) {
+        if (!from_code) {
             t.w.a(C.v.gbl(document.styleSheets)).insertRule("div." + s + ' { background-image:url("' + q + '"); }', $.e_ - 1)
         }
     },
@@ -20688,7 +20699,7 @@ function main() {
         }
         while (true) switch (async_goto) {
             case 0:
-                if (from_node) {
+                if (from_code) {
                     console.log("initing from node")
                     $.ox = ""
                     // 后面填一下这玩意
@@ -20714,7 +20725,7 @@ function main() {
                 // 战斗框输入位置
                 // 这里请输入一个被混淆过的名字
                 p = 5
-                if (from_node) {
+                if (from_code) {
                     console.log("node input:", raw_names)
                     raw_names = name_input
                 } else {
