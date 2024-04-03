@@ -12500,9 +12500,9 @@ V.iV.prototype = {
         var async_goto = 0,
             async_completer = P._makeAsyncAwaitCompleter(t.d),
             q, this_ = this,
-            o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, a3, a4
-        var $async$O = P._wrapJsFunctionForAsync(function (a5, a6) {
-            if (a5 === 1) return P.async_rethrow(a6, async_completer)
+            o, n, m, l, k, j, i, h, g, f, get_result, d, c, b, a, a0, a1, a2, a3, a4
+        var $async$O = P._wrapJsFunctionForAsync(function (async_error_code, async_result) {
+            if (async_error_code === 1) return P.async_rethrow(async_result, async_completer)
             while (true) switch (async_goto) {
                 case 0:
                     a4 = this_.y
@@ -12534,7 +12534,7 @@ V.iV.prototype = {
                     async_goto = 5
                     return P._asyncAwait(T.inner_main(h), $async$O)
                 case 5:
-                    e = a6
+                    get_result = async_result
                     d = null
                 case 6:
                     // if (!true) {
@@ -12542,9 +12542,9 @@ V.iV.prototype = {
                     //     break
                     // }
                     async_goto = 9
-                    return P._asyncAwait(e.O(), $async$O)
+                    return P._asyncAwait(get_result.O(), $async$O)
                 case 9:
-                    c = a6
+                    c = async_result
                     if (c == null) {
                         async_goto = 8
                         break
@@ -16526,13 +16526,13 @@ T.fo.prototype = {
         return this.f7(a, b)
     },
     f7(a, b) {
-        var s = 0,
+        var async_goto = 0,
             r = P._makeAsyncAwaitCompleter(t.z),
             q = this,
             p, o, n
         var $async$cq = P._wrapJsFunctionForAsync(function (c, d) {
             if (c === 1) return P.async_rethrow(d, r)
-            while (true) switch (s) {
+            while (true) switch (async_goto) {
                 case 0:
                     n = H.as_string(a.gap().e) + "\r" + H.as_string(a.I.$0())
                     n = C.e.gaB().ab(n)
