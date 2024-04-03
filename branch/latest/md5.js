@@ -5979,7 +5979,7 @@ var A = {
             s.r = a
             return s
         },
-        ma(a, b) {
+        NoWeapon(a, b) {
             var s = new T.jN(a, b, P.aL($.av(), 0, false, t.B))
             s.a = a
             return s
@@ -18516,7 +18516,7 @@ T.ks.prototype = {
             s = new T.k1(a, b, P.aL($.av(), 0, false, t.B))
             s.a = a
             return s
-        } else return T.ma(a, b)
+        } else return T.NoWeapon(a, b)
     },
     $S: 7
 }
@@ -18527,7 +18527,7 @@ T.kt.prototype = {
             s = new T.jq(a, b, P.aL($.av(), 0, false, t.B))
             s.a = a
             return s
-        } else return T.ma(a, b)
+        } else return T.NoWeapon(a, b)
     },
     $S: 7
 }
@@ -18538,7 +18538,7 @@ T.ku.prototype = {
             s = new T.kv(a, b, P.aL($.av(), 0, false, t.B))
             s.a = a
             return s
-        } else return T.ma(a, b)
+        } else return T.NoWeapon(a, b)
     },
     $S: 7
 }
@@ -20112,7 +20112,14 @@ var t = (function rtii() {
         return 0
     })
     lazy_old($, "zH", "r1", function () {
-        return H.b([$.iL(), $.n8(), $.qk(), $.n6(), $.n9(), $.no(), $.nm(), $.nb(), $.qa(), $.nn(), $.qW(), $.np(), $.qi(), $.nj(), $.qr(), $.qs(), $.qU()], t.V)
+        // return H.b([$.iL(), $.n8(), $.qk(), $.n6(), $.n9(), $.no(), $.nm(), $.nb(), $.qa(), $.nn(), $.qW(), $.np(), $.qi(), $.nj(), $.qr(), $.qs(), $.qU()], t.V)
+        return H.b(
+            [
+                "Rinick", "库瓒", "庫瓒", "涵虚", "霛雲", "云剑", "新纪元", "琪拉拉", "纯菜", "学车中学",
+                "学🚗🀄学", "昀澤", "锦依卫", "Σσ", "Ø", "∅", "斜眼笑"
+            ],
+            t.V
+        )
     })
     lazy_old($, "zQ", "r5", function () {
         return $.pA()
@@ -20137,7 +20144,15 @@ var t = (function rtii() {
         ], t.X, H.find_type("bL*(m*,u*)*"))
     })
     lazy_old($, "Ad", "rk", function () {
-        return H.b([$.iL(), $.n8(), $.n6(), $.n9(), $.no(), $.nm(), $.nb(), $.nn(), $.np(), $.nj(), $.qg(), $.qj(), $.qt(), $.qX(), $.qf(), $.qN(), $.qd(), $.qT(), $.qV(), $.ql(), $.qS(), $.qe()], t.V)
+        // return H.b([$.iL(), $.n8(), $.n6(), $.n9(), $.no(), $.nm(), $.nb(), $.nn(), $.np(), $.nj(), $.qg(), $.qj(), $.qt(), $.qX(), $.qf(), $.qN(), $.qd(), $.qT(), $.qV(), $.ql(), $.qS(), $.qe()], t.V)
+        return H.b(
+            [
+                "Rinick", "库瓒", "涵虚", "霛雲", "云剑", "新纪元", "琪拉拉", "学车中学", "昀澤",
+                "Σσ", "滑稽", "坤灵剑", "RailGun", "巡洋舰", "Hell", "佘山", "房刚", "五班", "XJ联队",
+                "乐正绫", "文哥", "geometrydash"
+            ],
+            t.V
+        )
     })
     lazy_old($, "AA", "nx", function () {
         return new P.cK(null, null, null, H.find_type("cK<m*>"))
@@ -20927,3 +20942,4 @@ function main() {
 }
 
 main() // 执行main函数
+console.log($.r1())
