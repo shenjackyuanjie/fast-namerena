@@ -944,7 +944,7 @@ var A = {
         },
         br(a) {
             var s, r, q, p, o, n
-            a = H.oM(a.replace(String({}), "$receiver$"))
+            a = H.quoteStringForRegExp(a.replace(String({}), "$receiver$"))
             s = a.match(/\\\$[a-zA-Z]+\\\$/g)
             if (s == null) s = H.b([], t.s)
             r = s.indexOf("\\$arguments\\$")
@@ -1550,7 +1550,7 @@ var A = {
             if (s == null) return a
             return H.mG(a, s.b.index, s.gbh(), c)
         },
-        oM(a) {
+        quoteStringForRegExp(a) {
             if (/[[\]{}()*+?.\\^$|]/.test(a)) return a.replace(/[[\]{}()*+?.\\^$|]/g, "\\$&")
             return a
         },
@@ -1569,7 +1569,7 @@ var A = {
             p = a.indexOf(b, 0)
             if (p < 0) return a
             if (a.length < 500 || c.indexOf("$", 0) >= 0) return a.split(b).join(c)
-            return a.replace(new RegExp(H.oM(b), "g"), H.oz(c))
+            return a.replace(new RegExp(H.quoteStringForRegExp(b), "g"), H.oz(c))
         },
         mv(a) {
             return a
