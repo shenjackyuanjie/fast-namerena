@@ -333,7 +333,7 @@ var A = {
             $.k8.m(0, a, r)
             q = Sgls.tt(a).toDataURL("image/png", null)
             $.mg.m(0, a, q)
-            t.w.a(C.v.gbl(document.styleSheets)).insertRule("div." + r + ' { background-image:url("' + H.e(q) + '"); }', $.e_ - 1)
+            t.w.a(C.v.gbl(document.styleSheets)).insertRule("div." + r + ' { background-image:url("' + H.as_string(q) + '"); }', $.e_ - 1)
             return r
         },
         tw() {
@@ -772,17 +772,25 @@ var A = {
             }
             return t.aU.b(a)
         },
-        e(a) {
-            var s
-            if (typeof a == "string") return a
+        as_string(a) {
+            var res
+            if (typeof a == "string") {
+                return a
+            }
             if (typeof a == "number") {
-                if (a !== 0) return "" + a
-            } else if (true === a) return "true"
-            else if (false === a) return "false"
-            else if (a == null) return "null"
-            s = J.b4(a)
-            if (typeof s != "string") throw H.wrap_expression(H.R(a))
-            return s
+                if (a !== 0) {
+                    return "" + a
+                }
+            } else if (true === a) {
+                return "true"
+            } else if (false === a) {
+                return "false"
+            } else if (a == null) {
+                return "null"
+            }
+            res = J.b4(a)
+            if (typeof res != "string") throw H.wrap_expression(H.R(a))
+            return res
         },
         Primitives_objectHashCode(a) {
             var s = a.$identityHash
@@ -999,10 +1007,10 @@ var A = {
                 q = r & 65535
                 if ((C.JsInt.am(r, 16) & 8191) === 10) switch (q) {
                     case 438:
-                        return H.bR(a, H.m9(H.e(s) + " (Error " + q + ")", e))
+                        return H.bR(a, H.m9(H.as_string(s) + " (Error " + q + ")", e))
                     case 445:
                     case 5007:
-                        p = H.e(s) + " (Error " + q + ")"
+                        p = H.as_string(s) + " (Error " + q + ")"
                         return H.bR(a, new H.dP(p, e))
                 }
             }
@@ -1242,18 +1250,18 @@ var A = {
             if (s === 0) {
                 r = $.bk
                 $.bk = r + 1
-                q = "self" + H.e(r)
+                q = "self" + H.as_string(r)
                 r = "return function(){var " + q + " = this."
                 p = $.dh
-                return new Function(r + (p == null ? $.dh = H.j3(n) : p) + ";return " + q + "." + H.e(a) + "();}")()
+                return new Function(r + (p == null ? $.dh = H.j3(n) : p) + ";return " + q + "." + H.as_string(a) + "();}")()
             }
             o = "abcdefghijklmnopqrstuvwxyz".split("").splice(0, s).join(",")
             r = $.bk
             $.bk = r + 1
-            o += H.e(r)
+            o += H.as_string(r)
             r = "return function(" + o + "){return this."
             p = $.dh
-            return new Function(r + (p == null ? $.dh = H.j3(n) : p) + "." + H.e(a) + "(" + o + ");}")()
+            return new Function(r + (p == null ? $.dh = H.j3(n) : p) + "." + H.as_string(a) + "(" + o + ");}")()
         },
         rJ(a, b, c, d) {
             var s = H.nF,
@@ -1316,16 +1324,16 @@ var A = {
             q = c || r >= 28
             if (q) return H.rJ(r, c, a, b)
             if (r === 1) {
-                q = "return function(){return this." + n + "." + H.e(a) + "(this." + s + ");"
+                q = "return function(){return this." + n + "." + H.as_string(a) + "(this." + s + ");"
                 p = $.bk
                 $.bk = p + 1
-                return new Function(q + H.e(p) + "}")()
+                return new Function(q + H.as_string(p) + "}")()
             }
             o = "abcdefghijklmnopqrstuvwxyz".split("").splice(0, r - 1).join(",")
-            q = "return function(" + o + "){return this." + n + "." + H.e(a) + "(this." + s + ", " + o + ");"
+            q = "return function(" + o + "){return this." + n + "." + H.as_string(a) + "(this." + s + ", " + o + ");"
             p = $.bk
             $.bk = p + 1
-            return new Function(q + H.e(p) + "}")()
+            return new Function(q + H.as_string(p) + "}")()
         },
         mx(a) {
             return H.rL(a)
@@ -1528,7 +1536,7 @@ var A = {
                         return e
                     }
                 }(source, s + r + q + p + o)
-            if (regex_xp instanceof RegExp) 
+            if (regex_xp instanceof RegExp)
                 return regex_xp
             throw H.wrap_expression(P.FormatException("Illegal RegExp pattern (" + String(regex_xp) + ")", source, null))
         },
@@ -1580,27 +1588,27 @@ var A = {
             if (!t.eh.b(b)) throw H.wrap_expression(P.da(b, "pattern", "is not a Pattern"))
             for (s = J.lU(b, a), s = s.ga0(s), r = 0, q = ""; s.u();) {
                 p = s.gC()
-                q = q + H.e(H.mv(C.String.af(a, r, p.gbc(p)))) + H.e(c.$1(p))
+                q = q + H.as_string(H.mv(C.String.af(a, r, p.gbc(p)))) + H.as_string(c.$1(p))
                 r = p.gbh()
             }
-            s = q + H.e(H.mv(C.String.ay(a, r)))
+            s = q + H.as_string(H.mv(C.String.ay(a, r)))
             return s.charCodeAt(0) == 0 ? s : s
         },
         vh(a, b, c) {
             var s, r, q = a.length,
-                p = H.e(c.$1(""))
+                p = H.as_string(c.$1(""))
             for (s = 0; s < q;) {
-                p += H.e(b.$1(new H.bK(s, "")))
+                p += H.as_string(b.$1(new H.bK(s, "")))
                 if ((C.String.a8(a, s) & 4294966272) === 55296 && q > s + 1)
                     if ((C.String.a8(a, s + 1) & 4294966272) === 56320) {
                         r = s + 2
-                        p += H.e(c.$1(C.String.af(a, s, r)))
+                        p += H.as_string(c.$1(C.String.af(a, s, r)))
                         s = r
                         continue
-                    } p += H.e(c.$1(a[s]));
+                    } p += H.as_string(c.$1(a[s]));
                 ++s
             }
-            p = p + H.e(b.$1(new H.bK(s, ""))) + H.e(c.$1(""))
+            p = p + H.as_string(b.$1(new H.bK(s, ""))) + H.as_string(c.$1(""))
             return p.charCodeAt(0) == 0 ? p : p
         },
         vi(a, b, c, d) {
@@ -1610,10 +1618,10 @@ var A = {
             for (r = 0, q = ""; r < s;) {
                 p = a.indexOf(b, r)
                 if (p === -1) break
-                q = q + H.e(d.$1(C.String.af(a, r, p))) + H.e(c.$1(new H.bK(p, b)))
+                q = q + H.as_string(d.$1(C.String.af(a, r, p))) + H.as_string(c.$1(new H.bK(p, b)))
                 r = p + o
             }
-            q += H.e(d.$1(C.String.ay(a, r)))
+            q += H.as_string(d.$1(C.String.ay(a, r)))
             return q.charCodeAt(0) == 0 ? q : q
         },
         iG(a, b, c, d) {
@@ -1756,7 +1764,7 @@ var A = {
             _.d = null
         },
         mq(a, b, c) {
-            if (!H.aP(b)) throw H.wrap_expression(P.bz("Invalid view offsetInBytes " + H.e(b), null))
+            if (!H.aP(b)) throw H.wrap_expression(P.bz("Invalid view offsetInBytes " + H.as_string(b), null))
         },
         on(a) {
             return a
@@ -2083,7 +2091,7 @@ var A = {
         ob(a, b, c) {
             var s = P.jh(a),
                 r = H.aH(b == null ? H.b_(a) : b, null)
-            return s + ": type '" + H.e(r) + "' is not a subtype of type '" + H.e(c) + "'"
+            return s + ": type '" + H.as_string(r) + "' is not a subtype of type '" + H.as_string(c) + "'"
         },
         u_(a) {
             return new H.eI("TypeError: " + a)
@@ -2246,7 +2254,7 @@ var A = {
                 a5.toString
                 a5.length = r
             }
-            return l + "(" + a1 + ") => " + H.e(a0)
+            return l + "(" + a1 + ") => " + H.as_string(a0)
         },
         aH(a, b) {
             var s, r, q, p, o, n, m = a.y
@@ -2265,7 +2273,7 @@ var A = {
                 q = r.y
                 return J.iN(q === 11 || q === 12 ? C.String.B("(", s) + ")" : s, "?")
             }
-            if (m === 8) return "FutureOr<" + H.e(H.aH(a.z, b)) + ">"
+            if (m === 8) return "FutureOr<" + H.as_string(H.aH(a.z, b)) + ">"
             if (m === 9) {
                 p = H.uG(a.z)
                 o = a.Q
@@ -2747,7 +2755,7 @@ var A = {
                 stack.push(H._Universe__lookupTerminalRti(a.u, 4, "1&"))
                 return
             }
-            throw H.wrap_expression(P.iP("Unexpected extended operation " + H.e(s)))
+            throw H.wrap_expression(P.iP("Unexpected extended operation " + H.as_string(s)))
         },
         _Parser_toType(a, b, c) {
             if (typeof c == "string") return H._Universe__lookupInterfaceRti(a, c, a.sEA)
@@ -2994,7 +3002,7 @@ var A = {
             throw "Unable to print message: " + String(a)
         },
         vm(a) {
-            return H.throw_expression(new H.fz("Field '" + H.e(a) + "' has been assigned during initialization."))
+            return H.throw_expression(new H.fz("Field '" + H.as_string(a) + "' has been assigned during initialization."))
         }
     },
     J = {
@@ -3018,7 +3026,7 @@ var A = {
                 if (true === s) return a
                 r = Object.getPrototypeOf(a)
                 if (s === r) return n.i
-                if (n.e === r) throw H.wrap_expression(P.hT("Return interceptor for " + H.e(s(a, n))))
+                if (n.e === r) throw H.wrap_expression(P.hT("Return interceptor for " + H.as_string(s(a, n))))
             }
             q = a.constructor
             if (q == null) p = null
@@ -3053,7 +3061,7 @@ var A = {
             return J.t0(new Array(a), b)
         },
         t_(a, b) {
-            if (!H.aP(a) || a < 0) throw H.wrap_expression(P.bz("Length must be a non-negative integer: " + H.e(a), null))
+            if (!H.aP(a) || a < 0) throw H.wrap_expression(P.bz("Length must be a non-negative integer: " + H.as_string(a), null))
             return H.b(new Array(a), b.i("E<0>"))
         },
         t0(a, b) {
@@ -4013,7 +4021,7 @@ var A = {
             while (true) {
                 if (!(k < 80 || j < 3)) break
                 if (!l.u()) return
-                s = H.e(l.gC())
+                s = H.as_string(l.gC())
                 b.push(s)
                 k += s.length + 2;
                 ++j
@@ -4027,10 +4035,10 @@ var A = {
                 ++j
                 if (!l.u()) {
                     if (j <= 4) {
-                        b.push(H.e(p))
+                        b.push(H.as_string(p))
                         return
                     }
-                    r = H.e(p)
+                    r = H.as_string(p)
                     q = b.pop()
                     k += r.length + 2
                 } else {
@@ -4049,8 +4057,8 @@ var A = {
                             return
                         }
                     }
-                    q = H.e(p)
-                    r = H.e(o)
+                    q = H.as_string(p)
+                    r = H.as_string(o)
                     k += r.length + q.length + 4
                 }
             }
@@ -4239,7 +4247,7 @@ var A = {
         },
         rQ(a) {
             if (a instanceof H.c_) return a.k(0)
-            return "Instance of '" + H.e(H.jZ(a)) + "'"
+            return "Instance of '" + H.as_string(H.jZ(a)) + "'"
         },
         aL(a, b, c, d) {
             var s, r = c ? J.t_(a, d) : J.rZ(a, d)
@@ -4294,11 +4302,11 @@ var A = {
             var s = J.by(b)
             if (!s.u()) return a
             if (c.length === 0) {
-                do a += H.e(s.gC())
+                do a += H.as_string(s.gC())
                 while (s.u())
             } else {
-                a += H.e(s.gC())
-                for (; s.u();) a = a + c + H.e(s.gC())
+                a += H.as_string(s.gC())
+                for (; s.u();) a = a + c + H.as_string(s.gC())
             }
             return a
         },
@@ -4580,10 +4588,10 @@ var A = {
                 r = new T.dI(0)
                 s.m(0, $.na(), r)
             }
-            s = H.e(a.a) + "?"
+            s = H.as_string(a.a) + "?"
             q = r.b
             r.b = q + 1
-            return s + H.e(q) + "@" + H.e(a.b)
+            return s + H.as_string(q) + "@" + H.as_string(a.b)
         },
         nU(a4) {
             var s, r, q, p, o, n, m, l, k, j, i, h, g, f = a4.a,
@@ -4858,7 +4866,7 @@ var A = {
             if (a5 == s) {
                 if (a4 == $.lQ()) {
                     r = 0
-                    q = H.e(a4) + H.e($.aD())
+                    q = H.as_string(a4) + H.as_string($.aD())
                     p = 0
                     o = $.T()
                     n = H.b([], t.q)
@@ -4903,7 +4911,7 @@ var A = {
                     return a2
                 }
                 if (a4 == $.qP()) {
-                    r = H.e(a4) + H.e($.aD())
+                    r = H.as_string(a4) + H.as_string($.aD())
                     q = 0
                     p = $.T()
                     o = H.b([], t.q)
@@ -4948,7 +4956,7 @@ var A = {
                     return a1
                 }
                 if (a4 == $.qo()) {
-                    r = H.e(a4) + H.e($.aD())
+                    r = H.as_string(a4) + H.as_string($.aD())
                     q = 0
                     p = $.T()
                     o = H.b([], t.q)
@@ -4993,7 +5001,7 @@ var A = {
                     return a1
                 }
                 if (a4 == $.qY()) {
-                    r = H.e(a4) + H.e($.aD())
+                    r = H.as_string(a4) + H.as_string($.aD())
                     q = 0
                     p = $.T()
                     o = H.b([], t.q)
@@ -5039,7 +5047,7 @@ var A = {
                 }
                 if (a4 == $.qO()) return T.rE(a4, s)
                 if (a4 == $.qh()) {
-                    r = H.e(a4) + H.e($.aD())
+                    r = H.as_string(a4) + H.as_string($.aD())
                     q = 0
                     p = $.T()
                     o = H.b([], t.q)
@@ -5084,7 +5092,7 @@ var A = {
                     return a1
                 }
                 if (a4 == $.qb()) {
-                    r = H.e(a4) + H.e($.aD())
+                    r = H.as_string(a4) + H.as_string($.aD())
                     q = 0
                     p = $.T()
                     o = H.b([], t.q)
@@ -5129,7 +5137,7 @@ var A = {
                     return a1
                 }
                 if (a4 == $.q9()) {
-                    r = H.e(a4) + H.e($.aD())
+                    r = H.as_string(a4) + H.as_string($.aD())
                     q = 0
                     p = $.T()
                     o = H.b([], t.q)
@@ -5174,7 +5182,7 @@ var A = {
                     return a1
                 }
                 if (a4 == $.d5()) {
-                    r = H.e(a4) + H.e($.aD())
+                    r = H.as_string(a4) + H.as_string($.aD())
                     q = 0
                     p = $.T()
                     o = H.b([], t.q)
@@ -5219,7 +5227,7 @@ var A = {
                     return a1
                 }
                 if (a4 == $.ck()) {
-                    r = H.e(a4) + H.e($.aD())
+                    r = H.as_string(a4) + H.as_string($.aD())
                     q = 0
                     p = $.T()
                     o = H.b([], t.q)
@@ -5264,7 +5272,7 @@ var A = {
                     return a1
                 }
                 if (a4 == $.qL()) {
-                    r = H.e(a4) + H.e($.aD())
+                    r = H.as_string(a4) + H.as_string($.aD())
                     q = 0
                     p = $.T()
                     o = H.b([], t.q)
@@ -5310,7 +5318,7 @@ var A = {
                 }
                 r = $.ni()
                 if (J.m1(a4, r)) {
-                    r = H.e(r) + H.e($.aD())
+                    r = H.as_string(r) + H.as_string($.aD())
                     q = 0
                     p = $.T()
                     o = H.b([], t.q)
@@ -5539,7 +5547,7 @@ var A = {
         },
         rE(a2, a3) {
             var s, r, q, p, o, n, m, l, k, j, i, h, g, f = 0,
-                e = H.e(a2) + H.e($.aD()),
+                e = H.as_string(a2) + H.as_string($.aD()),
                 d = 0,
                 c = $.T(),
                 b = H.b([], t.q),
@@ -5585,7 +5593,7 @@ var A = {
         },
         nD(a2, a3, a4) {
             var s, r, q, p, o, n, m, l, k, j, i, h, g, f = 0,
-                e = H.e(a3) + H.e($.aD()),
+                e = H.as_string(a3) + H.as_string($.aD()),
                 d = 0,
                 c = $.T(),
                 b = H.b([], t.q),
@@ -8128,7 +8136,7 @@ var A = {
             for (f = s.length, q = t.A, p = 0; p < s.length; s.length === f || (0, H.F)(s), ++p) {
                 o = s[p]
                 if (o instanceof T.HPlr) {
-                    max_hp_element = q.a(span_element.querySelector("." + H.e(o.b) + " > .maxhp"))
+                    max_hp_element = q.a(span_element.querySelector("." + H.as_string(o.b) + " > .maxhp"))
                     m = o.c
                     if (m >= o.d) {
                         l = document
@@ -8277,7 +8285,7 @@ J.Interceptor.prototype = {
         return H.Primitives_objectHashCode(a)
     },
     k(a) {
-        return "Instance of '" + H.e(H.jZ(a)) + "'"
+        return "Instance of '" + H.as_string(H.jZ(a)) + "'"
     }
 }
 J.fw.prototype = {
@@ -8319,7 +8327,7 @@ J.JavaScriptFunction.prototype = {
     k(a) {
         var s = a[$.oR()]
         if (s == null) return this.dQ(a)
-        return "JavaScript function for " + H.e(J.b4(s))
+        return "JavaScript function for " + H.as_string(J.b4(s))
     }
 }
 J.JsArray.prototype = {
@@ -8368,7 +8376,7 @@ J.JsArray.prototype = {
     },
     aV(a, b) {
         var s, r = P.aL(a.length, "", false, t.N)
-        for (s = 0; s < a.length; ++s) r[s] = H.e(a[s])
+        for (s = 0; s < a.length; ++s) r[s] = H.as_string(a[s])
         return r.join(b)
     },
     dz(a, b) {
@@ -8589,7 +8597,7 @@ J.JsNumber.prototype = {
         if (s > 0) {
             if (s !== 1 / 0) return Math.floor(s)
         } else if (s > -1 / 0) return Math.ceil(s)
-        throw H.wrap_expression(P.UnsupportError("Result of truncating division is " + H.e(s) + ": " + H.e(a) + " ~/ " + b))
+        throw H.wrap_expression(P.UnsupportError("Result of truncating division is " + H.as_string(s) + ": " + H.as_string(a) + " ~/ " + b))
     },
     bX(a, b) {
         if (typeof b != "number") throw H.wrap_expression(H.R(b))
@@ -8808,16 +8816,16 @@ H.M.prototype = {
             o = p.gp(p)
         if (b.length !== 0) {
             if (o === 0) return ""
-            s = H.e(p.ai(0, 0))
+            s = H.as_string(p.ai(0, 0))
             if (o !== p.gp(p)) throw H.wrap_expression(P.aK(p))
             for (r = s, q = 1; q < o; ++q) {
-                r = r + b + H.e(p.ai(0, q))
+                r = r + b + H.as_string(p.ai(0, q))
                 if (o !== p.gp(p)) throw H.wrap_expression(P.aK(p))
             }
             return r.charCodeAt(0) == 0 ? r : r
         } else {
             for (q = 0, r = ""; q < o; ++q) {
-                r += H.e(p.ai(0, q))
+                r += H.as_string(p.ai(0, q))
                 if (o !== p.gp(p)) throw H.wrap_expression(P.aK(p))
             }
             return r.charCodeAt(0) == 0 ? r : r
@@ -8952,7 +8960,7 @@ H.kh.prototype = {
 H.dP.prototype = {
     k(a) {
         var s = this.b
-        if (s == null) return "NoSuchMethodError: " + H.e(this.a)
+        if (s == null) return "NoSuchMethodError: " + H.as_string(this.a)
         return "NoSuchMethodError: method not found: '" + s + "' on null"
     }
 }
@@ -8961,10 +8969,10 @@ H.fx.prototype = {
         var s, r = this,
             q = "NoSuchMethodError: method not found: '",
             p = r.b
-        if (p == null) return "NoSuchMethodError: " + H.e(r.a)
+        if (p == null) return "NoSuchMethodError: " + H.as_string(r.a)
         s = r.c
-        if (s == null) return q + p + "' (" + H.e(r.a) + ")"
-        return q + p + "' on '" + s + "' (" + H.e(r.a) + ")"
+        if (s == null) return q + p + "' (" + H.as_string(r.a) + ")"
+        return q + p + "' on '" + s + "' (" + H.as_string(r.a) + ")"
     }
 }
 H.hU.prototype = {
@@ -9029,7 +9037,7 @@ H.dg.prototype = {
         return (H.vd(this.a) ^ H.Primitives_objectHashCode(this.$_target)) >>> 0
     },
     k(a) {
-        return "Closure '" + H.e(this.$_name) + "' of " + ("Instance of '" + H.e(H.jZ(this.a)) + "'")
+        return "Closure '" + H.as_string(this.$_name) + "' of " + ("Instance of '" + H.as_string(H.jZ(this.a)) + "'")
     }
 }
 H.h3.prototype = {
@@ -9640,7 +9648,7 @@ P._wrapJsFunctionForAsync_closure.prototype = {
 }
 P.f3.prototype = {
     k(a) {
-        return H.e(this.a)
+        return H.as_string(this.a)
     },
     $iO: 1,
     gbz() {
@@ -10417,9 +10425,9 @@ P.jM.prototype = {
         if (!r.a) this.b.a += ", "
         r.a = false
         r = this.b
-        s = r.a += H.e(a)
+        s = r.a += H.as_string(a)
         r.a = s + ": "
-        r.a += H.e(b)
+        r.a += H.as_string(b)
     },
     $S: 51
 }
@@ -10870,7 +10878,7 @@ P.Duration.prototype = {
         s = p.$1(C.JsInt.ag(o, 6e7) % 60)
         r = p.$1(C.JsInt.ag(o, 1e6) % 60)
         q = new P.jc().$1(o % 1e6)
-        return "" + C.JsInt.ag(o, 36e8) + ":" + H.e(s) + ":" + H.e(r) + "." + H.e(q)
+        return "" + C.JsInt.ag(o, 36e8) + ":" + H.as_string(s) + ":" + H.as_string(r) + "." + H.as_string(q)
     }
 }
 P.jc.prototype = {
@@ -10936,10 +10944,10 @@ P.cD.prototype = {
     gc6() {
         var s, r = this.e,
             q = this.f
-        if (r == null) s = q != null ? ": Not less than or equal to " + H.e(q) : ""
-        else if (q == null) s = ": Not greater than or equal to " + H.e(r)
-        else if (q > r) s = ": Not in inclusive range " + H.e(r) + ".." + H.e(q)
-        else s = q < r ? ": Valid value range is empty" : ": Only valid value is " + H.e(r)
+        if (r == null) s = q != null ? ": Not less than or equal to " + H.as_string(q) : ""
+        else if (q == null) s = ": Not greater than or equal to " + H.as_string(r)
+        else if (q > r) s = ": Not in inclusive range " + H.as_string(r) + ".." + H.as_string(q)
+        else s = q < r ? ": Valid value range is empty" : ": Only valid value is " + H.as_string(r)
         return s
     }
 }
@@ -10951,7 +10959,7 @@ P.fs.prototype = {
         if (this.b < 0) return ": index must not be negative"
         var s = this.f
         if (s === 0) return ": no indices are valid"
-        return ": index should be less than " + H.e(s)
+        return ": index should be less than " + H.as_string(s)
     },
     gp(a) {
         return this.f
@@ -11012,7 +11020,7 @@ P.kG.prototype = {
 P.jm.prototype = {
     k(a) {
         var s, r, q, p, o, n, m, l, k, j, i, h, g = this.a,
-            f = g != null && "" !== g ? "FormatException: " + H.e(g) : "FormatException",
+            f = g != null && "" !== g ? "FormatException: " + H.as_string(g) : "FormatException",
             e = this.c,
             d = this.b
         if (typeof d == "string") {
@@ -11070,7 +11078,7 @@ P.jm.prototype = {
             }
             h = C.String.af(d, k, l)
             return f + j + h + i + "\n" + C.String.cG(" ", e - k + j.length) + "^\n"
-        } else return e != null ? f + (" (at offset " + H.e(e) + ")") : f
+        } else return e != null ? f + (" (at offset " + H.as_string(e) + ")") : f
     }
 }
 P.L.prototype = {
@@ -11124,7 +11132,7 @@ P.Object.prototype = {
         return H.Primitives_objectHashCode(this)
     },
     k(a) {
-        return "Instance of '" + H.e(H.jZ(this)) + "'"
+        return "Instance of '" + H.as_string(H.jZ(this)) + "'"
     },
     gcw(a) {
         var s = this instanceof H.c_ ? H.oy(this) : null
@@ -11521,7 +11529,7 @@ W.en.prototype = {
     aA(a, b, c, d) {
         var s, r
         if ("createContextualFragment" in window.Range.prototype) return this.bY(a, b, c, d)
-        s = W.rP("<table>" + H.e(b) + "</table>", c, d)
+        s = W.rP("<table>" + H.as_string(b) + "</table>", c, d)
         r = document.createDocumentFragment()
         r.toString
         s.toString
@@ -11679,7 +11687,7 @@ W.cP.prototype = {
         return $.rl().w(0, W.ds(a))
     },
     aM(a, b, c) {
-        var s = $.et.h(0, H.e(W.ds(a)) + "::" + b)
+        var s = $.et.h(0, H.as_string(W.ds(a)) + "::" + b)
         if (s == null) s = $.et.h(0, "*::" + b)
         if (s == null) return false
         return s.$4(a, b, c, this)
@@ -11730,13 +11738,13 @@ W.eD.prototype = {
         var s = this,
             r = W.ds(a),
             q = s.c
-        if (q.w(0, H.e(r) + "::" + b)) return s.d.eG(c)
+        if (q.w(0, H.as_string(r) + "::" + b)) return s.d.eG(c)
         else if (q.w(0, "*::" + b)) return s.d.eG(c)
         else {
             q = s.b
-            if (q.w(0, H.e(r) + "::" + b)) return true
+            if (q.w(0, H.as_string(r) + "::" + b)) return true
             else if (q.w(0, "*::" + b)) return true
-            else if (q.w(0, H.e(r) + "::*")) return true
+            else if (q.w(0, H.as_string(r) + "::*")) return true
             else if (q.w(0, "*::*")) return true
         }
         return false
@@ -11765,7 +11773,7 @@ W.it.prototype = {
 }
 W.l7.prototype = {
     $1(a) {
-        return "TEMPLATE::" + H.e(a)
+        return "TEMPLATE::" + H.as_string(a)
     },
     $S: 10
 }
@@ -11862,7 +11870,7 @@ W.ix.prototype = {
             else {
                 this.br(a, b)
                 window
-                o = "Removing corrupted element " + H.e(r)
+                o = "Removing corrupted element " + H.as_string(r)
                 if (typeof console != "undefined") window.console.warn(o)
             }
         }
@@ -11879,7 +11887,7 @@ W.ix.prototype = {
         if (!m.a.b_(a)) {
             m.br(a, b)
             window
-            s = "Removing disallowed element <" + H.e(e) + "> from " + H.e(b)
+            s = "Removing disallowed element <" + H.as_string(e) + "> from " + H.as_string(b)
             if (typeof console != "undefined") window.console.warn(s)
             return
         }
@@ -11887,7 +11895,7 @@ W.ix.prototype = {
             if (!m.a.aM(a, "is", g)) {
                 m.br(a, b)
                 window
-                s = "Removing disallowed type extension <" + H.e(e) + ' is="' + g + '">'
+                s = "Removing disallowed type extension <" + H.as_string(e) + ' is="' + g + '">'
                 if (typeof console != "undefined") window.console.warn(s)
                 return
             } s = f.gad(f)
@@ -11899,7 +11907,7 @@ W.ix.prototype = {
             H.lg(p)
             if (!o.aM(a, n, s.getAttribute(p))) {
                 window
-                o = "Removing disallowed attribute <" + H.e(e) + " " + p + '="' + H.e(s.getAttribute(p)) + '">'
+                o = "Removing disallowed attribute <" + H.as_string(e) + " " + p + '="' + H.as_string(s.getAttribute(p)) + '">'
                 if (typeof console != "undefined") window.console.warn(o)
                 s.removeAttribute(p)
             }
@@ -12151,7 +12159,7 @@ P.lF.prototype = {
 }
 P.kT.prototype = {
     ax(a) {
-        if (a <= 0 || a > 4294967296) throw H.wrap_expression(P.tn("max must be in range 0 < max \u2264 2^32, was " + H.e(a)))
+        if (a <= 0 || a > 4294967296) throw H.wrap_expression(P.tn("max must be in range 0 < max \u2264 2^32, was " + H.as_string(a)))
         return Math.random() * a >>> 0
     }
 }
@@ -12169,7 +12177,7 @@ P.p.prototype = {
             s.push(new W.is())
         }
         c = new W.ix(d)
-        r = '<svg version="1.1">' + H.e(b) + "</svg>"
+        r = '<svg version="1.1">' + H.as_string(b) + "</svg>"
         s = document
         q = s.body
         q.toString
@@ -12303,7 +12311,7 @@ L.iR.prototype = {
                         async_goto = 4
                         break
                     }
-                    h = H.b([m, l, [H.b([H.e($.ni()) + this_.d++, $.cl()], k)]], j)
+                    h = H.b([m, l, [H.b([H.as_string($.ni()) + this_.d++, $.cl()], k)]], j)
                     if (this_.z === 0) h.pop()
                     async_goto = 5
                     return P._asyncAwait(T.c2(h), $async$O)
@@ -13399,13 +13407,13 @@ HtmlRenderer.ax.prototype = {
         i.fy = s.h(b, 2)
         i.dy = s.h(b, 3)
         r = i.y
-        if (c) r.textContent = " " + H.e(i.db) + " "
-        else r.textContent = " " + H.e(i.dx) + " "
+        if (c) r.textContent = " " + H.as_string(i.db) + " "
+        else r.textContent = " " + H.as_string(i.dx) + " "
         r = i.x
         r.toString
         q = Sgls.o6(i.fy)
         r.classList.add(q)
-        if (J.nz(i.fy, $.aD())) i.y.textContent = " " + H.e(i.dx) + " "
+        if (J.nz(i.fy, $.aD())) i.y.textContent = " " + H.as_string(i.dx) + " "
         p = s.h(b, 4)
         o = J.m_(p, "+")
         if (o > -1) {
@@ -13430,12 +13438,12 @@ HtmlRenderer.ax.prototype = {
             q.appendChild(l)
             i.r.appendChild(document.createTextNode(" "))
         }
-        i.fr = g + i.cy + '">' + H.e(i.x.outerHTML) + f + C.o.ab(i.dx) + " </div></div>"
-        i.fx = g + i.cy + '">' + H.e(i.x.outerHTML) + f + C.o.ab(i.dx) + ' </div><div class="maxhp" style="width: ' + n + '" /></div>'
+        i.fr = g + i.cy + '">' + H.as_string(i.x.outerHTML) + f + C.o.ab(i.dx) + " </div></div>"
+        i.fx = g + i.cy + '">' + H.as_string(i.x.outerHTML) + f + C.o.ab(i.dx) + ' </div><div class="maxhp" style="width: ' + n + '" /></div>'
         if (c) {
             k = HtmlRenderer.add_div("detail")
             q = i.r
-            l = LangData.get_lang("BxJN") + (" " + H.e(i.go))
+            l = LangData.get_lang("BxJN") + (" " + H.as_string(i.go))
             j = document
             q.appendChild(j.createTextNode(l))
             if (p != null) {
@@ -13469,7 +13477,7 @@ HtmlRenderer.ax.prototype = {
         i.x = s.a(i.x.cloneNode(true))
         s = s.a(i.y.cloneNode(true))
         i.y = s
-        s.textContent = " " + H.e(i.dx) + " "
+        s.textContent = " " + H.as_string(i.dx) + " "
         s = i.f
         s.appendChild(i.x)
         s.appendChild(i.y)
@@ -13541,11 +13549,11 @@ HtmlRenderer.lp.prototype = {
             r = "" + C.d.R(a.c / 4) + "px"
             q = s.z.style
             q.width = r
-            s.fx = '<div class="plr_body ' + s.cy + '"><div class="sgl ' + H.e(Sgls.o6(s.fy)) + '"></div>' + H.e(s.y.outerHTML) + '<div class="maxhp" style="width: ' + r + '" /></div>'
+            s.fx = '<div class="plr_body ' + s.cy + '"><div class="sgl ' + H.as_string(Sgls.o6(s.fy)) + '"></div>' + H.as_string(s.y.outerHTML) + '<div class="maxhp" style="width: ' + r + '" /></div>'
             return s.fr
         }
-        if (a instanceof T.HDamage) return '<div class="damage">' + H.e(a.a) + "</div>"
-        if (a instanceof T.HRecover) return '<div class="recover">' + H.e(a.a) + "</div>"
+        if (a instanceof T.HDamage) return '<div class="damage">' + H.as_string(a.a) + "</div>"
+        if (a instanceof T.HRecover) return '<div class="recover">' + H.as_string(a.a) + "</div>"
         return J.b4(a)
     },
     $S: 42
@@ -13567,11 +13575,11 @@ HtmlRenderer.lq.prototype = {
 }
 Sgls.k7.prototype = {
     $2(a, b) {
-        var s, r, q = "data:image/gif;base64," + H.e(b),
+        var s, r, q = "data:image/gif;base64," + H.as_string(b),
             p = $.e_
         $.e_ = p + 1
         s = "icon_" + p
-        r = H.e(a) + "@!"
+        r = H.as_string(a) + "@!"
         $.k8.m(0, r, s)
         $.mg.m(0, r, q)
         if (!run_env.from_code) {
@@ -14905,7 +14913,7 @@ T.hB.prototype = {
         this_.f = C.d.R(this_.f * $.mI())
         s = b0.a
         s.push(T.RunUpdate(LangData.get_lang("USvA"), this_.r, a6, a6, a6, $.a6(), 1000, 100))
-        shadow_name = H.e(this_.r.a) + "?" + H.e($.qM())
+        shadow_name = H.as_string(this_.r.a) + "?" + H.as_string($.qM())
         // r = name + "?" + "shadow"
         // console.log("T.hB.v", shadow_name, a5.r.a, H.e($.qM()))
         q = this_.r
@@ -15129,7 +15137,7 @@ T.hH.prototype = {
         a5.push(T.RunUpdate(LangData.get_lang("sCza"), this_.r, a4, a4, a4, $.a6(), 1000, 100))
         s = this_.fr
         if (s == null) {
-            s = H.e(this_.r.a) + "?" + H.e($.qQ())
+            s = H.as_string(this_.r.a) + "?" + H.as_string($.qQ())
             r = this_.r
             q = r.b
             r = r.c
@@ -15390,8 +15398,8 @@ T.fQ.prototype = {
 }
 T.cz.prototype = {
     av(a, b) {
-        LangData.get_lang(LangData.eQ(H.e($.n4()) + H.e(a)))
-        this.r = LangData.get_lang(LangData.eQ(H.e($.n4()) + H.e(a)))
+        LangData.get_lang(LangData.eQ(H.as_string($.n4()) + H.as_string(a)))
+        this.r = LangData.get_lang(LangData.eQ(H.as_string($.n4()) + H.as_string(a)))
     },
     gan() {
         return null
@@ -16482,7 +16490,7 @@ T.fo.prototype = {
                     if (o !== 0)
                         for (l = 0; l < p.length; p.length === o || (0, H.F)(p), ++l) {
                             k = p[l]
-                            m += "\n" + H.e(k.e) + "\t" + H.e(k.a)
+                            m += "\n" + H.as_string(k.e) + "\t" + H.as_string(k.a)
                         }
                     p = C.e.gaB().ab(m)
                     o = H.b_(p).i("a9<z.E>")
@@ -16507,7 +16515,7 @@ T.fo.prototype = {
             if (c === 1) return P.async_rethrow(d, r)
             while (true) switch (s) {
                 case 0:
-                    n = H.e(a.gap().e) + "\r" + H.e(a.I.$0())
+                    n = H.as_string(a.gap().e) + "\r" + H.as_string(a.I.$0())
                     n = C.e.gaB().ab(n)
                     p = H.b_(n).i("a9<z.E>")
                     o = p.i("y<M.E,l*>")
@@ -16591,7 +16599,7 @@ T.b7.prototype = {
         }
     },
     k(a) {
-        return "[" + H.e(this.c[0].r) + "]"
+        return "[" + H.as_string(this.c[0].r) + "]"
     }
 }
 T.IPlr.prototype = {
@@ -16689,7 +16697,7 @@ T.aq.prototype = {
     k(a) {
         // return H.e(this.a)
         // console.log(a, this.a, H.e(this.a))
-        return H.e(this.a)
+        return H.as_string(this.a)
     }
 }
 T.lD.prototype = {
@@ -16747,7 +16755,7 @@ T.Plr.prototype = {
         s = this_.r = this_.a
         r = this_.b
         if (r != null && r !== "" && r !== s) {
-            r = this_.e = H.e(s) + "@" + H.e(this_.b)
+            r = this_.e = H.as_string(s) + "@" + H.as_string(this_.b)
         } else {
             this_.e = this_.b = s
             r = s
@@ -16755,15 +16763,21 @@ T.Plr.prototype = {
         this_.f = r
         q = this_.d
         if (q != null && q !== "") {
-            this_.f = H.e(r) + "+" + H.e(q)
+            this_.f = H.as_string(r) + "+" + H.as_string(q)
+
+            // 武器列表
             r = $.rj()
+
             if (r.J(0, q)) {
                 p = r.h(0, q).$2(q, this_)
             } else if (J.nz(q, $.cl())) {
                 p = new T.j2(q, this_, P.aL($.av(), 0, false, t.B))
                 p.a = q
                 p.a = C.String.af(q, 0, q.length - $.i())
-            } else p = T.tN(q, this_)
+            } else {
+                p = T.tN(q, this_)
+            }
+
             o = new LangData.SuperRC4()
             o.bd(LangData.fZ(p.a), $.t())
             p.b3(o)
@@ -17231,11 +17245,11 @@ T.Plr.prototype = {
             if (s.b.bS(a, b, c)) break
     },
     k(a) {
-        return "[" + H.e(this.r) + "]"
+        return "[" + H.as_string(this.r) + "]"
     },
     fK() {
         var s = this
-        return H.e(s.e) + "\t" + H.e(s.r) + "\t" + H.e(s.c) + "\t" + H.e(s.f) + "\t" + H.e(s.fy)
+        return H.as_string(s.e) + "\t" + H.as_string(s.r) + "\t" + H.as_string(s.c) + "\t" + H.as_string(s.f) + "\t" + H.as_string(s.fy)
     },
     cE() {
         var s, r = this.Y,
@@ -17266,10 +17280,10 @@ T.Plr.prototype = {
             C.Array.aJ(q)
             s.push(C.Array.dz(C.Array.al(q, $.B(), $.ap()), new T.jY()) + $.mK())
             for (r = 0; r < s.length; ++r)
-                if (o.q[r] > s[r]) n.push(H.e($.lO()) + H.e(o.q[r] - s[r]))
+                if (o.q[r] > s[r]) n.push(H.as_string($.lO()) + H.as_string(o.q[r] - s[r]))
             else n.push("")
         }
-        return H.e(o.e) + "\t" + H.e(o.r) + "\t" + H.e(o.c) + "\t" + H.e(o.f) + "\t" + H.e(o.fy) + n[$.ap()] + "\t" + H.e(o.aY(o.q[0])) + n[0] + "\t" + H.e(o.aY(o.q[$.i()])) + n[$.i()] + "\t" + H.e(o.aY(o.q[$.t()])) + n[$.t()] + "\t" + H.e(o.aY(o.q[$.B()])) + n[$.B()] + "\t" + H.e(o.aY(o.q[$.C()])) + n[$.C()] + "\t" + H.e(o.aY(o.q[$.X()])) + n[$.X()] + "\t" + H.e(o.aY(o.q[$.a4()])) + n[$.a4()] + "\t" + H.e(o.cE())
+        return H.as_string(o.e) + "\t" + H.as_string(o.r) + "\t" + H.as_string(o.c) + "\t" + H.as_string(o.f) + "\t" + H.as_string(o.fy) + n[$.ap()] + "\t" + H.as_string(o.aY(o.q[0])) + n[0] + "\t" + H.as_string(o.aY(o.q[$.i()])) + n[$.i()] + "\t" + H.as_string(o.aY(o.q[$.t()])) + n[$.t()] + "\t" + H.as_string(o.aY(o.q[$.B()])) + n[$.B()] + "\t" + H.as_string(o.aY(o.q[$.C()])) + n[$.C()] + "\t" + H.as_string(o.aY(o.q[$.X()])) + n[$.X()] + "\t" + H.as_string(o.aY(o.q[$.a4()])) + n[$.a4()] + "\t" + H.as_string(o.cE())
     },
     aY(a) {
         var s = $.mU()
@@ -17945,7 +17959,7 @@ T.hK.prototype = {
             a5 = null
         if (!(a6 instanceof T.aM) && (a7.n() & 63) < a4.f && a4.r.bw(a7)) {
             a6.r2.m(0, $.iJ(), new T.hY())
-            s = H.e(a4.r.a) + "?" + H.e($.qZ())
+            s = H.as_string(a4.r.a) + "?" + H.as_string($.qZ())
             r = a4.r
             q = r.b
             r = r.c
@@ -18345,7 +18359,7 @@ T.hz.prototype = {
             p = q.q
             p[s] = p[s] + r
             q.F()
-            l.push(T.RunUpdate("[" + H.e($.r6()[s]) + "]" + LangData.get_lang("zbya"), o.r, n, r, n, 0, m, 100))
+            l.push(T.RunUpdate("[" + H.as_string($.r6()[s]) + "]" + LangData.get_lang("zbya"), o.r, n, r, n, 0, m, 100))
         }
         q = o.r
         q.l = q.l + $.cX()
