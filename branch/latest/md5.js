@@ -19727,7 +19727,8 @@ var t = (function rtii() {
         return 4
     })
     lazy_old($, "wH", "eX", function () {
-        return X.k("$YcaZZ:WUG", 36)
+        // return X.k("$YcaZZ:WUG", 36)
+        return 256
     })
     lazy_old($, "wk", "pf", function () {
         return X.D("NS 98:}]PR", 92)
@@ -20032,10 +20033,12 @@ var t = (function rtii() {
         return X.D("'%s.<Y.W9R", 36)
     })
     lazy_old($, "wI", "ps", function () {
-        return X.D("Ot`&?l'nHU", 55)
+        // return X.D("Ot`&?l'nHU", 55)
+        return 256
     })
     lazy_old($, "wx", "pm", function () {
-        return X.D(";lV$g3/|;B", 80)
+        // return X.D(";lV$g3/|;B", 80)
+        return 2048
     })
     lazy_old($, "x_", "W", function () {
         // return X.D("2(:ub1V-+B", 77)
