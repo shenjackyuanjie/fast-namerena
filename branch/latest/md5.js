@@ -7888,7 +7888,7 @@ var A = {
             r = C.JsInt.ag(s - 0, 4)
             let result = new Uint32Array(q, 0, r)[1]
             // return new Uint32Array(q, 0, r)[1]
-            // console.log("X.k", a, b, result)
+            console.log("X.k", a, b, result)
             return result
         },
         D(a, b) {
@@ -7898,7 +7898,7 @@ var A = {
             r = C.JsInt.ag(s - 0, 4)
             let result = new Float32Array(q, 0, r)[1];
             // return new Float32Array(q, 0, r)[1]
-            // console.log("X.D", a, b, result)
+            console.log("X.D", a, b, result)
             return result
         },
         je: function je() {},
@@ -8356,15 +8356,17 @@ J.JsArray.prototype = {
                 return true
             } return false
     },
+    // push all elements of b to a
     a5(a, b) {
         var s, r
-        if (!!a.fixed$length) H.throw_expression(P.UnsupportError("addAll"))
+        if (a.fixed$length) H.throw_expression(P.UnsupportError("addAll"))
         if (Array.isArray(b)) {
             this.ea(a, b)
             return
         }
         for (s = b.length, r = 0; r < b.length; b.length === s || (0, H.F)(b), ++r) a.push(b[r])
     },
+    // push all elements of b to a
     ea(a, b) {
         var s, r = b.length
         if (r === 0) return
@@ -16783,9 +16785,14 @@ T.Plr.prototype = {
             p.b3(o)
             this_.r1 = p
         }
-        if (J.lW(s, " ")) this_.r = s.split(" ")[0]
-        if (this_.c == null) this_.c = this_.b
+        if (J.lW(s, " ")) {
+            this_.r = s.split(" ")[0]
+        }
+        if (this_.c == null) {
+            this_.c = this_.b
+        }
         r = new LangData.SuperRC4()
+
         r.bd(LangData.fZ(this_.b), $.i())
         this_.X = r
         // q = $.ns()
@@ -19648,7 +19655,8 @@ var t = (function rtii() {
         return X.k("P1JU9kNX~I", 52)
     })
     lazy_old($, "wr", "t", function () {
-        return X.k("Oi}Eh'8SJR", 99)
+        // return X.k("Oi}Eh'8SJR", 99)
+        return 2
     })
     lazy_old($, "wn", "ph", function () {
         return X.D("od`D$R=0SJ", 85)
@@ -19776,7 +19784,8 @@ var t = (function rtii() {
         return X.D("%xD:GhI4QU", 48)
     })
     lazy_old($, "vU", "lG", function () {
-        return X.D("'00dRlSitU", 54)
+        // return X.D("'00dRlSitU", 54)
+        return 10
     })
     lazy_old($, "vW", "p3", function () {
         return X.k("`aa.s&j;mC", 14)
@@ -19920,7 +19929,8 @@ var t = (function rtii() {
         return X.k("sy_Q{nF(@P", 92)
     })
     lazy_old($, "wi", "T", function () {
-        return X.D("xPJ>uk!c<B", 53)
+        // return X.D("xPJ>uk!c<B", 53)
+        return 1
     })
     lazy_old($, "xa", "lL", function () {
         return X.k("F(#M*C?F`C", 34)
@@ -20024,7 +20034,8 @@ var t = (function rtii() {
         return X.D(";lV$g3/|;B", 80)
     })
     lazy_old($, "x_", "W", function () {
-        return X.D("2(:ub1V-+B", 77)
+        // return X.D("2(:ub1V-+B", 77)
+        return 32768
     })
     lazy_old($, "xO", "n1", function () {
         return X.D("Jn|940%'0C", 76)
