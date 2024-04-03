@@ -46,7 +46,7 @@ if (run_env.from_code) {
             "some": "thing"
         }],
     };
-    
+
     global.self = global.window;
 
     // 读取文件
@@ -3391,8 +3391,13 @@ var A = {
     },
     P = {
         _AsyncRun__initializeScheduleImmediate() {
+            if (run_env.from_code) {
+                console.log("creating scheduleImmediate")
+            }
             var s, r, q = {}
-            if (self.scheduleImmediate != null) return P.uK()
+            if (self.scheduleImmediate != null) {
+                return P.uK()
+            }
             if (self.MutationObserver != null && self.document != null) {
                 s = self.document.createElement("div")
                 r = self.document.createElement("span")
@@ -3401,8 +3406,13 @@ var A = {
                     childList: true
                 })
                 return new P.kA(q, s, r)
-            } else if (self.setImmediate != null) return P.uL()
+            } else if (self.setImmediate != null) {
+                // _AsyncRun__scheduleImmediateWithSetImmediate
+                return P.uL()
+            }
+            // _AsyncRun__scheduleImmediateWithTimer
             return P.uM()
+
         },
         _AsyncRun__scheduleImmediateJsOverride(a) {
             self.scheduleImmediate(H.convert_dart_closure_to_js_md5(new P.kC(a), 0))
@@ -18639,52 +18649,52 @@ LangData.k_.prototype = {
     s.dV = s.cs
 })();
 (function installTearOffs() {
-    var s = hunkHelpers._static_2,
-        r = hunkHelpers._static_1,
-        q = hunkHelpers._static_0,
-        p = hunkHelpers._instance_2u,
-        o = hunkHelpers.installStaticTearOff,
+    var static_2 = hunkHelpers._static_2,
+        static_1 = hunkHelpers._static_1,
+        static_0 = hunkHelpers._static_0,
+        instance_2u = hunkHelpers._instance_2u,
+        install_static_tearoff = hunkHelpers.installStaticTearOff,
         instance_1i = hunkHelpers._instance_1i,
         m = hunkHelpers._instance_0i,
         l = hunkHelpers._instance_1u,
         k = hunkHelpers.installInstanceTearOff,
         j = hunkHelpers._instance_0u
-    s(J, "bO", "t1", 59)
-    r(H, "uv", "mv", 10)
-    r(P, "uK", "tP", 4)
-    r(P, "uL", "tQ", 4)
-    r(P, "uM", "tR", 4)
-    q(P, "ow", "uD", 0)
-    s(P, "uN", "ux", 9)
-    p(P._Future.prototype, "geg", "be", 9)
-    o(W, "uV", 4, null, ["$4"], ["tT"], 20, 0)
-    o(W, "uW", 4, null, ["$4"], ["tU"], 20, 0)
-    s(HtmlRenderer, "oD", "rU", 62)
+    static_2(J, "bO", "t1", 59)
+    static_1(H, "uv", "mv", 10)
+    static_1(P, "uK", "_AsyncRun__scheduleImmediateJsOverride", 4)
+    static_1(P, "uL", "_AsyncRun__scheduleImmediateWithSetImmediate", 4)
+    static_1(P, "uM", "_AsyncRun__scheduleImmediateWithTimer", 4)
+    static_0(P, "ow", "uD", 0)
+    static_2(P, "uN", "ux", 9)
+    instance_2u(P._Future.prototype, "geg", "be", 9)
+    install_static_tearoff(W, "uV", 4, null, ["$4"], ["tT"], 20, 0)
+    install_static_tearoff(W, "uW", 4, null, ["$4"], ["tU"], 20, 0)
+    static_2(HtmlRenderer, "oD", "rU", 62)
     var i
     instance_1i(i = HtmlRenderer.fq.prototype, "gfb", "fc", 31)
     instance_1i(i, "gff", "ds", 8)
     m(i, "gbc", "dI", 0)
     l(i, "gfd", "fe", 33)
     k(i, "gel", 0, 0, null, ["$1", "$0"], ["c5", "em"], 34, 0, 0)
-    r(Sgls, "vg", "tv", 8)
-    o(T, "v6", 5, null, ["$5"], ["ty"], 1, 0)
-    o(T, "v7", 5, null, ["$5"], ["tA"], 1, 0)
-    o(T, "v9", 5, null, ["$5"], ["tC"], 1, 0)
-    o(T, "oI", 5, null, ["$5"], ["tD"], 1, 0)
-    o(T, "oJ", 5, null, ["$5"], ["tE"], 1, 0)
-    o(T, "mE", 5, null, ["$5"], ["tF"], 1, 0)
-    o(T, "vb", 5, null, ["$5"], ["tI"], 1, 0)
-    o(T, "v8", 5, null, ["$5"], ["tB"], 1, 0)
-    o(T, "va", 5, null, ["$5"], ["tG"], 1, 0)
-    s(T, "v4", "rT", 63)
-    s(T, "mD", "nX", 64)
-    s(T, "v5", "t6", 43)
-    o(T, "ad", 5, null, ["$5"], ["tx"], 1, 0)
-    o(T, "oH", 5, null, ["$5"], ["tz"], 1, 0)
+    static_1(Sgls, "vg", "tv", 8)
+    install_static_tearoff(T, "v6", 5, null, ["$5"], ["ty"], 1, 0)
+    install_static_tearoff(T, "v7", 5, null, ["$5"], ["tA"], 1, 0)
+    install_static_tearoff(T, "v9", 5, null, ["$5"], ["tC"], 1, 0)
+    install_static_tearoff(T, "oI", 5, null, ["$5"], ["tD"], 1, 0)
+    install_static_tearoff(T, "oJ", 5, null, ["$5"], ["tE"], 1, 0)
+    install_static_tearoff(T, "mE", 5, null, ["$5"], ["tF"], 1, 0)
+    install_static_tearoff(T, "vb", 5, null, ["$5"], ["tI"], 1, 0)
+    install_static_tearoff(T, "v8", 5, null, ["$5"], ["tB"], 1, 0)
+    install_static_tearoff(T, "va", 5, null, ["$5"], ["tG"], 1, 0)
+    static_2(T, "v4", "rT", 63)
+    static_2(T, "mD", "nX", 64)
+    static_2(T, "v5", "t6", 43)
+    install_static_tearoff(T, "ad", 5, null, ["$5"], ["tx"], 1, 0)
+    install_static_tearoff(T, "oH", 5, null, ["$5"], ["tz"], 1, 0)
     k(T.dl.prototype, "gf9", 0, 5, null, ["$5"], ["fa"], 1, 0, 0)
     j(i = T.Plr.prototype, "gfJ", "fK", 19)
     j(i, "gbT", "dE", 19)
-    p(T.cb.prototype, "gdr", "f8", 54)
+    instance_2u(T.cb.prototype, "gdr", "f8", 54)
 })();
 (function inheritance() {
     var mixin = hunkHelpers.mixin,
@@ -20713,6 +20723,7 @@ function main() {
                 $.nV = a8[$.C()]
                 $.nW = a8[$.X()]
                 $.tb = a8[$.a4()]
+
                 if (run_env.from_code) {
                     console.log("initing from node")
                     $.ox = assets_data.gAd
@@ -20725,6 +20736,7 @@ function main() {
                         $.ox = new H.a9(H.b(a2.split(""), t.s), t.bJ).f3(0)
                     }
                 }
+
                 async_goto = 3
                 return P._asyncAwait(HtmlRenderer.static_init(), $async$iE)
             case 3:
