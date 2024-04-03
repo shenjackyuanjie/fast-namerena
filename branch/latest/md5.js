@@ -5729,13 +5729,13 @@ var A = {
             if (o.length !== 0) c.push(o)
             return c
         },
-        c2(a) {
-            var s = 0,
-                r = P._makeAsyncAwaitCompleter(t.eF),
+        inner_main(a) {
+            var async_goto = 0,
+                async_completer = P._makeAsyncAwaitCompleter(t.eF),
                 q, p, o, n, m, l, k, j, i, h
             var $async$c2 = P._wrapJsFunctionForAsync(function (b, c) {
-                if (b === 1) return P.async_rethrow(c, r)
-                while (true) switch (s) {
+                if (b === 1) return P.async_rethrow(c, async_completer)
+                while (true) switch (async_goto) {
                     case 0:
                         k = t.eV
                         j = H.b([], k)
@@ -5747,18 +5747,19 @@ var A = {
                         o = 0
                         n = $.i()
                         m = -n
+                        // run here?
                         l = new T.fo(j, h, k, i, new H.aT(t.d5), a, p, o, m, m, new Float64Array(n))
-                        s = 3
+                        async_goto = 3
                         return P._asyncAwait(l.bD(), $async$c2)
                     case 3:
                         q = l
-                        s = 1
+                        async_goto = 1
                         break
                     case 1:
-                        return P.async_return(q, r)
+                        return P.async_return(q, async_completer)
                 }
             })
-            return P._asyncStartSync($async$c2, r)
+            return P._asyncStartSync($async$c2, async_completer)
         },
         rT(a, b) {
             var s = a.e,
@@ -12320,7 +12321,7 @@ L.iR.prototype = {
                     h = H.b([m, l, [H.b([H.as_string($.ni()) + this_.d++, $.cl()], k)]], j)
                     if (this_.z === 0) h.pop()
                     async_goto = 5
-                    return P._asyncAwait(T.c2(h), $async$O)
+                    return P._asyncAwait(T.inner_main(h), $async$O)
                 case 5:
                     g = b
                     f = null
@@ -12530,7 +12531,7 @@ V.iV.prototype = {
                         for (f = 0; f < m.length; ++f) g.push(H.b(["" + this_.e++, l], k))
                     }
                     async_goto = 5
-                    return P._asyncAwait(T.c2(h), $async$O)
+                    return P._asyncAwait(T.inner_main(h), $async$O)
                 case 5:
                     e = a6
                     d = null
@@ -12753,7 +12754,7 @@ X.iW.prototype = {
                     this_.b = m + 1
                     k = H.b([H.b([l, H.b(["" + this_.c++, "\x02"], e)], o), H.b([H.b(["" + this_.c++, "\x02"], e), H.b(["" + this_.c++, "\x02"], e)], o)], n)
                     async_goto = 5
-                    return P._asyncAwait(T.c2(k), $async$O)
+                    return P._asyncAwait(T.inner_main(k), $async$O)
                 case 5:
                     j = b
                     i = C.Array.dl(j.c, new X.iX())
@@ -12777,7 +12778,7 @@ X.iW.prototype = {
                         break
                     }
                     async_goto = 12
-                    return P._asyncAwait(T.c2(k), $async$O)
+                    return P._asyncAwait(T.inner_main(k), $async$O)
                 case 12:
                     j = b
                 case 13:
@@ -20923,7 +20924,8 @@ function main() {
                     }
                 }
                 async_goto = 8
-                return P._asyncAwait(T.c2(h), $async$iE)
+                // c2 似乎是起始
+                return P._asyncAwait(T.inner_main(h), $async$iE)
             case 8:
                 a0 = async_result
                 HtmlRenderer.jt(a0)
