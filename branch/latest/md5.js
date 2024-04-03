@@ -16347,7 +16347,7 @@ T.fo.prototype = {
                         k = H.b(n.slice(0), m)
                         e.d = k
                         n = H.b(n.slice(0), m)
-                        if (!!n.immutable$list) H.throw_expression(P.UnsupportError("sort"))
+                        if (n.immutable$list) H.throw_expression(P.UnsupportError("sort"))
                         m = n.length - 1
                         if (m - 0 <= 32) H.ej(n, 0, m, T.mD())
                         else H.ei(n, 0, m, T.mD())
@@ -16404,7 +16404,6 @@ T.fo.prototype = {
         // return P._asyncStartSync($async$bE, r)
         // $.mc = 0
         why_ns = 0
-        $.mc = 0
     },
     fz(a, b) {
         var s, this_ = this,
@@ -16420,6 +16419,7 @@ T.fo.prototype = {
         }
     },
     O() {
+        // 运行时?
         var async_goto = 0,
             r = P._makeAsyncAwaitCompleter(t.d),
             result_, p = [],
@@ -16440,6 +16440,8 @@ T.fo.prototype = {
                     break
                 case 3:
                     k = k.c[0]
+                    // win
+                    // [2]获得胜利
                     j = LangData.get_lang("eTpN")
                     i = 0
                     h = $.lJ()
@@ -16450,7 +16452,7 @@ T.fo.prototype = {
                     async_goto = 5
                     // return P._asyncAwait(this_.bE(), $async$O)
                     why_ns = 0
-                    $.mc = 0 // 来自bE()
+                    // $.mc = 0 // 来自bE()
                 case 5:
                     result_ = n
                     async_goto = 1
@@ -20963,5 +20965,5 @@ function main() {
 }
 
 main() // 执行main函数
-console.log("ruaaaa", LangData.get_lang("MAda"))
+console.log("ruaaaa", LangData.get_lang("eTpN"))
 // [ 0, 2, 15, 18, 27, 28, 32, 37, 38 ]
