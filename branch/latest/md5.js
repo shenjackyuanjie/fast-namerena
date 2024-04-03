@@ -2,6 +2,7 @@
 // let window = window;
 
 'use strict';
+
 // 兼容nodejs, 要不然 window = {}; 会崩
 // 使用 global.window 修复了这个问题, 还是 strict 舒服
 
@@ -29,18 +30,48 @@ if (run_env.from_code) {
         localStorage: function () {},
     };
 
+    // list of elements
+    let stored_elements = [];
+
     let fake_element = {
+        childList: [],
+        tag: "",
+        width: 0,
+        height: 0,
         style: {},
         styleSheets: [
             "something"
         ],
         length: 0,
+        innerHTML: "",
+        querySelector: function (tag) {
+            // 搜索一下有没有这个元素
+            for (let i = 0; i < this.childList.length; i++) {
+                if (this.childList[i].tag == tag) {
+                    return this.childList[i];
+                }
+            }
+        },
         addEventListener: function () {},
+        fake_init: function (tag) {
+            let _ = this;
+            _.tag = tag;
+            // 把自己加到列表里
+            stored_elements.push(_);
+        }
     }
 
     global.document = {
         createElement: function (tag) {
-            return fake_element;
+            return fake_element.fake_init(tag);
+        },
+        querySelector: function (tag) {
+            // 搜索一下有没有这个元素
+            for (let i = 0; i < stored_elements.length; i++) {
+                if (stored_elements[i].tag == tag) {
+                    return stored_elements[i];
+                }
+            }
         },
         styleSheets: [{
             "some": "thing"
@@ -3470,7 +3501,7 @@ var A = {
                 return function (error_code, async_result) {
                     while (true) try {
                         if (run_env.from_code) {
-                            console.log("O._wrapJsFunctionForAsync", error_code, async_result)
+                            // console.log("O._wrapJsFunctionForAsync", error_code, async_result)
                         }
                         fn(error_code, async_result)
                         break
@@ -8082,15 +8113,15 @@ var A = {
             return m
         },
         uI(a) {
-            var s, r, q, p, o, n, m, l, k, j, i, h, g, f = a.a
+            var s, span_element, q, p, o, max_hp_element, m, l, k, j, i, h, g, f = a.a
             if (f > 0 && a.e != null) $.ay.h(0, a.e.gb2()).dc(f)
             s = H.b([], t.j)
-            r = HtmlRenderer.add_span("u")
-            C.R.by(r, H.oO(a.d, $.rm(), new HtmlRenderer.lq(new HtmlRenderer.lp(s, a), a), null), $.bV())
+            span_element = HtmlRenderer.add_span("u")
+            C.R.by(span_element, H.oO(a.d, $.rm(), new HtmlRenderer.lq(new HtmlRenderer.lp(s, a), a), null), $.bV())
             for (f = s.length, q = t.A, p = 0; p < s.length; s.length === f || (0, H.F)(s), ++p) {
                 o = s[p]
                 if (o instanceof T.HPlr) {
-                    n = q.a(r.querySelector("." + H.e(o.b) + " > .maxhp"))
+                    max_hp_element = q.a(span_element.querySelector("." + H.e(o.b) + " > .maxhp"))
                     m = o.c
                     if (m >= o.d) {
                         l = document
@@ -8104,8 +8135,8 @@ var A = {
                         m = i.style
                         l = "" + C.d.R(o.d / 4) + "px"
                         m.width = l
-                        n.appendChild(k)
-                        n.appendChild(i)
+                        max_hp_element.appendChild(k)
+                        max_hp_element.appendChild(i)
                     } else {
                         l = document
                         h = l.createElement("div")
@@ -8118,12 +8149,14 @@ var A = {
                         l = i.style
                         m = "" + C.d.R(m / 4) + "px"
                         l.width = m
-                        n.appendChild(h)
-                        n.appendChild(i)
+                        max_hp_element.appendChild(h)
+                        max_hp_element.appendChild(i)
                     }
-                } else if (o instanceof T.DPlr) q.a(r.querySelector(".name")).classList.add("namedie")
+                } else if (o instanceof T.DPlr) {
+                    q.a(span_element.querySelector(".name")).classList.add("namedie")
+                }
             }
-            return r
+            return span_element
         },
         fq: function fq(a, b, c, d) {
             var _ = this
@@ -9541,32 +9574,20 @@ P.kD.prototype = {
 }
 P.l8.prototype = {
     e8(a, b) {
-        if (self.setTimeout != null) {
-            // self.setTimeout(H.convert_dart_closure_to_js_md5(new P.l9(this, b), 0), a)
-            self.setTimeout(H.convert_dart_closure_to_js_md5(new P._TimerImpl_internalCallback(this, b), 0), 0)
-            // b.$0() // 草,这下…… 6
+        if (run_env.from_code) {
+            // b.$0()
+            // setTimeout
+            setTimeout(H.convert_dart_closure_to_js_md5(new P.kC(b), 0), 0)
         } else {
-            throw H.wrap_expression(P.UnsupportError("`setTimeout()` not found."))
+            if (self.setTimeout != null) {
+                // self.setTimeout(H.convert_dart_closure_to_js_md5(new P.l9(this, b), 0), a)
+                self.setTimeout(H.convert_dart_closure_to_js_md5(new P._TimerImpl_internalCallback(this, b), 0), 0)
+                // b.$0() // 草,这下…… 6
+            } else {
+                throw H.wrap_expression(P.UnsupportError("`setTimeout()` not found."))
+            }
         }
     }
-    // e8(a, b) {
-    //     if (typeof P.count === "number") {
-    //         P.count++
-    //     } else {
-    //         P.count = 1
-    //     }
-    //     if (P.count > 10500) return
-    //     if (P.count == 1) {
-    //         setTimeout(H.cU(new P.l9(this, b), 0), 0)
-    //     } else {
-    //         try {
-    //             H.cU(new P.l9(this, b), 0)()
-    //         } catch (error) {
-    //             return
-    //         }
-
-    //     }
-    // }
 }
 P._TimerImpl_internalCallback.prototype = {
     $0() {
@@ -20744,7 +20765,7 @@ function main() {
                 // 战斗框输入位置
                 // 这里请输入一个被混淆过的名字
                 switch_to = 5
-                if (from_code) {
+                if (run_env.from_code) {
                     console.log("node input:", raw_names)
                     raw_names = name_input
                 } else {
