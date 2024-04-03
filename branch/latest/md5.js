@@ -12950,7 +12950,7 @@ HtmlRenderer.fq.prototype = {
         r = n.length
         if (r > 1) {
             // if (!J.Y(J.J(J.J(n[0], 0), 0), "")) {
-            // 
+            // 如果第一个元素不是空字符串
             if (n[0][0][0] !== "") {
                 for (m = 0; m < n.length; n.length === r || (0, H.F)(n), ++m) {
                     l = n[m]
