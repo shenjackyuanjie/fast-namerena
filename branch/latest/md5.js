@@ -6,7 +6,7 @@
 // 兼容nodejs, 要不然 window = {}; 会崩
 // 使用 global.window 修复了这个问题, 还是 strict 舒服
 
-let name_input = "test\ntest2";
+let name_input = "test\ntest2+aa";
 let assets_data = {
     lang: null,
     gAd: null,
@@ -1536,7 +1536,7 @@ var A = {
             var s
             if (typeof b == "string") return a.indexOf(b, c) >= 0
             else {
-                s = J.lU(b, C.b.ay(a, c))
+                s = J.lU(b, C.String.ay(a, c))
                 s = s.gbv(s)
                 return !s
             }
@@ -1580,10 +1580,10 @@ var A = {
             if (!t.eh.b(b)) throw H.wrap_expression(P.da(b, "pattern", "is not a Pattern"))
             for (s = J.lU(b, a), s = s.ga0(s), r = 0, q = ""; s.u();) {
                 p = s.gC()
-                q = q + H.e(H.mv(C.b.af(a, r, p.gbc(p)))) + H.e(c.$1(p))
+                q = q + H.e(H.mv(C.String.af(a, r, p.gbc(p)))) + H.e(c.$1(p))
                 r = p.gbh()
             }
-            s = q + H.e(H.mv(C.b.ay(a, r)))
+            s = q + H.e(H.mv(C.String.ay(a, r)))
             return s.charCodeAt(0) == 0 ? s : s
         },
         vh(a, b, c) {
@@ -1591,10 +1591,10 @@ var A = {
                 p = H.e(c.$1(""))
             for (s = 0; s < q;) {
                 p += H.e(b.$1(new H.bK(s, "")))
-                if ((C.b.a8(a, s) & 4294966272) === 55296 && q > s + 1)
-                    if ((C.b.a8(a, s + 1) & 4294966272) === 56320) {
+                if ((C.String.a8(a, s) & 4294966272) === 55296 && q > s + 1)
+                    if ((C.String.a8(a, s + 1) & 4294966272) === 56320) {
                         r = s + 2
-                        p += H.e(c.$1(C.b.af(a, s, r)))
+                        p += H.e(c.$1(C.String.af(a, s, r)))
                         s = r
                         continue
                     } p += H.e(c.$1(a[s]));
@@ -1610,10 +1610,10 @@ var A = {
             for (r = 0, q = ""; r < s;) {
                 p = a.indexOf(b, r)
                 if (p === -1) break
-                q = q + H.e(d.$1(C.b.af(a, r, p))) + H.e(c.$1(new H.bK(p, b)))
+                q = q + H.e(d.$1(C.String.af(a, r, p))) + H.e(c.$1(new H.bK(p, b)))
                 r = p + o
             }
-            q += H.e(d.$1(C.b.ay(a, r)))
+            q += H.e(d.$1(C.String.ay(a, r)))
             return q.charCodeAt(0) == 0 ? q : q
         },
         iG(a, b, c, d) {
@@ -2190,7 +2190,7 @@ var A = {
         },
         uB(a, b) {
             var s, r, q
-            for (s = "", r = "", q = 0; q < a.length; ++q, r = ", ") s += C.b.B(r, H.aH(a[q], b))
+            for (s = "", r = "", q = 0; q < a.length; ++q, r = ", ") s += C.String.B(r, H.aH(a[q], b))
             return s
         },
         op(a4, a5, a6) {
@@ -2204,14 +2204,14 @@ var A = {
                 q = a5.length
                 for (p = s; p > 0; --p) a5.push("T" + (q + p))
                 for (o = t.cK, n = t.c, m = t.K, l = "<", k = "", p = 0; p < s; ++p, k = a3) {
-                    l = C.b.B(l + k, a5[a5.length - 1 - p])
+                    l = C.String.B(l + k, a5[a5.length - 1 - p])
                     j = a6[p]
                     i = j.y
                     if (!(i === 2 || i === 3 || i === 4 || i === 5 || j === o))
                         if (!(j === n)) h = j === m
                     else h = true
                     else h = true
-                    if (!h) l += C.b.B(" extends ", H.aH(j, a5))
+                    if (!h) l += C.String.B(" extends ", H.aH(j, a5))
                 }
                 l += ">"
             } else {
@@ -2227,10 +2227,10 @@ var A = {
             b = g.c
             a = b.length
             a0 = H.aH(o, a5)
-            for (a1 = "", a2 = "", p = 0; p < e; ++p, a2 = a3) a1 += C.b.B(a2, H.aH(f[p], a5))
+            for (a1 = "", a2 = "", p = 0; p < e; ++p, a2 = a3) a1 += C.String.B(a2, H.aH(f[p], a5))
             if (c > 0) {
                 a1 += a2 + "["
-                for (a2 = "", p = 0; p < c; ++p, a2 = a3) a1 += C.b.B(a2, H.aH(d[p], a5))
+                for (a2 = "", p = 0; p < c; ++p, a2 = a3) a1 += C.String.B(a2, H.aH(d[p], a5))
                 a1 += "]"
             }
             if (a > 0) {
@@ -2263,7 +2263,7 @@ var A = {
                 r = a.z
                 s = H.aH(r, b)
                 q = r.y
-                return J.iN(q === 11 || q === 12 ? C.b.B("(", s) + ")" : s, "?")
+                return J.iN(q === 11 || q === 12 ? C.String.B("(", s) + ")" : s, "?")
             }
             if (m === 8) return "FutureOr<" + H.e(H.aH(a.z, b)) + ">"
             if (m === 9) {
@@ -3107,7 +3107,7 @@ var A = {
         check_from_start(a, b) {
             var s, r
             for (s = a.length; b < s;) {
-                r = C.b.a8(a, b)
+                r = C.String.a8(a, b)
                 if (r !== 32 && r !== 13 && !J.check_str_legeal(r)) break;
                 ++b
             }
@@ -3117,7 +3117,7 @@ var A = {
             var s, r
             for (; b > 0; b = s) {
                 s = b - 1
-                r = C.b.aQ(a, s)
+                r = C.String.aQ(a, s)
                 if (r !== 32 && r !== 13 && !J.check_str_legeal(r)) break
             }
             return b
@@ -4561,7 +4561,7 @@ var A = {
                 if (s == null) {
                     s = T.nC(b)
                     s.aP(0)
-                    e.a.push(T.RunUpdate(C.b.B(LangData.get_lang("jIRA"), $.nc()), a, b, null, null, $.a6(), 1000, 100))
+                    e.a.push(T.RunUpdate(C.String.B(LangData.get_lang("jIRA"), $.nc()), a, b, null, null, $.a6(), 1000, 100))
                 } else s.fr = s.fr + 1
                 if (a.r2.J(0, $.a7())) s.fr = s.fr + 1
             }
@@ -4658,7 +4658,7 @@ var A = {
                     s.z = s.z + $.Z()
                     s.Q = s.Q + 1
                 }
-                e.a.push(T.RunUpdate(C.b.B(LangData.get_lang("spfN"), $.qx()), a, b, null, null, $.a6(), 1000, 100))
+                e.a.push(T.RunUpdate(C.String.B(LangData.get_lang("spfN"), $.qx()), a, b, null, null, $.a6(), 1000, 100))
             }
         },
         tD(a, b, c, d, e) {
@@ -4710,7 +4710,7 @@ var A = {
                     b.F()
                 } else s.y = s.y + $.cX()
                 if (a.r2.J(0, $.a7())) s.y = s.y + $.bx()
-                r = T.RunUpdate(C.b.B(LangData.get_lang("HBga"), $.qF()), a, b, null, null, $.bg(), 1000, 100)
+                r = T.RunUpdate(C.String.B(LangData.get_lang("HBga"), $.qF()), a, b, null, null, $.bg(), 1000, 100)
                 e.a.push(r)
             }
         },
@@ -4730,7 +4730,7 @@ var A = {
                     r.z = $.C()
                     r.r = a
                 }
-                e.a.push(T.RunUpdate(C.b.B(LangData.get_lang("Okln"), $.qH()), a, b, null, null, $.a6(), 1000, 100))
+                e.a.push(T.RunUpdate(C.String.B(LangData.get_lang("Okln"), $.qH()), a, b, null, null, $.a6(), 1000, 100))
             }
         },
         I(a, b, c) {
@@ -5351,9 +5351,9 @@ var A = {
                     a1 = 0
                     a1 = new T.fR(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                     a1.a1(a4, s, r, a3)
-                    r = a1.r = C.b.ay(a4, $.X())
+                    r = a1.r = C.String.ay(a4, $.X())
                     s = $.C()
-                    $.vq = r.length > s && C.b.a8(r, s) === $.q0() ? $.pE() : $.mS()
+                    $.vq = r.length > s && C.String.a8(r, s) === $.q0() ? $.pE() : $.mS()
                     return a1
                 }
                 if ($.nr().J(0, a4)) {
@@ -5450,7 +5450,7 @@ var A = {
         },
         oq(a) {
             var s = a.d
-            if (s != null) s = C.b.cl(s, $.qm()) || C.b.cl(s, $.qn())
+            if (s != null) s = C.String.cl(s, $.qm()) || C.String.cl(s, $.qn())
             else s = false
             return s
         },
@@ -5635,7 +5635,7 @@ var A = {
             var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e = null,
                 d = t.E,
                 c = H.b([], d),
-                b = C.b.cK(a, $.r_())
+                b = C.String.cK(a, $.r_())
             for (s = 0; s < b.length; ++s) {
                 r = b[s]
                 q = $.r0()
@@ -5672,10 +5672,10 @@ var A = {
                 console.log("reaching weapon zone")
                 // if (H.iF(m, l, 0)) {
                 if (m.includes("+")) {
-                    // console.log("reach weapon zone")
-                    k = C.b.aT(m, $.lO())
-                    j = C.b.dF(C.b.ay(m, k + $.i()))
-                    l = C.b.af(m, 0, k)
+                    console.log("reach inner weapon zone", )
+                    k = C.String.aT(m, $.lO())
+                    j = C.String.dF(C.String.ay(m, k + $.i()))
+                    l = C.String.af(m, 0, k)
                     i = $.nq()
                     m = H.iG(l, i, "", 0)
                 } else {
@@ -5685,7 +5685,7 @@ var A = {
                 l = $.n3()
                 if (l == null) H.throw_expression(H.R(l))
                 if (H.iF(m, l, 0)) {
-                    h = C.b.cK(m, $.n3())
+                    h = C.String.cK(m, $.n3())
                     if (J.m1(h[0], " ")) {
                         l = 0
                         h[l] = J.nB(h[l], $.i())
@@ -5702,8 +5702,8 @@ var A = {
                     } else l = true
                     if (l) o.push(H.b([h[0], null, j], r))
                     else o.push(H.b([h[0], h[$.i()], j], r))
-                } else if (C.b.bA(m, " ")) {
-                    o.push(H.b([C.b.ay(m, $.i()), n, j], r))
+                } else if (C.String.bA(m, " ")) {
+                    o.push(H.b([C.String.ay(m, $.i()), n, j], r))
                 } else {
                     if (s + $.i() < b.length) {
                         l = $.n5()
@@ -5775,7 +5775,7 @@ var A = {
                 $.lj = P.c5(t.B)
                 s = -$.i()
                 for (r = 0; q = $.ox, p = q.length, r < p; ++r) {
-                    s += C.b.a8(q, r) - $.b2()
+                    s += C.String.a8(q, r) - $.b2()
                     $.lj.j(0, C.JsInt.V(s * $.pF(), $.pn()) + $.p9() + p)
                 }
             }
@@ -5791,7 +5791,7 @@ var A = {
             e.c = b
             s = new T.lD(e, c)
             for (d = a.length, r = b; r < d; ++r) {
-                q = C.b.a8(a, r)
+                q = C.String.a8(a, r)
                 if (q < $.d_()) {
                     if (q === $.at()) {
                         ++b
@@ -7961,8 +7961,8 @@ var A = {
                         if (run_env.from_code) {
                             console.log("loading gAd data")
                             // 暂时有问题, 还得调试
-                            // LangData.v1(t.cF.a(C.C.bt(0, assets_data.gAd)))
-                            // LangData.v1(assets_data.gAd)
+                            // LangData.v1(t.cF.a(C.C.bt(0, assets_data.lang)))
+                            // LangData.v1(assets_data.lang)
                         } else {
                             p = window.sessionStorage.getItem(LangData.eQ("ll"))
                             if (typeof p == "string") {
@@ -8089,7 +8089,7 @@ var A = {
         },
         t9(a) {
             var s = J.m_(a, "+")
-            if (s > -1) return C.b.af(a, 0, s) + '<span class="small">' + C.b.ay(a, s) + "</span>"
+            if (s > -1) return C.String.af(a, 0, s) + '<span class="small">' + C.String.ay(a, s) + "</span>"
             return a
         },
         t7(a, b, c) {
@@ -8788,7 +8788,7 @@ H.ff.prototype = {
         return this.a.length
     },
     h(a, b) {
-        return C.b.aQ(this.a, b)
+        return C.String.aQ(this.a, b)
     }
 }
 H.dO.prototype = {
@@ -9376,9 +9376,9 @@ H.kz.prototype = {
                         s = n.c
                         q = s + 1
                         if (q < r) {
-                            s = C.b.aQ(m, s)
+                            s = C.String.aQ(m, s)
                             if (s >= 55296 && s <= 56319) {
-                                s = C.b.aQ(m, q)
+                                s = C.String.aQ(m, q)
                                 s = s >= 56320 && s <= 57343
                             } else s = false
                         } else s = false
@@ -10596,7 +10596,7 @@ P.jr.prototype = {
             }
             if (q != null) {
                 if (r == null) r = new P.cH("")
-                if (s > b) r.a += C.b.af(a, b, s)
+                if (s > b) r.a += C.String.af(a, b, s)
                 r.a += q
                 b = s + 1
             }
@@ -10674,9 +10674,9 @@ P.lc.prototype = {
     },
     eo(a, b, c) {
         var s, r, q, p, o, n, m, l = this
-        if (b !== c && (C.b.aQ(a, c - 1) & 64512) === 55296) --c
+        if (b !== c && (C.String.aQ(a, c - 1) & 64512) === 55296) --c
         for (s = l.c, r = s.length, q = b; q < c; ++q) {
-            p = C.b.a8(a, q)
+            p = C.String.a8(a, q)
             if (p <= 127) {
                 o = l.b
                 if (o >= r) break
@@ -10687,7 +10687,7 @@ P.lc.prototype = {
                 if (o === 55296) {
                     if (l.b + 4 > r) break
                     n = q + 1
-                    if (l.eD(p, C.b.a8(a, n))) q = n
+                    if (l.eD(p, C.String.a8(a, n))) q = n
                 } else if (o === 56320) {
                     if (l.b + 3 > r) break
                     l.ce()
@@ -10757,9 +10757,9 @@ P.lb.prototype = {
             f = a[b]
         $label0$0: for (s = l.a; true;) {
             for (; true; g = p) {
-                r = C.b.a8("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFFFFFFFFFFFFFFFFGGGGGGGGGGGGGGGGHHHHHHHHHHHHHHHHHHHHHHHHHHHIHHHJEEBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBKCCCCCCCCCCCCDCLONNNMEEEEEEEEEEE", f) & 31
+                r = C.String.a8("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFFFFFFFFFFFFFFFFGGGGGGGGGGGGGGGGHHHHHHHHHHHHHHHHHHHHHHHHHHHIHHHJEEBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBKCCCCCCCCCCCCDCLONNNMEEEEEEEEEEE", f) & 31
                 i = j <= 32 ? f & 61694 >>> r : (f & 63 | i << 6) >>> 0
-                j = C.b.a8(" \x000:XECCCCCN:lDb \x000:XECCCCCNvlDb \x000:XECCCCCN:lDb AAAAA\x00\x00\x00\x00\x00AAAAA00000AAAAA:::::AAAAAGG000AAAAA00KKKAAAAAG::::AAAAA:IIIIAAAAA000\x800AAAAA\x00\x00\x00\x00 AAAAA", j + r)
+                j = C.String.a8(" \x000:XECCCCCN:lDb \x000:XECCCCCNvlDb \x000:XECCCCCN:lDb AAAAA\x00\x00\x00\x00\x00AAAAA00000AAAAA:::::AAAAAGG000AAAAA00KKKAAAAAG::::AAAAA:IIIIAAAAA000\x800AAAAA\x00\x00\x00\x00 AAAAA", j + r)
                 if (j === 0) {
                     h.a += H.cC(i)
                     if (g === c) break $label0$0
@@ -11019,11 +11019,11 @@ P.jm.prototype = {
             else s = false
             if (s) e = null
             if (e == null) {
-                if (d.length > 78) d = C.b.af(d, 0, 75) + "..."
+                if (d.length > 78) d = C.String.af(d, 0, 75) + "..."
                 return f + "\n" + d
             }
             for (r = 1, q = 0, p = false, o = 0; o < e; ++o) {
-                n = C.b.a8(d, o)
+                n = C.String.a8(d, o)
                 if (n === 10) {
                     if (q !== o || !p) ++r
                     q = o + 1
@@ -11037,7 +11037,7 @@ P.jm.prototype = {
             f = r > 1 ? f + (" (at line " + r + ", character " + (e - q + 1) + ")\n") : f + (" (at character " + (e + 1) + ")\n")
             m = d.length
             for (o = e; o < m; ++o) {
-                n = C.b.aQ(d, o)
+                n = C.String.aQ(d, o)
                 if (n === 10 || n === 13) {
                     m = o
                     break
@@ -11067,8 +11067,8 @@ P.jm.prototype = {
                 j = ""
                 i = ""
             }
-            h = C.b.af(d, k, l)
-            return f + j + h + i + "\n" + C.b.cG(" ", e - k + j.length) + "^\n"
+            h = C.String.af(d, k, l)
+            return f + j + h + i + "\n" + C.String.cG(" ", e - k + j.length) + "^\n"
         } else return e != null ? f + (" (at offset " + H.e(e) + ")") : f
     }
 }
@@ -11778,7 +11778,7 @@ W.is.prototype = {
         return false
     },
     aM(a, b, c) {
-        if (b === "is" || C.b.bA(b, "on")) return false
+        if (b === "is" || C.String.bA(b, "on")) return false
         return this.b_(a)
     },
     $iaN: 1
@@ -12438,7 +12438,7 @@ L.iU.prototype = {
 X.je.prototype = {
     $0() {
         var s, r = P.aL(93, 0, false, t.B)
-        for (s = 0; s < 93; ++s) r[s] = C.b.a8(u.b, s)
+        for (s = 0; s < 93; ++s) r[s] = C.String.a8(u.b, s)
         return r
     },
     $S: 21
@@ -12446,7 +12446,7 @@ X.je.prototype = {
 X.j9.prototype = {
     $0() {
         var s, r = P.aL(128, 93, false, t.B)
-        for (s = 0; s < 93; ++s) r[C.b.a8(u.b, s)] = s
+        for (s = 0; s < 93; ++s) r[C.String.a8(u.b, s)] = s
         return r
     },
     $S: 21
@@ -12540,7 +12540,7 @@ V.iV.prototype = {
                         } else a2 = false
                         if (a2) {
                             a3 = a1.d
-                            if (C.b.bA(a3, "[0]"))
+                            if (C.String.bA(a3, "[0]"))
                                 if (n.J(0, a3)) n.m(0, a3, n.h(0, a3) + 1)
                             else n.m(0, a3, 1)
                         }
@@ -12689,7 +12689,7 @@ X.iW.prototype = {
                 l = Math.pow(10, s)
                 for (k = t.V, j = 0; j < l; ++j) {
                     i = o.h(p, 0)
-                    h = C.b.fh(C.JsInt.k(j), s, "0")
+                    h = C.String.fh(C.JsInt.k(j), s, "0")
                     i.toString
                     g = J.aw(i)
                     if (0 > g) H.throw_expression(P.a8(0, 0, g, "startIndex", null))
@@ -13168,7 +13168,7 @@ HtmlRenderer.fq.prototype = {
         k = document_.createElement("tr")
         j = document_.createElement("td")
         k.appendChild(j)
-        C.j.by(j, C.b.B(J.iN($.nh(), LangData.get_lang("ePya")), $.nh()), $.bV())
+        C.j.by(j, C.String.B(J.iN($.nh(), LangData.get_lang("ePya")), $.nh()), $.bV())
         q = j.style
         q.minWidth = "112px"
         q = j.style
@@ -13195,7 +13195,7 @@ HtmlRenderer.fq.prototype = {
         k = document_.createElement("tr")
         j = document_.createElement("td")
         k.appendChild(j)
-        C.j.by(j, C.b.B(J.iN($.nf(), LangData.get_lang("eFKN")), $.nf()), $.bV())
+        C.j.by(j, C.String.B(J.iN($.nf(), LangData.get_lang("eFKN")), $.nf()), $.bV())
         q = j.style
         q.height = "32px"
         j = document_.createElement("td")
@@ -13408,8 +13408,8 @@ HtmlRenderer.ax.prototype = {
         p = s.h(b, 4)
         o = J.m_(p, "+")
         if (o > -1) {
-            r = i.go = P.oF(C.b.af(p, 0, o))
-            p = C.b.ay(p, o)
+            r = i.go = P.oF(C.String.af(p, 0, o))
+            p = C.String.ay(p, o)
         } else {
             r = i.go = P.oF(s.h(b, 4))
             p = h
@@ -13451,16 +13451,16 @@ HtmlRenderer.ax.prototype = {
             if (s.h(b, 12) !== "") {
                 switch (s.h(b, 12)) {
                     case "2":
-                        C.h.bk(k, e, C.b.B(" ", $.qC()), h, $.bV())
+                        C.h.bk(k, e, C.String.B(" ", $.qC()), h, $.bV())
                         break
                     case "1":
-                        C.h.bk(k, e, C.b.B(" ", $.qB()), h, $.bV())
+                        C.h.bk(k, e, C.String.B(" ", $.qB()), h, $.bV())
                         break
                     case "0":
-                        C.h.bk(k, e, C.b.B(" ", $.qA()), h, $.bV())
+                        C.h.bk(k, e, C.String.B(" ", $.qA()), h, $.bV())
                         break
                     default:
-                        C.h.bk(k, e, C.b.B(" ", $.qv()), h, $.bV())
+                        C.h.bk(k, e, C.String.B(" ", $.qv()), h, $.bV())
                 }
             }
         }
@@ -13646,7 +13646,7 @@ Sgls.k6.prototype = {
 }
 LangData.lA.prototype = {
     $2(a, b) {
-        if (typeof b == "string" && !C.b.w(b, "<") && !C.b.w(b, ">")) $.od.m(0, LangData.eQ(H.lg(a)), b)
+        if (typeof b == "string" && !C.String.w(b, "<") && !C.String.w(b, ">")) $.od.m(0, LangData.eQ(H.lg(a)), b)
     },
     $S: 23
 }
@@ -13819,7 +13819,7 @@ T.h5.prototype = {
         s.r.F()
         q = s.r
         q.l = q.l + $.lM()
-        q = C.b.B(LangData.get_lang("gIKN"), $.qu())
+        q = C.String.B(LangData.get_lang("gIKN"), $.qu())
         p = s.r
         o.push(T.RunUpdate(q, p, p, r, r, 0, 1000, 100))
     },
@@ -14097,7 +14097,7 @@ T.e3.prototype = {
         if (q.r.r2.J(0, $.a7())) r.z = r.z + $.B()
         // sklCharmHit
         // [1]被[魅惑]了
-        n.push(T.RunUpdate(C.b.B(LangData.get_lang("yjhn"), $.nd()), q.r, o, p, p, $.cZ(), 1000, 100))
+        n.push(T.RunUpdate(C.String.B(LangData.get_lang("yjhn"), $.nd()), q.r, o, p, p, $.cZ(), 1000, 100))
     }
 }
 T.dI.prototype = {
@@ -14317,7 +14317,7 @@ T.hi.prototype = {
         n = q.fx
         m = q.fy
         if (n > m) q.fx = m
-        q = C.b.B(LangData.get_lang("RQta"), $.qD())
+        q = C.String.B(LangData.get_lang("RQta"), $.qD())
         n = l.r
         m = new T.HPlr(p)
         m.a = n.e
@@ -14472,7 +14472,7 @@ T.hk.prototype = {
             r.z = s + q
             r.Q = r.Q + q
         }
-        m.push(T.RunUpdate(C.b.B(LangData.get_lang("DDWN"), $.qE()), p.r, n, o, o, 0, 1000, 100))
+        m.push(T.RunUpdate(C.String.B(LangData.get_lang("DDWN"), $.qE()), p.r, n, o, o, 0, 1000, 100))
     }
 }
 T.e8.prototype = {
@@ -14608,7 +14608,7 @@ T.ho.prototype = {
         }
         q = s.r
         q.l = q.l - $.eX()
-        q = C.b.B(LangData.get_lang("RCnN"), $.qG())
+        q = C.String.B(LangData.get_lang("RCnN"), $.qG())
         p = s.r
         o.push(T.RunUpdate(q, p, p, r, r, 0, 1000, 100))
     },
@@ -14819,7 +14819,7 @@ T.hx.prototype = {
         if (r > q) r = q
         p = d.a
         p.push(T.RunUpdate(LangData.get_lang("FXSa"), l.r, s, k, k, $.i(), 1000, 100))
-        p.push(T.RunUpdate(C.b.B(LangData.get_lang("rFJa"), $.ng()), l.r, s, k, k, r + $.a6(), 1000, 100))
+        p.push(T.RunUpdate(C.String.B(LangData.get_lang("rFJa"), $.ng()), l.r, s, k, k, r + $.a6(), 1000, 100))
         s.fx = r
         o = s.y
         if (!C.Array.w(o.f, s)) {
@@ -14866,7 +14866,7 @@ T.hu.prototype = {
             r.fr = $.C()
             r.aP(0)
         } else r.fr = r.fr + $.C()
-        m.push(T.RunUpdate(C.b.B(LangData.get_lang("jIRA"), $.nc()), p.r, n, o, o, 0, 1000, 100))
+        m.push(T.RunUpdate(C.String.B(LangData.get_lang("jIRA"), $.nc()), p.r, n, o, o, 0, 1000, 100))
         m = p.r
         q = m.fx
         m.fx = 0
@@ -15040,7 +15040,7 @@ T.hG.prototype = {
             o.F()
         } else r.z = r.z + $.t()
         if (q.r.r2.J(0, $.a7())) r.z = r.z + $.C()
-        n.push(T.RunUpdate(C.b.B(LangData.get_lang("YNva"), $.qJ()), q.r, o, p, p, $.a6(), 1000, 100))
+        n.push(T.RunUpdate(C.String.B(LangData.get_lang("YNva"), $.qJ()), q.r, o, p, p, $.a6(), 1000, 100))
     }
 }
 T.hj.prototype = {
@@ -16209,7 +16209,7 @@ T.eg.prototype = {
             q.r = p.z
             q.z = q.z + s
         }
-        m.push(T.RunUpdate(C.b.B(LangData.get_lang("yjhn"), $.nd()), this.r, n, o, o, $.cZ(), 1000, 100))
+        m.push(T.RunUpdate(C.String.B(LangData.get_lang("yjhn"), $.nd()), this.r, n, o, o, $.cZ(), 1000, 100))
     }
 }
 T.fo.prototype = {
@@ -16761,7 +16761,7 @@ T.Plr.prototype = {
             } else if (J.nz(q, $.cl())) {
                 p = new T.j2(q, this_, P.aL($.av(), 0, false, t.B))
                 p.a = q
-                p.a = C.b.af(q, 0, q.length - $.i())
+                p.a = C.String.af(q, 0, q.length - $.i())
             } else p = T.tN(q, this_)
             o = new LangData.SuperRC4()
             o.bd(LangData.fZ(p.a), $.t())
@@ -17180,15 +17180,15 @@ T.Plr.prototype = {
         p = LangData.get_lang("kZsn")
         r = 0
         if (a === r) {
-            e.a.push(T.RunUpdate(C.b.B(C.b.fu(p, "1", "0"), $.ne()), n, n, new T.HDamage(0), null, $.Z(), 1000, 100))
+            e.a.push(T.RunUpdate(C.String.B(C.String.fu(p, "1", "0"), $.ne()), n, n, new T.HDamage(0), null, $.Z(), 1000, 100))
             return 0
         }
         s = n.fx
         q = s - a
         n.fx = q
         if (q <= r) n.fx = r
-        if (a >= $.eU()) p = C.b.B(p, $.qz())
-        else if (a >= $.cZ()) p = C.b.B(p, $.qy())
+        if (a >= $.eU()) p = C.String.B(p, $.qz())
+        else if (a >= $.cZ()) p = C.String.B(p, $.qy())
         r = new T.HPlr(s)
         r.a = n.e
         r.d = n.fx
@@ -17503,7 +17503,7 @@ T.cb.prototype = {
             r = $.K()
             q = b.a
             q.push(r)
-            q.push(T.RunUpdate(C.b.B(LangData.get_lang("VgaN"), $.qw()), p.r, p.cx, null, null, $.i(), 1000, 100))
+            q.push(T.RunUpdate(C.String.B(LangData.get_lang("VgaN"), $.qw()), p.r, p.cx, null, null, $.i(), 1000, 100))
             p.cx.a3(s, false, p.r, T.ad(), a, b)
         }
     },
@@ -17742,7 +17742,7 @@ T.ed.prototype = {
         if (f.n() < q.f && f.n() < 128 && q.r.bw(f)) {
             s = T.I(q.r, true, f) * $.b0()
             if (s > a) s = a
-            g.a.push(T.RunUpdate(C.b.B(LangData.get_lang("lnNA"), $.qI()), q.r, c, null, null, $.as(), $.d0(), 100))
+            g.a.push(T.RunUpdate(C.String.B(LangData.get_lang("lnNA"), $.qI()), q.r, c, null, null, $.as(), $.d0(), 100))
             c.a3(s, true, q.r, e, f, g)
             r = q.r
             r.l = r.l - $.mY()
@@ -17765,7 +17765,7 @@ T.hw.prototype = {
             n = p.f
         if ((o & 127) < n) {
             p.f = C.JsInt.P(n + $.i(), $.t())
-            o = C.b.B(LangData.get_lang("DWRn"), $.ng())
+            o = C.String.B(LangData.get_lang("DWRn"), $.ng())
             n = p.r
             s = d.a
             s.push(T.RunUpdate(o, n, n, null, null, $.b3(), $.d0(), 100))
@@ -17859,7 +17859,7 @@ T.hJ.prototype = {
             n = LangData.get_lang("TRcn")
             r = q.r
             o.push(T.RunUpdate(n, r, r, p, p, $.a6(), $.d0(), 100))
-            r = C.b.B(LangData.get_lang("iTtn"), $.qK())
+            r = C.String.B(LangData.get_lang("iTtn"), $.qK())
             n = q.r
             o.push(T.RunUpdate(r, n, n, p, p, 0, 1000, 100))
             n = q.r
@@ -19007,7 +19007,7 @@ var t = (function rtii() {
     C.Array = J.JsArray.prototype
     C.JsInt = J.JsInt.prototype
     C.d = J.JsNumber.prototype
-    C.b = J.JsString.prototype
+    C.String = J.JsString.prototype
     C.K = J.JavaScriptFunction.prototype
     C.Q = W.dQ.prototype
     C.t = J.PlainJavaScriptObject.prototype
