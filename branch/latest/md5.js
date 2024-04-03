@@ -5672,9 +5672,10 @@ var A = {
                 console.log("reaching weapon zone")
                 // if (H.iF(m, l, 0)) {
                 if (m.includes("+")) {
-                    console.log("reach inner weapon zone", )
                     k = C.String.aT(m, $.lO())
-                    j = C.String.dF(C.String.ay(m, k + $.i()))
+                    console.log("reach inner weapon zone", )
+                    // j = C.String.dF(C.String.ay(m, k + $.i()))
+                    j = C.String.trim_name(C.String.ay(m, k + $.i()))
                     l = C.String.af(m, 0, k)
                     i = $.nq()
                     m = H.iG(l, i, "", 0)
