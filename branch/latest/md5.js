@@ -25,13 +25,14 @@ if (run_env.from_code) {
 
     // 整一套虚拟的window和document
     // 但说实话十分生草
+
+    // list of elements
+    let stored_elements = [];
+
     global.window = {
         sessionStorage: function () {},
         localStorage: function () {},
     };
-
-    // list of elements
-    let stored_elements = [];
 
     let fake_element = {
         childList: [],
@@ -1457,15 +1458,18 @@ var A = {
         uY() {
             if (true === $.mA) return
             $.mA = true
-            H.uZ()
+            if (!run_env.from_code) {
+                H.initNativeDispatchContinue()
+            }
         },
-        uZ() {
+        initNativeDispatchContinue() {
             var s, r, q, p, o, n, m, l
             $.lt = Object.create(null)
             $.ly = Object.create(null)
             H.uX()
             s = init.interceptorsByTag
             r = Object.getOwnPropertyNames(s)
+            // 检测是否在网页内运行
             if (typeof window != "undefined") {
                 window
                 q = function () {}
@@ -12945,8 +12949,8 @@ HtmlRenderer.fq.prototype = {
         p = q.i("y<M.E,l*>")
         o = t.bQ
         n = P.aa(new H.y(H.b(C.e.bt(0, P.aa(new H.y(new H.a9(r, q),
-                 new HtmlRenderer.jx(this_), p), true, p.i("M.E"))).split("\n"), t.s),
-                 new HtmlRenderer.jy(), o), true, o.i("M.E"))
+                new HtmlRenderer.jx(this_), p), true, p.i("M.E"))).split("\n"), t.s),
+            new HtmlRenderer.jy(), o), true, o.i("M.E"))
         r = n.length
         if (r > 1) {
             // if (!J.Y(J.J(J.J(n[0], 0), 0), "")) {
@@ -20771,8 +20775,8 @@ function main() {
                 // 这里请输入一个被混淆过的名字
                 switch_to = 5
                 if (run_env.from_code) {
-                    console.log("node input:", raw_names)
                     raw_names = name_input
+                    console.log("node input:|\n", raw_names, "\n|")
                 } else {
                     m = window.sessionStorage.getItem(LangData.eQ("k"))
                     l = X.f4(m, 0)
