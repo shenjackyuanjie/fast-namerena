@@ -7888,7 +7888,9 @@ var A = {
             r = C.JsInt.ag(s - 0, 4)
             let result = new Uint32Array(q, 0, r)[1]
             // return new Uint32Array(q, 0, r)[1]
-            console.log("X.k", a, b, result)
+            if (run_env.from_code) {
+                console.log("X.k", a, b, result)
+            }
             return result
         },
         D(a, b) {
@@ -7898,7 +7900,9 @@ var A = {
             r = C.JsInt.ag(s - 0, 4)
             let result = new Float32Array(q, 0, r)[1];
             // return new Float32Array(q, 0, r)[1]
-            console.log("X.D", a, b, result)
+            if (run_env.from_code) {
+                console.log("X.D", a, b, result)
+            }
             return result
         },
         je: function je() {},
