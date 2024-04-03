@@ -1,8 +1,9 @@
 // let document = document;
 // let window = window;
 
-// 'use strict';
+'use strict';
 // 兼容nodejs, 要不然 window = {}; 会崩
+// 使用 global.window 修复了这个问题, 还是 strict 舒服
 
 let name_input = "test\ntest2";
 let assets_data = {
@@ -23,6 +24,10 @@ if (run_env.from_code) {
 
     // 整一套虚拟的window和document
     // 但说实话十分生草
+    global.window = {
+        sessionStorage: function () {},
+        localStorage: function () {},
+    };
 
     let fake_element = {
         style: {},
@@ -33,7 +38,7 @@ if (run_env.from_code) {
         addEventListener: function () {},
     }
 
-    document = {
+    global.document = {
         createElement: function (tag) {
             return fake_element;
         },
@@ -41,6 +46,8 @@ if (run_env.from_code) {
             "some": "thing"
         }],
     };
+    
+    global.self = global.window;
 
     // 读取文件
     let fs = require("fs");
@@ -20701,7 +20708,7 @@ function main() {
             case 0:
                 if (run_env.from_code) {
                     console.log("initing from node")
-                    $.ox = ""
+                    $.ox = assets_data.gAd
                     // 后面填一下这玩意
                 } else {
                     a8 = LangData.oC(true).c
