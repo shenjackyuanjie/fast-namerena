@@ -1515,21 +1515,22 @@ var A = {
         cT(a, b) {
             return a(b) || b
         },
-        m7(a, b, c, d, e, f) {
-            var s = b ? "m" : "",
-                r = c ? "" : "i",
-                q = d ? "u" : "",
-                p = e ? "s" : "",
-                o = f ? "g" : "",
-                n = function (g, h) {
+        m7(source, multiline, case_sensitive, unicode, dot_all, global) {
+            var s = multiline ? "m" : "",
+                r = case_sensitive ? "" : "i",
+                q = unicode ? "u" : "",
+                p = dot_all ? "s" : "",
+                o = global ? "g" : "",
+                regex_xp = function (source, modifiers) {
                     try {
-                        return new RegExp(g, h)
-                    } catch (m) {
-                        return m
+                        return new RegExp(source, modifiers)
+                    } catch (e) {
+                        return e
                     }
-                }(a, s + r + q + p + o)
-            if (n instanceof RegExp) return n
-            throw H.wrap_expression(P.jn("Illegal RegExp pattern (" + String(n) + ")", a, null))
+                }(source, s + r + q + p + o)
+            if (regex_xp instanceof RegExp) 
+                return regex_xp
+            throw H.wrap_expression(P.FormatException("Illegal RegExp pattern (" + String(regex_xp) + ")", source, null))
         },
         iF(a, b, c) {
             var s
@@ -4126,7 +4127,7 @@ var A = {
                 p = JSON.parse(a)
             } catch (r) {
                 s = H.unwrap_Exception(r)
-                q = P.jn(String(s), null, null)
+                q = P.FormatException(String(s), null, null)
                 throw H.wrap_expression(q)
             }
             q = P.lk(p)
@@ -4234,7 +4235,7 @@ var A = {
         oF(a) {
             var s = H.tk(a, null)
             if (s != null) return s
-            throw H.wrap_expression(P.jn(a, null, null))
+            throw H.wrap_expression(P.FormatException(a, null, null))
         },
         rQ(a) {
             if (a instanceof H.c_) return a.k(0)
@@ -4379,7 +4380,7 @@ var A = {
         aK(a) {
             return new P.fh(a)
         },
-        jn(a, b, c) {
+        FormatException(a, b, c) {
             return new P.jm(a, b, c)
         },
         dq: function dq(a, b) {
@@ -5701,8 +5702,9 @@ var A = {
                     } else l = true
                     if (l) o.push(H.b([h[0], null, j], r))
                     else o.push(H.b([h[0], h[$.i()], j], r))
-                } else if (C.b.bA(m, " ")) o.push(H.b([C.b.ay(m, $.i()), n, j], r))
-                else {
+                } else if (C.b.bA(m, " ")) {
+                    o.push(H.b([C.b.ay(m, $.i()), n, j], r))
+                } else {
                     if (s + $.i() < b.length) {
                         l = $.n5()
                         if (l == null) H.throw_expression(H.R(l))
@@ -10731,7 +10733,7 @@ P.lb.prototype = {
         if ((q & 1) !== 0) {
             p = P.uc(q)
             o.b = 0
-            throw H.wrap_expression(P.jn(p, a, b + o.c))
+            throw H.wrap_expression(P.FormatException(p, a, b + o.c))
         }
         return r
     },
