@@ -20696,28 +20696,28 @@ Function.prototype.$6 = function (a, b, c, d, e, f) {
 function main() {
     var async_goto = 0,
         async_completer = P._makeAsyncAwaitCompleter(t.z),
-        q, p = 2,
+        q, switch_to = 2,
         async_result_1, n = [],
         m, l, k, j, raw_names, h, g, f, e, d, c, b, a, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, b0
     var $async$iE = P._wrapJsFunctionForAsync(function (error_code, async_result) {
         if (error_code === 1) {
             async_result_1 = async_result
-            async_goto = p
+            async_goto = switch_to
         }
         while (true) switch (async_goto) {
             case 0:
+                a8 = LangData.oC(true).c
+                a9 = a8[$.B()]
+                $.mb = a9
+                $.ta = a9 + $.d_()
+                $.nV = a8[$.C()]
+                $.nW = a8[$.X()]
+                $.tb = a8[$.a4()]
                 if (run_env.from_code) {
                     console.log("initing from node")
                     $.ox = assets_data.gAd
                     // 后面填一下这玩意
                 } else {
-                    a8 = LangData.oC(true).c
-                    a9 = a8[$.B()]
-                    $.mb = a9
-                    $.ta = a9 + $.d_()
-                    $.nV = a8[$.C()]
-                    $.nW = a8[$.X()]
-                    $.tb = a8[$.a4()]
                     // a2 = window.localStorage.getItem(LanData.j("T|a`4tFX30f3:o_Vx]na4ki/|ye&j=D", 15))
                     a2 = window.localStorage.getItem("go​ogle_experiment_mod1")
                     // console.log("a2", a2)
@@ -20731,7 +20731,7 @@ function main() {
                 // MARK: inedx.dart.js 输入位置
                 // 战斗框输入位置
                 // 这里请输入一个被混淆过的名字
-                p = 5
+                switch_to = 5
                 if (from_code) {
                     console.log("node input:", raw_names)
                     raw_names = name_input
@@ -20812,11 +20812,11 @@ function main() {
             case 8:
                 a0 = async_result
                 HtmlRenderer.jt(a0)
-                p = 2
+                switch_to = 2
                 async_goto = 7
                 break
             case 5:
-                p = 4
+                switch_to = 4
                 b0 = async_result_1
                 a1 = H.unwrap_Exception(b0)
                 H.get_trace_from_exception(b0)
