@@ -7975,8 +7975,9 @@ var A = {
                         if (run_env.from_code) {
                             console.log("loading gAd data")
                             // 暂时有问题, 还得调试
-                            // LangData.v1(t.cF.a(C.C.bt(0, assets_data.lang)))
+                            LangData.load_lang(t.cF.a(C.C.bt(0, assets_data.lang)))
                             // LangData.v1(assets_data.lang)
+                            // LangData.load_lang(assets_data.lang)
                         } else {
                             p = window.sessionStorage.getItem(LangData.eQ("ll"))
                             if (typeof p == "string") {
@@ -16230,20 +16231,23 @@ T.eg.prototype = {
 }
 T.fo.prototype = {
     bD() {
+        if (run_env.from_code) {
+            console.log("run_env.from_code")
+        }
         // 我盯上你了
         var async_goto = 0,
-            r = P._makeAsyncAwaitCompleter(t.z),
-            q, p = this,
+            async_completer = P._makeAsyncAwaitCompleter(t.z),
+            q, this_ = this,
             o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, b0, b1, b2, b3
         var $async$bD = P._wrapJsFunctionForAsync(function (b4, b5) {
-            if (b4 === 1) return P.async_rethrow(b5, r)
+            if (b4 === 1) return P.async_rethrow(b5, async_completer)
             while (true) switch (async_goto) {
                 case 0:
                     b3 = H.b([], t.V)
-                    for (o = p.x, n = o.length, m = t.eG, l = p.r, k = p.z, j = t.L, i = p.a, h = 0; h < o.length; o.length === n || (0, H.F)(o), ++h) {
+                    for (o = this_.x, n = o.length, m = t.eG, l = this_.r, k = this_.z, j = t.L, i = this_.a, h = 0; h < o.length; o.length === n || (0, H.F)(o), ++h) {
                         g = o[h]
                         f = H.b([], j)
-                        e = new T.b7(p, f, H.b([], j), H.b([], j), H.b([], j))
+                        e = new T.b7(this_, f, H.b([], j), H.b([], j), H.b([], j))
                         for (d = (g && C.Array).ga0(g); d.u();) {
                             c = d.gC()
                             if (!(c instanceof T.Plr))
@@ -16259,7 +16263,7 @@ T.fo.prototype = {
                                         a0 = $.i()
                                         a = a === a0 && J.ny(b.h(c, a0), 0) < $.pC()
                                     } else a = false
-                                    a2 = a ? T.jS(b.h(c, 0), b.h(c, $.i()), p, a1) : T.nT(b.h(c, 0), b.h(c, $.i()), e.b, a1)
+                                    a2 = a ? T.jS(b.h(c, 0), b.h(c, $.i()), this_, a1) : T.nT(b.h(c, 0), b.h(c, $.i()), e.b, a1)
                                     if (a2 instanceof T.cy) {
                                         b3.push(a2.e)
                                         k.push(a2)
@@ -16287,14 +16291,18 @@ T.fo.prototype = {
                             }
                         }
                     }
-                    p.Q = i.length
+                    this_.Q = i.length
                     if (C.JsInt.am(l.gp(l), $.Z()) > 0) {
-                        p.f = LangData.get_lang("CefA")
+                        // errorMaxPlayer
+                        // 错误，目前最多支持1000人PK
+                        this_.f = LangData.get_lang("CefA")
                         async_goto = 1
                         break
                     }
                     if (l.gp(l) < $.t()) {
-                        p.f = LangData.get_lang("MAda")
+                        // errorMinPlayer
+                        // 错误，请至少输入两行名字
+                        this_.f = LangData.get_lang("MAda")
                         async_goto = 1
                         break
                     }
@@ -16305,12 +16313,14 @@ T.fo.prototype = {
                         a8 = H.b(a7.slice(0), H.a1(a7))
                         C.Array.a5(a8, b3)
                         C.Array.aJ(a8)
-                    } else a8 = a7
+                    } else {
+                        a8 = a7
+                    }
                     o = C.Array.aV(a8, "\r")
                     a9 = C.e.gaB().ab(o)
                     o = new LangData.SuperRC4()
                     o.bd(a9, $.i())
-                    p.b = o
+                    this_.b = o
                     o.bO(a9)
                     o = a7.length, h = 0
                 case 3:
@@ -16323,7 +16333,7 @@ T.fo.prototype = {
                     return P._asyncAwait(l.h(0, b0).cg(), $async$bD)
                 case 6:
                     n = l.h(0, b0)
-                    m = p.b
+                    m = this_.b
                     n.Q = (m.n() << 16 | m.n() << 8 | m.n()) >>> 0
                 case 4:
                     a7.length === o || (0, H.F)(a7), ++h
@@ -16348,32 +16358,32 @@ T.fo.prototype = {
                     o = l.gfP(l)
                     o = P.aa(o, true, H.be(o).i("L.E"))
                     C.Array.bb(o, T.mD())
-                    p.c = o
+                    this_.c = o
                     if (C.JsInt.am(l.gp(l) + $.X(), $.C()) === 0)
-                        for (o = p.c, n = o.length, h = 0; h < n; ++h) {
+                        for (o = this_.c, n = o.length, h = 0; h < n; ++h) {
                             a2 = o[h]
                             a2.I = a2.gbT()
                         }
                     o = H.b(i.slice(0), H.a1(i))
                     C.Array.bb(o, T.v4())
-                    p.d = o
-                    for (n = o.length, m = t.i, l = p.e, h = 0; h < o.length; o.length === n || (0, H.F)(o), ++h) {
+                    this_.d = o
+                    for (n = o.length, m = t.i, l = this_.e, h = 0; h < o.length; o.length === n || (0, H.F)(o), ++h) {
                         b1 = o[h]
                         for (k = b1.f, j = k.length, b2 = 0; b2 < k.length; k.length === j || (0, H.F)(k), ++b2) {
                             a2 = k[b2]
-                            i = p.b
+                            i = this_.b
                             f = a2.e
                             i.bO(C.e.gaB().ab(f))
                         }
-                        p.b.bO(H.b([0], m))
+                        this_.b.bO(H.b([0], m))
                         C.Array.a5(l, b1.f)
                     }
-                    for (o = p.c, n = o.length, h = 0; h < o.length; o.length === n || (0, H.F)(o), ++h) o[h].l = p.b.n()
+                    for (o = this_.c, n = o.length, h = 0; h < o.length; o.length === n || (0, H.F)(o), ++h) o[h].l = this_.b.n()
                 case 1:
-                    return P.async_return(q, r)
+                    return P.async_return(q, async_completer)
             }
         })
-        return P._asyncStartSync($async$bD, r)
+        return P._asyncStartSync($async$bD, async_completer)
     },
     bE() {
         // var async_goto = 0,
@@ -18159,7 +18169,7 @@ T.k1.prototype = {
         var s, r, q, p, o, n, m, l = this.c
         l.rx.j(0, new T.h1())
         // Rinick
-        if (l.e != $.iL()) { 
+        if (l.e != $.iL()) {
             for (l = l.k2, s = l.length, r = 0; r < l.length; l.length === s || (0, H.F)(l), ++r) {
                 q = l[r]
                 p = q.f
@@ -18170,7 +18180,7 @@ T.k1.prototype = {
             }
             return
         }
-        lst = [ 0, 2, 15, 18, 27, 28, 32, 37, 38 ]
+        lst = [0, 2, 15, 18, 27, 28, 32, 37, 38]
         // for (s = [0, $.t(), $.eT(), $.iH(), $.pu(), $.iI(), $.at(), $.pH(), $.lL()], r = 0; r < 9; ++r) {
         for (s = lst, r = 0; r < 9; ++r) {
             o = s[r]
@@ -20953,5 +20963,5 @@ function main() {
 }
 
 main() // 执行main函数
-console.log("ruaaaa", $.p1())
+console.log("ruaaaa", LangData.get_lang("MAda"))
 // [ 0, 2, 15, 18, 27, 28, 32, 37, 38 ]
