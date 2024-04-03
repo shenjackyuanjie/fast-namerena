@@ -1515,7 +1515,7 @@ var A = {
         cT(a, b) {
             return a(b) || b
         },
-        m7(source, multiline, case_sensitive, unicode, dot_all, global) {
+        JSSyntaxRegExp_makeNative(source, multiline, case_sensitive, unicode, dot_all, global) {
             var s = multiline ? "m" : "",
                 r = case_sensitive ? "" : "i",
                 q = unicode ? "u" : "",
@@ -4288,7 +4288,7 @@ var A = {
             return H.nZ(p)
         },
         h_(a) {
-            return new H.ct(a, H.m7(a, false, true, false, false, false))
+            return new H.ct(a, H.JSSyntaxRegExp_makeNative(a, false, true, false, false, false))
         },
         o7(a, b, c) {
             var s = J.by(b)
@@ -9303,14 +9303,14 @@ H.ct.prototype = {
             r = s.c
         if (r != null) return r
         r = s.b
-        return s.c = H.m7(s.a, r.multiline, !r.ignoreCase, r.unicode, r.dotAll, true)
+        return s.c = H.JSSyntaxRegExp_makeNative(s.a, r.multiline, !r.ignoreCase, r.unicode, r.dotAll, true)
     },
     gep() {
         var s = this,
             r = s.d
         if (r != null) return r
         r = s.b
-        return s.d = H.m7(s.a + "|()", r.multiline, !r.ignoreCase, r.unicode, r.dotAll, true)
+        return s.d = H.JSSyntaxRegExp_makeNative(s.a + "|()", r.multiline, !r.ignoreCase, r.unicode, r.dotAll, true)
     },
     eU(a) {
         var s
