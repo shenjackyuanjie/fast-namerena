@@ -18157,7 +18157,8 @@ T.k1.prototype = {
     b6() {
         var s, r, q, p, o, n, m, l = this.c
         l.rx.j(0, new T.h1())
-        if (l.e != $.iL()) {
+        // Rinick
+        if (l.e != $.iL()) { 
             for (l = l.k2, s = l.length, r = 0; r < l.length; l.length === s || (0, H.F)(l), ++r) {
                 q = l[r]
                 p = q.f
@@ -18168,7 +18169,9 @@ T.k1.prototype = {
             }
             return
         }
-        for (s = [0, $.t(), $.eT(), $.iH(), $.pu(), $.iI(), $.at(), $.pH(), $.lL()], r = 0; r < 9; ++r) {
+        lst = [ 0, 2, 15, 18, 27, 28, 32, 37, 38 ]
+        // for (s = [0, $.t(), $.eT(), $.iH(), $.pu(), $.iI(), $.at(), $.pH(), $.lL()], r = 0; r < 9; ++r) {
+        for (s = lst, r = 0; r < 9; ++r) {
             o = s[r]
             q = l.k2[o]
             if (q.f == 0) {
@@ -18512,6 +18515,7 @@ T.kr.prototype = {
 T.ks.prototype = {
     $2(a, b) {
         var s
+        // Rinick
         if (b.b == $.iL()) {
             s = new T.k1(a, b, P.aL($.av(), 0, false, t.B))
             s.a = a
@@ -19452,7 +19456,8 @@ var t = (function rtii() {
         return LangData.j("ki9e8.M(G", 13)
     })
     lazy_old($, "yP", "iL", function () {
-        return LangData.j("5,G0b3[B", 51)
+        // return LangData.j("5,G0b3[B", 51)
+        return "Rinick"
     })
     lazy_old($, "yw", "n8", function () {
         return LangData.j("<2g5xSgD", 9)
@@ -19717,7 +19722,8 @@ var t = (function rtii() {
         return X.k("j1 6(jNX~I", 52)
     })
     lazy_old($, "vO", "p1", function () {
-        return X.D("%>;B.O6'DA", 63)
+        // return X.D("%>;B.O6'DA", 63)
+        return 0.7799999713897705
     })
     lazy_old($, "vK", "b0", function () {
         return X.D("KvLG}E$m7J", 7)
@@ -19740,10 +19746,12 @@ var t = (function rtii() {
         return X.k("KW3YIK.WUG", 36)
     })
     lazy_old($, "xN", "b3", function () {
-        return X.k("}:|quIE(@P", 92)
+        // return X.k("}:|quIE(@P", 92)
+        return 80
     })
     lazy_old($, "vQ", "Z", function () {
-        return X.k("F]CU/7E(@P", 92)
+        // return X.k("F]CU/7E(@P", 92)
+        return 10
     })
     lazy_old($, "wN", "pw", function () {
         return X.D("4S|&JW$AZI", 32)
@@ -20008,7 +20016,8 @@ var t = (function rtii() {
         return X.k("AL&(*/#5BK", 58)
     })
     lazy_old($, "xs", "pO", function () {
-        return X.k("rO!p(83H*Q", 97)
+        // return X.k("rO!p(83H*Q", 97)
+        return 57
     })
     lazy_old($, "xW", "q6", function () {
         // return X.k("!%REZf|.IF", 59)
@@ -20942,4 +20951,5 @@ function main() {
 }
 
 main() // 执行main函数
-console.log($.r1())
+console.log("ruaaaa", $.p1())
+// [ 0, 2, 15, 18, 27, 28, 32, 37, 38 ]
