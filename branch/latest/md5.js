@@ -16627,7 +16627,8 @@ T.fo.prototype = {
         //     }
         // })
         // return P._asyncStartSync($async$ae, async_completer)
-        let this_ = this, p, o, n, m, l, k, j
+        let this_ = this,
+            p, o, n, m, l, k, j
         this_.db = b
         p = Date.now()
         o = $.bx()
@@ -17048,10 +17049,10 @@ T.Plr.prototype = {
             C.Array.j(r, q[$.i()])
         }
         r = this_.q
-        
+
         q = C.Array.al(this_.t, 0, $.Z())
         C.Array.aJ(q)
-        
+
         C.Array.j(r, C.Array.dz(C.Array.al(q, $.B(), $.ap()), new T.jX()) + $.mK())
         // 至此，属性初始化完毕，this_.q就是八围 但前7围要+36才是面板属性！！！
         // test
@@ -17220,7 +17221,7 @@ T.Plr.prototype = {
         this_.dy = this_.b0(this_.q[5], $.cj())
         this_.fr = this_.b0(this_.q[6], $.n1())
         this_.fy = this_.q[7]
-        
+
         this_.ci()
         this_.z = this_.y
         this_.id = $.T()
@@ -17229,7 +17230,8 @@ T.Plr.prototype = {
     },
     ci() {
         // calcAttrSum
-        var attr_sum, r, q, p, o, n, m, l, k, j, i = this,this_=this,
+        var attr_sum, r, q, p, o, n, m, l, k, j, i = this,
+            this_ = this,
             h = i.M = 0
         for (attr_sum = h; h < 7; ++h) {
             attr_sum += this_.q[h]
@@ -21047,8 +21049,8 @@ function main() {
                     // if (J.aw(h) === 2)
                     if (h.length === 2) {
                         // if (J.J(h, 1).length > 10 || J.lW(J.J(J.J(h, 1)[0], 0), O.j("S,AF", 5))) {
+                        // LangData.j("S,AF", 5) -> ???
                         if (h[1].length > 10 || J.lW(h[1][0][0], LangData.j("S,AF", 5))) {
-                            // a8 = J.J(h, 1)
                             a8 = h[1]
                             a9 = H.b([], t.t)
                             d = new X.iW(a9, new Float64Array(1))
@@ -21065,7 +21067,6 @@ function main() {
                                 a8 = h[1]
                                 e = $.cl()
                             }
-                            // a8 = J.J(h, 1)
                             a8 = h[1]
                             a9 = e
                             a3 = H.b([], t.L)
@@ -21079,27 +21080,23 @@ function main() {
                             c.r = 2000
                             async_goto = 1
                             break
-                            // h.length
                         }
-                        if (J.aw(h) === 3) {
-                            // a8 = J.J(h, 1)
-                            a8 = h[1]
-                            // a9 = J.J(h, 2)
-                            a9 = h[2]
-                            a3 = t.L
-                            a4 = H.b([], a3)
-                            a3 = H.b([], a3)
-                            a5 = H.b([], t.V)
-                            a6 = H.b([], t.M)
-                            g = new L.iR(a8, a9, a4, a3, a5, a6, new Float64Array(1))
-                            g.dY(a8, a9)
-                            b = g
-                            b.c = 1000
-                            a = HtmlRenderer.outer_main(b)
-                            a.r = 2000
-                            async_goto = 1
-                            break
-                        }
+                    } else if (h.length === 3) {
+                        a8 = h[1]
+                        a9 = h[2]
+                        a3 = t.L
+                        a4 = H.b([], a3)
+                        a3 = H.b([], a3)
+                        a5 = H.b([], t.V)
+                        a6 = H.b([], t.M)
+                        g = new L.iR(a8, a9, a4, a3, a5, a6, new Float64Array(1))
+                        g.dY(a8, a9)
+                        b = g
+                        b.c = 1000
+                        a = HtmlRenderer.outer_main(b)
+                        a.r = 2000
+                        async_goto = 1
+                        break
                     }
                 }
                 async_goto = 8
@@ -21137,4 +21134,4 @@ function main() {
 
 main();
 // logger.debug("running main:", main()) // 执行main函数
-// logger.debug(X.k("?`C3ou}R1L", 67))
+logger.debug(LangData.j("S,AF", 5))
