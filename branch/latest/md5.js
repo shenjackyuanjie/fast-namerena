@@ -17174,9 +17174,9 @@ T.Plr.prototype = {
             }++n
             m += $.C() // 4
         }
-        console.log("this_.k2:",this_.k2)
+        // console.log("this_.k2:",this_.k2)
         for (; sortedSkills = this_.k2, n < sortedSkills.length; ++n) sortedSkills[n].ao(this_, 0)
-        console.log("sorted skills:",sortedSkills)
+        // console.log("sorted skills:",sortedSkills)
     },
     bs() {
         // addSkillsToProc
