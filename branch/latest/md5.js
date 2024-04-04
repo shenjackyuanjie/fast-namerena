@@ -23,15 +23,15 @@ console.log("run_env", run_env);
 let logger = {
     // debug: 只在 from_code 时输出
     debug: function (...msg) {
-        if (run_env.from_code) {
+        // if (run_env.from_code) {
             // 上个色
             // let last_stack = new Error().stack;
             // console.log("\x1b[32mlogger<", last_stack, ">:", ...msg, "\x1b[0m")
             console.log("\x1b[32mlogger:", ...msg, "\x1b[0m")
-        }
+        // }
     },
     info: function (...msg) {
-        console.log("logger: ", msg)
+        console.log("logger: ", ...msg)
     }
 }
 
@@ -3502,9 +3502,6 @@ var A = {
     },
     P = {
         _AsyncRun__initializeScheduleImmediate() {
-            // if (run_env.from_code) {
-            //     console.log("creating scheduleImmediate")
-            // }
             logger.debug("creating scheduleImmediate")
             var s, r, q = {}
             if (self.scheduleImmediate != null) {
@@ -3629,6 +3626,7 @@ var A = {
             }
         },
         cO(a, b) {
+            logger.info("joining cO")
             var s, r, q, p, o, n, m, l, k, j, i, h, g, f = {},
                 e = f.a = a
             for (s = t.h; true;) {
@@ -3732,16 +3730,20 @@ var A = {
             }
         },
         uD() {
+            logger.info("calling uD", $.ms)
             $.ms = true
             try {
                 P.uw()
             } finally {
                 $.eO = null
                 $.ms = false
-                if ($.cR != null) $.nw().$1(P.ow())
+                if ($.cR != null) {
+                    $.nw().$1(P.ow())
+                }
             }
         },
         ou(a) {
+            logger.debug("calling ou", $.ms)
             var s = new P.i0(a),
                 r = $.eN
             if (r == null) {
@@ -9668,9 +9670,9 @@ P.kD.prototype = {
 P.l8.prototype = {
     e8(a, b) {
         if (run_env.from_code) {
-            // b.$0()
+            b.$0()
             // setTimeout
-            setTimeout(H.convert_dart_closure_to_js_md5(new P.kC(b), 0), 0)
+            // setTimeout(H.convert_dart_closure_to_js_md5(new P.kC(b), 0), 0)
         } else {
             if (self.setTimeout != null) {
                 // self.setTimeout(H.convert_dart_closure_to_js_md5(new P.l9(this, b), 0), a)
@@ -15939,6 +15941,7 @@ T.hp.prototype = {
 }
 T.df.prototype = {
     gan() {
+        logger.info("getting df.gan")
         return H.b([0, $.lL(), $.d1(), $.mX(), $.iI(), $.iH(), $.eT(), $.n0()], t.i)
     },
     F() {
@@ -16519,7 +16522,9 @@ T.fo.prototype = {
     },
     O() {
         // 运行时?
-        logger.debug("运行 主循环")
+        // 对战 主循环?
+        // let stack = new Error().stack
+        // logger.info("运行 主循环", stack)
         var async_goto = 0,
             async_completer = P._makeAsyncAwaitCompleter(t.d),
             result_, p = [],
@@ -16627,7 +16632,8 @@ T.fo.prototype = {
         //     }
         // })
         // return P._asyncStartSync($async$ae, async_completer)
-        let this_ = this, p, o, n, m, l, k, j
+        let this_ = this,
+            p, o, n, m, l, k, j
         this_.db = b
         p = Date.now()
         o = $.bx()
@@ -20113,6 +20119,7 @@ var t = (function rtii() {
     })
     lazy_old($, "wW", "d1", function () {
         return X.k("p&kJ 5Q!{M", 75)
+        // return 31
     })
     lazy_old($, "xj", "mX", function () {
         return X.k("^M0K:>w!&P", 91)
@@ -20255,6 +20262,7 @@ var t = (function rtii() {
     })
     lazy_old($, "wv", "pl", function () {
         return X.D("WT)~pf:~hB", 91)
+        // return 2000
     })
     lazy_old($, "xm", "mY", function () {
         // return X.k("T)Ok_x`s]G", 40)
