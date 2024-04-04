@@ -1877,7 +1877,7 @@ var A = {
         Rti__getCanonicalRecipe(a) {
             return a.cy
         },
-        find_type(a) {
+        findType(a) {
             return H._Universe_addErasedTypes(init.typeUniverse, a, false)
         },
         _substitute(a, b, a0, a1) {
@@ -19112,7 +19112,7 @@ var u = {
     c: "Error handler must accept one Object or one Object and a StackTrace as arguments, and return a value of the returned future's type"
 }
 var t = (function rtii() {
-    var find_type = H.find_type
+    var find_type = H.findType
     return {
         fh: find_type("@<l*>"),
         cR: find_type("cn"),
@@ -19326,14 +19326,14 @@ var t = (function rtii() {
     $.eO = null
     $.ms = false
     $.P = C.f
-    $.ch = H.b([], H.find_type("E<H>"))
+    $.ch = H.b([], H.findType("E<H>"))
     $.bA = null
     $.m4 = null
     $.nJ = null
     $.nI = null
     $.et = P.cu(t.N, t.Z)
     $.jU = 0
-    $.ay = P.cu(t.X, H.find_type("ax*"))
+    $.ay = P.cu(t.X, H.findType("ax*"))
     $.rW = function () {
         var s = t.X
         return P.dD(["aokiji", "R0lGODlhEAAQAMIDAAAAAEB2/4Kl/////////////////////yH5BAEKAAQALAAAAAAQABAAAANISLrQsJC1MVwkLgSqLW6bQFFi4ACjIGxDoI7gqHFsO9UsXgFuPXIr0Or3691kHGSMxuRMSMPWi3IK/UqeTM7UuDio3YskDEkAADs=", "conan", "R0lGODlhEAAQAMIAAAAAANAYISpXyf///wAAAAAAAAAAAAAAACH5BAEKAAQALAAAAAAQABAAAANISATczkqBQasFcQlrBV6MsHGiEzQj5TEnELzM5cIsbdLLC+/6N/O/E6j3IP5ilVqrBUgNVi6HyDltSJoiVekTCU23me4DEkkAADs=", "covid", "R0lGODlhEAAQAIIAMf/GAOpK/f///wAAAP///wAAAAAAAAAAACH5BAEAAAQALAAAAAAQABAAAgNKSLrTvZC4AeqIqgEttoNU1wSOx1BBmoabNJGDGpjURlqBAJf6ba+WWgwmy3kcRYFO6AKolMuJBCAqmjIUJKd12moemNrxgnF9IgkAOw==", "ikaruga", "R0lGODlhEAAQAMIEAAAAAAcHB7MABFuV/////////////////yH5BAEKAAcALAAAAAAQABAAAANKeLrRsZA1Qlw8jmoCGgzaMAiC9iiTOFBk6WGUypLUk4pbW00EvhG0XWz1C2Z8o9kO1uuNSqUKCqR60l5MZ1AqAf0skczudJliFwkAOw==", "lazy", "R0lGODlhEAAQAMICAAAAAAgICP+3t/////+3t/+3t/+3t/+3tyH5BAEKAAQALAAAAAAQABAAAANPSLpM8K9JMCqQDoIwwp3VQG1fBnFeWFKW6GnL1rFi87raSQQcvXEhHkeQGwqOncBxKeAxj07io6kkQZXPKJM3YCa7yySwIhwnd5qAokhIAAA7", "mario", "R0lGODlhEAAQAIEAMQAAANgoAPz8/AAAACH5BAEAAAAALAAAAAAQABAAAQJBhD2px6AhRFgshRvvHCdJGH1CgoDhKXEWqLHboH2tvEItpq3ZvXvnfPIphooI0YgcLXyjpLKDQnE6g6hxSiVSAAUAOw==", "mosquito", "R0lGODlhEAAQAKECAAAAAP8AAP///////yH5BAEKAAMALAAAAAAQABAAAAJB3ICpaCnxRIRKoAkpsJu/AHpch4DgxR0kcK6GKrGB+zrylrzH2OL62or9SKcYYIgr5mq82eXI5AQtw1gxhVwwDAUAOw==", "saitama", "R0lGODlhEAAQAMIGAAAAAAgICGxsbP/AmP/PV/////jIUfjIUSH5BAEKAAcALAAAAAAQABAAAANKeLrRsZC1MVw8juraYNhUIVYSGIodZprPtG7ZC8YyFxSC8OZFAIi4nJAnAhgLx2DxZwQQCMZn7hmFOp/YKZZa3Xqth6bR1xADDgkAOw==", "seed", "R0lGODlhEAAQAMIDAAAAAG9tbUCy5////////////////////yH5BAEKAAQALAAAAAAQABAAAANFSLrQsJC1MVwkjuraVN6gA4CDIJCNSW5BkJon2LZpAMdzMLiAYN85HQ/28wWHpmJrN3sRjUya4xm0YJzNTmTKe1wkWkgCADs=", "slime", "R0lGODlhEAAQAMIEAAABAFaSRV6qSLn9qgAAAAAAAAAAAAAAACH5BAEKAAQALAAAAAAQABAAAANCSKrQvpA4QcWDrWoLsB5bxwDVYApB2jClaaaqRMIuCk92CuYBR8G9DSUjLBI3wMpRQzvhis4OqVUbjopKkczBvSQAADs=", "sonic", "R0lGODlhEAAQAMIDAAgICOgSJh9O/////////////////////yH5BAEKAAQALAAAAAAQABAAAANBSLrQsJA1IVwkjuraINDDsFUSFYZbh5knqj2T0LpUBp4jN9JpnJuc1S8UIGE+uUBRJRQonzXP5LlkSpCWy/URSQAAOw==", "yuri", "R0lGODlhEAAQAKEDAAAAAN4H28asxv///yH5BAEKAAMALAAAAAAQABAAAAI+hI85EB3s4DNBiFcvs3NjvmlL9WkesEDnKI7fw8Lpi6roMJ42jh8NNeEJVb+bsFc0HIfB5ZFhdPIO0mf0WAAAOw=="], s, s)
@@ -20363,7 +20363,7 @@ var t = (function rtii() {
             new T.kt(),
             "玄月奖杯",
             new T.ku()
-        ], t.X, H.find_type("bL*(m*,u*)*"))
+        ], t.X, H.findType("bL*(m*,u*)*"))
     })
     lazy_old($, "Ad", "rk", function () {
         // return H.b([$.iL(), $.n8(), $.n6(), $.n9(), $.no(), $.nm(), $.nb(), $.nn(), $.np(), $.nj(), $.qg(), $.qj(), $.qt(), $.qX(), $.qf(), $.qN(), $.qd(), $.qT(), $.qV(), $.ql(), $.qS(), $.qe()], t.V)
@@ -20377,7 +20377,7 @@ var t = (function rtii() {
         )
     })
     lazy_old($, "AA", "nx", function () {
-        return new P.cK(null, null, null, H.find_type("cK<m*>"))
+        return new P.cK(null, null, null, H.findType("cK<m*>"))
     })
 })();
 (function nativeSupport() {
