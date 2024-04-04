@@ -1467,7 +1467,7 @@ var A = {
             s = r.prototype
             p = n[0]
             if (p === "!") {
-                m = H.lB(s)
+                m = H.makeLeafDispatchRecord(s)
                 $.lt[n] = m
                 Object.defineProperty(obj, init.dispatchPropertyName, {
                     value: m,
@@ -1482,7 +1482,7 @@ var A = {
                 return s
             }
             if (p === "-") {
-                o = H.lB(s)
+                o = H.makeLeafDispatchRecord(s)
                 Object.defineProperty(Object.getPrototypeOf(obj), init.dispatchPropertyName, {
                     value: o,
                     enumerable: false,
@@ -1494,7 +1494,7 @@ var A = {
             if (p === "+") return H.patchInteriorProto(obj, s)
             if (p === "*") throw H.wrap_expression(P.hT(n))
             if (init.leafTags[n] === true) {
-                o = H.lB(s)
+                o = H.makeLeafDispatchRecord(s)
                 Object.defineProperty(Object.getPrototypeOf(obj), init.dispatchPropertyName, {
                     value: o,
                     enumerable: false,
@@ -1514,12 +1514,12 @@ var A = {
             })
             return b
         },
-        lB(a) {
+        makeLeafDispatchRecord(a) {
             return J.makeDispatchRecord(a, false, null, !!a.$iag)
         },
         v3(a, b, c) {
             var s = b.prototype
-            if (init.leafTags[a] === true) return H.lB(s)
+            if (init.leafTags[a] === true) return H.makeLeafDispatchRecord(s)
             else return J.makeDispatchRecord(s, c, null, null)
         },
         uY() {
