@@ -1247,7 +1247,7 @@ var A = {
             }
             throw H.wrap_expression("Error in functionType of tearoff")
         },
-        rI(a, b, c, d) {
+        Closure_cspForwardCall(a, b, c, d) {
             var s = H.nF
             switch (b ? -1 : a) {
                 case 0:
@@ -1299,7 +1299,7 @@ var A = {
             if (c) return H.rK(a, b, d)
             s = b.length
             r = d || s >= 27
-            if (r) return H.rI(s, d, a, b)
+            if (r) return H.Closure_cspForwardCall(s, d, a, b)
             if (s === 0) {
                 r = $.bk
                 $.bk = r + 1
