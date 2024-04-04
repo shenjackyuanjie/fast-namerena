@@ -1214,7 +1214,7 @@ var A = {
                 s.$static_name = b
                 p = a0
             }
-            s.$S = H.rH(a1, h, g)
+            s.$S = H.Closure__computeSignatureFunctionNewRti(a1, h, g)
             s[a] = p
             for (o = p, n = 1; n < d.length; ++n) {
                 m = d[n]
@@ -1235,7 +1235,7 @@ var A = {
             s.$D = a2.dV
             return r
         },
-        rH(a, b, c) {
+        Closure__computeSignatureFunctionNewRti(a, b, c) {
             if (typeof a == "number") return a
             if (typeof a == "string") {
                 if (b) throw H.wrap_expression("Cannot compute signature for static tearoff.")
