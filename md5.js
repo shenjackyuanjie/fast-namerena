@@ -548,7 +548,8 @@ var A = {
             return new P.bJ("Too many elements")
         },
         tJ(a, b) {
-            H.hL(a, 0, J.aw(a) - 1, b)
+            // H.hL(a, 0, J.aw(a) - 1, b)
+            H.hL(a, 0, a.length - 1, b)
         },
         hL(a, b, c, d) {
             if (c - b <= 32) H.ej(a, b, c, d)
@@ -959,7 +960,8 @@ var A = {
         bQ(a, b) {
             var s, r = "index"
             if (!H.aP(b)) return new P.aS(true, b, r, null)
-            s = J.aw(a)
+            // s = J.aw(a)
+            s = a.length
             if (b < 0 || b >= s) return P.ft(b, a, r, null, s)
             return P.k0(b, r)
         },
@@ -21045,7 +21047,6 @@ function main() {
                 if ($.qc() === h[0][0][0]) {
                     logger.debug("进入测号 init")
                     $.vr = 6
-                    // h.length
                     // if (J.aw(h) === 2)
                     if (h.length === 2) {
                         // if (J.J(h, 1).length > 10 || J.lW(J.J(J.J(h, 1)[0], 0), O.j("S,AF", 5))) {
