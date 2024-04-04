@@ -20990,6 +20990,7 @@ function main() {
                 async_goto = 2
                 break
             case 7:
+                logger.debug("so just here?")
             case 1:
                 return P.async_return(q, async_completer)
             case 2:

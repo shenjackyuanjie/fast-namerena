@@ -739,12 +739,9 @@
                 $.ii.ak(q)
                 p = X.kU(q)
                 window.sessionStorage.setItem("fSkN", p)
-                console.log("before eval", $.hD(), $.hD().a)
                 // $.hD().eval.apply(null, [$.ht])
                 $.hD().a.eval.apply(null, [$.ht])
                 // $.hD().aj("eval", [$.ht])
-                // window.eval($.ht)
-                // console.log($.hD().aj)
             },
             nL() {
                 if (!$.jT) {
