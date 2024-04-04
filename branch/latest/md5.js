@@ -20,6 +20,19 @@ let run_env = {
 
 console.log("run_env", run_env);
 
+let logger = {
+    // debug: 只在 from_code 时输出
+    debug: function (...msg) {
+        if (run_env.from_code) {
+            // 上个色
+            console.log("\x1b[32mlogger: ", ...msg, "\x1b[0m")
+        }
+    },
+    info: function (...msg) {
+        console.log("logger: ", msg)
+    }
+}
+
 if (run_env.from_code) {
     console.log("Running from code");
 
@@ -3391,14 +3404,12 @@ var A = {
         },
         j(a, b) {
             let result = C.e.bt(0, X.f4(a, b))
-            console.log("O.j", a, b, result)
+            logger.debug("O.j", a, b, result)
             return result
         },
         get_lang(a) {
             var s = $.od.h(0, a)
-            // if (s === "》 实力评分: [2]" || s === "》 胜率: [2]%" || s === "实力评估中...[2]%") {
-            // console.log("O.d", a, s)
-            // }
+            logger.debug("O.d", a, s)
             if (s == null) return ""
             return s
         },
@@ -3435,9 +3446,10 @@ var A = {
     },
     P = {
         _AsyncRun__initializeScheduleImmediate() {
-            if (run_env.from_code) {
-                console.log("creating scheduleImmediate")
-            }
+            // if (run_env.from_code) {
+            //     console.log("creating scheduleImmediate")
+            // }
+            logger.debug("creating scheduleImmediate")
             var s, r, q = {}
             if (self.scheduleImmediate != null) {
                 return P.uK()
@@ -5732,7 +5744,7 @@ var A = {
         inner_main(a) {
             var async_goto = 0,
                 async_completer = P._makeAsyncAwaitCompleter(t.eF),
-                q, p, o, n, m, l, k, j, i, h
+                result, p, o, n, m, runner, k, j, i, h
             var $async$c2 = P._wrapJsFunctionForAsync(function (b, c) {
                 if (b === 1) return P.async_rethrow(c, async_completer)
                 while (true) switch (async_goto) {
@@ -5748,15 +5760,15 @@ var A = {
                         n = $.i()
                         m = -n
                         // run here?
-                        l = new T.fo(j, h, k, i, new H.aT(t.d5), a, p, o, m, m, new Float64Array(n))
+                        runner = new T.fo(j, h, k, i, new H.aT(t.d5), a, p, o, m, m, new Float64Array(n))
                         async_goto = 3
-                        return P._asyncAwait(l.bD(), $async$c2)
+                        return P._asyncAwait(runner.bD(), $async$c2)
                     case 3:
-                        q = l
+                        result = runner
                         async_goto = 1
-                        break
+                        // break
                     case 1:
-                        return P.async_return(q, async_completer)
+                        return P.async_return(result, async_completer)
                 }
             })
             return P._asyncStartSync($async$c2, async_completer)
@@ -7889,9 +7901,10 @@ var A = {
             r = C.JsInt.ag(s - 0, 4)
             let result = new Uint32Array(q, 0, r)[1]
             // return new Uint32Array(q, 0, r)[1]
-            if (run_env.from_code) {
-                console.log("X.k", a, b, result)
-            }
+            // if (run_env.from_code) {
+            //     console.log("X.k", a, b, result)
+            // }
+            logger.debug("X.k", a, b, result)
             return result
         },
         D(a, b) {
@@ -7901,9 +7914,10 @@ var A = {
             r = C.JsInt.ag(s - 0, 4)
             let result = new Float32Array(q, 0, r)[1];
             // return new Float32Array(q, 0, r)[1]
-            if (run_env.from_code) {
-                console.log("X.D", a, b, result)
-            }
+            // if (run_env.from_code) {
+            //     console.log("X.D", a, b, result)
+            // }
+            logger.debug("X.D", a, b, result)
             return result
         },
         je: function je() {},
@@ -13256,6 +13270,9 @@ HtmlRenderer.fq.prototype = {
         }
 
         // 显示 done_target
+        if (run_env.from_code) {
+            console.log("done_target")
+        }
         window.parent.postMessage("done_fight", "*")
     }
 }
@@ -16421,12 +16438,12 @@ T.fo.prototype = {
     O() {
         // 运行时?
         var async_goto = 0,
-            r = P._makeAsyncAwaitCompleter(t.d),
+            async_completer = P._makeAsyncAwaitCompleter(t.d),
             result_, p = [],
             this_ = this,
             n, m, l, k, j, i, h, g, f
         var $async$O = P._wrapJsFunctionForAsync(function (a, b) {
-            if (a === 1) return P.async_rethrow(b, r)
+            if (a === 1) return P.async_rethrow(b, async_completer)
             while (true) $async$outer: switch (async_goto) {
                 case 0:
                     if (this_.cx) {
@@ -16443,6 +16460,7 @@ T.fo.prototype = {
                     // win
                     // [2]获得胜利
                     j = LangData.get_lang("eTpN")
+                    logger.debug("getting win from T.fo.O")
                     i = 0
                     h = $.lJ()
                     g = new T.dX(i, h, 100, j, k, null, null, null)
@@ -16480,10 +16498,10 @@ T.fo.prototype = {
                     async_goto = 1
                     break
                 case 1:
-                    return P.async_return(result_, r)
+                    return P.async_return(result_, async_completer)
             }
         })
-        return P._asyncStartSync($async$O, r)
+        return P._asyncStartSync($async$O, async_completer)
     },
     ae(a, b) {
         return this.dM(0, b)
@@ -16769,6 +16787,7 @@ T.Plr.prototype = {
         return false
     },
     a1(a, b, c, d) {
+        // Plr 构造函数
         var s, r, q, p, o, n, m, l, k, j, i, this_ = this
         this_.I = this_.gfJ()
         s = this_.r = this_.a
@@ -16830,8 +16849,9 @@ T.Plr.prototype = {
         for (s = this_.X.c, s.length, r = this_.a2, k = 0; k < 256; ++k) {
             j = s[k]
             i = (j * $.nW + $.nV & $.mP()) >>> 0
-            if (i >= $.mb && i < $.r2()) C.Array.j(this_.t, (i + $.r3() * $.r4().ax($.eX()) & $.b2()) >>> 0)
-            else r.push(j)
+            if (i >= $.mb && i < $.r2()) {
+                C.Array.j(this_.t, (i + $.r3() * $.r4().ax($.eX()) & $.b2()) >>> 0)
+            } else r.push(j)
         }
         s = this_.t
         s = H.b(s.slice(0), H.a1(s))
@@ -16871,6 +16891,7 @@ T.Plr.prototype = {
         }
     },
     cg() {
+        // 这是干啥的
         var s = 0,
             r = P._makeAsyncAwaitCompleter(t.z),
             q = this
@@ -18488,11 +18509,15 @@ T.bL.prototype = {
     bn() {
         var s, r, q, p = this,
             o = 0
-        for (s = $.Z(), r = p.c; s < $.d1(); s += $.B()) o += p.cB(r.E, r.t, p.d, s)
+        for (s = $.Z(), r = p.c; s < $.d1(); s += $.B()) {
+            o += p.cB(r.E, r.t, p.d, s)
+        }
         r = C.JsInt.P($.mY() - o, $.a4())
         p.f = r
         q = 0
-        if (r < q) p.f = q
+        if (r < q) {
+            p.f = q
+        }
     },
     cs() {
         var s, r, q
@@ -19723,7 +19748,8 @@ var t = (function rtii() {
         return X.k("*:%S'eXt!J", 56)
     })
     lazy_old($, "xt", "a4", function () {
-        return X.k("`8fQ/CxFQA", 2)
+        // return X.k("`8fQ/CxFQA", 2)
+        return 6
     })
     lazy_old($, "xA", "au", function () {
         return X.k("[kT:g-|3XH", 42)
@@ -19820,7 +19846,8 @@ var t = (function rtii() {
         return X.k("y{5]U4S1PH", 83)
     })
     lazy_old($, "w0", "d_", function () {
-        return X.k("?`C3ou}R1L", 67)
+        // return X.k("?`C3ou}R1L", 67)
+        return 12
     })
     lazy_old($, "wj", "pe", function () {
         return X.D("ThP:gnU]RI", 16)
@@ -20103,7 +20130,8 @@ var t = (function rtii() {
         return X.D("WT)~pf:~hB", 91)
     })
     lazy_old($, "xm", "mY", function () {
-        return X.k("T)Ok_x`s]G", 40)
+        // return X.k("T)Ok_x`s]G", 40)
+        return 480
     })
     lazy_old($, "xv", "pP", function () {
         return X.D("wrWW R:IqQ", 26)
@@ -20965,5 +20993,5 @@ function main() {
 }
 
 main() // 执行main函数
-console.log("ruaaaa", LangData.get_lang("eTpN"))
+// console.log("ruaaaa", LangData.get_lang("eTpN"))
 // [ 0, 2, 15, 18, 27, 28, 32, 37, 38 ]
