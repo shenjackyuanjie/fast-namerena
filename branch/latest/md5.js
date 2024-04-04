@@ -548,7 +548,8 @@ var A = {
             return new P.bJ("Too many elements")
         },
         tJ(a, b) {
-            H.hL(a, 0, J.aw(a) - 1, b)
+            // H.hL(a, 0, J.aw(a) - 1, b)
+            H.hL(a, 0, a.length - 1, b)
         },
         hL(a, b, c, d) {
             if (c - b <= 32) H.ej(a, b, c, d)
@@ -959,7 +960,8 @@ var A = {
         bQ(a, b) {
             var s, r = "index"
             if (!H.aP(b)) return new P.aS(true, b, r, null)
-            s = J.aw(a)
+            // s = J.aw(a)
+            s = a.length
             if (b < 0 || b >= s) return P.ft(b, a, r, null, s)
             return P.k0(b, r)
         },
@@ -17128,13 +17130,16 @@ T.Plr.prototype = {
         s.push(new T.cb(0))
         s.push(new T.hs(0))
         s.push(new T.hK(0))
+
         r = new T.hJ(0)
         r.Q = new T.bd(r)
         s.push(r)
+
         r = new T.hl(0)
         r.ch = new T.bd(r)
         r.Q = new T.ca(r)
         s.push(r)
+
         s.push(new T.SkillVoid(0))
         s.push(new T.SkillVoid(0))
         s.push(new T.SkillVoid(0))
@@ -17213,7 +17218,28 @@ T.Plr.prototype = {
         s.go = C.JsInt.P(s.fr, $.t())
     },
     F() {
-        // updateStates
+        /*  void updateStates() {
+          atk = attr[0];
+          def = attr[1];
+          spd = attr[2] + 160;
+          agl = attr[3];
+          mag = attr[4];
+          mdf = attr[5];
+          itl = attr[6];
+          maxhp = attr[7];
+
+          calcAttrSum();
+
+          allyGroup = group;
+          atboost = 1.0;
+
+          frozen = false;
+
+          for (UpdateStateEntry ude in updatestates) {
+            ude.updateState(this);
+          }
+        }
+        */
         var s, this_ = this
         this_.ch = this_.b0(this_.q[0], $.cj())
         this_.cx = this_.b0(this_.q[1], $.cj())
@@ -21047,7 +21073,6 @@ function main() {
                 if ($.qc() === h[0][0][0]) {
                     logger.debug("进入测号 init")
                     $.vr = 6
-                    // h.length
                     // if (J.aw(h) === 2)
                     if (h.length === 2) {
                         // if (J.J(h, 1).length > 10 || J.lW(J.J(J.J(h, 1)[0], 0), O.j("S,AF", 5))) {
