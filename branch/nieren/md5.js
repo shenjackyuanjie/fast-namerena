@@ -6,7 +6,7 @@
 // 兼容nodejs, 要不然 window = {}; 会崩
 // 使用 global.window 修复了这个问题, 还是 strict 舒服
 
-let name_input = "test\ntest2+aa";
+let name_input = "!test!\natest\ntest2+aa";
 let assets_data = {
     lang: null,
     gAd: null,
@@ -25,7 +25,7 @@ let logger = {
     debug: function (...msg) {
         if (run_env.from_code) {
             // 上个色
-            console.log("\x1b[32mlogger: ", ...msg, "\x1b[0m")
+            console.log("\x1b[32mlogger:", ...msg, "\x1b[0m")
         }
     },
     info: function (...msg) {
@@ -5689,11 +5689,9 @@ var A = {
                 l = $.lO()
                 m.toString
                 // if (l == null) H.throw_expression(H.R(l))
-                console.log("reaching weapon zone")
                 // if (H.iF(m, l, 0)) {
                 if (m.includes("+")) {
                     k = C.String.aT(m, $.lO())
-                    console.log("reach inner weapon zone", )
                     // j = C.String.dF(C.String.ay(m, k + $.i()))
                     j = C.String.trim_name(C.String.ay(m, k + $.i()))
                     l = C.String.af(m, 0, k)
@@ -12307,13 +12305,14 @@ L.iR.prototype = {
         }
     },
     O() {
-        // 胜率评分
+        // 胜率评分 主循环
+        logger.debug("胜率主循环")
         var async_goto = 0,
             async_completer = P._makeAsyncAwaitCompleter(t.d),
             some_q, this_ = this,
             o, n, m, l, k, j, i, h, g, f, e, d
-        var $async$O = P._wrapJsFunctionForAsync(function (a, b) {
-            if (a === 1) return P.async_rethrow(b, async_completer)
+        var $async$O = P._wrapJsFunctionForAsync(function (async_error_code, async_result) {
+            if (async_error_code === 1) return P.async_rethrow(async_result, async_completer)
             while (true) switch (async_goto) {
                 case 0:
                     d = this_.x
@@ -12338,7 +12337,7 @@ L.iR.prototype = {
                     async_goto = 5
                     return P._asyncAwait(T.inner_main(h), $async$O)
                 case 5:
-                    g = b
+                    g = async_result
                     f = null
                 case 6:
                     // if (!true) {
@@ -12348,7 +12347,7 @@ L.iR.prototype = {
                     async_goto = 9
                     return P._asyncAwait(g.O(), $async$O)
                 case 9:
-                    e = b
+                    e = async_result
                     if (e == null) {
                         async_goto = 8
                         break
@@ -12511,6 +12510,8 @@ V.iV.prototype = {
         if (q.length === 1) l.x = q[0]
     },
     O() {
+        // 实力评分 主循环
+        logger.debug("评分 主循环")
         var async_goto = 0,
             async_completer = P._makeAsyncAwaitCompleter(t.d),
             q, this_ = this,
@@ -12731,6 +12732,8 @@ X.iW.prototype = {
         }
     },
     O() {
+        // 另一个评分主循环
+        logger.debug("评分2 主循环")
         var async_goto = 0,
             async_completer = P._makeAsyncAwaitCompleter(t.d),
             q, this_ = this,
@@ -14930,6 +14933,7 @@ T.hB.prototype = {
     aa(a, b, c) {
         return H.b([], t.F)
     },
+    
     v(a7, a8, a9, b0) {
         var s, shadow_name, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, a3, a4, this_ = this,
             a6 = null
@@ -16435,6 +16439,7 @@ T.fo.prototype = {
     },
     O() {
         // 运行时?
+        logger.debug("运行 主循环")
         var async_goto = 0,
             async_completer = P._makeAsyncAwaitCompleter(t.d),
             result_, p = [],
@@ -16873,6 +16878,8 @@ T.Plr.prototype = {
         return C.d.aI(a * ($.T() - this.x / b))
     },
     cA(a) {
+        //upgrade
+        /// upgrade leader from team member
         var s, this_ = this
         if (a.length === this_.t.length) {
             for (s = $.ap(); s < this_.t.length; ++s)
@@ -16889,7 +16896,7 @@ T.Plr.prototype = {
         }
     },
     cg() {
-        // 这是干啥的
+        // buildAsync
         var s = 0,
             r = P._makeAsyncAwaitCompleter(t.z),
             q = this
@@ -16904,6 +16911,7 @@ T.Plr.prototype = {
         return P._asyncStartSync($async$cg, r)
     },
     az() {
+        //initRawAttr
         var s, r = this
         r.bf()
         s = r.r1
@@ -16917,6 +16925,7 @@ T.Plr.prototype = {
         r.cn()
     },
     aU() {
+        //getMiddle
         var s, r, q, p, o = this
         for (s = $.Z(); s < $.d1(); s += $.B()) {
             r = o.q
@@ -16933,6 +16942,7 @@ T.Plr.prototype = {
         C.Array.j(r, C.Array.dz(C.Array.al(q, $.B(), $.ap()), new T.jX()) + $.mK())
     },
     bP() {
+        //initLists
         var s = this
         C.Array.sp(s.k4, 0)
         s.r2.ah(0)
@@ -16948,7 +16958,7 @@ T.Plr.prototype = {
     },
     ac() {
         // create skills
-        // createSkills
+        // createSkills()
         var s, r, q
         this.k3 = T.cG(this)
         s = this.k1
@@ -17014,14 +17024,15 @@ T.Plr.prototype = {
         s.push(new T.SkillVoid(0))
         s.push(new T.SkillVoid(0))
     },
-    dm(a, b) {
+    dm(list, original) {
+        //initSkills
         var s, r, q, p, o = this,
             n = 0,
             m = n
         while (true) {
             if (!(n < $.aR() && n < o.k2.length)) break
             s = o.k2[n]
-            r = C.Array.al(a, m, m + $.C())
+            r = C.Array.al(list, m, m + $.C())
             if (!!r.immutable$list) H.throw_expression(P.UnsupportError("sort"))
             q = r.length - 1
             if (q - 0 <= 32) H.ej(r, 0, q, J.bO())
@@ -17030,7 +17041,7 @@ T.Plr.prototype = {
             s.ao(o, p)
             r = 0
             if (p > r) {
-                r = C.Array.al(b, m, m + $.C())
+                r = C.Array.al(original, m, m + $.C())
                 if (!!r.immutable$list) H.throw_expression(P.UnsupportError("sort"))
                 q = r.length - 1
                 if (q - 0 <= 32) H.ej(r, 0, q, J.bO())
@@ -17043,6 +17054,7 @@ T.Plr.prototype = {
         for (; r = o.k2, n < r.length; ++n) r[n].ao(o, 0)
     },
     bs() {
+        //boostPassive or addSkillsToProc??
         var s, r, q, p, o, n, m, l = this
         for (s = 0, r = l.k4; q = l.k2, s < q.length; ++s) {
             p = q[s]
@@ -17081,6 +17093,7 @@ T.Plr.prototype = {
         s.go = C.JsInt.P(s.fr, $.t())
     },
     F() {
+        //updateStates
         var s, r = this
         r.ch = r.b0(r.q[0], $.cj())
         r.cx = r.b0(r.q[$.i()], $.cj())
@@ -20851,7 +20864,7 @@ function main() {
         async_completer = P._makeAsyncAwaitCompleter(t.z),
         q, switch_to = 2,
         async_result_1, n = [],
-        m, l, k, j, raw_names, h, g, f, e, d, c, b, a, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, b0
+        m, l, k, j, raw_names, h, g, f, e, d, c, b, a, a0_getter, a1, a2, a3, a4, a5, a6, a7, a8, a9, b0
     var $async$iE = P._wrapJsFunctionForAsync(function (error_code, async_result) {
         if (error_code === 1) {
             async_result_1 = async_result
@@ -20894,7 +20907,6 @@ function main() {
                     m = window.sessionStorage.getItem(LangData.eQ("k"))
                     l = X.f4(m, 0)
                     k = LangData.oC(false)
-                    console.log("k:", k)
                     a8 = t.i
                     j = H.b([], a8)
                     J.rr(j, H.b([1, 3, 0, 9], a8))
@@ -20971,8 +20983,9 @@ function main() {
                 // c2 似乎是起始
                 return P._asyncAwait(T.inner_main(h), $async$iE)
             case 8:
-                a0 = async_result
-                HtmlRenderer.jt(a0)
+                // a0_getter = async_result
+                // HtmlRenderer.jt(a0_getter)
+                HtmlRenderer.jt(async_result)
                 switch_to = 2
                 async_goto = 7
                 break
@@ -20987,6 +21000,7 @@ function main() {
                 async_goto = 2
                 break
             case 7:
+                logger.debug("so just here?", async_goto, error_code)
             case 1:
                 return P.async_return(q, async_completer)
             case 2:
@@ -20996,5 +21010,5 @@ function main() {
     return P._asyncStartSync($async$iE, async_completer)
 }
 
-main() // 执行main函数
+logger.debug("running main:", main()) // 执行main函数
 logger.debug(X.k("?`C3ou}R1L", 67))
