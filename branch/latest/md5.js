@@ -1869,9 +1869,9 @@ var A = {
             var s = b.c
             return s == null ? b.c = H._Universe__lookupInterfaceRti(a, "bl", [b.z]) : s
         },
-        o3(a) {
+        Rti__isUnionOfFunctionType(a) {
             var s = a.y
-            if (s === 6 || s === 7 || s === 8) return H.o3(a.z)
+            if (s === 6 || s === 7 || s === 8) return H.Rti__isUnionOfFunctionType(a.z)
             return s === 11 || s === 12
         },
         tq(a) {
@@ -1993,7 +1993,7 @@ var A = {
         },
         oE(a, b) {
             var s
-            if (H.o3(b))
+            if (H.Rti__isUnionOfFunctionType(b))
                 if (a instanceof H.c_) {
                     s = H.oy(a)
                     if (s != null) return s
