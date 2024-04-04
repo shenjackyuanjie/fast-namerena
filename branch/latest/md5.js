@@ -1533,7 +1533,7 @@ var A = {
             var s, r, q, p, o, n, m, l
             $.lt = Object.create(null)
             $.ly = Object.create(null)
-            H.uX()
+            H.initHooks()
             s = init.interceptorsByTag
             r = Object.getOwnPropertyNames(s)
             // 检测是否在网页内运行
@@ -1569,7 +1569,7 @@ var A = {
                 }
             }
         },
-        uX() {
+        initHooks() {
             var p, o, n, m = C.w()
 
             p = m.getTag
