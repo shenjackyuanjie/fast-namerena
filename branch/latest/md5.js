@@ -17059,7 +17059,7 @@ T.Plr.prototype = {
         s.push(new T.SkillVoid(0))
     },
     init_skills(list, original) {
-        //initSkills
+        // initSkills
         var s, r, q, p, o = this,
             n = 0,
             m = n
