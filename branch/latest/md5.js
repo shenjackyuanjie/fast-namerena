@@ -82,6 +82,7 @@ if (run_env.from_code) {
         },
         querySelector: function (tag) {
             // 搜索一下有没有这个元素
+            logger.debug("querySelector", tag);
             for (let i = 0; i < stored_elements.length; i++) {
                 if (stored_elements[i].tag == tag) {
                     return stored_elements[i];
@@ -92,6 +93,9 @@ if (run_env.from_code) {
             "some": "thing"
         }],
     };
+
+    let fake_plist = fake_element.fake_init(".plist");
+
 
     global.self = global.window;
 
@@ -2039,16 +2043,28 @@ var A = {
             return a.b(b)
         },
         uk(a) {
-            var s, r, q = this
-            if (!H.isStrongTopType(q))
-                if (!(q === t.c)) s = q === t.K
-            else s = true
-            else s = true
-            if (s) r = H.ue
-            else if (q === t.K) r = H.ud
-            else r = H.ui
-            q.a = r
-            return q.a(a)
+            var s, r, this_ = this
+            if (!H.isStrongTopType(this_)) {
+                if (!(this_ === t.c)) {
+                    s = this_ === t.K
+                    logger.debug("进入 H.uk")
+                } else {
+                    s = true
+                }
+            } else {
+                s = true
+            }
+            if (s) {
+                r = H.ue
+            } else {
+                if (this_ === t.K) {
+                    r = H.ud
+                } else {
+                    r = H.ui
+                }
+            }
+            this_.a = r
+            return this_.a(a)
         },
         ln(a) {
             var s, r = a.y
@@ -2096,6 +2112,7 @@ var A = {
         ui(a) {
             var s = this
             if (a == null) return a
+            // set run time info
             else if (s.b(a)) return a
             H.oo(a, s)
         },
@@ -2967,8 +2984,9 @@ var A = {
             return s
         },
         isStrongTopType(a) {
-            var s = a.y
-            return s === 2 || s === 3 || s === 4 || s === 5 || a === t.cK
+            var kind = a.y
+            // t.cK nullable_Object
+            return kind === 2 || kind === 3 || kind === 4 || kind === 5 || a === t.cK
         },
         ol(a, b) {
             var s, r, q = Object.keys(b),
@@ -8002,11 +8020,14 @@ var A = {
             })
             return P._asyncStartSync($async$jv, r)
         },
-        jt(a) {
-            logger.debug("HtmlRenderer.jt")
+        outer_main(a) {
             var s = document,
                 r = t.A
-            s = new HtmlRenderer.fq(r.a(s.querySelector(".plist")), r.a(s.querySelector(".pbody")), a, $.ro().ax(256))
+            let plist = s.querySelector(".plist")
+            let pbody = s.querySelector(".pbody")
+            logger.debug("r.a", r.a, plist)
+            s = new HtmlRenderer.fq(r.a(plist), r.a(pbody), a, $.ro().ax(256))
+            logger.debug("HtmlRenderer.jt")
             s.e0(a)
             return s
         },
@@ -12922,6 +12943,7 @@ S.fK.prototype = {
 HtmlRenderer.fq.prototype = {
     e0(a) {
         var s, r, q, this_ = this
+        logger.debug("进入 HTML.fq.e0")
         if (this_.a == null) return
         A.vo(this_.gfd())
         // this_.d = P.Timer_Timer(P.duration_milsec_sec(10, 0), this_.gbc(this_))
@@ -12943,7 +12965,7 @@ HtmlRenderer.fq.prototype = {
             r.appendChild(document.createTextNode(q))
         }
         // 添加 event listener
-        // console.log("HtmlRenderer.fq adding event listener for message")
+        logger.debug("注册等待器: ", this_.gfb(this_), this_)
         W.es(window, "message", this_.gfb(this_), false)
     },
     fc(func_self, event) {
@@ -20927,7 +20949,7 @@ function main() {
                             d = new X.iW(a9, new Float64Array(1))
                             d.e_(a8)
                             g = d
-                            f = HtmlRenderer.jt(g)
+                            f = HtmlRenderer.outer_main(g)
                             f.r = 2000
                             async_goto = 1
                             break
@@ -20948,7 +20970,7 @@ function main() {
                             g.dZ(a8, a9)
                             d = g
                             d.d = 1000
-                            c = HtmlRenderer.jt(d)
+                            c = HtmlRenderer.outer_main(d)
                             c.r = 2000
                             async_goto = 1
                             break
@@ -20968,7 +20990,7 @@ function main() {
                             g.dY(a8, a9)
                             b = g
                             b.c = 1000
-                            a = HtmlRenderer.jt(b)
+                            a = HtmlRenderer.outer_main(b)
                             a.r = 2000
                             async_goto = 1
                             break
@@ -20982,7 +21004,7 @@ function main() {
                 // a0_getter = async_result
                 // HtmlRenderer.jt(a0_getter)
                 logger.debug("main case 8")
-                HtmlRenderer.jt(async_result)
+                HtmlRenderer.outer_main(async_result)
                 switch_to = 2
                 async_goto = 7
                 break
