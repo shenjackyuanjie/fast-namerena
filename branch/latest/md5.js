@@ -367,7 +367,7 @@ var A = {
         vo(a) {
             var s = $.nx()
             s.toString
-            new P.cM(s, H.be(s).i("cM<1>")).f4(a)
+            new P.cM(s, H._instanceType(s).i("cM<1>")).f4(a)
             return
         }
     },
@@ -431,7 +431,7 @@ var A = {
             q.bd(LangData.fZ(a), 2)
             s = q.c
             s.toString
-            r = H.a1(s).i("y<1,l*>")
+            r = H._arrayInstanceType(s).i("y<1,l*>")
             return Sgls.ts(P.aa(new H.y(s, new Sgls.k5(), r), true, r.i("M.E")))
         },
         ts(a) {
@@ -864,7 +864,7 @@ var A = {
         },
         tc(a) {
             var s, r, q, p
-            if (a instanceof P.Object) return H.aH(H.b_(a), null)
+            if (a instanceof P.Object) return H.aH(H.instanceType(a), null)
             if (J.cV(a) === C.J || t.bI.b(a)) {
                 s = C.p(a)
                 r = s !== "Object" && s !== ""
@@ -877,7 +877,7 @@ var A = {
                     if (r) return p
                 }
             }
-            return H.aH(H.b_(a), null)
+            return H.aH(H.instanceType(a), null)
         },
         nY(a) {
             var s, r, q, p, o = a.length
@@ -1388,7 +1388,7 @@ var A = {
             return H.rL(a)
         },
         rF(a, b) {
-            return H._Universe_evalInEnvironment(init.typeUniverse, H.b_(a.a), b)
+            return H._Universe_evalInEnvironment(init.typeUniverse, H.instanceType(a.a), b)
         },
         nF(a) {
             return a.a
@@ -1986,35 +1986,35 @@ var A = {
                 if (a instanceof H.c_) {
                     s = H.oy(a)
                     if (s != null) return s
-                } return H.b_(a)
+                } return H.instanceType(a)
         },
-        b_(a) {
+        instanceType(a) {
             var s
             if (a instanceof P.Object) {
                 s = a.$ti
-                return s != null ? s : H.mr(a)
+                return s != null ? s : H._instanceTypeFromConstructor(a)
             }
-            if (Array.isArray(a)) return H.a1(a)
-            return H.mr(J.cV(a))
+            if (Array.isArray(a)) return H._arrayInstanceType(a)
+            return H._instanceTypeFromConstructor(J.cV(a))
         },
-        a1(a) {
+        _arrayInstanceType(a) {
             var s = a[init.arrayRti],
                 r = t.gn
             if (s == null) return r
             if (s.constructor !== r.constructor) return r
             return s
         },
-        be(a) {
+        _instanceType(a) {
             var s = a.$ti
-            return s != null ? s : H.mr(a)
+            return s != null ? s : H._instanceTypeFromConstructor(a)
         },
-        mr(a) {
+        _instanceTypeFromConstructor(a) {
             var s = a.constructor,
                 r = s.$ccache
             if (r != null) return r
-            return H.um(a, s)
+            return H._instanceTypeFromConstructorMiss(a, s)
         },
-        um(a, b) {
+        _instanceTypeFromConstructorMiss(a, b) {
             var s = a instanceof H.c_ ? a.__proto__.__proto__.constructor : b,
                 r = H.u9(init.typeUniverse, s.name)
             b.$ccache = r
@@ -2156,7 +2156,7 @@ var A = {
         },
         ob(a, b, c) {
             var s = P.jh(a),
-                r = H.aH(b == null ? H.b_(a) : b, null)
+                r = H.aH(b == null ? H.instanceType(a) : b, null)
             return s + ": type '" + H.as_string(r) + "' is not a subtype of type '" + H.as_string(c) + "'"
         },
         u_(a) {
@@ -4709,7 +4709,7 @@ var A = {
             g.cm = a4
             g.e = T.fD(a4 instanceof T.dR ? g.a6 = a4.a6 : g.a6 = a4)
             f = a4.t
-            f = H.b(f.slice(0), H.a1(f))
+            f = H.b(f.slice(0), H._arrayInstanceType(f))
             g.t = f
             return g
         },
@@ -4742,7 +4742,7 @@ var A = {
             if (c > 0) {
                 s = b.r2
                 r = s.gad(s)
-                q = P.aa(r, true, H.be(r).i("L.E"))
+                q = P.aa(r, true, H._instanceType(r).i("L.E"))
                 C.Array.aJ(q)
                 for (r = q.length, p = 0; p < q.length; q.length === r || (0, H.F)(q), ++p) {
                     o = s.h(0, q[p])
@@ -8076,6 +8076,7 @@ var A = {
             HtmlRenderer.aA(a, b.dx, c + 24, d + 5, 90, false)
         },
         rV(a, b) {
+            logger.debug("reaching html.rV")
             var s, r, q, p, o, n, m, l, k, j, i, h = "#000000",
                 g = "#EEEEEE",
                 f = W.j4(),
@@ -8448,7 +8449,7 @@ J.JsArray.prototype = {
         for (s = 0; s < r; ++s) a.push(b[s])
     },
     f5(a, b, c) {
-        return new H.y(a, b, H.a1(a).i("@<1>").aL(c).i("y<1,2>"))
+        return new H.y(a, b, H._arrayInstanceType(a).i("@<1>").aL(c).i("y<1,2>"))
     },
     aV(a, b) {
         var s, r = P.aL(a.length, "", false, t.N)
@@ -8485,8 +8486,8 @@ J.JsArray.prototype = {
         if (b > s) throw H.wrap_expression(P.a8(b, 0, s, "start", null))
         if (c == null) c = s
         else if (c < b || c > s) throw H.wrap_expression(P.a8(c, b, s, "end", null))
-        if (b === c) return H.b([], H.a1(a))
-        return H.b(a.slice(b, c), H.a1(a))
+        if (b === c) return H.b([], H._arrayInstanceType(a))
+        return H.b(a.slice(b, c), H._arrayInstanceType(a))
     },
     cL(a, b) {
         return this.al(a, b, null)
@@ -8914,7 +8915,7 @@ H.M.prototype = {
         return this.dP(0, b)
     },
     fM(a, b) {
-        return P.aa(this, true, H.be(this).i("M.E"))
+        return P.aa(this, true, H._instanceType(this).i("M.E"))
     },
     fL(a) {
         return this.fM(a, true)
@@ -9129,11 +9130,11 @@ H.aT.prototype = {
         return this.a === 0
     },
     gad(a) {
-        return new H.dC(this, H.be(this).i("dC<1>"))
+        return new H.dC(this, H._instanceType(this).i("dC<1>"))
     },
     gfP(a) {
         var s = this,
-            r = H.be(s)
+            r = H._instanceType(s)
         return H.t5(s.gad(s), new H.jH(s), r.c, r.Q[1])
     },
     J(a, b) {
@@ -9327,7 +9328,7 @@ H.jH.prototype = {
         return this.a.h(0, a)
     },
     $S() {
-        return H.be(this.a).i("2(1)")
+        return H._instanceType(this.a).i("2(1)")
     }
 }
 H.jK.prototype = {}
@@ -10080,7 +10081,7 @@ P.ke.prototype = {
         ++this.a.a
     },
     $S() {
-        return H.be(this.b).i("~(1)")
+        return H._instanceType(this.b).i("~(1)")
     }
 }
 P.kf.prototype = {
@@ -11159,7 +11160,7 @@ P.jm.prototype = {
 }
 P.L.prototype = {
     bV(a, b) {
-        return new H.cf(this, b, H.be(this).i("cf<L.E>"))
+        return new H.cf(this, b, H._instanceType(this).i("cf<L.E>"))
     },
     gp(a) {
         var s, r = this.ga0(this)
@@ -11212,7 +11213,7 @@ P.Object.prototype = {
     },
     gcw(a) {
         var s = this instanceof H.c_ ? H.oy(this) : null
-        return H.mz(s == null ? H.b_(this) : s)
+        return H.mz(s == null ? H.instanceType(this) : s)
     },
     toString() {
         return this.k(this)
@@ -11975,7 +11976,7 @@ W.ix.prototype = {
                 if (typeof console != "undefined") window.console.warn(s)
                 return
             } s = f.gad(f)
-        r = H.b(s.slice(0), H.a1(s))
+        r = H.b(s.slice(0), H._arrayInstanceType(s))
         for (q = f.gad(f).length - 1, s = f.a; q >= 0; --q) {
             p = r[q]
             o = m.a
@@ -12490,9 +12491,9 @@ L.iR.prototype = {
                     s = 6
                     break
                 case 8:
-                    o = new H.y(o, new L.iS(), H.a1(o).i("y<1,@>")).aV(0, "\r") + "\n" + new H.y(n, new L.iT(), H.a1(n).i("y<1,@>")).aV(0, "\r") + "\n"
+                    o = new H.y(o, new L.iS(), H._arrayInstanceType(o).i("y<1,@>")).aV(0, "\r") + "\n" + new H.y(n, new L.iT(), H._arrayInstanceType(n).i("y<1,@>")).aV(0, "\r") + "\n"
                     o = C.e.gaB().ab(o)
-                    n = H.b_(o).i("a9<z.E>")
+                    n = H.instanceType(o).i("a9<z.E>")
                     l = n.i("y<M.E,l*>")
                     l = P.aa(new H.y(new H.a9(o, n), new L.iU(q), l), true, l.i("M.E"))
                     C.Array.a5(l, H.fJ(p.buffer, 0, null))
@@ -12709,9 +12710,9 @@ V.iV.prototype = {
                     async_goto = 2
                     break
                 case 4:
-                    o = new H.y(o, new V.j0(), H.a1(o).i("y<1,@>")).aV(0, "\r") + "\n"
+                    o = new H.y(o, new V.j0(), H._arrayInstanceType(o).i("y<1,@>")).aV(0, "\r") + "\n"
                     o = C.e.gaB().ab(o)
-                    n = H.b_(o).i("a9<z.E>")
+                    n = H.instanceType(o).i("a9<z.E>")
                     l = n.i("y<M.E,l*>")
                     l = P.aa(new H.y(new H.a9(o, n), new V.j1(q), l), true, l.i("M.E"))
                     C.Array.a5(l, H.fJ(p.buffer, 0, null))
@@ -12883,7 +12884,7 @@ X.iW.prototype = {
                     e = this_.r
                     e[0] = Date.now() + 1
                     o = C.e.gaB().ab(h)
-                    n = H.b_(o).i("a9<z.E>")
+                    n = H.instanceType(o).i("a9<z.E>")
                     m = n.i("y<M.E,l*>")
                     m = P.aa(new H.y(new H.a9(o, n), new X.iY(this_), m), true, m.i("M.E"))
                     e = e.buffer
@@ -12935,7 +12936,7 @@ X.iW.prototype = {
                     p = q.r
                     p[0] = Date.now() + 1
                     o = C.e.gaB().ab("\t\t\t\t\n")
-                    n = H.b_(o).i("a9<z.E>")
+                    n = H.instanceType(o).i("a9<z.E>")
                     m = n.i("y<M.E,l*>")
                     m = P.aa(new H.y(new H.a9(o, n), new X.iZ(q), m), true, m.i("M.E"))
                     C.Array.a5(m, H.fJ(p.buffer, 0, null))
@@ -13054,7 +13055,7 @@ HtmlRenderer.fq.prototype = {
         if (a0.length < 6) return
         s = X.f4(a0, 0)
         r = C.Array.al(s, 0, s.length - 8)
-        q = H.a1(r).i("a9<1>")
+        q = H._arrayInstanceType(r).i("a9<1>")
         p = q.i("y<M.E,l*>")
         o = t.bQ
         n = P.aa(new H.y(H.b(C.e.bt(0, P.aa(new H.y(new H.a9(r, q),
@@ -14237,7 +14238,7 @@ T.dR.prototype = {
     },
     aU() {
         var s = this.cm.q
-        s = H.b(s.slice(0), H.a1(s))
+        s = H.b(s.slice(0), H._arrayInstanceType(s))
         this.q = s
         this.ci()
     },
@@ -16402,10 +16403,10 @@ T.fo.prototype = {
                         break
                     }
                     o = l.gad(l)
-                    a7 = P.aa(o, true, H.be(o).i("L.E"))
+                    a7 = P.aa(o, true, H._instanceType(o).i("L.E"))
                     C.Array.aJ(a7)
                     if (b3.length !== 0) {
-                        a8 = H.b(a7.slice(0), H.a1(a7))
+                        a8 = H.b(a7.slice(0), H._arrayInstanceType(a7))
                         C.Array.a5(a8, b3)
                         C.Array.aJ(a8)
                     } else {
@@ -16438,7 +16439,7 @@ T.fo.prototype = {
                     for (o = i.length, h = 0; h < i.length; i.length === o || (0, H.F)(i), ++h) {
                         e = i[h]
                         n = e.c
-                        m = H.a1(n)
+                        m = H._arrayInstanceType(n)
                         k = H.b(n.slice(0), m)
                         e.d = k
                         n = H.b(n.slice(0), m)
@@ -16447,11 +16448,11 @@ T.fo.prototype = {
                         if (m - 0 <= 32) H.ej(n, 0, m, T.mD())
                         else H.ei(n, 0, m, T.mD())
                         e.e = n
-                        n = H.b(n.slice(0), H.a1(n))
+                        n = H.b(n.slice(0), H._arrayInstanceType(n))
                         e.f = n
                     }
                     o = l.gfP(l)
-                    o = P.aa(o, true, H.be(o).i("L.E"))
+                    o = P.aa(o, true, H._instanceType(o).i("L.E"))
                     C.Array.bb(o, T.mD())
                     this_.c = o
                     if (C.JsInt.am(l.gp(l) + $.X(), $.C()) === 0)
@@ -16459,7 +16460,7 @@ T.fo.prototype = {
                             a2 = o[h]
                             a2.I = a2.gbT()
                         }
-                    o = H.b(i.slice(0), H.a1(i))
+                    o = H.b(i.slice(0), H._arrayInstanceType(i))
                     C.Array.bb(o, T.v4())
                     this_.d = o
                     for (n = o.length, m = t.i, l = this_.e, h = 0; h < o.length; o.length === n || (0, H.F)(o), ++h) {
@@ -16600,7 +16601,7 @@ T.fo.prototype = {
                     n = q.dx
                     n[0] = p + o
                     o = q.a
-                    m = new H.y(o, new T.jk(), H.a1(o).i("y<1,m*>")).aV(0, "\n")
+                    m = new H.y(o, new T.jk(), H._arrayInstanceType(o).i("y<1,m*>")).aV(0, "\n")
                     p = q.z
                     o = p.length
                     if (o !== 0)
@@ -16609,7 +16610,9 @@ T.fo.prototype = {
                             m += "\n" + H.as_string(k.e) + "\t" + H.as_string(k.a)
                         }
                     p = C.e.gaB().ab(m)
-                    o = H.b_(p).i("a9<z.E>")
+                    logger.debug("initing in T.fi.dM")
+                    o = H.instanceType(p).i("a9<z.E>")
+                    logger.debug("initing in T.fi.dM")
                     j = o.i("y<M.E,l*>")
                     j = P.aa(new H.y(new H.a9(p, o), new T.jl(q), j), true, j.i("M.E"))
                     C.Array.a5(j, H.fJ(n.buffer, 0, null))
@@ -16633,7 +16636,7 @@ T.fo.prototype = {
                 case 0:
                     n = H.as_string(a.gap().e) + "\r" + H.as_string(a.I.$0())
                     n = C.e.gaB().ab(n)
-                    p = H.b_(n).i("a9<z.E>")
+                    p = H.instanceType(n).i("a9<z.E>")
                     o = p.i("y<M.E,l*>")
                     o = P.aa(new H.y(new H.a9(n, p), new T.ji(q), o), true, o.i("M.E"))
                     C.Array.a5(o, H.fJ(q.dx.buffer, 0, null))
@@ -16650,7 +16653,7 @@ T.fo.prototype = {
 T.jk.prototype = {
     $1(a) {
         var s = a.d
-        return new H.y(s, new T.jj(), H.a1(s).i("y<1,@>")).aV(0, "\r")
+        return new H.y(s, new T.jj(), H._arrayInstanceType(s).i("y<1,@>")).aV(0, "\r")
     },
     $S: 49
 }
@@ -16933,7 +16936,7 @@ T.Plr.prototype = {
             } else r.push(j)
         }
         s = this_.t
-        s = H.b(s.slice(0), H.a1(s))
+        s = H.b(s.slice(0), H._arrayInstanceType(s))
         this_.E = s
         this_.ac()
         this_.k2 = this_.X.dH(this_.k1, t.c5)
@@ -17252,7 +17255,7 @@ T.Plr.prototype = {
             return
         }
         n.Z = false
-        for (s = n.r2, r = s.gad(s), r = P.aa(r, true, H.be(r).i("L.E")), C.Array.aJ(r), q = r.length, p = 0; p < r.length; r.length === q || (0, H.F)(r), ++p) {
+        for (s = n.r2, r = s.gad(s), r = P.aa(r, true, H._instanceType(r).i("L.E")), C.Array.aJ(r), q = r.length, p = 0; p < r.length; r.length === q || (0, H.F)(r), ++p) {
             o = r[p]
             if (s.h(0, o).gT() < 0) {
                 s.h(0, o).K(a, b)
@@ -18266,7 +18269,7 @@ T.k1.prototype = {
     cs() {
         var s, r = this.c,
             q = r.q,
-            p = H.a1(q).i("y<1,l*>")
+            p = H._arrayInstanceType(q).i("y<1,l*>")
         p = this.r = P.aa(new H.y(q, new T.k3(), p), true, p.i("M.E"))
         r = r.q
         q = $.ap()
@@ -18542,7 +18545,7 @@ T.bL.prototype = {
         var s, r, q, p, o, n, m, l, k, j, i, h, g, f = this,
             e = a.c
         e.toString
-        s = H.a1(e).i("y<1,l*>")
+        s = H._arrayInstanceType(e).i("y<1,l*>")
         f.d = P.aa(new H.y(e, new T.ko(), s), true, s.i("M.E"))
         f.e = a.ax($.bg())
         r = a.ax($.av())
@@ -18552,7 +18555,7 @@ T.bL.prototype = {
         if (r === e) p = q.al(s, $.bg(), $.aI())
         else {
             e = q.al(s, $.bg(), $.aI())
-            s = H.a1(e).i("y<1,l*>")
+            s = H._arrayInstanceType(e).i("y<1,l*>")
             p = P.aa(new H.y(e, new T.kp(), s), true, s.i("M.E"))
             p[r] = $.iH()
         }
