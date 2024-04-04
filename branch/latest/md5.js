@@ -5820,7 +5820,7 @@ var A = {
                     case 3:
                         result = runner
                         async_goto = 1
-                        // break
+                        break
                     case 1:
                         return P.async_return(result, async_completer)
                 }
