@@ -4478,7 +4478,7 @@ var A = {
             this.a = a
         },
         Duration_toString_sixDigits: function jc() {},
-        jd: function jd() {},
+        Duration_toString_twoDigits: function jd() {},
         O: function O() {},
         f2: function f2(a) {
             this.a = a
@@ -10961,7 +10961,7 @@ P.Duration.prototype = {
         return C.JsInt.bg(this.a, b.a)
     },
     k(a) {
-        var s, r, q, p = new P.jd(),
+        var s, r, q, p = new P.Duration_toString_twoDigits(),
             o = this.a
         if (o < 0) return "-" + new P.Duration(0 - o).k(0)
         s = p.$1(C.JsInt.ag(o, 6e7) % 60)
@@ -10981,7 +10981,7 @@ P.Duration_toString_sixDigits.prototype = {
     },
     $S: 12
 }
-P.jd.prototype = {
+P.Duration_toString_twoDigits.prototype = {
     $1(a) {
         if (a >= 10) return "" + a
         return "0" + a
@@ -18984,7 +18984,7 @@ LangData.k_.prototype = {
     inherit_many(P.fv, [H.fB, H.hX])
     inherit_many(H.M, [H.y, H.a9, P.id])
     inherit(H.NullError, P.bc)
-    inherit_many(H.c_, [H.j5, H.j6, H.kg, H.jH, H.lv, H.lx, P.kB, P.kA, P.lh, P.kK, P.kS, P.ke, P.kZ, P.Duration_toString_sixDigits, P.jd, W.jf, W.kF, W.jP, W.jO, W.l0, W.l1, W.l7, P.lE, P.lF, L.iS, L.iT, L.iU, V.j0, V.j1, X.iX, X.iY, X.iZ, HtmlRenderer.jx, HtmlRenderer.jy, HtmlRenderer.jw, HtmlRenderer.jz, HtmlRenderer.jB, HtmlRenderer.jC, HtmlRenderer.jD, HtmlRenderer.jV, HtmlRenderer.lp, HtmlRenderer.lq, Sgls.k5, Sgls.k6, T.k9, T.jk, T.jj, T.jl, T.ji, T.lD, T.jW, T.k3, T.kb, T.ko, T.kp, LangData.k_])
+    inherit_many(H.c_, [H.j5, H.j6, H.kg, H.jH, H.lv, H.lx, P.kB, P.kA, P.lh, P.kK, P.kS, P.ke, P.kZ, P.Duration_toString_sixDigits, P.Duration_toString_twoDigits, W.jf, W.kF, W.jP, W.jO, W.l0, W.l1, W.l7, P.lE, P.lF, L.iS, L.iT, L.iU, V.j0, V.j1, X.iX, X.iY, X.iZ, HtmlRenderer.jx, HtmlRenderer.jy, HtmlRenderer.jw, HtmlRenderer.jz, HtmlRenderer.jB, HtmlRenderer.jC, HtmlRenderer.jD, HtmlRenderer.jV, HtmlRenderer.lp, HtmlRenderer.lq, Sgls.k5, Sgls.k6, T.k9, T.jk, T.jj, T.jl, T.ji, T.lD, T.jW, T.k3, T.kb, T.ko, T.kp, LangData.k_])
     inherit_many(H.kg, [H.kc, H.dg])
     inherit(P.dG, P.aU)
     inherit_many(P.dG, [H.aT, P.ic, W.i2])
