@@ -16911,18 +16911,18 @@ T.Plr.prototype = {
         return P._asyncStartSync($async$cg, r)
     },
     az() {
-        //initRawAttr
+        //initRawAttr ?
         var s, r = this
         r.bf()
         s = r.r1
         if (s != null) s.bn()
         r.aU()
         r.bP()
-        r.dm(C.Array.cL(r.t, $.au()), C.Array.cL(r.E, $.au()))
+        r.initSkills(C.Array.cL(r.t, $.au()), C.Array.cL(r.E, $.au()))
         s = r.r1
         if (s != null) s.cs()
         r.bs()
-        r.cn()
+        r.initValues()
     },
     aU() {
         //getMiddle
@@ -17024,7 +17024,7 @@ T.Plr.prototype = {
         s.push(new T.SkillVoid(0))
         s.push(new T.SkillVoid(0))
     },
-    dm(list, original) {
+    initSkills(list, original) {
         //initSkills
         var s, r, q, p, o = this,
             n = 0,
@@ -17086,7 +17086,8 @@ T.Plr.prototype = {
             if (p.f > 0) p.W()
         }
     },
-    cn() {
+    initValues() {
+        //initValues
         var s = this
         s.F()
         s.fx = s.fy
@@ -17094,22 +17095,24 @@ T.Plr.prototype = {
     },
     F() {
         //updateStates
-        var s, r = this
-        r.ch = r.b0(r.q[0], $.cj())
-        r.cx = r.b0(r.q[$.i()], $.cj())
-        r.cy = r.b0(r.q[$.t()], $.cj()) + $.eU()
-        r.db = r.b0(r.q[$.B()], $.cj())
-        r.dx = r.b0(r.q[$.C()], $.cj())
-        r.dy = r.b0(r.q[$.X()], $.cj())
-        r.fr = r.b0(r.q[$.a4()], $.n1())
-        r.fy = r.q[$.ap()]
-        r.ci()
-        r.z = r.y
-        r.id = $.T()
-        r.A = false
-        for (s = r.rx, s = new Sgls.a_(s, s.b, s.$ti.i("a_<1*>")); s.u();) s.b.ar(r)
+        var s
+        this.ch = this.b0(this.q[0], $.cj())
+        this.cx = this.b0(this.q[$.i()], $.cj())
+        this.cy = this.b0(this.q[$.t()], $.cj()) + 160
+        this.db = this.b0(this.q[$.B()], $.cj())
+        this.dx = this.b0(this.q[$.C()], $.cj())
+        this.dy = this.b0(this.q[$.X()], $.cj())
+        this.fr = this.b0(this.q[$.a4()], $.n1())
+        this.fy = this.q[$.ap()] //maxhp
+
+        this.calcAttrSum()
+        this.z = this.y
+        this.id = $.T()
+        this.A = false
+        for (s = this.rx, s = new Sgls.a_(s, s.b, s.$ti.i("a_<1*>")); s.u();) s.b.ar(this)
     },
-    ci() {
+    calcAttrSum() {
+        //calcAttrSum
         var s, r, q, p, o, n, m, l, k, j, i = this,
             h = i.M = 0
         for (s = h; r = $.ap(), h < r; ++h) {
@@ -17129,17 +17132,17 @@ T.Plr.prototype = {
         i.H = $.W()
     },
     dN(a, b, c) {
-        var s, r, q, p = this
-        if (p.fx <= 0) return
-        s = p.cy * (b.n() & 3)
-        r = p.ry
+        var s, r, q
+        if (this.fx <= 0) return
+        s = this.cy * (b.n() & 3)
+        r = this.ry
         if (!r.gbv(r))
             for (r = new Sgls.a_(r, r.b, r.$ti.i("a_<1*>")); r.u();) s = r.b.x.fo(s, b, c)
-        r = p.l = p.l + s
+        r = this.l = this.l + s
         q = $.bx()
         if (r > q) {
-            p.l = r - q
-            p.eE(0, b, c)
+            this.l = r - q
+            this.eE(0, b, c)
         }
     },
     eE(a, b, c) {
