@@ -3075,22 +3075,22 @@ var A = {
             if (p != null) return p
             p = H.lookupAndCacheInterceptor(a)
             if (p != null) return p
-            if (typeof a == "function") return C.K
+            if (typeof a == "function") return C.JavaScriptFunction
             s = Object.getPrototypeOf(a)
-            if (s == null) return C.t
-            if (s === Object.prototype) return C.t
+            if (s == null) return C.PlainJavaScriptObject
+            if (s === Object.prototype) return C.PlainJavaScriptObject
             if (typeof q == "function") {
                 o = $.kU
                 if (o == null) o = $.kU = init.getIsolateTag("_$dart_js")
                 Object.defineProperty(q, o, {
-                    value: C.m,
+                    value: C.UnknownJavaScriptObject,
                     enumerable: false,
                     writable: true,
                     configurable: true
                 })
-                return C.m
+                return C.UnknownJavaScriptObject
             }
-            return C.m
+            return C.UnknownJavaScriptObject
         },
         rZ(a, b) {
             if (!H.aP(a)) throw H.wrap_expression(P.da(a, "length", "is not an integer"))
@@ -19120,13 +19120,13 @@ var t = (function rtii() {
     C.JsInt = J.JsInt.prototype
     C.d = J.JsNumber.prototype
     C.String = J.JsString.prototype
-    C.K = J.JavaScriptFunction.prototype
+    C.JavaScriptFunction = J.JavaScriptFunction.prototype
     C.Q = W.dQ.prototype
-    C.t = J.PlainJavaScriptObject.prototype
+    C.PlainJavaScriptObject = J.PlainJavaScriptObject.prototype
     C.R = W.ek.prototype
     C.j = W.ce.prototype
     C.u = W.en.prototype
-    C.m = J.UnknownJavaScriptObject.prototype
+    C.UnknownJavaScriptObject = J.UnknownJavaScriptObject.prototype
     C.U = W.eq.prototype
     C.v = W.eH.prototype
     C.V = new P.js()
