@@ -1316,7 +1316,7 @@ var A = {
             p = $.dh
             return new Function(r + (p == null ? $.dh = H.j3(n) : p) + "." + H.as_string(a) + "(" + o + ");}")()
         },
-        rJ(a, b, c, d) {
+        Closure_cspForwardInterceptedCall(a, b, c, d) {
             var s = H.BoundClosure_selfOf,
                 r = H.rG
             switch (b ? -1 : a) {
@@ -1375,7 +1375,7 @@ var A = {
             if (s == null) s = $.dh = H.j3("receiver")
             r = b.length
             q = c || r >= 28
-            if (q) return H.rJ(r, c, a, b)
+            if (q) return H.Closure_cspForwardInterceptedCall(r, c, a, b)
             if (r === 1) {
                 q = "return function(){return this." + n + "." + H.as_string(a) + "(this." + s + ");"
                 p = $.bk
