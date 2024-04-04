@@ -2757,28 +2757,28 @@ var A = {
             d.push(q)
             return a
         },
-        _Parser_handleIdentifier(a, b, c, d, e) {
-            var s, r, q, p, o, n, m = b + 1
-            for (s = c.length; m < s; ++m) {
-                r = c.charCodeAt(m)
+        _Parser_handleIdentifier(parser, start, source, stack, has_period) {
+            var s, r, q, p, o, n, m = start + 1
+            for (s = source.length; m < s; ++m) {
+                r = source.charCodeAt(m)
                 if (r === 46) {
-                    if (e) break
-                    e = true
+                    if (has_period) break
+                    has_period = true
                 } else {
                     if (!((((r | 32) >>> 0) - 97 & 65535) < 26 || r === 95 || r === 36)) q = r >= 48 && r <= 57
                     else q = true
                     if (!q) break
                 }
             }
-            p = c.substring(b, m)
-            if (e) {
-                s = a.u
-                o = a.e
+            p = source.substring(start, m)
+            if (has_period) {
+                s = parser.u
+                o = parser.e
                 if (o.y === 10) o = o.z
                 n = H.ua(s, o.z)[p]
                 if (n == null) H.throw_expression('No "' + p + '" in "' + H.tq(o) + '"')
-                d.push(H._Universe_evalInEnvironment(s, o, n))
-            } else d.push(p)
+                stack.push(H._Universe_evalInEnvironment(s, o, n))
+            } else stack.push(p)
             return m
         },
         _Parser_handleExtendedOperations(a, stack) {
@@ -3052,33 +3052,35 @@ var A = {
             }
         },
         getNativeInterceptor(a) {
-            var s, r, q, p, o, n = a[init.dispatchPropertyName]
+            var proto, r, q, interceptor, o, n = a[init.dispatchPropertyName]
             if (n == null)
                 if ($.mA == null) {
                     H.uY()
                     n = a[init.dispatchPropertyName]
                 } if (n != null) {
-                s = n.p
-                if (false === s) return n.i
-                if (true === s) return a
+                proto = n.p
+                if (false === proto) return n.i
+                if (true === proto) return a
                 r = Object.getPrototypeOf(a)
-                if (s === r) return n.i
-                if (n.e === r) throw H.wrap_expression(P.hT("Return interceptor for " + H.as_string(s(a, n))))
+                if (proto === r) return n.i
+                if (n.e === r) throw H.wrap_expression(P.hT("Return interceptor for " + H.as_string(proto(a, n))))
             }
             q = a.constructor
-            if (q == null) p = null
+            if (q == null) interceptor = null
             else {
                 o = $.kU
                 if (o == null) o = $.kU = init.getIsolateTag("_$dart_js")
-                p = q[o]
+                interceptor = q[o]
             }
-            if (p != null) return p
-            p = H.lookupAndCacheInterceptor(a)
-            if (p != null) return p
+            if (interceptor != null) return interceptor
+
+            // interceptor = H.lookupAndCacheInterceptor(a)
+            // if (interceptor != null) return interceptor
+
             if (typeof a == "function") return C.JavaScriptFunction
-            s = Object.getPrototypeOf(a)
-            if (s == null) return C.PlainJavaScriptObject
-            if (s === Object.prototype) return C.PlainJavaScriptObject
+            proto = Object.getPrototypeOf(a)
+            if (proto == null) return C.PlainJavaScriptObject
+            if (proto === Object.prototype) return C.PlainJavaScriptObject
             if (typeof q == "function") {
                 o = $.kU
                 if (o == null) o = $.kU = init.getIsolateTag("_$dart_js")
