@@ -1865,7 +1865,7 @@ var A = {
             var s = b.c
             return s == null ? b.c = H._Universe__lookupQuestionRti(a, b.z, true) : s
         },
-        o2(a, b) {
+        Rti__getFutureFromFutureOr(a, b) {
             var s = b.c
             return s == null ? b.c = H._Universe__lookupInterfaceRti(a, "bl", [b.z]) : s
         },
@@ -2888,7 +2888,7 @@ var A = {
             }
             if (r === 8) {
                 if (!H._isSubtype(a, b.z, c, d, e)) return false
-                return H._isSubtype(a, H.o2(a, b), c, d, e)
+                return H._isSubtype(a, H.Rti__getFutureFromFutureOr(a, b), c, d, e)
             }
             if (r === 7) {
                 s = H._isSubtype(a, b.z, c, d, e)
@@ -2896,7 +2896,7 @@ var A = {
             }
             if (p === 8) {
                 if (H._isSubtype(a, b, c, d.z, e)) return true
-                return H._isSubtype(a, b, c, H.o2(a, d), e)
+                return H._isSubtype(a, b, c, H.Rti__getFutureFromFutureOr(a, d), e)
             }
             if (p === 7) {
                 s = H._isSubtype(a, b, c, d.z, e)
