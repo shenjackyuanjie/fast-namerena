@@ -432,7 +432,7 @@ var A = {
             s = q.c
             s.toString
             r = H._arrayInstanceType(s).i("y<1,l*>")
-            return Sgls.ts(P.aa(new H.y(s, new Sgls.k5(), r), true, r.i("M.E")))
+            return Sgls.ts(P.List_List_of(new H.y(s, new Sgls.k5(), r), true, r.i("M.E")))
         },
         ts(a) {
             var s, r, q, p, o, n, m, l, k, j, i, h, g, f = C.d.V(a[0], $.me.length),
@@ -1680,7 +1680,7 @@ var A = {
                 if (s < 0) return a
                 return H.mG(a, s, s + b.length, c)
             }
-            if (b instanceof H.ct) return d === 0 ? a.replace(b.b, H.oz(c)) : H.vk(a, b, c, d)
+            if (b instanceof H.JSSyntaxRegExp) return d === 0 ? a.replace(b.b, H.oz(c)) : H.vk(a, b, c, d)
             if (b == null) H.throw_expression(H.R(b))
             r = J.rt(b, a, d)
             q = r.ga0(r)
@@ -1775,7 +1775,7 @@ var A = {
         lx: function lx(a) {
             this.a = a
         },
-        ct: function ct(a, b) {
+        JSSyntaxRegExp: function ct(a, b) {
             var _ = this
             _.a = a
             _.b = b
@@ -4313,7 +4313,7 @@ var A = {
             if (s != null) return s
             throw H.wrap_expression(P.FormatException(a, null, null))
         },
-        rQ(a) {
+        Error__objectToString(a) {
             if (a instanceof H.c_) return a.k(0)
             return "Instance of '" + H.as_string(H.jZ(a)) + "'"
         },
@@ -4323,13 +4323,13 @@ var A = {
                 for (s = 0; s < r.length; ++s) r[s] = b
             return r
         },
-        aa(a, b, c) {
-            var s = P.t4(a, c)
+        List_List_of(a, b, c) {
+            var s = P.List_List__of(a, c)
             return s
         },
-        t4(a, b) {
+        List_List__of(a, b) {
             var s, r
-            if (Array.isArray(a)) return H.b(a.slice(0), b.i("E<0>"))
+            if (Array.isArray(a)) return H.b(a.slice(0), b.i("E<0>")) // JSArray<0>
             s = H.b([], b.i("E<0>"))
             for (r = J.by(a); r.u();) s.push(r.gC())
             return s
@@ -4363,8 +4363,8 @@ var A = {
                 }
             return H.nZ(p)
         },
-        h_(a) {
-            return new H.ct(a, H.JSSyntaxRegExp_makeNative(a, false, true, false, false, false))
+        RegExp_RegExp(a) {
+            return new H.JSSyntaxRegExp(a, H.JSSyntaxRegExp_makeNative(a, false, true, false, false, false))
         },
         o7(a, b, c) {
             var s = J.by(b)
@@ -4403,7 +4403,7 @@ var A = {
         jh(a) {
             if (typeof a == "number" || H.lm(a) || a == null) return J.b4(a)
             if (typeof a == "string") return JSON.stringify(a)
-            return P.rQ(a)
+            return P.Error__objectToString(a)
         },
         iP(a) {
             return new P.f2(a)
@@ -4742,7 +4742,7 @@ var A = {
             if (c > 0) {
                 s = b.r2
                 r = s.gad(s)
-                q = P.aa(r, true, H._instanceType(r).i("L.E"))
+                q = P.List_List_of(r, true, H._instanceType(r).i("L.E"))
                 C.Array.aJ(q)
                 for (r = q.length, p = 0; p < q.length; q.length === r || (0, H.F)(q), ++p) {
                     o = s.h(0, q[p])
@@ -8749,7 +8749,7 @@ J.JsString.prototype = {
     cK(a, b) {
         if (b == null) H.throw_expression(H.R(b))
         if (typeof b == "string") return H.b(a.split(b), t.s)
-        else if (b instanceof H.ct && b.gep().exec("").length - 2 === 0) return H.b(a.split(b.b), t.s)
+        else if (b instanceof H.JSSyntaxRegExp && b.gep().exec("").length - 2 === 0) return H.b(a.split(b.b), t.s)
         else return this.ek(a, b)
     },
     ek(a, b) {
@@ -8915,7 +8915,7 @@ H.M.prototype = {
         return this.dP(0, b)
     },
     fM(a, b) {
-        return P.aa(this, true, H._instanceType(this).i("M.E"))
+        return P.List_List_of(this, true, H._instanceType(this).i("M.E"))
     },
     fL(a) {
         return this.fM(a, true)
@@ -9380,7 +9380,7 @@ H.lx.prototype = {
     },
     $S: 58
 }
-H.ct.prototype = {
+H.JSSyntaxRegExp.prototype = {
     k(a) {
         return "RegExp/" + this.a + "/" + this.b.flags
     },
@@ -12495,7 +12495,7 @@ L.iR.prototype = {
                     o = C.e.gaB().ab(o)
                     n = H.instanceType(o).i("a9<z.E>")
                     l = n.i("y<M.E,l*>")
-                    l = P.aa(new H.y(new H.a9(o, n), new L.iU(q), l), true, l.i("M.E"))
+                    l = P.List_List_of(new H.y(new H.a9(o, n), new L.iU(q), l), true, l.i("M.E"))
                     C.Array.a5(l, H.fJ(p.buffer, 0, null))
                     A.eR(X.dc(l))
                     return P.async_return(null, r)
@@ -12714,7 +12714,7 @@ V.iV.prototype = {
                     o = C.e.gaB().ab(o)
                     n = H.instanceType(o).i("a9<z.E>")
                     l = n.i("y<M.E,l*>")
-                    l = P.aa(new H.y(new H.a9(o, n), new V.j1(q), l), true, l.i("M.E"))
+                    l = P.List_List_of(new H.y(new H.a9(o, n), new V.j1(q), l), true, l.i("M.E"))
                     C.Array.a5(l, H.fJ(p.buffer, 0, null))
                     A.eR(X.dc(l))
                     return P.async_return(null, async_completer)
@@ -12886,7 +12886,7 @@ X.iW.prototype = {
                     o = C.e.gaB().ab(h)
                     n = H.instanceType(o).i("a9<z.E>")
                     m = n.i("y<M.E,l*>")
-                    m = P.aa(new H.y(new H.a9(o, n), new X.iY(this_), m), true, m.i("M.E"))
+                    m = P.List_List_of(new H.y(new H.a9(o, n), new X.iY(this_), m), true, m.i("M.E"))
                     e = e.buffer
                     e = new Uint8Array(e, 0)
                     C.Array.a5(m, e)
@@ -12938,7 +12938,7 @@ X.iW.prototype = {
                     o = C.e.gaB().ab("\t\t\t\t\n")
                     n = H.instanceType(o).i("a9<z.E>")
                     m = n.i("y<M.E,l*>")
-                    m = P.aa(new H.y(new H.a9(o, n), new X.iZ(q), m), true, m.i("M.E"))
+                    m = P.List_List_of(new H.y(new H.a9(o, n), new X.iZ(q), m), true, m.i("M.E"))
                     C.Array.a5(m, H.fJ(p.buffer, 0, null))
                     A.eR(X.dc(m))
                     return P.async_return(null, r)
@@ -13058,7 +13058,7 @@ HtmlRenderer.fq.prototype = {
         q = H._arrayInstanceType(r).i("a9<1>")
         p = q.i("y<M.E,l*>")
         o = t.bQ
-        n = P.aa(new H.y(H.b(C.e.bt(0, P.aa(new H.y(new H.a9(r, q),
+        n = P.List_List_of(new H.y(H.b(C.e.bt(0, P.List_List_of(new H.y(new H.a9(r, q),
                 new HtmlRenderer.jx(this_), p), true, p.i("M.E"))).split("\n"), t.s),
             new HtmlRenderer.jy(), o), true, o.i("M.E"))
         r = n.length
@@ -13365,7 +13365,7 @@ HtmlRenderer.jx.prototype = {
 HtmlRenderer.jy.prototype = {
     $1(a) {
         var s = t.dG
-        return P.aa(new H.y(H.b(a.split("\r"), t.s), new HtmlRenderer.jw(), s), true, s.i("M.E"))
+        return P.List_List_of(new H.y(H.b(a.split("\r"), t.s), new HtmlRenderer.jw(), s), true, s.i("M.E"))
     },
     $S: 35
 }
@@ -16403,7 +16403,7 @@ T.fo.prototype = {
                         break
                     }
                     o = l.gad(l)
-                    a7 = P.aa(o, true, H._instanceType(o).i("L.E"))
+                    a7 = P.List_List_of(o, true, H._instanceType(o).i("L.E"))
                     C.Array.aJ(a7)
                     if (b3.length !== 0) {
                         a8 = H.b(a7.slice(0), H._arrayInstanceType(a7))
@@ -16452,7 +16452,7 @@ T.fo.prototype = {
                         e.f = n
                     }
                     o = l.gfP(l)
-                    o = P.aa(o, true, H._instanceType(o).i("L.E"))
+                    o = P.List_List_of(o, true, H._instanceType(o).i("L.E"))
                     C.Array.bb(o, T.mD())
                     this_.c = o
                     if (C.JsInt.am(l.gp(l) + $.X(), $.C()) === 0)
@@ -16614,7 +16614,7 @@ T.fo.prototype = {
                     o = H.instanceType(p).i("a9<z.E>")
                     logger.debug("initing in T.fi.dM")
                     j = o.i("y<M.E,l*>")
-                    j = P.aa(new H.y(new H.a9(p, o), new T.jl(q), j), true, j.i("M.E"))
+                    j = P.List_List_of(new H.y(new H.a9(p, o), new T.jl(q), j), true, j.i("M.E"))
                     C.Array.a5(j, H.fJ(n.buffer, 0, null))
                     A.eR(X.dc(j))
                     return P.async_return(null, r)
@@ -16638,7 +16638,7 @@ T.fo.prototype = {
                     n = C.e.gaB().ab(n)
                     p = H.instanceType(n).i("a9<z.E>")
                     o = p.i("y<M.E,l*>")
-                    o = P.aa(new H.y(new H.a9(n, p), new T.ji(q), o), true, o.i("M.E"))
+                    o = P.List_List_of(new H.y(new H.a9(n, p), new T.ji(q), o), true, o.i("M.E"))
                     C.Array.a5(o, H.fJ(q.dx.buffer, 0, null))
                     A.eR(X.dc(o))
                     return P.async_return(null, r)
@@ -17255,7 +17255,7 @@ T.Plr.prototype = {
             return
         }
         n.Z = false
-        for (s = n.r2, r = s.gad(s), r = P.aa(r, true, H._instanceType(r).i("L.E")), C.Array.aJ(r), q = r.length, p = 0; p < r.length; r.length === q || (0, H.F)(r), ++p) {
+        for (s = n.r2, r = s.gad(s), r = P.List_List_of(r, true, H._instanceType(r).i("L.E")), C.Array.aJ(r), q = r.length, p = 0; p < r.length; r.length === q || (0, H.F)(r), ++p) {
             o = r[p]
             if (s.h(0, o).gT() < 0) {
                 s.h(0, o).K(a, b)
@@ -18270,7 +18270,7 @@ T.k1.prototype = {
         var s, r = this.c,
             q = r.q,
             p = H._arrayInstanceType(q).i("y<1,l*>")
-        p = this.r = P.aa(new H.y(q, new T.k3(), p), true, p.i("M.E"))
+        p = this.r = P.List_List_of(new H.y(q, new T.k3(), p), true, p.i("M.E"))
         r = r.q
         q = $.ap()
         r = r[q]
@@ -18546,7 +18546,7 @@ T.bL.prototype = {
             e = a.c
         e.toString
         s = H._arrayInstanceType(e).i("y<1,l*>")
-        f.d = P.aa(new H.y(e, new T.ko(), s), true, s.i("M.E"))
+        f.d = P.List_List_of(new H.y(e, new T.ko(), s), true, s.i("M.E"))
         f.e = a.ax($.bg())
         r = a.ax($.av())
         e = $.a4()
@@ -18556,7 +18556,7 @@ T.bL.prototype = {
         else {
             e = q.al(s, $.bg(), $.aI())
             s = H._arrayInstanceType(e).i("y<1,l*>")
-            p = P.aa(new H.y(e, new T.kp(), s), true, s.i("M.E"))
+            p = P.List_List_of(new H.y(e, new T.kp(), s), true, s.i("M.E"))
             p[r] = $.iH()
         }
         o = 0
@@ -18744,7 +18744,7 @@ LangData.SuperRC4.prototype = {
             }
         m = t.fh.aL(b.i("0*")).i("y<1,2>")
         // return X.map((e) => list[e]).toList();
-        return P.aa(new H.y(s, new LangData.k_(a, b), m), true, m.i("M.E"))
+        return P.List_List_of(new H.y(s, new LangData.k_(a, b), m), true, m.i("M.E"))
     },
     fi(a) {
         var s = a.length
@@ -18892,7 +18892,7 @@ LangData.k_.prototype = {
         inherit = hunkHelpers.inherit,
         inherit_many = hunkHelpers.inheritMany
     inherit(P.Object, null)
-    inherit_many(P.Object, [H.m8, J.Interceptor, J.db, P.O, P.ev, P.L, H.cv, P.fv, H.du, H.hV, H.kh, H.jR, H.dt, H.eE, H.c_, P.aU, H.jK, H.fA, H.ct, H.ew, H.kz, H.bK, H.l3, H.aW, H.ib, H.iu, P.l8, P.i_, P.f3, P.i4, P.cN, P._Future, P.i0, P.em, P.hO, P.hP, P.im, P.i1, P.i3, P.i7, P.ii, P.io, P.lf, P.eM, P.kV, P.ie, P.z, P.dY, P.fg, P.js, P.lc, P.lb, P.dq, P.Duration, P.fM, P.el, P.kG, P.jm, P.N, P.iq, P.cH, W.j8, W.m5, W.cP, W.cr, W.dN, W.eD, W.is, W.dv, W.kE, W.l_, W.ix, P.l4, P.kw, P.eJ, P.jQ, P.kT, Y.RC4, L.iR, V.iV, X.iW, S.fK, HtmlRenderer.fq, HtmlRenderer.jT, HtmlRenderer.ax, Sgls.a_, Sgls.n, T.x, T.Plr, T.dk, T.fo, T.b7, T.IPlr, T.HDamage, T.HRecover, T.aX, T.aq, T.bG, T.bL, T.fl])
+    inherit_many(P.Object, [H.m8, J.Interceptor, J.db, P.O, P.ev, P.L, H.cv, P.fv, H.du, H.hV, H.kh, H.jR, H.dt, H.eE, H.c_, P.aU, H.jK, H.fA, H.JSSyntaxRegExp, H.ew, H.kz, H.bK, H.l3, H.aW, H.ib, H.iu, P.l8, P.i_, P.f3, P.i4, P.cN, P._Future, P.i0, P.em, P.hO, P.hP, P.im, P.i1, P.i3, P.i7, P.ii, P.io, P.lf, P.eM, P.kV, P.ie, P.z, P.dY, P.fg, P.js, P.lc, P.lb, P.dq, P.Duration, P.fM, P.el, P.kG, P.jm, P.N, P.iq, P.cH, W.j8, W.m5, W.cP, W.cr, W.dN, W.eD, W.is, W.dv, W.kE, W.l_, W.ix, P.l4, P.kw, P.eJ, P.jQ, P.kT, Y.RC4, L.iR, V.iV, X.iW, S.fK, HtmlRenderer.fq, HtmlRenderer.jT, HtmlRenderer.ax, Sgls.a_, Sgls.n, T.x, T.Plr, T.dk, T.fo, T.b7, T.IPlr, T.HDamage, T.HRecover, T.aX, T.aq, T.bG, T.bL, T.fl])
     inherit_many(J.Interceptor, [J.fw, J.cs, J.bE, J.JsArray, J.JsNumber, J.JsString, H.dJ, H.ab, W.fn, W.bX, W.fe, W.i6, W.bb, W.ja, W.jb, W.o, W.c4, W.jL, W.ig, W.il, W.iy, W.iA])
     inherit_many(J.bE, [J.PlainJavaScriptObject, J.UnknownJavaScriptObject, J.JavaScriptFunction])
     inherit(J.jG, J.JsArray)
@@ -19399,7 +19399,7 @@ var t = (function rtii() {
         return new X.j9().$0()
     })
     lazy_old($, "Ay", "rn", function () {
-        return P.h_("\\?\\?\\?")
+        return P.RegExp_RegExp("\\?\\?\\?")
     })
     lazy_old($, "Ax", "bV", function () {
         return new S.fK()
@@ -19408,7 +19408,7 @@ var t = (function rtii() {
         return W.nK()
     })
     lazy_old($, "Av", "rm", function () {
-        return P.h_("\\[.*?\\]")
+        return P.RegExp_RegExp("\\[.*?\\]")
     })
     lazy_old($, "zT", "d7", function () {
         return 21
@@ -19764,13 +19764,13 @@ var t = (function rtii() {
         return P.dD([LangData.j("JIi6cgXO*d_", 22), $.iH(), LangData.j("Fmi6Vr!~c@]4ElFk,dC", 55), $.mO(), LangData.j("OeQh>Rep f~;YzR^Y%E", 16), $.lK()], t.X, t.B)
     })
     lazy_old($, "zE", "r0", function () {
-        return P.h_("^\\s+[:@]*\\s*")
+        return P.RegExp_RegExp("^\\s+[:@]*\\s*")
     })
     lazy_old($, "zF", "nq", function () {
-        return P.h_("\\s+$")
+        return P.RegExp_RegExp("\\s+$")
     })
     lazy_old($, "zD", "r_", function () {
-        return P.h_("\\r?\\n")
+        return P.RegExp_RegExp("\\r?\\n")
     })
     lazy_old($, "zR", "K", function () {
         var q = null
