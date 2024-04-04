@@ -1248,7 +1248,7 @@ var A = {
             throw H.wrap_expression("Error in functionType of tearoff")
         },
         Closure_cspForwardCall(arity, is_super_call, stub_name, func) {
-            var get_self = H.nF
+            var get_self = H.BoundClosure_selfOf
             switch (is_super_call ? -1 : arity) {
                 case 0:
                     return function (e, f) {
@@ -1317,7 +1317,7 @@ var A = {
             return new Function(r + (p == null ? $.dh = H.j3(n) : p) + "." + H.as_string(a) + "(" + o + ");}")()
         },
         rJ(a, b, c, d) {
-            var s = H.nF,
+            var s = H.BoundClosure_selfOf,
                 r = H.rG
             switch (b ? -1 : a) {
                 case 0:
@@ -1394,7 +1394,7 @@ var A = {
         rF(a, b) {
             return H._Universe_evalInEnvironment(init.typeUniverse, H.instanceType(a.a), b)
         },
-        nF(a) {
+        BoundClosure_selfOf(a) {
             return a.a
         },
         rG(a) {
