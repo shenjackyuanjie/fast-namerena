@@ -20038,7 +20038,8 @@ var t = (function rtii() {
         return X.k("w~Ou?!0.eC", 27)
     })
     lazy_old($, "wZ", "mS", function () {
-        return X.k("dG|*}T{.AF", 29)
+        // return X.k("dG|*}T{.AF", 29)
+        return 32768
     })
     lazy_old($, "xy", "n_", function () {
         return X.k("*,uU([GoYM", 71)
@@ -20050,7 +20051,8 @@ var t = (function rtii() {
         return X.k(">Lk@cu3H*Q", 97)
     })
     lazy_old($, "x6", "pF", function () {
-        return X.k("|@?Of-toCP", 87)
+        // return X.k("|@?Of-toCP", 87)
+        return 3517
     })
     lazy_old($, "wy", "pn", function () {
         // return X.k("v8kF:K:=`H", 46)
@@ -20117,7 +20119,8 @@ var t = (function rtii() {
         return X.k("C<7,}Y`[?K", 63)
     })
     lazy_old($, "xx", "pR", function () {
-        return X.k("=mymvqAAAA", 0)
+        // return X.k("=mymvqAAAA", 0)
+        return 61
     })
     lazy_old($, "wF", "pr", function () {
         return X.k("OsofdmW-bN", 77)
@@ -20911,6 +20914,7 @@ function main() {
 
                 // if (J.Y(J.J(J.J(h, 0)[0], 0), $.qc())) {
                 if ($.qc() === h[0][0][0]) {
+                    logger.debug("进入测号 init")
                     $.vr = 6
                     // h.length
                     // if (J.aw(h) === 2)
@@ -20995,6 +20999,7 @@ function main() {
             case 7:
                 logger.debug("so just here?", async_goto, error_code)
             case 1:
+                logger.debug("返回中")
                 return P.async_return(q, async_completer)
             case 2:
                 return P.async_rethrow(async_result_1, async_completer)
@@ -21004,4 +21009,4 @@ function main() {
 }
 
 logger.debug("running main:", main()) // 执行main函数
-logger.debug(X.k("?`C3ou}R1L", 67))
+// logger.debug(X.k("?`C3ou}R1L", 67))
