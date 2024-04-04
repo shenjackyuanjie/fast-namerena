@@ -1517,7 +1517,7 @@ var A = {
         makeLeafDispatchRecord(a) {
             return J.makeDispatchRecord(a, false, null, !!a.$iag)
         },
-        v3(a, b, c) {
+        makeDefaultDispatchRecord(a, b, c) {
             var s = b.prototype
             if (init.leafTags[a] === true) return H.makeLeafDispatchRecord(s)
             else return J.makeDispatchRecord(s, c, null, null)
@@ -1544,7 +1544,7 @@ var A = {
                     o = r[p]
                     n = $.oL.$1(o)
                     if (n != null) {
-                        m = H.v3(o, s[o], n)
+                        m = H.makeDefaultDispatchRecord(o, s[o], n)
                         if (m != null) {
                             Object.defineProperty(n, init.dispatchPropertyName, {
                                 value: m,
