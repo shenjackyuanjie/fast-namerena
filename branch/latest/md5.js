@@ -6,7 +6,7 @@
 // 兼容nodejs, 要不然 window = {}; 会崩
 // 使用 global.window 修复了这个问题, 还是 strict 舒服
 
-let name_input = "!test!\natest\ntest2+aa";
+let name_input = "!tadw est!\natest\ntest2+aa";
 let assets_data = {
     lang: null,
     gAd: null,
@@ -25,7 +25,8 @@ let logger = {
     debug: function (...msg) {
         if (run_env.from_code) {
             // 上个色
-            console.log("\x1b[32mlogger:", ...msg, "\x1b[0m")
+            let last_stack = new Error().stack.split("\n")[2].trim();
+            console.log("\x1b[32mlogger<", last_stack, ">:", ...msg, "\x1b[0m")
         }
     },
     info: function (...msg) {
@@ -8002,6 +8003,7 @@ var A = {
             return P._asyncStartSync($async$jv, r)
         },
         jt(a) {
+            logger.debug("HtmlRenderer.jt")
             var s = document,
                 r = t.A
             s = new HtmlRenderer.fq(r.a(s.querySelector(".plist")), r.a(s.querySelector(".pbody")), a, $.ro().ax(256))
@@ -13084,6 +13086,8 @@ HtmlRenderer.fq.prototype = {
         }
     },
     b4() {
+        // 实力评估 主循环?
+        logger.debug("评估 主循环")
         var async_goto = 0,
             async_complete = P._makeAsyncAwaitCompleter(t.z),
             q, this_ = this,
@@ -16249,9 +16253,7 @@ T.eg.prototype = {
 }
 T.fo.prototype = {
     bD() {
-        if (run_env.from_code) {
-            console.log("run_env.from_code")
-        }
+        logger.debug("看起来到 main 了")
         // 我盯上你了
         var async_goto = 0,
             async_completer = P._makeAsyncAwaitCompleter(t.z),
@@ -20874,7 +20876,6 @@ function main() {
                 if (run_env.from_code) {
                     console.log("initing from node")
                     $.ox = assets_data.gAd
-                    // 后面填一下这玩意
                 } else {
                     // a2 = window.localStorage.getItem(LanData.j("T|a`4tFX30f3:o_Vx]na4ki/|ye&j=D", 15))
                     a2 = window.localStorage.getItem("go​ogle_experiment_mod1")
@@ -20976,6 +20977,7 @@ function main() {
             case 8:
                 // a0_getter = async_result
                 // HtmlRenderer.jt(a0_getter)
+                logger.debug("main case 8")
                 HtmlRenderer.jt(async_result)
                 switch_to = 2
                 async_goto = 7
