@@ -6,7 +6,7 @@
 // 兼容nodejs, 要不然 window = {}; 会崩
 // 使用 global.window 修复了这个问题, 还是 strict 舒服
 
-let name_input = "!test!\natest\n\ntest2";
+let name_input = "!test!\n\natest\n\ntest2";
 let assets_data = {
     lang: null,
     gAd: null,
