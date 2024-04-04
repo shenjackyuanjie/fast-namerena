@@ -16903,18 +16903,17 @@ T.Plr.prototype = {
         // 名字字符输入的处理在此
         var s, r, q, p, o, n, m, l, k, j, i, this_ = this
         this_.I = this_.gfJ()
-        s = this_.r = this_.a
-        r = this_.b
+        s = this_.r = this_.a // 名字第一部分
+        r = this_.b // @ 号以后的东西
         if (r != null && r !== "" && r !== s) {
             // 有战队情况下构造名字
             r = this_.e = H.as_string(s) + "@" + H.as_string(this_.b)
-            console.log(r)
         } else {
             this_.e = this_.b = s
             r = s
         }
         this_.f = r
-        q = this_.d
+        q = this_.d // + 号以后的东西
         if (q != null && q !== "") {
             this_.f = H.as_string(r) + "+" + H.as_string(q)
 
