@@ -8930,6 +8930,7 @@
     W.a7.prototype = {}
     W.bn.prototype = {
         bF(a, b, c) {
+            console.log("posting", c)
             a.postMessage(new P.e_([], []).Y(b), c)
             return
         },
@@ -9231,6 +9232,7 @@
     }
     W.fs.prototype = {
         bF(a, b, c) {
+            console.log("posting", c)
             this.a.postMessage(new P.e_([], []).Y(b), c)
         }
     }

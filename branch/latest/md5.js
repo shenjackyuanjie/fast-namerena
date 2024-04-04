@@ -8062,6 +8062,7 @@ var A = {
 
             s = new HtmlRenderer.fq(plist, pbody, a, $.ro().ax(256))
             s.e0(a)
+            logger.debug("finish html.outer_main")
             return s
         },
         aA(a, b, c, d, e, f) {
@@ -10705,7 +10706,7 @@ P.jI.prototype = {
 P.jJ.prototype = {}
 P.kj.prototype = {
     bt(a, b) {
-        return C.T.ab(b)
+        return C.T_kk.ab(b)
     },
     gaB() {
         return C.E
@@ -12983,7 +12984,8 @@ HtmlRenderer.fq.prototype = {
         A.vo(this_.gfd())
         // this_.d = P.Timer_Timer(P.duration_milsec_sec(10, 0), this_.gbc(this_))
 
-        this_.d = P.Timer_Timer(P.duration_milsec_sec(0, 0), this_.gbc(this_))
+        // this.gbc -> this.dI
+        this_.d = P.Timer_Timer(P.duration_milsec_sec(0, 0), this.gbc(this_))
 
         if (!run_env.from_code) {
             W.es(window, "resize", this_.gff(this_), false)
@@ -13051,6 +13053,7 @@ HtmlRenderer.fq.prototype = {
     },
     fe(a0) {
         // run update
+        logger.debug("fq.fe start")
         var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, this_ = this
         if (a0.length < 6) return
         s = X.f4(a0, 0)
@@ -16584,6 +16587,9 @@ T.fo.prototype = {
         return P._asyncStartSync($async$O, async_completer)
     },
     ae(a, b) {
+        if (run_env.from_code) {
+            return null
+        }
         return this.dM(0, b)
     },
     dM(a, b) {
@@ -19254,7 +19260,7 @@ var t = (function rtii() {
     C.r = H.b(make_const_list(["bind", "if", "ref", "repeat", "syntax"]), t.V)
     C.l = H.b(make_const_list(["A::href", "AREA::href", "BLOCKQUOTE::cite", "BODY::background", "COMMAND::icon", "DEL::cite", "FORM::action", "IMG::src", "INPUT::src", "INS::cite", "Q::cite", "VIDEO::poster"]), t.V)
     C.S = H.vp("N")
-    C.T = new P.kk(false)
+    C.T_kk = new P.kk(false)
 })();
 (function staticFields() {
     $.kU = null
