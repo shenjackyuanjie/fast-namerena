@@ -1491,7 +1491,7 @@ var A = {
                 })
                 return o.i
             }
-            if (p === "+") return H.oK(obj, s)
+            if (p === "+") return H.patchInteriorProto(obj, s)
             if (p === "*") throw H.wrap_expression(P.hT(n))
             if (init.leafTags[n] === true) {
                 o = H.lB(s)
@@ -1502,9 +1502,9 @@ var A = {
                     configurable: true
                 })
                 return o.i
-            } else return H.oK(obj, s)
+            } else return H.patchInteriorProto(obj, s)
         },
-        oK(a, b) {
+        patchInteriorProto(a, b) {
             var s = Object.getPrototypeOf(a)
             Object.defineProperty(s, init.dispatchPropertyName, {
                 value: J.makeDispatchRecord(b, s, null, null),
