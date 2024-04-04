@@ -7464,7 +7464,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        SkillVoid: function bI(a) {
+        SkillVoid: function SkillVoid(a) {
             var _ = this
             _.e = false
             _.f = a
