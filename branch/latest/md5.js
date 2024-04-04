@@ -1039,18 +1039,18 @@ var A = {
         },
         unwrap_Exception(a) {
             if (a == null) return new H.jR(a)
-            if (a instanceof H.dt) return H.bR(a, a.a)
+            if (a instanceof H.dt) return H.saveStackTrace(a, a.a)
             if (typeof a !== "object") return a
-            if ("dartException" in a) return H.bR(a, a.dartException)
+            if ("dartException" in a) return H.saveStackTrace(a, a.dartException)
             return H.uH(a)
         },
-        bR(a, b) {
-            if (t.u.b(b))
-                if (b.$thrownJsError == null) b.$thrownJsError = a
-            return b
+        saveStackTrace(ex, err) {
+            if (t.u.b(err))
+                if (err.$thrownJsError == null) err.$thrownJsError = ex
+            return err
         },
         uH(a) {
-            var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e = null
+            var s, r, q, t1, o, n, m, l, k, j, i, h, g, f, e = null
             if (!("message" in a)) return a
             s = a.message
             if ("number" in a && typeof a.number == "number") {
@@ -1058,11 +1058,11 @@ var A = {
                 q = r & 65535
                 if ((C.JsInt.am(r, 16) & 8191) === 10) switch (q) {
                     case 438:
-                        return H.bR(a, H.m9(H.as_string(s) + " (Error " + q + ")", e))
+                        return H.saveStackTrace(a, H.m9(H.as_string(s) + " (Error " + q + ")", e))
                     case 445:
                     case 5007:
-                        p = H.as_string(s) + " (Error " + q + ")"
-                        return H.bR(a, new H.dP(p, e))
+                        t1 = H.as_string(s) + " (Error " + q + ")"
+                        return H.saveStackTrace(a, new H.NullError(t1, e))
                 }
             }
             if (a instanceof TypeError) {
@@ -1077,12 +1077,12 @@ var A = {
                 h = $.rg()
                 g = $.rf()
                 f = o.aH(s)
-                if (f != null) return H.bR(a, H.m9(s, f))
+                if (f != null) return H.saveStackTrace(a, H.m9(s, f))
                 else {
                     f = n.aH(s)
                     if (f != null) {
                         f.method = "call"
-                        return H.bR(a, H.m9(s, f))
+                        return H.saveStackTrace(a, H.m9(s, f))
                     } else {
                         f = m.aH(s)
                         if (f == null) {
@@ -1099,18 +1099,20 @@ var A = {
                                                 f = h.aH(s)
                                                 if (f == null) {
                                                     f = g.aH(s)
-                                                    p = f != null
-                                                } else p = true
-                                            } else p = true
-                                        } else p = true
-                                    } else p = true
-                                } else p = true
-                            } else p = true
-                        } else p = true
-                        if (p) return H.bR(a, new H.dP(s, f == null ? e : f.method))
+                                                    t1 = f != null
+                                                } else t1 = true
+                                            } else t1 = true
+                                        } else t1 = true
+                                    } else t1 = true
+                                } else t1 = true
+                            } else t1 = true
+                        } else t1 = true
+                        if (t1) {
+                            return H.saveStackTrace(a, new H.NullError(s, f == null ? e : f.method))
+                        }
                     }
                 }
-                return H.bR(a, new H.hU(typeof s == "string" ? s : ""))
+                return H.saveStackTrace(a, new H.hU(typeof s == "string" ? s : ""))
             }
             if (a instanceof RangeError) {
                 if (typeof s == "string" && s.indexOf("call stack") !== -1) return new P.el()
@@ -1120,7 +1122,7 @@ var A = {
                     } catch (d) {}
                     return null
                 }(a)
-                return H.bR(a, new P.aS(false, e, e, typeof s == "string" ? s.replace(/^RangeError:\s*/, "") : s))
+                return H.saveStackTrace(a, new P.aS(false, e, e, typeof s == "string" ? s.replace(/^RangeError:\s*/, "") : s))
             }
             if (typeof InternalError == "function" && a instanceof InternalError)
                 if (typeof s == "string" && s === "too much recursion") return new P.el()
@@ -1707,7 +1709,7 @@ var A = {
             _.e = e
             _.f = f
         },
-        dP: function dP(a, b) {
+        NullError: function dP(a, b) {
             this.a = a
             this.b = b
         },
@@ -9037,7 +9039,7 @@ H.kh.prototype = {
         return s
     }
 }
-H.dP.prototype = {
+H.NullError.prototype = {
     k(a) {
         var s = this.b
         if (s == null) return "NoSuchMethodError: " + H.as_string(this.a)
@@ -17136,7 +17138,7 @@ T.Plr.prototype = {
         r = new T.SklHide(0)
         r.ch = new T.bd(r)
         r.Q = new T.ca(r)
-        skills.push(r)  // 34
+        skills.push(r) // 34
         skills.push(new T.SkillVoid(0))
         skills.push(new T.SkillVoid(0))
         skills.push(new T.SkillVoid(0))
@@ -18975,7 +18977,7 @@ LangData.k_.prototype = {
     inherit(H.dr, H.c6)
     inherit_many(P.fv, [H.fB, H.hX])
     inherit_many(H.M, [H.y, H.a9, P.id])
-    inherit(H.dP, P.bc)
+    inherit(H.NullError, P.bc)
     inherit_many(H.c_, [H.j5, H.j6, H.kg, H.jH, H.lv, H.lx, P.kB, P.kA, P.lh, P.kK, P.kS, P.ke, P.kZ, P.jc, P.jd, W.jf, W.kF, W.jP, W.jO, W.l0, W.l1, W.l7, P.lE, P.lF, L.iS, L.iT, L.iU, V.j0, V.j1, X.iX, X.iY, X.iZ, HtmlRenderer.jx, HtmlRenderer.jy, HtmlRenderer.jw, HtmlRenderer.jz, HtmlRenderer.jB, HtmlRenderer.jC, HtmlRenderer.jD, HtmlRenderer.jV, HtmlRenderer.lp, HtmlRenderer.lq, Sgls.k5, Sgls.k6, T.k9, T.jk, T.jj, T.jl, T.ji, T.lD, T.jW, T.k3, T.kb, T.ko, T.kp, LangData.k_])
     inherit_many(H.kg, [H.kc, H.dg])
     inherit(P.dG, P.aU)
