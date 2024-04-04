@@ -17007,12 +17007,12 @@ T.Plr.prototype = {
         // buildAsync
         var s = 0,
             r = P._makeAsyncAwaitCompleter(t.z),
-            q = this
+            this_ = this
         var $async$cg = P._wrapJsFunctionForAsync(function (a, b) {
             if (a === 1) return P.async_rethrow(b, r)
             while (true) switch (s) {
                 case 0:
-                    q.az()
+                    this_.az()
                     return P.async_return(null, r)
             }
         })
@@ -17020,17 +17020,17 @@ T.Plr.prototype = {
     },
     az() {
         //initRawAttr
-        var s, r = this
-        r.bf()
-        s = r.r1
+        var s, this_ = this
+        this_.bf()
+        s = this_.r1
         if (s != null) s.bn()
-        r.aU()
-        r.bP()
-        r.dm(C.Array.cL(r.t, $.au()), C.Array.cL(r.E, $.au()))
-        s = r.r1
+        this_.aU()
+        this_.bP()
+        this_.dm(C.Array.cL(this_.t, $.au()), C.Array.cL(this_.E, $.au()))
+        s = this_.r1
         if (s != null) s.cs()
-        r.bs()
-        r.cn()
+        this_.bs()
+        this_.cn()
     },
     aU() {
         //getMiddle
@@ -17202,22 +17202,25 @@ T.Plr.prototype = {
     },
     F() {
         // updateStates
-        var s, r = this
-        r.ch = r.b0(r.q[0], $.cj())
-        r.cx = r.b0(r.q[$.i()], $.cj())
-        r.cy = r.b0(r.q[$.t()], $.cj()) + $.eU()
-        r.db = r.b0(r.q[$.B()], $.cj())
-        r.dx = r.b0(r.q[$.C()], $.cj())
-        r.dy = r.b0(r.q[$.X()], $.cj())
-        r.fr = r.b0(r.q[$.a4()], $.n1())
-        r.fy = r.q[$.ap()]
-        r.ci()
-        r.z = r.y
-        r.id = $.T()
-        r.A = false
-        for (s = r.rx, s = new Sgls.a_(s, s.b, s.$ti.i("a_<1*>")); s.u();) s.b.ar(r)
+        var s, this_ = this
+        this_.ch = this_.b0(this_.q[0], $.cj())
+        this_.cx = this_.b0(this_.q[$.i()], $.cj())
+        this_.cy = this_.b0(this_.q[$.t()], $.cj()) + 160
+        console.log("this_.cy",this_.cy)
+        console.log("this_.q",this_.q)
+        this_.db = this_.b0(this_.q[$.B()], $.cj())
+        this_.dx = this_.b0(this_.q[$.C()], $.cj())
+        this_.dy = this_.b0(this_.q[$.X()], $.cj())
+        this_.fr = this_.b0(this_.q[$.a4()], $.n1())
+        this_.fy = this_.q[$.ap()]
+        this_.ci()
+        this_.z = this_.y
+        this_.id = $.T()
+        this_.A = false
+        for (s = this_.rx, s = new Sgls.a_(s, s.b, s.$ti.i("a_<1*>")); s.u();) s.b.ar(this_)
     },
     ci() {
+        // calcAttrSum
         var s, r, q, p, o, n, m, l, k, j, i = this,
             h = i.M = 0
         for (s = h; r = $.ap(), h < r; ++h) {
