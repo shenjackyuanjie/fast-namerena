@@ -14959,6 +14959,7 @@ T.hB.prototype = {
     aa(a, b, c) {
         return H.b([], t.F)
     },
+    
     v(a7, a8, a9, b0) {
         var s, shadow_name, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, a3, a4, this_ = this,
             a6 = null
@@ -16901,6 +16902,8 @@ T.Plr.prototype = {
         return C.d.aI(a * ($.T() - this.x / b))
     },
     cA(a) {
+        //upgrade
+        /// upgrade leader from team member
         var s, this_ = this
         if (a.length === this_.t.length) {
             for (s = $.ap(); s < this_.t.length; ++s)
@@ -16917,7 +16920,7 @@ T.Plr.prototype = {
         }
     },
     cg() {
-        // 这是干啥的
+        // buildAsync
         var s = 0,
             r = P._makeAsyncAwaitCompleter(t.z),
             q = this
@@ -16932,6 +16935,7 @@ T.Plr.prototype = {
         return P._asyncStartSync($async$cg, r)
     },
     az() {
+        //initRawAttr
         var s, r = this
         r.bf()
         s = r.r1
@@ -16945,6 +16949,7 @@ T.Plr.prototype = {
         r.cn()
     },
     aU() {
+        //getMiddle
         var s, r, q, p, o = this
         for (s = $.Z(); s < $.d1(); s += $.B()) {
             r = o.q
@@ -16961,6 +16966,7 @@ T.Plr.prototype = {
         C.Array.j(r, C.Array.dz(C.Array.al(q, $.B(), $.ap()), new T.jX()) + $.mK())
     },
     bP() {
+        //initLists
         var s = this
         C.Array.sp(s.k4, 0)
         s.r2.ah(0)
@@ -16976,7 +16982,7 @@ T.Plr.prototype = {
     },
     ac() {
         // create skills
-        // createSkills
+        // createSkills()
         var s, r, q
         this.k3 = T.cG(this)
         s = this.k1
@@ -17042,14 +17048,15 @@ T.Plr.prototype = {
         s.push(new T.SkillVoid(0))
         s.push(new T.SkillVoid(0))
     },
-    dm(a, b) {
+    dm(list, original) {
+        //initSkills
         var s, r, q, p, o = this,
             n = 0,
             m = n
         while (true) {
             if (!(n < $.aR() && n < o.k2.length)) break
             s = o.k2[n]
-            r = C.Array.al(a, m, m + $.C())
+            r = C.Array.al(list, m, m + $.C())
             if (!!r.immutable$list) H.throw_expression(P.UnsupportError("sort"))
             q = r.length - 1
             if (q - 0 <= 32) H.ej(r, 0, q, J.bO())
@@ -17058,7 +17065,7 @@ T.Plr.prototype = {
             s.ao(o, p)
             r = 0
             if (p > r) {
-                r = C.Array.al(b, m, m + $.C())
+                r = C.Array.al(original, m, m + $.C())
                 if (!!r.immutable$list) H.throw_expression(P.UnsupportError("sort"))
                 q = r.length - 1
                 if (q - 0 <= 32) H.ej(r, 0, q, J.bO())
@@ -17071,6 +17078,7 @@ T.Plr.prototype = {
         for (; r = o.k2, n < r.length; ++n) r[n].ao(o, 0)
     },
     bs() {
+        //boostPassive or addSkillsToProc??
         var s, r, q, p, o, n, m, l = this
         for (s = 0, r = l.k4; q = l.k2, s < q.length; ++s) {
             p = q[s]
@@ -17109,6 +17117,7 @@ T.Plr.prototype = {
         s.go = C.JsInt.P(s.fr, $.t())
     },
     F() {
+        //updateStates
         var s, r = this
         r.ch = r.b0(r.q[0], $.cj())
         r.cx = r.b0(r.q[$.i()], $.cj())
