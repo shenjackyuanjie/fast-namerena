@@ -3427,7 +3427,7 @@ var A = {
         JsString: function bD() {}
     },
     L = {
-        WinChance: function iR(a, b, c, d, e, f, g) {
+        ProfileWinChance: function iR(a, b, c, d, e, f, g) {
             var _ = this
             _.a = a
             _.b = b
@@ -12345,7 +12345,7 @@ Y.RC4.prototype = {
         return p[p[r] + p[q] & 255]
     }
 }
-L.WinChance.prototype = {
+L.ProfileWinChance.prototype = {
     gbu(a) {
         return null
     },
@@ -18972,7 +18972,7 @@ LangData.k_.prototype = {
         inherit = hunkHelpers.inherit,
         inherit_many = hunkHelpers.inheritMany
     inherit(P.Object, null)
-    inherit_many(P.Object, [H.m8, J.Interceptor, J.db, P.O, P.ev, P.L, H.cv, P.fv, H.du, H.hV, H.kh, H.jR, H.dt, H.eE, H.c_, P.aU, H.jK, H.fA, H.JSSyntaxRegExp, H.ew, H.kz, H.bK, H.l3, H.aW, H.ib, H.iu, P.l8, P.i_, P.f3, P.i4, P.cN, P._Future, P.i0, P.em, P.hO, P.hP, P.im, P.i1, P.i3, P.i7, P.ii, P.io, P.lf, P.eM, P.kV, P.ie, P.z, P.dY, P.fg, P.js, P.lc, P.lb, P.dq, P.Duration, P.fM, P.el, P.kG, P.jm, P.N, P.iq, P.cH, W.j8, W.m5, W.cP, W.cr, W.dN, W.eD, W.is, W.dv, W.kE, W.l_, W.ix, P.l4, P.kw, P.eJ, P.jQ, P.kT, Y.RC4, L.WinChance, V.ProfileMain, X.iW, S.fK, HtmlRenderer.fq, HtmlRenderer.jT, HtmlRenderer.ax, Sgls.a_, Sgls.n, T.x, T.Plr, T.dk, T.fo, T.b7, T.IPlr, T.HDamage, T.HRecover, T.aX, T.aq, T.bG, T.bL, T.fl])
+    inherit_many(P.Object, [H.m8, J.Interceptor, J.db, P.O, P.ev, P.L, H.cv, P.fv, H.du, H.hV, H.kh, H.jR, H.dt, H.eE, H.c_, P.aU, H.jK, H.fA, H.JSSyntaxRegExp, H.ew, H.kz, H.bK, H.l3, H.aW, H.ib, H.iu, P.l8, P.i_, P.f3, P.i4, P.cN, P._Future, P.i0, P.em, P.hO, P.hP, P.im, P.i1, P.i3, P.i7, P.ii, P.io, P.lf, P.eM, P.kV, P.ie, P.z, P.dY, P.fg, P.js, P.lc, P.lb, P.dq, P.Duration, P.fM, P.el, P.kG, P.jm, P.N, P.iq, P.cH, W.j8, W.m5, W.cP, W.cr, W.dN, W.eD, W.is, W.dv, W.kE, W.l_, W.ix, P.l4, P.kw, P.eJ, P.jQ, P.kT, Y.RC4, L.ProfileWinChance, V.ProfileMain, X.iW, S.fK, HtmlRenderer.fq, HtmlRenderer.jT, HtmlRenderer.ax, Sgls.a_, Sgls.n, T.x, T.Plr, T.dk, T.fo, T.b7, T.IPlr, T.HDamage, T.HRecover, T.aX, T.aq, T.bG, T.bL, T.fl])
     inherit_many(J.Interceptor, [J.fw, J.cs, J.bE, J.JsArray, J.JsNumber, J.JsString, H.dJ, H.ab, W.fn, W.bX, W.fe, W.i6, W.bb, W.ja, W.jb, W.o, W.c4, W.jL, W.ig, W.il, W.iy, W.iA])
     inherit_many(J.bE, [J.PlainJavaScriptObject, J.UnknownJavaScriptObject, J.JavaScriptFunction])
     inherit(J.jG, J.JsArray)
@@ -21127,7 +21127,7 @@ function main() {
                         a3 = H.b([], a3)
                         a5 = H.b([], t.V)
                         a6 = H.b([], t.M)
-                        g = new L.WinChance(a8, a9, a4, a3, a5, a6, new Float64Array(1))
+                        g = new L.ProfileWinChance(a8, a9, a4, a3, a5, a6, new Float64Array(1))
                         g.dY(a8, a9)
                         b = g
                         b.c = 1000
