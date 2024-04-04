@@ -1247,51 +1247,51 @@ var A = {
             }
             throw H.wrap_expression("Error in functionType of tearoff")
         },
-        Closure_cspForwardCall(a, b, c, d) {
-            var s = H.nF
-            switch (b ? -1 : a) {
+        Closure_cspForwardCall(arity, is_super_call, stub_name, func) {
+            var get_self = H.nF
+            switch (is_super_call ? -1 : arity) {
                 case 0:
                     return function (e, f) {
                         return function () {
                             return f(this)[e]()
                         }
-                    }(c, s)
+                    }(stub_name, get_self)
                 case 1:
                     return function (e, f) {
                         return function (g) {
                             return f(this)[e](g)
                         }
-                    }(c, s)
+                    }(stub_name, get_self)
                 case 2:
                     return function (e, f) {
                         return function (g, h) {
                             return f(this)[e](g, h)
                         }
-                    }(c, s)
+                    }(stub_name, get_self)
                 case 3:
                     return function (e, f) {
                         return function (g, h, i) {
                             return f(this)[e](g, h, i)
                         }
-                    }(c, s)
+                    }(stub_name, get_self)
                 case 4:
                     return function (e, f) {
                         return function (g, h, i, j) {
                             return f(this)[e](g, h, i, j)
                         }
-                    }(c, s)
+                    }(stub_name, get_self)
                 case 5:
                     return function (e, f) {
                         return function (g, h, i, j, k) {
                             return f(this)[e](g, h, i, j, k)
                         }
-                    }(c, s)
+                    }(stub_name, get_self)
                 default:
                     return function (e, f) {
                         return function () {
                             return e.apply(f(this), arguments)
                         }
-                    }(d, s)
+                    }(func, get_self)
             }
         },
         nH(a, b, c, d) {
