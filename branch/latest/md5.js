@@ -1983,7 +1983,7 @@ var A = {
             a[init.arrayRti] = b
             return a
         },
-        oy(a) {
+        closureFunctionType(a) {
             var s = a.$S
             if (s != null) {
                 if (typeof s == "number") return H.uU(s)
@@ -1995,7 +1995,7 @@ var A = {
             var s
             if (H.Rti__isUnionOfFunctionType(b))
                 if (a instanceof H.c_) {
-                    s = H.oy(a)
+                    s = H.closureFunctionType(a)
                     if (s != null) return s
                 } return H.instanceType(a)
         },
@@ -11224,7 +11224,7 @@ P.Object.prototype = {
         return "Instance of '" + H.as_string(H.jZ(this)) + "'"
     },
     gcw(a) {
-        var s = this instanceof H.c_ ? H.oy(this) : null
+        var s = this instanceof H.c_ ? H.closureFunctionType(this) : null
         return H.mz(s == null ? H.instanceType(this) : s)
     },
     toString() {
