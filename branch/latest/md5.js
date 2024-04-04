@@ -396,7 +396,7 @@ var A = {
             s = J.cm(P.my(f.getContext("2d").getImageData(0, 0, 128, 128)))
             for (r = t.i, q = 0; q < 38; ++q) {
                 p = C.JsInt.V(q, 8) * 64 + C.JsInt.ag(q, 8) * 8192
-                o = H.b([], r)
+                o = H.setRuntimeTypeInfo([], r)
                 for (n = 0; n < 16; ++n)
                     for (m = n * 512, l = 0; l < 16; ++l) {
                         k = p + l * 4 + m
@@ -408,8 +408,8 @@ var A = {
             }
             for (q = 0; q < 8; ++q) {
                 p = q * 64 + 57344
-                i = H.b([], r)
-                h = H.b([], r)
+                i = H.setRuntimeTypeInfo([], r)
+                h = H.setRuntimeTypeInfo([], r)
                 for (n = 0; n < 16; ++n)
                     for (m = n * 512, l = 0; l < 16; ++l) {
                         k = p + l * 4 + m
@@ -437,7 +437,7 @@ var A = {
         ts(a) {
             var s, r, q, p, o, n, m, l, k, j, i, h, g, f = C.d.V(a[0], $.me.length),
                 e = t.i,
-                d = H.b([], e)
+                d = H.setRuntimeTypeInfo([], e)
             d.push(C.d.V(a[1], $.dZ.length))
             s = a[2]
             r = $.dZ.length
@@ -467,7 +467,7 @@ var A = {
             n.toString
             n.fillStyle = "rgba(" + s + ", " + r + ", " + k + ", 1)"
             n.fillRect(1, 1, 14, 14)
-            j = H.b([], e)
+            j = H.setRuntimeTypeInfo([], e)
             i = new Sgls.k6(j, m, d)
             for (p = o, h = 0; h < d.length; ++h) {
                 o = p + 1
@@ -502,7 +502,7 @@ var A = {
         },
         tu(a, b) {
             var s, r, q, p
-            Sgls.o4(a, $.me[b], H.b([64, 64, 64], t.i))
+            Sgls.o4(a, $.me[b], H.setRuntimeTypeInfo([64, 64, 64], t.i))
             s = P.my(a.getImageData(0, 0, 16, 16))
             r = $.o5[b]
             for (q = J.bv(s), p = 0; p < 256; ++p) q.gck(s)[p * 4 + 3] = r[p]
@@ -891,7 +891,7 @@ var A = {
             return s
         },
         tl(a) {
-            var s, r, q, p = H.b([], t.dC)
+            var s, r, q, p = H.setRuntimeTypeInfo([], t.dC)
             for (s = a.length, r = 0; r < a.length; a.length === s || (0, H.F)(a), ++r) {
                 q = a[r]
                 if (!H.aP(q)) throw H.wrap_expression(H.R(q))
@@ -1005,7 +1005,7 @@ var A = {
             var s, r, q, p, o, n
             a = H.quoteStringForRegExp(a.replace(String({}), "$receiver$"))
             s = a.match(/\\\$[a-zA-Z]+\\\$/g)
-            if (s == null) s = H.b([], t.s)
+            if (s == null) s = H.setRuntimeTypeInfo([], t.s)
             r = s.indexOf("\\$arguments\\$")
             q = s.indexOf("\\$argumentsExpr\\$")
             p = s.indexOf("\\$expr\\$")
@@ -1979,7 +1979,7 @@ var A = {
             s.c = m
             return s
         },
-        b(a, b) {
+        setRuntimeTypeInfo(a, b) {
             a[init.arrayRti] = b
             return a
         },
@@ -2151,14 +2151,14 @@ var A = {
         Au(a) {
             var s = this
             if (a == null) return a
-            else if (s.b(a)) return a
+            else if (s.setRuntimeTypeInfo(a)) return a
             H.oo(a, s)
         },
         ui(a) {
             var s = this
             if (a == null) return a
             // set run time info
-            else if (s.b(a)) return a
+            else if (s.setRuntimeTypeInfo(a)) return a
             logger.debug("faild nullable as check", a)
             H.oo(a, s)
         },
@@ -2283,7 +2283,7 @@ var A = {
             if (a6 != null) {
                 s = a6.length
                 if (a5 == null) {
-                    a5 = H.b([], t.s)
+                    a5 = H.setRuntimeTypeInfo([], t.s)
                     r = null
                 } else r = a5.length
                 q = a5.length
@@ -3142,10 +3142,10 @@ var A = {
         },
         t_(a, b) {
             if (!H.aP(a) || a < 0) throw H.wrap_expression(P.bz("Length must be a non-negative integer: " + H.as_string(a), null))
-            return H.b(new Array(a), b.i("E<0>"))
+            return H.setRuntimeTypeInfo(new Array(a), b.i("E<0>"))
         },
         t0(a, b) {
-            return J.nL(H.b(a, b.i("E<0>")))
+            return J.nL(H.setRuntimeTypeInfo(a, b.i("E<0>")))
         },
         nL(a) {
             a.fixed$length = Array
@@ -3467,7 +3467,7 @@ var A = {
             r = r < 26 ? r + 65 : r + 71
             q = q < 26 ? q + 65 : q + 71
             p = p < 26 ? p + 65 : p + 71
-            return P.mh(H.b([r, q, p, o < 26 ? o + 65 : o + 71], t.i), 0, null)
+            return P.mh(H.setRuntimeTypeInfo([r, q, p, o < 26 ? o + 65 : o + 71], t.i), 0, null)
         },
         j(a, b) {
             let result = C.e.bt(0, X.f4(a, b))
@@ -3485,7 +3485,7 @@ var A = {
         },
         lA: function lA() {},
         fZ(a) {
-            var s = H.b([0], t.i)
+            var s = H.setRuntimeTypeInfo([0], t.i)
             C.Array.a5(s, C.e.gaB().ab(a))
             return s
         },
@@ -3502,7 +3502,7 @@ var A = {
             if (a) {
                 s = new Y.RC4()
                 s.bd(C.e.gaB().ab(q), 2)
-                s.di(H.b([32, 46, 189, 177, 148, 32], t.i))
+                s.di(H.setRuntimeTypeInfo([32, 46, 189, 177, 148, 32], t.i))
                 return s
             } else {
                 r = new Y.RC4()
@@ -4062,7 +4062,7 @@ var A = {
                 if (b === "(" && c === ")") return "(...)"
                 return b + "..." + c
             }
-            s = H.b([], t.s)
+            s = H.setRuntimeTypeInfo([], t.s)
             $.ch.push(a)
             try {
                 P.uu(a, s)
@@ -4340,8 +4340,8 @@ var A = {
         },
         List_List__of(a, b) {
             var s, r
-            if (Array.isArray(a)) return H.b(a.slice(0), b.i("E<0>")) // JSArray<0>
-            s = H.b([], b.i("E<0>"))
+            if (Array.isArray(a)) return H.setRuntimeTypeInfo(a.slice(0), b.i("E<0>")) // JSArray<0>
+            s = H.setRuntimeTypeInfo([], b.i("E<0>"))
             for (r = J.by(a); r.u();) s.push(r.gC())
             return s
         },
@@ -4679,8 +4679,8 @@ var A = {
                 c = a4.d,
                 b = 0,
                 a = $.T(),
-                a0 = H.b([], t.q),
-                a1 = H.b([], t.H),
+                a0 = H.setRuntimeTypeInfo([], t.q),
+                a1 = H.setRuntimeTypeInfo([], t.H),
                 a2 = P.a0(t.X, t.W),
                 a3 = new Sgls.c(t.n)
             a3.c = a3
@@ -4710,17 +4710,17 @@ var A = {
             l.c = l
             l.b = l
             k = t.i
-            j = H.b([], k)
-            i = H.b([], k)
-            h = H.b([], k)
-            k = H.b([], k)
+            j = H.setRuntimeTypeInfo([], k)
+            i = H.setRuntimeTypeInfo([], k)
+            h = H.setRuntimeTypeInfo([], k)
+            k = H.setRuntimeTypeInfo([], k)
             g = 0
             g = new T.dR(f, e, d, c, b, a, a0, a1, a2, a3, s, r, q, p, o, n, m, l, j, i, h, k, g, g, g, $.W(), g)
             g.a1(f, e, d, c)
             g.cm = a4
             g.e = T.fD(a4 instanceof T.dR ? g.a6 = a4.a6 : g.a6 = a4)
             f = a4.t
-            f = H.b(f.slice(0), H._arrayInstanceType(f))
+            f = H.setRuntimeTypeInfo(f.slice(0), H._arrayInstanceType(f))
             g.t = f
             return g
         },
@@ -4823,14 +4823,14 @@ var A = {
         I(a, b, c) {
             var s, r, q, p, o = b ? a.dx : a.ch,
                 n = t.i,
-                m = H.b([c.n() & 127, c.n() & 127, c.n() & 127, o + $.au(), o], n)
+                m = H.setRuntimeTypeInfo([c.n() & 127, c.n() & 127, c.n() & 127, o + $.au(), o], n)
             C.Array.aJ(m)
             s = m[$.t()]
             m = c.n()
             r = $.au()
             q = c.n()
             p = $.au()
-            n = H.b([(m & 63) + r, (q & 63) + p, o + p], n)
+            n = H.setRuntimeTypeInfo([(m & 63) + r, (q & 63) + p, o + p], n)
             C.Array.aJ(n)
             return s * n[$.i()] * a.id
         },
@@ -4856,8 +4856,8 @@ var A = {
             if (a5 == $.nk()) {
                 s = 0
                 r = $.T()
-                q = H.b([], t.q)
-                p = H.b([], t.H)
+                q = H.setRuntimeTypeInfo([], t.q)
+                p = H.setRuntimeTypeInfo([], t.H)
                 o = P.a0(t.X, t.W)
                 n = new Sgls.c(t.n)
                 n.c = n
@@ -4887,10 +4887,10 @@ var A = {
                 f.c = f
                 f.b = f
                 e = t.i
-                d = H.b([], e)
-                c = H.b([], e)
-                b = H.b([], e)
-                e = H.b([], e)
+                d = H.setRuntimeTypeInfo([], e)
+                c = H.setRuntimeTypeInfo([], e)
+                b = H.setRuntimeTypeInfo([], e)
+                e = H.setRuntimeTypeInfo([], e)
                 a = 0
                 a = new T.fU(a4, a5, a4, a3, s, r, q, p, o, n, m, l, k, j, i, h, g, f, d, c, b, e, a, a, a, $.W(), a)
                 a.a1(a4, a5, a4, a3)
@@ -4900,8 +4900,8 @@ var A = {
             if (a5 == $.qR()) {
                 s = 0
                 r = $.T()
-                q = H.b([], t.q)
-                p = H.b([], t.H)
+                q = H.setRuntimeTypeInfo([], t.q)
+                p = H.setRuntimeTypeInfo([], t.H)
                 o = P.a0(t.X, t.W)
                 n = new Sgls.c(t.n)
                 n.c = n
@@ -4931,10 +4931,10 @@ var A = {
                 f.c = f
                 f.b = f
                 e = t.i
-                d = H.b([], e)
-                c = H.b([], e)
-                b = H.b([], e)
-                e = H.b([], e)
+                d = H.setRuntimeTypeInfo([], e)
+                c = H.setRuntimeTypeInfo([], e)
+                b = H.setRuntimeTypeInfo([], e)
+                e = H.setRuntimeTypeInfo([], e)
                 a = 0
                 a = new T.fV(a4, a5, a4, a3, s, r, q, p, o, n, m, l, k, j, i, h, g, f, d, c, b, e, a, a, a, $.W(), a)
                 a.a1(a4, a5, a4, a3)
@@ -4948,8 +4948,8 @@ var A = {
                     q = H.as_string(a4) + H.as_string($.aD())
                     p = 0
                     o = $.T()
-                    n = H.b([], t.q)
-                    m = H.b([], t.H)
+                    n = H.setRuntimeTypeInfo([], t.q)
+                    m = H.setRuntimeTypeInfo([], t.H)
                     l = P.a0(t.X, t.W)
                     k = new Sgls.c(t.n)
                     k.c = k
@@ -4979,10 +4979,10 @@ var A = {
                     c.c = c
                     c.b = c
                     b = t.i
-                    a = H.b([], b)
-                    a0 = H.b([], b)
-                    a1 = H.b([], b)
-                    b = H.b([], b)
+                    a = H.setRuntimeTypeInfo([], b)
+                    a0 = H.setRuntimeTypeInfo([], b)
+                    a1 = H.setRuntimeTypeInfo([], b)
+                    b = H.setRuntimeTypeInfo([], b)
                     a2 = 0
                     a2 = new T.df(r, a4, s, q, a3, p, o, n, m, l, k, j, i, h, g, f, e, d, c, a, a0, a1, b, a2, a2, a2, $.W(), a2)
                     a2.a1(a4, s, q, a3)
@@ -4993,8 +4993,8 @@ var A = {
                     r = H.as_string(a4) + H.as_string($.aD())
                     q = 0
                     p = $.T()
-                    o = H.b([], t.q)
-                    n = H.b([], t.H)
+                    o = H.setRuntimeTypeInfo([], t.q)
+                    n = H.setRuntimeTypeInfo([], t.H)
                     m = P.a0(t.X, t.W)
                     l = new Sgls.c(t.n)
                     l.c = l
@@ -5024,10 +5024,10 @@ var A = {
                     d.c = d
                     d.b = d
                     c = t.i
-                    b = H.b([], c)
-                    a = H.b([], c)
-                    a0 = H.b([], c)
-                    c = H.b([], c)
+                    b = H.setRuntimeTypeInfo([], c)
+                    a = H.setRuntimeTypeInfo([], c)
+                    a0 = H.setRuntimeTypeInfo([], c)
+                    c = H.setRuntimeTypeInfo([], c)
                     a1 = 0
                     a1 = new T.fc(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                     a1.a1(a4, s, r, a3)
@@ -5038,8 +5038,8 @@ var A = {
                     r = H.as_string(a4) + H.as_string($.aD())
                     q = 0
                     p = $.T()
-                    o = H.b([], t.q)
-                    n = H.b([], t.H)
+                    o = H.setRuntimeTypeInfo([], t.q)
+                    n = H.setRuntimeTypeInfo([], t.H)
                     m = P.a0(t.X, t.W)
                     l = new Sgls.c(t.n)
                     l.c = l
@@ -5069,10 +5069,10 @@ var A = {
                     d.c = d
                     d.b = d
                     c = t.i
-                    b = H.b([], c)
-                    a = H.b([], c)
-                    a0 = H.b([], c)
-                    c = H.b([], c)
+                    b = H.setRuntimeTypeInfo([], c)
+                    a = H.setRuntimeTypeInfo([], c)
+                    a0 = H.setRuntimeTypeInfo([], c)
+                    c = H.setRuntimeTypeInfo([], c)
                     a1 = 0
                     a1 = new T.f9(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                     a1.a1(a4, s, r, a3)
@@ -5083,8 +5083,8 @@ var A = {
                     r = H.as_string(a4) + H.as_string($.aD())
                     q = 0
                     p = $.T()
-                    o = H.b([], t.q)
-                    n = H.b([], t.H)
+                    o = H.setRuntimeTypeInfo([], t.q)
+                    n = H.setRuntimeTypeInfo([], t.H)
                     m = P.a0(t.X, t.W)
                     l = new Sgls.c(t.n)
                     l.c = l
@@ -5114,10 +5114,10 @@ var A = {
                     d.c = d
                     d.b = d
                     c = t.i
-                    b = H.b([], c)
-                    a = H.b([], c)
-                    a0 = H.b([], c)
-                    c = H.b([], c)
+                    b = H.setRuntimeTypeInfo([], c)
+                    a = H.setRuntimeTypeInfo([], c)
+                    a0 = H.setRuntimeTypeInfo([], c)
+                    c = H.setRuntimeTypeInfo([], c)
                     a1 = 0
                     a1 = new T.fd(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                     a1.a1(a4, s, r, a3)
@@ -5129,8 +5129,8 @@ var A = {
                     r = H.as_string(a4) + H.as_string($.aD())
                     q = 0
                     p = $.T()
-                    o = H.b([], t.q)
-                    n = H.b([], t.H)
+                    o = H.setRuntimeTypeInfo([], t.q)
+                    n = H.setRuntimeTypeInfo([], t.H)
                     m = P.a0(t.X, t.W)
                     l = new Sgls.c(t.n)
                     l.c = l
@@ -5160,10 +5160,10 @@ var A = {
                     d.c = d
                     d.b = d
                     c = t.i
-                    b = H.b([], c)
-                    a = H.b([], c)
-                    a0 = H.b([], c)
-                    c = H.b([], c)
+                    b = H.setRuntimeTypeInfo([], c)
+                    a = H.setRuntimeTypeInfo([], c)
+                    a0 = H.setRuntimeTypeInfo([], c)
+                    c = H.setRuntimeTypeInfo([], c)
                     a1 = 0
                     a1 = new T.f8(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                     a1.a1(a4, s, r, a3)
@@ -5174,8 +5174,8 @@ var A = {
                     r = H.as_string(a4) + H.as_string($.aD())
                     q = 0
                     p = $.T()
-                    o = H.b([], t.q)
-                    n = H.b([], t.H)
+                    o = H.setRuntimeTypeInfo([], t.q)
+                    n = H.setRuntimeTypeInfo([], t.H)
                     m = P.a0(t.X, t.W)
                     l = new Sgls.c(t.n)
                     l.c = l
@@ -5205,10 +5205,10 @@ var A = {
                     d.c = d
                     d.b = d
                     c = t.i
-                    b = H.b([], c)
-                    a = H.b([], c)
-                    a0 = H.b([], c)
-                    c = H.b([], c)
+                    b = H.setRuntimeTypeInfo([], c)
+                    a = H.setRuntimeTypeInfo([], c)
+                    a0 = H.setRuntimeTypeInfo([], c)
+                    c = H.setRuntimeTypeInfo([], c)
                     a1 = 0
                     a1 = new T.f6(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                     a1.a1(a4, s, r, a3)
@@ -5219,8 +5219,8 @@ var A = {
                     r = H.as_string(a4) + H.as_string($.aD())
                     q = 0
                     p = $.T()
-                    o = H.b([], t.q)
-                    n = H.b([], t.H)
+                    o = H.setRuntimeTypeInfo([], t.q)
+                    n = H.setRuntimeTypeInfo([], t.H)
                     m = P.a0(t.X, t.W)
                     l = new Sgls.c(t.n)
                     l.c = l
@@ -5250,10 +5250,10 @@ var A = {
                     d.c = d
                     d.b = d
                     c = t.i
-                    b = H.b([], c)
-                    a = H.b([], c)
-                    a0 = H.b([], c)
-                    c = H.b([], c)
+                    b = H.setRuntimeTypeInfo([], c)
+                    a = H.setRuntimeTypeInfo([], c)
+                    a0 = H.setRuntimeTypeInfo([], c)
+                    c = H.setRuntimeTypeInfo([], c)
                     a1 = 0
                     a1 = new T.f5(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                     a1.a1(a4, s, r, a3)
@@ -5264,8 +5264,8 @@ var A = {
                     r = H.as_string(a4) + H.as_string($.aD())
                     q = 0
                     p = $.T()
-                    o = H.b([], t.q)
-                    n = H.b([], t.H)
+                    o = H.setRuntimeTypeInfo([], t.q)
+                    n = H.setRuntimeTypeInfo([], t.H)
                     m = P.a0(t.X, t.W)
                     l = new Sgls.c(t.n)
                     l.c = l
@@ -5295,10 +5295,10 @@ var A = {
                     d.c = d
                     d.b = d
                     c = t.i
-                    b = H.b([], c)
-                    a = H.b([], c)
-                    a0 = H.b([], c)
-                    c = H.b([], c)
+                    b = H.setRuntimeTypeInfo([], c)
+                    a = H.setRuntimeTypeInfo([], c)
+                    a0 = H.setRuntimeTypeInfo([], c)
+                    c = H.setRuntimeTypeInfo([], c)
                     a1 = 0
                     a1 = new T.de(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                     a1.a1(a4, s, r, a3)
@@ -5309,8 +5309,8 @@ var A = {
                     r = H.as_string(a4) + H.as_string($.aD())
                     q = 0
                     p = $.T()
-                    o = H.b([], t.q)
-                    n = H.b([], t.H)
+                    o = H.setRuntimeTypeInfo([], t.q)
+                    n = H.setRuntimeTypeInfo([], t.H)
                     m = P.a0(t.X, t.W)
                     l = new Sgls.c(t.n)
                     l.c = l
@@ -5340,10 +5340,10 @@ var A = {
                     d.c = d
                     d.b = d
                     c = t.i
-                    b = H.b([], c)
-                    a = H.b([], c)
-                    a0 = H.b([], c)
-                    c = H.b([], c)
+                    b = H.setRuntimeTypeInfo([], c)
+                    a = H.setRuntimeTypeInfo([], c)
+                    a0 = H.setRuntimeTypeInfo([], c)
+                    c = H.setRuntimeTypeInfo([], c)
                     a1 = 0
                     a1 = new T.f7(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                     a1.a1(a4, s, r, a3)
@@ -5354,8 +5354,8 @@ var A = {
                     r = H.as_string(a4) + H.as_string($.aD())
                     q = 0
                     p = $.T()
-                    o = H.b([], t.q)
-                    n = H.b([], t.H)
+                    o = H.setRuntimeTypeInfo([], t.q)
+                    n = H.setRuntimeTypeInfo([], t.H)
                     m = P.a0(t.X, t.W)
                     l = new Sgls.c(t.n)
                     l.c = l
@@ -5385,10 +5385,10 @@ var A = {
                     d.c = d
                     d.b = d
                     c = t.i
-                    b = H.b([], c)
-                    a = H.b([], c)
-                    a0 = H.b([], c)
-                    c = H.b([], c)
+                    b = H.setRuntimeTypeInfo([], c)
+                    a = H.setRuntimeTypeInfo([], c)
+                    a0 = H.setRuntimeTypeInfo([], c)
+                    c = H.setRuntimeTypeInfo([], c)
                     a1 = 0
                     a1 = new T.fa(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                     a1.a1(a4, s, r, a3)
@@ -5400,8 +5400,8 @@ var A = {
                     r = H.as_string(r) + H.as_string($.aD())
                     q = 0
                     p = $.T()
-                    o = H.b([], t.q)
-                    n = H.b([], t.H)
+                    o = H.setRuntimeTypeInfo([], t.q)
+                    n = H.setRuntimeTypeInfo([], t.H)
                     m = P.a0(t.X, t.W)
                     l = new Sgls.c(t.n)
                     l.c = l
@@ -5431,10 +5431,10 @@ var A = {
                     d.c = d
                     d.b = d
                     c = t.i
-                    b = H.b([], c)
-                    a = H.b([], c)
-                    a0 = H.b([], c)
-                    c = H.b([], c)
+                    b = H.setRuntimeTypeInfo([], c)
+                    a = H.setRuntimeTypeInfo([], c)
+                    a0 = H.setRuntimeTypeInfo([], c)
+                    c = H.setRuntimeTypeInfo([], c)
                     a1 = 0
                     a1 = new T.fR(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                     a1.a1(a4, s, r, a3)
@@ -5448,8 +5448,8 @@ var A = {
                     r = $.nr().h(0, a4)
                     q = 0
                     p = $.T()
-                    o = H.b([], t.q)
-                    n = H.b([], t.H)
+                    o = H.setRuntimeTypeInfo([], t.q)
+                    n = H.setRuntimeTypeInfo([], t.H)
                     m = P.a0(t.X, t.W)
                     l = new Sgls.c(t.n)
                     l.c = l
@@ -5479,10 +5479,10 @@ var A = {
                     d.c = d
                     d.b = d
                     c = t.i
-                    b = H.b([], c)
-                    a = H.b([], c)
-                    a0 = H.b([], c)
-                    c = H.b([], c)
+                    b = H.setRuntimeTypeInfo([], c)
+                    a = H.setRuntimeTypeInfo([], c)
+                    a0 = H.setRuntimeTypeInfo([], c)
+                    c = H.setRuntimeTypeInfo([], c)
                     a1 = 0
                     a1 = new T.fP(r, a4, s, a4, a7, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                     a1.a1(a4, s, a4, a7)
@@ -5492,8 +5492,8 @@ var A = {
                 s = $.cl()
                 r = 0
                 q = $.T()
-                p = H.b([], t.q)
-                o = H.b([], t.H)
+                p = H.setRuntimeTypeInfo([], t.q)
+                o = H.setRuntimeTypeInfo([], t.H)
                 n = P.a0(t.X, t.W)
                 m = new Sgls.c(t.n)
                 m.c = m
@@ -5523,10 +5523,10 @@ var A = {
                 e.c = e
                 e.b = e
                 d = t.i
-                c = H.b([], d)
-                b = H.b([], d)
-                a = H.b([], d)
-                d = H.b([], d)
+                c = H.setRuntimeTypeInfo([], d)
+                b = H.setRuntimeTypeInfo([], d)
+                a = H.setRuntimeTypeInfo([], d)
+                d = H.setRuntimeTypeInfo([], d)
                 a0 = 0
                 a0 = new T.fQ(a4, s, a4, a7, r, q, p, o, n, m, l, k, j, i, h, g, f, e, c, b, a, d, a0, a0, a0, $.W(), a0)
                 a0.a1(a4, s, a4, a7)
@@ -5629,8 +5629,8 @@ var A = {
                 e = H.as_string(a2) + H.as_string($.aD()),
                 d = 0,
                 c = $.T(),
-                b = H.b([], t.q),
-                a = H.b([], t.H),
+                b = H.setRuntimeTypeInfo([], t.q),
+                a = H.setRuntimeTypeInfo([], t.H),
                 a0 = P.a0(t.X, t.W),
                 a1 = new Sgls.c(t.n)
             a1.c = a1
@@ -5660,10 +5660,10 @@ var A = {
             l.c = l
             l.b = l
             k = t.i
-            j = H.b([], k)
-            i = H.b([], k)
-            h = H.b([], k)
-            k = H.b([], k)
+            j = H.setRuntimeTypeInfo([], k)
+            i = H.setRuntimeTypeInfo([], k)
+            h = H.setRuntimeTypeInfo([], k)
+            k = H.setRuntimeTypeInfo([], k)
             g = 0
             g = new T.bZ(f, a2, a3, e, null, d, c, b, a, a0, a1, s, r, q, p, o, n, m, l, j, i, h, k, g, g, g, $.W(), g)
             g.a1(a2, a3, e, null)
@@ -5675,8 +5675,8 @@ var A = {
                 e = H.as_string(a3) + H.as_string($.aD()),
                 d = 0,
                 c = $.T(),
-                b = H.b([], t.q),
-                a = H.b([], t.H),
+                b = H.setRuntimeTypeInfo([], t.q),
+                a = H.setRuntimeTypeInfo([], t.H),
                 a0 = P.a0(t.X, t.W),
                 a1 = new Sgls.c(t.n)
             a1.c = a1
@@ -5706,10 +5706,10 @@ var A = {
             l.c = l
             l.b = l
             k = t.i
-            j = H.b([], k)
-            i = H.b([], k)
-            h = H.b([], k)
-            k = H.b([], k)
+            j = H.setRuntimeTypeInfo([], k)
+            i = H.setRuntimeTypeInfo([], k)
+            h = H.setRuntimeTypeInfo([], k)
+            k = H.setRuntimeTypeInfo([], k)
             g = 0
             g = new T.fb(a2, f, a3, a4, e, null, d, c, b, a, a0, a1, s, r, q, p, o, n, m, l, j, i, h, k, g, g, g, $.W(), g)
             g.a1(a3, a4, e, null)
@@ -5721,7 +5721,7 @@ var A = {
         parse_names(a) {
             var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e = null,
                 d = t.E,
-                c = H.b([], d),
+                c = H.setRuntimeTypeInfo([], d),
                 b = C.String.cK(a, $.r_())
             for (s = 0; s < b.length; ++s) {
                 r = b[s]
@@ -5734,22 +5734,22 @@ var A = {
             // for (; J.Y(C.Array.gbl(b), "");) {
             for (; C.Array.gbl(b) === "";) {
                 b.pop()
-                if (b.length === 0) return H.b([], d)
+                if (b.length === 0) return H.setRuntimeTypeInfo([], d)
             }
             p = C.Array.w(b, "") && true
             d = t.t
-            o = H.b([], d)
+            o = H.setRuntimeTypeInfo([], d)
             for (s = 0, r = t.V, q = !p, n = e; s < b.length; ++s) {
                 m = b[s]
                 if (m === "") {
                     if (o.length !== 0) c.push(o)
-                    o = H.b([], d)
+                    o = H.setRuntimeTypeInfo([], d)
                     n = e
                     continue
                 }
                 if (q) {
                     if (o.length !== 0) c.push(o)
-                    o = H.b([], d)
+                    o = H.setRuntimeTypeInfo([], d)
                 }
                 // if includes "+"
                 // weapon
@@ -5786,10 +5786,10 @@ var A = {
                         if (0 > f) H.throw_expression(P.a8(0, 0, g.gp(l), e, e))
                         l = H.iF(l, i, 0)
                     } else l = true
-                    if (l) o.push(H.b([h[0], null, j], r))
-                    else o.push(H.b([h[0], h[$.i()], j], r))
+                    if (l) o.push(H.setRuntimeTypeInfo([h[0], null, j], r))
+                    else o.push(H.setRuntimeTypeInfo([h[0], h[$.i()], j], r))
                 } else if (C.String.bA(m, " ")) {
-                    o.push(H.b([C.String.ay(m, $.i()), n, j], r))
+                    o.push(H.setRuntimeTypeInfo([C.String.ay(m, $.i()), n, j], r))
                 } else {
                     if (s + $.i() < b.length) {
                         l = $.n5()
@@ -5798,7 +5798,7 @@ var A = {
                     } else l = false
                     if (l) n = m
                     else {
-                        o.push(H.b([m, null, j], r))
+                        o.push(H.setRuntimeTypeInfo([m, null, j], r))
                         n = e
                     }
                 }
@@ -5815,12 +5815,12 @@ var A = {
                 while (true) switch (async_goto) {
                     case 0:
                         k = t.eV
-                        j = H.b([], k)
+                        j = H.setRuntimeTypeInfo([], k)
                         i = t.L
-                        h = H.b([], i)
-                        k = H.b([], k)
-                        i = H.b([], i)
-                        p = H.b([], t.gr)
+                        h = H.setRuntimeTypeInfo([], i)
+                        k = H.setRuntimeTypeInfo([], k)
+                        i = H.setRuntimeTypeInfo([], i)
+                        p = H.setRuntimeTypeInfo([], t.gr)
                         o = 0
                         n = $.i()
                         m = -n
@@ -5871,7 +5871,7 @@ var A = {
         lC(a) {
             var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e = {},
                 d = 0,
-                c = H.b([d, d, d, d, d, d], t.i),
+                c = H.setRuntimeTypeInfo([d, d, d, d, d, d], t.i),
                 b = 0
             e.a = -$.t()
             e.b = -$.i()
@@ -6002,8 +6002,8 @@ var A = {
         nT(a0, a1, a2, a3) {
             var s, r, q, p, o, n, m, l, k, j, i, h, Plr, f = 0,
                 e = $.T(),
-                d = H.b([], t.q),
-                c = H.b([], t.H),
+                d = H.setRuntimeTypeInfo([], t.q),
+                c = H.setRuntimeTypeInfo([], t.H),
                 b = P.a0(t.X, t.W),
                 a = new Sgls.c(t.n)
             a.c = a
@@ -6033,10 +6033,10 @@ var A = {
             l.c = l
             l.b = l
             k = t.i
-            j = H.b([], k)
-            i = H.b([], k)
-            h = H.b([], k)
-            k = H.b([], k)
+            j = H.setRuntimeTypeInfo([], k)
+            i = H.setRuntimeTypeInfo([], k)
+            h = H.setRuntimeTypeInfo([], k)
+            k = H.setRuntimeTypeInfo([], k)
             Plr = 0
             Plr = new T.Plr(a0, a1, a2, a3, f, e, d, c, b, a, s, r, q, p, o, n, m, l, j, i, h, k, Plr, Plr, Plr, $.W(), Plr)
             Plr.a1(a0, a1, a2, a3)
@@ -7737,7 +7737,7 @@ var A = {
         oh() {
             var s = t.N,
                 r = P.nQ(C.r, s),
-                q = H.b(["TEMPLATE"], t.s)
+                q = H.setRuntimeTypeInfo(["TEMPLATE"], t.s)
             s = new W.it(r, P.c5(s), P.c5(s), P.c5(s), null)
             s.e7(null, new H.y(C.r, new W.l7(), t.fj), q, null)
             return s
@@ -8217,7 +8217,7 @@ var A = {
         uI(a) {
             var s, span_element, q, p, o, max_hp_element, m, l, k, j, i, h, g, f = a.a
             if (f > 0 && a.e != null) $.ay.h(0, a.e.gb2()).dc(f)
-            s = H.b([], t.j)
+            s = H.setRuntimeTypeInfo([], t.j)
             span_element = HtmlRenderer.add_span("u")
             C.R.by(span_element, H.oO(a.d, $.rm(), new HtmlRenderer.lq(new HtmlRenderer.lp(s, a), a), null), $.bV())
             for (f = s.length, q = t.A, p = 0; p < s.length; s.length === f || (0, H.F)(s), ++p) {
@@ -8498,8 +8498,8 @@ J.JsArray.prototype = {
         if (b > s) throw H.wrap_expression(P.a8(b, 0, s, "start", null))
         if (c == null) c = s
         else if (c < b || c > s) throw H.wrap_expression(P.a8(c, b, s, "end", null))
-        if (b === c) return H.b([], H._arrayInstanceType(a))
-        return H.b(a.slice(b, c), H._arrayInstanceType(a))
+        if (b === c) return H.setRuntimeTypeInfo([], H._arrayInstanceType(a))
+        return H.setRuntimeTypeInfo(a.slice(b, c), H._arrayInstanceType(a))
     },
     cL(a, b) {
         return this.al(a, b, null)
@@ -8760,12 +8760,12 @@ J.JsString.prototype = {
     },
     cK(a, b) {
         if (b == null) H.throw_expression(H.R(b))
-        if (typeof b == "string") return H.b(a.split(b), t.s)
-        else if (b instanceof H.JSSyntaxRegExp && b.gep().exec("").length - 2 === 0) return H.b(a.split(b.b), t.s)
+        if (typeof b == "string") return H.setRuntimeTypeInfo(a.split(b), t.s)
+        else if (b instanceof H.JSSyntaxRegExp && b.gep().exec("").length - 2 === 0) return H.setRuntimeTypeInfo(a.split(b.b), t.s)
         else return this.ek(a, b)
     },
     ek(a, b) {
-        var s, r, q, p, o, n, m = H.b([], t.s)
+        var s, r, q, p, o, n, m = H.setRuntimeTypeInfo([], t.s)
         for (s = J.lU(b, a), s = s.ga0(s), r = 0, q = 1; s.u();) {
             p = s.gC()
             o = p.gbc(p)
@@ -10593,7 +10593,7 @@ P.ic.prototype = {
     },
     bF() {
         var s = this.c
-        if (s == null) s = this.c = H.b(Object.keys(this.a), t.s)
+        if (s == null) s = this.c = H.setRuntimeTypeInfo(Object.keys(this.a), t.s)
         return s
     },
     es(a) {
@@ -11375,7 +11375,7 @@ W.Q.prototype = {
             if (d == null) {
                 s = $.nJ
                 if (s == null) {
-                    s = H.b([], t.x)
+                    s = H.setRuntimeTypeInfo([], t.x)
                     r = new W.dN(s)
                     s.push(W.oc(null))
                     s.push(W.oh())
@@ -11595,7 +11595,7 @@ W.hN.prototype = {
         }
     },
     gad(a) {
-        var s = H.b([], t.s)
+        var s = H.setRuntimeTypeInfo([], t.s)
         this.aw(a, new W.kd(s))
         return s
     },
@@ -11736,7 +11736,7 @@ W.i2.prototype = {
     gad(a) {
         var s, r, q, p, o, n, m = this.a.attributes
         m.toString
-        s = H.b([], t.s)
+        s = H.setRuntimeTypeInfo([], t.s)
         for (r = m.length, q = t.h9, p = 0; p < r; ++p) {
             o = q.a(m[p])
             if (o.namespaceURI == null) {
@@ -11988,7 +11988,7 @@ W.ix.prototype = {
                 if (typeof console != "undefined") window.console.warn(s)
                 return
             } s = f.gad(f)
-        r = H.b(s.slice(0), H._arrayInstanceType(s))
+        r = H.setRuntimeTypeInfo(s.slice(0), H._arrayInstanceType(s))
         for (q = f.gad(f).length - 1, s = f.a; q >= 0; --q) {
             p = r[q]
             o = m.a
@@ -12259,7 +12259,7 @@ P.p.prototype = {
     aA(a, b, c, d) {
         var s, r, q, p, o, n
         if (d == null) {
-            s = H.b([], t.x)
+            s = H.setRuntimeTypeInfo([], t.x)
             d = new W.dN(s)
             s.push(W.oc(null))
             s.push(W.oh())
@@ -12285,7 +12285,7 @@ Y.RC4.prototype = {
         // init
         var s, r, q, p, o, n, m, l = new Array(256)
         l.fixed$length = Array
-        l = this.c = H.b(l, t.i)
+        l = this.c = H.setRuntimeTypeInfo(l, t.i)
         for (s = 0; s < 256; ++s) l[s] = s
         r = a.length
         for (q = 0; q < b; ++q)
@@ -12401,7 +12401,7 @@ L.iR.prototype = {
                         async_goto = 4
                         break
                     }
-                    h = H.b([m, l, [H.b([H.as_string($.ni()) + this_.d++, $.cl()], k)]], j)
+                    h = H.setRuntimeTypeInfo([m, l, [H.setRuntimeTypeInfo([H.as_string($.ni()) + this_.d++, $.cl()], k)]], j)
                     if (this_.z === 0) h.pop()
                     async_goto = 5
                     return P._asyncAwait(T.inner_main(h), $async$O)
@@ -12433,15 +12433,15 @@ L.iR.prototype = {
                     break
                 case 4:
                     o = t.U
-                    n = H.b([], o)
+                    n = H.setRuntimeTypeInfo([], o)
                     m = t.Y
-                    l = H.b([], m)
+                    l = H.setRuntimeTypeInfo([], m)
                     // 实力评估中...[2]%
                     // benchmarking
                     n.push(T.RunUpdate(LangData.get_lang("pkGN"), null, null, C.JsInt.ag(this_.z, 100), null, 0, 0, 0))
                     if (this_.z >= this_.c) {
-                        o = H.b([], o)
-                        m = H.b([], m)
+                        o = H.setRuntimeTypeInfo([], o)
+                        m = H.setRuntimeTypeInfo([], m)
                         // 》 胜率: [2]%
                         // benchmarkRatio
                         o.push(T.RunUpdate(LangData.get_lang("Pnrn"), null, null, this_.y * 100 / this_.c, null, 0, 1000, 100))
@@ -12606,14 +12606,14 @@ V.iV.prototype = {
                         async_goto = 4
                         break
                     }
-                    if (m.length === 1 && !this_.c) h = H.b([
-                        [m[0], H.b(["" + this_.e++, l], k)],
-                        [H.b(["" + this_.e++, l], k), H.b(["" + this_.e++, l], k)]
+                    if (m.length === 1 && !this_.c) h = H.setRuntimeTypeInfo([
+                        [m[0], H.setRuntimeTypeInfo(["" + this_.e++, l], k)],
+                        [H.setRuntimeTypeInfo(["" + this_.e++, l], k), H.setRuntimeTypeInfo(["" + this_.e++, l], k)]
                     ], j)
                     else {
                         g = []
-                        h = H.b([m, g], j)
-                        for (f = 0; f < m.length; ++f) g.push(H.b(["" + this_.e++, l], k))
+                        h = H.setRuntimeTypeInfo([m, g], j)
+                        for (f = 0; f < m.length; ++f) g.push(H.setRuntimeTypeInfo(["" + this_.e++, l], k))
                     }
                     async_goto = 5
                     return P._asyncAwait(T.inner_main(h), $async$O)
@@ -12657,8 +12657,8 @@ V.iV.prototype = {
                     async_goto = 3
                     break
                 case 4:
-                    a4 = H.b([], t.U)
-                    o = H.b([], t.Y)
+                    a4 = H.setRuntimeTypeInfo([], t.U)
+                    o = H.setRuntimeTypeInfo([], t.Y)
                     // 实力评估中...[2]%
                     // benchmarking
                     a4.push(T.RunUpdate(LangData.get_lang("pkGN"), null, null, C.JsInt.ag(this_.ch, 100), null, 0, 0, 0))
@@ -12677,8 +12677,8 @@ V.iV.prototype = {
     // 实力评分 输出
     eS() {
         var s, this_ = this,
-            q = H.b([], t.U),
-            p = H.b([], t.Y)
+            q = H.setRuntimeTypeInfo([], t.U),
+            p = H.setRuntimeTypeInfo([], t.Y)
         // 》 实力评分: [2]
         // benchmarkScore
         q.push(T.RunUpdate(LangData.get_lang("JkWn"), null, null, this_.Q * 1e4 / this_.d, null, 0, 1000, 100))
@@ -12741,8 +12741,8 @@ V.j_.prototype = {
         var s, r, get_quote, p, o = null,
             n = this.a
         if (b / n.d > 0.005) {
-            s = H.b([], t.U)
-            r = H.b([], t.Y)
+            s = H.setRuntimeTypeInfo([], t.U)
+            r = H.setRuntimeTypeInfo([], t.Y)
             get_quote = $.iK()
             // $.iK = ??
             // J.lW
@@ -12794,7 +12794,7 @@ X.iW.prototype = {
                     i.toString
                     g = J.aw(i)
                     if (0 > g) H.throw_expression(P.a8(0, 0, g, "startIndex", null))
-                    r.push(H.b([H.iG(i, m, h, 0), o.h(p, 1), o.h(p, 2)], k))
+                    r.push(H.setRuntimeTypeInfo([H.iG(i, m, h, 0), o.h(p, 1), o.h(p, 2)], k))
                 }
                 return
             } else r.push(p)
@@ -12820,8 +12820,8 @@ X.iW.prototype = {
                     }
                     if (e < 0) {
                         this_.b = 0
-                        e = H.b([], t.U)
-                        o = H.b([], t.Y)
+                        e = H.setRuntimeTypeInfo([], t.U)
+                        o = H.setRuntimeTypeInfo([], t.Y)
                         e.push($.K())
                         if (d.length >>> 13 > 0) {
                             e.push(T.RunUpdate(LangData.get_lang("BUaa"), null, null, null, null, 0, 1000, 100))
@@ -12839,7 +12839,7 @@ X.iW.prototype = {
                     }
                     l = d[m]
                     this_.b = m + 1
-                    k = H.b([H.b([l, H.b(["" + this_.c++, "\x02"], e)], o), H.b([H.b(["" + this_.c++, "\x02"], e), H.b(["" + this_.c++, "\x02"], e)], o)], n)
+                    k = H.setRuntimeTypeInfo([H.setRuntimeTypeInfo([l, H.setRuntimeTypeInfo(["" + this_.c++, "\x02"], e)], o), H.setRuntimeTypeInfo([H.setRuntimeTypeInfo(["" + this_.c++, "\x02"], e), H.setRuntimeTypeInfo(["" + this_.c++, "\x02"], e)], o)], n)
                     async_goto = 5
                     return P._asyncAwait(T.inner_main(k), $async$O)
                 case 5:
@@ -12909,8 +12909,8 @@ X.iW.prototype = {
                     async_goto = 3
                     break
                 case 4:
-                    e = H.b([], t.U)
-                    o = H.b([], t.Y)
+                    e = H.setRuntimeTypeInfo([], t.U)
+                    o = H.setRuntimeTypeInfo([], t.Y)
                     e.push($.K())
                     // 评分输出
                     if (run_env.from_code) {
@@ -13072,7 +13072,7 @@ HtmlRenderer.fq.prototype = {
         q = H._arrayInstanceType(r).i("a9<1>")
         p = q.i("y<M.E,l*>")
         o = t.bQ
-        n = P.List_List_of(new H.y(H.b(C.e.bt(0, P.List_List_of(new H.y(new H.a9(r, q),
+        n = P.List_List_of(new H.y(H.setRuntimeTypeInfo(C.e.bt(0, P.List_List_of(new H.y(new H.a9(r, q),
                 new HtmlRenderer.jx(this_), p), true, p.i("M.E"))).split("\n"), t.s),
             new HtmlRenderer.jy(), o), true, o.i("M.E"))
         r = n.length
@@ -13087,7 +13087,7 @@ HtmlRenderer.fq.prototype = {
                     for (q = q.ga0(l); q.u();)
                         if (J.aw(q.gC()) > 7) this_.f = true
                 }
-                k = H.b([], t.t)
+                k = H.setRuntimeTypeInfo([], t.t)
                 for (r = n.length, q = this_.a, p = this_.b, m = 0; m < n.length; n.length === r || (0, H.F)(n), ++m) {
                     l = n[m]
                     o = J.a3(l)
@@ -13281,8 +13281,8 @@ HtmlRenderer.fq.prototype = {
         s = this_.cx.e.gb2()
         r = $.ay.h(0, s).a
         q = t.ak
-        p = H.b([], q)
-        o = H.b([], q)
+        p = H.setRuntimeTypeInfo([], q)
+        o = H.setRuntimeTypeInfo([], q)
         n = []
         $.ay.aw(0, new HtmlRenderer.jA(r, p, n, o))
         C.Array.bb(p, HtmlRenderer.oD())
@@ -13379,13 +13379,13 @@ HtmlRenderer.jx.prototype = {
 HtmlRenderer.jy.prototype = {
     $1(a) {
         var s = t.dG
-        return P.List_List_of(new H.y(H.b(a.split("\r"), t.s), new HtmlRenderer.jw(), s), true, s.i("M.E"))
+        return P.List_List_of(new H.y(H.setRuntimeTypeInfo(a.split("\r"), t.s), new HtmlRenderer.jw(), s), true, s.i("M.E"))
     },
     $S: 35
 }
 HtmlRenderer.jw.prototype = {
     $1(a) {
-        return H.b(a.split("\t"), t.s)
+        return H.setRuntimeTypeInfo(a.split("\t"), t.s)
     },
     $S: 36
 }
@@ -13711,11 +13711,11 @@ Sgls.k4.prototype = {
     $0() {
         var s, r, q, p, o, n, m, l, k, j, i, h = new Array($.d7())
         h.fixed$length = Array
-        s = H.b(h, t.gt)
+        s = H.setRuntimeTypeInfo(h, t.gt)
         for (h = t.he, r = 0; q = $.d7(), r < q; ++r) {
             q = new Array(q)
             q.fixed$length = Array
-            q = H.b(q, h)
+            q = H.setRuntimeTypeInfo(q, h)
             s[r] = q
             q[r] = 0
         }
@@ -13928,7 +13928,7 @@ T.SklAccumulate.prototype = {
         return this.aX(a, b)
     },
     aa(a, b, c) {
-        return H.b([], t.F)
+        return H.setRuntimeTypeInfo([], t.F)
     },
     v(a, b, c, d) {
         var s = this,
@@ -13984,7 +13984,7 @@ T.SklAssassinate.prototype = {
         return this.bx(a, b, c, true)
     },
     aa(a, b, c) {
-        if (this.fy != null) return H.b([], t.F)
+        if (this.fy != null) return H.setRuntimeTypeInfo([], t.F)
         return this.dU(0, b, c)
     },
     v(a, b, c, d) {
@@ -14108,7 +14108,7 @@ T.SklCharge.prototype = {
         return this.aX(a, b)
     },
     aa(a, b, c) {
-        return H.b([], t.F)
+        return H.setRuntimeTypeInfo([], t.F)
     },
     v(a, b, c, d) {
         var s = this,
@@ -14252,7 +14252,7 @@ T.dR.prototype = {
     },
     aU() {
         var s = this.cm.q
-        s = H.b(s.slice(0), H._arrayInstanceType(s))
+        s = H.setRuntimeTypeInfo(s.slice(0), H._arrayInstanceType(s))
         this.q = s
         this.ci()
     },
@@ -14266,7 +14266,7 @@ T.dR.prototype = {
 }
 T.SklClone.prototype = {
     aa(a, b, c) {
-        return H.b([], t.F)
+        return H.setRuntimeTypeInfo([], t.F)
     },
     v(a, b, c, d) {
         var s, r, q, p, o, n, m, l, k = this,
@@ -14710,7 +14710,7 @@ T.SklIron.prototype = {
         return this.aX(a, b)
     },
     aa(a, b, c) {
-        return H.b([], t.F)
+        return H.setRuntimeTypeInfo([], t.F)
     },
     v(a, b, c, d) {
         var s = this,
@@ -14844,7 +14844,7 @@ T.SklQuake.prototype = {
     v(a, b, c, d) {
         var s, r, q, p, o, n = c.n() < 128 ? $.X() : $.C(),
             m = t.j,
-            l = H.b([], m),
+            l = H.setRuntimeTypeInfo([], m),
             k = 0
         while (true) {
             if (!(k < n && k < a.length)) break
@@ -14853,7 +14853,7 @@ T.SklQuake.prototype = {
         }
         s = LangData.get_lang("QQLa")
         r = this.r
-        m = H.b(l.slice(0), m)
+        m = H.setRuntimeTypeInfo(l.slice(0), m)
         q = d.a
         q.push(T.RunUpdate(s, r, null, null, m, $.i(), 1000, 100))
         for (k = 0; k < l.length; ++k) {
@@ -15024,7 +15024,7 @@ T.SklShadow.prototype = {
         return this.aX(a, b)
     },
     aa(a, b, c) {
-        return H.b([], t.F)
+        return H.setRuntimeTypeInfo([], t.F)
     },
 
     v(a7, a8, a9, b0) {
@@ -15041,8 +15041,8 @@ T.SklShadow.prototype = {
         q = q.c
         o = 0
         n = $.T()
-        m = H.b([], t.q)
-        l = H.b([], t.H)
+        m = H.setRuntimeTypeInfo([], t.q)
+        l = H.setRuntimeTypeInfo([], t.H)
         k = P.a0(t.X, t.W)
         j = new Sgls.c(t.n)
         j.c = j
@@ -15072,10 +15072,10 @@ T.SklShadow.prototype = {
         b.c = b
         b.b = b
         a = t.i
-        a0 = H.b([], a)
-        a1 = H.b([], a)
-        a2 = H.b([], a)
-        a = H.b([], a)
+        a0 = H.setRuntimeTypeInfo([], a)
+        a1 = H.setRuntimeTypeInfo([], a)
+        a2 = H.setRuntimeTypeInfo([], a)
+        a = H.setRuntimeTypeInfo([], a)
         a3 = 0
         a4 = new T.fS(shadow_name, p, q, a6, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a0, a1, a2, a, a3, a3, a3, $.W(), a3)
         a4.a1(shadow_name, p, q, a6)
@@ -15248,7 +15248,7 @@ T.SklSummon.prototype = {
         return (s == null || s.fx <= 0) && this.aX(a, b)
     },
     aa(a, b, c) {
-        return H.b([], t.F)
+        return H.setRuntimeTypeInfo([], t.F)
     },
     v(a6, a7, a8, a9) {
         var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, this_ = this,
@@ -15263,8 +15263,8 @@ T.SklSummon.prototype = {
             r = r.c
             p = 0
             o = $.T()
-            n = H.b([], t.q)
-            m = H.b([], t.H)
+            n = H.setRuntimeTypeInfo([], t.q)
+            m = H.setRuntimeTypeInfo([], t.H)
             l = P.a0(t.X, t.W)
             k = new Sgls.c(t.n)
             k.c = k
@@ -15294,10 +15294,10 @@ T.SklSummon.prototype = {
             c.c = c
             c.b = c
             b = t.i
-            a = H.b([], b)
-            a0 = H.b([], b)
-            a1 = H.b([], b)
-            b = H.b([], b)
+            a = H.setRuntimeTypeInfo([], b)
+            a0 = H.setRuntimeTypeInfo([], b)
+            a1 = H.setRuntimeTypeInfo([], b)
+            b = H.setRuntimeTypeInfo([], b)
             a2 = 0
             a2 = new T.fT(s, q, r, a4, p, o, n, m, l, k, j, i, h, g, f, e, d, c, a, a0, a1, b, a2, a2, a2, $.W(), a2)
             a2.a1(s, q, r, a4)
@@ -15383,7 +15383,7 @@ T.SklThunder.prototype = {
 T.f5.prototype = {
     gan() {
         var s = $.bg()
-        return H.b([s, $.lI(), s, $.Z(), $.lK(), $.C(), s, $.q5()], t.i)
+        return H.setRuntimeTypeInfo([s, $.lI(), s, $.Z(), $.lK(), $.C(), s, $.q5()], t.i)
     },
     ac() {
         var s, r
@@ -15422,11 +15422,11 @@ T.e2.prototype = {
     },
     v(a, b, c, d) {
         var s, r, q, p, o, n, m = t.j,
-            l = H.b([], m)
+            l = H.setRuntimeTypeInfo([], m)
         for (s = 0; s < a.length; ++s) l.push(a[s].a)
         r = LangData.get_lang("PRrA")
         q = this.r
-        m = H.b(l.slice(0), m)
+        m = H.setRuntimeTypeInfo(l.slice(0), m)
         p = d.a
         p.push(T.RunUpdate(r, q, null, null, m, $.i(), 1000, 100))
         o = T.I(this.r, true, c) * $.mQ() / (l.length + $.b0())
@@ -15507,7 +15507,7 @@ T.fQ.prototype = {
             p = q[s]
             if (p < $.aR()) q[s] = p + $.at()
         }
-        q = H.b([], t.i)
+        q = H.setRuntimeTypeInfo([], t.i)
         C.Array.a5(q, n.t)
         n.E = q
     },
@@ -15553,7 +15553,7 @@ T.cz.prototype = {
         return []
     },
     gaG() {
-        return H.b([$.d2(), $.aE(), $.aJ(), $.eZ(), $.bh(), $.d3(), $.bi(), $.bS()], t.V)
+        return H.setRuntimeTypeInfo([$.d2(), $.aE(), $.aJ(), $.eZ(), $.bh(), $.d3(), $.bi(), $.bS()], t.V)
     },
     a7(a, b) {
         if (C.Array.w(this.gaS(), a)) return b.n() < 240
@@ -15564,10 +15564,10 @@ T.cz.prototype = {
 T.f6.prototype = {
     gan() {
         var s = 0
-        return H.b([s, $.aI(), -$.mT(), $.as(), s, $.mV(), $.lI(), $.po()], t.i)
+        return H.setRuntimeTypeInfo([s, $.aI(), -$.mT(), $.as(), s, $.mV(), $.lI(), $.po()], t.i)
     },
     gaS() {
-        return H.b([$.aE()], t.V)
+        return H.setRuntimeTypeInfo([$.aE()], t.V)
     },
     ac() {
         var s = new T.hb(this, -$.i(), 0)
@@ -15645,10 +15645,10 @@ T.f7.prototype = {
             r = $.n2(),
             q = 0,
             p = $.cY()
-        return H.b([s, r, q, p, q, p, q, $.a6()], t.i)
+        return H.setRuntimeTypeInfo([s, r, q, p, q, p, q, $.a6()], t.i)
     },
     gaG() {
-        return H.b([$.aE(), $.aJ(), $.d3()], t.V)
+        return H.setRuntimeTypeInfo([$.aE(), $.aJ(), $.d3()], t.V)
     },
     ac() {
         var s = 0
@@ -15787,10 +15787,10 @@ T.hd.prototype = {
 }
 T.f8.prototype = {
     gan() {
-        return H.b([$.aI(), $.iI(), $.mN(), $.mW(), $.Z(), $.mL(), $.mT(), $.mJ()], t.i)
+        return H.setRuntimeTypeInfo([$.aI(), $.iI(), $.mN(), $.mW(), $.Z(), $.mL(), $.mT(), $.mJ()], t.i)
     },
     gaG() {
-        return H.b([$.d2(), $.eZ(), $.d3(), $.bT(), $.bi(), $.bS()], t.V)
+        return H.setRuntimeTypeInfo([$.d2(), $.eZ(), $.d3(), $.bT(), $.bi(), $.bS()], t.V)
     },
     a7(a, b) {
         if (a == $.bh()) return false
@@ -15836,11 +15836,11 @@ T.hm.prototype = {
     },
     v(a, b, c, d) {
         var s, r, q, p, o, n, m = t.j,
-            l = H.b([], m)
+            l = H.setRuntimeTypeInfo([], m)
         for (s = 0; s < a.length; ++s) l.push(a[s].a)
         r = LangData.get_lang("UeNa")
         q = this.r
-        m = H.b(l.slice(0), m)
+        m = H.setRuntimeTypeInfo(l.slice(0), m)
         p = d.a
         p.push(T.RunUpdate(r, q, null, null, m, $.i(), 1000, 100))
         o = T.I(this.r, true, c) * $.mQ() / (l.length + $.b0())
@@ -15857,10 +15857,10 @@ T.hm.prototype = {
 T.de.prototype = {
     gan() {
         var s = 0
-        return H.b([s, $.q2(), $.Z(), -$.as(), s, $.b1(), s, $.cZ()], t.i)
+        return H.setRuntimeTypeInfo([s, $.q2(), $.Z(), -$.as(), s, $.b1(), s, $.cZ()], t.i)
     },
     gaG() {
-        return H.b([$.d2(), $.eZ(), $.bh(), $.d3()], t.V)
+        return H.setRuntimeTypeInfo([$.d2(), $.eZ(), $.bh(), $.d3()], t.V)
     },
     ac() {
         var s = $.T(),
@@ -15950,7 +15950,7 @@ T.hp.prototype = {
 }
 T.df.prototype = {
     gan() {
-        return H.b([0, $.lL(), $.d1(), $.mX(), $.iI(), $.iH(), $.eT(), $.n0()], t.i)
+        return H.setRuntimeTypeInfo([0, $.lL(), $.d1(), $.mX(), $.iI(), $.iH(), $.eT(), $.n0()], t.i)
     },
     F() {
         var s = this
@@ -15961,7 +15961,7 @@ T.df.prototype = {
         return []
     },
     gaG() {
-        return H.b([$.d2()], t.V)
+        return H.setRuntimeTypeInfo([$.d2()], t.V)
     },
     a7(a, b) {
         if (a == $.lP()) return false
@@ -16000,7 +16000,7 @@ T.hr.prototype = {
         return a.n() < 128
     },
     aa(a, b, c) {
-        return H.b([], t.F)
+        return H.setRuntimeTypeInfo([], t.F)
     },
     v(a, b, c, d) {
         var s, r, q = this,
@@ -16078,13 +16078,13 @@ T.ea.prototype = {
 }
 T.f9.prototype = {
     gan() {
-        return H.b([-$.B(), $.eW(), $.pv(), $.pY(), $.X(), $.ap(), $.cY(), -$.lK()], t.i)
+        return H.setRuntimeTypeInfo([-$.B(), $.eW(), $.pv(), $.pY(), $.X(), $.ap(), $.cY(), -$.lK()], t.i)
     },
     gaS() {
-        return H.b([$.d2(), $.lP()], t.V)
+        return H.setRuntimeTypeInfo([$.d2(), $.lP()], t.V)
     },
     gaG() {
-        return H.b([$.aJ(), $.aE()], t.V)
+        return H.setRuntimeTypeInfo([$.aJ(), $.aE()], t.V)
     },
     ac() {
         this.k3 = T.hE(this)
@@ -16095,13 +16095,13 @@ T.f9.prototype = {
 }
 T.fa.prototype = {
     gan() {
-        return H.b([$.pX(), $.pI(), $.n0(), $.q_(), $.pV(), $.pU(), 0, $.q1()], t.i)
+        return H.setRuntimeTypeInfo([$.pX(), $.pI(), $.n0(), $.q_(), $.pV(), $.pU(), 0, $.q1()], t.i)
     },
     gaS() {
-        return H.b([$.eZ(), $.d3()], t.V)
+        return H.setRuntimeTypeInfo([$.eZ(), $.d3()], t.V)
     },
     gaG() {
-        return H.b([$.aJ(), $.bi(), $.bS()], t.V)
+        return H.setRuntimeTypeInfo([$.aJ(), $.bi(), $.bS()], t.V)
     },
     ac() {
         var s = 0,
@@ -16158,13 +16158,13 @@ T.bZ.prototype = {
     gan() {
         var s = $.a4(),
             r = $.mN()
-        return H.b([s, r, $.X(), $.mL(), $.lL(), r, $.cY(), $.n_()], t.i)
+        return H.setRuntimeTypeInfo([s, r, $.X(), $.mL(), $.lL(), r, $.cY(), $.n_()], t.i)
     },
     gaS() {
-        return H.b([], t.V)
+        return H.setRuntimeTypeInfo([], t.V)
     },
     gaG() {
-        return H.b([$.bT()], t.V)
+        return H.setRuntimeTypeInfo([$.bT()], t.V)
     },
     ac() {
         this.k3 = T.hE(this)
@@ -16266,13 +16266,13 @@ T.fc.prototype = {
             r = $.a4(),
             q = $.eS(),
             p = 0
-        return H.b([s, -r, q, p, s, -$.eT(), r, p], t.i)
+        return H.setRuntimeTypeInfo([s, -r, q, p, s, -$.eT(), r, p], t.i)
     },
     gaS() {
-        return H.b([], t.V)
+        return H.setRuntimeTypeInfo([], t.V)
     },
     gaG() {
-        return H.b([$.bT()], t.V)
+        return H.setRuntimeTypeInfo([$.bT()], t.V)
     },
     ac() {
         var s, r
@@ -16291,13 +16291,13 @@ T.fc.prototype = {
 }
 T.fd.prototype = {
     gan() {
-        return H.b([$.pt(), $.d1(), $.mX(), $.n2(), $.bg(), $.X(), $.at(), $.eW()], t.i)
+        return H.setRuntimeTypeInfo([$.pt(), $.d1(), $.mX(), $.n2(), $.bg(), $.X(), $.at(), $.eW()], t.i)
     },
     gaS() {
-        return H.b([], t.V)
+        return H.setRuntimeTypeInfo([], t.V)
     },
     gaG() {
-        return H.b([], t.V)
+        return H.setRuntimeTypeInfo([], t.V)
     },
     ac() {
         var s, r
@@ -16353,11 +16353,11 @@ T.fo.prototype = {
             if (b4 === 1) return P.async_rethrow(b5, async_completer)
             while (true) switch (async_goto) {
                 case 0:
-                    b3 = H.b([], t.V)
+                    b3 = H.setRuntimeTypeInfo([], t.V)
                     for (o = this_.x, n = o.length, m = t.eG, l = this_.r, k = this_.z, j = t.L, i = this_.a, h = 0; h < o.length; o.length === n || (0, H.F)(o), ++h) {
                         g = o[h]
-                        f = H.b([], j)
-                        e = new T.b7(this_, f, H.b([], j), H.b([], j), H.b([], j))
+                        f = H.setRuntimeTypeInfo([], j)
+                        e = new T.b7(this_, f, H.setRuntimeTypeInfo([], j), H.setRuntimeTypeInfo([], j), H.setRuntimeTypeInfo([], j))
                         for (d = (g && C.Array).ga0(g); d.u();) {
                             c = d.gC()
                             if (!(c instanceof T.Plr))
@@ -16420,7 +16420,7 @@ T.fo.prototype = {
                     a7 = P.List_List_of(o, true, H._instanceType(o).i("L.E"))
                     C.Array.aJ(a7)
                     if (b3.length !== 0) {
-                        a8 = H.b(a7.slice(0), H._arrayInstanceType(a7))
+                        a8 = H.setRuntimeTypeInfo(a7.slice(0), H._arrayInstanceType(a7))
                         C.Array.a5(a8, b3)
                         C.Array.aJ(a8)
                     } else {
@@ -16454,15 +16454,15 @@ T.fo.prototype = {
                         e = i[h]
                         n = e.c
                         m = H._arrayInstanceType(n)
-                        k = H.b(n.slice(0), m)
+                        k = H.setRuntimeTypeInfo(n.slice(0), m)
                         e.d = k
-                        n = H.b(n.slice(0), m)
+                        n = H.setRuntimeTypeInfo(n.slice(0), m)
                         if (n.immutable$list) H.throw_expression(P.UnsupportError("sort"))
                         m = n.length - 1
                         if (m - 0 <= 32) H.ej(n, 0, m, T.mD())
                         else H.ei(n, 0, m, T.mD())
                         e.e = n
-                        n = H.b(n.slice(0), H._arrayInstanceType(n))
+                        n = H.setRuntimeTypeInfo(n.slice(0), H._arrayInstanceType(n))
                         e.f = n
                     }
                     o = l.gfP(l)
@@ -16474,7 +16474,7 @@ T.fo.prototype = {
                             a2 = o[h]
                             a2.I = a2.gbT()
                         }
-                    o = H.b(i.slice(0), H._arrayInstanceType(i))
+                    o = H.setRuntimeTypeInfo(i.slice(0), H._arrayInstanceType(i))
                     C.Array.bb(o, T.v4())
                     this_.d = o
                     for (n = o.length, m = t.i, l = this_.e, h = 0; h < o.length; o.length === n || (0, H.F)(o), ++h) {
@@ -16485,7 +16485,7 @@ T.fo.prototype = {
                             f = a2.e
                             i.bO(C.e.gaB().ab(f))
                         }
-                        this_.b.bO(H.b([0], m))
+                        this_.b.bO(H.setRuntimeTypeInfo([0], m))
                         C.Array.a5(l, b1.f)
                     }
                     for (o = this_.c, n = o.length, h = 0; h < o.length; o.length === n || (0, H.F)(o), ++h) o[h].l = this_.b.n()
@@ -16524,7 +16524,7 @@ T.fo.prototype = {
         this_.ch = p
         J.rz(o[p], this_.b, b)
         for (q = t.Y; p = b.b, p.length !== 0;) {
-            b.b = H.b([], q)
+            b.b = H.setRuntimeTypeInfo([], q)
             for (o = p.length, s = 0; s < p.length; p.length === o || (0, H.F)(p), ++s) p[s].$2(this_.b, b)
         }
     },
@@ -16545,7 +16545,7 @@ T.fo.prototype = {
                         async_goto = 1
                         break
                     }
-                    n = new T.aq(H.b([], t.U), H.b([], t.Y))
+                    n = new T.aq(H.setRuntimeTypeInfo([], t.U), H.setRuntimeTypeInfo([], t.Y))
                     k = this_.cy
                     async_goto = k != null ? 3 : 4
                     break
@@ -16979,7 +16979,7 @@ T.Plr.prototype = {
             } else r.push(j)
         }
         s = this_.t
-        s = H.b(s.slice(0), H._arrayInstanceType(s))
+        s = H.setRuntimeTypeInfo(s.slice(0), H._arrayInstanceType(s))
         this_.E = s
         this_.ac()
         this_.k2 = this_.X.dH(this_.k1, t.c5)
@@ -17477,10 +17477,10 @@ T.Plr.prototype = {
     },
     dE() {
         var s, r, q, p, o = this,
-            n = H.b([], t.V)
+            n = H.setRuntimeTypeInfo([], t.V)
         if (o instanceof T.cz) n = C.N
         else {
-            s = H.b([], t.i)
+            s = H.setRuntimeTypeInfo([], t.i)
             for (r = $.Z(); r < $.d1(); r += $.B()) {
                 q = C.Array.al(o.E, r, r + $.B())
                 if (!!q.immutable$list) H.throw_expression(P.UnsupportError("sort"))
@@ -17632,7 +17632,7 @@ T.q.prototype = {
     aa(a, b, c) {
         var s, r, q, p, o = this,
             n = b ? o.gb8() : o.gb7(),
-            m = H.b([], t.L),
+            m = H.setRuntimeTypeInfo([], t.L),
             l = 0,
             k = -n
         while (true) {
@@ -17651,7 +17651,7 @@ T.q.prototype = {
             }
         }
         if (m.length === 0) return null
-        r = H.b([], t.F)
+        r = H.setRuntimeTypeInfo([], t.F)
         for (q = m.length, p = 0; p < m.length; m.length === q || (0, H.F)(m), ++p) {
             s = m[p]
             r.push(new T.bG(s, o.a9(s, b, c)))
@@ -17947,7 +17947,7 @@ T.SklProtect.prototype = {
             n = o.r2
             r = t.Q.a(n.h(0, $.d6()))
             if (r == null) {
-                r = new T.dV(o, H.b([], t.gN))
+                r = new T.dV(o, H.setRuntimeTypeInfo([], t.gN))
                 n.m(0, $.d6(), r)
                 o.y1.j(0, r)
             }
@@ -18178,8 +18178,8 @@ T.SklZombie.prototype = {
             r = r.c
             p = 0
             o = $.T()
-            n = H.b([], t.q)
-            m = H.b([], t.H)
+            n = H.setRuntimeTypeInfo([], t.q)
+            m = H.setRuntimeTypeInfo([], t.H)
             l = P.a0(t.X, t.W)
             k = new Sgls.c(t.n)
             k.c = k
@@ -18209,10 +18209,10 @@ T.SklZombie.prototype = {
             c.c = c
             c.b = c
             b = t.i
-            a = H.b([], b)
-            a0 = H.b([], b)
-            a1 = H.b([], b)
-            b = H.b([], b)
+            a = H.setRuntimeTypeInfo([], b)
+            a0 = H.setRuntimeTypeInfo([], b)
+            a1 = H.setRuntimeTypeInfo([], b)
+            b = H.setRuntimeTypeInfo([], b)
             a2 = 0
             a3 = new T.fX(s, q, r, a5, p, o, n, m, l, k, j, i, h, g, f, e, d, c, a, a0, a1, b, a2, a2, a2, $.W(), a2)
             a3.a1(s, q, r, a5)
@@ -18235,7 +18235,7 @@ T.SklZombie.prototype = {
             b = new T.HPlr(a2)
             b.a = a3.e
             b.d = a2
-            r.push(T.RunUpdate(q, s, b, a6, H.b([a6], t.j), 0, 1000, 100))
+            r.push(T.RunUpdate(q, s, b, a6, H.setRuntimeTypeInfo([a6], t.j), 0, 1000, 100))
             return true
         }
         return false
@@ -18288,7 +18288,7 @@ T.hg.prototype = {
         this.r.G.j(0, this.fr)
     },
     aa(a, b, c) {
-        return H.b([], t.F)
+        return H.setRuntimeTypeInfo([], t.F)
     },
     v(a, b, c, d) {
         var s, r, q, p = this
@@ -18547,7 +18547,7 @@ T.hy.prototype = {
             b.a.push($.K())
             r = new T.ee(s, 0)
             r.ao(this.r, $.i())
-            r.v(H.b([], t.F), true, a, b)
+            r.v(H.setRuntimeTypeInfo([], t.F), true, a, b)
         }
     }
 }
@@ -18557,7 +18557,7 @@ T.hz.prototype = {
         return (a.n() & 63) + this.f > this.r.fr
     },
     aa(a, b, c) {
-        return H.b([], t.F)
+        return H.setRuntimeTypeInfo([], t.F)
     },
     v(a, b, c, d) {
         var s, r, q, p, o = this,
@@ -18606,7 +18606,7 @@ T.ep.prototype = {
         this.cN(a)
         s = $.p2()
         r = 0
-        this.r = H.b([s, r, s, r, r, r, r, r], t.i)
+        this.r = H.setRuntimeTypeInfo([s, r, s, r, r, r, r, r], t.i)
     },
     b6() {
         var s = this.c,
@@ -18808,7 +18808,7 @@ LangData.SuperRC4.prototype = {
     dH(a, b) {
         var s, r, q, p, o, n, m = a.length
         if (m <= 1) return a
-        s = H.b([], t.i)
+        s = H.setRuntimeTypeInfo([], t.i)
         C.Array.sp(s, m)
         for (r = 0; r < m; ++r) s[r] = r
         for (q = 0, r = 0; r < 2; ++r)
@@ -19301,12 +19301,12 @@ var t = (function rtii() {
     C.G = new P.iq()
     C.I = new P.Duration(0)
     C.L = new P.jJ(null)
-    C.M = H.b(make_const_list(["*::class", "*::dir", "*::draggable", "*::hidden", "*::id", "*::inert", "*::itemprop", "*::itemref", "*::itemscope", "*::lang", "*::spellcheck", "*::title", "*::translate", "A::accesskey", "A::coords", "A::hreflang", "A::name", "A::shape", "A::tabindex", "A::target", "A::type", "AREA::accesskey", "AREA::alt", "AREA::coords", "AREA::nohref", "AREA::shape", "AREA::tabindex", "AREA::target", "AUDIO::controls", "AUDIO::loop", "AUDIO::mediagroup", "AUDIO::muted", "AUDIO::preload", "BDO::dir", "BODY::alink", "BODY::bgcolor", "BODY::link", "BODY::text", "BODY::vlink", "BR::clear", "BUTTON::accesskey", "BUTTON::disabled", "BUTTON::name", "BUTTON::tabindex", "BUTTON::type", "BUTTON::value", "CANVAS::height", "CANVAS::width", "CAPTION::align", "COL::align", "COL::char", "COL::charoff", "COL::span", "COL::valign", "COL::width", "COLGROUP::align", "COLGROUP::char", "COLGROUP::charoff", "COLGROUP::span", "COLGROUP::valign", "COLGROUP::width", "COMMAND::checked", "COMMAND::command", "COMMAND::disabled", "COMMAND::label", "COMMAND::radiogroup", "COMMAND::type", "DATA::value", "DEL::datetime", "DETAILS::open", "DIR::compact", "DIV::align", "DL::compact", "FIELDSET::disabled", "FONT::color", "FONT::face", "FONT::size", "FORM::accept", "FORM::autocomplete", "FORM::enctype", "FORM::method", "FORM::name", "FORM::novalidate", "FORM::target", "FRAME::name", "H1::align", "H2::align", "H3::align", "H4::align", "H5::align", "H6::align", "HR::align", "HR::noshade", "HR::size", "HR::width", "HTML::version", "IFRAME::align", "IFRAME::frameborder", "IFRAME::height", "IFRAME::marginheight", "IFRAME::marginwidth", "IFRAME::width", "IMG::align", "IMG::alt", "IMG::border", "IMG::height", "IMG::hspace", "IMG::ismap", "IMG::name", "IMG::usemap", "IMG::vspace", "IMG::width", "INPUT::accept", "INPUT::accesskey", "INPUT::align", "INPUT::alt", "INPUT::autocomplete", "INPUT::autofocus", "INPUT::checked", "INPUT::disabled", "INPUT::inputmode", "INPUT::ismap", "INPUT::list", "INPUT::max", "INPUT::maxlength", "INPUT::min", "INPUT::multiple", "INPUT::name", "INPUT::placeholder", "INPUT::readonly", "INPUT::required", "INPUT::size", "INPUT::step", "INPUT::tabindex", "INPUT::type", "INPUT::usemap", "INPUT::value", "INS::datetime", "KEYGEN::disabled", "KEYGEN::keytype", "KEYGEN::name", "LABEL::accesskey", "LABEL::for", "LEGEND::accesskey", "LEGEND::align", "LI::type", "LI::value", "LINK::sizes", "MAP::name", "MENU::compact", "MENU::label", "MENU::type", "METER::high", "METER::low", "METER::max", "METER::min", "METER::value", "OBJECT::typemustmatch", "OL::compact", "OL::reversed", "OL::start", "OL::type", "OPTGROUP::disabled", "OPTGROUP::label", "OPTION::disabled", "OPTION::label", "OPTION::selected", "OPTION::value", "OUTPUT::for", "OUTPUT::name", "P::align", "PRE::width", "PROGRESS::max", "PROGRESS::min", "PROGRESS::value", "SELECT::autocomplete", "SELECT::disabled", "SELECT::multiple", "SELECT::name", "SELECT::required", "SELECT::size", "SELECT::tabindex", "SOURCE::type", "TABLE::align", "TABLE::bgcolor", "TABLE::border", "TABLE::cellpadding", "TABLE::cellspacing", "TABLE::frame", "TABLE::rules", "TABLE::summary", "TABLE::width", "TBODY::align", "TBODY::char", "TBODY::charoff", "TBODY::valign", "TD::abbr", "TD::align", "TD::axis", "TD::bgcolor", "TD::char", "TD::charoff", "TD::colspan", "TD::headers", "TD::height", "TD::nowrap", "TD::rowspan", "TD::scope", "TD::valign", "TD::width", "TEXTAREA::accesskey", "TEXTAREA::autocomplete", "TEXTAREA::cols", "TEXTAREA::disabled", "TEXTAREA::inputmode", "TEXTAREA::name", "TEXTAREA::placeholder", "TEXTAREA::readonly", "TEXTAREA::required", "TEXTAREA::rows", "TEXTAREA::tabindex", "TEXTAREA::wrap", "TFOOT::align", "TFOOT::char", "TFOOT::charoff", "TFOOT::valign", "TH::abbr", "TH::align", "TH::axis", "TH::bgcolor", "TH::char", "TH::charoff", "TH::colspan", "TH::headers", "TH::height", "TH::nowrap", "TH::rowspan", "TH::scope", "TH::valign", "TH::width", "THEAD::align", "THEAD::char", "THEAD::charoff", "THEAD::valign", "TR::align", "TR::bgcolor", "TR::char", "TR::charoff", "TR::valign", "TRACK::default", "TRACK::kind", "TRACK::label", "TRACK::srclang", "UL::compact", "UL::type", "VIDEO::controls", "VIDEO::height", "VIDEO::loop", "VIDEO::mediagroup", "VIDEO::muted", "VIDEO::preload", "VIDEO::width"]), t.V)
-    C.N = H.b(make_const_list(["", "", "", "", "", "", "", "", "", ""]), t.V)
-    C.O = H.b(make_const_list(["HEAD", "AREA", "BASE", "BASEFONT", "BR", "COL", "COLGROUP", "EMBED", "FRAME", "FRAMESET", "HR", "IMAGE", "IMG", "INPUT", "ISINDEX", "LINK", "META", "PARAM", "SOURCE", "STYLE", "TITLE", "WBR"]), t.V)
-    C.P = H.b(make_const_list([]), t.V)
-    C.r = H.b(make_const_list(["bind", "if", "ref", "repeat", "syntax"]), t.V)
-    C.l = H.b(make_const_list(["A::href", "AREA::href", "BLOCKQUOTE::cite", "BODY::background", "COMMAND::icon", "DEL::cite", "FORM::action", "IMG::src", "INPUT::src", "INS::cite", "Q::cite", "VIDEO::poster"]), t.V)
+    C.M = H.setRuntimeTypeInfo(make_const_list(["*::class", "*::dir", "*::draggable", "*::hidden", "*::id", "*::inert", "*::itemprop", "*::itemref", "*::itemscope", "*::lang", "*::spellcheck", "*::title", "*::translate", "A::accesskey", "A::coords", "A::hreflang", "A::name", "A::shape", "A::tabindex", "A::target", "A::type", "AREA::accesskey", "AREA::alt", "AREA::coords", "AREA::nohref", "AREA::shape", "AREA::tabindex", "AREA::target", "AUDIO::controls", "AUDIO::loop", "AUDIO::mediagroup", "AUDIO::muted", "AUDIO::preload", "BDO::dir", "BODY::alink", "BODY::bgcolor", "BODY::link", "BODY::text", "BODY::vlink", "BR::clear", "BUTTON::accesskey", "BUTTON::disabled", "BUTTON::name", "BUTTON::tabindex", "BUTTON::type", "BUTTON::value", "CANVAS::height", "CANVAS::width", "CAPTION::align", "COL::align", "COL::char", "COL::charoff", "COL::span", "COL::valign", "COL::width", "COLGROUP::align", "COLGROUP::char", "COLGROUP::charoff", "COLGROUP::span", "COLGROUP::valign", "COLGROUP::width", "COMMAND::checked", "COMMAND::command", "COMMAND::disabled", "COMMAND::label", "COMMAND::radiogroup", "COMMAND::type", "DATA::value", "DEL::datetime", "DETAILS::open", "DIR::compact", "DIV::align", "DL::compact", "FIELDSET::disabled", "FONT::color", "FONT::face", "FONT::size", "FORM::accept", "FORM::autocomplete", "FORM::enctype", "FORM::method", "FORM::name", "FORM::novalidate", "FORM::target", "FRAME::name", "H1::align", "H2::align", "H3::align", "H4::align", "H5::align", "H6::align", "HR::align", "HR::noshade", "HR::size", "HR::width", "HTML::version", "IFRAME::align", "IFRAME::frameborder", "IFRAME::height", "IFRAME::marginheight", "IFRAME::marginwidth", "IFRAME::width", "IMG::align", "IMG::alt", "IMG::border", "IMG::height", "IMG::hspace", "IMG::ismap", "IMG::name", "IMG::usemap", "IMG::vspace", "IMG::width", "INPUT::accept", "INPUT::accesskey", "INPUT::align", "INPUT::alt", "INPUT::autocomplete", "INPUT::autofocus", "INPUT::checked", "INPUT::disabled", "INPUT::inputmode", "INPUT::ismap", "INPUT::list", "INPUT::max", "INPUT::maxlength", "INPUT::min", "INPUT::multiple", "INPUT::name", "INPUT::placeholder", "INPUT::readonly", "INPUT::required", "INPUT::size", "INPUT::step", "INPUT::tabindex", "INPUT::type", "INPUT::usemap", "INPUT::value", "INS::datetime", "KEYGEN::disabled", "KEYGEN::keytype", "KEYGEN::name", "LABEL::accesskey", "LABEL::for", "LEGEND::accesskey", "LEGEND::align", "LI::type", "LI::value", "LINK::sizes", "MAP::name", "MENU::compact", "MENU::label", "MENU::type", "METER::high", "METER::low", "METER::max", "METER::min", "METER::value", "OBJECT::typemustmatch", "OL::compact", "OL::reversed", "OL::start", "OL::type", "OPTGROUP::disabled", "OPTGROUP::label", "OPTION::disabled", "OPTION::label", "OPTION::selected", "OPTION::value", "OUTPUT::for", "OUTPUT::name", "P::align", "PRE::width", "PROGRESS::max", "PROGRESS::min", "PROGRESS::value", "SELECT::autocomplete", "SELECT::disabled", "SELECT::multiple", "SELECT::name", "SELECT::required", "SELECT::size", "SELECT::tabindex", "SOURCE::type", "TABLE::align", "TABLE::bgcolor", "TABLE::border", "TABLE::cellpadding", "TABLE::cellspacing", "TABLE::frame", "TABLE::rules", "TABLE::summary", "TABLE::width", "TBODY::align", "TBODY::char", "TBODY::charoff", "TBODY::valign", "TD::abbr", "TD::align", "TD::axis", "TD::bgcolor", "TD::char", "TD::charoff", "TD::colspan", "TD::headers", "TD::height", "TD::nowrap", "TD::rowspan", "TD::scope", "TD::valign", "TD::width", "TEXTAREA::accesskey", "TEXTAREA::autocomplete", "TEXTAREA::cols", "TEXTAREA::disabled", "TEXTAREA::inputmode", "TEXTAREA::name", "TEXTAREA::placeholder", "TEXTAREA::readonly", "TEXTAREA::required", "TEXTAREA::rows", "TEXTAREA::tabindex", "TEXTAREA::wrap", "TFOOT::align", "TFOOT::char", "TFOOT::charoff", "TFOOT::valign", "TH::abbr", "TH::align", "TH::axis", "TH::bgcolor", "TH::char", "TH::charoff", "TH::colspan", "TH::headers", "TH::height", "TH::nowrap", "TH::rowspan", "TH::scope", "TH::valign", "TH::width", "THEAD::align", "THEAD::char", "THEAD::charoff", "THEAD::valign", "TR::align", "TR::bgcolor", "TR::char", "TR::charoff", "TR::valign", "TRACK::default", "TRACK::kind", "TRACK::label", "TRACK::srclang", "UL::compact", "UL::type", "VIDEO::controls", "VIDEO::height", "VIDEO::loop", "VIDEO::mediagroup", "VIDEO::muted", "VIDEO::preload", "VIDEO::width"]), t.V)
+    C.N = H.setRuntimeTypeInfo(make_const_list(["", "", "", "", "", "", "", "", "", ""]), t.V)
+    C.O = H.setRuntimeTypeInfo(make_const_list(["HEAD", "AREA", "BASE", "BASEFONT", "BR", "COL", "COLGROUP", "EMBED", "FRAME", "FRAMESET", "HR", "IMAGE", "IMG", "INPUT", "ISINDEX", "LINK", "META", "PARAM", "SOURCE", "STYLE", "TITLE", "WBR"]), t.V)
+    C.P = H.setRuntimeTypeInfo(make_const_list([]), t.V)
+    C.r = H.setRuntimeTypeInfo(make_const_list(["bind", "if", "ref", "repeat", "syntax"]), t.V)
+    C.l = H.setRuntimeTypeInfo(make_const_list(["A::href", "AREA::href", "BLOCKQUOTE::cite", "BODY::background", "COMMAND::icon", "DEL::cite", "FORM::action", "IMG::src", "INPUT::src", "INS::cite", "Q::cite", "VIDEO::poster"]), t.V)
     C.S = H.vp("N")
     C.T_kk = new P.kk(false)
 })();
@@ -19326,7 +19326,7 @@ var t = (function rtii() {
     $.eO = null
     $.ms = false
     $.P = C.f
-    $.ch = H.b([], H.findType("E<H>"))
+    $.ch = H.setRuntimeTypeInfo([], H.findType("E<H>"))
     $.bA = null
     $.m4 = null
     $.nJ = null
@@ -19349,12 +19349,12 @@ var t = (function rtii() {
     $.e_ = 0
     $.mf = function () {
         var s = t.i
-        return H.b([H.b([255, 255, 255], s), H.b([255, 255, 255], s), H.b([0, 0, 0], s), H.b([0, 180, 0], s), H.b([0, 255, 0], s), H.b([255, 0, 0], s), H.b([255, 192, 0], s), H.b([255, 255, 0], s), H.b([0, 224, 128], s), H.b([255, 0, 128], s), H.b([255, 108, 0], s), H.b([0, 108, 255], s), H.b([0, 192, 255], s), H.b([0, 255, 255], s), H.b([128, 120, 255], s), H.b([128, 224, 255], s), H.b([255, 0, 255], s), H.b([40, 40, 255], s), H.b([128, 0, 255], s), H.b([0, 144, 0], s), H.b([144, 0, 0], s)], t.f)
+        return H.setRuntimeTypeInfo([H.setRuntimeTypeInfo([255, 255, 255], s), H.setRuntimeTypeInfo([255, 255, 255], s), H.setRuntimeTypeInfo([0, 0, 0], s), H.setRuntimeTypeInfo([0, 180, 0], s), H.setRuntimeTypeInfo([0, 255, 0], s), H.setRuntimeTypeInfo([255, 0, 0], s), H.setRuntimeTypeInfo([255, 192, 0], s), H.setRuntimeTypeInfo([255, 255, 0], s), H.setRuntimeTypeInfo([0, 224, 128], s), H.setRuntimeTypeInfo([255, 0, 128], s), H.setRuntimeTypeInfo([255, 108, 0], s), H.setRuntimeTypeInfo([0, 108, 255], s), H.setRuntimeTypeInfo([0, 192, 255], s), H.setRuntimeTypeInfo([0, 255, 255], s), H.setRuntimeTypeInfo([128, 120, 255], s), H.setRuntimeTypeInfo([128, 224, 255], s), H.setRuntimeTypeInfo([255, 0, 255], s), H.setRuntimeTypeInfo([40, 40, 255], s), H.setRuntimeTypeInfo([128, 0, 255], s), H.setRuntimeTypeInfo([0, 144, 0], s), H.setRuntimeTypeInfo([144, 0, 0], s)], t.f)
     }()
     $.md = null
-    $.dZ = H.b([], t.f)
-    $.me = H.b([], t.f)
-    $.o5 = H.b([], t.f)
+    $.dZ = H.setRuntimeTypeInfo([], t.f)
+    $.me = H.setRuntimeTypeInfo([], t.f)
+    $.o5 = H.setRuntimeTypeInfo([], t.f)
     $.od = function () {
         var s = t.X
         return P.cu(s, s)
@@ -20335,7 +20335,7 @@ var t = (function rtii() {
     })
     lazy_old($, "zH", "r1", function () {
         // return H.b([$.iL(), $.n8(), $.qk(), $.n6(), $.n9(), $.no(), $.nm(), $.nb(), $.qa(), $.nn(), $.qW(), $.np(), $.qi(), $.nj(), $.qr(), $.qs(), $.qU()], t.V)
-        return H.b(
+        return H.setRuntimeTypeInfo(
             [
                 "Rinick", "库瓒", "庫瓒", "涵虚", "霛雲", "云剑", "新纪元", "琪拉拉", "纯菜", "学车中学",
                 "学🚗🀄学", "昀澤", "锦依卫", "Σσ", "Ø", "∅", "斜眼笑"
@@ -20347,7 +20347,7 @@ var t = (function rtii() {
         return $.pA()
     })
     lazy_old($, "zY", "r6", function () {
-        return C.Array.f5(H.b(LangData.get_lang("ezfN").split("[]"), t.s), new T.kb(), t.X).fL(0)
+        return C.Array.f5(H.setRuntimeTypeInfo(LangData.get_lang("ezfN").split("[]"), t.s), new T.kb(), t.X).fL(0)
     })
     lazy_old($, "Ac", "rj", function () {
         // 武器那一堆
@@ -20367,7 +20367,7 @@ var t = (function rtii() {
     })
     lazy_old($, "Ad", "rk", function () {
         // return H.b([$.iL(), $.n8(), $.n6(), $.n9(), $.no(), $.nm(), $.nb(), $.nn(), $.np(), $.nj(), $.qg(), $.qj(), $.qt(), $.qX(), $.qf(), $.qN(), $.qd(), $.qT(), $.qV(), $.ql(), $.qS(), $.qe()], t.V)
-        return H.b(
+        return H.setRuntimeTypeInfo(
             [
                 "Rinick", "库瓒", "涵虚", "霛雲", "云剑", "新纪元", "琪拉拉", "学车中学", "昀澤",
                 "Σσ", "滑稽", "坤灵剑", "RailGun", "巡洋舰", "Hell", "佘山", "房刚", "五班", "XJ联队",
@@ -21048,7 +21048,7 @@ function main() {
                     a2 = window.localStorage.getItem("go​ogle_experiment_mod1")
                     // console.log("a2", a2)
                     if (a2 != null) {
-                        $.ox = new H.a9(H.b(a2.split(""), t.s), t.bJ).f3(0)
+                        $.ox = new H.a9(H.setRuntimeTypeInfo(a2.split(""), t.s), t.bJ).f3(0)
                     }
                 }
 
@@ -21067,8 +21067,8 @@ function main() {
                     l = X.f4(m, 0)
                     k = LangData.oC(false)
                     a8 = t.i
-                    j = H.b([], a8)
-                    J.rr(j, H.b([1, 3, 0, 9], a8))
+                    j = H.setRuntimeTypeInfo([], a8)
+                    J.rr(j, H.setRuntimeTypeInfo([1, 3, 0, 9], a8))
                     k.bO(j)
                     k.di(l)
                     raw_names = C.e.bt(0, l)
@@ -21087,7 +21087,7 @@ function main() {
                         if (h[1].length > 10 || J.lW(h[1][0][0], LangData.j("S,AF", 5))) {
                             logger.info("官方测号")
                             a8 = h[1]
-                            a9 = H.b([], t.t)
+                            a9 = H.setRuntimeTypeInfo([], t.t)
                             d = new X.iW(a9, new Float64Array(1))
                             d.e_(a8)
                             g = d
@@ -21104,9 +21104,9 @@ function main() {
                             }
                             a8 = h[1]
                             a9 = e
-                            a3 = H.b([], t.L)
-                            a4 = H.b([], t.V)
-                            a5 = H.b([], t.M)
+                            a3 = H.setRuntimeTypeInfo([], t.L)
+                            a4 = H.setRuntimeTypeInfo([], t.V)
+                            a5 = H.setRuntimeTypeInfo([], t.M)
                             g = new V.iV(a9, a8, a3, a4, a5, P.cu(t.X, t.B), new Float64Array(1))
                             g.dZ(a8, a9)
                             d = g
@@ -21120,10 +21120,10 @@ function main() {
                         a8 = h[1]
                         a9 = h[2]
                         a3 = t.L
-                        a4 = H.b([], a3)
-                        a3 = H.b([], a3)
-                        a5 = H.b([], t.V)
-                        a6 = H.b([], t.M)
+                        a4 = H.setRuntimeTypeInfo([], a3)
+                        a3 = H.setRuntimeTypeInfo([], a3)
+                        a5 = H.setRuntimeTypeInfo([], t.V)
+                        a6 = H.setRuntimeTypeInfo([], t.M)
                         g = new L.iR(a8, a9, a4, a3, a5, a6, new Float64Array(1))
                         g.dY(a8, a9)
                         b = g
