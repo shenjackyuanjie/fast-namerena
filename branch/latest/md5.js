@@ -1880,7 +1880,7 @@ var A = {
         find_type(a) {
             return H._Universe_addErasedTypes(init.typeUniverse, a, false)
         },
-        bP(a, b, a0, a1) {
+        _substitute(a, b, a0, a1) {
             var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c = b.y
             switch (c) {
                 case 5:
@@ -1891,17 +1891,17 @@ var A = {
                     return b
                 case 6:
                     s = b.z
-                    r = H.bP(a, s, a0, a1)
+                    r = H._substitute(a, s, a0, a1)
                     if (r === s) return b
                     return H._Universe__lookupStarRti(a, r, true)
                 case 7:
                     s = b.z
-                    r = H.bP(a, s, a0, a1)
+                    r = H._substitute(a, s, a0, a1)
                     if (r === s) return b
                     return H._Universe__lookupQuestionRti(a, r, true)
                 case 8:
                     s = b.z
-                    r = H.bP(a, s, a0, a1)
+                    r = H._substitute(a, s, a0, a1)
                     if (r === s) return b
                     return H._Universe__lookupFutureOrRti(a, r, true)
                 case 9:
@@ -1911,14 +1911,14 @@ var A = {
                     return H._Universe__lookupInterfaceRti(a, b.z, p)
                 case 10:
                     o = b.z
-                    n = H.bP(a, o, a0, a1)
+                    n = H._substitute(a, o, a0, a1)
                     m = b.Q
                     l = H.eP(a, m, a0, a1)
                     if (n === o && l === m) return b
                     return H._Universe__lookupBindingRti(a, n, l)
                 case 11:
                     k = b.z
-                    j = H.bP(a, k, a0, a1)
+                    j = H._substitute(a, k, a0, a1)
                     i = b.Q
                     h = H.uE(a, i, a0, a1)
                     if (j === k && h === i) return b
@@ -1928,7 +1928,7 @@ var A = {
                     a1 += g.length
                     f = H.eP(a, g, a0, a1)
                     o = b.z
-                    n = H.bP(a, o, a0, a1)
+                    n = H._substitute(a, o, a0, a1)
                     if (f === g && n === o) return b
                     return H._Universe__lookupGenericFunctionRti(a, n, f, true)
                 case 13:
@@ -1946,7 +1946,7 @@ var A = {
                 n = H.ld(o)
             for (s = false, r = 0; r < o; ++r) {
                 q = b[r]
-                p = H.bP(a, q, c, d)
+                p = H._substitute(a, q, c, d)
                 if (p !== q) s = true
                 n[r] = p
             }
@@ -1959,7 +1959,7 @@ var A = {
                 q = b[r]
                 p = b[r + 1]
                 o = b[r + 2]
-                n = H.bP(a, o, c, d)
+                n = H._substitute(a, o, c, d)
                 if (n !== o) s = true
                 l.splice(r, 3, q, p, n)
             }
@@ -2633,7 +2633,7 @@ var A = {
                     }
                 }
                 if (q > 0) {
-                    n = H.bP(a, b, r, 0)
+                    n = H._substitute(a, b, r, 0)
                     m = H.eP(a, c, r, 0)
                     return H._Universe__lookupGenericFunctionRti(a, n, m, c !== m)
                 }
