@@ -1835,8 +1835,8 @@ var A = {
             s = new Uint8Array(a, b)
             return s
         },
-        bt(a, b, c) {
-            if (a >>> 0 !== a || a >= c) throw H.wrap_expression(H.bQ(b, a))
+        _checkValidIndex(index, list, len) {
+            if (index >>> 0 !== index || index >= len) throw H.wrap_expression(H.bQ(list, index))
         },
         ug(a, b, c) {
             var s
@@ -9552,11 +9552,11 @@ H.cw.prototype = {
 }
 H.c9.prototype = {
     h(a, b) {
-        H.bt(b, a, a.length)
+        H._checkValidIndex(b, a, a.length)
         return a[b]
     },
     m(a, b, c) {
-        H.bt(b, a, a.length)
+        H._checkValidIndex(b, a, a.length)
         a[b] = c
     },
     $iA: 1,
@@ -9564,7 +9564,7 @@ H.c9.prototype = {
 }
 H.dK.prototype = {
     m(a, b, c) {
-        H.bt(b, a, a.length)
+        H._checkValidIndex(b, a, a.length)
         a[b] = c
     },
     $iA: 1,
@@ -9572,31 +9572,31 @@ H.dK.prototype = {
 }
 H.fE.prototype = {
     h(a, b) {
-        H.bt(b, a, a.length)
+        H._checkValidIndex(b, a, a.length)
         return a[b]
     }
 }
 H.fF.prototype = {
     h(a, b) {
-        H.bt(b, a, a.length)
+        H._checkValidIndex(b, a, a.length)
         return a[b]
     }
 }
 H.fG.prototype = {
     h(a, b) {
-        H.bt(b, a, a.length)
+        H._checkValidIndex(b, a, a.length)
         return a[b]
     }
 }
 H.fH.prototype = {
     h(a, b) {
-        H.bt(b, a, a.length)
+        H._checkValidIndex(b, a, a.length)
         return a[b]
     }
 }
 H.fI.prototype = {
     h(a, b) {
-        H.bt(b, a, a.length)
+        H._checkValidIndex(b, a, a.length)
         return a[b]
     }
 }
@@ -9605,7 +9605,7 @@ H.dL.prototype = {
         return a.length
     },
     h(a, b) {
-        H.bt(b, a, a.length)
+        H._checkValidIndex(b, a, a.length)
         return a[b]
     }
 }
@@ -9614,7 +9614,7 @@ H.cx.prototype = {
         return a.length
     },
     h(a, b) {
-        H.bt(b, a, a.length)
+        H._checkValidIndex(b, a, a.length)
         return a[b]
     },
     $icx: 1
