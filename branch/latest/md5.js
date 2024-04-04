@@ -1991,7 +1991,7 @@ var A = {
             }
             return null
         },
-        oE(a, b) {
+        instanceOrFunctionType(a, b) {
             var s
             if (H.Rti__isUnionOfFunctionType(b))
                 if (a instanceof H.c_) {
@@ -2126,7 +2126,7 @@ var A = {
         uh(a) {
             var s = this
             if (a == null) return H.ln(s)
-            return H._isSubtype(init.typeUniverse, H.oE(a, s), null, s, null)
+            return H._isSubtype(init.typeUniverse, H.instanceOrFunctionType(a, s), null, s, null)
         },
         uj(a) {
             if (a == null) return true
@@ -2163,7 +2163,7 @@ var A = {
             H.oo(a, s)
         },
         oo(a, b) {
-            throw H.wrap_expression(H.u_(H.ob(a, H.oE(a, b), H.aH(b, null))))
+            throw H.wrap_expression(H.u_(H.ob(a, H.instanceOrFunctionType(a, b), H.aH(b, null))))
         },
         ob(a, b, c) {
             var s = P.jh(a),
