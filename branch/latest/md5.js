@@ -17079,24 +17079,24 @@ T.Plr.prototype = {
         var skills, r, q
         this.k3 = T.SklAttack(this)
         skills = this.k1
-        skills.push(new T.SklFire())
-        skills.push(new T.SklIce())
-        skills.push(new T.SklThunder())
-        skills.push(new T.SklQuake(0))
-        skills.push(new T.SklAbsorb(0))
-        skills.push(new T.SklPoison(0))
-        skills.push(new T.SklRapid(0))
-        skills.push(new T.SklCritical(0))
-        skills.push(new T.sklHalf(0))
-        skills.push(new T.SklExchange(0))
-        skills.push(new T.SklBerserk(0))
-        skills.push(new T.e3(0))
-        skills.push(new T.hk(0))
-        skills.push(new T.hG(0))
-        skills.push(new T.hf(0))
-        skills.push(new T.e8(0))
-        skills.push(new T.hx(0))
-        skills.push(new T.hh(0))
+        skills.push(new T.SklFire(0)); // 0
+        skills.push(new T.SklIce(0)); // 1
+        skills.push(new T.SklThunder(0)); // 2
+        skills.push(new T.SklQuake(0)); // 3
+        skills.push(new T.SklAbsorb(0)); // 4
+        skills.push(new T.SklPoison(0)); // 5
+        skills.push(new T.SklRapid(0)); // 6
+        skills.push(new T.SklCritical(0)); // 7
+        skills.push(new T.sklHalf(0)); // 8
+        skills.push(new T.SklExchange(0)); // 9
+        skills.push(new T.SklBerserk(0)); // 10
+        skills.push(new T.e3(0)); // 11
+        skills.push(new T.hk(0)); // 12
+        skills.push(new T.hG(0)); // 13
+        skills.push(new T.hf(0)); // 14
+        skills.push(new T.e8(0)); // 15
+        skills.push(new T.hx(0)); // 16
+        skills.push(new T.hh(0)); // 17
         r = 0
         r = new T.ho(r, r, r)
         q = new T.dT(1 / 0, r)
@@ -17104,37 +17104,37 @@ T.Plr.prototype = {
         r.fx = new T.b8(r)
         r.fy = new T.bd(r)
         q.r = $.lG()
-        skills.push(r)
+        skills.push(r) // 18
         r = 0
         r = new T.ha(r, r)
         r.fr = new T.bd(r)
         r.fx = new T.b8(r)
-        skills.push(r)
+        skills.push(r) // 19
         r = new T.h5($.pj(), 0)
         r.fr = new T.bd(r)
-        skills.push(r)
+        skills.push(r) // 20
         r = new T.h7(0)
         r.fr = new T.ca(r)
         r.fx = new T.cA(r)
-        skills.push(r)
-        skills.push(new T.hH(0))
-        skills.push(new T.e4(0))
-        skills.push(new T.hB(0))
-        skills.push(new T.e6(0))
-        skills.push(new T.eb(0))
-        skills.push(new T.ed(0))
-        skills.push(new T.hw(0))
-        skills.push(new T.hC(0))
-        skills.push(new T.cb(0))
-        skills.push(new T.hs(0))
-        skills.push(new T.hK(0))
+        skills.push(r) // 21
+        skills.push(new T.hH(0)); // 22
+        skills.push(new T.e4(0)); // 23
+        skills.push(new T.hB(0)); // 24
+        skills.push(new T.e6(0)); // 25
+        skills.push(new T.eb(0)); // 26
+        skills.push(new T.ed(0)); // 27
+        skills.push(new T.hw(0)); // 28
+        skills.push(new T.hC(0)); // 29
+        skills.push(new T.cb(0)); // 30
+        skills.push(new T.hs(0)); // 31
+        skills.push(new T.hK(0)); // 32
         r = new T.hJ(0)
         r.Q = new T.bd(r)
-        skills.push(r)
+        skills.push(r) // 33
         r = new T.hl(0)
         r.ch = new T.bd(r)
         r.Q = new T.ca(r)
-        skills.push(r)
+        skills.push(r)  // 34
         skills.push(new T.SkillVoid(0))
         skills.push(new T.SkillVoid(0))
         skills.push(new T.SkillVoid(0))
