@@ -1128,7 +1128,7 @@ var A = {
                 if (typeof s == "string" && s === "too much recursion") return new P.el()
             return ex
         },
-        get_trace_from_exception(a) {
+        getTraceFromException(a) {
             var s
             if (a instanceof H.dt) return a.b
             if (a == null) return new H.eE(a)
@@ -3470,7 +3470,8 @@ var A = {
             return P.mh(H.b([r, q, p, o < 26 ? o + 65 : o + 71], t.i), 0, null)
         },
         j(a, b) {
-            let result = C.e.bt(0, X.f4(a, b))
+            // let result = C.e.bt(0, X.f4(a, b))
+            let result = C.T_kk.ab(X.f4(a, b))
             logger.debug("O.j", a, b, result)
             return result
         },
@@ -3571,7 +3572,7 @@ var A = {
             b.bM(0, a)
         },
         async_rethrow(a, b) {
-            b.cj(H.unwrap_Exception(a), H.get_trace_from_exception(a))
+            b.cj(H.unwrap_Exception(a), H.getTraceFromException(a))
         },
         _awaitOnObject(a, b) {
             var s, r, q = new P.lh(b),
@@ -9886,7 +9887,7 @@ P._Future.prototype = {
             a.cz(new P.kK(p), new P.kL(p), t.P)
         } catch (q) {
             s = H.unwrap_Exception(q)
-            r = H.get_trace_from_exception(q)
+            r = H.getTraceFromException(q)
             P.oN(new P.kM(p, s, r))
         }
     },
@@ -9958,7 +9959,7 @@ P.kK.prototype = {
             p.c2(p.$ti.c.a(a))
         } catch (q) {
             s = H.unwrap_Exception(q)
-            r = H.get_trace_from_exception(q)
+            r = H.getTraceFromException(q)
             p.be(s, r)
         }
     },
@@ -10003,7 +10004,7 @@ P.kR.prototype = {
             l = q.b.b.fA(q.d)
         } catch (p) {
             s = H.unwrap_Exception(p)
-            r = H.get_trace_from_exception(p)
+            r = H.getTraceFromException(p)
             if (m.c) {
                 q = m.b.a.c.a
                 o = s
@@ -10048,7 +10049,7 @@ P.kQ.prototype = {
             q.c = p.b.b.cv(p.d, this.b)
         } catch (o) {
             s = H.unwrap_Exception(o)
-            r = H.get_trace_from_exception(o)
+            r = H.getTraceFromException(o)
             q = this.a
             q.c = P.async_error(s, r)
             q.b = true
@@ -10068,7 +10069,7 @@ P.kP.prototype = {
             }
         } catch (o) {
             r = H.unwrap_Exception(o)
-            q = H.get_trace_from_exception(o)
+            q = H.getTraceFromException(o)
             p = k.a.a.c
             n = p.a
             m = r
@@ -10321,7 +10322,7 @@ P.kX.prototype = {
             P.os(null, null, this, a)
         } catch (q) {
             s = H.unwrap_Exception(q)
-            r = H.get_trace_from_exception(q)
+            r = H.getTraceFromException(q)
             P.iC(s, r)
         }
     },
@@ -10335,7 +10336,7 @@ P.kX.prototype = {
             P.ot(null, null, this, a, b)
         } catch (q) {
             s = H.unwrap_Exception(q)
-            r = H.get_trace_from_exception(q)
+            r = H.getTraceFromException(q)
             P.iC(s, r)
         }
     },
@@ -10992,7 +10993,7 @@ P.Duration_toString_twoDigits.prototype = {
 }
 P.O.prototype = {
     gbz() {
-        return H.get_trace_from_exception(this.$thrownJsError)
+        return H.getTraceFromException(this.$thrownJsError)
     }
 }
 P.f2.prototype = {
@@ -16584,7 +16585,7 @@ T.fo.prototype = {
                         }
                     } catch (e) {
                         m = H.unwrap_Exception(e)
-                        l = H.get_trace_from_exception(e)
+                        l = H.getTraceFromException(e)
                     }
                     if (n.a.length !== 0) {
                         result_ = n
@@ -21165,7 +21166,7 @@ function main() {
                 switch_to = 4
                 b0 = async_result_1
                 a1 = H.unwrap_Exception(b0)
-                H.get_trace_from_exception(b0)
+                H.getTraceFromException(b0)
                 async_goto = 7
                 break
             case 4:
