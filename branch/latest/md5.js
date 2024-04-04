@@ -188,7 +188,7 @@ function lazyOld(a, b, c, d) {
     a[b] = s
     a[c] = function () {
         a[c] = function () {
-            H.vl(b)
+            H.throwCyclicInit(b)
         }
         var r
         var q = d
@@ -1414,7 +1414,7 @@ var A = {
             }
             throw H.wrap_expression(P.bz("Field name " + a + " not found.", null))
         },
-        vl(a) {
+        throwCyclicInit(a) {
             throw H.wrap_expression(new P.fj(a))
         },
         getIsolateAffinityTag(a) {
