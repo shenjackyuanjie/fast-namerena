@@ -1906,14 +1906,14 @@ var A = {
                     return H._Universe__lookupFutureOrRti(a, r, true)
                 case 9:
                     q = b.Q
-                    p = H.eP(a, q, a0, a1)
+                    p = H._substituteArray(a, q, a0, a1)
                     if (p === q) return b
                     return H._Universe__lookupInterfaceRti(a, b.z, p)
                 case 10:
                     o = b.z
                     n = H._substitute(a, o, a0, a1)
                     m = b.Q
-                    l = H.eP(a, m, a0, a1)
+                    l = H._substituteArray(a, m, a0, a1)
                     if (n === o && l === m) return b
                     return H._Universe__lookupBindingRti(a, n, l)
                 case 11:
@@ -1926,7 +1926,7 @@ var A = {
                 case 12:
                     g = b.Q
                     a1 += g.length
-                    f = H.eP(a, g, a0, a1)
+                    f = H._substituteArray(a, g, a0, a1)
                     o = b.z
                     n = H._substitute(a, o, a0, a1)
                     if (f === g && n === o) return b
@@ -1941,7 +1941,7 @@ var A = {
                     throw H.wrap_expression(P.iP("Attempted to substitute unexpected RTI kind " + c))
             }
         },
-        eP(a, b, c, d) {
+        _substituteArray(a, b, c, d) {
             var s, r, q, p, o = b.length,
                 n = H.ld(o)
             for (s = false, r = 0; r < o; ++r) {
@@ -1967,9 +1967,9 @@ var A = {
         },
         uE(a, b, c, d) {
             var s, r = b.a,
-                q = H.eP(a, r, c, d),
+                q = H._substituteArray(a, r, c, d),
                 p = b.b,
-                o = H.eP(a, p, c, d),
+                o = H._substituteArray(a, p, c, d),
                 n = b.c,
                 m = H.uF(a, n, c, d)
             if (q === r && o === p && m === n) return b
@@ -2634,7 +2634,7 @@ var A = {
                 }
                 if (q > 0) {
                     n = H._substitute(a, b, r, 0)
-                    m = H.eP(a, c, r, 0)
+                    m = H._substituteArray(a, c, r, 0)
                     return H._Universe__lookupGenericFunctionRti(a, n, m, c !== m)
                 }
             }
