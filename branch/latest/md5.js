@@ -20855,7 +20855,7 @@ function main() {
         async_completer = P._makeAsyncAwaitCompleter(t.z),
         q, switch_to = 2,
         async_result_1, n = [],
-        m, l, k, j, raw_names, h, g, f, e, d, c, b, a, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, b0
+        m, l, k, j, raw_names, h, g, f, e, d, c, b, a, a0_getter, a1, a2, a3, a4, a5, a6, a7, a8, a9, b0
     var $async$iE = P._wrapJsFunctionForAsync(function (error_code, async_result) {
         if (error_code === 1) {
             async_result_1 = async_result
@@ -20974,8 +20974,9 @@ function main() {
                 // c2 似乎是起始
                 return P._asyncAwait(T.inner_main(h), $async$iE)
             case 8:
-                a0 = async_result
-                HtmlRenderer.jt(a0)
+                // a0_getter = async_result
+                // HtmlRenderer.jt(a0_getter)
+                HtmlRenderer.jt(async_result)
                 switch_to = 2
                 async_goto = 7
                 break
@@ -20990,7 +20991,7 @@ function main() {
                 async_goto = 2
                 break
             case 7:
-                logger.debug("so just here?")
+                logger.debug("so just here?", async_goto, error_code)
             case 1:
                 return P.async_return(q, async_completer)
             case 2:
