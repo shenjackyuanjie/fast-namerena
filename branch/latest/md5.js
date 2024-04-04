@@ -12556,14 +12556,14 @@ V.iV.prototype = {
     },
     dZ(a, b) {
         // 什么奇怪的算法?
-        var s, r, q, p, o, n, m, l = this,
-            k = l.b
+        var s, r, q, p, o, n, m, this_ = this,
+            k = this_.b
         // if (k.length === 2 && J.Y(J.J(k[0], 0), J.J(k[1], 0)) && J.Y(J.J(k[0], 1), J.J(k[1], 1))) {
         if (k.length === 2 && (k[0][0] == k[1][0]) && (k[0][1] == k[1][1])) {
             k.pop()
-            l.c = true
+            this_.c = true
         }
-        for (s = k.length, r = l.f, q = l.r, p = 0; p < k.length; k.length === s || (0, H.F)(k), ++p) {
+        for (s = k.length, r = this_.f, q = this_.r, p = 0; p < k.length; k.length === s || (0, H.F)(k), ++p) {
             o = k[p]
             n = J.a3(o)
             m = T.jS(n.h(o, 0), n.h(o, 1), null, n.h(o, 2))
@@ -12576,7 +12576,7 @@ V.iV.prototype = {
                 m = r[p]
                 m.I = m.gbT()
             }
-        if (q.length === 1) l.x = q[0]
+        if (q.length === 1) this_.x = q[0]
     },
     O() {
         // 实力评分 主循环
