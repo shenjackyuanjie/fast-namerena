@@ -1415,7 +1415,8 @@ var A = {
         uT(a) {
             return init.getIsolateTag(a)
         },
-        Aw(a, b, c) {
+        defineProperty(a, b, c) {
+            // 笑死, 根本没人用
             Object.defineProperty(a, b, {
                 value: c,
                 enumerable: false,
