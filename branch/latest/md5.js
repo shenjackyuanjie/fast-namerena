@@ -17172,7 +17172,7 @@ T.Plr.prototype = {
                 q = 0
                 if (sortedSkills[q] - $.Z() <= q) s.e = true
             }++n
-            m += $.C()
+            m += $.C() // 4
         }
         console.log("this_.k2:",this_.k2)
         for (; sortedSkills = this_.k2, n < sortedSkills.length; ++n) sortedSkills[n].ao(this_, 0)
@@ -17254,7 +17254,9 @@ T.Plr.prototype = {
         this_.z = this_.y
         this_.id = $.T()
         this_.A = false
-        for (s = this_.rx, s = new Sgls.a_(s, s.b, s.$ti.i("a_<1*>")); s.u();) s.b.ar(this_)
+        for (s = this_.rx, s = new Sgls.a_(s, s.b, s.$ti.i("a_<1*>")); s.u();) {
+            s.b.ar(this_)
+        }
     },
     ci() {
         // calcAttrSum
