@@ -1209,7 +1209,7 @@ var A = {
             s.$_name = b
             s.$_target = a0
             q = !h
-            if (q) p = H.nH(b, a0, g, f)
+            if (q) p = H.Closure_forwardCallTo(b, a0, g, f)
             else {
                 s.$static_name = b
                 p = a0
@@ -1225,7 +1225,7 @@ var A = {
                 } else k = ""
                 j = c[n]
                 if (j != null) {
-                    if (q) m = H.nH(k, m, g, f)
+                    if (q) m = H.Closure_forwardCallTo(k, m, g, f)
                     s[j] = m
                 }
                 if (n === e) o = m
@@ -1294,7 +1294,7 @@ var A = {
                     }(func, get_self)
             }
         },
-        nH(a, b, c, d) {
+        Closure_forwardCallTo(a, b, c, d) {
             var s, r, q, p, o, n = "receiver"
             if (c) return H.rK(a, b, d)
             s = b.length
