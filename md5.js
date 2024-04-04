@@ -17139,7 +17139,7 @@ T.Plr.prototype = {
         r.ch = new T.bd(r)
         r.Q = new T.ca(r)
         s.push(r)
-        
+
         s.push(new T.SkillVoid(0))
         s.push(new T.SkillVoid(0))
         s.push(new T.SkillVoid(0))
@@ -17216,7 +17216,28 @@ T.Plr.prototype = {
         s.go = C.JsInt.P(s.fr, $.t())
     },
     F() {
-        // updateStates
+        /*  void updateStates() {
+          atk = attr[0];
+          def = attr[1];
+          spd = attr[2] + 160;
+          agl = attr[3];
+          mag = attr[4];
+          mdf = attr[5];
+          itl = attr[6];
+          maxhp = attr[7];
+
+          calcAttrSum();
+
+          allyGroup = group;
+          atboost = 1.0;
+
+          frozen = false;
+
+          for (UpdateStateEntry ude in updatestates) {
+            ude.updateState(this);
+          }
+        }
+        */
         var s, this_ = this
         this_.ch = this_.b0(this_.q[0], $.cj())
         this_.cx = this_.b0(this_.q[1], $.cj())
