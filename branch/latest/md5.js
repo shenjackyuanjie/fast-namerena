@@ -24,10 +24,10 @@ let logger = {
     // debug: 只在 from_code 时输出
     debug: function (...msg) {
         // if (run_env.from_code) {
-            // 上个色
-            // let last_stack = new Error().stack;
-            // console.log("\x1b[32mlogger<", last_stack, ">:", ...msg, "\x1b[0m")
-            console.log("\x1b[32mlogger:", ...msg, "\x1b[0m")
+        // 上个色
+        // let last_stack = new Error().stack;
+        // console.log("\x1b[32mlogger<", last_stack, ">:", ...msg, "\x1b[0m")
+        console.log("\x1b[32mlogger:", ...msg, "\x1b[0m")
         // }
     },
     info: function (...msg) {
@@ -357,7 +357,11 @@ var A = {
         eR(a) {
             var s = window.localStorage,
                 r = LangData.eQ("i")
-            s.setItem(r, a)
+            logger.debug("set item to localstorage")
+            if (!run_env.from_code) {
+                s.setItem(r, a)
+            }
+            logger.debug("set item to localstorage")
             s = $.nx()
             r = s.b
             if (r >= 4) H.throw_expression(s.ee())
@@ -13055,7 +13059,9 @@ HtmlRenderer.fq.prototype = {
     },
     fe(a0) {
         // run update
-        logger.debug("fq.fe start")
+        let stack = new Error().stack
+        logger.debug("fq.fe start", stack)
+
         var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, this_ = this
         if (a0.length < 6) return
         s = X.f4(a0, 0)
@@ -13161,6 +13167,7 @@ HtmlRenderer.fq.prototype = {
                 q.display = "none"
             }
         }
+        logger.debug("end fq.fe")
     },
     b4() {
         // 实力评估 主循环?
@@ -16593,7 +16600,7 @@ T.fo.prototype = {
     },
     ae(a, b) {
         if (run_env.from_code) {
-            return null
+            // return null
         }
         return this.dM(0, b)
     },
@@ -17212,8 +17219,8 @@ T.Plr.prototype = {
         this_.ch = this_.b0(this_.q[0], $.cj())
         this_.cx = this_.b0(this_.q[$.i()], $.cj())
         this_.cy = this_.b0(this_.q[$.t()], $.cj()) + 160
-        console.log("this_.cy",this_.cy)
-        console.log("this_.q",this_.q)
+        console.log("this_.cy", this_.cy)
+        console.log("this_.q", this_.q)
         this_.db = this_.b0(this_.q[$.B()], $.cj())
         this_.dx = this_.b0(this_.q[$.C()], $.cj())
         this_.dy = this_.b0(this_.q[$.X()], $.cj())
@@ -20004,6 +20011,7 @@ var t = (function rtii() {
     })
     lazy_old($, "x7", "mU", function () {
         return X.k("+O2YYGy,+H", 45)
+        // return 36
     })
     lazy_old($, "vJ", "oZ", function () {
         return X.D("xF s,sTeiD", 45)
@@ -21127,6 +21135,7 @@ function main() {
                 logger.debug("so just here?", async_goto, error_code)
             case 1:
                 logger.debug("返回中")
+                $.ms = false
                 return P.async_return(q, async_completer)
             case 2:
                 return P.async_rethrow(async_result_1, async_completer)
