@@ -6058,7 +6058,7 @@ var A = {
             s.a = a
             return s
         },
-        e1: function e1(a) {
+        SklAbsorb: function SklAbsorb(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -6086,7 +6086,7 @@ var A = {
             _.f = b
             _.c = _.b = _.a = _.r = null
         },
-        h9: function h9(a) {
+        SklBerserk: function SklBerserk(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -6163,7 +6163,7 @@ var A = {
             _.c = _.b = _.a = _.r = null
         },
         k9: function k9() {},
-        e5: function e5(a) {
+        SklCritical: function SklCritical(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -6190,7 +6190,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        hi: function hi(a) {
+        SklExchange: function SklExchange(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -6205,7 +6205,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        e7: function e7(a) {
+        sklHalf: function sklHalf(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -6241,7 +6241,7 @@ var A = {
             _.y = b
             _.c = _.b = _.a = null
         },
-        SklIce: function e9(a) {
+        SklIce: function SklIce(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -6264,19 +6264,19 @@ var A = {
             _.z = c
             _.c = _.b = _.a = null
         },
-        ht: function ht(a) {
+        SklPoison: function SklPoison(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        hv: function hv(a) {
+        SklQuake: function SklQuake(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        ec: function ec(a) {
+        SklRapid: function SklRapid(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -6406,7 +6406,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        hI: function hI(a) {
+        SklThunder: function SklThunder(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -13890,7 +13890,7 @@ Sgls.n.prototype = {
         return this.c = a
     }
 }
-T.e1.prototype = {
+T.SklAbsorb.prototype = {
     au(a, b) {
         var s
         if (b) {
@@ -14071,7 +14071,7 @@ T.dd.prototype = {
     $ix: 1,
     $iaV: 1
 }
-T.h9.prototype = {
+T.SklBerserk.prototype = {
     as(a, b) {
         if (b) {
             if (a.r2.h(0, $.aJ()) != null) return false
@@ -14306,7 +14306,7 @@ T.k9.prototype = {
     },
     $S: 46
 }
-T.e5.prototype = {
+T.SklCritical.prototype = {
     v(a, b, c, d) {
         var s = this,
             r = a[0].a,
@@ -14399,7 +14399,7 @@ T.hh.prototype = {
         else p.bN(o, true, s.r, T.oI(), c, d)
     }
 }
-T.hi.prototype = {
+T.SklExchange.prototype = {
     as(a, b) {
         if (b) return a.fx - this.r.fx > $.at()
         return a.fx > this.r.fx
@@ -14465,7 +14465,7 @@ T.SklFire.prototype = {
         p.a3(s * (r + q), true, this.r, T.oJ(), c, d)
     }
 }
-T.e7.prototype = {
+T.sklHalf.prototype = {
     as(a, b) {
         var s
         if (b) {
@@ -14817,7 +14817,7 @@ T.dS.prototype = {
     },
     $ix: 1
 }
-T.ht.prototype = {
+T.SklPoison.prototype = {
     v(a, b, c, d) {
         var s = a[0].a,
             r = T.I(this.r, true, c)
@@ -14825,7 +14825,7 @@ T.ht.prototype = {
         s.a3(r, true, this.r, T.vb(), c, d)
     }
 }
-T.hv.prototype = {
+T.SklQuake.prototype = {
     gb7() {
         return $.X()
     },
@@ -14860,7 +14860,7 @@ T.hv.prototype = {
         }
     }
 }
-T.ec.prototype = {
+T.SklRapid.prototype = {
     gb7() {
         return $.B()
     },
@@ -15325,7 +15325,7 @@ T.hH.prototype = {
         a5.push(T.RunUpdate(s, r, o, a4, a4, 0, 1000, 100))
     }
 }
-T.hI.prototype = {
+T.SklThunder.prototype = {
     v(a, b, c, d) {
         var s, r, q, p, o, n, m, l, k = this,
             j = null,
@@ -16079,7 +16079,7 @@ T.f9.prototype = {
     },
     ac() {
         this.k3 = T.hE(this)
-        var s = new T.e1(0)
+        var s = new T.SklAbsorb(0)
         s.f = $.ci()
         this.k1.push(s)
     }
@@ -16192,7 +16192,7 @@ T.fb.prototype = {
         s = q.k1
         if (q.aC == $.i()) s.push(new T.ef(0))
         else {
-            r = new T.e7(0)
+            r = new T.sklHalf(0)
             r.f = $.at()
             s.push(r)
             r = new T.e8(0)
@@ -16269,10 +16269,10 @@ T.fc.prototype = {
         var s, r
         this.k3 = T.hE(this)
         s = this.k1
-        r = new T.ec(0)
+        r = new T.SklRapid(0)
         r.f = $.aI()
         s.push(r)
-        r = new T.e5(0)
+        r = new T.SklCritical(0)
         r.f = $.aI()
         s.push(r)
         r = new T.cb(0)
@@ -17062,43 +17062,43 @@ T.Plr.prototype = {
     },
     bP() {
         //initLists
-        var s = this
-        C.Array.sp(s.k4, 0)
-        s.r2.ah(0)
-        s.rx.ah(0)
-        s.ry.ah(0)
-        s.x1.ah(0)
-        s.x2.ah(0)
-        s.y1.ah(0)
-        s.y2.ah(0)
-        s.G.ah(0)
-        s.L.ah(0)
-        s.S.ah(0)
+        var this_ = this
+        C.Array.sp(this_.k4, 0)
+        this_.r2.ah(0)
+        this_.rx.ah(0)
+        this_.ry.ah(0)
+        this_.x1.ah(0)
+        this_.x2.ah(0)
+        this_.y1.ah(0)
+        this_.y2.ah(0)
+        this_.G.ah(0)
+        this_.L.ah(0)
+        this_.S.ah(0)
     },
     ac() {
         // create skills
         // createSkills()
-        var s, r, q
+        var skills, r, q
         this.k3 = T.SklAttack(this)
-        s = this.k1
-        s.push(new T.SklFire(0))
-        s.push(new T.SklIce(0))
-        s.push(new T.hI(0))
-        s.push(new T.hv(0))
-        s.push(new T.e1(0))
-        s.push(new T.ht(0))
-        s.push(new T.ec(0))
-        s.push(new T.e5(0))
-        s.push(new T.e7(0))
-        s.push(new T.hi(0))
-        s.push(new T.h9(0))
-        s.push(new T.e3(0))
-        s.push(new T.hk(0))
-        s.push(new T.hG(0))
-        s.push(new T.hf(0))
-        s.push(new T.e8(0))
-        s.push(new T.hx(0))
-        s.push(new T.hh(0))
+        skills = this.k1
+        skills.push(new T.SklFire(0)); // 0
+        skills.push(new T.SklIce(0)); // 1
+        skills.push(new T.SklThunder(0)); // 2
+        skills.push(new T.SklQuake(0)); // 3
+        skills.push(new T.SklAbsorb(0)); // 4
+        skills.push(new T.SklPoison(0)); // 5
+        skills.push(new T.SklRapid(0)); // 6
+        skills.push(new T.SklCritical(0)); // 7
+        skills.push(new T.sklHalf(0)); // 8
+        skills.push(new T.SklExchange(0)); // 9
+        skills.push(new T.SklBerserk(0)); // 10
+        skills.push(new T.e3(0)); // 11
+        skills.push(new T.hk(0)); // 12
+        skills.push(new T.hG(0)); // 13
+        skills.push(new T.hf(0)); // 14
+        skills.push(new T.e8(0)); // 15
+        skills.push(new T.hx(0)); // 16
+        skills.push(new T.hh(0)); // 17
         r = 0
         r = new T.ho(r, r, r)
         q = new T.dT(1 / 0, r)
@@ -17106,45 +17106,42 @@ T.Plr.prototype = {
         r.fx = new T.b8(r)
         r.fy = new T.bd(r)
         q.r = $.lG()
-        s.push(r)
+        skills.push(r) // 18
         r = 0
         r = new T.ha(r, r)
         r.fr = new T.bd(r)
         r.fx = new T.b8(r)
-        s.push(r)
+        skills.push(r) // 19
         r = new T.h5($.pj(), 0)
         r.fr = new T.bd(r)
-        s.push(r)
+        skills.push(r) // 20
         r = new T.h7(0)
         r.fr = new T.ca(r)
         r.fx = new T.cA(r)
-        s.push(r)
-        s.push(new T.hH(0))
-        s.push(new T.e4(0))
-        s.push(new T.hB(0))
-        s.push(new T.e6(0))
-        s.push(new T.eb(0))
-        s.push(new T.ed(0))
-        s.push(new T.hw(0))
-        s.push(new T.hC(0))
-        s.push(new T.cb(0))
-        s.push(new T.hs(0))
-        s.push(new T.hK(0))
-
+        skills.push(r) // 21
+        skills.push(new T.hH(0)); // 22
+        skills.push(new T.e4(0)); // 23
+        skills.push(new T.hB(0)); // 24
+        skills.push(new T.e6(0)); // 25
+        skills.push(new T.eb(0)); // 26
+        skills.push(new T.ed(0)); // 27
+        skills.push(new T.hw(0)); // 28
+        skills.push(new T.hC(0)); // 29
+        skills.push(new T.cb(0)); // 30
+        skills.push(new T.hs(0)); // 31
+        skills.push(new T.hK(0)); // 32
         r = new T.hJ(0)
         r.Q = new T.bd(r)
-        s.push(r)
-
+        skills.push(r) // 33
         r = new T.hl(0)
         r.ch = new T.bd(r)
         r.Q = new T.ca(r)
-        s.push(r)
-
-        s.push(new T.SkillVoid(0))
-        s.push(new T.SkillVoid(0))
-        s.push(new T.SkillVoid(0))
-        s.push(new T.SkillVoid(0))
-        s.push(new T.SkillVoid(0))
+        skills.push(r)  // 34
+        skills.push(new T.SkillVoid(0))
+        skills.push(new T.SkillVoid(0))
+        skills.push(new T.SkillVoid(0))
+        skills.push(new T.SkillVoid(0))
+        skills.push(new T.SkillVoid(0))
     },
     dm(list, original) {
         // initSkills
@@ -19034,7 +19031,7 @@ LangData.k_.prototype = {
     inherit(HtmlRenderer.fW, HtmlRenderer.ax)
     inherit_many(Sgls.n, [T.q, T.aZ, T.aB, T.bq, T.cB, T.bH, T.ah, T.aV, T.aF])
     inherit_many(T.q, [T.ActionSkill, T.h6, T.he, T.hn, T.hq, T.ea, T.ef, T.cb, T.e6, T.hl, T.hs, T.eb, T.ed, T.hw, T.hC, T.hJ, T.hK])
-    inherit_many(T.ActionSkill, [T.e1, T.h5, T.h7, T.dd, T.h9, T.ha, T.e3, T.e4, T.e5, T.hf, T.hh, T.hi, T.SklFire, T.e7, T.hk, T.e8, T.SklIce, T.ho, T.ht, T.hv, T.ec, T.hx, T.hu, T.hB, T.hG, T.hj, T.hH, T.hI, T.e2, T.hb, T.dl, T.hd, T.hm, T.dB, T.hp, T.hr, T.hA, T.h8, T.hD, T.SkillVoid, T.hg, T.ee, T.hz])
+    inherit_many(T.ActionSkill, [T.SklAbsorb, T.h5, T.h7, T.dd, T.SklBerserk, T.ha, T.e3, T.e4, T.SklCritical, T.hf, T.hh, T.SklExchange, T.SklFire, T.sklHalf, T.hk, T.e8, T.SklIce, T.ho, T.SklPoison, T.SklQuake, T.SklRapid, T.hx, T.hu, T.hB, T.hG, T.hj, T.hH, T.SklThunder, T.e2, T.hb, T.dl, T.hd, T.hm, T.dB, T.hp, T.hr, T.hA, T.h8, T.hD, T.SkillVoid, T.hg, T.ee, T.hz])
     inherit_many(T.aZ, [T.dj, T.dw, T.dx, T.eh, T.bd, T.h1])
     inherit_many(T.x, [T.dI, T.c3, T.hF, T.fC, T.hY])
     inherit_many(T.Plr, [T.dR, T.aM, T.cz, T.fP, T.fU, T.fV, T.fQ, T.cy])
