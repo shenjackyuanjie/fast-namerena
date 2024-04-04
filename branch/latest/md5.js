@@ -6036,7 +6036,7 @@ var A = {
         },
         tx(a, b, c, d, e) {},
         tz(a, b, c, d, e) {},
-        cG(a) {
+        SklAttack(a) {
             var s = new T.h8(0)
             s.r = a
             return s
@@ -6197,7 +6197,7 @@ var A = {
         c3: function c3(a) {
             this.b = a
         },
-        cc: function cc(a) {
+        SklFire: function SklFire(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -6239,7 +6239,7 @@ var A = {
             _.y = b
             _.c = _.b = _.a = null
         },
-        e9: function e9(a) {
+        SklIce: function e9(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -14451,7 +14451,7 @@ T.c3.prototype = {
         return -$.i()
     }
 }
-T.cc.prototype = {
+T.SklFire.prototype = {
     v(a, b, c, d) {
         var s, r, q, p = a[0].a,
             o = t.a.a(p.r2.h(0, $.eY()))
@@ -14677,7 +14677,7 @@ T.dx.prototype = {
     },
     $ix: 1
 }
-T.e9.prototype = {
+T.SklIce.prototype = {
     a9(a, b, c) {
         var s = this.bC(a, b, c)
         return a.r2.h(0, $.bS()) != null ? s / $.t() : s
@@ -14995,7 +14995,7 @@ T.fS.prototype = {
         return this.aj.r
     },
     ac() {
-        this.k3 = T.cG(this)
+        this.k3 = T.SklAttack(this)
         this.k1.push(new T.hu(0))
     },
     aU() {
@@ -15198,10 +15198,10 @@ T.fT.prototype = {
         s[r] = p[r]
     },
     ac() {
-        this.k3 = T.cG(this)
+        this.k3 = T.SklAttack(this)
         var s = this.k1
-        s.push(new T.cc(0))
-        s.push(new T.cc(0))
+        s.push(new T.SklFire(0))
+        s.push(new T.SklFire(0))
         s.push(new T.hj(0))
     },
     bP() {
@@ -15376,13 +15376,13 @@ T.f5.prototype = {
     },
     ac() {
         var s, r
-        this.k3 = T.cG(this)
+        this.k3 = T.SklAttack(this)
         s = this.k1
         s.push(new T.h6(0))
         r = new T.e2(0)
         r.f = $.pW()
         s.push(r)
-        r = new T.e9(0)
+        r = new T.SklIce(0)
         r.f = $.b3()
         s.push(r)
     }
@@ -15787,7 +15787,7 @@ T.f8.prototype = {
     },
     ac() {
         var s, r
-        this.k3 = T.cG(this)
+        this.k3 = T.SklAttack(this)
         s = this.k1
         s.push(new T.hn(0))
         r = new T.hm(0)
@@ -15960,7 +15960,7 @@ T.df.prototype = {
         var s, r, q = this
         q.k3 = T.hE(q)
         s = 0
-        q.aj = new T.cc(s)
+        q.aj = new T.SklFire(s)
         s = new T.hr(q, s)
         s.r = q
         s.f = $.b2()
@@ -16186,7 +16186,7 @@ T.fb.prototype = {
     ac() {
         var s, r, q = this
         q.aC = q.dk.aC + $.i()
-        q.k3 = T.cG(q)
+        q.k3 = T.SklAttack(q)
         s = q.k1
         if (q.aC == $.i()) s.push(new T.ef(0))
         else {
@@ -17077,10 +17077,10 @@ T.Plr.prototype = {
         // create skills
         // createSkills()
         var s, r, q
-        this.k3 = T.cG(this)
+        this.k3 = T.SklAttack(this)
         s = this.k1
-        s.push(new T.cc(0))
-        s.push(new T.e9(0))
+        s.push(new T.SklFire(0))
+        s.push(new T.SklIce(0))
         s.push(new T.hI(0))
         s.push(new T.hv(0))
         s.push(new T.e1(0))
@@ -17169,7 +17169,9 @@ T.Plr.prototype = {
             }++n
             m += $.C()
         }
+        console.log("this_.k2:",this_.k2)
         for (; sortedSkills = this_.k2, n < sortedSkills.length; ++n) sortedSkills[n].ao(this_, 0)
+        console.log("sorted skills:",sortedSkills)
     },
     bs() {
         // addSkillsToProc
@@ -18110,7 +18112,7 @@ T.fX.prototype = {
         return this.aj.r
     },
     ac() {
-        this.k3 = T.cG(this)
+        this.k3 = T.SklAttack(this)
     },
     aU() {
         var s, r
@@ -19004,7 +19006,7 @@ LangData.k_.prototype = {
     inherit(HtmlRenderer.fW, HtmlRenderer.ax)
     inherit_many(Sgls.n, [T.q, T.aZ, T.aB, T.bq, T.cB, T.bH, T.ah, T.aV, T.aF])
     inherit_many(T.q, [T.ActionSkill, T.h6, T.he, T.hn, T.hq, T.ea, T.ef, T.cb, T.e6, T.hl, T.hs, T.eb, T.ed, T.hw, T.hC, T.hJ, T.hK])
-    inherit_many(T.ActionSkill, [T.e1, T.h5, T.h7, T.dd, T.h9, T.ha, T.e3, T.e4, T.e5, T.hf, T.hh, T.hi, T.cc, T.e7, T.hk, T.e8, T.e9, T.ho, T.ht, T.hv, T.ec, T.hx, T.hu, T.hB, T.hG, T.hj, T.hH, T.hI, T.e2, T.hb, T.dl, T.hd, T.hm, T.dB, T.hp, T.hr, T.hA, T.h8, T.hD, T.SkillVoid, T.hg, T.ee, T.hz])
+    inherit_many(T.ActionSkill, [T.e1, T.h5, T.h7, T.dd, T.h9, T.ha, T.e3, T.e4, T.e5, T.hf, T.hh, T.hi, T.SklFire, T.e7, T.hk, T.e8, T.SklIce, T.ho, T.ht, T.hv, T.ec, T.hx, T.hu, T.hB, T.hG, T.hj, T.hH, T.hI, T.e2, T.hb, T.dl, T.hd, T.hm, T.dB, T.hp, T.hr, T.hA, T.h8, T.hD, T.SkillVoid, T.hg, T.ee, T.hz])
     inherit_many(T.aZ, [T.dj, T.dw, T.dx, T.eh, T.bd, T.h1])
     inherit_many(T.x, [T.dI, T.c3, T.hF, T.fC, T.hY])
     inherit_many(T.Plr, [T.dR, T.aM, T.cz, T.fP, T.fU, T.fV, T.fQ, T.cy])
