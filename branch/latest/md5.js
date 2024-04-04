@@ -1180,7 +1180,7 @@ var A = {
             closure.$identity = func
             return func
         },
-        rL(a2) {
+        Closure_fromTearOff(a2) {
             var s, r, q, p, o, n, m, l, k, j, i = a2.co,
                 h = a2.iS,
                 g = a2.iI,
@@ -1389,7 +1389,7 @@ var A = {
             return new Function(q + H.as_string(p) + "}")()
         },
         mx(a) {
-            return H.rL(a)
+            return H.Closure_fromTearOff(a)
         },
         rF(a, b) {
             return H._Universe_evalInEnvironment(init.typeUniverse, H.instanceType(a.a), b)
