@@ -1920,7 +1920,7 @@ var A = {
                     k = b.z
                     j = H._substitute(a, k, a0, a1)
                     i = b.Q
-                    h = H.uE(a, i, a0, a1)
+                    h = H._substituteFunctionParameters(a, i, a0, a1)
                     if (j === k && h === i) return b
                     return H._Universe__lookupFunctionRti(a, j, h)
                 case 12:
@@ -1965,7 +1965,7 @@ var A = {
             }
             return s ? l : b
         },
-        uE(a, b, c, d) {
+        _substituteFunctionParameters(a, b, c, d) {
             var s, r = b.a,
                 q = H._substituteArray(a, r, c, d),
                 p = b.b,
