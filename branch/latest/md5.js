@@ -1874,7 +1874,7 @@ var A = {
             if (s === 6 || s === 7 || s === 8) return H.Rti__isUnionOfFunctionType(a.z)
             return s === 11 || s === 12
         },
-        tq(a) {
+        Rti__getCanonicalRecipe(a) {
             return a.cy
         },
         find_type(a) {
@@ -2817,7 +2817,7 @@ var A = {
                 o = parser.e
                 if (o.y === 10) o = o.z
                 n = H.ua(s, o.z)[p]
-                if (n == null) H.throw_expression('No "' + p + '" in "' + H.tq(o) + '"')
+                if (n == null) H.throw_expression('No "' + p + '" in "' + H.Rti__getCanonicalRecipe(o) + '"')
                 stack.push(H._Universe_evalInEnvironment(s, o, n))
             } else stack.push(p)
             return m
