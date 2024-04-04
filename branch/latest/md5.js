@@ -5822,7 +5822,7 @@ var A = {
                     case 3:
                         result = runner
                         async_goto = 1
-                        break
+                        // break
                     case 1:
                         return P.async_return(result, async_completer)
                 }
@@ -21077,6 +21077,7 @@ function main() {
                         // if (J.J(h, 1).length > 10 || J.lW(J.J(J.J(h, 1)[0], 0), O.j("S,AF", 5))) {
                         // LangData.j("S,AF", 5) -> ???
                         if (h[1].length > 10 || J.lW(h[1][0][0], LangData.j("S,AF", 5))) {
+                            logger.info("官方测号")
                             a8 = h[1]
                             a9 = H.b([], t.t)
                             d = new X.iW(a9, new Float64Array(1))
