@@ -49,6 +49,26 @@ if (run_env.from_code) {
         localStorage: function () {},
     };
 
+    class fake_class_list {
+        constructor() {
+            this.datas = []
+        };
+        add(data) {
+            this.datas.push(data)
+        };
+        contains(data) {
+            return this.datas.includes(data)
+        };
+        item(index) {
+            if (index >= this.datas.length) {
+                let stack = new Error().stack;
+                logger.info("fake_class_list.item", stack);
+                return null
+            }
+            return this.datas[index]
+        };
+    }
+
     class fake_element {
         constructor(tag) {
             this.childList = [];
@@ -56,6 +76,7 @@ if (run_env.from_code) {
             this.width = 0;
             this.height = 0;
             this.style = {};
+            this.classList = new fake_class_list();
             this.styleSheets = [
                 "something"
             ];
@@ -72,6 +93,9 @@ if (run_env.from_code) {
                 }
             }
         };
+        appendChild(element) {
+            this.childList.push(element);
+        };
         addEventListener() {};
     }
 
@@ -79,6 +103,11 @@ if (run_env.from_code) {
         createElement: function (tag) {
             // return fake_element.fake_init(tag);
             return new fake_element(tag);
+        },
+        createTextNode: function (data) {
+            let node = new fake_element("text");
+            node.innerHTML = data;
+            return node;
         },
         querySelector: function (tag) {
             // 搜索一下有没有这个元素
@@ -89,6 +118,7 @@ if (run_env.from_code) {
                 }
             }
         },
+        body: new fake_element("body"),
         styleSheets: [{
             "some": "thing"
         }],
@@ -7638,12 +7668,12 @@ var A = {
             return s
         },
         rP(a, b, c) {
-            var s, r = document.body
-            r.toString
-            s = C.n.aA(r, a, b, c)
+            var s, doc_body = document.body
+            doc_body.toString
+            s = C.n.aA(doc_body, a, b, c)
             s.toString
-            r = new H.cf(new W.az(s), new W.jf(), t.ac.i("cf<z.E>"))
-            return t.R.a(r.gba(r))
+            doc_body = new H.cf(new W.az(s), new W.jf(), t.ac.i("cf<z.E>"))
+            return t.R.a(doc_body.gba(doc_body))
         },
         ds(a) {
             var s, r, q = "element tag unavailable"
@@ -7986,9 +8016,6 @@ var A = {
             return s
         },
         static_init() {
-            if (run_env.from_code) {
-                console.log("reaching HtmlRenderer.static_init")
-            }
             var async_goto = 0,
                 r = P._makeAsyncAwaitCompleter(t.z),
                 q, p
@@ -8011,7 +8038,7 @@ var A = {
                         }
                     case 2:
                         if (run_env.from_code) {
-                            console.log("loading gAd data")
+                            logger.debug("loading gAd data")
                             // 暂时有问题, 还得调试
                             LangData.load_lang(t.cF.a(C.C.bt(0, assets_data.lang)))
                             // LangData.v1(assets_data.lang)
@@ -8029,13 +8056,11 @@ var A = {
         },
         outer_main(a) {
             var s = document
-                // r = t.A
+
             let plist = s.querySelector(".plist")
             let pbody = s.querySelector(".pbody")
-            // logger.debug(plist, pbody)
-            // s = new HtmlRenderer.fq(r.a(plist), r.a(pbody), a, $.ro().ax(256))
+
             s = new HtmlRenderer.fq(plist, pbody, a, $.ro().ax(256))
-            logger.debug("HtmlRenderer.jt")
             s.e0(a)
             return s
         },
@@ -12950,33 +12975,44 @@ S.fK.prototype = {
 }
 HtmlRenderer.fq.prototype = {
     e0(a) {
-        var s, r, q, this_ = this
-        
-        logger.debug("进入 HTML.fq.e0", this.a)
+        var s, root, q, this_ = this
+
         if (this_.a == null) return
 
         A.vo(this_.gfd())
         // this_.d = P.Timer_Timer(P.duration_milsec_sec(10, 0), this_.gbc(this_))
+
         this_.d = P.Timer_Timer(P.duration_milsec_sec(0, 0), this_.gbc(this_))
-        W.es(window, "resize", this_.gff(this_), false)
+
+        if (!run_env.from_code) {
+            W.es(window, "resize", this_.gff(this_), false)
+        }
+
         this_.ds(0, null)
         s = HtmlRenderer.add_p("row")
-        r = this_.b
-        r.appendChild(s)
+
+        root = this_.b
+        logger.debug("html fq e0 0")
+        root.appendChild(s)
+        logger.debug("html fq e0 1")
+
         q = HtmlRenderer.add_span("welcome")
         q.textContent = LangData.get_lang("CeaN")
         s.appendChild(q)
+
         q = HtmlRenderer.add_span("welcome2")
         q.textContent = LangData.get_lang("NosN")
         s.appendChild(q)
         q = this_.c
         if (q.gbu(q) != null) {
             q = q.gbu(q)
-            r.appendChild(document.createTextNode(q))
+            root.appendChild(document.createTextNode(q))
         }
         // 添加 event listener
-        logger.debug("注册等待器: ", this_.gfb(this_), this_)
-        W.es(window, "message", this_.gfb(this_), false)
+        logger.debug("加速等待器 注册")
+        if (!run_env.from_code) {
+            W.es(window, "message", this_.gfb(this_), false)
+        }
     },
     fc(func_self, event) {
         var s = event.data,
@@ -12991,6 +13027,9 @@ HtmlRenderer.fq.prototype = {
         }
     },
     ds(a, b) {
+        if (run_env.from_code) {
+            return
+        }
         var s = this.a
         if (window.innerWidth < 500) {
             s.classList.remove("hlist")
@@ -13288,18 +13327,21 @@ HtmlRenderer.fq.prototype = {
         g = document_.createElement("button")
         g.textContent = LangData.get_lang("xPRN") // 返回
         h.appendChild(g)
-        W.es(g, "click", new HtmlRenderer.jB(), false)
-
+        if (!run_env.from_code) {
+            W.es(g, "click", new HtmlRenderer.jB(), false)
+        }
         g = document_.createElement("button")
         g.textContent = LangData.get_lang("KXmn") // 分享
         h.appendChild(g)
-        W.es(g, "click", new HtmlRenderer.jC(), false)
-
+        if (!run_env.from_code) {
+            W.es(g, "click", new HtmlRenderer.jC(), false)
+        }
         g = document_.createElement("button")
         g.textContent = LangData.get_lang("Zvon") // 帮助
         h.appendChild(g)
-        W.es(g, "click", new HtmlRenderer.jD($.qq()), false)
-
+        if (!run_env.from_code) {
+            W.es(g, "click", new HtmlRenderer.jD($.qq()), false)
+        }
         d = h.style
         document_ = "" + (C.d.aI(m.offsetWidth) - C.d.aI(h.offsetWidth) - 8) + "px"
         d.marginLeft = document_
@@ -14969,7 +15011,7 @@ T.hB.prototype = {
     aa(a, b, c) {
         return H.b([], t.F)
     },
-    
+
     v(a7, a8, a9, b0) {
         var s, shadow_name, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, a3, a4, this_ = this,
             a6 = null
@@ -17059,7 +17101,7 @@ T.Plr.prototype = {
         s.push(new T.SkillVoid(0))
     },
     dm(list, original) {
-        //initSkills
+        // initSkills
         var s, r, q, p, o = this,
             n = 0,
             m = n
@@ -17088,7 +17130,7 @@ T.Plr.prototype = {
         for (; r = o.k2, n < r.length; ++n) r[n].ao(o, 0)
     },
     bs() {
-        //boostPassive or addSkillsToProc??
+        // boostPassive or addSkillsToProc??
         var s, r, q, p, o, n, m, l = this
         for (s = 0, r = l.k4; q = l.k2, s < q.length; ++s) {
             p = q[s]
@@ -17127,7 +17169,7 @@ T.Plr.prototype = {
         s.go = C.JsInt.P(s.fr, $.t())
     },
     F() {
-        //updateStates
+        // updateStates
         var s, r = this
         r.ch = r.b0(r.q[0], $.cj())
         r.cx = r.b0(r.q[$.i()], $.cj())
@@ -21050,5 +21092,6 @@ function main() {
     return P._asyncStartSync($async$iE, async_completer)
 }
 
-logger.debug("running main:", main()) // 执行main函数
+main();
+// logger.debug("running main:", main()) // 执行main函数
 // logger.debug(X.k("?`C3ou}R1L", 67))
