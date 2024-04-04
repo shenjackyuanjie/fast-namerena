@@ -1318,7 +1318,7 @@ var A = {
         },
         Closure_cspForwardInterceptedCall(a, b, c, d) {
             var s = H.BoundClosure_selfOf,
-                r = H.rG
+                r = H.BoundClosure_receiverOf
             switch (b ? -1 : a) {
                 case 0:
                     throw H.wrap_expression(new H.h3("Intercepted function with no arguments."))
@@ -1397,7 +1397,7 @@ var A = {
         BoundClosure_selfOf(a) {
             return a.a
         },
-        rG(a) {
+        BoundClosure_receiverOf(a) {
             return a.b
         },
         j3(a) {
