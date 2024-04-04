@@ -1467,7 +1467,7 @@ var A = {
         oK(a, b) {
             var s = Object.getPrototypeOf(a)
             Object.defineProperty(s, init.dispatchPropertyName, {
-                value: J.mC(b, s, null, null),
+                value: J.makeDispatchRecord(b, s, null, null),
                 enumerable: false,
                 writable: true,
                 configurable: true
@@ -1475,12 +1475,12 @@ var A = {
             return b
         },
         lB(a) {
-            return J.mC(a, false, null, !!a.$iag)
+            return J.makeDispatchRecord(a, false, null, !!a.$iag)
         },
         v3(a, b, c) {
             var s = b.prototype
             if (init.leafTags[a] === true) return H.lB(s)
-            else return J.mC(s, c, null, null)
+            else return J.makeDispatchRecord(s, c, null, null)
         },
         uY() {
             if (true === $.mA) return
@@ -3043,7 +3043,7 @@ var A = {
         }
     },
     J = {
-        mC(a, b, c, d) {
+        makeDispatchRecord(a, b, c, d) {
             return {
                 i: a,
                 p: b,
@@ -3051,7 +3051,7 @@ var A = {
                 x: d
             }
         },
-        lu(a) {
+        getNativeInterceptor(a) {
             var s, r, q, p, o, n = a[init.dispatchPropertyName]
             if (n == null)
                 if ($.mA == null) {
@@ -3181,7 +3181,7 @@ var A = {
                 return a
             }
             if (a instanceof P.Object) return a
-            return J.lu(a)
+            return J.getNativeInterceptor(a)
         },
         a3(a) {
             if (typeof a == "string") return J.JsString.prototype
@@ -3192,7 +3192,7 @@ var A = {
                 return a
             }
             if (a instanceof P.Object) return a
-            return J.lu(a)
+            return J.getNativeInterceptor(a)
         },
         cW(a) {
             if (a == null) return a
@@ -3202,7 +3202,7 @@ var A = {
                 return a
             }
             if (a instanceof P.Object) return a
-            return J.lu(a)
+            return J.getNativeInterceptor(a)
         },
         oA(a) {
             if (typeof a == "number") return J.JsNumber.prototype
@@ -3229,7 +3229,7 @@ var A = {
                 return a
             }
             if (a instanceof P.Object) return a
-            return J.lu(a)
+            return J.getNativeInterceptor(a)
         },
         uS(a) {
             if (a == null) return a
@@ -8026,11 +8026,11 @@ var A = {
             return P._asyncStartSync($async$jv, r)
         },
         outer_main(a) {
-            var s = document,
-                r = t.A
+            var s = document
+                // r = t.A
             let plist = s.querySelector(".plist")
             let pbody = s.querySelector(".pbody")
-            logger.debug(plist, pbody)
+            // logger.debug(plist, pbody)
             // s = new HtmlRenderer.fq(r.a(plist), r.a(pbody), a, $.ro().ax(256))
             s = new HtmlRenderer.fq(plist, pbody, a, $.ro().ax(256))
             logger.debug("HtmlRenderer.jt")
@@ -12949,8 +12949,8 @@ S.fK.prototype = {
 HtmlRenderer.fq.prototype = {
     e0(a) {
         var s, r, q, this_ = this
+        
         logger.debug("进入 HTML.fq.e0", this.a)
-
         if (this_.a == null) return
 
         A.vo(this_.gfd())
