@@ -16587,40 +16587,63 @@ T.fo.prototype = {
         return this.dM(0, b)
     },
     dM(a, b) {
-        var s = 0,
-            r = P._makeAsyncAwaitCompleter(t.z),
-            q = this,
-            p, o, n, m, l, k, j
-        var $async$ae = P._wrapJsFunctionForAsync(function (c, d) {
-            if (c === 1) return P.async_rethrow(d, r)
-            while (true) switch (s) {
-                case 0:
-                    q.db = b
-                    p = Date.now()
-                    o = $.bx()
-                    n = q.dx
-                    n[0] = p + o
-                    o = q.a
-                    m = new H.y(o, new T.jk(), H._arrayInstanceType(o).i("y<1,m*>")).aV(0, "\n")
-                    p = q.z
-                    o = p.length
-                    if (o !== 0)
-                        for (l = 0; l < p.length; p.length === o || (0, H.F)(p), ++l) {
-                            k = p[l]
-                            m += "\n" + H.as_string(k.e) + "\t" + H.as_string(k.a)
-                        }
-                    p = C.e.gaB().ab(m)
-                    logger.debug("initing in T.fi.dM")
-                    o = H.instanceType(p).i("a9<z.E>")
-                    logger.debug("initing in T.fi.dM")
-                    j = o.i("y<M.E,l*>")
-                    j = P.List_List_of(new H.y(new H.a9(p, o), new T.jl(q), j), true, j.i("M.E"))
-                    C.Array.a5(j, H.fJ(n.buffer, 0, null))
-                    A.eR(X.dc(j))
-                    return P.async_return(null, r)
+        // var async_goto = 0,
+        //     async_completer = P._makeAsyncAwaitCompleter(t.z),
+        //     this_ = this,
+        //     p, o, n, m, l, k, j
+        // var $async$ae = P._wrapJsFunctionForAsync(function (c, d) {
+        //     if (c === 1) return P.async_rethrow(d, async_completer)
+        //     while (true) switch (async_goto) {
+        //         case 0:
+        //             this_.db = b
+        //             p = Date.now()
+        //             o = $.bx()
+        //             n = this_.dx
+        //             n[0] = p + o
+        //             o = this_.a
+        //             m = new H.y(o, new T.jk(), H._arrayInstanceType(o).i("y<1,m*>")).aV(0, "\n")
+        //             p = this_.z
+        //             o = p.length
+        //             if (o !== 0)
+        //                 for (l = 0; l < p.length; p.length === o || (0, H.F)(p), ++l) {
+        //                     k = p[l]
+        //                     m += "\n" + H.as_string(k.e) + "\t" + H.as_string(k.a)
+        //                 }
+        //             p = C.e.gaB().ab(m)
+        //             logger.debug("initing in T.fi.dM")
+        //             o = H.instanceType(p).i("a9<z.E>")
+        //             logger.debug("initing in T.fi.dM")
+        //             j = o.i("y<M.E,l*>")
+        //             j = P.List_List_of(new H.y(new H.a9(p, o), new T.jl(this_), j), true, j.i("M.E"))
+        //             C.Array.a5(j, H.fJ(n.buffer, 0, null))
+        //             A.eR(X.dc(j))
+        //             return P.async_return(null, async_completer)
+        //     }
+        // })
+        // return P._asyncStartSync($async$ae, async_completer)
+        let this_ = this, p, o, n, m, l, k, j
+        this_.db = b
+        p = Date.now()
+        o = $.bx()
+        n = this_.dx
+        n[0] = p + o
+        o = this_.a
+        m = new H.y(o, new T.jk(), H._arrayInstanceType(o).i("y<1,m*>")).aV(0, "\n")
+        p = this_.z
+        o = p.length
+        if (o !== 0)
+            for (l = 0; l < p.length; p.length === o || (0, H.F)(p), ++l) {
+                k = p[l]
+                m += "\n" + H.as_string(k.e) + "\t" + H.as_string(k.a)
             }
-        })
-        return P._asyncStartSync($async$ae, r)
+        p = C.e.gaB().ab(m)
+        logger.debug("initing in T.fi.dM")
+        o = H.instanceType(p).i("a9<z.E>")
+        logger.debug("initing in T.fi.dM")
+        j = o.i("y<M.E,l*>")
+        j = P.List_List_of(new H.y(new H.a9(p, o), new T.jl(this_), j), true, j.i("M.E"))
+        C.Array.a5(j, H.fJ(n.buffer, 0, null))
+        A.eR(X.dc(j))
     },
     cq(a, b) {
         return this.f7(a, b)
