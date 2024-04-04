@@ -1389,9 +1389,14 @@ var A = {
             return new Function(q + H.as_string(p) + "}")()
         },
         mx(a) {
+            // 理论上不能改, 但是似乎可以
+            // 上面是因为这玩意在普通版里是用来拼接的, 但是这里似乎没用于拼接
             return H.Closure_fromTearOff(a)
         },
         rF(a, b) {
+            // BoundClosure_evalRecipe
+            // or
+            // BoundClosure_evalRecipeIntercepted
             return H._Universe_evalInEnvironment(init.typeUniverse, H.instanceType(a.a), b)
         },
         BoundClosure_selfOf(a) {
@@ -1412,7 +1417,7 @@ var A = {
         vl(a) {
             throw H.wrap_expression(new P.fj(a))
         },
-        uT(a) {
+        getIsolateAffinityTag(a) {
             return init.getIsolateTag(a)
         },
         defineProperty(a, b, c) {
@@ -19363,7 +19368,7 @@ var t = (function rtii() {
     var lazy_final = hunkHelpers.lazyFinal,
         lazy_old = hunkHelpers.lazyOld
     lazy_final($, "vy", "oR", function () {
-        return H.uT("_$dart_dartClosure")
+        return H.getIsolateAffinityTag("_$dart_dartClosure")
     })
     lazy_final($, "A0", "r7", function () {
         return H.br(H.ki({
