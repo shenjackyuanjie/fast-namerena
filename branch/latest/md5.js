@@ -1389,11 +1389,11 @@ var A = {
                 configurable: true
             })
         },
-        v2(a) {
-            var s, r, q, p, o, n = $.oB.$1(a),
+        lookupAndCacheInterceptor(obj) {
+            var s, r, q, p, o, n = $.oB.$1(obj),
                 m = $.lt[n]
             if (m != null) {
-                Object.defineProperty(a, init.dispatchPropertyName, {
+                Object.defineProperty(obj, init.dispatchPropertyName, {
                     value: m,
                     enumerable: false,
                     writable: true,
@@ -1405,11 +1405,11 @@ var A = {
             if (s != null) return s
             r = init.interceptorsByTag[n]
             if (r == null) {
-                q = $.ov.$2(a, n)
+                q = $.ov.$2(obj, n)
                 if (q != null) {
                     m = $.lt[q]
                     if (m != null) {
-                        Object.defineProperty(a, init.dispatchPropertyName, {
+                        Object.defineProperty(obj, init.dispatchPropertyName, {
                             value: m,
                             enumerable: false,
                             writable: true,
@@ -1429,7 +1429,7 @@ var A = {
             if (p === "!") {
                 m = H.lB(s)
                 $.lt[n] = m
-                Object.defineProperty(a, init.dispatchPropertyName, {
+                Object.defineProperty(obj, init.dispatchPropertyName, {
                     value: m,
                     enumerable: false,
                     writable: true,
@@ -1443,7 +1443,7 @@ var A = {
             }
             if (p === "-") {
                 o = H.lB(s)
-                Object.defineProperty(Object.getPrototypeOf(a), init.dispatchPropertyName, {
+                Object.defineProperty(Object.getPrototypeOf(obj), init.dispatchPropertyName, {
                     value: o,
                     enumerable: false,
                     writable: true,
@@ -1451,18 +1451,18 @@ var A = {
                 })
                 return o.i
             }
-            if (p === "+") return H.oK(a, s)
+            if (p === "+") return H.oK(obj, s)
             if (p === "*") throw H.wrap_expression(P.hT(n))
             if (init.leafTags[n] === true) {
                 o = H.lB(s)
-                Object.defineProperty(Object.getPrototypeOf(a), init.dispatchPropertyName, {
+                Object.defineProperty(Object.getPrototypeOf(obj), init.dispatchPropertyName, {
                     value: o,
                     enumerable: false,
                     writable: true,
                     configurable: true
                 })
                 return o.i
-            } else return H.oK(a, s)
+            } else return H.oK(obj, s)
         },
         oK(a, b) {
             var s = Object.getPrototypeOf(a)
@@ -3073,7 +3073,7 @@ var A = {
                 p = q[o]
             }
             if (p != null) return p
-            p = H.v2(a)
+            p = H.lookupAndCacheInterceptor(a)
             if (p != null) return p
             if (typeof a == "function") return C.K
             s = Object.getPrototypeOf(a)
@@ -3260,10 +3260,10 @@ var A = {
             return J.cW(a).a5(a, b)
         },
         rs(a, b, c, d) {
-            if (run_env.from_code) {
-                console.log("rs", a, "|", b, "|", c, "|", d)
-                return
-            }
+            // if (run_env.from_code) {
+            //     console.log("rs", a, "|", b, "|", c, "|", d)
+            //     return
+            // }
             return J.bv(a).eF(a, b, c, d)
         },
         lU(a, b) {
@@ -17338,6 +17338,7 @@ T.Plr.prototype = {
         return H.as_string(s.e) + "\t" + H.as_string(s.r) + "\t" + H.as_string(s.c) + "\t" + H.as_string(s.f) + "\t" + H.as_string(s.fy)
     },
     cE() {
+        // 1200 here
         var s, r = this.Y,
             q = $.p4()
         if (r > q) {
