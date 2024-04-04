@@ -20051,7 +20051,8 @@ var t = (function rtii() {
         return 20897
     })
     lazy_old($, "wb", "p9", function () {
-        return X.k("AL&(*/#5BK", 58)
+        // return X.k("AL&(*/#5BK", 58)
+        return 16468
     })
     lazy_old($, "xs", "pO", function () {
         // return X.k("rO!p(83H*Q", 97)
@@ -20907,7 +20908,9 @@ function main() {
                 // if (J.Y(J.J(J.J(h, 0)[0], 0), $.qc())) {
                 if ($.qc() === h[0][0][0]) {
                     $.vr = 6
-                    if (J.aw(h) === 2)
+                    // h.length
+                    // if (J.aw(h) === 2)
+                    if (h.length === 2) {
                         // if (J.J(h, 1).length > 10 || J.lW(J.J(J.J(h, 1)[0], 0), O.j("S,AF", 5))) {
                         if (h[1].length > 10 || J.lW(h[1][0][0], LangData.j("S,AF", 5))) {
                             // a8 = J.J(h, 1)
@@ -20941,24 +20944,27 @@ function main() {
                             c.r = 2000
                             async_goto = 1
                             break
-                        } if (J.aw(h) === 3) {
-                        // a8 = J.J(h, 1)
-                        a8 = h[1]
-                        // a9 = J.J(h, 2)
-                        a9 = h[2]
-                        a3 = t.L
-                        a4 = H.b([], a3)
-                        a3 = H.b([], a3)
-                        a5 = H.b([], t.V)
-                        a6 = H.b([], t.M)
-                        g = new L.iR(a8, a9, a4, a3, a5, a6, new Float64Array(1))
-                        g.dY(a8, a9)
-                        b = g
-                        b.c = 1000
-                        a = HtmlRenderer.jt(b)
-                        a.r = 2000
-                        async_goto = 1
-                        break
+                            // h.length
+                        }
+                        if (J.aw(h) === 3) {
+                            // a8 = J.J(h, 1)
+                            a8 = h[1]
+                            // a9 = J.J(h, 2)
+                            a9 = h[2]
+                            a3 = t.L
+                            a4 = H.b([], a3)
+                            a3 = H.b([], a3)
+                            a5 = H.b([], t.V)
+                            a6 = H.b([], t.M)
+                            g = new L.iR(a8, a9, a4, a3, a5, a6, new Float64Array(1))
+                            g.dY(a8, a9)
+                            b = g
+                            b.c = 1000
+                            a = HtmlRenderer.jt(b)
+                            a.r = 2000
+                            async_goto = 1
+                            break
+                        }
                     }
                 }
                 async_goto = 8
@@ -20991,5 +20997,4 @@ function main() {
 }
 
 main() // 执行main函数
-logger.debug( X.k("?`C3ou}R1L", 67))
-
+logger.debug(X.k("?`C3ou}R1L", 67))
