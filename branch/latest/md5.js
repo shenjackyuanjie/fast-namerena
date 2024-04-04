@@ -8029,7 +8029,7 @@ var A = {
         },
         outer_main(a) {
             var s = document
-                // r = t.A
+            // r = t.A
             let plist = s.querySelector(".plist")
             let pbody = s.querySelector(".pbody")
             // logger.debug(plist, pbody)
@@ -12951,7 +12951,7 @@ S.fK.prototype = {
 HtmlRenderer.fq.prototype = {
     e0(a) {
         var s, r, q, this_ = this
-        
+
         logger.debug("进入 HTML.fq.e0", this.a)
         if (this_.a == null) return
 
@@ -14969,7 +14969,7 @@ T.hB.prototype = {
     aa(a, b, c) {
         return H.b([], t.F)
     },
-    
+
     v(a7, a8, a9, b0) {
         var s, shadow_name, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, a3, a4, this_ = this,
             a6 = null
@@ -16945,18 +16945,18 @@ T.Plr.prototype = {
         return P._asyncStartSync($async$cg, r)
     },
     az() {
-        //initRawAttr
-        var s, r = this
-        r.bf()
-        s = r.r1
+        //initRawAttr ?
+        var s
+        this.bf()
+        s = this.r1
         if (s != null) s.bn()
-        r.aU()
-        r.bP()
-        r.dm(C.Array.cL(r.t, $.au()), C.Array.cL(r.E, $.au()))
-        s = r.r1
+        this.aU()
+        this.bP()
+        this.init_skills(C.Array.cL(this.t, $.au()), C.Array.cL(this.E, $.au()))
+        s = this.r1
         if (s != null) s.cs()
-        r.bs()
-        r.cn()
+        this.bs()
+        this.init_values()
     },
     aU() {
         //getMiddle
@@ -17058,7 +17058,7 @@ T.Plr.prototype = {
         s.push(new T.SkillVoid(0))
         s.push(new T.SkillVoid(0))
     },
-    dm(list, original) {
+    init_skills(list, original) {
         //initSkills
         var s, r, q, p, o = this,
             n = 0,
@@ -17088,7 +17088,7 @@ T.Plr.prototype = {
         for (; r = o.k2, n < r.length; ++n) r[n].ao(o, 0)
     },
     bs() {
-        //boostPassive or addSkillsToProc??
+        // boostPassive or addSkillsToProc??
         var s, r, q, p, o, n, m, l = this
         for (s = 0, r = l.k4; q = l.k2, s < q.length; ++s) {
             p = q[s]
@@ -17120,37 +17120,37 @@ T.Plr.prototype = {
             if (p.f > 0) p.W()
         }
     },
-    cn() {
-        var s = this
-        s.F()
-        s.fx = s.fy
-        s.go = C.JsInt.P(s.fr, $.t())
+    init_values() {
+        this.F()
+        this.fx = this.fy
+        this.go = C.JsInt.P(this.fr, $.t())
     },
     F() {
-        //updateStates
-        var s, r = this
-        r.ch = r.b0(r.q[0], $.cj())
-        r.cx = r.b0(r.q[$.i()], $.cj())
-        r.cy = r.b0(r.q[$.t()], $.cj()) + $.eU()
-        r.db = r.b0(r.q[$.B()], $.cj())
-        r.dx = r.b0(r.q[$.C()], $.cj())
-        r.dy = r.b0(r.q[$.X()], $.cj())
-        r.fr = r.b0(r.q[$.a4()], $.n1())
-        r.fy = r.q[$.ap()]
-        r.ci()
-        r.z = r.y
-        r.id = $.T()
-        r.A = false
-        for (s = r.rx, s = new Sgls.a_(s, s.b, s.$ti.i("a_<1*>")); s.u();) s.b.ar(r)
+        // updateStates
+        let s;
+        this.ch = this.b0(this.q[0], $.cj())
+        this.cx = this.b0(this.q[$.i()], $.cj())
+        this.cy = this.b0(this.q[$.t()], $.cj()) + $.eU()
+        this.db = this.b0(this.q[$.B()], $.cj())
+        this.dx = this.b0(this.q[$.C()], $.cj())
+        this.dy = this.b0(this.q[$.X()], $.cj())
+        this.fr = this.b0(this.q[$.a4()], $.n1())
+        this.fy = this.q[$.ap()]
+
+        this.calcAttrSum()
+        this.z = this.y
+        this.id = $.T()
+        this.A = false
+        for (s = this.rx, s = new Sgls.a_(s, s.b, s.$ti.i("a_<1*>")); s.u();) s.b.ar(this)
     },
-    ci() {
-        var s, r, q, p, o, n, m, l, k, j, i = this,
-            h = i.M = 0
+    calc_attr_sum() {
+        var s, r, q, p, o, n, m, l, k, j, this_ = this,
+            h = this_.M = 0
         for (s = h; r = $.ap(), h < r; ++h) {
-            s += i.q[h]
-            i.M = s
+            s += this_.q[h]
+            this_.M = s
         }
-        q = i.q
+        q = this_.q
         p = q[0]
         o = q[$.i()]
         n = $.t()
@@ -17158,22 +17158,22 @@ T.Plr.prototype = {
         l = q[$.C()]
         k = q[$.X()]
         j = $.B()
-        i.N = (p - o + m + l - k) * n + q[j] + q[$.a4()]
-        i.Y = s * j + q[r]
-        i.H = $.W()
+        this_.N = (p - o + m + l - k) * n + q[j] + q[$.a4()]
+        this_.Y = s * j + q[r]
+        this_.H = $.W()
     },
     dN(a, b, c) {
-        var s, r, q, p = this
-        if (p.fx <= 0) return
-        s = p.cy * (b.n() & 3)
-        r = p.ry
+        var s, r, q
+        if (this.fx <= 0) return
+        s = this.cy * (b.n() & 3)
+        r = this.ry
         if (!r.gbv(r))
             for (r = new Sgls.a_(r, r.b, r.$ti.i("a_<1*>")); r.u();) s = r.b.x.fo(s, b, c)
-        r = p.l = p.l + s
+        r = this.l = this.l + s
         q = $.bx()
         if (r > q) {
-            p.l = r - q
-            p.eE(0, b, c)
+            this.l = r - q
+            this.eE(0, b, c)
         }
     },
     eE(a, b, c) {
