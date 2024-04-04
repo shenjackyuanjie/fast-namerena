@@ -25,8 +25,9 @@ let logger = {
     debug: function (...msg) {
         if (run_env.from_code) {
             // 上个色
-            let last_stack = new Error().stack.split("\n")[2].trim();
-            console.log("\x1b[32mlogger<", last_stack, ">:", ...msg, "\x1b[0m")
+            // let last_stack = new Error().stack;
+            // console.log("\x1b[32mlogger<", last_stack, ">:", ...msg, "\x1b[0m")
+            console.log("\x1b[32mlogger:", ...msg, "\x1b[0m")
         }
     },
     info: function (...msg) {
@@ -2054,6 +2055,7 @@ var A = {
             } else {
                 s = true
             }
+            logger.debug("进入 H.uk")
             if (s) {
                 r = H.ue
             } else {
@@ -2063,20 +2065,22 @@ var A = {
                     r = H.ui
                 }
             }
+            logger.debug("进入 H.uk")
             this_.a = r
+            // logger.debug("进入 H.uk", r, r(a))
             return this_.a(a)
         },
         ln(a) {
-            var s, r = a.y
+            var t1, r = a.y
             if (!H.isStrongTopType(a))
                 if (!(a === t.c))
                     if (!(a === t.aw))
-                        if (r !== 7) s = r === 8 && H.ln(a.z) || a === t.P || a === t.T
-            else s = true
-            else s = true
-            else s = true
-            else s = true
-            return s
+                        if (r !== 7) t1 = r === 8 && H.ln(a.z) || a === t.P || a === t.T
+            else t1 = true
+            else t1 = true
+            else t1 = true
+            else t1 = true
+            return t1
         },
         uh(a) {
             var s = this
@@ -2114,6 +2118,7 @@ var A = {
             if (a == null) return a
             // set run time info
             else if (s.b(a)) return a
+            logger.debug("faild nullable as check", a)
             H.oo(a, s)
         },
         oo(a, b) {
@@ -8026,7 +8031,8 @@ var A = {
             let plist = s.querySelector(".plist")
             let pbody = s.querySelector(".pbody")
             logger.debug("r.a", r.a, plist)
-            s = new HtmlRenderer.fq(r.a(plist), r.a(pbody), a, $.ro().ax(256))
+            // s = new HtmlRenderer.fq(r.a(plist), r.a(pbody), a, $.ro().ax(256))
+            s = new HtmlRenderer.fq(plist, pbody, a, $.ro().ax(256))
             logger.debug("HtmlRenderer.jt")
             s.e0(a)
             return s
