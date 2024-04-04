@@ -21027,7 +21027,7 @@ function main() {
         async_completer = P._makeAsyncAwaitCompleter(t.z),
         q, switch_to = 2,
         async_result_1, n = [],
-        m, l, k, j, raw_names, h, profiler, f, e, d, c, b, a, a0_getter, a1, a2, a3, a4, a5, a6, a7, a8, a9, b0
+        m, l, k, j, raw_names, h, profiler, f, e, d, c, b, a, a0_getter, a1, a2, a3, a4, a5, a6, a7, team_1, team_2, b0
     var $async$iE = P._wrapJsFunctionForAsync(function (error_code, async_result) {
         if (error_code === 1) {
             async_result_1 = async_result
@@ -21035,13 +21035,13 @@ function main() {
         }
         while (true) switch (async_goto) {
             case 0:
-                a8 = LangData.oC(true).c
-                a9 = a8[$.B()]
-                $.mb = a9
-                $.ta = a9 + $.d_()
-                $.nV = a8[$.C()]
-                $.nW = a8[$.X()]
-                $.tb = a8[$.a4()]
+                team_1 = LangData.oC(true).c
+                team_2 = team_1[$.B()]
+                $.mb = team_2
+                $.ta = team_2 + $.d_()
+                $.nV = team_1[$.C()]
+                $.nW = team_1[$.X()]
+                $.tb = team_1[$.a4()]
 
                 if (run_env.from_code) {
                     console.log("initing from node")
@@ -21062,20 +21062,23 @@ function main() {
                 // 战斗框输入位置
                 // 这里请输入一个被混淆过的名字
                 switch_to = 5
+
                 if (run_env.from_code) {
                     raw_names = name_input
                     console.log("node input:|\n", raw_names, "\n|")
                 } else {
+                    
                     m = window.sessionStorage.getItem(LangData.eQ("k"))
                     l = X.f4(m, 0)
                     k = LangData.oC(false)
-                    a8 = t.i
-                    j = H.b([], a8)
-                    J.rr(j, H.b([1, 3, 0, 9], a8))
+                    let type_tmp = t.i
+                    j = H.b([], type_tmp)
+                    J.rr(j, H.b([1, 3, 0, 9], type_tmp))
                     k.bO(j)
                     k.di(l)
                     raw_names = C.e.bt(0, l)
                 }
+
                 // 或者直接在这里输入一个原始字符串
                 h = T.parse_names(raw_names)
 
@@ -21089,11 +21092,11 @@ function main() {
                         // LangData.j("S,AF", 5) -> ???
                         if (h[1].length > 10 || J.lW(h[1][0][0], LangData.j("S,AF", 5))) {
                             logger.info("官方搜号")
-                            a8 = h[1]
-                            a9 = H.b([], t.t)
+                            team_1 = h[1]
+                            team_2 = H.b([], t.t)
 
-                            profiler = new X.ProfileFind(a9, new Float64Array(1))
-                            d.e_(a8)
+                            profiler = new X.ProfileFind(team_2, new Float64Array(1))
+                            d.e_(team_1)
 
                             f = HtmlRenderer.outer_main(profiler)
 
@@ -21106,17 +21109,17 @@ function main() {
                             e = $.nk()
                             // if (J.J(h, 0).length === 2 && J.Y(J.J(J.J(h, 0)[1], 0), $.cl())) {
                             if (h[0].length === 2 && h[0][1][0] === $.cl()) {
-                                a8 = h[1]
+                                team_1 = h[1]
                                 e = $.cl()
                             }
-                            a8 = h[1]
-                            a9 = e
+                            team_1 = h[1]
+                            team_2 = e
                             a3 = H.b([], t.L)
                             a4 = H.b([], t.V)
                             a5 = H.b([], t.M)
 
-                            profiler = new V.ProfileMain(a9, a8, a3, a4, a5, P.cu(t.X, t.B), new Float64Array(1))
-                            profiler.dZ(a8, a9)
+                            profiler = new V.ProfileMain(team_2, team_1, a3, a4, a5, P.cu(t.X, t.B), new Float64Array(1))
+                            profiler.dZ(team_1, team_2)
                             profiler.d = 1000
 
                             c = HtmlRenderer.outer_main(profiler)
@@ -21128,16 +21131,16 @@ function main() {
                     } else if (h.length === 3) {
                         logger.info("官方测号-胜率")
 
-                        a8 = h[1]
-                        a9 = h[2]
+                        team_1 = h[1]
+                        team_2 = h[2]
                         a3 = t.L
                         a4 = H.b([], a3)
                         a3 = H.b([], a3)
                         a5 = H.b([], t.V)
                         a6 = H.b([], t.M)
 
-                        profiler = new L.ProfileWinChance(a8, a9, a4, a3, a5, a6, new Float64Array(1))
-                        profiler.dY(a8, a9)
+                        profiler = new L.ProfileWinChance(team_1, team_2, a4, a3, a5, a6, new Float64Array(1))
+                        profiler.dY(team_1, team_2)
                         profiler.c = 1000
 
                         a = HtmlRenderer.outer_main(profiler)
@@ -21182,4 +21185,4 @@ function main() {
 
 main();
 // logger.debug("running main:", main()) // 执行main函数
-logger.debug(LangData.j("S,AF", 5))
+// logger.debug(LangData.j("S,AF", 5))
