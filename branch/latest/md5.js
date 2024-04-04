@@ -1861,7 +1861,7 @@ var A = {
         ez: function ez() {},
         eA: function eA() {},
         eB: function eB() {},
-        tr(a, b) {
+        Rti__getQuestionFromStar(a, b) {
             var s = b.c
             return s == null ? b.c = H._Universe__lookupQuestionRti(a, b.z, true) : s
         },
@@ -2483,7 +2483,7 @@ var A = {
                 else if (s === 6) {
                     q = b.z
                     if (q.y === 8 && H.lz(q.z)) return q
-                    else return H.tr(a, b)
+                    else return H.Rti__getQuestionFromStar(a, b)
                 }
             }
             p = new H.aW(null, null)
