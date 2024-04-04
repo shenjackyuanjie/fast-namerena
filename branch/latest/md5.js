@@ -1522,7 +1522,7 @@ var A = {
             if (init.leafTags[a] === true) return H.makeLeafDispatchRecord(s)
             else return J.makeDispatchRecord(s, c, null, null)
         },
-        uY() {
+        initNativeDispatch() {
             if (true === $.mA) return
             $.mA = true
             if (!run_env.from_code) {
@@ -3095,7 +3095,7 @@ var A = {
             var proto, r, q, interceptor, o, n = a[init.dispatchPropertyName]
             if (n == null)
                 if ($.mA == null) {
-                    H.uY()
+                    H.initNativeDispatch()
                     n = a[init.dispatchPropertyName]
                 } if (n != null) {
                 proto = n.p
