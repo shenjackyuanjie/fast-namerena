@@ -6064,7 +6064,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        h5: function h5(a, b) {
+        SklAccumulate: function SklAccumulate(a, b) {
             var _ = this
             _.fr = null
             _.fx = a
@@ -6072,7 +6072,7 @@ var A = {
             _.f = b
             _.c = _.b = _.a = _.r = null
         },
-        h7: function h7(a) {
+        SklAssassinate: function SklAssassinate(a) {
             var _ = this
             _.fy = _.fx = _.fr = null
             _.e = false
@@ -6092,7 +6092,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        ha: function ha(a, b) {
+        SklCharge: function SklCharge(a, b) {
             var _ = this
             _.fx = _.fr = null
             _.fy = a
@@ -6108,7 +6108,7 @@ var A = {
             _.z = c
             _.c = _.b = _.a = null
         },
-        e3: function e3(a) {
+        SklCharm: function SklCharm(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -6156,7 +6156,7 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        e4: function e4(a) {
+        SklClone: function SklClone(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -6178,13 +6178,13 @@ var A = {
             _.Q = d
             _.c = _.b = _.a = null
         },
-        hf: function hf(a) {
+        SklCurse: function SklCurse(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        hh: function hh(a) {
+        SklDisperse: function SklDisperse(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -6219,13 +6219,13 @@ var A = {
             _.Q = c
             _.c = _.b = _.a = null
         },
-        hk: function hk(a) {
+        SklHaste: function SklHaste(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        e8: function e8(a) {
+        SklHeal: function SklHeal(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -6247,7 +6247,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        ho: function ho(a, b, c) {
+        SklIron: function SklIron(a, b, c) {
             var _ = this
             _.fy = _.fx = _.fr = null
             _.go = a
@@ -6282,7 +6282,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        hx: function hx(a) {
+        SklRevive: function SklRevive(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -6333,7 +6333,7 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        hB: function hB(a) {
+        SklShadow: function SklShadow(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -6346,7 +6346,7 @@ var A = {
             _.z = b
             _.c = _.b = _.a = null
         },
-        hG: function hG(a) {
+        SklSlow: function SklSlow(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -6399,7 +6399,7 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        hH: function hH(a) {
+        SklSummon: function SklSummon(a) {
             var _ = this
             _.fr = null
             _.e = false
@@ -7390,7 +7390,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        cb: function cb(a) {
+        SklCounter: function SklCounter(a) {
             var _ = this
             _.Q = false
             _.cx = _.ch = null
@@ -7398,13 +7398,13 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        e6: function e6(a) {
+        SklDefend: function SklDefend(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        hl: function hl(a) {
+        SklHide: function SklHide(a) {
             var _ = this
             _.ch = _.Q = null
             _.e = false
@@ -7412,7 +7412,7 @@ var A = {
             _.c = _.b = _.a = _.r = null
         },
         fC: function fC() {},
-        hs: function hs(a) {
+        SklMerge: function SklMerge(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -7424,20 +7424,20 @@ var A = {
             _.x = b
             _.c = _.b = _.a = null
         },
-        eb: function eb(a) {
+        SklProtect: function SklProtect(a) {
             var _ = this
             _.Q = null
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        ed: function ed(a) {
+        SklReflect: function SklReflect(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        hw: function hw(a) {
+        SklReraise: function SklReraise(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -7449,13 +7449,13 @@ var A = {
             _.x = b
             _.c = _.b = _.a = null
         },
-        hC: function hC(a) {
+        SklShield: function SklShield(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        hJ: function hJ(a) {
+        SklUpgrade: function SklUpgrade(a) {
             var _ = this
             _.Q = null
             _.e = false
@@ -7508,7 +7508,7 @@ var A = {
             _.I = null
         },
         hY: function hY() {},
-        hK: function hK(a) {
+        SklZombie: function SklZombie(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -13907,7 +13907,7 @@ T.SklAbsorb.prototype = {
         s.a3(r * q, true, this.r, T.v6(), c, d)
     }
 }
-T.h5.prototype = {
+T.SklAccumulate.prototype = {
     au(a, b) {
         var s
         if (this.fr.a != null) return false
@@ -13962,7 +13962,7 @@ T.h5.prototype = {
     },
     $ix: 1
 }
-T.h7.prototype = {
+T.SklAssassinate.prototype = {
     au(a, b) {
         if (b && this.r.r2.J(0, $.bT())) return false
         return this.aX(a, b)
@@ -14091,7 +14091,7 @@ T.SklBerserk.prototype = {
         s.a3(r, true, this.r, T.v7(), c, d)
     }
 }
-T.ha.prototype = {
+T.SklCharge.prototype = {
     au(a, b) {
         if (this.r.r2.J(0, $.a7())) return false
         if (b)
@@ -14174,7 +14174,7 @@ T.dj.prototype = {
     },
     $ix: 1
 }
-T.e3.prototype = {
+T.SklCharm.prototype = {
     as(a, b) {
         var s
         if (b) {
@@ -14255,7 +14255,7 @@ T.dR.prototype = {
     },
     $ibC: 1
 }
-T.e4.prototype = {
+T.SklClone.prototype = {
     aa(a, b, c) {
         return H.b([], t.F)
     },
@@ -14302,7 +14302,7 @@ T.e4.prototype = {
 }
 T.k9.prototype = {
     $1(a) {
-        return a instanceof T.e4
+        return a instanceof T.SklClone
     },
     $S: 46
 }
@@ -14349,7 +14349,7 @@ T.dn.prototype = {
     },
     $ix: 1
 }
-T.hf.prototype = {
+T.SklCurse.prototype = {
     as(a, b) {
         var s
         if (b) {
@@ -14372,7 +14372,7 @@ T.hf.prototype = {
         s.a3(r, true, this.r, T.v9(), c, d)
     }
 }
-T.hh.prototype = {
+T.SklDisperse.prototype = {
     a9(a, b, c) {
         var s = this.bC(a, b, c)
         return b && a instanceof T.aM && a.fx > $.ci() ? s * $.t() : s
@@ -14545,7 +14545,7 @@ T.dw.prototype = {
     },
     $ix: 1
 }
-T.hk.prototype = {
+T.SklHaste.prototype = {
     b9(a) {
         return a.b5(this.r.z.f)
     },
@@ -14594,7 +14594,7 @@ T.hk.prototype = {
         m.push(T.RunUpdate(C.String.B(LangData.get_lang("DDWN"), $.qE()), p.r, n, o, o, 0, 1000, 100))
     }
 }
-T.e8.prototype = {
+T.SklHeal.prototype = {
     b9(a) {
         return a.b5(this.r.z.f)
     },
@@ -14692,7 +14692,7 @@ T.SklIce.prototype = {
         s.a3(r * q, true, this.r, T.mE(), c, d)
     }
 }
-T.ho.prototype = {
+T.SklIron.prototype = {
     ga4() {
         return $.pJ()
     },
@@ -14912,7 +14912,7 @@ T.SklRapid.prototype = {
         }
     }
 }
-T.hx.prototype = {
+T.SklRevive.prototype = {
     b9(a) {
         return a.b5(this.r.z.e)
     },
@@ -15008,7 +15008,7 @@ T.fS.prototype = {
         s[r] = C.d.P(s[r], $.t())
     }
 }
-T.hB.prototype = {
+T.SklShadow.prototype = {
     au(a, b) {
         if (b)
             if (this.r.fx < $.b3()) return false
@@ -15118,7 +15118,7 @@ T.eh.prototype = {
     },
     $ix: 1
 }
-T.hG.prototype = {
+T.SklSlow.prototype = {
     as(a, b) {
         var s
         if (b) {
@@ -15230,7 +15230,7 @@ T.fT.prototype = {
         return false
     }
 }
-T.hH.prototype = {
+T.SklSummon.prototype = {
     au(a, b) {
         var s
         if (b)
@@ -16195,7 +16195,7 @@ T.fb.prototype = {
             r = new T.sklHalf(0)
             r.f = $.at()
             s.push(r)
-            r = new T.e8(0)
+            r = new T.SklHeal(0)
             r.f = $.at()
             s.push(r)
         }
@@ -16275,7 +16275,7 @@ T.fc.prototype = {
         r = new T.SklCritical(0)
         r.f = $.aI()
         s.push(r)
-        r = new T.cb(0)
+        r = new T.SklCounter(0)
         r.f = $.aI()
         s.push(r)
     }
@@ -16297,10 +16297,10 @@ T.fd.prototype = {
         r = new T.eg(0)
         r.f = $.eX()
         s.push(r)
-        r = new T.e6(0)
+        r = new T.SklDefend(0)
         r.f = $.aI()
         s.push(r)
-        r = new T.ed(0)
+        r = new T.SklReflect(0)
         r.f = $.aI()
         s.push(r)
     }
@@ -17092,15 +17092,15 @@ T.Plr.prototype = {
         skills.push(new T.sklHalf(0)); // 8
         skills.push(new T.SklExchange(0)); // 9
         skills.push(new T.SklBerserk(0)); // 10
-        skills.push(new T.e3(0)); // 11
-        skills.push(new T.hk(0)); // 12
-        skills.push(new T.hG(0)); // 13
-        skills.push(new T.hf(0)); // 14
-        skills.push(new T.e8(0)); // 15
-        skills.push(new T.hx(0)); // 16
-        skills.push(new T.hh(0)); // 17
+        skills.push(new T.SklCharm(0)); // 11
+        skills.push(new T.SklHaste(0)); // 12
+        skills.push(new T.SklSlow(0)); // 13
+        skills.push(new T.SklCurse(0)); // 14
+        skills.push(new T.SklHeal(0)); // 15
+        skills.push(new T.SklRevive(0)); // 16
+        skills.push(new T.SklDisperse(0)); // 17
         r = 0
-        r = new T.ho(r, r, r)
+        r = new T.SklIron(r, r, r)
         q = new T.dT(1 / 0, r)
         r.fr = q
         r.fx = new T.b8(r)
@@ -17108,32 +17108,32 @@ T.Plr.prototype = {
         q.r = $.lG()
         skills.push(r) // 18
         r = 0
-        r = new T.ha(r, r)
+        r = new T.SklCharge(r, r)
         r.fr = new T.bd(r)
         r.fx = new T.b8(r)
         skills.push(r) // 19
-        r = new T.h5($.pj(), 0)
+        r = new T.SklAccumulate($.pj(), 0)
         r.fr = new T.bd(r)
         skills.push(r) // 20
-        r = new T.h7(0)
+        r = new T.SklAssassinate(0)
         r.fr = new T.ca(r)
         r.fx = new T.cA(r)
         skills.push(r) // 21
-        skills.push(new T.hH(0)); // 22
-        skills.push(new T.e4(0)); // 23
-        skills.push(new T.hB(0)); // 24
-        skills.push(new T.e6(0)); // 25
-        skills.push(new T.eb(0)); // 26
-        skills.push(new T.ed(0)); // 27
-        skills.push(new T.hw(0)); // 28
-        skills.push(new T.hC(0)); // 29
-        skills.push(new T.cb(0)); // 30
-        skills.push(new T.hs(0)); // 31
-        skills.push(new T.hK(0)); // 32
-        r = new T.hJ(0)
+        skills.push(new T.SklSummon(0)); // 22
+        skills.push(new T.SklClone(0)); // 23
+        skills.push(new T.SklShadow(0)); // 24
+        skills.push(new T.SklDefend(0)); // 25
+        skills.push(new T.SklProtect(0)); // 26
+        skills.push(new T.SklReflect(0)); // 27
+        skills.push(new T.SklReraise(0)); // 28
+        skills.push(new T.SklShield(0)); // 29
+        skills.push(new T.SklCounter(0)); // 30
+        skills.push(new T.SklMerge(0)); // 31
+        skills.push(new T.SklZombie(0)); // 32
+        r = new T.SklUpgrade(0)
         r.Q = new T.bd(r)
         skills.push(r) // 33
-        r = new T.hl(0)
+        r = new T.SklHide(0)
         r.ch = new T.bd(r)
         r.Q = new T.ca(r)
         skills.push(r)  // 34
@@ -17695,7 +17695,7 @@ T.hD.prototype = {
         s.a3(r, false, this.r, T.ad(), c, d)
     }
 }
-T.cb.prototype = {
+T.SklCounter.prototype = {
     W() {
         this.r.G.j(0, this)
     },
@@ -17729,7 +17729,7 @@ T.cb.prototype = {
     },
     $iah: 1
 }
-T.e6.prototype = {
+T.SklDefend.prototype = {
     ga4() {
         return $.pl()
     },
@@ -17745,7 +17745,7 @@ T.e6.prototype = {
     },
     $iaB: 1
 }
-T.hl.prototype = {
+T.SklHide.prototype = {
     W() {
         var s = this
         s.r.G.j(0, s)
@@ -17791,7 +17791,7 @@ T.fC.prototype = {
         return 0
     }
 }
-T.hs.prototype = {
+T.SklMerge.prototype = {
     W() {
         this.r.S.j(0, this)
     },
@@ -17906,7 +17906,7 @@ T.dV.prototype = {
         return a
     }
 }
-T.eb.prototype = {
+T.SklProtect.prototype = {
     b9(a) {
         var s = this.r
         return a.fk(s.z.f, s)
@@ -17955,7 +17955,7 @@ T.eb.prototype = {
     },
     $ibq: 1
 }
-T.ed.prototype = {
+T.SklReflect.prototype = {
     dv(a, b, c, d, e, f, g) {
         var s, r, q = this
         if (c.fx <= 0) return a
@@ -17975,7 +17975,7 @@ T.ed.prototype = {
     },
     $ibH: 1
 }
-T.hw.prototype = {
+T.SklReraise.prototype = {
     ga4() {
         return $.lG()
     },
@@ -18034,7 +18034,7 @@ T.e0.prototype = {
         this.r.r2.U(0, $.lR())
     }
 }
-T.hC.prototype = {
+T.SklShield.prototype = {
     aN(a, b, c, d) {
         var s, r, q, p = this
         if (p.f > 0) {
@@ -18056,7 +18056,7 @@ T.hC.prototype = {
     },
     $iaV: 1
 }
-T.hJ.prototype = {
+T.SklUpgrade.prototype = {
     W() {
         this.r.G.j(0, this)
     },
@@ -18155,7 +18155,7 @@ T.hY.prototype = {
         return 0
     }
 }
-T.hK.prototype = {
+T.SklZombie.prototype = {
     W() {
         this.r.S.j(0, this)
     },
@@ -18954,7 +18954,7 @@ LangData.k_.prototype = {
     k(T.dl.prototype, "gf9", 0, 5, null, ["$5"], ["fa"], 1, 0, 0)
     j(i = T.Plr.prototype, "gfJ", "fK", 19)
     j(i, "gbT", "dE", 19)
-    instance_2u(T.cb.prototype, "gdr", "f8", 54)
+    instance_2u(T.SklCounter.prototype, "gdr", "f8", 54)
 })();
 (function inheritance() {
     var mixin = hunkHelpers.mixin,
@@ -19030,8 +19030,8 @@ LangData.k_.prototype = {
     inherit(P.cF, P.p)
     inherit(HtmlRenderer.fW, HtmlRenderer.ax)
     inherit_many(Sgls.n, [T.q, T.aZ, T.aB, T.bq, T.cB, T.bH, T.ah, T.aV, T.aF])
-    inherit_many(T.q, [T.ActionSkill, T.h6, T.he, T.hn, T.hq, T.ea, T.ef, T.cb, T.e6, T.hl, T.hs, T.eb, T.ed, T.hw, T.hC, T.hJ, T.hK])
-    inherit_many(T.ActionSkill, [T.SklAbsorb, T.h5, T.h7, T.dd, T.SklBerserk, T.ha, T.e3, T.e4, T.SklCritical, T.hf, T.hh, T.SklExchange, T.SklFire, T.sklHalf, T.hk, T.e8, T.SklIce, T.ho, T.SklPoison, T.SklQuake, T.SklRapid, T.hx, T.hu, T.hB, T.hG, T.hj, T.hH, T.SklThunder, T.e2, T.hb, T.dl, T.hd, T.hm, T.dB, T.hp, T.hr, T.hA, T.h8, T.hD, T.SkillVoid, T.hg, T.ee, T.hz])
+    inherit_many(T.q, [T.ActionSkill, T.h6, T.he, T.hn, T.hq, T.ea, T.ef, T.SklCounter, T.SklDefend, T.SklHide, T.SklMerge, T.SklProtect, T.SklReflect, T.SklReraise, T.SklShield, T.SklUpgrade, T.SklZombie])
+    inherit_many(T.ActionSkill, [T.SklAbsorb, T.SklAccumulate, T.SklAssassinate, T.dd, T.SklBerserk, T.SklCharge, T.SklCharm, T.SklClone, T.SklCritical, T.SklCurse, T.SklDisperse, T.SklExchange, T.SklFire, T.sklHalf, T.SklHaste, T.SklHeal, T.SklIce, T.SklIron, T.SklPoison, T.SklQuake, T.SklRapid, T.SklRevive, T.hu, T.SklShadow, T.SklSlow, T.hj, T.SklSummon, T.SklThunder, T.e2, T.hb, T.dl, T.hd, T.hm, T.dB, T.hp, T.hr, T.hA, T.h8, T.hD, T.SkillVoid, T.hg, T.ee, T.hz])
     inherit_many(T.aZ, [T.dj, T.dw, T.dx, T.eh, T.bd, T.h1])
     inherit_many(T.x, [T.dI, T.c3, T.hF, T.fC, T.hY])
     inherit_many(T.Plr, [T.dR, T.aM, T.cz, T.fP, T.fU, T.fV, T.fQ, T.cy])
@@ -19041,7 +19041,7 @@ LangData.k_.prototype = {
     inherit_many(T.cz, [T.f5, T.f6, T.f7, T.f8, T.de, T.df, T.f9, T.fa, T.bZ, T.fc, T.fd])
     inherit(T.fR, T.cy)
     inherit(T.fb, T.bZ)
-    inherit(T.eg, T.e3)
+    inherit(T.eg, T.SklCharm)
     inherit_many(T.IPlr, [T.NPlr, T.HPlr, T.MPlr, T.DPlr])
     inherit_many(T.aX, [T.h2, T.dX])
     inherit(T.fY, T.cB)
@@ -19053,7 +19053,7 @@ LangData.k_.prototype = {
     inherit(T.e0, T.ik)
     inherit_many(T.bL, [T.j2, T.eo, T.jq, T.jN, T.k1, T.ep, T.kv])
     inherit(T.hy, T.ea)
-    inherit(T.hc, T.cb)
+    inherit(T.hc, T.SklCounter)
     inherit(LangData.SuperRC4, Y.RC4)
     mixin(H.cJ, H.hV)
     mixin(H.ey, P.z)
