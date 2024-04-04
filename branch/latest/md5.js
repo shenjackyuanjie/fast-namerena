@@ -1296,7 +1296,7 @@ var A = {
         },
         Closure_forwardCallTo(a, b, c, d) {
             var s, r, q, p, o, n = "receiver"
-            if (c) return H.rK(a, b, d)
+            if (c) return H.Closure_forwardInterceptedCallTo(a, b, d)
             s = b.length
             r = d || s >= 27
             if (r) return H.Closure_cspForwardCall(s, d, a, b)
@@ -1316,10 +1316,10 @@ var A = {
             p = $.dh
             return new Function(r + (p == null ? $.dh = H.j3(n) : p) + "." + H.as_string(a) + "(" + o + ");}")()
         },
-        Closure_cspForwardInterceptedCall(a, b, c, d) {
-            var s = H.BoundClosure_selfOf,
-                r = H.BoundClosure_receiverOf
-            switch (b ? -1 : a) {
+        Closure_cspForwardInterceptedCall(arity, is_super_call, name, func) {
+            var get_self = H.BoundClosure_selfOf,
+                get_receiver = H.BoundClosure_receiverOf
+            switch (is_super_call ? -1 : arity) {
                 case 0:
                     throw H.wrap_expression(new H.h3("Intercepted function with no arguments."))
                 case 1:
@@ -1327,37 +1327,37 @@ var A = {
                         return function () {
                             return f(this)[e](g(this))
                         }
-                    }(c, r, s)
+                    }(name, get_receiver, get_self)
                 case 2:
                     return function (e, f, g) {
                         return function (h) {
                             return f(this)[e](g(this), h)
                         }
-                    }(c, r, s)
+                    }(name, get_receiver, get_self)
                 case 3:
                     return function (e, f, g) {
                         return function (h, i) {
                             return f(this)[e](g(this), h, i)
                         }
-                    }(c, r, s)
+                    }(name, get_receiver, get_self)
                 case 4:
                     return function (e, f, g) {
                         return function (h, i, j) {
                             return f(this)[e](g(this), h, i, j)
                         }
-                    }(c, r, s)
+                    }(name, get_receiver, get_self)
                 case 5:
                     return function (e, f, g) {
                         return function (h, i, j, k) {
                             return f(this)[e](g(this), h, i, j, k)
                         }
-                    }(c, r, s)
+                    }(name, get_receiver, get_self)
                 case 6:
                     return function (e, f, g) {
                         return function (h, i, j, k, l) {
                             return f(this)[e](g(this), h, i, j, k, l)
                         }
-                    }(c, r, s)
+                    }(name, get_receiver, get_self)
                 default:
                     return function (e, f, g) {
                         return function () {
@@ -1365,10 +1365,10 @@ var A = {
                             Array.prototype.push.apply(q, arguments)
                             return e.apply(f(this), q)
                         }
-                    }(d, r, s)
+                    }(func, get_receiver, get_self)
             }
         },
-        rK(a, b, c) {
+        Closure_forwardInterceptedCallTo(a, b, c) {
             var s, r, q, p, o, n = $.nE
             if (n == null) n = $.nE = H.j3("interceptor")
             s = $.dh
