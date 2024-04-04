@@ -49,37 +49,36 @@ if (run_env.from_code) {
         localStorage: function () {},
     };
 
-    let fake_element = {
-        childList: [],
-        tag: "",
-        width: 0,
-        height: 0,
-        style: {},
-        styleSheets: [
-            "something"
-        ],
-        length: 0,
-        innerHTML: "",
-        querySelector: function (tag) {
+    class fake_element {
+        constructor(tag) {
+            this.childList = [];
+            this.tag = tag;
+            this.width = 0;
+            this.height = 0;
+            this.style = {};
+            this.styleSheets = [
+                "something"
+            ];
+            this.length = 0;
+            this.innerHTML = "";
+            // 把自己加到列表里
+            stored_elements.push(this);
+        };
+        querySelector(tag) {
             // 搜索一下有没有这个元素
             for (let i = 0; i < this.childList.length; i++) {
                 if (this.childList[i].tag == tag) {
                     return this.childList[i];
                 }
             }
-        },
-        addEventListener: function () {},
-        fake_init: function (tag) {
-            let _ = this;
-            _.tag = tag;
-            // 把自己加到列表里
-            stored_elements.push(_);
-        }
+        };
+        addEventListener() {};
     }
 
     global.document = {
         createElement: function (tag) {
-            return fake_element.fake_init(tag);
+            // return fake_element.fake_init(tag);
+            return new fake_element(tag);
         },
         querySelector: function (tag) {
             // 搜索一下有没有这个元素
@@ -95,8 +94,9 @@ if (run_env.from_code) {
         }],
     };
 
-    let fake_plist = fake_element.fake_init(".plist");
-
+    let fake_plist = document.createElement(".plist");
+    let fake_pbody = document.createElement(".pbody");
+    logger.debug(stored_elements)
 
     global.self = global.window;
 
@@ -8030,7 +8030,7 @@ var A = {
                 r = t.A
             let plist = s.querySelector(".plist")
             let pbody = s.querySelector(".pbody")
-            logger.debug("r.a", r.a, plist)
+            logger.debug(plist, pbody)
             // s = new HtmlRenderer.fq(r.a(plist), r.a(pbody), a, $.ro().ax(256))
             s = new HtmlRenderer.fq(plist, pbody, a, $.ro().ax(256))
             logger.debug("HtmlRenderer.jt")
@@ -12949,8 +12949,10 @@ S.fK.prototype = {
 HtmlRenderer.fq.prototype = {
     e0(a) {
         var s, r, q, this_ = this
-        logger.debug("进入 HTML.fq.e0")
+        logger.debug("进入 HTML.fq.e0", this.a)
+
         if (this_.a == null) return
+
         A.vo(this_.gfd())
         // this_.d = P.Timer_Timer(P.duration_milsec_sec(10, 0), this_.gbc(this_))
         this_.d = P.Timer_Timer(P.duration_milsec_sec(0, 0), this_.gbc(this_))
