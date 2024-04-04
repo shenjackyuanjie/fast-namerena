@@ -7460,7 +7460,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        SkillVoid: function bI(a) {
+        SkillVoid: function SkillVoid(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -17169,7 +17169,6 @@ T.Plr.prototype = {
             }++n
             m += $.C()
         }
-        console.log("this_.k2:",this_.k2)
         for (; sortedSkills = this_.k2, n < sortedSkills.length; ++n) sortedSkills[n].ao(this_, 0)
         console.log("sorted skills:",sortedSkills)
     },
