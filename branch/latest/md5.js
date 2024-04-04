@@ -23,15 +23,15 @@ console.log("run_env", run_env);
 let logger = {
     // debug: 只在 from_code 时输出
     debug: function (...msg) {
-        // if (run_env.from_code) {
-        // 上个色
-        // let last_stack = new Error().stack;
-        // console.log("\x1b[32mlogger<", last_stack, ">:", ...msg, "\x1b[0m")
-        console.log("\x1b[32mlogger:", ...msg, "\x1b[0m")
-        // }
+        if (run_env.from_code) {
+            // 上个色
+            // let last_stack = new Error().stack;
+            // console.log("\x1b[32mlogger<", last_stack, ">:", ...msg, "\x1b[0m")
+            console.log("\x1b[32mlogger:", ...msg, "\x1b[0m")
+        }
     },
     info: function (...msg) {
-        console.log("logger: ", ...msg)
+        console.log("logger: ", msg)
     }
 }
 
@@ -357,11 +357,7 @@ var A = {
         eR(a) {
             var s = window.localStorage,
                 r = LangData.eQ("i")
-            logger.debug("set item to localstorage")
-            if (!run_env.from_code) {
-                s.setItem(r, a)
-            }
-            logger.debug("set item to localstorage")
+            s.setItem(r, a)
             s = $.nx()
             r = s.b
             if (r >= 4) H.throw_expression(s.ee())
@@ -3506,6 +3502,9 @@ var A = {
     },
     P = {
         _AsyncRun__initializeScheduleImmediate() {
+            // if (run_env.from_code) {
+            //     console.log("creating scheduleImmediate")
+            // }
             logger.debug("creating scheduleImmediate")
             var s, r, q = {}
             if (self.scheduleImmediate != null) {
@@ -3630,7 +3629,6 @@ var A = {
             }
         },
         cO(a, b) {
-            logger.info("joining cO")
             var s, r, q, p, o, n, m, l, k, j, i, h, g, f = {},
                 e = f.a = a
             for (s = t.h; true;) {
@@ -3734,20 +3732,16 @@ var A = {
             }
         },
         uD() {
-            logger.info("calling uD", $.ms)
             $.ms = true
             try {
                 P.uw()
             } finally {
                 $.eO = null
                 $.ms = false
-                if ($.cR != null) {
-                    $.nw().$1(P.ow())
-                }
+                if ($.cR != null) $.nw().$1(P.ow())
             }
         },
         ou(a) {
-            logger.debug("calling ou", $.ms)
             var s = new P.i0(a),
                 r = $.eN
             if (r == null) {
@@ -5995,7 +5989,7 @@ var A = {
             return J.lV(a.e, b.e)
         },
         nT(a0, a1, a2, a3) {
-            var s, r, q, p, o, n, m, l, k, j, i, h, g, f = 0,
+            var s, r, q, p, o, n, m, l, k, j, i, h, Plr, f = 0,
                 e = $.T(),
                 d = H.b([], t.q),
                 c = H.b([], t.H),
@@ -6032,10 +6026,10 @@ var A = {
             i = H.b([], k)
             h = H.b([], k)
             k = H.b([], k)
-            g = 0
-            g = new T.Plr(a0, a1, a2, a3, f, e, d, c, b, a, s, r, q, p, o, n, m, l, j, i, h, k, g, g, g, $.W(), g)
-            g.a1(a0, a1, a2, a3)
-            return g
+            Plr = 0
+            Plr = new T.Plr(a0, a1, a2, a3, f, e, d, c, b, a, s, r, q, p, o, n, m, l, j, i, h, k, Plr, Plr, Plr, $.W(), Plr)
+            Plr.a1(a0, a1, a2, a3)
+            return Plr
         },
         t6(a, b) {
             return J.lV(b.b, a.b)
@@ -9674,9 +9668,9 @@ P.kD.prototype = {
 P.l8.prototype = {
     e8(a, b) {
         if (run_env.from_code) {
-            b.$0()
+            // b.$0()
             // setTimeout
-            // setTimeout(H.convert_dart_closure_to_js_md5(new P.kC(b), 0), 0)
+            setTimeout(H.convert_dart_closure_to_js_md5(new P.kC(b), 0), 0)
         } else {
             if (self.setTimeout != null) {
                 // self.setTimeout(H.convert_dart_closure_to_js_md5(new P.l9(this, b), 0), a)
@@ -12459,56 +12453,56 @@ L.iR.prototype = {
         return this.dJ(0, b)
     },
     dJ(a, b) {
-        var async_goto = 0,
-            async_completer = P._makeAsyncAwaitCompleter(t.z),
-            this_ = this,
+        var s = 0,
+            r = P._makeAsyncAwaitCompleter(t.z),
+            q = this,
             p, o, n, m, l
         var $async$ae = P._wrapJsFunctionForAsync(function (c, d) {
-            if (c === 1) return P.async_rethrow(d, async_completer)
-            while (true) switch (async_goto) {
+            if (c === 1) return P.async_rethrow(d, r)
+            while (true) switch (s) {
                 case 0:
-                    this_.Q = b
-                    p = this_.ch
+                    q.Q = b
+                    p = q.ch
                     p[0] = Date.now() + 1
-                    o = this_.e, n = o.length, m = 0
+                    o = q.e, n = o.length, m = 0
                 case 2:
                     if (!(m < o.length)) {
-                        async_goto = 4
+                        s = 4
                         break
                     }
-                    async_goto = 5
+                    s = 5
                     return P._asyncAwait(o[m].az(), $async$ae)
                 case 5:
                 case 3:
                     o.length === n || (0, H.F)(o), ++m
-                    async_goto = 2
+                    s = 2
                     break
                 case 4:
-                    n = this_.f, l = n.length, m = 0
+                    n = q.f, l = n.length, m = 0
                 case 6:
                     if (!(m < n.length)) {
-                        async_goto = 8
+                        s = 8
                         break
                     }
-                    async_goto = 9
+                    s = 9
                     return P._asyncAwait(n[m].az(), $async$ae)
                 case 9:
                 case 7:
                     n.length === l || (0, H.F)(n), ++m
-                    async_goto = 6
+                    s = 6
                     break
                 case 8:
                     o = new H.y(o, new L.iS(), H._arrayInstanceType(o).i("y<1,@>")).aV(0, "\r") + "\n" + new H.y(n, new L.iT(), H._arrayInstanceType(n).i("y<1,@>")).aV(0, "\r") + "\n"
                     o = C.e.gaB().ab(o)
                     n = H.instanceType(o).i("a9<z.E>")
                     l = n.i("y<M.E,l*>")
-                    l = P.List_List_of(new H.y(new H.a9(o, n), new L.iU(this_), l), true, l.i("M.E"))
+                    l = P.List_List_of(new H.y(new H.a9(o, n), new L.iU(q), l), true, l.i("M.E"))
                     C.Array.a5(l, H.fJ(p.buffer, 0, null))
                     A.eR(X.dc(l))
-                    return P.async_return(null, async_completer)
+                    return P.async_return(null, r)
             }
         })
-        return P._asyncStartSync($async$ae, async_completer)
+        return P._asyncStartSync($async$ae, r)
     }
 }
 L.iS.prototype = {
@@ -13059,9 +13053,7 @@ HtmlRenderer.fq.prototype = {
     },
     fe(a0) {
         // run update
-        let stack = new Error().stack
-        logger.debug("fq.fe start", stack)
-
+        logger.debug("fq.fe start")
         var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, this_ = this
         if (a0.length < 6) return
         s = X.f4(a0, 0)
@@ -13167,7 +13159,6 @@ HtmlRenderer.fq.prototype = {
                 q.display = "none"
             }
         }
-        logger.debug("end fq.fe")
     },
     b4() {
         // 实力评估 主循环?
@@ -15948,7 +15939,6 @@ T.hp.prototype = {
 }
 T.df.prototype = {
     gan() {
-        logger.info("getting df.gan")
         return H.b([0, $.lL(), $.d1(), $.mX(), $.iI(), $.iH(), $.eT(), $.n0()], t.i)
     },
     F() {
@@ -16529,9 +16519,7 @@ T.fo.prototype = {
     },
     O() {
         // 运行时?
-        // 对战 主循环?
-        // let stack = new Error().stack
-        // logger.info("运行 主循环", stack)
+        logger.debug("运行 主循环")
         var async_goto = 0,
             async_completer = P._makeAsyncAwaitCompleter(t.d),
             result_, p = [],
@@ -16600,7 +16588,7 @@ T.fo.prototype = {
     },
     ae(a, b) {
         if (run_env.from_code) {
-            // return null
+            return null
         }
         return this.dM(0, b)
     },
@@ -16639,8 +16627,7 @@ T.fo.prototype = {
         //     }
         // })
         // return P._asyncStartSync($async$ae, async_completer)
-        let this_ = this,
-            p, o, n, m, l, k, j
+        let this_ = this, p, o, n, m, l, k, j
         this_.db = b
         p = Date.now()
         o = $.bx()
@@ -16912,12 +16899,15 @@ T.Plr.prototype = {
     },
     a1(a, b, c, d) {
         // Plr 构造函数
+        // 名字字符输入的处理在此
         var s, r, q, p, o, n, m, l, k, j, i, this_ = this
         this_.I = this_.gfJ()
         s = this_.r = this_.a
         r = this_.b
         if (r != null && r !== "" && r !== s) {
+            // 有战队情况下构造名字
             r = this_.e = H.as_string(s) + "@" + H.as_string(this_.b)
+            console.log(r)
         } else {
             this_.e = this_.b = s
             r = s
@@ -17017,7 +17007,7 @@ T.Plr.prototype = {
         }
     },
     cg() {
-        // buildAsync
+        // 
         var s = 0,
             r = P._makeAsyncAwaitCompleter(t.z),
             this_ = this
@@ -17032,35 +17022,40 @@ T.Plr.prototype = {
         return P._asyncStartSync($async$cg, r)
     },
     az() {
-        //initRawAttr
-        var s, this_ = this
+        // buildAsync
+        var weapon, this_ = this
         this_.bf()
-        s = this_.r1
-        if (s != null) s.bn()
-        this_.aU()
-        this_.bP()
-        this_.dm(C.Array.cL(this_.t, $.au()), C.Array.cL(this_.E, $.au()))
-        s = this_.r1
-        if (s != null) s.cs()
-        this_.bs()
-        this_.cn()
+        weapon = this_.r1
+        if (weapon != null) weapon.bn()
+        this_.aU() // initRawAttr
+        this_.bP() // initLists
+        this_.dm(C.Array.cL(this_.t, $.au()), C.Array.cL(this_.E, $.au())) // initSkills
+        weapon = this_.r1
+        if (weapon != null) weapon.cs()
+        this_.bs() // addSkillsToProc
+        this_.cn() // initValues
     },
     aU() {
-        //getMiddle
-        var s, r, q, p, o = this
-        for (s = $.Z(); s < $.d1(); s += $.B()) {
-            r = o.q
-            q = C.Array.al(o.t, s, s + $.B())
+        // initRawAttr
+        var s, r, q, p, this_ = this
+        for (s = $.Z(); s < 31; s += $.B()) {
+            r = this_.q
+            q = C.Array.al(this_.t, s, s + $.B())
             if (!!q.immutable$list) H.throw_expression(P.UnsupportError("sort"))
             p = q.length - 1
             if (p - 0 <= 32) H.ej(q, 0, p, J.bO())
             else H.ei(q, 0, p, J.bO())
             C.Array.j(r, q[$.i()])
         }
-        r = o.q
-        q = C.Array.al(o.t, 0, $.Z())
+        r = this_.q
+        
+        q = C.Array.al(this_.t, 0, $.Z())
         C.Array.aJ(q)
+        
         C.Array.j(r, C.Array.dz(C.Array.al(q, $.B(), $.ap()), new T.jX()) + $.mK())
+        // 至此，属性初始化完毕，this_.q就是八围 但前7围要+36才是面板属性！！！
+        // test
+        //this_.q = [-36, 0, 0, 0, -36, 0, 0, 100]
     },
     bP() {
         //initLists
@@ -17147,44 +17142,45 @@ T.Plr.prototype = {
     },
     dm(list, original) {
         // initSkills
-        var s, r, q, p, o = this,
+        var s, sortedSkills, q, p, this_ = this,
             n = 0,
             m = n
+        // src中被移除的计算技能部分
         while (true) {
-            if (!(n < $.aR() && n < o.k2.length)) break
-            s = o.k2[n]
-            r = C.Array.al(list, m, m + $.C())
-            if (!!r.immutable$list) H.throw_expression(P.UnsupportError("sort"))
-            q = r.length - 1
-            if (q - 0 <= 32) H.ej(r, 0, q, J.bO())
-            else H.ei(r, 0, q, J.bO())
-            p = r[0] - $.Z()
-            s.ao(o, p)
-            r = 0
-            if (p > r) {
-                r = C.Array.al(original, m, m + $.C())
-                if (!!r.immutable$list) H.throw_expression(P.UnsupportError("sort"))
-                q = r.length - 1
-                if (q - 0 <= 32) H.ej(r, 0, q, J.bO())
-                else H.ei(r, 0, q, J.bO())
+            if (!(n < $.aR() && n < this_.k2.length)) break
+            s = this_.k2[n]
+            sortedSkills = C.Array.al(list, m, m + $.C())
+            if (!!sortedSkills.immutable$list) H.throw_expression(P.UnsupportError("sort"))
+            q = sortedSkills.length - 1
+            if (q - 0 <= 32) H.ej(sortedSkills, 0, q, J.bO())
+            else H.ei(sortedSkills, 0, q, J.bO())
+            p = sortedSkills[0] - $.Z()
+            s.ao(this_, p)
+            sortedSkills = 0
+            if (p > sortedSkills) {
+                sortedSkills = C.Array.al(original, m, m + $.C())
+                if (!!sortedSkills.immutable$list) H.throw_expression(P.UnsupportError("sort"))
+                q = sortedSkills.length - 1
+                if (q - 0 <= 32) H.ej(sortedSkills, 0, q, J.bO())
+                else H.ei(sortedSkills, 0, q, J.bO())
                 q = 0
-                if (r[q] - $.Z() <= q) s.e = true
+                if (sortedSkills[q] - $.Z() <= q) s.e = true
             }++n
             m += $.C()
         }
-        for (; r = o.k2, n < r.length; ++n) r[n].ao(o, 0)
+        for (; sortedSkills = this_.k2, n < sortedSkills.length; ++n) sortedSkills[n].ao(this_, 0)
     },
     bs() {
-        // boostPassive or addSkillsToProc??
-        var s, r, q, p, o, n, m, l = this
-        for (s = 0, r = l.k4; q = l.k2, s < q.length; ++s) {
-            p = q[s]
-            if (p.f > 0 && p instanceof T.ActionSkill) r.push(p)
+        // addSkillsToProc
+        var s, r, sortedSkills, skl, o, n, m, this_ = this
+        for (s = 0, r = this_.k4; sortedSkills = this_.k2, s < sortedSkills.length; ++s) {
+            skl = sortedSkills[s]
+            if (skl.f > 0 && skl instanceof T.ActionSkill) r.push(skl)
         }
-        q = r.length
+        sortedSkills = r.length
         o = 0
-        if (q > o)
-            for (s = q - $.i(); s >= o; --s) {
+        if (sortedSkills > o)
+            for (s = sortedSkills - $.i(); s >= o; --s) {
                 n = r[s]
                 if (!n.e) {
                     n.f = n.f * $.t()
@@ -17193,21 +17189,21 @@ T.Plr.prototype = {
                 }
             }
         m = new T.jW()
-        r = l.k2
+        r = this_.k2
         if (r.length >= $.aR()) {
             r = r[$.p7()]
-            q = l.t
-            m.$3(r, q[$.a6()], q[$.pR()])
-            q = l.k2[$.eT()]
-            r = l.t
-            m.$3(q, r[$.n_()], r[$.b2()])
+            sortedSkills = this_.t
+            m.$3(r, sortedSkills[$.a6()], sortedSkills[$.pR()])
+            sortedSkills = this_.k2[$.eT()]
+            r = this_.t
+            m.$3(sortedSkills, r[$.n_()], r[$.b2()])
         }
-        for (s = 0, r = l.k1; s < r.length; ++s) {
-            p = r[s]
-            if (p.f > 0) p.W()
+        for (s = 0, r = this_.k1; s < r.length; ++s) {
+            skl = r[s]
+            if (skl.f > 0) skl.W()
         }
     },
-    cn() {
+    cn() { // initValues
         var s = this
         s.F()
         s.fx = s.fy
@@ -17217,15 +17213,14 @@ T.Plr.prototype = {
         // updateStates
         var s, this_ = this
         this_.ch = this_.b0(this_.q[0], $.cj())
-        this_.cx = this_.b0(this_.q[$.i()], $.cj())
-        this_.cy = this_.b0(this_.q[$.t()], $.cj()) + 160
-        console.log("this_.cy", this_.cy)
-        console.log("this_.q", this_.q)
-        this_.db = this_.b0(this_.q[$.B()], $.cj())
-        this_.dx = this_.b0(this_.q[$.C()], $.cj())
-        this_.dy = this_.b0(this_.q[$.X()], $.cj())
-        this_.fr = this_.b0(this_.q[$.a4()], $.n1())
-        this_.fy = this_.q[$.ap()]
+        this_.cx = this_.b0(this_.q[1], $.cj())
+        this_.cy = this_.b0(this_.q[2], $.cj()) + 160
+        this_.db = this_.b0(this_.q[3], $.cj())
+        this_.dx = this_.b0(this_.q[4], $.cj())
+        this_.dy = this_.b0(this_.q[5], $.cj())
+        this_.fr = this_.b0(this_.q[6], $.n1())
+        this_.fy = this_.q[7]
+        
         this_.ci()
         this_.z = this_.y
         this_.id = $.T()
@@ -17234,13 +17229,13 @@ T.Plr.prototype = {
     },
     ci() {
         // calcAttrSum
-        var s, r, q, p, o, n, m, l, k, j, i = this,
+        var attr_sum, r, q, p, o, n, m, l, k, j, i = this,this_=this,
             h = i.M = 0
-        for (s = h; r = $.ap(), h < r; ++h) {
-            s += i.q[h]
-            i.M = s
+        for (attr_sum = h; h < 7; ++h) {
+            attr_sum += this_.q[h]
+            this_.M = attr_sum
         }
-        q = i.q
+        q = this_.q
         p = q[0]
         o = q[$.i()]
         n = $.t()
@@ -17249,7 +17244,7 @@ T.Plr.prototype = {
         k = q[$.X()]
         j = $.B()
         i.N = (p - o + m + l - k) * n + q[j] + q[$.a4()]
-        i.Y = s * j + q[r]
+        i.Y = attr_sum * j + q[r]
         i.H = $.W()
     },
     dN(a, b, c) {
@@ -20011,7 +20006,6 @@ var t = (function rtii() {
     })
     lazy_old($, "x7", "mU", function () {
         return X.k("+O2YYGy,+H", 45)
-        // return 36
     })
     lazy_old($, "vJ", "oZ", function () {
         return X.D("xF s,sTeiD", 45)
@@ -20127,7 +20121,6 @@ var t = (function rtii() {
     })
     lazy_old($, "wW", "d1", function () {
         return X.k("p&kJ 5Q!{M", 75)
-        // return 31
     })
     lazy_old($, "xj", "mX", function () {
         return X.k("^M0K:>w!&P", 91)
@@ -20270,7 +20263,6 @@ var t = (function rtii() {
     })
     lazy_old($, "wv", "pl", function () {
         return X.D("WT)~pf:~hB", 91)
-        // return 2000
     })
     lazy_old($, "xm", "mY", function () {
         // return X.k("T)Ok_x`s]G", 40)
@@ -21135,7 +21127,6 @@ function main() {
                 logger.debug("so just here?", async_goto, error_code)
             case 1:
                 logger.debug("返回中")
-                $.ms = false
                 return P.async_return(q, async_completer)
             case 2:
                 return P.async_rethrow(async_result_1, async_completer)
