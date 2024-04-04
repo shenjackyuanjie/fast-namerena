@@ -1042,33 +1042,33 @@ var A = {
             if (a instanceof H.dt) return H.saveStackTrace(a, a.a)
             if (typeof a !== "object") return a
             if ("dartException" in a) return H.saveStackTrace(a, a.dartException)
-            return H.uH(a)
+            return H._unwrapNonDartException(a)
         },
         saveStackTrace(ex, err) {
             if (t.u.b(err))
                 if (err.$thrownJsError == null) err.$thrownJsError = ex
             return err
         },
-        uH(a) {
-            var s, r, q, t1, o, n, m, l, k, j, i, h, g, f, e = null
-            if (!("message" in a)) return a
-            s = a.message
-            if ("number" in a && typeof a.number == "number") {
-                r = a.number
+        _unwrapNonDartException(ex) {
+            var s, r, q, t1, nsme, not_closure, null_call, l, k, j, i, h, g, match, e = null
+            if (!("message" in ex)) return ex
+            s = ex.message
+            if ("number" in ex && typeof ex.number == "number") {
+                r = ex.number
                 q = r & 65535
                 if ((C.JsInt.am(r, 16) & 8191) === 10) switch (q) {
                     case 438:
-                        return H.saveStackTrace(a, H.m9(H.as_string(s) + " (Error " + q + ")", e))
+                        return H.saveStackTrace(ex, H.m9(H.as_string(s) + " (Error " + q + ")", e))
                     case 445:
                     case 5007:
                         t1 = H.as_string(s) + " (Error " + q + ")"
-                        return H.saveStackTrace(a, new H.NullError(t1, e))
+                        return H.saveStackTrace(ex, new H.NullError(t1, e))
                 }
             }
-            if (a instanceof TypeError) {
-                o = $.r7()
-                n = $.r8()
-                m = $.r9()
+            if (ex instanceof TypeError) {
+                nsme = $.r7()
+                not_closure = $.r8()
+                null_call = $.r9()
                 l = $.ra()
                 k = $.rd()
                 j = $.re()
@@ -1076,30 +1076,30 @@ var A = {
                 $.rb()
                 h = $.rg()
                 g = $.rf()
-                f = o.aH(s)
-                if (f != null) return H.saveStackTrace(a, H.m9(s, f))
+                match = nsme.aH(s)
+                if (match != null) return H.saveStackTrace(ex, H.m9(s, match))
                 else {
-                    f = n.aH(s)
-                    if (f != null) {
-                        f.method = "call"
-                        return H.saveStackTrace(a, H.m9(s, f))
+                    match = not_closure.aH(s)
+                    if (match != null) {
+                        match.method = "call"
+                        return H.saveStackTrace(ex, H.m9(s, match))
                     } else {
-                        f = m.aH(s)
-                        if (f == null) {
-                            f = l.aH(s)
-                            if (f == null) {
-                                f = k.aH(s)
-                                if (f == null) {
-                                    f = j.aH(s)
-                                    if (f == null) {
-                                        f = i.aH(s)
-                                        if (f == null) {
-                                            f = l.aH(s)
-                                            if (f == null) {
-                                                f = h.aH(s)
-                                                if (f == null) {
-                                                    f = g.aH(s)
-                                                    t1 = f != null
+                        match = null_call.aH(s)
+                        if (match == null) {
+                            match = l.aH(s)
+                            if (match == null) {
+                                match = k.aH(s)
+                                if (match == null) {
+                                    match = j.aH(s)
+                                    if (match == null) {
+                                        match = i.aH(s)
+                                        if (match == null) {
+                                            match = l.aH(s)
+                                            if (match == null) {
+                                                match = h.aH(s)
+                                                if (match == null) {
+                                                    match = g.aH(s)
+                                                    t1 = match != null
                                                 } else t1 = true
                                             } else t1 = true
                                         } else t1 = true
@@ -1108,25 +1108,25 @@ var A = {
                             } else t1 = true
                         } else t1 = true
                         if (t1) {
-                            return H.saveStackTrace(a, new H.NullError(s, f == null ? e : f.method))
+                            return H.saveStackTrace(ex, new H.NullError(s, match == null ? e : match.method))
                         }
                     }
                 }
-                return H.saveStackTrace(a, new H.hU(typeof s == "string" ? s : ""))
+                return H.saveStackTrace(ex, new H.hU(typeof s == "string" ? s : ""))
             }
-            if (a instanceof RangeError) {
+            if (ex instanceof RangeError) {
                 if (typeof s == "string" && s.indexOf("call stack") !== -1) return new P.el()
                 s = function (b) {
                     try {
                         return String(b)
                     } catch (d) {}
                     return null
-                }(a)
-                return H.saveStackTrace(a, new P.aS(false, e, e, typeof s == "string" ? s.replace(/^RangeError:\s*/, "") : s))
+                }(ex)
+                return H.saveStackTrace(ex, new P.aS(false, e, e, typeof s == "string" ? s.replace(/^RangeError:\s*/, "") : s))
             }
-            if (typeof InternalError == "function" && a instanceof InternalError)
+            if (typeof InternalError == "function" && ex instanceof InternalError)
                 if (typeof s == "string" && s === "too much recursion") return new P.el()
-            return a
+            return ex
         },
         get_trace_from_exception(a) {
             var s
