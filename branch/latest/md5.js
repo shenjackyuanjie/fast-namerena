@@ -13270,9 +13270,7 @@ HtmlRenderer.fq.prototype = {
         }
 
         // 显示 done_target
-        if (run_env.from_code) {
-            console.log("done_target")
-        }
+        logger.debug("done_target")
         window.parent.postMessage("done_fight", "*")
     }
 }
