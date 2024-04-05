@@ -5031,7 +5031,7 @@ var A = {
                     a0 = H.b([], c)
                     c = H.b([], c)
                     a1 = 0
-                    a1 = new T.fc(name, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                    a1 = new T.PlrBossMario(name, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                     a1.a1(name, s, r, a3)
                     a1.av(name, s)
                     return a1
@@ -7117,7 +7117,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        fc: function fc(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
+        PlrBossMario: function fc(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
             var _ = this
             _.a = a
             _.b = b
@@ -16272,7 +16272,7 @@ T.ef.prototype = {
     },
     $iaF: 1
 }
-T.fc.prototype = {
+T.PlrBossMario.prototype = {
     gan() {
         var s = $.Z(),
             r = $.a4(),
@@ -19181,7 +19181,7 @@ LangData.k_.prototype = {
     inherit_many(T.aB, [T.dn, T.dT, T.ik])
     inherit_many(T.bq, [T.dS, T.b8])
     inherit_many(T.aM, [T.PlrShadow, T.PlrSummon, T.fX])
-    inherit_many(T.cz, [T.f5, T.f6, T.PlrBossCovid, T.f8, T.de, T.df, T.f9, T.fa, T.PlrBossSlime, T.fc, T.fd])
+    inherit_many(T.cz, [T.f5, T.f6, T.PlrBossCovid, T.f8, T.de, T.df, T.f9, T.fa, T.PlrBossSlime, T.PlrBossMario, T.fd])
     inherit(T.fR, T.cy)
     inherit(T.fb, T.PlrBossSlime)
     inherit(T.eg, T.SklCharm)
