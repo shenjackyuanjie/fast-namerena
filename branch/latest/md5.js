@@ -16931,14 +16931,14 @@ T.Plr.prototype = {
         q = this_.d // + 号以后的东西
         if (q != null && q !== "") {
             // DIY part
-            if(q.startsWith("diy")){
+            if (q.startsWith("diy")) {
                 this_.diy = q.slice(3)
-            }else{
+            } else {
                 this_.f = H.as_string(r) + "+" + H.as_string(q)
 
                 // 武器列表
                 r = $.rj()
-                console.log("$.rj()",$.rj())
+                console.log("$.rj()", $.rj())
                 if (r.J(0, q)) {
                     p = r.h(0, q).$2(q, this_)
                 } else if (J.nz(q, $.cl())) {
@@ -17047,30 +17047,30 @@ T.Plr.prototype = {
         this_.bf()
         weapon = this_.weapon
         if (weapon != null) weapon.bn()
-       
+
         this_.aU() // initRawAttr
         this_.bP() // initLists
         this_.dm(C.Array.cL(this_.t, $.au()), C.Array.cL(this_.E, $.au())) // initSkills
 
-         // DIY自定义属性
-         diy=this_.diy
-         if (diy != null){
-            try{
+        // DIY自定义属性
+        diy = this_.diy
+        if (diy != null) {
+            try {
                 var tmparr = diy.split("]");
-                var attrs = JSON.parse(tmparr[0]+"]");
-                if(tmparr[1].startsWith("{")) var skills = JSON.parse(tmparr[1]);
-                if(attrs.length!=8) throw new Error('八围要有八个元素')
-            }catch(error){
+                var attrs = JSON.parse(tmparr[0] + "]");
+                if (tmparr[1].startsWith("{")) var skills = JSON.parse(tmparr[1]);
+                if (attrs.length != 8) throw new Error('八围要有八个元素')
+            } catch (error) {
                 console.error(error)
                 alert("DIY捏人格式错误，请检查");
             }
-            if(attrs){
+            if (attrs) {
                 for (var i = 0; i < 7; i++) {
-                      attrs[i] -= 36; // 为当前项减去36
-                  }
-                this.q=attrs
+                    attrs[i] -= 36; // 为当前项减去36
+                }
+                this.q = attrs
             }
-         }
+        }
 
         weapon = this_.weapon
         if (weapon != null) weapon.cs()
@@ -18660,9 +18660,10 @@ T.Weapon.prototype = {
         e = $.a4()
         s = this_.d
         q = s && C.Array
-        if (r === e){p = q.al(s, $.bg(), $.aI())
-        
-        }else {
+        if (r === e) {
+            p = q.al(s, $.bg(), $.aI())
+
+        } else {
             e = q.al(s, $.bg(), $.aI())
             s = H._arrayInstanceType(e).i("y<1,l*>")
             p = P.List_List_of(new H.y(e, new T.kp(), s), true, s.i("M.E"))
@@ -19004,7 +19005,20 @@ LangData.k_.prototype = {
         inherit = hunkHelpers.inherit,
         inherit_many = hunkHelpers.inheritMany
     inherit(P.Object, null)
-    inherit_many(P.Object, [H.m8, J.Interceptor, J.db, P.O, P.ev, P.L, H.cv, P.fv, H.du, H.hV, H.kh, H.jR, H.dt, H.eE, H.c_, P.aU, H.jK, H.fA, H.JSSyntaxRegExp, H.ew, H.kz, H.bK, H.l3, H.aW, H.ib, H.iu, P.l8, P.i_, P.f3, P.i4, P.cN, P._Future, P.i0, P.em, P.hO, P.hP, P.im, P.i1, P.i3, P.i7, P.ii, P.io, P.lf, P.eM, P.kV, P.ie, P.z, P.dY, P.fg, P.js, P.lc, P.lb, P.dq, P.Duration, P.fM, P.el, P.kG, P.jm, P.N, P.iq, P.cH, W.j8, W.m5, W.cP, W.cr, W.dN, W.eD, W.is, W.dv, W.kE, W.l_, W.ix, P.l4, P.kw, P.eJ, P.jQ, P.kT, Y.RC4, L.ProfileWinChance, V.ProfileMain, X.ProfileFind, S.fK, HtmlRenderer.fq, HtmlRenderer.jT, HtmlRenderer.ax, Sgls.a_, Sgls.n, T.x, T.Plr, T.dk, T.fo, T.b7, T.IPlr, T.HDamage, T.HRecover, T.aX, T.aq, T.bG, T.Weapon, T.fl])
+    inherit_many(P.Object,
+        [H.m8, J.Interceptor, J.db, P.O, P.ev, P.L, H.cv, P.fv, H.du, H.hV, H.kh, H.jR, H.dt, H.eE, H.c_, P.aU, H.jK, H.fA,
+            H.JSSyntaxRegExp, H.ew, H.kz, H.bK, H.l3, H.aW, H.ib, H.iu,
+            P.l8, P.i_, P.f3, P.i4, P.cN,
+            P._Future, P.i0, P.em, P.hO, P.hP, P.im, P.i1, P.i3, P.i7, P.ii, P.io, P.lf, P.eM, P.kV, P.ie, P.z, P.dY, P.fg, P.js, P.lc, P.lb, P.dq,
+            P.Duration, P.fM, P.el, P.kG, P.jm, P.N, P.iq, P.cH,
+            W.j8, W.m5, W.cP, W.cr, W.dN, W.eD, W.is, W.dv, W.kE, W.l_, W.ix,
+            P.l4, P.kw, P.eJ, P.jQ, P.kT, Y.RC4, L.ProfileWinChance, V.ProfileMain, X.ProfileFind,
+            S.fK,
+            HtmlRenderer.fq, HtmlRenderer.jT, HtmlRenderer.ax,
+            Sgls.a_, Sgls.n,
+            T.x, T.Plr, T.dk, T.fo, T.b7, T.IPlr, T.HDamage, T.HRecover, T.aX, T.aq, T.bG, T.Weapon, T.fl
+        ]
+    )
     inherit_many(J.Interceptor, [J.fw, J.cs, J.bE, J.JsArray, J.JsNumber, J.JsString, H.dJ, H.ab, W.fn, W.bX, W.fe, W.i6, W.bb, W.ja, W.jb, W.o, W.c4, W.jL, W.ig, W.il, W.iy, W.iA])
     inherit_many(J.bE, [J.PlainJavaScriptObject, J.UnknownJavaScriptObject, J.JavaScriptFunction])
     inherit(J.jG, J.JsArray)
@@ -21099,7 +21113,7 @@ function main() {
                     raw_names = name_input
                     console.log("node input:|\n", raw_names, "\n|")
                 } else {
-                    
+
                     m = window.sessionStorage.getItem(LangData.eQ("k"))
                     l = X.f4(m, 0)
                     k = LangData.oC(false)
@@ -21137,7 +21151,7 @@ function main() {
                             break
                         } else {
                             logger.info("官方测号-评分")
-                            
+
                             e = $.nk()
                             // if (J.J(h, 0).length === 2 && J.Y(J.J(J.J(h, 0)[1], 0), $.cl())) {
                             if (h[0].length === 2 && h[0][1][0] === $.cl()) {
