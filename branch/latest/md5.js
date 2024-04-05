@@ -7763,7 +7763,7 @@ var A = {
         BaseElement: function BaseElement() {},
         Blob: function Blob() {},
         BodyElement: function BodyElement() {},
-        di: function di() {},
+        CanvasElement: function CanvasElement() {},
         fe: function fe() {},
         b6: function b6() {},
         co: function co() {},
@@ -11269,7 +11269,7 @@ W.Blob.prototype = {
 W.BodyElement.prototype = {
     $ibY: 1
 }
-W.di.prototype = {
+W.CanvasElement.prototype = {
     geJ(a) {
         return a.getContext("2d")
     }
@@ -19067,7 +19067,7 @@ LangData.k_.prototype = {
     inherit_many(W.fn, [W.v, W.dH, W.eq])
     inherit_many(W.v, [W.Q, W.b6, W.cL])
     inherit_many(W.Q, [W.HtmlElement, P.p])
-    inherit_many(W.HtmlElement, [W.AnchorElement, W.AreaElement, W.BaseElement, W.BodyElement, W.di, W.c0, W.fp, W.dQ, W.h4, W.ek, W.ce, W.en, W.hQ, W.hR, W.cI])
+    inherit_many(W.HtmlElement, [W.AnchorElement, W.AreaElement, W.BaseElement, W.BodyElement, W.CanvasElement, W.c0, W.fp, W.dQ, W.h4, W.ek, W.ce, W.en, W.hQ, W.hR, W.cI])
     inherit(W.co, W.i6)
     inherit(W.dm, W.bb)
     inherit(W.cq, W.Blob)
@@ -19285,7 +19285,7 @@ var t = (function rtii() {
 (function constants() {
     var make_const_list = hunkHelpers.makeConstList
     C.n = W.BodyElement.prototype
-    C.H = W.di.prototype
+    C.H = W.CanvasElement.prototype
     C.k = W.fe.prototype
     C.i = W.co.prototype
     C.h = W.c0.prototype
@@ -20538,7 +20538,7 @@ var t = (function rtii() {
         HTMLBaseElement: W.BaseElement,
         Blob: W.Blob,
         HTMLBodyElement: W.BodyElement,
-        HTMLCanvasElement: W.di,
+        HTMLCanvasElement: W.CanvasElement,
         CanvasRenderingContext2D: W.fe,
         CDATASection: W.b6,
         CharacterData: W.b6,
