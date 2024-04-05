@@ -3500,7 +3500,6 @@ var A = {
             if (a) {
                 s = new Y.RC4()
                 s.bd(C.e.gaB().ab(q), 2)
-                // 这里会被 index.dart.js 随机成某个东西?
                 s.di(H.b([32, 46, 189, 177, 148, 32], t.i))
                 return s
             } else {
