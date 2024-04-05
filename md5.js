@@ -19906,10 +19906,12 @@ var t = (function rtii() {
         return LangData.j("?hEGt00!>5nL[OI", 41)
     })
     lazy_old($, "zd", "ni", function () {
-        return LangData.j("tU`0/mA", 2)
+        // return LangData.j("tU`0/mA", 2)
+        return "seed:"
     })
     lazy_old($, "yC", "qm", function () {
-        return LangData.j(";kC;Z", 12)
+        // return LangData.j(";kC;Z", 12)
+        return "dio"
     })
     lazy_old($, "yD", "qn", function () {
         return LangData.j("Ox2j(}6B", 62)
@@ -21339,6 +21341,6 @@ function main() {
     return P._asyncStartSync($async$iE, async_completer)
 }
 
+logger.debug("反混淆", LangData.j("6ct2H)A", 11))
 main();
 // logger.debug("running main:", main()) // 执行main函数
-logger.debug("反混淆", LangData.j("lA", 39))
