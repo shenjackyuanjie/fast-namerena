@@ -8074,7 +8074,7 @@ var A = {
             let plist = s.querySelector(".plist")
             let pbody = s.querySelector(".pbody")
 
-            s = new HtmlRenderer.fq(plist, pbody, a, $.ro().ax(256))
+            s = new HtmlRenderer.inner_render(plist, pbody, a, $.ro().ax(256))
             s.e0(a)
             logger.debug("finish html.outer_main")
             return s
@@ -8264,15 +8264,15 @@ var A = {
             return span_element
         },
         // MARK: html render init
-        fq: function fq(a, b, c, d) {
+        inner_render: function inner_render(a, b, profiler, randomer) {
             var _ = this
             _.a = a
             _.b = b
-            _.c = c // 输入的 profiler
+            _.c = profiler // 输入的 profiler
             _.d = null
             _.f = _.e = false
             _.r = 3
-            _.x = d
+            _.x = randomer
             _.y = 2
             // 既然加速之后就直接 2000
             // 直接初始化为 2000 如何
@@ -12991,7 +12991,7 @@ S.fK.prototype = {
     },
     $iaN: 1
 }
-HtmlRenderer.fq.prototype = {
+HtmlRenderer.inner_render.prototype = {
     e0(a) {
         // a -> profiler input
         var s, root, q, this_ = this
@@ -18977,7 +18977,7 @@ LangData.k_.prototype = {
     install_static_tearoff(W, "uW", 4, null, ["$4"], ["tU"], 20, 0)
     static_2(HtmlRenderer, "oD", "rU", 62)
     var i
-    instance_1i(i = HtmlRenderer.fq.prototype, "gfb", "fc", 31)
+    instance_1i(i = HtmlRenderer.inner_render.prototype, "gfb", "fc", 31)
     instance_1i(i, "gff", "ds", 8)
     m(i, "gbc", "dI", 0)
     l(i, "gfd", "fe", 33)
@@ -19017,7 +19017,7 @@ LangData.k_.prototype = {
             W.j8, W.m5, W.cP, W.cr, W.dN, W.eD, W.is, W.dv, W.kE, W.l_, W.ix,
             P.l4, P.kw, P.eJ, P.jQ, P.kT, Y.RC4, L.ProfileWinChance, V.ProfileMain, X.ProfileFind,
             S.fK,
-            HtmlRenderer.fq, HtmlRenderer.jT, HtmlRenderer.ax,
+            HtmlRenderer.inner_render, HtmlRenderer.jT, HtmlRenderer.ax,
             Sgls.a_, Sgls.n,
             T.x, T.Plr, T.dk, T.fo, T.b7, T.IPlr, T.HDamage, T.HRecover, T.aX, T.aq, T.bG, T.Weapon, T.fl
         ]
