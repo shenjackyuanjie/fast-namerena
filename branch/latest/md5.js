@@ -5302,7 +5302,7 @@ var A = {
                     a0 = H.b([], c)
                     c = H.b([], c)
                     a1 = 0
-                    a1 = new T.de(name, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                    a1 = new T.PlrBossLazy(name, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                     a1.a1(name, s, r, a3)
                     a1.av(name, s)
                     return a1
@@ -5617,7 +5617,7 @@ var A = {
             s.push(T.RunUpdate(LangData.get_lang("hXqA"), a, r, r, r, 0, q, 100))
         },
         tG(a, b, c, d, e) {
-            if (t.r.a(b.r2.h(0, $.d5())) == null && !(b instanceof T.de)) {
+            if (t.r.a(b.r2.h(0, $.d5())) == null && !(b instanceof T.PlrBossLazy)) {
                 T.nO(a, b).aP(0)
                 e.a.push(T.RunUpdate(LangData.get_lang("JnTA"), a, b, null, null, 0, 1000, 100))
             }
@@ -6790,7 +6790,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        de: function de(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
+        PlrBossLazy: function de(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
             var _ = this
             _.a = a
             _.b = b
@@ -15866,7 +15866,7 @@ T.hm.prototype = {
         }
     }
 }
-T.de.prototype = {
+T.PlrBossLazy.prototype = {
     gan() {
         var s = 0
         return H.b([s, $.q2(), $.Z(), -$.as(), s, $.b1(), s, $.cZ()], t.i)
@@ -19181,7 +19181,7 @@ LangData.k_.prototype = {
     inherit_many(T.aB, [T.dn, T.dT, T.ik])
     inherit_many(T.bq, [T.dS, T.b8])
     inherit_many(T.aM, [T.PlrShadow, T.PlrSummon, T.fX])
-    inherit_many(T.cz, [T.PlrBossAokiji, T.PlrBossConan, T.PlrBossCovid, T.PlrBossIkaruga, T.de, T.PlrBossMario, T.PlrBossMosquito, T.fa, T.PlrBossSlime, T.PlrBossSonic, T.PlrBossYuri])
+    inherit_many(T.cz, [T.PlrBossAokiji, T.PlrBossConan, T.PlrBossCovid, T.PlrBossIkaruga, T.PlrBossLazy, T.PlrBossMario, T.PlrBossMosquito, T.fa, T.PlrBossSlime, T.PlrBossSonic, T.PlrBossYuri])
     inherit(T.fR, T.cy)
     inherit(T.fb, T.PlrBossSlime)
     inherit(T.eg, T.SklCharm)
