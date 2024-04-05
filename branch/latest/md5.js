@@ -4896,6 +4896,7 @@ var A = {
                 a.e4(a4, a5, a6)
                 return a
             }
+            // MARK: BOSS INIT(上面也是)
             if (a5 == $.qR()) {
                 s = 0
                 r = $.T()
@@ -4940,6 +4941,8 @@ var A = {
                 a.e5(a4, a5)
                 return a
             }
+            // MARK: 强评?
+            // cl -> !
             s = $.cl()
             if (a5 == s) {
                 if (a4 == $.lQ()) {
@@ -5665,7 +5668,7 @@ var A = {
             h = H.b([], k)
             k = H.b([], k)
             g = 0
-            g = new T.bZ(f, a2, a3, e, null, d, c, b, a, a0, a1, s, r, q, p, o, n, m, l, j, i, h, k, g, g, g, $.W(), g)
+            g = new T.PlrBossSlime(f, a2, a3, e, null, d, c, b, a, a0, a1, s, r, q, p, o, n, m, l, j, i, h, k, g, g, g, $.W(), g)
             g.a1(a2, a3, e, null)
             g.av(a2, a3)
             return g
@@ -7028,7 +7031,7 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        bZ: function bZ(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7, a8) {
+        PlrBossSlime: function bZ(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7, a8) {
             var _ = this
             _.aC = a
             _.a = b
@@ -16163,7 +16166,7 @@ T.hA.prototype = {
 }
 T.cy.prototype = {}
 T.fR.prototype = {}
-T.bZ.prototype = {
+T.PlrBossSlime.prototype = {
     gan() {
         var s = $.a4(),
             r = $.mN()
@@ -19164,9 +19167,9 @@ LangData.k_.prototype = {
     inherit_many(T.aB, [T.dn, T.dT, T.ik])
     inherit_many(T.bq, [T.dS, T.b8])
     inherit_many(T.aM, [T.PlrShadow, T.PlrSummon, T.fX])
-    inherit_many(T.cz, [T.f5, T.f6, T.PlrBossCovid, T.f8, T.de, T.df, T.f9, T.fa, T.bZ, T.fc, T.fd])
+    inherit_many(T.cz, [T.f5, T.f6, T.PlrBossCovid, T.f8, T.de, T.df, T.f9, T.fa, T.PlrBossSlime, T.fc, T.fd])
     inherit(T.fR, T.cy)
-    inherit(T.fb, T.bZ)
+    inherit(T.fb, T.PlrBossSlime)
     inherit(T.eg, T.SklCharm)
     inherit_many(T.IPlr, [T.NPlr, T.HPlr, T.MPlr, T.DPlr])
     inherit_many(T.aX, [T.h2, T.dX])
@@ -19768,7 +19771,8 @@ var t = (function rtii() {
         return LangData.j("jh&DG", 89)
     })
     lazy_old($, "zi", "qO", function () {
-        return LangData.j("~vBK@@A", 29)
+        // return LangData.j("~vBK@@A", 29)
+        return "slime"
     })
     lazy_old($, "ys", "qh", function () {
         return LangData.j("MWSWRPJLA", 99)
