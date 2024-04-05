@@ -3,9 +3,6 @@
 
 'use strict';
 
-// 兼容nodejs, 要不然 window = {}; 会崩
-// 使用 global.window 修复了这个问题, 还是 strict 舒服
-
 let name_input = "!test!\n\natest\n\ntest2";
 let assets_data = {
     lang: null,
@@ -2431,7 +2428,7 @@ var A = {
         _Universe__lookupTerminalRti(a, b, c) {
             var s, r, q = a.eC.get(c)
             if (q != null) return q
-            s = new H.aW(null, null)
+            s = new H.Rti(null, null)
             s.y = b
             s.cy = c
             r = H._Universe__installTypeTests(a, s)
@@ -2454,7 +2451,7 @@ var A = {
                 else r = true
                 if (r) return b
             }
-            q = new H.aW(null, null)
+            q = new H.Rti(null, null)
             q.y = 6
             q.z = b
             q.cy = c
@@ -2486,7 +2483,7 @@ var A = {
                     else return H.Rti__getQuestionFromStar(a, b)
                 }
             }
-            p = new H.aW(null, null)
+            p = new H.Rti(null, null)
             p.y = 7
             p.z = b
             p.cy = c
@@ -2512,7 +2509,7 @@ var A = {
                 else if (s === 1) return H._Universe__lookupInterfaceRti(a, "bl", [b])
                 else if (b === t.P || b === t.T) return t.bG
             }
-            q = new H.aW(null, null)
+            q = new H.Rti(null, null)
             q.y = 8
             q.z = b
             q.cy = c
@@ -2522,7 +2519,7 @@ var A = {
             var s, r, q = "" + b + "^",
                 p = a.eC.get(q)
             if (p != null) return p
-            s = new H.aW(null, null)
+            s = new H.Rti(null, null)
             s.y = 13
             s.z = b
             s.cy = q
@@ -2550,7 +2547,7 @@ var A = {
             if (c.length > 0) p += "<" + H.iv(c) + ">"
             s = a.eC.get(p)
             if (s != null) return s
-            r = new H.aW(null, null)
+            r = new H.Rti(null, null)
             r.y = 9
             r.z = b
             r.Q = c
@@ -2572,7 +2569,7 @@ var A = {
             q = s.cy + (";<" + H.iv(r) + ">")
             p = a.eC.get(q)
             if (p != null) return p
-            o = new H.aW(null, null)
+            o = new H.Rti(null, null)
             o.y = 10
             o.z = s
             o.Q = r
@@ -2603,7 +2600,7 @@ var A = {
             q = n + (g + ")")
             p = a.eC.get(q)
             if (p != null) return p
-            o = new H.aW(null, null)
+            o = new H.Rti(null, null)
             o.y = 11
             o.z = b
             o.Q = c
@@ -2638,7 +2635,7 @@ var A = {
                     return H._Universe__lookupGenericFunctionRti(a, n, m, c !== m)
                 }
             }
-            l = new H.aW(null, null)
+            l = new H.Rti(null, null)
             l.y = 12
             l.z = b
             l.Q = c
@@ -3045,7 +3042,7 @@ var A = {
         ld(a) {
             return a > 0 ? new Array(a) : init.typeUniverse.sEA
         },
-        aW: function aW(a, b) {
+        Rti: function Rti(a, b) {
             var _ = this
             _.a = a
             _.b = b
@@ -9627,7 +9624,7 @@ H.ey.prototype = {}
 H.ez.prototype = {}
 H.eA.prototype = {}
 H.eB.prototype = {}
-H.aW.prototype = {
+H.Rti.prototype = {
     i(a) {
         return H._Universe_evalInEnvironment(init.typeUniverse, this, a)
     },
@@ -19047,7 +19044,7 @@ LangData.k_.prototype = {
     inherit(P.Object, null)
     inherit_many(P.Object,
         [H.m8, J.Interceptor, J.db, P.O, P.ev, P.L, H.cv, P.fv, H.du, H.hV, H.kh, H.jR, H.dt, H.eE, H.c_, P.aU, H.jK, H.fA,
-            H.JSSyntaxRegExp, H.ew, H.kz, H.bK, H.l3, H.aW, H.ib, H.iu,
+            H.JSSyntaxRegExp, H.ew, H.kz, H.bK, H.l3, H.Rti, H.ib, H.iu,
             P.l8, P.i_, P.f3, P.i4, P.cN,
             P._Future, P.i0, P.em, P.hO, P.hP, P.im, P.i1, P.i3, P.i7, P.ii, P.io, P.lf, P.eM, P.kV, P.ie, P.z, P.dY, P.fg, P.js, P.lc, P.lb, P.dq,
             P.Duration, P.fM, P.el, P.kG, P.jm, P.N, P.iq, P.cH,
