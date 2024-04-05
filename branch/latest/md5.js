@@ -5533,12 +5533,12 @@ var A = {
                 a = H.b([], d)
                 d = H.b([], d)
                 a0 = 0
-                a0 = new T.fQ(name, s, name, weapon_name, r, q, p, o, n, m, l, k, j, i, h, g, f, e, c, b, a, d, a0, a0, a0, $.W(), a0)
+                a0 = new T.PlrEx(name, s, name, weapon_name, r, q, p, o, n, m, l, k, j, i, h, g, f, e, c, b, a, d, a0, a0, a0, $.W(), a0)
                 a0.a1(name, s, name, weapon_name)
                 a0.e2(name, s, name, weapon_name)
                 return a0
             }
-            return T.nT(name, clan_name, a3, weapon_name)
+            return T.init_plr(name, clan_name, a3, weapon_name)
         },
         oq(a) {
             var s = a.d
@@ -6004,7 +6004,7 @@ var A = {
             if (s !== 0) return s
             return J.lV(a.e, b.e)
         },
-        nT(a0, a1, a2, a3) {
+        init_plr(name, clan_name, fgt, weapon) {
             var s, r, q, p, o, n, m, l, k, j, i, h, Plr, f = 0,
                 e = $.T(),
                 d = H.b([], t.q),
@@ -6043,8 +6043,8 @@ var A = {
             h = H.b([], k)
             k = H.b([], k)
             Plr = 0
-            Plr = new T.Plr(a0, a1, a2, a3, f, e, d, c, b, a, s, r, q, p, o, n, m, l, j, i, h, k, Plr, Plr, Plr, $.W(), Plr)
-            Plr.a1(a0, a1, a2, a3)
+            Plr = new T.Plr(name, clan_name, fgt, weapon, f, e, d, c, b, a, s, r, q, p, o, n, m, l, j, i, h, k, Plr, Plr, Plr, $.W(), Plr)
+            Plr.a1(name, clan_name, fgt, weapon)
             return Plr
         },
         t6(a, b) {
@@ -6591,7 +6591,7 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        fQ: function fQ(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
+        PlrEx: function fQ(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
             var _ = this
             _.a = a
             _.b = b
@@ -7300,7 +7300,7 @@ var A = {
             this.b = b
         },
         aM: function aM() { },
-        Plr: function u(a, b, c, d, e, f, skills, actions, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
+        Plr: function init_plr(a, b, c, d, e, f, skills, actions, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
             /*skl.f -> skl.level
             action.e -> action.boosted
 
@@ -15518,7 +15518,7 @@ T.PlrBossTest2.prototype = {
         this.x = $.ao()
     }
 }
-T.fQ.prototype = {
+T.PlrEx.prototype = {
     e2(a, b, c, d) {
         var s, r, q, p, o, n = this
         for (s = $.a4(); r = $.b1(), s < r; ++s) {
@@ -16398,7 +16398,7 @@ T.fo.prototype = {
                                         a0 = $.i()
                                         a = a === a0 && J.ny(b.h(c, a0), 0) < $.pC()
                                     } else a = false
-                                    a2 = a ? T.init_boss(b.h(c, 0), b.h(c, $.i()), this_, a1) : T.nT(b.h(c, 0), b.h(c, $.i()), e.b, a1)
+                                    a2 = a ? T.init_boss(b.h(c, 0), b.h(c, $.i()), this_, a1) : T.init_plr(b.h(c, 0), b.h(c, $.i()), e.b, a1)
                                     if (a2 instanceof T.cy) {
                                         b3.push(a2.e)
                                         k.push(a2)
@@ -19190,7 +19190,7 @@ LangData.k_.prototype = {
     )
     inherit_many(T.aZ, [T.dj, T.dw, T.dx, T.eh, T.bd, T.h1])
     inherit_many(T.x, [T.dI, T.c3, T.hF, T.fC, T.hY])
-    inherit_many(T.Plr, [T.dR, T.aM, T.cz, T.PlrBoost, T.PlrBossTest, T.PlrBossTest2, T.fQ, T.cy])
+    inherit_many(T.Plr, [T.dR, T.aM, T.cz, T.PlrBoost, T.PlrBossTest, T.PlrBossTest2, T.PlrEx, T.cy])
     inherit_many(T.aB, [T.dn, T.dT, T.ik])
     inherit_many(T.bq, [T.dS, T.b8])
     inherit_many(T.aM, [T.PlrShadow, T.PlrSummon, T.fX])
