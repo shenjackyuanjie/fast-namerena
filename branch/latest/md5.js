@@ -7772,7 +7772,7 @@ var A = {
         c0: function c0() {},
         ja: function ja() {},
         jb: function jb() {},
-        Q: function Q() {},
+        Element: function Element() {},
         jf: function jf() {},
         o: function o() {},
         fn: function fn() {},
@@ -11343,7 +11343,7 @@ W.jb.prototype = {
         return a.length
     }
 }
-W.Q.prototype = {
+W.Element.prototype = {
     geH(a) {
         return new W.i8(a)
     },
@@ -18931,7 +18931,7 @@ LangData.k_.prototype = {
     s.dQ = s.k
     s = P.L.prototype
     s.dP = s.bV
-    s = W.Q.prototype
+    s = W.Element.prototype
     s.bY = s.aA
     s = W.eD.prototype
     s.dX = s.aM
@@ -19065,8 +19065,8 @@ LangData.k_.prototype = {
     inherit(P.kj, P.jg)
     inherit_many(P.aS, [P.cD, P.fs])
     inherit_many(W.fn, [W.v, W.dH, W.eq])
-    inherit_many(W.v, [W.Q, W.b6, W.cL])
-    inherit_many(W.Q, [W.HtmlElement, P.p])
+    inherit_many(W.v, [W.Element, W.b6, W.cL])
+    inherit_many(W.Element, [W.HtmlElement, P.p])
     inherit_many(W.HtmlElement, [W.AnchorElement, W.AreaElement, W.BaseElement, W.BodyElement, W.CanvasElement, W.c0, W.fp, W.dQ, W.h4, W.ek, W.ce, W.en, W.hQ, W.hR, W.cI])
     inherit(W.co, W.i6)
     inherit(W.dm, W.bb)
@@ -20552,7 +20552,7 @@ var t = (function rtii() {
         HTMLDivElement: W.c0,
         DOMException: W.ja,
         DOMTokenList: W.jb,
-        Element: W.Q,
+        Element: W.Element,
         AbortPaymentEvent: W.o,
         AnimationEvent: W.o,
         AnimationPlaybackEvent: W.o,
