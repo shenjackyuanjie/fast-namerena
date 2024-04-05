@@ -1855,7 +1855,7 @@ var A = {
         dL: function dL() {},
         cx: function cx() {},
         _NativeTypedArrayOfDouble_NativeTypedArray_ListMixin: function ey() {},
-        ez: function ez() {},
+        _NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin: function ez() {},
         eA: function eA() {},
         eB: function eB() {},
         Rti__getQuestionFromStar(a, b) {
@@ -9621,7 +9621,7 @@ H.cx.prototype = {
     $icx: 1
 }
 H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin.prototype = {}
-H.ez.prototype = {}
+H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin.prototype = {}
 H.eA.prototype = {}
 H.eB.prototype = {}
 H.Rti.prototype = {
@@ -19092,8 +19092,8 @@ LangData.k_.prototype = {
     inherit(H.hZ, P.dy)
     inherit(H.cw, H.ab)
     inherit_many(H.cw, [H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin, H.eA])
-    inherit(H.ez, H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin)
-    inherit(H.c9, H.ez)
+    inherit(H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin, H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin)
+    inherit(H.c9, H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin)
     inherit(H.eB, H.eA)
     inherit(H.dK, H.eB)
     inherit_many(H.dK, [H.fE, H.fF, H.fG, H.fH, H.fI, H.dL, H.cx])
@@ -19182,7 +19182,7 @@ LangData.k_.prototype = {
 
     mixin(H.cJ, H.hV)
     mixin(H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin, P.z)
-    mixin(H.ez, H.du)
+    mixin(H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin, H.du)
     mixin(H.eA, P.z)
     mixin(H.eB, H.du)
     mixin(P.cK, P.i1)
@@ -21106,7 +21106,7 @@ var t = (function rtii() {
     })
     H.cw.$nativeSuperclassTag = "ArrayBufferView"
     H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin.$nativeSuperclassTag = "ArrayBufferView"
-    H.ez.$nativeSuperclassTag = "ArrayBufferView"
+    H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin.$nativeSuperclassTag = "ArrayBufferView"
     H.c9.$nativeSuperclassTag = "ArrayBufferView"
     H.eA.$nativeSuperclassTag = "ArrayBufferView"
     H.eB.$nativeSuperclassTag = "ArrayBufferView"
