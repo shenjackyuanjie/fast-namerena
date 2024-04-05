@@ -3,10 +3,7 @@
 
 'use strict';
 
-// 兼容nodejs, 要不然 window = {}; 会崩
-// 使用 global.window 修复了这个问题, 还是 strict 舒服
-
-let name_input = "!tadw est!\natest\ntest2+aa";
+let name_input = "!test!\n\natest\n\ntest2";
 let assets_data = {
     lang: null,
     gAd: null,
@@ -45,8 +42,8 @@ if (run_env.from_code) {
     let stored_elements = [];
 
     global.window = {
-        sessionStorage: function () {},
-        localStorage: function () {},
+        sessionStorage: function () { },
+        localStorage: function () { },
     };
 
     class fake_class_list {
@@ -96,7 +93,7 @@ if (run_env.from_code) {
         appendChild(element) {
             this.childList.push(element);
         };
-        addEventListener() {};
+        addEventListener() { };
     }
 
     global.document = {
@@ -188,7 +185,7 @@ function lazyOld(a, b, c, d) {
     a[b] = s
     a[c] = function () {
         a[c] = function () {
-            H.vl(b)
+            H.throwCyclicInit(b)
         }
         var r
         var q = d
@@ -318,10 +315,10 @@ function updateHolder(a, b) {
 }
 var hunkHelpers = function () {
     var s = function (a, b, c, d, e) {
-            return function (f, g, h, i) {
-                return installInstanceTearOff(f, g, a, b, c, d, [h], i, e, false)
-            }
-        },
+        return function (f, g, h, i) {
+            return installInstanceTearOff(f, g, a, b, c, d, [h], i, e, false)
+        }
+    },
         r = function (a, b, c, d) {
             return function (e, f, g, h) {
                 return installStaticTearOff(e, f, a, b, c, [g], h, d)
@@ -354,23 +351,23 @@ var hunkHelpers = function () {
 }()
 
 var A = {
-        eR(a) {
-            var s = window.localStorage,
-                r = LangData.eQ("i")
-            s.setItem(r, a)
-            s = $.nx()
-            r = s.b
-            if (r >= 4) H.throw_expression(s.ee())
-            if ((r & 1) !== 0) s.cc(a)
-            else if ((r & 3) === 0) s.en().j(0, new P.er(a))
-        },
-        vo(a) {
-            var s = $.nx()
-            s.toString
-            new P.cM(s, H._instanceType(s).i("cM<1>")).f4(a)
-            return
-        }
+    eR(a) {
+        var s = window.localStorage,
+            r = LangData.eQ("i")
+        s.setItem(r, a)
+        s = $.nx()
+        r = s.b
+        if (r >= 4) H.throw_expression(s.ee())
+        if ((r & 1) !== 0) s.cc(a)
+        else if ((r & 3) === 0) s.en().j(0, new P.er(a))
     },
+    vo(a) {
+        var s = $.nx()
+        s.toString
+        new P.cM(s, H._instanceType(s).i("cM<1>")).f4(a)
+        return
+    }
+},
     C = {},
     Sgls = {
         o6(a) {
@@ -508,9 +505,9 @@ var A = {
             for (q = J.bv(s), p = 0; p < 256; ++p) q.gck(s)[p * 4 + 3] = r[p]
             C.k.dw(a, s, 0, 0)
         },
-        k7: function k7() {},
-        k4: function k4() {},
-        k5: function k5() {},
+        k7: function k7() { },
+        k4: function k4() { },
+        k5: function k5() { },
         k6: function k6(a, b, c) {
             this.a = a
             this.b = b
@@ -529,10 +526,10 @@ var A = {
             _.c = b
             _.$ti = c
         },
-        n: function n() {}
+        n: function n() { }
     },
     H = {
-        m8: function m8() {},
+        m8: function m8() { },
         ls(a, b, c) {
             if (a == null) throw H.wrap_expression(new H.dO(b, c.i("dO<0>")))
             return a
@@ -644,7 +641,7 @@ var A = {
                         if (p !== r) {
                             c.m(a3, p, c.h(a3, r))
                             c.m(a3, r, o)
-                        }++r
+                        } ++r
                     } else
                         for (; true;) {
                             n = a6.$2(c.h(a3, q), a)
@@ -678,7 +675,7 @@ var A = {
                         if (p !== r) {
                             c.m(a3, p, c.h(a3, r))
                             c.m(a3, r, o)
-                        }++r
+                        } ++r
                     } else if (a6.$2(o, a1) > 0)
                         for (; true;)
                             if (a6.$2(c.h(a3, q), a1) > 0) {
@@ -727,7 +724,7 @@ var A = {
                         if (p !== r) {
                             c.m(a3, p, c.h(a3, r))
                             c.m(a3, r, o)
-                        }++r
+                        } ++r
                     } else if (a6.$2(o, a1) === 0)
                         for (; true;)
                             if (a6.$2(c.h(a3, q), a1) === 0) {
@@ -763,8 +760,8 @@ var A = {
             this.a = a
             this.$ti = b
         },
-        A: function A() {},
-        M: function M() {},
+        A: function A() { },
+        M: function M() { },
         cv: function cv(a, b) {
             var _ = this
             _.a = a
@@ -801,9 +798,9 @@ var A = {
             this.a = a
             this.b = b
         },
-        du: function du() {},
-        hV: function hV() {},
-        cJ: function cJ() {},
+        du: function du() { },
+        hV: function hV() { },
+        cJ: function cJ() { },
         a9: function a9(a, b) {
             this.a = a
             this.$ti = b
@@ -1039,36 +1036,36 @@ var A = {
         },
         unwrap_Exception(a) {
             if (a == null) return new H.jR(a)
-            if (a instanceof H.dt) return H.bR(a, a.a)
+            if (a instanceof H.dt) return H.saveStackTrace(a, a.a)
             if (typeof a !== "object") return a
-            if ("dartException" in a) return H.bR(a, a.dartException)
-            return H.uH(a)
+            if ("dartException" in a) return H.saveStackTrace(a, a.dartException)
+            return H._unwrapNonDartException(a)
         },
-        bR(a, b) {
-            if (t.u.b(b))
-                if (b.$thrownJsError == null) b.$thrownJsError = a
-            return b
+        saveStackTrace(ex, err) {
+            if (t.u.b(err))
+                if (err.$thrownJsError == null) err.$thrownJsError = ex
+            return err
         },
-        uH(a) {
-            var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e = null
-            if (!("message" in a)) return a
-            s = a.message
-            if ("number" in a && typeof a.number == "number") {
-                r = a.number
+        _unwrapNonDartException(ex) {
+            var s, r, q, t1, nsme, not_closure, null_call, l, k, j, i, h, g, match, e = null
+            if (!("message" in ex)) return ex
+            s = ex.message
+            if ("number" in ex && typeof ex.number == "number") {
+                r = ex.number
                 q = r & 65535
                 if ((C.JsInt.am(r, 16) & 8191) === 10) switch (q) {
                     case 438:
-                        return H.bR(a, H.m9(H.as_string(s) + " (Error " + q + ")", e))
+                        return H.saveStackTrace(ex, H.m9(H.as_string(s) + " (Error " + q + ")", e))
                     case 445:
                     case 5007:
-                        p = H.as_string(s) + " (Error " + q + ")"
-                        return H.bR(a, new H.dP(p, e))
+                        t1 = H.as_string(s) + " (Error " + q + ")"
+                        return H.saveStackTrace(ex, new H.NullError(t1, e))
                 }
             }
-            if (a instanceof TypeError) {
-                o = $.r7()
-                n = $.r8()
-                m = $.r9()
+            if (ex instanceof TypeError) {
+                nsme = $.r7()
+                not_closure = $.r8()
+                null_call = $.r9()
                 l = $.ra()
                 k = $.rd()
                 j = $.re()
@@ -1076,57 +1073,59 @@ var A = {
                 $.rb()
                 h = $.rg()
                 g = $.rf()
-                f = o.aH(s)
-                if (f != null) return H.bR(a, H.m9(s, f))
+                match = nsme.aH(s)
+                if (match != null) return H.saveStackTrace(ex, H.m9(s, match))
                 else {
-                    f = n.aH(s)
-                    if (f != null) {
-                        f.method = "call"
-                        return H.bR(a, H.m9(s, f))
+                    match = not_closure.aH(s)
+                    if (match != null) {
+                        match.method = "call"
+                        return H.saveStackTrace(ex, H.m9(s, match))
                     } else {
-                        f = m.aH(s)
-                        if (f == null) {
-                            f = l.aH(s)
-                            if (f == null) {
-                                f = k.aH(s)
-                                if (f == null) {
-                                    f = j.aH(s)
-                                    if (f == null) {
-                                        f = i.aH(s)
-                                        if (f == null) {
-                                            f = l.aH(s)
-                                            if (f == null) {
-                                                f = h.aH(s)
-                                                if (f == null) {
-                                                    f = g.aH(s)
-                                                    p = f != null
-                                                } else p = true
-                                            } else p = true
-                                        } else p = true
-                                    } else p = true
-                                } else p = true
-                            } else p = true
-                        } else p = true
-                        if (p) return H.bR(a, new H.dP(s, f == null ? e : f.method))
+                        match = null_call.aH(s)
+                        if (match == null) {
+                            match = l.aH(s)
+                            if (match == null) {
+                                match = k.aH(s)
+                                if (match == null) {
+                                    match = j.aH(s)
+                                    if (match == null) {
+                                        match = i.aH(s)
+                                        if (match == null) {
+                                            match = l.aH(s)
+                                            if (match == null) {
+                                                match = h.aH(s)
+                                                if (match == null) {
+                                                    match = g.aH(s)
+                                                    t1 = match != null
+                                                } else t1 = true
+                                            } else t1 = true
+                                        } else t1 = true
+                                    } else t1 = true
+                                } else t1 = true
+                            } else t1 = true
+                        } else t1 = true
+                        if (t1) {
+                            return H.saveStackTrace(ex, new H.NullError(s, match == null ? e : match.method))
+                        }
                     }
                 }
-                return H.bR(a, new H.hU(typeof s == "string" ? s : ""))
+                return H.saveStackTrace(ex, new H.hU(typeof s == "string" ? s : ""))
             }
-            if (a instanceof RangeError) {
+            if (ex instanceof RangeError) {
                 if (typeof s == "string" && s.indexOf("call stack") !== -1) return new P.el()
                 s = function (b) {
                     try {
                         return String(b)
-                    } catch (d) {}
+                    } catch (d) { }
                     return null
-                }(a)
-                return H.bR(a, new P.aS(false, e, e, typeof s == "string" ? s.replace(/^RangeError:\s*/, "") : s))
+                }(ex)
+                return H.saveStackTrace(ex, new P.aS(false, e, e, typeof s == "string" ? s.replace(/^RangeError:\s*/, "") : s))
             }
-            if (typeof InternalError == "function" && a instanceof InternalError)
+            if (typeof InternalError == "function" && ex instanceof InternalError)
                 if (typeof s == "string" && s === "too much recursion") return new P.el()
-            return a
+            return ex
         },
-        get_trace_from_exception(a) {
+        getTraceFromException(a) {
             var s
             if (a instanceof H.dt) return a.b
             if (a == null) return new H.eE(a)
@@ -1178,7 +1177,7 @@ var A = {
             closure.$identity = func
             return func
         },
-        rL(a2) {
+        Closure_fromTearOff(a2) {
             var s, r, q, p, o, n, m, l, k, j, i = a2.co,
                 h = a2.iS,
                 g = a2.iI,
@@ -1207,12 +1206,12 @@ var A = {
             s.$_name = b
             s.$_target = a0
             q = !h
-            if (q) p = H.nH(b, a0, g, f)
+            if (q) p = H.Closure_forwardCallTo(b, a0, g, f)
             else {
                 s.$static_name = b
                 p = a0
             }
-            s.$S = H.rH(a1, h, g)
+            s.$S = H.Closure__computeSignatureFunctionNewRti(a1, h, g)
             s[a] = p
             for (o = p, n = 1; n < d.length; ++n) {
                 m = d[n]
@@ -1223,7 +1222,7 @@ var A = {
                 } else k = ""
                 j = c[n]
                 if (j != null) {
-                    if (q) m = H.nH(k, m, g, f)
+                    if (q) m = H.Closure_forwardCallTo(k, m, g, f)
                     s[j] = m
                 }
                 if (n === e) o = m
@@ -1233,7 +1232,7 @@ var A = {
             s.$D = a2.dV
             return r
         },
-        rH(a, b, c) {
+        Closure__computeSignatureFunctionNewRti(a, b, c) {
             if (typeof a == "number") return a
             if (typeof a == "string") {
                 if (b) throw H.wrap_expression("Cannot compute signature for static tearoff.")
@@ -1245,59 +1244,59 @@ var A = {
             }
             throw H.wrap_expression("Error in functionType of tearoff")
         },
-        rI(a, b, c, d) {
-            var s = H.nF
-            switch (b ? -1 : a) {
+        Closure_cspForwardCall(arity, is_super_call, stub_name, func) {
+            var get_self = H.BoundClosure_selfOf
+            switch (is_super_call ? -1 : arity) {
                 case 0:
                     return function (e, f) {
                         return function () {
                             return f(this)[e]()
                         }
-                    }(c, s)
+                    }(stub_name, get_self)
                 case 1:
                     return function (e, f) {
                         return function (g) {
                             return f(this)[e](g)
                         }
-                    }(c, s)
+                    }(stub_name, get_self)
                 case 2:
                     return function (e, f) {
                         return function (g, h) {
                             return f(this)[e](g, h)
                         }
-                    }(c, s)
+                    }(stub_name, get_self)
                 case 3:
                     return function (e, f) {
                         return function (g, h, i) {
                             return f(this)[e](g, h, i)
                         }
-                    }(c, s)
+                    }(stub_name, get_self)
                 case 4:
                     return function (e, f) {
                         return function (g, h, i, j) {
                             return f(this)[e](g, h, i, j)
                         }
-                    }(c, s)
+                    }(stub_name, get_self)
                 case 5:
                     return function (e, f) {
                         return function (g, h, i, j, k) {
                             return f(this)[e](g, h, i, j, k)
                         }
-                    }(c, s)
+                    }(stub_name, get_self)
                 default:
                     return function (e, f) {
                         return function () {
                             return e.apply(f(this), arguments)
                         }
-                    }(d, s)
+                    }(func, get_self)
             }
         },
-        nH(a, b, c, d) {
+        Closure_forwardCallTo(a, b, c, d) {
             var s, r, q, p, o, n = "receiver"
-            if (c) return H.rK(a, b, d)
+            if (c) return H.Closure_forwardInterceptedCallTo(a, b, d)
             s = b.length
             r = d || s >= 27
-            if (r) return H.rI(s, d, a, b)
+            if (r) return H.Closure_cspForwardCall(s, d, a, b)
             if (s === 0) {
                 r = $.bk
                 $.bk = r + 1
@@ -1314,10 +1313,10 @@ var A = {
             p = $.dh
             return new Function(r + (p == null ? $.dh = H.j3(n) : p) + "." + H.as_string(a) + "(" + o + ");}")()
         },
-        rJ(a, b, c, d) {
-            var s = H.nF,
-                r = H.rG
-            switch (b ? -1 : a) {
+        Closure_cspForwardInterceptedCall(arity, is_super_call, name, func) {
+            var get_self = H.BoundClosure_selfOf,
+                get_receiver = H.BoundClosure_receiverOf
+            switch (is_super_call ? -1 : arity) {
                 case 0:
                     throw H.wrap_expression(new H.h3("Intercepted function with no arguments."))
                 case 1:
@@ -1325,37 +1324,37 @@ var A = {
                         return function () {
                             return f(this)[e](g(this))
                         }
-                    }(c, r, s)
+                    }(name, get_receiver, get_self)
                 case 2:
                     return function (e, f, g) {
                         return function (h) {
                             return f(this)[e](g(this), h)
                         }
-                    }(c, r, s)
+                    }(name, get_receiver, get_self)
                 case 3:
                     return function (e, f, g) {
                         return function (h, i) {
                             return f(this)[e](g(this), h, i)
                         }
-                    }(c, r, s)
+                    }(name, get_receiver, get_self)
                 case 4:
                     return function (e, f, g) {
                         return function (h, i, j) {
                             return f(this)[e](g(this), h, i, j)
                         }
-                    }(c, r, s)
+                    }(name, get_receiver, get_self)
                 case 5:
                     return function (e, f, g) {
                         return function (h, i, j, k) {
                             return f(this)[e](g(this), h, i, j, k)
                         }
-                    }(c, r, s)
+                    }(name, get_receiver, get_self)
                 case 6:
                     return function (e, f, g) {
                         return function (h, i, j, k, l) {
                             return f(this)[e](g(this), h, i, j, k, l)
                         }
-                    }(c, r, s)
+                    }(name, get_receiver, get_self)
                 default:
                     return function (e, f, g) {
                         return function () {
@@ -1363,17 +1362,17 @@ var A = {
                             Array.prototype.push.apply(q, arguments)
                             return e.apply(f(this), q)
                         }
-                    }(d, r, s)
+                    }(func, get_receiver, get_self)
             }
         },
-        rK(a, b, c) {
+        Closure_forwardInterceptedCallTo(a, b, c) {
             var s, r, q, p, o, n = $.nE
             if (n == null) n = $.nE = H.j3("interceptor")
             s = $.dh
             if (s == null) s = $.dh = H.j3("receiver")
             r = b.length
             q = c || r >= 28
-            if (q) return H.rJ(r, c, a, b)
+            if (q) return H.Closure_cspForwardInterceptedCall(r, c, a, b)
             if (r === 1) {
                 q = "return function(){return this." + n + "." + H.as_string(a) + "(this." + s + ");"
                 p = $.bk
@@ -1387,15 +1386,20 @@ var A = {
             return new Function(q + H.as_string(p) + "}")()
         },
         mx(a) {
-            return H.rL(a)
+            // 理论上不能改, 但是似乎可以
+            // 上面是因为这玩意在普通版里是用来拼接的, 但是这里似乎没用于拼接
+            return H.Closure_fromTearOff(a)
         },
         rF(a, b) {
+            // BoundClosure_evalRecipe
+            // or
+            // BoundClosure_evalRecipeIntercepted
             return H._Universe_evalInEnvironment(init.typeUniverse, H.instanceType(a.a), b)
         },
-        nF(a) {
+        BoundClosure_selfOf(a) {
             return a.a
         },
-        rG(a) {
+        BoundClosure_receiverOf(a) {
             return a.b
         },
         j3(a) {
@@ -1407,13 +1411,14 @@ var A = {
             }
             throw H.wrap_expression(P.bz("Field name " + a + " not found.", null))
         },
-        vl(a) {
+        throwCyclicInit(a) {
             throw H.wrap_expression(new P.fj(a))
         },
-        uT(a) {
+        getIsolateAffinityTag(a) {
             return init.getIsolateTag(a)
         },
-        Aw(a, b, c) {
+        defineProperty(a, b, c) {
+            // 笑死, 根本没人用
             Object.defineProperty(a, b, {
                 value: c,
                 enumerable: false,
@@ -1459,7 +1464,7 @@ var A = {
             s = r.prototype
             p = n[0]
             if (p === "!") {
-                m = H.lB(s)
+                m = H.makeLeafDispatchRecord(s)
                 $.lt[n] = m
                 Object.defineProperty(obj, init.dispatchPropertyName, {
                     value: m,
@@ -1474,7 +1479,7 @@ var A = {
                 return s
             }
             if (p === "-") {
-                o = H.lB(s)
+                o = H.makeLeafDispatchRecord(s)
                 Object.defineProperty(Object.getPrototypeOf(obj), init.dispatchPropertyName, {
                     value: o,
                     enumerable: false,
@@ -1483,10 +1488,10 @@ var A = {
                 })
                 return o.i
             }
-            if (p === "+") return H.oK(obj, s)
+            if (p === "+") return H.patchInteriorProto(obj, s)
             if (p === "*") throw H.wrap_expression(P.hT(n))
             if (init.leafTags[n] === true) {
-                o = H.lB(s)
+                o = H.makeLeafDispatchRecord(s)
                 Object.defineProperty(Object.getPrototypeOf(obj), init.dispatchPropertyName, {
                     value: o,
                     enumerable: false,
@@ -1494,9 +1499,9 @@ var A = {
                     configurable: true
                 })
                 return o.i
-            } else return H.oK(obj, s)
+            } else return H.patchInteriorProto(obj, s)
         },
-        oK(a, b) {
+        patchInteriorProto(a, b) {
             var s = Object.getPrototypeOf(a)
             Object.defineProperty(s, init.dispatchPropertyName, {
                 value: J.makeDispatchRecord(b, s, null, null),
@@ -1506,15 +1511,15 @@ var A = {
             })
             return b
         },
-        lB(a) {
+        makeLeafDispatchRecord(a) {
             return J.makeDispatchRecord(a, false, null, !!a.$iag)
         },
-        v3(a, b, c) {
+        makeDefaultDispatchRecord(a, b, c) {
             var s = b.prototype
-            if (init.leafTags[a] === true) return H.lB(s)
+            if (init.leafTags[a] === true) return H.makeLeafDispatchRecord(s)
             else return J.makeDispatchRecord(s, c, null, null)
         },
-        uY() {
+        initNativeDispatch() {
             if (true === $.mA) return
             $.mA = true
             if (!run_env.from_code) {
@@ -1525,18 +1530,18 @@ var A = {
             var s, r, q, p, o, n, m, l
             $.lt = Object.create(null)
             $.ly = Object.create(null)
-            H.uX()
+            H.initHooks()
             s = init.interceptorsByTag
             r = Object.getOwnPropertyNames(s)
             // 检测是否在网页内运行
             if (typeof window != "undefined") {
                 window
-                q = function () {}
+                q = function () { }
                 for (p = 0; p < r.length; ++p) {
                     o = r[p]
                     n = $.oL.$1(o)
                     if (n != null) {
-                        m = H.v3(o, s[o], n)
+                        m = H.makeDefaultDispatchRecord(o, s[o], n)
                         if (m != null) {
                             Object.defineProperty(n, init.dispatchPropertyName, {
                                 value: m,
@@ -1561,7 +1566,7 @@ var A = {
                 }
             }
         },
-        uX() {
+        initHooks() {
             var p, o, n, m = C.w()
 
             p = m.getTag
@@ -1571,9 +1576,10 @@ var A = {
             $.ov = new H.lw(o)
             $.oL = new H.lx(n)
         },
-        cT(a, b) {
-            return a(b) || b
-        },
+        // 笑死了, 我把所有调用删掉了(在之前的commit)
+        // applyHooksTransformer(transformer, hooks) {
+        //     return transformer(hooks) || hooks
+        // },
         JSSyntaxRegExp_makeNative(source, multiline, case_sensitive, unicode, dot_all, global) {
             var s = multiline ? "m" : "",
                 r = case_sensitive ? "" : "i",
@@ -1707,7 +1713,7 @@ var A = {
             _.e = e
             _.f = f
         },
-        dP: function dP(a, b) {
+        NullError: function dP(a, b) {
             this.a = a
             this.b = b
         },
@@ -1730,11 +1736,11 @@ var A = {
             this.a = a
             this.b = null
         },
-        c_: function c_() {},
-        j5: function j5() {},
-        j6: function j6() {},
-        kg: function kg() {},
-        kc: function kc() {},
+        c_: function c_() { },
+        j5: function j5() { },
+        j6: function j6() { },
+        kg: function kg() { },
+        kc: function kc() { },
         dg: function dg(a, b) {
             this.a = a
             this.b = b
@@ -1826,8 +1832,8 @@ var A = {
             s = new Uint8Array(a, b)
             return s
         },
-        bt(a, b, c) {
-            if (a >>> 0 !== a || a >= c) throw H.wrap_expression(H.bQ(b, a))
+        _checkValidIndex(index, list, len) {
+            if (index >>> 0 !== index || index >= len) throw H.wrap_expression(H.bQ(list, index))
         },
         ug(a, b, c) {
             var s
@@ -1836,42 +1842,42 @@ var A = {
             if (s) throw H.wrap_expression(H.uP(a, b, c))
             return b
         },
-        dJ: function dJ() {},
-        ab: function ab() {},
-        cw: function cw() {},
-        c9: function c9() {},
-        dK: function dK() {},
-        fE: function fE() {},
-        fF: function fF() {},
-        fG: function fG() {},
-        fH: function fH() {},
-        fI: function fI() {},
-        dL: function dL() {},
-        cx: function cx() {},
-        ey: function ey() {},
-        ez: function ez() {},
-        eA: function eA() {},
-        eB: function eB() {},
-        tr(a, b) {
+        dJ: function dJ() { },
+        ab: function ab() { },
+        NativeTypedArray: function cw() { },
+        NativeTypedArrayOfDouble: function c9() { },
+        NativeTypedArrayOfInt: function dK() { },
+        fE: function fE() { },
+        fF: function fF() { },
+        fG: function fG() { },
+        fH: function fH() { },
+        fI: function fI() { },
+        dL: function dL() { },
+        cx: function cx() { },
+        _NativeTypedArrayOfDouble_NativeTypedArray_ListMixin: function ey() { },
+        _NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin: function ez() { },
+        _NativeTypedArrayOfInt_NativeTypedArray_ListMixin: function eA() { },
+        _NativeTypedArrayOfInt_NativeTypedArray_ListMixin_FixedLengthListMixin: function eB() { },
+        Rti__getQuestionFromStar(a, b) {
             var s = b.c
             return s == null ? b.c = H._Universe__lookupQuestionRti(a, b.z, true) : s
         },
-        o2(a, b) {
+        Rti__getFutureFromFutureOr(a, b) {
             var s = b.c
             return s == null ? b.c = H._Universe__lookupInterfaceRti(a, "bl", [b.z]) : s
         },
-        o3(a) {
+        Rti__isUnionOfFunctionType(a) {
             var s = a.y
-            if (s === 6 || s === 7 || s === 8) return H.o3(a.z)
+            if (s === 6 || s === 7 || s === 8) return H.Rti__isUnionOfFunctionType(a.z)
             return s === 11 || s === 12
         },
-        tq(a) {
+        Rti__getCanonicalRecipe(a) {
             return a.cy
         },
-        find_type(a) {
+        findType(a) {
             return H._Universe_addErasedTypes(init.typeUniverse, a, false)
         },
-        bP(a, b, a0, a1) {
+        _substitute(a, b, a0, a1) {
             var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c = b.y
             switch (c) {
                 case 5:
@@ -1882,44 +1888,44 @@ var A = {
                     return b
                 case 6:
                     s = b.z
-                    r = H.bP(a, s, a0, a1)
+                    r = H._substitute(a, s, a0, a1)
                     if (r === s) return b
                     return H._Universe__lookupStarRti(a, r, true)
                 case 7:
                     s = b.z
-                    r = H.bP(a, s, a0, a1)
+                    r = H._substitute(a, s, a0, a1)
                     if (r === s) return b
                     return H._Universe__lookupQuestionRti(a, r, true)
                 case 8:
                     s = b.z
-                    r = H.bP(a, s, a0, a1)
+                    r = H._substitute(a, s, a0, a1)
                     if (r === s) return b
                     return H._Universe__lookupFutureOrRti(a, r, true)
                 case 9:
                     q = b.Q
-                    p = H.eP(a, q, a0, a1)
+                    p = H._substituteArray(a, q, a0, a1)
                     if (p === q) return b
                     return H._Universe__lookupInterfaceRti(a, b.z, p)
                 case 10:
                     o = b.z
-                    n = H.bP(a, o, a0, a1)
+                    n = H._substitute(a, o, a0, a1)
                     m = b.Q
-                    l = H.eP(a, m, a0, a1)
+                    l = H._substituteArray(a, m, a0, a1)
                     if (n === o && l === m) return b
                     return H._Universe__lookupBindingRti(a, n, l)
                 case 11:
                     k = b.z
-                    j = H.bP(a, k, a0, a1)
+                    j = H._substitute(a, k, a0, a1)
                     i = b.Q
-                    h = H.uE(a, i, a0, a1)
+                    h = H._substituteFunctionParameters(a, i, a0, a1)
                     if (j === k && h === i) return b
                     return H._Universe__lookupFunctionRti(a, j, h)
                 case 12:
                     g = b.Q
                     a1 += g.length
-                    f = H.eP(a, g, a0, a1)
+                    f = H._substituteArray(a, g, a0, a1)
                     o = b.z
-                    n = H.bP(a, o, a0, a1)
+                    n = H._substitute(a, o, a0, a1)
                     if (f === g && n === o) return b
                     return H._Universe__lookupGenericFunctionRti(a, n, f, true)
                 case 13:
@@ -1932,37 +1938,37 @@ var A = {
                     throw H.wrap_expression(P.iP("Attempted to substitute unexpected RTI kind " + c))
             }
         },
-        eP(a, b, c, d) {
+        _substituteArray(a, b, c, d) {
             var s, r, q, p, o = b.length,
                 n = H.ld(o)
             for (s = false, r = 0; r < o; ++r) {
                 q = b[r]
-                p = H.bP(a, q, c, d)
+                p = H._substitute(a, q, c, d)
                 if (p !== q) s = true
                 n[r] = p
             }
             return s ? n : b
         },
-        uF(a, b, c, d) {
+        _substituteNamed(a, b, c, d) {
             var s, r, q, p, o, n, m = b.length,
                 l = H.ld(m)
             for (s = false, r = 0; r < m; r += 3) {
                 q = b[r]
                 p = b[r + 1]
                 o = b[r + 2]
-                n = H.bP(a, o, c, d)
+                n = H._substitute(a, o, c, d)
                 if (n !== o) s = true
                 l.splice(r, 3, q, p, n)
             }
             return s ? l : b
         },
-        uE(a, b, c, d) {
+        _substituteFunctionParameters(a, b, c, d) {
             var s, r = b.a,
-                q = H.eP(a, r, c, d),
+                q = H._substituteArray(a, r, c, d),
                 p = b.b,
-                o = H.eP(a, p, c, d),
+                o = H._substituteArray(a, p, c, d),
                 n = b.c,
-                m = H.uF(a, n, c, d)
+                m = H._substituteNamed(a, n, c, d)
             if (q === r && o === p && m === n) return b
             s = new H.ib()
             s.a = q
@@ -1974,7 +1980,7 @@ var A = {
             a[init.arrayRti] = b
             return a
         },
-        oy(a) {
+        closureFunctionType(a) {
             var s = a.$S
             if (s != null) {
                 if (typeof s == "number") return H.uU(s)
@@ -1982,11 +1988,11 @@ var A = {
             }
             return null
         },
-        oE(a, b) {
+        instanceOrFunctionType(a, b) {
             var s
-            if (H.o3(b))
+            if (H.Rti__isUnionOfFunctionType(b))
                 if (a instanceof H.c_) {
-                    s = H.oy(a)
+                    s = H.closureFunctionType(a)
                     if (s != null) return s
                 } return H.instanceType(a)
         },
@@ -2051,7 +2057,7 @@ var A = {
             if (p === o) return H.cQ(p, a, H.uq)
             if (!H.isStrongTopType(p))
                 if (!(p === t.c)) o = p === o
-            else o = true
+                else o = true
             else o = true
             if (o) return H.cQ(p, a, H.ut)
             o = p.y
@@ -2108,16 +2114,16 @@ var A = {
                 if (!(a === t.c))
                     if (!(a === t.aw))
                         if (r !== 7) t1 = r === 8 && H.ln(a.z) || a === t.P || a === t.T
-            else t1 = true
-            else t1 = true
-            else t1 = true
+                        else t1 = true
+                    else t1 = true
+                else t1 = true
             else t1 = true
             return t1
         },
         uh(a) {
             var s = this
             if (a == null) return H.ln(s)
-            return H._isSubtype(init.typeUniverse, H.oE(a, s), null, s, null)
+            return H._isSubtype(init.typeUniverse, H.instanceOrFunctionType(a, s), null, s, null)
         },
         uj(a) {
             if (a == null) return true
@@ -2154,7 +2160,7 @@ var A = {
             H.oo(a, s)
         },
         oo(a, b) {
-            throw H.wrap_expression(H.u_(H.ob(a, H.oE(a, b), H.aH(b, null))))
+            throw H.wrap_expression(H.u_(H.ob(a, H.instanceOrFunctionType(a, b), H.aH(b, null))))
         },
         ob(a, b, c) {
             var s = P.jh(a),
@@ -2285,7 +2291,7 @@ var A = {
                     i = j.y
                     if (!(i === 2 || i === 3 || i === 4 || i === 5 || j === o))
                         if (!(j === n)) h = j === m
-                    else h = true
+                        else h = true
                     else h = true
                     if (!h) l += C.String.B(" extends ", H.aH(j, a5))
                 }
@@ -2422,7 +2428,7 @@ var A = {
         _Universe__lookupTerminalRti(a, b, c) {
             var s, r, q = a.eC.get(c)
             if (q != null) return q
-            s = new H.aW(null, null)
+            s = new H.Rti(null, null)
             s.y = b
             s.cy = c
             r = H._Universe__installTypeTests(a, s)
@@ -2445,7 +2451,7 @@ var A = {
                 else r = true
                 if (r) return b
             }
-            q = new H.aW(null, null)
+            q = new H.Rti(null, null)
             q.y = 6
             q.z = b
             q.cy = c
@@ -2466,18 +2472,18 @@ var A = {
                 if (!H.isStrongTopType(b))
                     if (!(b === t.P || b === t.T))
                         if (s !== 7) r = s === 8 && H.lz(b.z)
-                else r = true
-                else r = true
+                        else r = true
+                    else r = true
                 else r = true
                 if (r) return b
                 else if (s === 1 || b === t.aw) return t.P
                 else if (s === 6) {
                     q = b.z
                     if (q.y === 8 && H.lz(q.z)) return q
-                    else return H.tr(a, b)
+                    else return H.Rti__getQuestionFromStar(a, b)
                 }
             }
-            p = new H.aW(null, null)
+            p = new H.Rti(null, null)
             p.y = 7
             p.z = b
             p.cy = c
@@ -2497,13 +2503,13 @@ var A = {
                 s = b.y
                 if (!H.isStrongTopType(b))
                     if (!(b === t.c)) r = b === t.K
-                else r = true
+                    else r = true
                 else r = true
                 if (r || b === t.K) return b
                 else if (s === 1) return H._Universe__lookupInterfaceRti(a, "bl", [b])
                 else if (b === t.P || b === t.T) return t.bG
             }
-            q = new H.aW(null, null)
+            q = new H.Rti(null, null)
             q.y = 8
             q.z = b
             q.cy = c
@@ -2513,7 +2519,7 @@ var A = {
             var s, r, q = "" + b + "^",
                 p = a.eC.get(q)
             if (p != null) return p
-            s = new H.aW(null, null)
+            s = new H.Rti(null, null)
             s.y = 13
             s.z = b
             s.cy = q
@@ -2541,7 +2547,7 @@ var A = {
             if (c.length > 0) p += "<" + H.iv(c) + ">"
             s = a.eC.get(p)
             if (s != null) return s
-            r = new H.aW(null, null)
+            r = new H.Rti(null, null)
             r.y = 9
             r.z = b
             r.Q = c
@@ -2563,7 +2569,7 @@ var A = {
             q = s.cy + (";<" + H.iv(r) + ">")
             p = a.eC.get(q)
             if (p != null) return p
-            o = new H.aW(null, null)
+            o = new H.Rti(null, null)
             o.y = 10
             o.z = s
             o.Q = r
@@ -2594,7 +2600,7 @@ var A = {
             q = n + (g + ")")
             p = a.eC.get(q)
             if (p != null) return p
-            o = new H.aW(null, null)
+            o = new H.Rti(null, null)
             o.y = 11
             o.z = b
             o.Q = c
@@ -2624,12 +2630,12 @@ var A = {
                     }
                 }
                 if (q > 0) {
-                    n = H.bP(a, b, r, 0)
-                    m = H.eP(a, c, r, 0)
+                    n = H._substitute(a, b, r, 0)
+                    m = H._substituteArray(a, c, r, 0)
                     return H._Universe__lookupGenericFunctionRti(a, n, m, c !== m)
                 }
             }
-            l = new H.aW(null, null)
+            l = new H.Rti(null, null)
             l.y = 12
             l.z = b
             l.Q = c
@@ -2808,7 +2814,7 @@ var A = {
                 o = parser.e
                 if (o.y === 10) o = o.z
                 n = H.ua(s, o.z)[p]
-                if (n == null) H.throw_expression('No "' + p + '" in "' + H.tq(o) + '"')
+                if (n == null) H.throw_expression('No "' + p + '" in "' + H.Rti__getCanonicalRecipe(o) + '"')
                 stack.push(H._Universe_evalInEnvironment(s, o, n))
             } else stack.push(p)
             return m
@@ -2859,7 +2865,7 @@ var A = {
             if (b === d) return true
             if (!H.isStrongTopType(d))
                 if (!(d === t.c)) s = d === t.K
-            else s = true
+                else s = true
             else s = true
             if (s) return true
             r = b.y
@@ -2879,7 +2885,7 @@ var A = {
             }
             if (r === 8) {
                 if (!H._isSubtype(a, b.z, c, d, e)) return false
-                return H._isSubtype(a, H.o2(a, b), c, d, e)
+                return H._isSubtype(a, H.Rti__getFutureFromFutureOr(a, b), c, d, e)
             }
             if (r === 7) {
                 s = H._isSubtype(a, b.z, c, d, e)
@@ -2887,7 +2893,7 @@ var A = {
             }
             if (p === 8) {
                 if (H._isSubtype(a, b, c, d.z, e)) return true
-                return H._isSubtype(a, b, c, H.o2(a, d), e)
+                return H._isSubtype(a, b, c, H.Rti__getFutureFromFutureOr(a, d), e)
             }
             if (p === 7) {
                 s = H._isSubtype(a, b, c, d.z, e)
@@ -3006,9 +3012,9 @@ var A = {
                 if (!H.isStrongTopType(a))
                     if (r !== 7)
                         if (!(r === 6 && H.lz(a.z))) s = r === 8 && H.lz(a.z)
-            else s = true
-            else s = true
-            else s = true
+                        else s = true
+                    else s = true
+                else s = true
             else s = true
             return s
         },
@@ -3016,7 +3022,7 @@ var A = {
             var s
             if (!H.isStrongTopType(a))
                 if (!(a === t.c)) s = a === t.K
-            else s = true
+                else s = true
             else s = true
             return s
         },
@@ -3036,7 +3042,7 @@ var A = {
         ld(a) {
             return a > 0 ? new Array(a) : init.typeUniverse.sEA
         },
-        aW: function aW(a, b) {
+        Rti: function Rti(a, b) {
             var _ = this
             _.a = a
             _.b = b
@@ -3050,7 +3056,7 @@ var A = {
         iu: function iu(a) {
             this.a = a
         },
-        i9: function i9() {},
+        i9: function i9() { },
         eI: function eI(a) {
             this.a = a
         },
@@ -3087,16 +3093,16 @@ var A = {
             var proto, r, q, interceptor, o, n = a[init.dispatchPropertyName]
             if (n == null)
                 if ($.mA == null) {
-                    H.uY()
+                    H.initNativeDispatch()
                     n = a[init.dispatchPropertyName]
                 } if (n != null) {
-                proto = n.p
-                if (false === proto) return n.i
-                if (true === proto) return a
-                r = Object.getPrototypeOf(a)
-                if (proto === r) return n.i
-                if (n.e === r) throw H.wrap_expression(P.hT("Return interceptor for " + H.as_string(proto(a, n))))
-            }
+                    proto = n.p
+                    if (false === proto) return n.i
+                    if (true === proto) return a
+                    r = Object.getPrototypeOf(a)
+                    if (proto === r) return n.i
+                    if (n.e === r) throw H.wrap_expression(P.hT("Return interceptor for " + H.as_string(proto(a, n))))
+                }
             q = a.constructor
             if (q == null) interceptor = null
             else {
@@ -3392,17 +3398,17 @@ var A = {
             // return J.aQ(a).trim_name(a)
             J.JsString.prototype.trim_name(a)
         },
-        Interceptor: function af() {},
-        fw: function fw() {},
-        cs: function cs() {},
-        bE: function bE() {},
-        PlainJavaScriptObject: function fO() {},
-        UnknownJavaScriptObject: function bs() {},
-        JavaScriptFunction: function bn() {},
+        Interceptor: function af() { },
+        fw: function fw() { },
+        cs: function cs() { },
+        bE: function bE() { },
+        PlainJavaScriptObject: function fO() { },
+        UnknownJavaScriptObject: function bs() { },
+        JavaScriptFunction: function bn() { },
         JsArray: function E(a) {
             this.$ti = a
         },
-        jG: function jG(a) {
+        JsUnmodifiableArray: function jG(a) {
             this.$ti = a
         },
         db: function db(a, b) {
@@ -3412,13 +3418,13 @@ var A = {
             _.c = 0
             _.d = null
         },
-        JsNumber: function dA() {},
-        JsInt: function dz() {},
-        jF: function jF() {},
-        JsString: function bD() {}
+        JsNumber: function dA() { },
+        JsInt: function dz() { },
+        jF: function jF() { },
+        JsString: function bD() { }
     },
     L = {
-        iR: function iR(a, b, c, d, e, f, g) {
+        ProfileWinChance: function iR(a, b, c, d, e, f, g) {
             var _ = this
             _.a = a
             _.b = b
@@ -3432,8 +3438,8 @@ var A = {
             _.Q = null
             _.ch = g
         },
-        iS: function iS() {},
-        iT: function iT() {},
+        iS: function iS() { },
+        iT: function iT() { },
         iU: function iU(a) {
             this.a = a
         }
@@ -3461,7 +3467,8 @@ var A = {
             return P.mh(H.b([r, q, p, o < 26 ? o + 65 : o + 71], t.i), 0, null)
         },
         j(a, b) {
-            let result = C.e.bt(0, X.f4(a, b))
+            // let result = C.e.bt(0, X.f4(a, b))
+            let result = C.T_kk.ab(X.f4(a, b))
             logger.debug("O.j", a, b, result)
             return result
         },
@@ -3474,7 +3481,7 @@ var A = {
         load_lang(a) {
             J.lY(a, new LangData.lA())
         },
-        lA: function lA() {},
+        lA: function lA() { },
         fZ(a) {
             var s = H.b([0], t.i)
             C.Array.a5(s, C.e.gaB().ab(a))
@@ -3562,7 +3569,7 @@ var A = {
             b.bM(0, a)
         },
         async_rethrow(a, b) {
-            b.cj(H.unwrap_Exception(a), H.get_trace_from_exception(a))
+            b.cj(H.unwrap_Exception(a), H.getTraceFromException(a))
         },
         _awaitOnObject(a, b) {
             var s, r, q = new P.lh(b),
@@ -3859,7 +3866,7 @@ var A = {
         kD: function kD(a) {
             this.a = a
         },
-        l8: function l8() {},
+        l8: function l8() { },
         _TimerImpl_internalCallback: function l9(a, b) {
             this.a = a
             this.b = b
@@ -3887,7 +3894,7 @@ var A = {
             this.b = b
             this.c = c
         },
-        i4: function i4() {},
+        i4: function i4() { },
         cg: function cg(a, b) {
             this.a = a
             this.$ti = b
@@ -3960,7 +3967,7 @@ var A = {
             this.a = a
             this.b = null
         },
-        em: function em() {},
+        em: function em() { },
         ke: function ke(a, b) {
             this.a = a
             this.b = b
@@ -3969,13 +3976,13 @@ var A = {
             this.a = a
             this.b = b
         },
-        hO: function hO() {},
-        hP: function hP() {},
-        im: function im() {},
+        hO: function hO() { },
+        hP: function hP() { },
+        im: function im() { },
         l2: function l2(a) {
             this.a = a
         },
-        i1: function i1() {},
+        i1: function i1() { },
         cK: function cK(a, b, c, d) {
             var _ = this
             _.a = null
@@ -3997,14 +4004,14 @@ var A = {
             _.e = d
             _.r = null
         },
-        i3: function i3() {},
-        eF: function eF() {},
-        i7: function i7() {},
+        i3: function i3() { },
+        eF: function eF() { },
+        i7: function i7() { },
         er: function er(a) {
             this.b = a
             this.a = null
         },
-        ii: function ii() {},
+        ii: function ii() { },
         kW: function kW(a, b) {
             this.a = a
             this.b = b
@@ -4013,13 +4020,13 @@ var A = {
             this.c = this.b = null
             this.a = 0
         },
-        io: function io() {},
-        lf: function lf() {},
+        io: function io() { },
+        lf: function lf() { },
         lo: function lo(a, b) {
             this.a = a
             this.b = b
         },
-        kX: function kX() {},
+        kX: function kX() { },
         kY: function kY(a, b) {
             this.a = a
             this.b = b
@@ -4186,19 +4193,19 @@ var A = {
             _.b = b
             _.d = _.c = null
         },
-        dy: function dy() {},
-        dE: function dE() {},
-        z: function z() {},
-        dG: function dG() {},
+        dy: function dy() { },
+        dE: function dE() { },
+        z: function z() { },
+        dG: function dG() { },
         jM: function jM(a, b) {
             this.a = a
             this.b = b
         },
-        aU: function aU() {},
-        dY: function dY() {},
-        eC: function eC() {},
-        ev: function ev() {},
-        eM: function eM() {},
+        aU: function aU() { },
+        dY: function dY() { },
+        eC: function eC() { },
+        ev: function ev() { },
+        eM: function eM() { },
         uy(a, b) {
             var s, r, q, p = null
             try {
@@ -4285,19 +4292,19 @@ var A = {
         id: function id(a) {
             this.a = a
         },
-        km: function km() {},
-        kl: function kl() {},
-        fg: function fg() {},
-        fi: function fi() {},
-        jg: function jg() {},
-        js: function js() {},
-        jr: function jr() {},
-        jI: function jI() {},
+        km: function km() { },
+        kl: function kl() { },
+        fg: function fg() { },
+        fi: function fi() { },
+        jg: function jg() { },
+        js: function js() { },
+        jr: function jr() { },
+        jI: function jI() { },
         jJ: function jJ(a) {
             this.a = a
         },
-        kj: function kj() {},
-        kn: function kn() {},
+        kj: function kj() { },
+        kn: function kn() { },
         lc: function lc(a) {
             this.b = 0
             this.c = a
@@ -4468,14 +4475,14 @@ var A = {
         Duration: function c1(a) {
             this.a = a
         },
-        jc: function jc() {},
-        jd: function jd() {},
-        O: function O() {},
+        Duration_toString_sixDigits: function jc() { },
+        Duration_toString_twoDigits: function jd() { },
+        O: function O() { },
         f2: function f2(a) {
             this.a = a
         },
-        bc: function bc() {},
-        fL: function fL() {},
+        bc: function bc() { },
+        fL: function fL() { },
         aS: function aS(a, b, c, d) {
             var _ = this
             _.a = a
@@ -4512,8 +4519,8 @@ var A = {
         fh: function fh(a) {
             this.a = a
         },
-        fM: function fM() {},
-        el: function el() {},
+        fM: function fM() { },
+        el: function el() { },
         fj: function fj(a) {
             this.a = a
         },
@@ -4525,11 +4532,11 @@ var A = {
             this.b = b
             this.c = c
         },
-        L: function L() {},
-        fv: function fv() {},
-        N: function N() {},
-        Object: function H() {},
-        iq: function iq() {},
+        L: function L() { },
+        fv: function fv() { },
+        N: function N() { },
+        Object: function H() { },
+        iq: function iq() { },
         cH: function cH(a) {
             this.a = a
         },
@@ -4556,7 +4563,7 @@ var A = {
         m3() {
             return window.navigator.userAgent
         },
-        l4: function l4() {},
+        _StructuredClone: function l4() { },
         l5: function l5(a, b) {
             this.a = a
             this.b = b
@@ -4565,7 +4572,7 @@ var A = {
             this.a = a
             this.b = b
         },
-        kw: function kw() {},
+        kw: function kw() { },
         ky: function ky(a, b) {
             this.a = a
             this.b = b
@@ -4602,12 +4609,12 @@ var A = {
         o_() {
             return C.F
         },
-        kT: function kT() {},
-        cF: function cF() {},
-        p: function p() {}
+        kT: function kT() { },
+        cF: function cF() { },
+        p: function p() { }
     },
     S = {
-        fK: function fK() {}
+        fK: function fK() { }
     },
     T = {
         ty(a, b, c, d, e) {
@@ -4843,6 +4850,7 @@ var A = {
             return s
         },
         jS(a4, a5, a6, a7) {
+            // MARK: WTF 什么鬼这么长
             var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, a3 = null
             if (a5 == $.nk()) {
                 s = 0
@@ -4888,6 +4896,7 @@ var A = {
                 a.e4(a4, a5, a6)
                 return a
             }
+            // MARK: BOSS INIT(上面也是)
             if (a5 == $.qR()) {
                 s = 0
                 r = $.T()
@@ -4932,6 +4941,8 @@ var A = {
                 a.e5(a4, a5)
                 return a
             }
+            // MARK: 强评?
+            // cl -> !
             s = $.cl()
             if (a5 == s) {
                 if (a4 == $.lQ()) {
@@ -5296,6 +5307,7 @@ var A = {
                     a1.av(a4, s)
                     return a1
                 }
+                // covid
                 if (a4 == $.ck()) {
                     r = H.as_string(a4) + H.as_string($.aD())
                     q = 0
@@ -5336,7 +5348,7 @@ var A = {
                     a0 = H.b([], c)
                     c = H.b([], c)
                     a1 = 0
-                    a1 = new T.f7(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                    a1 = new T.PlrBossCovid(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                     a1.a1(a4, s, r, a3)
                     a1.av(a4, s)
                     return a1
@@ -5656,7 +5668,7 @@ var A = {
             h = H.b([], k)
             k = H.b([], k)
             g = 0
-            g = new T.bZ(f, a2, a3, e, null, d, c, b, a, a0, a1, s, r, q, p, o, n, m, l, j, i, h, k, g, g, g, $.W(), g)
+            g = new T.PlrBossSlime(f, a2, a3, e, null, d, c, b, a, a0, a1, s, r, q, p, o, n, m, l, j, i, h, k, g, g, g, $.W(), g)
             g.a1(a2, a3, e, null)
             g.av(a2, a3)
             return g
@@ -5758,7 +5770,7 @@ var A = {
                 } else {
                     j = e
                 }
-                console.log("weapon: " + j)
+                // console.log("weapon: " + j)
                 l = $.n3()
                 if (l == null) H.throw_expression(H.R(l))
                 if (H.iF(m, l, 0)) {
@@ -5822,7 +5834,7 @@ var A = {
                     case 3:
                         result = runner
                         async_goto = 1
-                        break
+                    // break
                     case 1:
                         return P.async_return(result, async_completer)
                 }
@@ -6036,9 +6048,9 @@ var A = {
         t6(a, b) {
             return J.lV(b.b, a.b)
         },
-        tx(a, b, c, d, e) {},
-        tz(a, b, c, d, e) {},
-        cG(a) {
+        tx(a, b, c, d, e) { },
+        tz(a, b, c, d, e) { },
+        SklAttack(a) {
             var s = new T.h8(0)
             s.r = a
             return s
@@ -6054,17 +6066,17 @@ var A = {
             return s
         },
         tN(a, b) {
-            var s = new T.bL(a, b, P.aL($.av(), 0, false, t.B))
+            var s = new T.Weapon(a, b, P.aL($.av(), 0, false, t.B))
             s.a = a
             return s
         },
-        e1: function e1(a) {
+        SklAbsorb: function SklAbsorb(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        h5: function h5(a, b) {
+        SklAccumulate: function SklAccumulate(a, b) {
             var _ = this
             _.fr = null
             _.fx = a
@@ -6072,7 +6084,7 @@ var A = {
             _.f = b
             _.c = _.b = _.a = _.r = null
         },
-        h7: function h7(a) {
+        SklAssassinate: function SklAssassinate(a) {
             var _ = this
             _.fy = _.fx = _.fr = null
             _.e = false
@@ -6086,13 +6098,13 @@ var A = {
             _.f = b
             _.c = _.b = _.a = _.r = null
         },
-        h9: function h9(a) {
+        SklBerserk: function SklBerserk(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        ha: function ha(a, b) {
+        SklCharge: function SklCharge(a, b) {
             var _ = this
             _.fx = _.fr = null
             _.fy = a
@@ -6108,7 +6120,7 @@ var A = {
             _.z = c
             _.c = _.b = _.a = null
         },
-        e3: function e3(a) {
+        SklCharm: function SklCharm(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -6156,14 +6168,14 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        e4: function e4(a) {
+        SklClone: function SklClone(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        k9: function k9() {},
-        e5: function e5(a) {
+        k9: function k9() { },
+        SklCritical: function SklCritical(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -6178,19 +6190,19 @@ var A = {
             _.Q = d
             _.c = _.b = _.a = null
         },
-        hf: function hf(a) {
+        SklCurse: function SklCurse(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        hh: function hh(a) {
+        SklDisperse: function SklDisperse(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        hi: function hi(a) {
+        SklExchange: function SklExchange(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -6199,13 +6211,13 @@ var A = {
         c3: function c3(a) {
             this.b = a
         },
-        cc: function cc(a) {
+        SklFire: function SklFire(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        e7: function e7(a) {
+        sklHalf: function sklHalf(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -6219,13 +6231,13 @@ var A = {
             _.Q = c
             _.c = _.b = _.a = null
         },
-        hk: function hk(a) {
+        SklHaste: function SklHaste(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        e8: function e8(a) {
+        SklHeal: function SklHeal(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -6241,13 +6253,13 @@ var A = {
             _.y = b
             _.c = _.b = _.a = null
         },
-        e9: function e9(a) {
+        SklIce: function SklIce(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        ho: function ho(a, b, c) {
+        SklIron: function SklIron(a, b, c) {
             var _ = this
             _.fy = _.fx = _.fr = null
             _.go = a
@@ -6264,25 +6276,25 @@ var A = {
             _.z = c
             _.c = _.b = _.a = null
         },
-        ht: function ht(a) {
+        SklPoison: function SklPoison(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        hv: function hv(a) {
+        SklQuake: function SklQuake(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        ec: function ec(a) {
+        SklRapid: function SklRapid(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        hx: function hx(a) {
+        SklRevive: function SklRevive(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -6294,7 +6306,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        fS: function fS(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
+        PlrShadow: function fS(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
             var _ = this
             _.a6 = _.aj = null
             _.a = a
@@ -6333,7 +6345,7 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        hB: function hB(a) {
+        SklShadow: function SklShadow(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -6346,7 +6358,7 @@ var A = {
             _.z = b
             _.c = _.b = _.a = null
         },
-        hG: function hG(a) {
+        SklSlow: function SklSlow(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -6358,7 +6370,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        fT: function fT(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
+        PlrSummon: function fT(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
             var _ = this
             _.bi = _.aj = null
             _.aR = false
@@ -6399,14 +6411,14 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        hH: function hH(a) {
+        SklSummon: function SklSummon(a) {
             var _ = this
             _.fr = null
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        hI: function hI(a) {
+        SklThunder: function SklThunder(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -6615,7 +6627,7 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        cz: function cz() {},
+        cz: function cz() { },
         f6: function f6(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
             var _ = this
             _.a = a
@@ -6662,7 +6674,7 @@ var A = {
             _.f = c
             _.c = _.b = _.a = _.r = null
         },
-        f7: function f7(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
+        PlrBossCovid: function f7(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
             var _ = this
             _.a = a
             _.b = b
@@ -6980,7 +6992,7 @@ var A = {
             _.f = e
             _.c = _.b = _.a = _.r = null
         },
-        cy: function cy() {},
+        cy: function cy() { },
         fR: function fR(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
             var _ = this
             _.a = a
@@ -7019,7 +7031,7 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        bZ: function bZ(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7, a8) {
+        PlrBossSlime: function bZ(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7, a8) {
             var _ = this
             _.aC = a
             _.a = b
@@ -7098,7 +7110,7 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        hF: function hF() {},
+        hF: function hF() { },
         ef: function ef(a) {
             var _ = this
             _.e = false
@@ -7205,8 +7217,8 @@ var A = {
             _.db = j
             _.dx = k
         },
-        jk: function jk() {},
-        jj: function jj() {},
+        jk: function jk() { },
+        jj: function jj() { },
         jl: function jl(a) {
             this.a = a
         },
@@ -7222,7 +7234,7 @@ var A = {
             _.e = d
             _.f = e
         },
-        IPlr: function fr() {},
+        IPlr: function fr() { },
         NPlr: function bF() {
             this.a = null
         },
@@ -7285,7 +7297,7 @@ var A = {
             this.a = a
             this.b = b
         },
-        aM: function aM() {},
+        aM: function aM() { },
         Plr: function u(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
             var _ = this
             _.a = a
@@ -7299,7 +7311,7 @@ var A = {
             _.k1 = g
             _.k3 = _.k2 = null
             _.k4 = h
-            _.r1 = null
+            _.weapon = null
             _.r2 = i
             _.rx = j
             _.ry = k
@@ -7324,18 +7336,18 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        jX: function jX() {},
-        jW: function jW() {},
-        jY: function jY() {},
-        x: function x() {},
-        aZ: function aZ() {},
-        cB: function cB() {},
-        bH: function bH() {},
-        aB: function aB() {},
-        ah: function ah() {},
-        aV: function aV() {},
-        bq: function bq() {},
-        aF: function aF() {},
+        jX: function jX() { },
+        BoostPassive: function boost_passive() { }, // boostPassive
+        jY: function jY() { },
+        x: function x() { },
+        aZ: function aZ() { },
+        cB: function cB() { },
+        bH: function bH() { },
+        aB: function aB() { },
+        ah: function ah() { },
+        aV: function aV() { },
+        bq: function bq() { },
+        aF: function aF() { },
         bd: function bd(a) {
             var _ = this
             _.x = a
@@ -7376,8 +7388,8 @@ var A = {
             this.a = a
             this.b = b
         },
-        q: function q() {},
-        ActionSkill: function b5() {},
+        Skill: function Skill() { },
+        ActionSkill: function b5() { },
         h8: function h8(a) {
             var _ = this
             _.e = false
@@ -7390,7 +7402,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        cb: function cb(a) {
+        SklCounter: function SklCounter(a) {
             var _ = this
             _.Q = false
             _.cx = _.ch = null
@@ -7398,21 +7410,21 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        e6: function e6(a) {
+        SklDefend: function SklDefend(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        hl: function hl(a) {
+        SklHide: function SklHide(a) {
             var _ = this
             _.ch = _.Q = null
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        fC: function fC() {},
-        hs: function hs(a) {
+        fC: function fC() { },
+        SklMerge: function SklMerge(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -7424,20 +7436,20 @@ var A = {
             _.x = b
             _.c = _.b = _.a = null
         },
-        eb: function eb(a) {
+        SklProtect: function SklProtect(a) {
             var _ = this
             _.Q = null
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        ed: function ed(a) {
+        SklReflect: function SklReflect(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        hw: function hw(a) {
+        SklReraise: function SklReraise(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -7449,20 +7461,20 @@ var A = {
             _.x = b
             _.c = _.b = _.a = null
         },
-        hC: function hC(a) {
+        SklShield: function SklShield(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        hJ: function hJ(a) {
+        SklUpgrade: function SklUpgrade(a) {
             var _ = this
             _.Q = null
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        SkillVoid: function bI(a) {
+        SkillVoid: function SkillVoid(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -7507,8 +7519,8 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        hY: function hY() {},
-        hK: function hK(a) {
+        hY: function hY() { },
+        SklZombie: function SklZombie(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -7537,7 +7549,7 @@ var A = {
             _.f = _.e = _.d = null
             _.r = c
         },
-        fl: function fl() {},
+        fl: function fl() { },
         jq: function jq(a, b, c) {
             var _ = this
             _.a = null
@@ -7562,7 +7574,7 @@ var A = {
             _.f = _.e = _.d = null
             _.r = c
         },
-        k3: function k3() {},
+        k3: function k3() { },
         h0: function h0(a) {
             var _ = this
             _.r = a
@@ -7595,7 +7607,7 @@ var A = {
             _.f = b
             _.c = _.b = _.a = _.r = null
         },
-        kb: function kb() {},
+        kb: function kb() { },
         ep: function ep(a, b, c) {
             var _ = this
             _.a = null
@@ -7604,7 +7616,7 @@ var A = {
             _.f = _.e = _.d = null
             _.r = c
         },
-        bL: function bL(a, b, c) {
+        Weapon: function Weapon(a, b, c) {
             var _ = this
             _.a = null
             _.b = a
@@ -7612,13 +7624,13 @@ var A = {
             _.f = _.e = _.d = null
             _.r = c
         },
-        kq: function kq() {},
-        kr: function kr() {},
-        ks: function ks() {},
-        kt: function kt() {},
-        ku: function ku() {},
-        ko: function ko() {},
-        kp: function kp() {},
+        kq: function kq() { },
+        kr: function kr() { },
+        ks: function ks() { },
+        kt: function kt() { },
+        ku: function ku() { },
+        ko: function ko() { },
+        kp: function kp() { },
         hc: function hc(a) {
             var _ = this
             _.Q = false
@@ -7635,11 +7647,13 @@ var A = {
             _.f = _.e = _.d = null
             _.r = c
         },
-        ij: function ij() {},
-        ik: function ik() {}
+        ij: function ij() { },
+        ik: function ik() { }
     },
     V = {
-        iV: function iV(a, b, c, d, e, f, g) {
+        // 评分
+        // 普评/强评
+        ProfileMain: function iV(a, b, c, d, e, f, g) {
             var _ = this
             _.a = a
             _.b = b
@@ -7659,7 +7673,7 @@ var A = {
             this.a = a
             this.b = b
         },
-        j0: function j0() {},
+        j0: function j0() { },
         j1: function j1(a) {
             this.a = a
         }
@@ -7672,7 +7686,7 @@ var A = {
         rP(a, b, c) {
             var s, doc_body = document.body
             doc_body.toString
-            s = C.n.aA(doc_body, a, b, c)
+            s = C.BodyElement.aA(doc_body, a, b, c)
             s.toString
             doc_body = new H.cf(new W.az(s), new W.jf(), t.ac.i("cf<z.E>"))
             return t.R.a(doc_body.gba(doc_body))
@@ -7721,7 +7735,7 @@ var A = {
                         r = q.protocol
                         r = r === ":" || r === ""
                     } else r = false
-            else r = false
+                else r = false
             else r = true
             return r
         },
@@ -7745,56 +7759,56 @@ var A = {
             if (s === C.f) return a
             return s.eI(a, b)
         },
-        r: function r() {},
-        f0: function f0() {},
-        f1: function f1() {},
-        cn: function cn() {},
-        bX: function bX() {},
-        bY: function bY() {},
-        di: function di() {},
-        fe: function fe() {},
-        b6: function b6() {},
-        co: function co() {},
-        j8: function j8() {},
-        dm: function dm() {},
-        c0: function c0() {},
-        ja: function ja() {},
-        jb: function jb() {},
-        Q: function Q() {},
-        jf: function jf() {},
-        o: function o() {},
-        fn: function fn() {},
-        cq: function cq() {},
-        fp: function fp() {},
-        c4: function c4() {},
-        jL: function jL() {},
-        c8: function c8() {},
-        dH: function dH() {},
-        bp: function bp() {},
+        HtmlElement: function HtmlElement() { },
+        AnchorElement: function AnchorElement() { },
+        AreaElement: function AreaElement() { },
+        BaseElement: function BaseElement() { },
+        Blob: function Blob() { },
+        BodyElement: function BodyElement() { },
+        CanvasElement: function CanvasElement() { },
+        CanvasRenderingContext2D: function CanvasRenderingContext2D() { },
+        b6: function b6() { },
+        co: function co() { },
+        j8: function j8() { },
+        dm: function dm() { },
+        c0: function c0() { },
+        ja: function ja() { },
+        jb: function jb() { },
+        Element: function Element() { },
+        jf: function jf() { },
+        o: function o() { },
+        fn: function fn() { },
+        cq: function cq() { },
+        fp: function fp() { },
+        c4: function c4() { },
+        jL: function jL() { },
+        c8: function c8() { },
+        dH: function dH() { },
+        bp: function bp() { },
         az: function az(a) {
             this.a = a
         },
-        v: function v() {},
-        dM: function dM() {},
-        dQ: function dQ() {},
-        h4: function h4() {},
-        ek: function ek() {},
-        hN: function hN() {},
+        v: function v() { },
+        dM: function dM() { },
+        dQ: function dQ() { },
+        h4: function h4() { },
+        ek: function ek() { },
+        hN: function hN() { },
         kd: function kd(a) {
             this.a = a
         },
-        bb: function bb() {},
-        ce: function ce() {},
-        en: function en() {},
-        hQ: function hQ() {},
-        hR: function hR() {},
-        cI: function cI() {},
-        aY: function aY() {},
-        eq: function eq() {},
-        cL: function cL() {},
-        ex: function ex() {},
-        eH: function eH() {},
-        i2: function i2() {},
+        bb: function bb() { },
+        ce: function ce() { },
+        en: function en() { },
+        hQ: function hQ() { },
+        hR: function hR() { },
+        cI: function cI() { },
+        aY: function aY() { },
+        eq: function eq() { },
+        cL: function cL() { },
+        ex: function ex() { },
+        eH: function eH() { },
+        i2: function i2() { },
         i8: function i8(a) {
             this.a = a
         },
@@ -7815,7 +7829,7 @@ var A = {
         cP: function cP(a) {
             this.a = a
         },
-        cr: function cr() {},
+        cr: function cr() { },
         dN: function dN(a) {
             this.a = a
         },
@@ -7827,9 +7841,9 @@ var A = {
             this.b = b
             this.c = c
         },
-        eD: function eD() {},
-        l0: function l0() {},
-        l1: function l1() {},
+        eD: function eD() { },
+        l0: function l0() { },
+        l1: function l1() { },
         it: function it(a, b, c, d, e) {
             var _ = this
             _.e = a
@@ -7838,8 +7852,8 @@ var A = {
             _.c = d
             _.d = e
         },
-        l7: function l7() {},
-        is: function is() {},
+        l7: function l7() { },
+        is: function is() { },
         dv: function dv(a, b) {
             var _ = this
             _.a = a
@@ -7861,14 +7875,14 @@ var A = {
         le: function le(a) {
             this.a = a
         },
-        i6: function i6() {},
-        ig: function ig() {},
-        ih: function ih() {},
-        il: function il() {},
-        iy: function iy() {},
-        iz: function iz() {},
-        iA: function iA() {},
-        iB: function iB() {}
+        i6: function i6() { },
+        ig: function ig() { },
+        ih: function ih() { },
+        il: function il() { },
+        iy: function iy() { },
+        iz: function iz() { },
+        iA: function iA() { },
+        iB: function iB() { }
     },
     X = {
         dc(a) {
@@ -7976,9 +7990,9 @@ var A = {
             logger.debug("X.D", a, b, result)
             return result
         },
-        je: function je() {},
-        j9: function j9() {},
-        iW: function iW(a, b) {
+        je: function je() { },
+        j9: function j9() { },
+        ProfileFind: function iW(a, b) {
             var _ = this
             _.a = a
             _.b = -1
@@ -7987,7 +8001,7 @@ var A = {
             _.f = null
             _.r = b
         },
-        iX: function iX() {},
+        iX: function iX() { },
         iY: function iY(a) {
             this.a = a
         },
@@ -8062,7 +8076,7 @@ var A = {
             let plist = s.querySelector(".plist")
             let pbody = s.querySelector(".pbody")
 
-            s = new HtmlRenderer.fq(plist, pbody, a, $.ro().ax(256))
+            s = new HtmlRenderer.inner_render(plist, pbody, a, $.ro().ax(256))
             s.e0(a)
             logger.debug("finish html.outer_main")
             return s
@@ -8251,15 +8265,16 @@ var A = {
             }
             return span_element
         },
-        fq: function fq(a, b, c, d) {
+        // MARK: html render init
+        inner_render: function inner_render(plist, pbody, profiler, randomer) {
             var _ = this
-            _.a = a
-            _.b = b
-            _.c = c
+            _.a = plist
+            _.b = pbody
+            _.c = profiler // 输入的 profiler
             _.d = null
             _.f = _.e = false
             _.r = 3
-            _.x = d
+            _.x = randomer
             _.y = 2
             // 既然加速之后就直接 2000
             // 直接初始化为 2000 如何
@@ -8275,8 +8290,8 @@ var A = {
         jx: function jx(a) {
             this.a = a
         },
-        jy: function jy() {},
-        jw: function jw() {},
+        jy: function jy() { },
+        jw: function jw() { },
         jA: function jA(a, b, c, d) {
             var _ = this
             _.a = a
@@ -8287,8 +8302,8 @@ var A = {
         jz: function jz(a) {
             this.a = a
         },
-        jB: function jB() {},
-        jC: function jC() {},
+        jB: function jB() { },
+        jC: function jC() { },
         jD: function jD(a) {
             this.a = a
         },
@@ -8568,7 +8583,7 @@ J.JsArray.prototype = {
     $iA: 1,
     $iw: 1
 }
-J.jG.prototype = {}
+J.JsUnmodifiableArray.prototype = {}
 J.db.prototype = {
     gC() {
         return this.d
@@ -9037,7 +9052,7 @@ H.kh.prototype = {
         return s
     }
 }
-H.dP.prototype = {
+H.NullError.prototype = {
     k(a) {
         var s = this.b
         if (s == null) return "NoSuchMethodError: " + H.as_string(this.a)
@@ -9274,7 +9289,7 @@ H.aT.prototype = {
             s.toString
             q.d = s
             r.f = s.c = q
-        }++r.a
+        } ++r.a
         r.c9()
         return q
     },
@@ -9535,27 +9550,27 @@ H.dJ.prototype = {
 H.ab.prototype = {
     $iab: 1
 }
-H.cw.prototype = {
+H.NativeTypedArray.prototype = {
     gp(a) {
         return a.length
     },
     $iag: 1
 }
-H.c9.prototype = {
+H.NativeTypedArrayOfDouble.prototype = {
     h(a, b) {
-        H.bt(b, a, a.length)
+        H._checkValidIndex(b, a, a.length)
         return a[b]
     },
     m(a, b, c) {
-        H.bt(b, a, a.length)
+        H._checkValidIndex(b, a, a.length)
         a[b] = c
     },
     $iA: 1,
     $iw: 1
 }
-H.dK.prototype = {
+H.NativeTypedArrayOfInt.prototype = {
     m(a, b, c) {
-        H.bt(b, a, a.length)
+        H._checkValidIndex(b, a, a.length)
         a[b] = c
     },
     $iA: 1,
@@ -9563,31 +9578,31 @@ H.dK.prototype = {
 }
 H.fE.prototype = {
     h(a, b) {
-        H.bt(b, a, a.length)
+        H._checkValidIndex(b, a, a.length)
         return a[b]
     }
 }
 H.fF.prototype = {
     h(a, b) {
-        H.bt(b, a, a.length)
+        H._checkValidIndex(b, a, a.length)
         return a[b]
     }
 }
 H.fG.prototype = {
     h(a, b) {
-        H.bt(b, a, a.length)
+        H._checkValidIndex(b, a, a.length)
         return a[b]
     }
 }
 H.fH.prototype = {
     h(a, b) {
-        H.bt(b, a, a.length)
+        H._checkValidIndex(b, a, a.length)
         return a[b]
     }
 }
 H.fI.prototype = {
     h(a, b) {
-        H.bt(b, a, a.length)
+        H._checkValidIndex(b, a, a.length)
         return a[b]
     }
 }
@@ -9596,7 +9611,7 @@ H.dL.prototype = {
         return a.length
     },
     h(a, b) {
-        H.bt(b, a, a.length)
+        H._checkValidIndex(b, a, a.length)
         return a[b]
     }
 }
@@ -9605,16 +9620,16 @@ H.cx.prototype = {
         return a.length
     },
     h(a, b) {
-        H.bt(b, a, a.length)
+        H._checkValidIndex(b, a, a.length)
         return a[b]
     },
     $icx: 1
 }
-H.ey.prototype = {}
-H.ez.prototype = {}
-H.eA.prototype = {}
-H.eB.prototype = {}
-H.aW.prototype = {
+H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin.prototype = {}
+H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin.prototype = {}
+H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin.prototype = {}
+H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin_FixedLengthListMixin.prototype = {}
+H.Rti.prototype = {
     i(a) {
         return H._Universe_evalInEnvironment(init.typeUniverse, this, a)
     },
@@ -9875,7 +9890,7 @@ P._Future.prototype = {
             a.cz(new P.kK(p), new P.kL(p), t.P)
         } catch (q) {
             s = H.unwrap_Exception(q)
-            r = H.get_trace_from_exception(q)
+            r = H.getTraceFromException(q)
             P.oN(new P.kM(p, s, r))
         }
     },
@@ -9947,7 +9962,7 @@ P.kK.prototype = {
             p.c2(p.$ti.c.a(a))
         } catch (q) {
             s = H.unwrap_Exception(q)
-            r = H.get_trace_from_exception(q)
+            r = H.getTraceFromException(q)
             p.be(s, r)
         }
     },
@@ -9992,7 +10007,7 @@ P.kR.prototype = {
             l = q.b.b.fA(q.d)
         } catch (p) {
             s = H.unwrap_Exception(p)
-            r = H.get_trace_from_exception(p)
+            r = H.getTraceFromException(p)
             if (m.c) {
                 q = m.b.a.c.a
                 o = s
@@ -10037,7 +10052,7 @@ P.kQ.prototype = {
             q.c = p.b.b.cv(p.d, this.b)
         } catch (o) {
             s = H.unwrap_Exception(o)
-            r = H.get_trace_from_exception(o)
+            r = H.getTraceFromException(o)
             q = this.a
             q.c = P.async_error(s, r)
             q.b = true
@@ -10057,7 +10072,7 @@ P.kP.prototype = {
             }
         } catch (o) {
             r = H.unwrap_Exception(o)
-            q = H.get_trace_from_exception(o)
+            q = H.getTraceFromException(o)
             p = k.a.a.c
             n = p.a
             m = r
@@ -10183,8 +10198,8 @@ P.i3.prototype = {
             a.bW(this)
         }
     },
-    d1() {},
-    d2() {},
+    d1() { },
+    d2() { },
     ec(a) {
         var s, r = this,
             q = r.r
@@ -10310,7 +10325,7 @@ P.kX.prototype = {
             P.os(null, null, this, a)
         } catch (q) {
             s = H.unwrap_Exception(q)
-            r = H.get_trace_from_exception(q)
+            r = H.getTraceFromException(q)
             P.iC(s, r)
         }
     },
@@ -10324,7 +10339,7 @@ P.kX.prototype = {
             P.ot(null, null, this, a, b)
         } catch (q) {
             s = H.unwrap_Exception(q)
-            r = H.get_trace_from_exception(q)
+            r = H.getTraceFromException(q)
             P.iC(s, r)
         }
     },
@@ -10445,7 +10460,7 @@ P.eu.prototype = {
             s.toString
             q.c = s
             r.f = s.b = q
-        }++r.a
+        } ++r.a
         r.ef()
         return q
     },
@@ -10904,11 +10919,11 @@ P.lb.prototype = {
         }
         if (d && j > 32)
             if (s) h.a += H.cC(k)
-        else {
-            l.b = 77
-            l.c = c
-            return ""
-        }
+            else {
+                l.b = 77
+                l.c = c
+                return ""
+            }
         l.b = j
         l.c = i
         s = h.a
@@ -10952,16 +10967,16 @@ P.Duration.prototype = {
         return C.JsInt.bg(this.a, b.a)
     },
     k(a) {
-        var s, r, q, p = new P.jd(),
+        var s, r, q, p = new P.Duration_toString_twoDigits(),
             o = this.a
         if (o < 0) return "-" + new P.Duration(0 - o).k(0)
         s = p.$1(C.JsInt.ag(o, 6e7) % 60)
         r = p.$1(C.JsInt.ag(o, 1e6) % 60)
-        q = new P.jc().$1(o % 1e6)
+        q = new P.Duration_toString_sixDigits().$1(o % 1e6)
         return "" + C.JsInt.ag(o, 36e8) + ":" + H.as_string(s) + ":" + H.as_string(r) + "." + H.as_string(q)
     }
 }
-P.jc.prototype = {
+P.Duration_toString_sixDigits.prototype = {
     $1(a) {
         if (a >= 1e5) return "" + a
         if (a >= 1e4) return "0" + a
@@ -10972,7 +10987,7 @@ P.jc.prototype = {
     },
     $S: 12
 }
-P.jd.prototype = {
+P.Duration_toString_twoDigits.prototype = {
     $1(a) {
         if (a >= 10) return "" + a
         return "0" + a
@@ -10981,7 +10996,7 @@ P.jd.prototype = {
 }
 P.O.prototype = {
     gbz() {
-        return H.get_trace_from_exception(this.$thrownJsError)
+        return H.getTraceFromException(this.$thrownJsError)
     }
 }
 P.f2.prototype = {
@@ -11215,7 +11230,7 @@ P.Object.prototype = {
         return "Instance of '" + H.as_string(H.jZ(this)) + "'"
     },
     gcw(a) {
-        var s = this instanceof H.c_ ? H.oy(this) : null
+        var s = this instanceof H.c_ ? H.closureFunctionType(this) : null
         return H.mz(s == null ? H.instanceType(this) : s)
     },
     toString() {
@@ -11237,32 +11252,32 @@ P.cH.prototype = {
         return s.charCodeAt(0) == 0 ? s : s
     }
 }
-W.r.prototype = {}
-W.f0.prototype = {
+W.HtmlElement.prototype = {}
+W.AnchorElement.prototype = {
     k(a) {
         return String(a)
     }
 }
-W.f1.prototype = {
+W.AreaElement.prototype = {
     k(a) {
         return String(a)
     }
 }
-W.cn.prototype = {
+W.BaseElement.prototype = {
     $icn: 1
 }
-W.bX.prototype = {
+W.Blob.prototype = {
     $ibX: 1
 }
-W.bY.prototype = {
+W.BodyElement.prototype = {
     $ibY: 1
 }
-W.di.prototype = {
+W.CanvasElement.prototype = {
     geJ(a) {
         return a.getContext("2d")
     }
 }
-W.fe.prototype = {
+W.CanvasRenderingContext2D.prototype = {
     eN(a, b, c) {
         var s = P.my(a.createImageData(b, c))
         return s
@@ -11301,8 +11316,8 @@ W.co.prototype = {
     eC(a, b) {
         var s
         if (b.replace(/^-ms-/, "ms-").replace(/-([\da-z])/ig, function (c, d) {
-                return d.toUpperCase()
-            }) in a) return b
+            return d.toUpperCase()
+        }) in a) return b
         s = $.oT() + b
         if (s in a) return s
         return b
@@ -11331,7 +11346,7 @@ W.jb.prototype = {
         return a.length
     }
 }
-W.Q.prototype = {
+W.Element.prototype = {
     geH(a) {
         return new W.i8(a)
     },
@@ -12056,7 +12071,7 @@ W.iy.prototype = {}
 W.iz.prototype = {}
 W.iA.prototype = {}
 W.iB.prototype = {}
-P.l4.prototype = {
+P._StructuredClone.prototype = {
     bj(a) {
         var s, r = this.a,
             q = r.length
@@ -12261,7 +12276,7 @@ P.p.prototype = {
         s = document
         q = s.body
         q.toString
-        p = C.n.eM(q, r, c)
+        p = C.BodyElement.eM(q, r, c)
         o = s.createDocumentFragment()
         p.toString
         s = new W.az(p)
@@ -12334,7 +12349,7 @@ Y.RC4.prototype = {
         return p[p[r] + p[q] & 255]
     }
 }
-L.iR.prototype = {
+L.ProfileWinChance.prototype = {
     gbu(a) {
         return null
     },
@@ -12365,8 +12380,8 @@ L.iR.prototype = {
         }
     },
     O() {
-        // 胜率评分 主循环
-        logger.debug("胜率主循环")
+        // 胜率评分
+        logger.info("胜率输出 main")
         var async_goto = 0,
             async_completer = P._makeAsyncAwaitCompleter(t.d),
             some_q, this_ = this,
@@ -12541,20 +12556,20 @@ X.j9.prototype = {
     },
     $S: 21
 }
-V.iV.prototype = {
+V.ProfileMain.prototype = {
     gbu(a) {
         return null
     },
     dZ(a, b) {
         // 什么奇怪的算法?
-        var s, r, q, p, o, n, m, l = this,
-            k = l.b
+        var s, r, q, p, o, n, m, this_ = this,
+            k = this_.b
         // if (k.length === 2 && J.Y(J.J(k[0], 0), J.J(k[1], 0)) && J.Y(J.J(k[0], 1), J.J(k[1], 1))) {
         if (k.length === 2 && (k[0][0] == k[1][0]) && (k[0][1] == k[1][1])) {
             k.pop()
-            l.c = true
+            this_.c = true
         }
-        for (s = k.length, r = l.f, q = l.r, p = 0; p < k.length; k.length === s || (0, H.F)(k), ++p) {
+        for (s = k.length, r = this_.f, q = this_.r, p = 0; p < k.length; k.length === s || (0, H.F)(k), ++p) {
             o = k[p]
             n = J.a3(o)
             m = T.jS(n.h(o, 0), n.h(o, 1), null, n.h(o, 2))
@@ -12567,11 +12582,12 @@ V.iV.prototype = {
                 m = r[p]
                 m.I = m.gbT()
             }
-        if (q.length === 1) l.x = q[0]
+        if (q.length === 1) this_.x = q[0]
     },
     O() {
-        // 实力评分 主循环
-        logger.debug("评分 主循环")
+        // 实力评分 main
+        // 普评? + 
+        logger.debug("评分 输出")
         var async_goto = 0,
             async_completer = P._makeAsyncAwaitCompleter(t.d),
             q, this_ = this,
@@ -12634,7 +12650,7 @@ V.iV.prototype = {
                             a3 = a1.d
                             if (C.String.bA(a3, "[0]"))
                                 if (n.J(0, a3)) n.m(0, a3, n.h(0, a3) + 1)
-                            else n.m(0, a3, 1)
+                                else n.m(0, a3, 1)
                         }
                     }
                 case 7:
@@ -12765,7 +12781,7 @@ V.j1.prototype = {
     },
     $S: 2
 }
-X.iW.prototype = {
+X.ProfileFind.prototype = {
     gbu(a) {
         return null
     },
@@ -12977,8 +12993,9 @@ S.fK.prototype = {
     },
     $iaN: 1
 }
-HtmlRenderer.fq.prototype = {
+HtmlRenderer.inner_render.prototype = {
     e0(a) {
+        // a -> profiler input
         var s, root, q, this_ = this
 
         if (this_.a == null) return
@@ -13008,10 +13025,11 @@ HtmlRenderer.fq.prototype = {
         q = HtmlRenderer.add_span("welcome2")
         q.textContent = LangData.get_lang("NosN")
         s.appendChild(q)
-        q = this_.c
-        if (q.gbu(q) != null) {
-            q = q.gbu(q)
-            root.appendChild(document.createTextNode(q))
+
+        profiler = this_.c
+        if (profiler.gbu(profiler) != null) {
+            profiler = profiler.gbu(profiler)
+            root.appendChild(document.createTextNode(profiler))
         }
         // 添加 event listener
         logger.debug("加速等待器 注册")
@@ -13019,18 +13037,20 @@ HtmlRenderer.fq.prototype = {
             W.es(window, "message", this_.gfb(this_), false)
         }
     },
+    // MARK: 接受加速按钮
     fc(func_self, event) {
-        var s = event.data,
-            r = new P.kx([], [])
-        r.c = true
-        // if (J.Y(r.aO(s), $.iK())) {
-        // if (r.aO(s) === $.iK()) {
-        // console.log("fq.fc", func_self, event, r.aO(s))
-        // event.data === ??
-        if (r.aO(s) === "??") {
+        // var s = event.data,
+        //     r = new P.kx([], [])
+        // r.c = true
+        // if (r.aO(s) === "??") {
+        //     this.y = 2000
+        // }
+        if (event.data == "??") {
             this.y = 2000
+            // 触发加速
         }
     },
+    // MARK: resize
     ds(a, b) {
         if (run_env.from_code) {
             return
@@ -13053,9 +13073,10 @@ HtmlRenderer.fq.prototype = {
     dI(a) {
         this.c.ae(0, this.x)
     },
+    // MARK: main?
     fe(a0) {
         // run update
-        logger.debug("fq.fe start")
+        logger.debug("html.fq.fe start")
         var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, this_ = this
         if (a0.length < 6) return
         s = X.f4(a0, 0)
@@ -13064,7 +13085,7 @@ HtmlRenderer.fq.prototype = {
         p = q.i("y<M.E,l*>")
         o = t.bQ
         n = P.List_List_of(new H.y(H.b(C.e.bt(0, P.List_List_of(new H.y(new H.a9(r, q),
-                new HtmlRenderer.jx(this_), p), true, p.i("M.E"))).split("\n"), t.s),
+            new HtmlRenderer.jx(this_), p), true, p.i("M.E"))).split("\n"), t.s),
             new HtmlRenderer.jy(), o), true, o.i("M.E"))
         r = n.length
         if (r > 1) {
@@ -13186,7 +13207,7 @@ HtmlRenderer.fq.prototype = {
                     async_goto = 6
                     // return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec(1, 0), t.z), $async$b4)
                     return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec(0, 0), t.z), $async$b4)
-                    // break
+                // break
                 case 6:
                     this_.db = null
                     this_.dx = true
@@ -13452,7 +13473,7 @@ HtmlRenderer.send_win_data.prototype = {
                     s = 2
                     // return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec(1, 0), n), $async$$0)
                     return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec(0, 0), n), $async$$0)
-                    // break
+                // break
                 case 2:
                     p = HtmlRenderer.rV(q.b, q.c)
                     win_data = P.dD(["winners",
@@ -13890,7 +13911,7 @@ Sgls.n.prototype = {
         return this.c = a
     }
 }
-T.e1.prototype = {
+T.SklAbsorb.prototype = {
     au(a, b) {
         var s
         if (b) {
@@ -13907,7 +13928,7 @@ T.e1.prototype = {
         s.a3(r * q, true, this.r, T.v6(), c, d)
     }
 }
-T.h5.prototype = {
+T.SklAccumulate.prototype = {
     au(a, b) {
         var s
         if (this.fr.a != null) return false
@@ -13962,7 +13983,7 @@ T.h5.prototype = {
     },
     $ix: 1
 }
-T.h7.prototype = {
+T.SklAssassinate.prototype = {
     au(a, b) {
         if (b && this.r.r2.J(0, $.bT())) return false
         return this.aX(a, b)
@@ -14071,7 +14092,7 @@ T.dd.prototype = {
     $ix: 1,
     $iaV: 1
 }
-T.h9.prototype = {
+T.SklBerserk.prototype = {
     as(a, b) {
         if (b) {
             if (a.r2.h(0, $.aJ()) != null) return false
@@ -14091,7 +14112,7 @@ T.h9.prototype = {
         s.a3(r, true, this.r, T.v7(), c, d)
     }
 }
-T.ha.prototype = {
+T.SklCharge.prototype = {
     au(a, b) {
         if (this.r.r2.J(0, $.a7())) return false
         if (b)
@@ -14174,7 +14195,7 @@ T.dj.prototype = {
     },
     $ix: 1
 }
-T.e3.prototype = {
+T.SklCharm.prototype = {
     as(a, b) {
         var s
         if (b) {
@@ -14255,7 +14276,7 @@ T.dR.prototype = {
     },
     $ibC: 1
 }
-T.e4.prototype = {
+T.SklClone.prototype = {
     aa(a, b, c) {
         return H.b([], t.F)
     },
@@ -14302,11 +14323,11 @@ T.e4.prototype = {
 }
 T.k9.prototype = {
     $1(a) {
-        return a instanceof T.e4
+        return a instanceof T.SklClone
     },
     $S: 46
 }
-T.e5.prototype = {
+T.SklCritical.prototype = {
     v(a, b, c, d) {
         var s = this,
             r = a[0].a,
@@ -14349,7 +14370,7 @@ T.dn.prototype = {
     },
     $ix: 1
 }
-T.hf.prototype = {
+T.SklCurse.prototype = {
     as(a, b) {
         var s
         if (b) {
@@ -14372,7 +14393,7 @@ T.hf.prototype = {
         s.a3(r, true, this.r, T.v9(), c, d)
     }
 }
-T.hh.prototype = {
+T.SklDisperse.prototype = {
     a9(a, b, c) {
         var s = this.bC(a, b, c)
         return b && a instanceof T.aM && a.fx > $.ci() ? s * $.t() : s
@@ -14399,7 +14420,7 @@ T.hh.prototype = {
         else p.bN(o, true, s.r, T.oI(), c, d)
     }
 }
-T.hi.prototype = {
+T.SklExchange.prototype = {
     as(a, b) {
         if (b) return a.fx - this.r.fx > $.at()
         return a.fx > this.r.fx
@@ -14453,7 +14474,7 @@ T.c3.prototype = {
         return -$.i()
     }
 }
-T.cc.prototype = {
+T.SklFire.prototype = {
     v(a, b, c, d) {
         var s, r, q, p = a[0].a,
             o = t.a.a(p.r2.h(0, $.eY()))
@@ -14465,7 +14486,7 @@ T.cc.prototype = {
         p.a3(s * (r + q), true, this.r, T.oJ(), c, d)
     }
 }
-T.e7.prototype = {
+T.sklHalf.prototype = {
     as(a, b) {
         var s
         if (b) {
@@ -14545,7 +14566,7 @@ T.dw.prototype = {
     },
     $ix: 1
 }
-T.hk.prototype = {
+T.SklHaste.prototype = {
     b9(a) {
         return a.b5(this.r.z.f)
     },
@@ -14594,7 +14615,7 @@ T.hk.prototype = {
         m.push(T.RunUpdate(C.String.B(LangData.get_lang("DDWN"), $.qE()), p.r, n, o, o, 0, 1000, 100))
     }
 }
-T.e8.prototype = {
+T.SklHeal.prototype = {
     b9(a) {
         return a.b5(this.r.z.f)
     },
@@ -14679,7 +14700,7 @@ T.dx.prototype = {
     },
     $ix: 1
 }
-T.e9.prototype = {
+T.SklIce.prototype = {
     a9(a, b, c) {
         var s = this.bC(a, b, c)
         return a.r2.h(0, $.bS()) != null ? s / $.t() : s
@@ -14692,7 +14713,7 @@ T.e9.prototype = {
         s.a3(r * q, true, this.r, T.mE(), c, d)
     }
 }
-T.ho.prototype = {
+T.SklIron.prototype = {
     ga4() {
         return $.pJ()
     },
@@ -14817,7 +14838,7 @@ T.dS.prototype = {
     },
     $ix: 1
 }
-T.ht.prototype = {
+T.SklPoison.prototype = {
     v(a, b, c, d) {
         var s = a[0].a,
             r = T.I(this.r, true, c)
@@ -14825,7 +14846,7 @@ T.ht.prototype = {
         s.a3(r, true, this.r, T.vb(), c, d)
     }
 }
-T.hv.prototype = {
+T.SklQuake.prototype = {
     gb7() {
         return $.X()
     },
@@ -14860,7 +14881,7 @@ T.hv.prototype = {
         }
     }
 }
-T.ec.prototype = {
+T.SklRapid.prototype = {
     gb7() {
         return $.B()
     },
@@ -14912,7 +14933,7 @@ T.ec.prototype = {
         }
     }
 }
-T.hx.prototype = {
+T.SklRevive.prototype = {
     b9(a) {
         return a.b5(this.r.z.e)
     },
@@ -14992,12 +15013,12 @@ T.hu.prototype = {
         m.bm(q, o, c, d)
     }
 }
-T.fS.prototype = {
+T.PlrShadow.prototype = {
     gap() {
         return this.aj.r
     },
     ac() {
-        this.k3 = T.cG(this)
+        this.k3 = T.SklAttack(this)
         this.k1.push(new T.hu(0))
     },
     aU() {
@@ -15008,7 +15029,7 @@ T.fS.prototype = {
         s[r] = C.d.P(s[r], $.t())
     }
 }
-T.hB.prototype = {
+T.SklShadow.prototype = {
     au(a, b) {
         if (b)
             if (this.r.fx < $.b3()) return false
@@ -15068,7 +15089,7 @@ T.hB.prototype = {
         a2 = H.b([], a)
         a = H.b([], a)
         a3 = 0
-        a4 = new T.fS(shadow_name, p, q, a6, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a0, a1, a2, a, a3, a3, a3, $.W(), a3)
+        a4 = new T.PlrShadow(shadow_name, p, q, a6, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a0, a1, a2, a, a3, a3, a3, $.W(), a3)
         a4.a1(shadow_name, p, q, a6)
         a4.a6 = new T.cp(a4)
         a4.aj = this_
@@ -15118,7 +15139,7 @@ T.eh.prototype = {
     },
     $ix: 1
 }
-T.hG.prototype = {
+T.SklSlow.prototype = {
     as(a, b) {
         var s
         if (b) {
@@ -15180,7 +15201,7 @@ T.hj.prototype = {
         n.r.bm(o, null, c, d)
     }
 }
-T.fT.prototype = {
+T.PlrSummon.prototype = {
     gap() {
         return this.aj.r
     },
@@ -15200,10 +15221,10 @@ T.fT.prototype = {
         s[r] = p[r]
     },
     ac() {
-        this.k3 = T.cG(this)
+        this.k3 = T.SklAttack(this)
         var s = this.k1
-        s.push(new T.cc(0))
-        s.push(new T.cc(0))
+        s.push(new T.SklFire(0))
+        s.push(new T.SklFire(0))
         s.push(new T.hj(0))
     },
     bP() {
@@ -15230,7 +15251,7 @@ T.fT.prototype = {
         return false
     }
 }
-T.hH.prototype = {
+T.SklSummon.prototype = {
     au(a, b) {
         var s
         if (b)
@@ -15290,7 +15311,7 @@ T.hH.prototype = {
             a1 = H.b([], b)
             b = H.b([], b)
             a2 = 0
-            a2 = new T.fT(s, q, r, a4, p, o, n, m, l, k, j, i, h, g, f, e, d, c, a, a0, a1, b, a2, a2, a2, $.W(), a2)
+            a2 = new T.PlrSummon(s, q, r, a4, p, o, n, m, l, k, j, i, h, g, f, e, d, c, a, a0, a1, b, a2, a2, a2, $.W(), a2)
             a2.a1(s, q, r, a4)
             a2.a6 = new T.cp(a2)
             a2.aj = this_
@@ -15325,7 +15346,7 @@ T.hH.prototype = {
         a5.push(T.RunUpdate(s, r, o, a4, a4, 0, 1000, 100))
     }
 }
-T.hI.prototype = {
+T.SklThunder.prototype = {
     v(a, b, c, d) {
         var s, r, q, p, o, n, m, l, k = this,
             j = null,
@@ -15378,13 +15399,13 @@ T.f5.prototype = {
     },
     ac() {
         var s, r
-        this.k3 = T.cG(this)
+        this.k3 = T.SklAttack(this)
         s = this.k1
         s.push(new T.h6(0))
         r = new T.e2(0)
         r.f = $.pW()
         s.push(r)
-        r = new T.e9(0)
+        r = new T.SklIce(0)
         r.f = $.b3()
         s.push(r)
     }
@@ -15502,7 +15523,7 @@ T.fQ.prototype = {
         C.Array.a5(q, n.t)
         n.E = q
     },
-    cA(a) {},
+    cA(a) { },
     bf() {
         this.x = $.ao()
     }
@@ -15630,7 +15651,7 @@ T.hb.prototype = {
         if (q > o) r.l = o
     }
 }
-T.f7.prototype = {
+T.PlrBossCovid.prototype = {
     gan() {
         var s = $.Z(),
             r = $.n2(),
@@ -15651,7 +15672,7 @@ T.dk.prototype = {
     gT() {
         return 0
     },
-    K(a, b) {},
+    K(a, b) { },
     $ix: 1
 }
 T.dl.prototype = {
@@ -15789,7 +15810,7 @@ T.f8.prototype = {
     },
     ac() {
         var s, r
-        this.k3 = T.cG(this)
+        this.k3 = T.SklAttack(this)
         s = this.k1
         s.push(new T.hn(0))
         r = new T.hm(0)
@@ -15962,7 +15983,7 @@ T.df.prototype = {
         var s, r, q = this
         q.k3 = T.hE(q)
         s = 0
-        q.aj = new T.cc(s)
+        q.aj = new T.SklFire(s)
         s = new T.hr(q, s)
         s.r = q
         s.f = $.b2()
@@ -15979,7 +16000,7 @@ T.hr.prototype = {
     gT() {
         return $.i()
     },
-    ao(a, b) {},
+    ao(a, b) { },
     au(a, b) {
         var s = this.fr,
             r = s.aC,
@@ -16032,7 +16053,7 @@ T.ea.prototype = {
     ga4() {
         return $.lG()
     },
-    ao(a, b) {},
+    ao(a, b) { },
     b1(a, b, c, d) {
         var s, r, q = this,
             p = null,
@@ -16061,7 +16082,7 @@ T.ea.prototype = {
         s.fx = s.fy
         t.ch.a(s).bi.K(null, b)
     },
-    dd(a, b) {},
+    dd(a, b) { },
     W() {
         this.r.L.j(0, this)
     },
@@ -16079,7 +16100,7 @@ T.f9.prototype = {
     },
     ac() {
         this.k3 = T.hE(this)
-        var s = new T.e1(0)
+        var s = new T.SklAbsorb(0)
         s.f = $.ci()
         this.k1.push(s)
     }
@@ -16145,7 +16166,7 @@ T.hA.prototype = {
 }
 T.cy.prototype = {}
 T.fR.prototype = {}
-T.bZ.prototype = {
+T.PlrBossSlime.prototype = {
     gan() {
         var s = $.a4(),
             r = $.mN()
@@ -16188,14 +16209,14 @@ T.fb.prototype = {
     ac() {
         var s, r, q = this
         q.aC = q.dk.aC + $.i()
-        q.k3 = T.cG(q)
+        q.k3 = T.SklAttack(q)
         s = q.k1
         if (q.aC == $.i()) s.push(new T.ef(0))
         else {
-            r = new T.e7(0)
+            r = new T.sklHalf(0)
             r.f = $.at()
             s.push(r)
-            r = new T.e8(0)
+            r = new T.SklHeal(0)
             r.f = $.at()
             s.push(r)
         }
@@ -16269,13 +16290,13 @@ T.fc.prototype = {
         var s, r
         this.k3 = T.hE(this)
         s = this.k1
-        r = new T.ec(0)
+        r = new T.SklRapid(0)
         r.f = $.aI()
         s.push(r)
-        r = new T.e5(0)
+        r = new T.SklCritical(0)
         r.f = $.aI()
         s.push(r)
-        r = new T.cb(0)
+        r = new T.SklCounter(0)
         r.f = $.aI()
         s.push(r)
     }
@@ -16297,10 +16318,10 @@ T.fd.prototype = {
         r = new T.eg(0)
         r.f = $.eX()
         s.push(r)
-        r = new T.e6(0)
+        r = new T.SklDefend(0)
         r.f = $.aI()
         s.push(r)
-        r = new T.ed(0)
+        r = new T.SklReflect(0)
         r.f = $.aI()
         s.push(r)
     }
@@ -16555,11 +16576,11 @@ T.fo.prototype = {
                     async_goto = 5
                     // return P._asyncAwait(this_.bE(), $async$O)
                     why_ns = 0
-                    // $.mc = 0 // 来自bE()
+                // $.mc = 0 // 来自bE()
                 case 5:
                     result_ = n
                     async_goto = 1
-                    // break
+                // break
                 case 4:
                     try {
                         for (; this_.cy == null;) {
@@ -16572,7 +16593,7 @@ T.fo.prototype = {
                         }
                     } catch (e) {
                         m = H.unwrap_Exception(e)
-                        l = H.get_trace_from_exception(e)
+                        l = H.getTraceFromException(e)
                     }
                     if (n.a.length !== 0) {
                         result_ = n
@@ -16905,38 +16926,42 @@ T.Plr.prototype = {
         // 名字字符输入的处理在此
         var s, r, q, p, o, n, m, l, k, j, i, this_ = this
         this_.I = this_.gfJ()
-        s = this_.r = this_.a
-        r = this_.b
+        s = this_.r = this_.a // 名字第一部分
+        r = this_.b // @ 号以后的东西
         if (r != null && r !== "" && r !== s) {
             // 有战队情况下构造名字
             r = this_.e = H.as_string(s) + "@" + H.as_string(this_.b)
-            console.log(r)
         } else {
             this_.e = this_.b = s
             r = s
         }
         this_.f = r
-        q = this_.d
+        q = this_.d // + 号以后的东西
         if (q != null && q !== "") {
-            this_.f = H.as_string(r) + "+" + H.as_string(q)
-
-            // 武器列表
-            r = $.rj()
-
-            if (r.J(0, q)) {
-                p = r.h(0, q).$2(q, this_)
-            } else if (J.nz(q, $.cl())) {
-                p = new T.j2(q, this_, P.aL($.av(), 0, false, t.B))
-                p.a = q
-                p.a = C.String.af(q, 0, q.length - $.i())
+            // MARK: DIY part
+            if (q.startsWith("diy")) {
+                this_.diy = q.slice(3)
             } else {
-                p = T.tN(q, this_)
-            }
+                this_.f = H.as_string(r) + "+" + H.as_string(q)
 
-            o = new LangData.SuperRC4()
-            o.bd(LangData.fZ(p.a), $.t())
-            p.b3(o)
-            this_.r1 = p
+                // 武器列表
+                r = $.rj()
+                console.log("$.rj()", $.rj())
+                if (r.J(0, q)) {
+                    p = r.h(0, q).$2(q, this_)
+                } else if (J.nz(q, $.cl())) {
+                    p = new T.j2(q, this_, P.aL($.av(), 0, false, t.B))
+                    p.a = q
+                    p.a = C.String.af(q, 0, q.length - $.i())
+                } else {
+                    p = T.tN(q, this_)
+                }
+
+                o = new LangData.SuperRC4()
+                o.bd(LangData.fZ(p.a), $.t())
+                p.b3(o)
+                this_.weapon = p
+            }
         }
         if (J.lW(s, " ")) {
             this_.r = s.split(" ")[0]
@@ -16973,8 +16998,8 @@ T.Plr.prototype = {
         s = this_.t
         s = H.b(s.slice(0), H._arrayInstanceType(s))
         this_.E = s
-        this_.ac()
-        this_.k2 = this_.X.dH(this_.k1, t.c5)
+        this_.ac() // createSkills, 对this.k1直接操作，顺序固定
+        this_.k2 = this_.X.dH(this_.k1, t.c5) // 以某种方式打乱顺序？
     },
     bf() {
         var s, r = this,
@@ -17026,14 +17051,41 @@ T.Plr.prototype = {
     },
     az() {
         // buildAsync
-        var weapon, this_ = this
+        var weapon, diy, this_ = this
         this_.bf()
-        weapon = this_.r1
+        weapon = this_.weapon
         if (weapon != null) weapon.bn()
+
         this_.aU() // initRawAttr
         this_.bP() // initLists
-        this_.dm(C.Array.cL(this_.t, $.au()), C.Array.cL(this_.E, $.au())) // initSkills
-        weapon = this_.r1
+
+
+        // DIY自定义属性
+        diy = this_.diy
+        if (diy != null) {
+            try {
+                var tmparr = diy.split("]");
+                var attrs = JSON.parse(tmparr[0] + "]");
+                if (tmparr[1].startsWith("{")) var diyskills = JSON.parse(tmparr[1]);
+                if (attrs.length != 8) throw new Error('八围要有八个元素')
+            } catch (error) {
+                console.error(error)
+                alert("DIY捏人格式错误，请检查");
+            }
+            if (attrs) {
+                for (var i = 0; i < 7; i++) {
+                    attrs[i] -= 36; // 为当前项减去36
+                }
+                this.q = attrs
+            }
+            if (diyskills) {
+                this.diy_skills(diyskills)
+            } else this_.dm(C.Array.cL(this_.t, $.au()), C.Array.cL(this_.E, $.au())) // initSkills
+        } else {
+            this_.dm(C.Array.cL(this_.t, $.au()), C.Array.cL(this_.E, $.au())) // initSkills
+        }
+
+        weapon = this_.weapon
         if (weapon != null) weapon.cs()
         this_.bs() // addSkillsToProc
         this_.cn() // initValues
@@ -17062,106 +17114,132 @@ T.Plr.prototype = {
     },
     bP() {
         //initLists
-        var s = this
-        C.Array.sp(s.k4, 0)
-        s.r2.ah(0)
-        s.rx.ah(0)
-        s.ry.ah(0)
-        s.x1.ah(0)
-        s.x2.ah(0)
-        s.y1.ah(0)
-        s.y2.ah(0)
-        s.G.ah(0)
-        s.L.ah(0)
-        s.S.ah(0)
+        var this_ = this
+        C.Array.sp(this_.k4, 0)
+        this_.r2.ah(0)
+        this_.rx.ah(0)
+        this_.ry.ah(0)
+        this_.x1.ah(0)
+        this_.x2.ah(0)
+        this_.y1.ah(0)
+        this_.y2.ah(0)
+        this_.G.ah(0)
+        this_.L.ah(0)
+        this_.S.ah(0)
     },
     ac() {
         // create skills
         // createSkills()
-        var s, r, q
-        this.k3 = T.cG(this)
-        s = this.k1
-        s.push(new T.cc(0))
-        s.push(new T.e9(0))
-        s.push(new T.hI(0))
-        s.push(new T.hv(0))
-        s.push(new T.e1(0))
-        s.push(new T.ht(0))
-        s.push(new T.ec(0))
-        s.push(new T.e5(0))
-        s.push(new T.e7(0))
-        s.push(new T.hi(0))
-        s.push(new T.h9(0))
-        s.push(new T.e3(0))
-        s.push(new T.hk(0))
-        s.push(new T.hG(0))
-        s.push(new T.hf(0))
-        s.push(new T.e8(0))
-        s.push(new T.hx(0))
-        s.push(new T.hh(0))
+        var skills, r, q
+        this.k3 = T.SklAttack(this)
+        skills = this.k1
+        skills.push(new T.SklFire(0)); // 0
+        skills.push(new T.SklIce(0)); // 1
+        skills.push(new T.SklThunder(0)); // 2
+        skills.push(new T.SklQuake(0)); // 3
+        skills.push(new T.SklAbsorb(0)); // 4
+        skills.push(new T.SklPoison(0)); // 5
+        skills.push(new T.SklRapid(0)); // 6
+        skills.push(new T.SklCritical(0)); // 7
+        skills.push(new T.sklHalf(0)); // 8
+        skills.push(new T.SklExchange(0)); // 9
+        skills.push(new T.SklBerserk(0)); // 10
+        skills.push(new T.SklCharm(0)); // 11
+        skills.push(new T.SklHaste(0)); // 12
+        skills.push(new T.SklSlow(0)); // 13
+        skills.push(new T.SklCurse(0)); // 14
+        skills.push(new T.SklHeal(0)); // 15
+        skills.push(new T.SklRevive(0)); // 16
+        skills.push(new T.SklDisperse(0)); // 17
         r = 0
-        r = new T.ho(r, r, r)
+        r = new T.SklIron(r, r, r)
         q = new T.dT(1 / 0, r)
         r.fr = q
         r.fx = new T.b8(r)
         r.fy = new T.bd(r)
         q.r = $.lG()
-        s.push(r)
+        skills.push(r) // 18
         r = 0
-        r = new T.ha(r, r)
+        r = new T.SklCharge(r, r)
         r.fr = new T.bd(r)
         r.fx = new T.b8(r)
-        s.push(r)
-        r = new T.h5($.pj(), 0)
+        skills.push(r) // 19
+        r = new T.SklAccumulate($.pj(), 0)
         r.fr = new T.bd(r)
-        s.push(r)
-        r = new T.h7(0)
+        skills.push(r) // 20
+        r = new T.SklAssassinate(0)
         r.fr = new T.ca(r)
         r.fx = new T.cA(r)
-        s.push(r)
-        s.push(new T.hH(0))
-        s.push(new T.e4(0))
-        s.push(new T.hB(0))
-        s.push(new T.e6(0))
-        s.push(new T.eb(0))
-        s.push(new T.ed(0))
-        s.push(new T.hw(0))
-        s.push(new T.hC(0))
-        s.push(new T.cb(0))
-        s.push(new T.hs(0))
-        s.push(new T.hK(0))
-
-        r = new T.hJ(0)
+        skills.push(r) // 21
+        skills.push(new T.SklSummon(0)); // 22
+        skills.push(new T.SklClone(0)); // 23
+        skills.push(new T.SklShadow(0)); // 24
+        skills.push(new T.SklDefend(0)); // 25
+        skills.push(new T.SklProtect(0)); // 26
+        skills.push(new T.SklReflect(0)); // 27
+        skills.push(new T.SklReraise(0)); // 28
+        skills.push(new T.SklShield(0)); // 29
+        skills.push(new T.SklCounter(0)); // 30
+        skills.push(new T.SklMerge(0)); // 31
+        skills.push(new T.SklZombie(0)); // 32
+        r = new T.SklUpgrade(0)
         r.Q = new T.bd(r)
-        s.push(r)
-
-        r = new T.hl(0)
+        skills.push(r) // 33
+        r = new T.SklHide(0)
         r.ch = new T.bd(r)
         r.Q = new T.ca(r)
-        s.push(r)
+        skills.push(r) // 34
+        skills.push(new T.SkillVoid(0))
+        skills.push(new T.SkillVoid(0))
+        skills.push(new T.SkillVoid(0))
+        skills.push(new T.SkillVoid(0))
+        skills.push(new T.SkillVoid(0))
+    },
+    diy_skills(diyskills) {
+        try {
+            // MARK: 自定义技能
+            var sortedSkills = this.k2
+            var this_ = this
+            // 初始化技能
+            for (var n = 0; n < this.k2.length; n++) this.k2[n].ao(this, 0)
+            // 遍历diyskills字典的键
+            var keys = Object.keys(diyskills);
+            for (var k = 0; k < keys.length; k++) {
+                // 遍历skills数组中的对象
+                var key = keys[k]
+                for (var i = 0; i < sortedSkills.length; i++) {
+                    if (sortedSkills[i].constructor.name.toLowerCase() == key.toLowerCase()) {
+                        sortedSkills[i].f = diyskills[key];
+                        // skills[i].ao(this, this.f)
 
-        s.push(new T.SkillVoid(0))
-        s.push(new T.SkillVoid(0))
-        s.push(new T.SkillVoid(0))
-        s.push(new T.SkillVoid(0))
-        s.push(new T.SkillVoid(0))
+                        if (i != k) { // 把技能的顺序排一下
+                            [sortedSkills[i], sortedSkills[k]] = [sortedSkills[k], sortedSkills[i]]
+                        }
+                        break;
+                    }
+                }
+            }
+        } catch (error) {
+            console.log("error diy")
+            console.error(error)
+        }
     },
     dm(list, original) {
         // initSkills
-        var s, sortedSkills, q, p, this_ = this,
+        var skill, sortedSkills, q, p, this_ = this,
             n = 0,
-            m = n
+            m = 0
         // src中被移除的计算技能部分
         while (true) {
             if (!(n < $.aR() && n < this_.k2.length)) break
-            s = this_.k2[n]
+            skill = this_.k2[n]
             sortedSkills = C.Array.al(list, m, m + $.C())
             if (!!sortedSkills.immutable$list) H.throw_expression(P.UnsupportError("sort"))
             q = sortedSkills.length - 1
             if (q - 0 <= 32) H.ej(sortedSkills, 0, q, J.bO())
             else H.ei(sortedSkills, 0, q, J.bO())
-            p = sortedSkills[0] - $.Z()
-            s.ao(this_, p)
+            p = sortedSkills[0] - 10
+            skill.ao(this_, p)
             sortedSkills = 0
             if (p > sortedSkills) {
                 sortedSkills = C.Array.al(original, m, m + $.C())
@@ -17170,42 +17248,44 @@ T.Plr.prototype = {
                 if (q - 0 <= 32) H.ej(sortedSkills, 0, q, J.bO())
                 else H.ei(sortedSkills, 0, q, J.bO())
                 q = 0
-                if (sortedSkills[q] - $.Z() <= q) s.e = true
-            }++n
-            m += $.C()
+                if (sortedSkills[q] - 10 <= q) skill.e = true
+            } ++n
+            m += $.C() // 4
         }
+        // console.log("this_.k2:",this_.k2)
         for (; sortedSkills = this_.k2, n < sortedSkills.length; ++n) sortedSkills[n].ao(this_, 0)
+        // sorted skills是this.k2, 
     },
     bs() {
         // addSkillsToProc
-        var s, r, sortedSkills, skl, o, n, m, this_ = this
-        for (s = 0, r = this_.k4; sortedSkills = this_.k2, s < sortedSkills.length; ++s) {
+        var s, actions, sortedSkills, skl, o, act, boostPassive, this_ = this
+        for (s = 0, actions = this_.k4; sortedSkills = this_.k2, s < sortedSkills.length; ++s) {
             skl = sortedSkills[s]
-            if (skl.f > 0 && skl instanceof T.ActionSkill) r.push(skl)
+            if (skl.f > 0 && skl instanceof T.ActionSkill) actions.push(skl)
         }
-        sortedSkills = r.length
-        o = 0
-        if (sortedSkills > o)
-            for (s = sortedSkills - $.i(); s >= o; --s) {
-                n = r[s]
-                if (!n.e) {
-                    n.f = n.f * $.t()
-                    n.e = true
-                    break
+        if (this.diy == undefined) {
+            if (actions.length > 0)
+                for (s = actions.length - 1; s >= 0; --s) {
+                    act = actions[s]
+                    if (!act.e) { // !act.boosted
+                        act.f = act.f * 2
+                        act.e = true
+                        break
+                    }
                 }
-            }
-        m = new T.jW()
-        r = this_.k2
-        if (r.length >= $.aR()) {
-            r = r[$.p7()]
-            sortedSkills = this_.t
-            m.$3(r, sortedSkills[$.a6()], sortedSkills[$.pR()])
-            sortedSkills = this_.k2[$.eT()]
-            r = this_.t
-            m.$3(sortedSkills, r[$.n_()], r[$.b2()])
         }
-        for (s = 0, r = this_.k1; s < r.length; ++s) {
-            skl = r[s]
+        boostPassive = new T.BoostPassive()
+        var skills = this_.k2
+        if (skills.length >= $.aR()) {
+            skills = skills[$.p7()]
+            sortedSkills = this_.t
+            boostPassive.boostPassive(skills, sortedSkills[$.a6()], sortedSkills[$.pR()])
+            sortedSkills = this_.k2[$.eT()]
+            skills = this_.t
+            boostPassive.boostPassive(sortedSkills, skills[$.n_()], skills[$.b2()])
+        }
+        for (s = 0, skills = this_.k1; s < skills.length; ++s) {
+            skl = skills[s]
             if (skl.f > 0) skl.W()
         }
     },
@@ -17252,7 +17332,9 @@ T.Plr.prototype = {
         this_.z = this_.y
         this_.id = $.T()
         this_.A = false
-        for (s = this_.rx, s = new Sgls.a_(s, s.b, s.$ti.i("a_<1*>")); s.u();) s.b.ar(this_)
+        for (s = this_.rx, s = new Sgls.a_(s, s.b, s.$ti.i("a_<1*>")); s.u();) {
+            s.b.ar(this_)
+        }
     },
     ci() {
         // calcAttrSum
@@ -17398,7 +17480,7 @@ T.Plr.prototype = {
         p = LangData.get_lang("kZsn")
         r = 0
         if (a === r) {
-            e.a.push(T.RunUpdate(C.String.B(C.String.fu(p, "1", "0"), $.ne()), n, n, new T.HDamage(0), null, $.Z(), 1000, 100))
+            e.a.push(T.RunUpdate(C.String.B(C.String.fu(p, "1", "0"), $.ne()), n, n, new T.HDamage(0), null, 10, 1000, 100))
             return 0
         }
         s = n.fx
@@ -17472,7 +17554,7 @@ T.Plr.prototype = {
         if (o instanceof T.cz) n = C.N
         else {
             s = H.b([], t.i)
-            for (r = $.Z(); r < $.d1(); r += $.B()) {
+            for (r = 10; r < $.d1(); r += $.B()) {
                 q = C.Array.al(o.E, r, r + $.B())
                 if (!!q.immutable$list) H.throw_expression(P.UnsupportError("sort"))
                 p = q.length - 1
@@ -17480,12 +17562,12 @@ T.Plr.prototype = {
                 else H.ei(q, 0, p, J.bO())
                 s.push(q[$.i()])
             }
-            q = C.Array.al(o.E, 0, $.Z())
+            q = C.Array.al(o.E, 0, 10)
             C.Array.aJ(q)
             s.push(C.Array.dz(C.Array.al(q, $.B(), $.ap()), new T.jY()) + $.mK())
             for (r = 0; r < s.length; ++r)
                 if (o.q[r] > s[r]) n.push(H.as_string($.lO()) + H.as_string(o.q[r] - s[r]))
-            else n.push("")
+                else n.push("")
         }
         return H.as_string(o.e) + "\t" + H.as_string(o.r) + "\t" + H.as_string(o.c) + "\t" + H.as_string(o.f) + "\t" + H.as_string(o.fy) + n[$.ap()] + "\t" + H.as_string(o.aY(o.q[0])) + n[0] + "\t" + H.as_string(o.aY(o.q[$.i()])) + n[$.i()] + "\t" + H.as_string(o.aY(o.q[$.t()])) + n[$.t()] + "\t" + H.as_string(o.aY(o.q[$.B()])) + n[$.B()] + "\t" + H.as_string(o.aY(o.q[$.C()])) + n[$.C()] + "\t" + H.as_string(o.aY(o.q[$.X()])) + n[$.X()] + "\t" + H.as_string(o.aY(o.q[$.a4()])) + n[$.a4()] + "\t" + H.as_string(o.cE())
     },
@@ -17506,8 +17588,8 @@ T.jX.prototype = {
     },
     $S: 15
 }
-T.jW.prototype = {
-    $3(a, b, c) {
+T.BoostPassive.prototype = {
+    boostPassive(a, b, c) {
         var s = a.f
         if (s > 0 && !a.e) {
             a.f = s + Math.min(Math.min(H.ar(b), H.ar(c)), s)
@@ -17523,7 +17605,7 @@ T.jY.prototype = {
     $S: 15
 }
 T.x.prototype = {
-    K(a, b) {}
+    K(a, b) { }
 }
 T.aZ.prototype = {}
 T.cB.prototype = {}
@@ -17588,7 +17670,7 @@ T.cp.prototype = {
     }
 }
 T.bG.prototype = {}
-T.q.prototype = {
+T.Skill.prototype = {
     ao(a, b) {
         var s
         this.r = a
@@ -17596,7 +17678,7 @@ T.q.prototype = {
         if (b > s) this.f = b
         else this.f = s
     },
-    W() {},
+    W() { },
     b9(a) {
         var s = this.gap().z
         return a.fm(s.a.e, s.f)
@@ -17610,8 +17692,8 @@ T.q.prototype = {
     bx(a, b, c, d) {
         if (b)
             if (this.gap().y.a.Q > $.t()) return T.f_(a) * a.y.f.length * a.H
-        else if (d) return T.f_(a) * a.M * a.H
-        else return $.i() / T.f_(a) * a.N * a.H
+            else if (d) return T.f_(a) * a.M * a.H
+            else return $.i() / T.f_(a) * a.N * a.H
         return c.gbo() + a.H
     },
     gb7() {
@@ -17694,7 +17776,7 @@ T.hD.prototype = {
         s.a3(r, false, this.r, T.ad(), c, d)
     }
 }
-T.cb.prototype = {
+T.SklCounter.prototype = {
     W() {
         this.r.G.j(0, this)
     },
@@ -17728,7 +17810,7 @@ T.cb.prototype = {
     },
     $iah: 1
 }
-T.e6.prototype = {
+T.SklDefend.prototype = {
     ga4() {
         return $.pl()
     },
@@ -17744,7 +17826,7 @@ T.e6.prototype = {
     },
     $iaB: 1
 }
-T.hl.prototype = {
+T.SklHide.prototype = {
     W() {
         var s = this
         s.r.G.j(0, s)
@@ -17790,7 +17872,7 @@ T.fC.prototype = {
         return 0
     }
 }
-T.hs.prototype = {
+T.SklMerge.prototype = {
     W() {
         this.r.S.j(0, this)
     },
@@ -17823,7 +17905,7 @@ T.hs.prototype = {
                         m.W()
                     } else m.f = q
                     o = true
-                }++s
+                } ++s
             }
             r = a.go
             q = k.r
@@ -17905,7 +17987,7 @@ T.dV.prototype = {
         return a
     }
 }
-T.eb.prototype = {
+T.SklProtect.prototype = {
     b9(a) {
         var s = this.r
         return a.fk(s.z.f, s)
@@ -17954,7 +18036,7 @@ T.eb.prototype = {
     },
     $ibq: 1
 }
-T.ed.prototype = {
+T.SklReflect.prototype = {
     dv(a, b, c, d, e, f, g) {
         var s, r, q = this
         if (c.fx <= 0) return a
@@ -17974,7 +18056,7 @@ T.ed.prototype = {
     },
     $ibH: 1
 }
-T.hw.prototype = {
+T.SklReraise.prototype = {
     ga4() {
         return $.lG()
     },
@@ -18033,7 +18115,7 @@ T.e0.prototype = {
         this.r.r2.U(0, $.lR())
     }
 }
-T.hC.prototype = {
+T.SklShield.prototype = {
     aN(a, b, c, d) {
         var s, r, q, p = this
         if (p.f > 0) {
@@ -18055,7 +18137,7 @@ T.hC.prototype = {
     },
     $iaV: 1
 }
-T.hJ.prototype = {
+T.SklUpgrade.prototype = {
     W() {
         this.r.G.j(0, this)
     },
@@ -18136,7 +18218,7 @@ T.fX.prototype = {
         return this.aj.r
     },
     ac() {
-        this.k3 = T.cG(this)
+        this.k3 = T.SklAttack(this)
     },
     aU() {
         var s, r
@@ -18154,7 +18236,7 @@ T.hY.prototype = {
         return 0
     }
 }
-T.hK.prototype = {
+T.SklZombie.prototype = {
     W() {
         this.r.S.j(0, this)
     },
@@ -18272,7 +18354,7 @@ T.hg.prototype = {
         var s = this.fx
         if (s != null && s.fx > 0)
             if (b) return s.y != this.r.y
-        else return a.n() < 128
+            else return a.n() < 128
         return false
     },
     W() {
@@ -18318,20 +18400,20 @@ T.fl.prototype = {
     gT() {
         return 0
     },
-    K(a, b) {},
+    K(a, b) { },
     $ix: 1
 }
 T.jq.prototype = {
-    b3(a) {},
-    bn() {},
+    b3(a) { },
+    bn() { },
     b6() {
         this.c.r2.m(0, $.a7(), new T.fl())
     }
 }
 T.jN.prototype = {
-    b3(a) {},
-    bn() {},
-    b6() {}
+    b3(a) { },
+    bn() { },
+    b6() { }
 }
 T.k1.prototype = {
     cs() {
@@ -18608,20 +18690,22 @@ T.ep.prototype = {
         (r && C.Array).j(r, q)
     }
 }
-T.bL.prototype = {
+T.Weapon.prototype = {
     b3(a) {
-        var s, r, q, p, o, n, m, l, k, j, i, h, g, f = this,
+        var s, r, q, p, o, n, m, l, k, j, i, h, g, this_ = this,
             e = a.c
         e.toString
         s = H._arrayInstanceType(e).i("y<1,l*>")
-        f.d = P.List_List_of(new H.y(e, new T.ko(), s), true, s.i("M.E"))
-        f.e = a.ax($.bg())
+        this_.d = P.List_List_of(new H.y(e, new T.ko(), s), true, s.i("M.E"))
+        this_.e = a.ax($.bg())
         r = a.ax($.av())
         e = $.a4()
-        s = f.d
+        s = this_.d
         q = s && C.Array
-        if (r === e) p = q.al(s, $.bg(), $.aI())
-        else {
+        if (r === e) {
+            p = q.al(s, $.bg(), $.aI())
+
+        } else {
             e = q.al(s, $.bg(), $.aI())
             s = H._arrayInstanceType(e).i("y<1,l*>")
             p = P.List_List_of(new H.y(e, new T.kp(), s), true, s.i("M.E"))
@@ -18636,16 +18720,16 @@ T.bL.prototype = {
             }
         }
         m *= $.B()
-        e = f.d
+        e = this_.d
         j = (e && C.Array).al(e, o, $.av())
         C.Array.aJ(j)
         i = j[$.i()] + j[$.C()] + n
         for (k = 0, h = i; e = $.ap(), k < e; ++k) {
             g = C.d.P(i * p[k], m)
             h -= g * $.B()
-            f.r[k] = g
+            this_.r[k] = g
         }
-        if (p[e] > 0) f.r[e] = h
+        if (p[e] > 0) this_.r[e] = h
     },
     cB(a, b, c, d) {
         var s, r, q, p, o, n, m = c[d] - a[d],
@@ -18666,6 +18750,7 @@ T.bL.prototype = {
         return Math.abs(m) + Math.abs(j) + Math.abs(r)
     },
     bn() {
+        // preUpgrade
         var s, r, q, p = this,
             o = 0
         for (s = $.Z(), r = p.c; s < $.d1(); s += $.B()) {
@@ -18679,6 +18764,7 @@ T.bL.prototype = {
         }
     },
     cs() {
+        // postUpgrade
         var s, r, q
         for (s = 0, r = this.c; s < $.av(); ++s) {
             q = r.q
@@ -18687,6 +18773,7 @@ T.bL.prototype = {
         this.b6()
     },
     b6() {
+        // upgradeSkill
         var s = this.c.k1[this.e],
             r = s.f
         if (r == 0) s.e = true
@@ -18771,8 +18858,8 @@ T.hc.prototype = {
     }
 }
 T.kv.prototype = {
-    b3(a) {},
-    bn() {},
+    b3(a) { },
+    bn() { },
     b6() {
         var s = new T.hc(0),
             r = this.c
@@ -18879,45 +18966,56 @@ LangData.k_.prototype = {
     }
 };
 (function aliases() {
+    // MARK: 类型别名
     var s = J.Interceptor.prototype
     s.dO = s.k
+
     s = J.bE.prototype
     s.dQ = s.k
+
     s = P.L.prototype
     s.dP = s.bV
-    s = W.Q.prototype
+
+    s = W.Element.prototype
     s.bY = s.aA
+
     s = W.eD.prototype
     s.dX = s.aM
+
     s = T.cz.prototype
     s.cM = s.a7
+
     s = T.Plr.prototype
     s.bB = s.aU
     s.dS = s.bP
     s.dR = s.bs
     s.dT = s.F
-    s = T.q.prototype
+
+    s = T.Skill.prototype
     s.bC = s.a9
     s.bZ = s.bx
     s.dU = s.aa
+
     s = T.ActionSkill.prototype
     s.aX = s.au
-    s = T.bL.prototype
+
+    s = T.Weapon.prototype
     s.cN = s.b3
     s.dW = s.bn
     s.dV = s.cs
 })();
 (function installTearOffs() {
+    // MARK: 静态实例
     var static_2 = hunkHelpers._static_2,
         static_1 = hunkHelpers._static_1,
         static_0 = hunkHelpers._static_0,
         instance_2u = hunkHelpers._instance_2u,
         install_static_tearoff = hunkHelpers.installStaticTearOff,
         instance_1i = hunkHelpers._instance_1i,
-        m = hunkHelpers._instance_0i,
-        l = hunkHelpers._instance_1u,
-        k = hunkHelpers.installInstanceTearOff,
-        j = hunkHelpers._instance_0u
+        instance_0i = hunkHelpers._instance_0i,
+        instance_1u = hunkHelpers._instance_1u,
+        install_instance_tear_off = hunkHelpers.installInstanceTearOff,
+        instance_0u = hunkHelpers._instance_0u
     static_2(J, "bO", "t1", 59)
     static_1(H, "uv", "mv", 10)
     static_1(P, "uK", "_AsyncRun__scheduleImmediateJsOverride", 4)
@@ -18929,12 +19027,16 @@ LangData.k_.prototype = {
     install_static_tearoff(W, "uV", 4, null, ["$4"], ["tT"], 20, 0)
     install_static_tearoff(W, "uW", 4, null, ["$4"], ["tU"], 20, 0)
     static_2(HtmlRenderer, "oD", "rU", 62)
-    var i
-    instance_1i(i = HtmlRenderer.fq.prototype, "gfb", "fc", 31)
-    instance_1i(i, "gff", "ds", 8)
-    m(i, "gbc", "dI", 0)
-    l(i, "gfd", "fe", 33)
-    k(i, "gel", 0, 0, null, ["$1", "$0"], ["c5", "em"], 34, 0, 0)
+
+    let html_holder
+    instance_1i(html_holder = HtmlRenderer.inner_render.prototype, "gfb", "fc", 31)
+    instance_1i(html_holder, "gff", "ds", 8)
+    instance_0i(html_holder, "gbc", "dI", 0)
+    instance_1u(html_holder, "gfd", "fe", 33)
+    install_instance_tear_off(html_holder, "gel", 0, 0, null, ["$1", "$0"], ["c5", "em"], 34, 0, 0)
+    instance_0u(html_holder = T.Plr.prototype, "gfJ", "fK", 19)
+    instance_0u(html_holder, "gbT", "dE", 19)
+
     static_1(Sgls, "vg", "tv", 8)
     install_static_tearoff(T, "v6", 5, null, ["$5"], ["ty"], 1, 0)
     install_static_tearoff(T, "v7", 5, null, ["$5"], ["tA"], 1, 0)
@@ -18950,20 +19052,32 @@ LangData.k_.prototype = {
     static_2(T, "v5", "t6", 43)
     install_static_tearoff(T, "ad", 5, null, ["$5"], ["tx"], 1, 0)
     install_static_tearoff(T, "oH", 5, null, ["$5"], ["tz"], 1, 0)
-    k(T.dl.prototype, "gf9", 0, 5, null, ["$5"], ["fa"], 1, 0, 0)
-    j(i = T.Plr.prototype, "gfJ", "fK", 19)
-    j(i, "gbT", "dE", 19)
-    instance_2u(T.cb.prototype, "gdr", "f8", 54)
+    install_instance_tear_off(T.dl.prototype, "gf9", 0, 5, null, ["$5"], ["fa"], 1, 0, 0)
+    instance_2u(T.SklCounter.prototype, "gdr", "f8", 54)
 })();
 (function inheritance() {
+    // MARK: 继承链
     var mixin = hunkHelpers.mixin,
         inherit = hunkHelpers.inherit,
         inherit_many = hunkHelpers.inheritMany
     inherit(P.Object, null)
-    inherit_many(P.Object, [H.m8, J.Interceptor, J.db, P.O, P.ev, P.L, H.cv, P.fv, H.du, H.hV, H.kh, H.jR, H.dt, H.eE, H.c_, P.aU, H.jK, H.fA, H.JSSyntaxRegExp, H.ew, H.kz, H.bK, H.l3, H.aW, H.ib, H.iu, P.l8, P.i_, P.f3, P.i4, P.cN, P._Future, P.i0, P.em, P.hO, P.hP, P.im, P.i1, P.i3, P.i7, P.ii, P.io, P.lf, P.eM, P.kV, P.ie, P.z, P.dY, P.fg, P.js, P.lc, P.lb, P.dq, P.Duration, P.fM, P.el, P.kG, P.jm, P.N, P.iq, P.cH, W.j8, W.m5, W.cP, W.cr, W.dN, W.eD, W.is, W.dv, W.kE, W.l_, W.ix, P.l4, P.kw, P.eJ, P.jQ, P.kT, Y.RC4, L.iR, V.iV, X.iW, S.fK, HtmlRenderer.fq, HtmlRenderer.jT, HtmlRenderer.ax, Sgls.a_, Sgls.n, T.x, T.Plr, T.dk, T.fo, T.b7, T.IPlr, T.HDamage, T.HRecover, T.aX, T.aq, T.bG, T.bL, T.fl])
-    inherit_many(J.Interceptor, [J.fw, J.cs, J.bE, J.JsArray, J.JsNumber, J.JsString, H.dJ, H.ab, W.fn, W.bX, W.fe, W.i6, W.bb, W.ja, W.jb, W.o, W.c4, W.jL, W.ig, W.il, W.iy, W.iA])
+    inherit_many(P.Object,
+        [H.m8, J.Interceptor, J.db, P.O, P.ev, P.L, H.cv, P.fv, H.du, H.hV, H.kh, H.jR, H.dt, H.eE, H.c_, P.aU, H.jK, H.fA,
+        H.JSSyntaxRegExp, H.ew, H.kz, H.bK, H.l3, H.Rti, H.ib, H.iu,
+        P.l8, P.i_, P.f3, P.i4, P.cN,
+        P._Future, P.i0, P.em, P.hO, P.hP, P.im, P.i1, P.i3, P.i7, P.ii, P.io, P.lf, P.eM, P.kV, P.ie, P.z, P.dY, P.fg, P.js, P.lc, P.lb, P.dq,
+        P.Duration, P.fM, P.el, P.kG, P.jm, P.N, P.iq, P.cH,
+        W.j8, W.m5, W.cP, W.cr, W.dN, W.eD, W.is, W.dv, W.kE, W.l_, W.ix,
+        P._StructuredClone, P.kw, P.eJ, P.jQ, P.kT, Y.RC4, L.ProfileWinChance, V.ProfileMain, X.ProfileFind,
+        S.fK,
+        HtmlRenderer.inner_render, HtmlRenderer.jT, HtmlRenderer.ax,
+        Sgls.a_, Sgls.n,
+        T.x, T.Plr, T.dk, T.fo, T.b7, T.IPlr, T.HDamage, T.HRecover, T.aX, T.aq, T.bG, T.Weapon, T.fl
+        ]
+    )
+    inherit_many(J.Interceptor, [J.fw, J.cs, J.bE, J.JsArray, J.JsNumber, J.JsString, H.dJ, H.ab, W.fn, W.Blob, W.CanvasRenderingContext2D, W.i6, W.bb, W.ja, W.jb, W.o, W.c4, W.jL, W.ig, W.il, W.iy, W.iA])
     inherit_many(J.bE, [J.PlainJavaScriptObject, J.UnknownJavaScriptObject, J.JavaScriptFunction])
-    inherit(J.jG, J.JsArray)
+    inherit(J.JsUnmodifiableArray, J.JsArray)
     inherit_many(J.JsNumber, [J.JsInt, J.jF])
     inherit_many(P.O, [H.fz, H.dO, P.bc, H.fx, H.hU, H.h3, H.i9, P.f2, P.fL, P.aS, P.hW, P.hS, P.bJ, P.fh, P.fj])
     inherit(P.dE, P.ev)
@@ -18974,20 +19088,34 @@ LangData.k_.prototype = {
     inherit(H.dr, H.c6)
     inherit_many(P.fv, [H.fB, H.hX])
     inherit_many(H.M, [H.y, H.a9, P.id])
-    inherit(H.dP, P.bc)
-    inherit_many(H.c_, [H.j5, H.j6, H.kg, H.jH, H.lv, H.lx, P.kB, P.kA, P.lh, P.kK, P.kS, P.ke, P.kZ, P.jc, P.jd, W.jf, W.kF, W.jP, W.jO, W.l0, W.l1, W.l7, P.lE, P.lF, L.iS, L.iT, L.iU, V.j0, V.j1, X.iX, X.iY, X.iZ, HtmlRenderer.jx, HtmlRenderer.jy, HtmlRenderer.jw, HtmlRenderer.jz, HtmlRenderer.jB, HtmlRenderer.jC, HtmlRenderer.jD, HtmlRenderer.jV, HtmlRenderer.lp, HtmlRenderer.lq, Sgls.k5, Sgls.k6, T.k9, T.jk, T.jj, T.jl, T.ji, T.lD, T.jW, T.k3, T.kb, T.ko, T.kp, LangData.k_])
+    inherit(H.NullError, P.bc)
+    inherit_many(H.c_,
+        [H.j5, H.j6, H.kg, H.jH, H.lv, H.lx,
+        P.kB, P.kA, P.lh, P.kK, P.kS, P.ke, P.kZ, P.Duration_toString_sixDigits, P.Duration_toString_twoDigits,
+        W.jf, W.kF, W.jP, W.jO, W.l0, W.l1, W.l7,
+        P.lE, P.lF,
+        L.iS, L.iT, L.iU,
+        V.j0, V.j1,
+        X.iX, X.iY, X.iZ,
+        HtmlRenderer.jx, HtmlRenderer.jy, HtmlRenderer.jw, HtmlRenderer.jz, HtmlRenderer.jB,
+        HtmlRenderer.jC, HtmlRenderer.jD, HtmlRenderer.jV, HtmlRenderer.lp, HtmlRenderer.lq,
+        Sgls.k5, Sgls.k6,
+        T.k9, T.jk, T.jj, T.jl, T.ji, T.lD, T.BoostPassive, T.k3, T.kb, T.ko, T.kp,
+        LangData.k_
+        ]
+    )
     inherit_many(H.kg, [H.kc, H.dg])
     inherit(P.dG, P.aU)
     inherit_many(P.dG, [H.aT, P.ic, W.i2])
     inherit_many(H.j6, [H.lw, P.li, P._wrapJsFunctionForAsync_closure, P.kL, P.jM, W.kd, W.le, P.l5, P.l6, P.ky, V.j_, HtmlRenderer.jA, Sgls.k7, LangData.lA, T.ka, T.jX, T.jY, T.k2, T.kq, T.kr, T.ks, T.kt, T.ku])
     inherit(H.hZ, P.dy)
-    inherit(H.cw, H.ab)
-    inherit_many(H.cw, [H.ey, H.eA])
-    inherit(H.ez, H.ey)
-    inherit(H.c9, H.ez)
-    inherit(H.eB, H.eA)
-    inherit(H.dK, H.eB)
-    inherit_many(H.dK, [H.fE, H.fF, H.fG, H.fH, H.fI, H.dL, H.cx])
+    inherit(H.NativeTypedArray, H.ab)
+    inherit_many(H.NativeTypedArray, [H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin, H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin])
+    inherit(H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin, H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin)
+    inherit(H.NativeTypedArrayOfDouble, H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin)
+    inherit(H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin_FixedLengthListMixin, H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin)
+    inherit(H.NativeTypedArrayOfInt, H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin_FixedLengthListMixin)
+    inherit_many(H.NativeTypedArrayOfInt, [H.fE, H.fF, H.fG, H.fH, H.fI, H.dL, H.cx])
     inherit(H.eI, H.i9)
     inherit_many(H.j5, [P.kC, P.kD, P._TimerImpl_internalCallback, P.jp, P.kH, P.kO, P.kM, P.kJ, P.kN, P.kI, P.kR, P.kQ, P.kP, P.kf, P.l2, P.kW, P.lo, P.kY, P.km, P.kl, X.je, X.j9, HtmlRenderer.send_win_data, Sgls.k4])
     inherit(P.cg, P.i4)
@@ -19006,12 +19134,12 @@ LangData.k_.prototype = {
     inherit(P.kj, P.jg)
     inherit_many(P.aS, [P.cD, P.fs])
     inherit_many(W.fn, [W.v, W.dH, W.eq])
-    inherit_many(W.v, [W.Q, W.b6, W.cL])
-    inherit_many(W.Q, [W.r, P.p])
-    inherit_many(W.r, [W.f0, W.f1, W.cn, W.bY, W.di, W.c0, W.fp, W.dQ, W.h4, W.ek, W.ce, W.en, W.hQ, W.hR, W.cI])
+    inherit_many(W.v, [W.Element, W.b6, W.cL])
+    inherit_many(W.Element, [W.HtmlElement, P.p])
+    inherit_many(W.HtmlElement, [W.AnchorElement, W.AreaElement, W.BaseElement, W.BodyElement, W.CanvasElement, W.c0, W.fp, W.dQ, W.h4, W.ek, W.ce, W.en, W.hQ, W.hR, W.cI])
     inherit(W.co, W.i6)
     inherit(W.dm, W.bb)
-    inherit(W.cq, W.bX)
+    inherit(W.cq, W.Blob)
     inherit_many(W.o, [W.c8, W.aY])
     inherit(W.bp, W.aY)
     inherit(W.ih, W.ig)
@@ -19024,23 +19152,39 @@ LangData.k_.prototype = {
     inherit(W.i8, W.i2)
     inherit(W.ia, P.hO)
     inherit(W.it, W.eD)
-    inherit(P._StructuredCloneDart2Js, P.l4)
+    inherit(P._StructuredCloneDart2Js, P._StructuredClone)
     inherit(P.kx, P.kw)
     inherit(P.cF, P.p)
     inherit(HtmlRenderer.fW, HtmlRenderer.ax)
-    inherit_many(Sgls.n, [T.q, T.aZ, T.aB, T.bq, T.cB, T.bH, T.ah, T.aV, T.aF])
-    inherit_many(T.q, [T.ActionSkill, T.h6, T.he, T.hn, T.hq, T.ea, T.ef, T.cb, T.e6, T.hl, T.hs, T.eb, T.ed, T.hw, T.hC, T.hJ, T.hK])
-    inherit_many(T.ActionSkill, [T.e1, T.h5, T.h7, T.dd, T.h9, T.ha, T.e3, T.e4, T.e5, T.hf, T.hh, T.hi, T.cc, T.e7, T.hk, T.e8, T.e9, T.ho, T.ht, T.hv, T.ec, T.hx, T.hu, T.hB, T.hG, T.hj, T.hH, T.hI, T.e2, T.hb, T.dl, T.hd, T.hm, T.dB, T.hp, T.hr, T.hA, T.h8, T.hD, T.SkillVoid, T.hg, T.ee, T.hz])
+    inherit_many(Sgls.n, [T.Skill, T.aZ, T.aB, T.bq, T.cB, T.bH, T.ah, T.aV, T.aF])
+    inherit_many(T.Skill,
+        [T.ActionSkill, T.h6, T.he, T.hn, T.hq, T.ea, T.ef,
+        T.SklCounter, T.SklDefend, T.SklHide, T.SklMerge, T.SklProtect,
+        T.SklReflect, T.SklReraise, T.SklShield, T.SklUpgrade, T.SklZombie
+        ]
+    )
+    inherit_many(T.ActionSkill,
+        [T.SklAbsorb, T.SklAccumulate, T.SklAssassinate, T.dd, T.SklBerserk,
+        T.SklCharge, T.SklCharm, T.SklClone, T.SklCritical, T.SklCurse,
+        T.SklDisperse, T.SklExchange, T.SklFire, T.sklHalf, T.SklHaste,
+        T.SklHeal, T.SklIce, T.SklIron, T.SklPoison, T.SklQuake,
+        T.SklRapid, T.SklRevive, T.hu, T.SklShadow, T.SklSlow,
+        T.hj, T.SklSummon, T.SklThunder,
+        T.e2, T.hb, T.dl, T.hd, T.hm,
+        T.dB, T.hp, T.hr, T.hA, T.h8,
+        T.hD, T.SkillVoid, T.hg, T.ee, T.hz
+        ]
+    )
     inherit_many(T.aZ, [T.dj, T.dw, T.dx, T.eh, T.bd, T.h1])
     inherit_many(T.x, [T.dI, T.c3, T.hF, T.fC, T.hY])
     inherit_many(T.Plr, [T.dR, T.aM, T.cz, T.fP, T.fU, T.fV, T.fQ, T.cy])
     inherit_many(T.aB, [T.dn, T.dT, T.ik])
     inherit_many(T.bq, [T.dS, T.b8])
-    inherit_many(T.aM, [T.fS, T.fT, T.fX])
-    inherit_many(T.cz, [T.f5, T.f6, T.f7, T.f8, T.de, T.df, T.f9, T.fa, T.bZ, T.fc, T.fd])
+    inherit_many(T.aM, [T.PlrShadow, T.PlrSummon, T.fX])
+    inherit_many(T.cz, [T.f5, T.f6, T.PlrBossCovid, T.f8, T.de, T.df, T.f9, T.fa, T.PlrBossSlime, T.fc, T.fd])
     inherit(T.fR, T.cy)
-    inherit(T.fb, T.bZ)
-    inherit(T.eg, T.e3)
+    inherit(T.fb, T.PlrBossSlime)
+    inherit(T.eg, T.SklCharm)
     inherit_many(T.IPlr, [T.NPlr, T.HPlr, T.MPlr, T.DPlr])
     inherit_many(T.aX, [T.h2, T.dX])
     inherit(T.fY, T.cB)
@@ -19050,15 +19194,16 @@ LangData.k_.prototype = {
     inherit(T.ij, T.bH)
     inherit(T.dV, T.ij)
     inherit(T.e0, T.ik)
-    inherit_many(T.bL, [T.j2, T.eo, T.jq, T.jN, T.k1, T.ep, T.kv])
+    inherit_many(T.Weapon, [T.j2, T.eo, T.jq, T.jN, T.k1, T.ep, T.kv])
     inherit(T.hy, T.ea)
-    inherit(T.hc, T.cb)
+    inherit(T.hc, T.SklCounter)
     inherit(LangData.SuperRC4, Y.RC4)
+
     mixin(H.cJ, H.hV)
-    mixin(H.ey, P.z)
-    mixin(H.ez, H.du)
-    mixin(H.eA, P.z)
-    mixin(H.eB, H.du)
+    mixin(H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin, P.z)
+    mixin(H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin, H.du)
+    mixin(H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin, P.z)
+    mixin(H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin_FixedLengthListMixin, H.du)
     mixin(P.cK, P.i1)
     mixin(P.ev, P.z)
     mixin(P.eM, P.dY)
@@ -19103,7 +19248,7 @@ var u = {
     c: "Error handler must accept one Object or one Object and a StackTrace as arguments, and return a value of the returned future's type"
 }
 var t = (function rtii() {
-    var find_type = H.find_type
+    var find_type = H.findType
     return {
         fh: find_type("@<l*>"),
         cR: find_type("cn"),
@@ -19225,9 +19370,9 @@ var t = (function rtii() {
 })();
 (function constants() {
     var make_const_list = hunkHelpers.makeConstList
-    C.n = W.bY.prototype
-    C.H = W.di.prototype
-    C.k = W.fe.prototype
+    C.BodyElement = W.BodyElement.prototype
+    C.H = W.CanvasElement.prototype
+    C.k = W.CanvasRenderingContext2D.prototype
     C.i = W.co.prototype
     C.h = W.c0.prototype
     C.J = J.Interceptor.prototype
@@ -19292,7 +19437,16 @@ var t = (function rtii() {
     C.G = new P.iq()
     C.I = new P.Duration(0)
     C.L = new P.jJ(null)
-    C.M = H.b(make_const_list(["*::class", "*::dir", "*::draggable", "*::hidden", "*::id", "*::inert", "*::itemprop", "*::itemref", "*::itemscope", "*::lang", "*::spellcheck", "*::title", "*::translate", "A::accesskey", "A::coords", "A::hreflang", "A::name", "A::shape", "A::tabindex", "A::target", "A::type", "AREA::accesskey", "AREA::alt", "AREA::coords", "AREA::nohref", "AREA::shape", "AREA::tabindex", "AREA::target", "AUDIO::controls", "AUDIO::loop", "AUDIO::mediagroup", "AUDIO::muted", "AUDIO::preload", "BDO::dir", "BODY::alink", "BODY::bgcolor", "BODY::link", "BODY::text", "BODY::vlink", "BR::clear", "BUTTON::accesskey", "BUTTON::disabled", "BUTTON::name", "BUTTON::tabindex", "BUTTON::type", "BUTTON::value", "CANVAS::height", "CANVAS::width", "CAPTION::align", "COL::align", "COL::char", "COL::charoff", "COL::span", "COL::valign", "COL::width", "COLGROUP::align", "COLGROUP::char", "COLGROUP::charoff", "COLGROUP::span", "COLGROUP::valign", "COLGROUP::width", "COMMAND::checked", "COMMAND::command", "COMMAND::disabled", "COMMAND::label", "COMMAND::radiogroup", "COMMAND::type", "DATA::value", "DEL::datetime", "DETAILS::open", "DIR::compact", "DIV::align", "DL::compact", "FIELDSET::disabled", "FONT::color", "FONT::face", "FONT::size", "FORM::accept", "FORM::autocomplete", "FORM::enctype", "FORM::method", "FORM::name", "FORM::novalidate", "FORM::target", "FRAME::name", "H1::align", "H2::align", "H3::align", "H4::align", "H5::align", "H6::align", "HR::align", "HR::noshade", "HR::size", "HR::width", "HTML::version", "IFRAME::align", "IFRAME::frameborder", "IFRAME::height", "IFRAME::marginheight", "IFRAME::marginwidth", "IFRAME::width", "IMG::align", "IMG::alt", "IMG::border", "IMG::height", "IMG::hspace", "IMG::ismap", "IMG::name", "IMG::usemap", "IMG::vspace", "IMG::width", "INPUT::accept", "INPUT::accesskey", "INPUT::align", "INPUT::alt", "INPUT::autocomplete", "INPUT::autofocus", "INPUT::checked", "INPUT::disabled", "INPUT::inputmode", "INPUT::ismap", "INPUT::list", "INPUT::max", "INPUT::maxlength", "INPUT::min", "INPUT::multiple", "INPUT::name", "INPUT::placeholder", "INPUT::readonly", "INPUT::required", "INPUT::size", "INPUT::step", "INPUT::tabindex", "INPUT::type", "INPUT::usemap", "INPUT::value", "INS::datetime", "KEYGEN::disabled", "KEYGEN::keytype", "KEYGEN::name", "LABEL::accesskey", "LABEL::for", "LEGEND::accesskey", "LEGEND::align", "LI::type", "LI::value", "LINK::sizes", "MAP::name", "MENU::compact", "MENU::label", "MENU::type", "METER::high", "METER::low", "METER::max", "METER::min", "METER::value", "OBJECT::typemustmatch", "OL::compact", "OL::reversed", "OL::start", "OL::type", "OPTGROUP::disabled", "OPTGROUP::label", "OPTION::disabled", "OPTION::label", "OPTION::selected", "OPTION::value", "OUTPUT::for", "OUTPUT::name", "P::align", "PRE::width", "PROGRESS::max", "PROGRESS::min", "PROGRESS::value", "SELECT::autocomplete", "SELECT::disabled", "SELECT::multiple", "SELECT::name", "SELECT::required", "SELECT::size", "SELECT::tabindex", "SOURCE::type", "TABLE::align", "TABLE::bgcolor", "TABLE::border", "TABLE::cellpadding", "TABLE::cellspacing", "TABLE::frame", "TABLE::rules", "TABLE::summary", "TABLE::width", "TBODY::align", "TBODY::char", "TBODY::charoff", "TBODY::valign", "TD::abbr", "TD::align", "TD::axis", "TD::bgcolor", "TD::char", "TD::charoff", "TD::colspan", "TD::headers", "TD::height", "TD::nowrap", "TD::rowspan", "TD::scope", "TD::valign", "TD::width", "TEXTAREA::accesskey", "TEXTAREA::autocomplete", "TEXTAREA::cols", "TEXTAREA::disabled", "TEXTAREA::inputmode", "TEXTAREA::name", "TEXTAREA::placeholder", "TEXTAREA::readonly", "TEXTAREA::required", "TEXTAREA::rows", "TEXTAREA::tabindex", "TEXTAREA::wrap", "TFOOT::align", "TFOOT::char", "TFOOT::charoff", "TFOOT::valign", "TH::abbr", "TH::align", "TH::axis", "TH::bgcolor", "TH::char", "TH::charoff", "TH::colspan", "TH::headers", "TH::height", "TH::nowrap", "TH::rowspan", "TH::scope", "TH::valign", "TH::width", "THEAD::align", "THEAD::char", "THEAD::charoff", "THEAD::valign", "TR::align", "TR::bgcolor", "TR::char", "TR::charoff", "TR::valign", "TRACK::default", "TRACK::kind", "TRACK::label", "TRACK::srclang", "UL::compact", "UL::type", "VIDEO::controls", "VIDEO::height", "VIDEO::loop", "VIDEO::mediagroup", "VIDEO::muted", "VIDEO::preload", "VIDEO::width"]), t.V)
+    C.M = H.b(make_const_list(["*::class", "*::dir", "*::draggable", "*::hidden", "*::id", "*::inert", "*::itemprop", "*::itemref", "*::itemscope", "*::lang", "*::spellcheck", "*::title", "*::translate",
+        "A::accesskey", "A::coords", "A::hreflang", "A::name", "A::shape", "A::tabindex", "A::target", "A::type", "AREA::accesskey", "AREA::alt", "AREA::coords", "AREA::nohref", "AREA::shape", "AREA::tabindex", "AREA::target", "AUDIO::controls", "AUDIO::loop", "AUDIO::mediagroup", "AUDIO::muted", "AUDIO::preload", "BDO::dir",
+        "BODY::alink", "BODY::bgcolor", "BODY::link", "BODY::text", "BODY::vlink", "BR::clear", "BUTTON::accesskey", "BUTTON::disabled", "BUTTON::name", "BUTTON::tabindex", "BUTTON::type", "BUTTON::value", "CANVAS::height", "CANVAS::width", "CAPTION::align", "COL::align", "COL::char", "COL::charoff", "COL::span", "COL::valign", "COL::width", "COLGROUP::align", "COLGROUP::char", "COLGROUP::charoff", "COLGROUP::span", "COLGROUP::valign", "COLGROUP::width", "COMMAND::checked", "COMMAND::command", "COMMAND::disabled", "COMMAND::label", "COMMAND::radiogroup", "COMMAND::type", "DATA::value", "DEL::datetime", "DETAILS::open", "DIR::compact",
+        "DIV::align", "DL::compact", "FIELDSET::disabled", "FONT::color", "FONT::face", "FONT::size", "FORM::accept", "FORM::autocomplete", "FORM::enctype", "FORM::method", "FORM::name", "FORM::novalidate", "FORM::target", "FRAME::name", "H1::align", "H2::align", "H3::align", "H4::align", "H5::align", "H6::align", "HR::align", "HR::noshade", "HR::size", "HR::width", "HTML::version", "IFRAME::align", "IFRAME::frameborder", "IFRAME::height", "IFRAME::marginheight", "IFRAME::marginwidth", "IFRAME::width", "IMG::align", "IMG::alt", "IMG::border", "IMG::height", "IMG::hspace", "IMG::ismap", "IMG::name", "IMG::usemap", "IMG::vspace", "IMG::width",
+        "INPUT::accept", "INPUT::accesskey", "INPUT::align", "INPUT::alt", "INPUT::autocomplete", "INPUT::autofocus", "INPUT::checked", "INPUT::disabled", "INPUT::inputmode", "INPUT::ismap", "INPUT::list", "INPUT::max", "INPUT::maxlength", "INPUT::min", "INPUT::multiple", "INPUT::name", "INPUT::placeholder", "INPUT::readonly", "INPUT::required", "INPUT::size", "INPUT::step", "INPUT::tabindex", "INPUT::type", "INPUT::usemap", "INPUT::value",
+        "INS::datetime", "KEYGEN::disabled", "KEYGEN::keytype", "KEYGEN::name", "LABEL::accesskey", "LABEL::for", "LEGEND::accesskey", "LEGEND::align", "LI::type", "LI::value", "LINK::sizes", "MAP::name", "MENU::compact", "MENU::label", "MENU::type", "METER::high", "METER::low", "METER::max", "METER::min", "METER::value", "OBJECT::typemustmatch", "OL::compact", "OL::reversed", "OL::start", "OL::type", "OPTGROUP::disabled", "OPTGROUP::label", "OPTION::disabled", "OPTION::label", "OPTION::selected", "OPTION::value", "OUTPUT::for", "OUTPUT::name", "P::align", "PRE::width", "PROGRESS::max", "PROGRESS::min", "PROGRESS::value",
+        "SELECT::autocomplete", "SELECT::disabled", "SELECT::multiple", "SELECT::name", "SELECT::required", "SELECT::size", "SELECT::tabindex", "SOURCE::type", "TABLE::align", "TABLE::bgcolor", "TABLE::border", "TABLE::cellpadding", "TABLE::cellspacing", "TABLE::frame", "TABLE::rules", "TABLE::summary", "TABLE::width", "TBODY::align", "TBODY::char", "TBODY::charoff", "TBODY::valign",
+        "TD::abbr", "TD::align", "TD::axis", "TD::bgcolor", "TD::char", "TD::charoff", "TD::colspan", "TD::headers", "TD::height", "TD::nowrap", "TD::rowspan", "TD::scope", "TD::valign", "TD::width",
+        "TEXTAREA::accesskey", "TEXTAREA::autocomplete", "TEXTAREA::cols", "TEXTAREA::disabled", "TEXTAREA::inputmode", "TEXTAREA::name", "TEXTAREA::placeholder", "TEXTAREA::readonly", "TEXTAREA::required", "TEXTAREA::rows", "TEXTAREA::tabindex", "TEXTAREA::wrap", "TFOOT::align", "TFOOT::char", "TFOOT::charoff", "TFOOT::valign",
+        "TH::abbr", "TH::align", "TH::axis", "TH::bgcolor", "TH::char", "TH::charoff", "TH::colspan", "TH::headers", "TH::height", "TH::nowrap", "TH::rowspan", "TH::scope", "TH::valign", "TH::width", "THEAD::align", "THEAD::char", "THEAD::charoff", "THEAD::valign", "TR::align", "TR::bgcolor", "TR::char", "TR::charoff", "TR::valign", "TRACK::default", "TRACK::kind", "TRACK::label", "TRACK::srclang", "UL::compact", "UL::type", "VIDEO::controls", "VIDEO::height", "VIDEO::loop", "VIDEO::mediagroup", "VIDEO::muted", "VIDEO::preload", "VIDEO::width"]), t.V)
     C.N = H.b(make_const_list(["", "", "", "", "", "", "", "", "", ""]), t.V)
     C.O = H.b(make_const_list(["HEAD", "AREA", "BASE", "BASEFONT", "BR", "COL", "COLGROUP", "EMBED", "FRAME", "FRAMESET", "HR", "IMAGE", "IMG", "INPUT", "ISINDEX", "LINK", "META", "PARAM", "SOURCE", "STYLE", "TITLE", "WBR"]), t.V)
     C.P = H.b(make_const_list([]), t.V)
@@ -19317,14 +19471,14 @@ var t = (function rtii() {
     $.eO = null
     $.ms = false
     $.P = C.f
-    $.ch = H.b([], H.find_type("E<H>"))
+    $.ch = H.b([], H.findType("E<H>"))
     $.bA = null
     $.m4 = null
     $.nJ = null
     $.nI = null
     $.et = P.cu(t.N, t.Z)
     $.jU = 0
-    $.ay = P.cu(t.X, H.find_type("ax*"))
+    $.ay = P.cu(t.X, H.findType("ax*"))
     $.rW = function () {
         var s = t.X
         return P.dD(["aokiji", "R0lGODlhEAAQAMIDAAAAAEB2/4Kl/////////////////////yH5BAEKAAQALAAAAAAQABAAAANISLrQsJC1MVwkLgSqLW6bQFFi4ACjIGxDoI7gqHFsO9UsXgFuPXIr0Or3691kHGSMxuRMSMPWi3IK/UqeTM7UuDio3YskDEkAADs=", "conan", "R0lGODlhEAAQAMIAAAAAANAYISpXyf///wAAAAAAAAAAAAAAACH5BAEKAAQALAAAAAAQABAAAANISATczkqBQasFcQlrBV6MsHGiEzQj5TEnELzM5cIsbdLLC+/6N/O/E6j3IP5ilVqrBUgNVi6HyDltSJoiVekTCU23me4DEkkAADs=", "covid", "R0lGODlhEAAQAIIAMf/GAOpK/f///wAAAP///wAAAAAAAAAAACH5BAEAAAQALAAAAAAQABAAAgNKSLrTvZC4AeqIqgEttoNU1wSOx1BBmoabNJGDGpjURlqBAJf6ba+WWgwmy3kcRYFO6AKolMuJBCAqmjIUJKd12moemNrxgnF9IgkAOw==", "ikaruga", "R0lGODlhEAAQAMIEAAAAAAcHB7MABFuV/////////////////yH5BAEKAAcALAAAAAAQABAAAANKeLrRsZA1Qlw8jmoCGgzaMAiC9iiTOFBk6WGUypLUk4pbW00EvhG0XWz1C2Z8o9kO1uuNSqUKCqR60l5MZ1AqAf0skczudJliFwkAOw==", "lazy", "R0lGODlhEAAQAMICAAAAAAgICP+3t/////+3t/+3t/+3t/+3tyH5BAEKAAQALAAAAAAQABAAAANPSLpM8K9JMCqQDoIwwp3VQG1fBnFeWFKW6GnL1rFi87raSQQcvXEhHkeQGwqOncBxKeAxj07io6kkQZXPKJM3YCa7yySwIhwnd5qAokhIAAA7", "mario", "R0lGODlhEAAQAIEAMQAAANgoAPz8/AAAACH5BAEAAAAALAAAAAAQABAAAQJBhD2px6AhRFgshRvvHCdJGH1CgoDhKXEWqLHboH2tvEItpq3ZvXvnfPIphooI0YgcLXyjpLKDQnE6g6hxSiVSAAUAOw==", "mosquito", "R0lGODlhEAAQAKECAAAAAP8AAP///////yH5BAEKAAMALAAAAAAQABAAAAJB3ICpaCnxRIRKoAkpsJu/AHpch4DgxR0kcK6GKrGB+zrylrzH2OL62or9SKcYYIgr5mq82eXI5AQtw1gxhVwwDAUAOw==", "saitama", "R0lGODlhEAAQAMIGAAAAAAgICGxsbP/AmP/PV/////jIUfjIUSH5BAEKAAcALAAAAAAQABAAAANKeLrRsZC1MVw8juraYNhUIVYSGIodZprPtG7ZC8YyFxSC8OZFAIi4nJAnAhgLx2DxZwQQCMZn7hmFOp/YKZZa3Xqth6bR1xADDgkAOw==", "seed", "R0lGODlhEAAQAMIDAAAAAG9tbUCy5////////////////////yH5BAEKAAQALAAAAAAQABAAAANFSLrQsJC1MVwkjuraVN6gA4CDIJCNSW5BkJon2LZpAMdzMLiAYN85HQ/28wWHpmJrN3sRjUya4xm0YJzNTmTKe1wkWkgCADs=", "slime", "R0lGODlhEAAQAMIEAAABAFaSRV6qSLn9qgAAAAAAAAAAAAAAACH5BAEKAAQALAAAAAAQABAAAANCSKrQvpA4QcWDrWoLsB5bxwDVYApB2jClaaaqRMIuCk92CuYBR8G9DSUjLBI3wMpRQzvhis4OqVUbjopKkczBvSQAADs=", "sonic", "R0lGODlhEAAQAMIDAAgICOgSJh9O/////////////////////yH5BAEKAAQALAAAAAAQABAAAANBSLrQsJA1IVwkjuraINDDsFUSFYZbh5knqj2T0LpUBp4jN9JpnJuc1S8UIGE+uUBRJRQonzXP5LlkSpCWy/URSQAAOw==", "yuri", "R0lGODlhEAAQAKEDAAAAAN4H28asxv///yH5BAEKAAMALAAAAAAQABAAAAI+hI85EB3s4DNBiFcvs3NjvmlL9WkesEDnKI7fw8Lpi6roMJ42jh8NNeEJVb+bsFc0HIfB5ZFhdPIO0mf0WAAAOw=="], s, s)
@@ -19360,7 +19514,7 @@ var t = (function rtii() {
     var lazy_final = hunkHelpers.lazyFinal,
         lazy_old = hunkHelpers.lazyOld
     lazy_final($, "vy", "oR", function () {
-        return H.uT("_$dart_dartClosure")
+        return H.getIsolateAffinityTag("_$dart_dartClosure")
     })
     lazy_final($, "A0", "r7", function () {
         return H.br(H.ki({
@@ -19507,6 +19661,7 @@ var t = (function rtii() {
     lazy_old($, "Az", "ro", function () {
         return P.o_()
     })
+    // MARK: 字符串反混淆
     lazy_old($, "yg", "cl", function () {
         // return LangData.j("bB", 89)
         return "!"
@@ -19532,40 +19687,48 @@ var t = (function rtii() {
         return "!test!"
     })
     lazy_old($, "zm", "nk", function () {
-        return LangData.j("lA", 39)
+        // return LangData.j("lA", 39)
+        return "\u0002"
     })
     lazy_old($, "zn", "qR", function () {
-        return LangData.j("iA", 33)
+        // return LangData.j("iA", 33)
+        return "\u0003"
     })
     lazy_old($, "yN", "iK", function () {
         // return O.j("=+A", 37)
         return "??"
     })
     lazy_old($, "y2", "d2", function () {
-        return LangData.j("+R/Iv*Y(WVEu;E", 21)
+        // return LangData.j("+R/Iv*Y(WVEu;E", 21)
+        return "assassinate"
     })
     lazy_old($, "yi", "d3", function () {
-        return LangData.j("<R;2&`|zWV", 30)
+        // return LangData.j("<R;2&`|zWV", 30)
+        return "exchange"
     })
     lazy_old($, "ym", "eZ", function () {
         // return LangData.j("U|,?M", 1)
         return "half"
     })
     lazy_old($, "y7", "a7", function () {
-        return LangData.j("@k%.*'GC", 5)
+        // return LangData.j("@k%.*'GC", 5)
+        return "charge"
     })
     lazy_old($, "yk", "eY", function () {
-        return LangData.j("K[WvM", 87)
+        // return LangData.j("K[WvM", 87)
+        return "fire"
     })
     lazy_old($, "yr", "bS", function () {
-        return LangData.j("OZFE", 74)
+        // return LangData.j("OZFE", 74)
+        return "ice"
     })
     lazy_old($, "y_", "lN", function () {
         // return LangData.j("w1{fb_W(wTt-B", 16)
         return "accumulate"
     })
     lazy_old($, "yK", "bT", function () {
-        return LangData.j("PGOv0X*A", 77)
+        // return LangData.j("PGOv0X*A", 77)
+        return "piston"
     })
     lazy_old($, "y5", "aJ", function () {
         return LangData.j("xQrBQ}JLA", 99)
@@ -19632,7 +19795,8 @@ var t = (function rtii() {
         return LangData.j("jh&DG", 89)
     })
     lazy_old($, "zi", "qO", function () {
-        return LangData.j("~vBK@@A", 29)
+        // return LangData.j("~vBK@@A", 29)
+        return "slime"
     })
     lazy_old($, "ys", "qh", function () {
         return LangData.j("MWSWRPJLA", 99)
@@ -19647,7 +19811,8 @@ var t = (function rtii() {
         return LangData.j(":[+0Z", 31)
     })
     lazy_old($, "yd", "ck", function () {
-        return LangData.j("jtK1|]A", 31)
+        // return LangData.j("jtK1|]A", 31)
+        return "covid"
     })
     lazy_old($, "zc", "qL", function () {
         return LangData.j("ki9e8.M(G", 13)
@@ -19840,6 +20005,7 @@ var t = (function rtii() {
     lazy_old($, "zD", "r_", function () {
         return P.RegExp_RegExp("\\r?\\n")
     })
+    // MARK: 空 RunUpdate
     lazy_old($, "zR", "K", function () {
         var q = null
         return T.RunUpdate("\n", q, q, q, q, 0, 1000, 100)
@@ -19850,6 +20016,7 @@ var t = (function rtii() {
     lazy_old($, "vr", "rq", function () {
         return $.C()
     })
+    // MARK: 数字反混淆
     lazy_old($, "wX", "at", function () {
         return X.k("vF:G*ee&GC", 12)
     })
@@ -20314,10 +20481,10 @@ var t = (function rtii() {
     lazy_old($, "zO", "r4", function () {
         return P.o_()
     })
-    lazy_old($, "mc", "ns", function () {
-        // return 0
-        return 0
-    })
+    // lazy_old($, "mc", "ns", function () {
+    //     // return 0
+    //     return 0
+    // })
     lazy_old($, "ta", "r2", function () {
         return $.mb + $.d_()
     })
@@ -20354,7 +20521,7 @@ var t = (function rtii() {
             new T.kt(),
             "玄月奖杯",
             new T.ku()
-        ], t.X, H.find_type("bL*(m*,u*)*"))
+        ], t.X, H.findType("bL*(m*,u*)*"))
     })
     lazy_old($, "Ad", "rk", function () {
         // return H.b([$.iL(), $.n8(), $.n6(), $.n9(), $.no(), $.nm(), $.nb(), $.nn(), $.np(), $.nj(), $.qg(), $.qj(), $.qt(), $.qX(), $.qf(), $.qN(), $.qd(), $.qT(), $.qV(), $.ql(), $.qS(), $.qe()], t.V)
@@ -20368,9 +20535,10 @@ var t = (function rtii() {
         )
     })
     lazy_old($, "AA", "nx", function () {
-        return new P.cK(null, null, null, H.find_type("cK<m*>"))
+        return new P.cK(null, null, null, H.findType("cK<m*>"))
     })
 })();
+// MARK: Native support
 (function nativeSupport() {
     ! function () {
 
@@ -20380,7 +20548,7 @@ var t = (function rtii() {
         var r = "___dart_isolate_tags_"
         var q = Object[r] || (Object[r] = Object.create(null))
         var p = "_ZxYxX"
-        for (var o = 0;; o++) {
+        for (var o = 0; ; o++) {
             var n = p + "_" + o + "_"
             if (!(n in q)) {
                 q[n] = 1
@@ -20406,8 +20574,8 @@ var t = (function rtii() {
         ArrayBuffer: H.dJ,
         DataView: H.ab,
         ArrayBufferView: H.ab,
-        Float32Array: H.c9,
-        Float64Array: H.c9,
+        Float32Array: H.NativeTypedArrayOfDouble,
+        Float64Array: H.NativeTypedArrayOfDouble,
         Int16Array: H.fE,
         Int32Array: H.fF,
         Int8Array: H.fG,
@@ -20416,71 +20584,71 @@ var t = (function rtii() {
         Uint8ClampedArray: H.dL,
         CanvasPixelArray: H.dL,
         Uint8Array: H.cx,
-        HTMLAudioElement: W.r,
-        HTMLBRElement: W.r,
-        HTMLButtonElement: W.r,
-        HTMLContentElement: W.r,
-        HTMLDListElement: W.r,
-        HTMLDataElement: W.r,
-        HTMLDataListElement: W.r,
-        HTMLDetailsElement: W.r,
-        HTMLDialogElement: W.r,
-        HTMLEmbedElement: W.r,
-        HTMLFieldSetElement: W.r,
-        HTMLHRElement: W.r,
-        HTMLHeadElement: W.r,
-        HTMLHeadingElement: W.r,
-        HTMLHtmlElement: W.r,
-        HTMLIFrameElement: W.r,
-        HTMLImageElement: W.r,
-        HTMLInputElement: W.r,
-        HTMLLIElement: W.r,
-        HTMLLabelElement: W.r,
-        HTMLLegendElement: W.r,
-        HTMLLinkElement: W.r,
-        HTMLMapElement: W.r,
-        HTMLMediaElement: W.r,
-        HTMLMenuElement: W.r,
-        HTMLMetaElement: W.r,
-        HTMLMeterElement: W.r,
-        HTMLModElement: W.r,
-        HTMLOListElement: W.r,
-        HTMLObjectElement: W.r,
-        HTMLOptGroupElement: W.r,
-        HTMLOptionElement: W.r,
-        HTMLOutputElement: W.r,
-        HTMLParamElement: W.r,
-        HTMLPictureElement: W.r,
-        HTMLPreElement: W.r,
-        HTMLProgressElement: W.r,
-        HTMLQuoteElement: W.r,
-        HTMLScriptElement: W.r,
-        HTMLShadowElement: W.r,
-        HTMLSlotElement: W.r,
-        HTMLSourceElement: W.r,
-        HTMLStyleElement: W.r,
-        HTMLTableCaptionElement: W.r,
-        HTMLTableColElement: W.r,
-        HTMLTextAreaElement: W.r,
-        HTMLTimeElement: W.r,
-        HTMLTitleElement: W.r,
-        HTMLTrackElement: W.r,
-        HTMLUListElement: W.r,
-        HTMLUnknownElement: W.r,
-        HTMLVideoElement: W.r,
-        HTMLDirectoryElement: W.r,
-        HTMLFontElement: W.r,
-        HTMLFrameElement: W.r,
-        HTMLFrameSetElement: W.r,
-        HTMLMarqueeElement: W.r,
-        HTMLElement: W.r,
-        HTMLAnchorElement: W.f0,
-        HTMLAreaElement: W.f1,
-        HTMLBaseElement: W.cn,
-        Blob: W.bX,
-        HTMLBodyElement: W.bY,
-        HTMLCanvasElement: W.di,
-        CanvasRenderingContext2D: W.fe,
+        HTMLAudioElement: W.HtmlElement,
+        HTMLBRElement: W.HtmlElement,
+        HTMLButtonElement: W.HtmlElement,
+        HTMLContentElement: W.HtmlElement,
+        HTMLDListElement: W.HtmlElement,
+        HTMLDataElement: W.HtmlElement,
+        HTMLDataListElement: W.HtmlElement,
+        HTMLDetailsElement: W.HtmlElement,
+        HTMLDialogElement: W.HtmlElement,
+        HTMLEmbedElement: W.HtmlElement,
+        HTMLFieldSetElement: W.HtmlElement,
+        HTMLHRElement: W.HtmlElement,
+        HTMLHeadElement: W.HtmlElement,
+        HTMLHeadingElement: W.HtmlElement,
+        HTMLHtmlElement: W.HtmlElement,
+        HTMLIFrameElement: W.HtmlElement,
+        HTMLImageElement: W.HtmlElement,
+        HTMLInputElement: W.HtmlElement,
+        HTMLLIElement: W.HtmlElement,
+        HTMLLabelElement: W.HtmlElement,
+        HTMLLegendElement: W.HtmlElement,
+        HTMLLinkElement: W.HtmlElement,
+        HTMLMapElement: W.HtmlElement,
+        HTMLMediaElement: W.HtmlElement,
+        HTMLMenuElement: W.HtmlElement,
+        HTMLMetaElement: W.HtmlElement,
+        HTMLMeterElement: W.HtmlElement,
+        HTMLModElement: W.HtmlElement,
+        HTMLOListElement: W.HtmlElement,
+        HTMLObjectElement: W.HtmlElement,
+        HTMLOptGroupElement: W.HtmlElement,
+        HTMLOptionElement: W.HtmlElement,
+        HTMLOutputElement: W.HtmlElement,
+        HTMLParamElement: W.HtmlElement,
+        HTMLPictureElement: W.HtmlElement,
+        HTMLPreElement: W.HtmlElement,
+        HTMLProgressElement: W.HtmlElement,
+        HTMLQuoteElement: W.HtmlElement,
+        HTMLScriptElement: W.HtmlElement,
+        HTMLShadowElement: W.HtmlElement,
+        HTMLSlotElement: W.HtmlElement,
+        HTMLSourceElement: W.HtmlElement,
+        HTMLStyleElement: W.HtmlElement,
+        HTMLTableCaptionElement: W.HtmlElement,
+        HTMLTableColElement: W.HtmlElement,
+        HTMLTextAreaElement: W.HtmlElement,
+        HTMLTimeElement: W.HtmlElement,
+        HTMLTitleElement: W.HtmlElement,
+        HTMLTrackElement: W.HtmlElement,
+        HTMLUListElement: W.HtmlElement,
+        HTMLUnknownElement: W.HtmlElement,
+        HTMLVideoElement: W.HtmlElement,
+        HTMLDirectoryElement: W.HtmlElement,
+        HTMLFontElement: W.HtmlElement,
+        HTMLFrameElement: W.HtmlElement,
+        HTMLFrameSetElement: W.HtmlElement,
+        HTMLMarqueeElement: W.HtmlElement,
+        HTMLElement: W.HtmlElement,
+        HTMLAnchorElement: W.AnchorElement,
+        HTMLAreaElement: W.AreaElement,
+        HTMLBaseElement: W.BaseElement,
+        Blob: W.Blob,
+        HTMLBodyElement: W.BodyElement,
+        HTMLCanvasElement: W.CanvasElement,
+        CanvasRenderingContext2D: W.CanvasRenderingContext2D,
         CDATASection: W.b6,
         CharacterData: W.b6,
         Comment: W.b6,
@@ -20493,7 +20661,7 @@ var t = (function rtii() {
         HTMLDivElement: W.c0,
         DOMException: W.ja,
         DOMTokenList: W.jb,
-        Element: W.Q,
+        Element: W.Element,
         AbortPaymentEvent: W.o,
         AnimationEvent: W.o,
         AnimationPlaybackEvent: W.o,
@@ -20974,13 +21142,13 @@ var t = (function rtii() {
         SVGMPathElement: true,
         SVGElement: false
     })
-    H.cw.$nativeSuperclassTag = "ArrayBufferView"
-    H.ey.$nativeSuperclassTag = "ArrayBufferView"
-    H.ez.$nativeSuperclassTag = "ArrayBufferView"
-    H.c9.$nativeSuperclassTag = "ArrayBufferView"
-    H.eA.$nativeSuperclassTag = "ArrayBufferView"
-    H.eB.$nativeSuperclassTag = "ArrayBufferView"
-    H.dK.$nativeSuperclassTag = "ArrayBufferView"
+    H.NativeTypedArray.$nativeSuperclassTag = "ArrayBufferView"
+    H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin.$nativeSuperclassTag = "ArrayBufferView"
+    H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin.$nativeSuperclassTag = "ArrayBufferView"
+    H.NativeTypedArrayOfDouble.$nativeSuperclassTag = "ArrayBufferView"
+    H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin.$nativeSuperclassTag = "ArrayBufferView"
+    H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin_FixedLengthListMixin.$nativeSuperclassTag = "ArrayBufferView"
+    H.NativeTypedArrayOfInt.$nativeSuperclassTag = "ArrayBufferView"
 })()
 Function.prototype.$2 = function (a, b) {
     return this(a, b)
@@ -21015,7 +21183,7 @@ function main() {
         async_completer = P._makeAsyncAwaitCompleter(t.z),
         q, switch_to = 2,
         async_result_1, n = [],
-        m, l, k, j, raw_names, h, g, f, e, d, c, b, a, a0_getter, a1, a2, a3, a4, a5, a6, a7, a8, a9, b0
+        m, l, k, j, raw_names, h, profiler, f, e, d, c, b, a, a0_getter, a1, a2, a3, a4, a5, a6, a7, team_1, team_2, b0
     var $async$iE = P._wrapJsFunctionForAsync(function (error_code, async_result) {
         if (error_code === 1) {
             async_result_1 = async_result
@@ -21023,13 +21191,13 @@ function main() {
         }
         while (true) switch (async_goto) {
             case 0:
-                a8 = LangData.oC(true).c
-                a9 = a8[$.B()]
-                $.mb = a9
-                $.ta = a9 + $.d_()
-                $.nV = a8[$.C()]
-                $.nW = a8[$.X()]
-                $.tb = a8[$.a4()]
+                team_1 = LangData.oC(true).c
+                team_2 = team_1[$.B()]
+                $.mb = team_2
+                $.ta = team_2 + $.d_()
+                $.nV = team_1[$.C()]
+                $.nW = team_1[$.X()]
+                $.tb = team_1[$.a4()]
 
                 if (run_env.from_code) {
                     console.log("initing from node")
@@ -21046,24 +21214,27 @@ function main() {
                 async_goto = 3
                 return P._asyncAwait(HtmlRenderer.static_init(), $async$iE)
             case 3:
-                // MARK: inedx.dart.js 输入位置
+                // MARK: 名字输入位置
                 // 战斗框输入位置
                 // 这里请输入一个被混淆过的名字
                 switch_to = 5
+
                 if (run_env.from_code) {
                     raw_names = name_input
                     console.log("node input:|\n", raw_names, "\n|")
                 } else {
+
                     m = window.sessionStorage.getItem(LangData.eQ("k"))
                     l = X.f4(m, 0)
                     k = LangData.oC(false)
-                    a8 = t.i
-                    j = H.b([], a8)
-                    J.rr(j, H.b([1, 3, 0, 9], a8))
+                    let type_tmp = t.i
+                    j = H.b([], type_tmp)
+                    J.rr(j, H.b([1, 3, 0, 9], type_tmp))
                     k.bO(j)
                     k.di(l)
                     raw_names = C.e.bt(0, l)
                 }
+
                 // 或者直接在这里输入一个原始字符串
                 h = T.parse_names(raw_names)
 
@@ -21076,49 +21247,60 @@ function main() {
                         // if (J.J(h, 1).length > 10 || J.lW(J.J(J.J(h, 1)[0], 0), O.j("S,AF", 5))) {
                         // LangData.j("S,AF", 5) -> ???
                         if (h[1].length > 10 || J.lW(h[1][0][0], LangData.j("S,AF", 5))) {
-                            a8 = h[1]
-                            a9 = H.b([], t.t)
-                            d = new X.iW(a9, new Float64Array(1))
-                            d.e_(a8)
-                            g = d
-                            f = HtmlRenderer.outer_main(g)
+                            logger.info("官方搜号")
+                            team_1 = h[1]
+                            team_2 = H.b([], t.t)
+
+                            profiler = new X.ProfileFind(team_2, new Float64Array(1))
+                            d.e_(team_1)
+
+                            f = HtmlRenderer.outer_main(profiler)
+
                             f.r = 2000
                             async_goto = 1
                             break
                         } else {
+                            logger.info("官方测号-评分")
+
                             e = $.nk()
                             // if (J.J(h, 0).length === 2 && J.Y(J.J(J.J(h, 0)[1], 0), $.cl())) {
                             if (h[0].length === 2 && h[0][1][0] === $.cl()) {
-                                a8 = h[1]
+                                team_1 = h[1]
                                 e = $.cl()
                             }
-                            a8 = h[1]
-                            a9 = e
+                            team_1 = h[1]
+                            team_2 = e
                             a3 = H.b([], t.L)
                             a4 = H.b([], t.V)
                             a5 = H.b([], t.M)
-                            g = new V.iV(a9, a8, a3, a4, a5, P.cu(t.X, t.B), new Float64Array(1))
-                            g.dZ(a8, a9)
-                            d = g
-                            d.d = 1000
-                            c = HtmlRenderer.outer_main(d)
+
+                            profiler = new V.ProfileMain(team_2, team_1, a3, a4, a5, P.cu(t.X, t.B), new Float64Array(1))
+                            profiler.dZ(team_1, team_2)
+                            profiler.d = 1000
+
+                            c = HtmlRenderer.outer_main(profiler)
+
                             c.r = 2000
                             async_goto = 1
                             break
                         }
                     } else if (h.length === 3) {
-                        a8 = h[1]
-                        a9 = h[2]
+                        logger.info("官方测号-胜率")
+
+                        team_1 = h[1]
+                        team_2 = h[2]
                         a3 = t.L
                         a4 = H.b([], a3)
                         a3 = H.b([], a3)
                         a5 = H.b([], t.V)
                         a6 = H.b([], t.M)
-                        g = new L.iR(a8, a9, a4, a3, a5, a6, new Float64Array(1))
-                        g.dY(a8, a9)
-                        b = g
-                        b.c = 1000
-                        a = HtmlRenderer.outer_main(b)
+
+                        profiler = new L.ProfileWinChance(team_1, team_2, a4, a3, a5, a6, new Float64Array(1))
+                        profiler.dY(team_1, team_2)
+                        profiler.c = 1000
+
+                        a = HtmlRenderer.outer_main(profiler)
+
                         a.r = 2000
                         async_goto = 1
                         break
@@ -21139,7 +21321,7 @@ function main() {
                 switch_to = 4
                 b0 = async_result_1
                 a1 = H.unwrap_Exception(b0)
-                H.get_trace_from_exception(b0)
+                H.getTraceFromException(b0)
                 async_goto = 7
                 break
             case 4:
@@ -21159,4 +21341,4 @@ function main() {
 
 main();
 // logger.debug("running main:", main()) // 执行main函数
-logger.debug(LangData.j("S,AF", 5))
+logger.debug("反混淆", LangData.j("lA", 39))
