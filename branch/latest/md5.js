@@ -7299,7 +7299,18 @@ var A = {
             this.b = b
         },
         aM: function aM() { },
-        Plr: function u(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
+        Plr: function u(a, b, c, d, e, f, skills, actions, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
+            /*skl.f -> skl.level
+            action.e -> action.boosted
+
+            Plr的属性
+            this.k1 -> skills 打乱前的技能，固定顺序，是createSkills操作的属性
+            this.k2 -> sortedSkills 打乱后的技能，顺序不固定，initSkills操作的属性
+            this.k4 -> 主动技能actions 
+            this.q -> 八围，前七围要+36才是显示的数字
+
+            k1,k2,k4数组应该是引用技能对象（地址）的，所以更改一个后，在其他会随时同步
+            */
             var _ = this
             _.a = a
             _.b = b
@@ -7309,9 +7320,9 @@ var A = {
             _.Q = e
             _.go = _.fy = _.fx = _.fr = _.dy = _.dx = _.db = _.cy = _.cx = _.ch = null
             _.id = f
-            _.k1 = g
+            _.k1 = skills
             _.k3 = _.k2 = null
-            _.k4 = h
+            _.k4 = actions
             _.weapon = null
             _.r2 = i
             _.rx = j
