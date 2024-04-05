@@ -7335,7 +7335,7 @@ var A = {
             _.I = null
         },
         jX: function jX() {},
-        boost_passive: function boost_passive() {}, // boostPassive
+        BoostPassive: function boost_passive() {}, // boostPassive
         jY: function jY() {},
         x: function x() {},
         aZ: function aZ() {},
@@ -17254,7 +17254,7 @@ T.Plr.prototype = {
                     break
                 }
             }
-        boostPassive = new T.boost_passive()
+        boostPassive = new T.BoostPassive()
         var skills = this_.k2
         if (skills.length >= $.aR()) {
             skills = skills[$.p7()]
@@ -17568,7 +17568,7 @@ T.jX.prototype = {
     },
     $S: 15
 }
-T.boost_passive.prototype = {
+T.BoostPassive.prototype = {
     boostPassive(a, b, c) {
         var s = a.f
         if (s > 0 && !a.e) {
@@ -19067,7 +19067,7 @@ LangData.k_.prototype = {
             HtmlRenderer.jx, HtmlRenderer.jy, HtmlRenderer.jw, HtmlRenderer.jz, HtmlRenderer.jB,
             HtmlRenderer.jC, HtmlRenderer.jD, HtmlRenderer.jV, HtmlRenderer.lp, HtmlRenderer.lq,
             Sgls.k5, Sgls.k6,
-            T.k9, T.jk, T.jj, T.jl, T.ji, T.lD, T.jW, T.k3, T.kb, T.ko, T.kp,
+            T.k9, T.jk, T.jj, T.jl, T.ji, T.lD, T.BoostPassive, T.k3, T.kb, T.ko, T.kp,
             LangData.k_
         ]
     )
