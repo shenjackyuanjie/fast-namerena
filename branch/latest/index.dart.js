@@ -626,11 +626,13 @@
                 n.cy = t.Y.a(r.querySelector(".mdframe"))
                 n.db = p.a(r.querySelector(".ad_h"))
                 n.dx = p.a(r.querySelector(".ad_v"))
+                
                 r.querySelector("#inputtitle").textContent = O.J("MiIa")
                 s.placeholder = O.J("Pvyn")
                 s = o.a(r.querySelector(".goBtn"))
                 n.e = s
                 s.textContent = O.J("ZeAN")
+                
                 W.K(s, d, n.gdl(), false)
                 s = p.a(r.querySelector(".controlbar"))
                 n.f = s
