@@ -12317,6 +12317,7 @@ Y.RC4.prototype = {
         this.a = this.b = 0
     },
     bO(a) {
+        // update
         var s, r, q, p, o, n = this,
             m = a.length
         for (s = 0; s < m; ++s) {
