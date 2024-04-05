@@ -17196,22 +17196,29 @@ T.Plr.prototype = {
     diy_skills(diyskills) {
         try {
             // MARK: 自定义技能
-            var skills = this.k1
+            var sortedSkills = this.k2
             var this_ = this
             // 初始化技能
             for (var n = 0; n < this.k2.length; n++) this.k2[n].ao(this, 0)
             // 遍历diyskills字典的键
-            for (var key in diyskills) {
+            var keys = Object.keys(diyskills);
+            for (var k=0;k<keys.length;k++) {
                 // 遍历skills数组中的对象
-                for (var i = 0; i < skills.length; i++) {
-                    if (skills[i].constructor.name === key) {
-                        skills[i].f = diyskills[key];
+                var key=keys[k]
+                for (var i = 0; i < sortedSkills.length; i++) {
+                    if (sortedSkills[i].constructor.name.toLowerCase() == key.toLowerCase()) {
+                        sortedSkills[i].f = diyskills[key];
                         // skills[i].ao(this, this.f)
+                        
+                        if(i != k){ // 把技能的顺序排一下
+                            [sortedSkills[i],sortedSkills[k]]=[sortedSkills[k],sortedSkills[i]]
+                        }
                         break;
                     }
                 }
             }
         } catch (error) {
+            console.log("error diy")
             console.error(error)
         }
     },
