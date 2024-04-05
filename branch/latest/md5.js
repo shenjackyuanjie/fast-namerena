@@ -17169,20 +17169,20 @@ T.Plr.prototype = {
     },
     dm(list, original) {
         // initSkills
-        var s, sortedSkills, q, p, this_ = this,
+        var skill, sortedSkills, q, p, this_ = this,
             n = 0,
-            m = n
+            m = 0
         // src中被移除的计算技能部分
         while (true) {
             if (!(n < $.aR() && n < this_.k2.length)) break
-            s = this_.k2[n]
+            skill = this_.k2[n]
             sortedSkills = C.Array.al(list, m, m + $.C())
             if (!!sortedSkills.immutable$list) H.throw_expression(P.UnsupportError("sort"))
             q = sortedSkills.length - 1
             if (q - 0 <= 32) H.ej(sortedSkills, 0, q, J.bO())
             else H.ei(sortedSkills, 0, q, J.bO())
-            p = sortedSkills[0] - $.Z()
-            s.ao(this_, p)
+            p = sortedSkills[0] - 10
+            skill.ao(this_, p)
             sortedSkills = 0
             if (p > sortedSkills) {
                 sortedSkills = C.Array.al(original, m, m + $.C())
@@ -17191,12 +17191,12 @@ T.Plr.prototype = {
                 if (q - 0 <= 32) H.ej(sortedSkills, 0, q, J.bO())
                 else H.ei(sortedSkills, 0, q, J.bO())
                 q = 0
-                if (sortedSkills[q] - $.Z() <= q) s.e = true
+                if (sortedSkills[q] - 10 <= q) skill.e = true
             }++n
             m += $.C()
         }
         for (; sortedSkills = this_.k2, n < sortedSkills.length; ++n) sortedSkills[n].ao(this_, 0)
-        // console.log("sorted skills:",sortedSkills)
+        // 最终的技能列表是this.k2, 其他地方也都是引用这个的
     },
     bs() {
         // addSkillsToProc
@@ -17399,7 +17399,7 @@ T.Plr.prototype = {
         p = LangData.get_lang("kZsn")
         r = 0
         if (a === r) {
-            e.a.push(T.RunUpdate(C.String.B(C.String.fu(p, "1", "0"), $.ne()), n, n, new T.HDamage(0), null, $.Z(), 1000, 100))
+            e.a.push(T.RunUpdate(C.String.B(C.String.fu(p, "1", "0"), $.ne()), n, n, new T.HDamage(0), null, 10, 1000, 100))
             return 0
         }
         s = n.fx
@@ -17473,7 +17473,7 @@ T.Plr.prototype = {
         if (o instanceof T.cz) n = C.N
         else {
             s = H.b([], t.i)
-            for (r = $.Z(); r < $.d1(); r += $.B()) {
+            for (r = 10; r < $.d1(); r += $.B()) {
                 q = C.Array.al(o.E, r, r + $.B())
                 if (!!q.immutable$list) H.throw_expression(P.UnsupportError("sort"))
                 p = q.length - 1
@@ -17481,7 +17481,7 @@ T.Plr.prototype = {
                 else H.ei(q, 0, p, J.bO())
                 s.push(q[$.i()])
             }
-            q = C.Array.al(o.E, 0, $.Z())
+            q = C.Array.al(o.E, 0, 10)
             C.Array.aJ(q)
             s.push(C.Array.dz(C.Array.al(q, $.B(), $.ap()), new T.jY()) + $.mK())
             for (r = 0; r < s.length; ++r)
@@ -18621,8 +18621,6 @@ T.Weapon.prototype = {
         e = $.a4()
         s = this_.d
         q = s && C.Array
-        console.log("a",a)
-        console.log("r",r)
         if (r === e){p = q.al(s, $.bg(), $.aI())
         
         }else {
