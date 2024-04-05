@@ -13023,7 +13023,7 @@ HtmlRenderer.inner_render.prototype = {
         q = HtmlRenderer.add_span("welcome2")
         q.textContent = LangData.get_lang("NosN")
         s.appendChild(q)
-        
+
         profiler = this_.c
         if (profiler.gbu(profiler) != null) {
             profiler = profiler.gbu(profiler)
@@ -19040,18 +19040,18 @@ LangData.k_.prototype = {
     inherit_many(P.fv, [H.fB, H.hX])
     inherit_many(H.M, [H.y, H.a9, P.id])
     inherit(H.NullError, P.bc)
-    inherit_many(H.c_, 
-        [H.j5, H.j6, H.kg, H.jH, H.lv, H.lx, 
-            P.kB, P.kA, P.lh, P.kK, P.kS, P.ke, P.kZ, P.Duration_toString_sixDigits, P.Duration_toString_twoDigits, 
-            W.jf, W.kF, W.jP, W.jO, W.l0, W.l1, W.l7, 
-            P.lE, P.lF, 
-            L.iS, L.iT, L.iU, 
-            V.j0, V.j1, 
-            X.iX, X.iY, X.iZ, 
-            HtmlRenderer.jx, HtmlRenderer.jy, HtmlRenderer.jw, HtmlRenderer.jz, HtmlRenderer.jB, 
-            HtmlRenderer.jC, HtmlRenderer.jD, HtmlRenderer.jV, HtmlRenderer.lp, HtmlRenderer.lq, 
-            Sgls.k5, Sgls.k6, 
-            T.k9, T.jk, T.jj, T.jl, T.ji, T.lD, T.jW, T.k3, T.kb, T.ko, T.kp, 
+    inherit_many(H.c_,
+        [H.j5, H.j6, H.kg, H.jH, H.lv, H.lx,
+            P.kB, P.kA, P.lh, P.kK, P.kS, P.ke, P.kZ, P.Duration_toString_sixDigits, P.Duration_toString_twoDigits,
+            W.jf, W.kF, W.jP, W.jO, W.l0, W.l1, W.l7,
+            P.lE, P.lF,
+            L.iS, L.iT, L.iU,
+            V.j0, V.j1,
+            X.iX, X.iY, X.iZ,
+            HtmlRenderer.jx, HtmlRenderer.jy, HtmlRenderer.jw, HtmlRenderer.jz, HtmlRenderer.jB,
+            HtmlRenderer.jC, HtmlRenderer.jD, HtmlRenderer.jV, HtmlRenderer.lp, HtmlRenderer.lq,
+            Sgls.k5, Sgls.k6,
+            T.k9, T.jk, T.jj, T.jl, T.ji, T.lD, T.jW, T.k3, T.kb, T.ko, T.kp,
             LangData.k_
         ]
     )
@@ -19108,8 +19108,24 @@ LangData.k_.prototype = {
     inherit(P.cF, P.p)
     inherit(HtmlRenderer.fW, HtmlRenderer.ax)
     inherit_many(Sgls.n, [T.q, T.aZ, T.aB, T.bq, T.cB, T.bH, T.ah, T.aV, T.aF])
-    inherit_many(T.q, [T.ActionSkill, T.h6, T.he, T.hn, T.hq, T.ea, T.ef, T.SklCounter, T.SklDefend, T.SklHide, T.SklMerge, T.SklProtect, T.SklReflect, T.SklReraise, T.SklShield, T.SklUpgrade, T.SklZombie])
-    inherit_many(T.ActionSkill, [T.SklAbsorb, T.SklAccumulate, T.SklAssassinate, T.dd, T.SklBerserk, T.SklCharge, T.SklCharm, T.SklClone, T.SklCritical, T.SklCurse, T.SklDisperse, T.SklExchange, T.SklFire, T.sklHalf, T.SklHaste, T.SklHeal, T.SklIce, T.SklIron, T.SklPoison, T.SklQuake, T.SklRapid, T.SklRevive, T.hu, T.SklShadow, T.SklSlow, T.hj, T.SklSummon, T.SklThunder, T.e2, T.hb, T.dl, T.hd, T.hm, T.dB, T.hp, T.hr, T.hA, T.h8, T.hD, T.SkillVoid, T.hg, T.ee, T.hz])
+    inherit_many(T.q,
+        [T.ActionSkill, T.h6, T.he, T.hn, T.hq, T.ea, T.ef,
+            T.SklCounter, T.SklDefend, T.SklHide, T.SklMerge, T.SklProtect,
+            T.SklReflect, T.SklReraise, T.SklShield, T.SklUpgrade, T.SklZombie
+        ]
+    )
+    inherit_many(T.ActionSkill,
+        [T.SklAbsorb, T.SklAccumulate, T.SklAssassinate, T.dd, T.SklBerserk,
+            T.SklCharge, T.SklCharm, T.SklClone, T.SklCritical, T.SklCurse,
+            T.SklDisperse, T.SklExchange, T.SklFire, T.sklHalf, T.SklHaste,
+            T.SklHeal, T.SklIce, T.SklIron, T.SklPoison, T.SklQuake,
+            T.SklRapid, T.SklRevive, T.hu, T.SklShadow, T.SklSlow,
+            T.hj, T.SklSummon, T.SklThunder,
+            T.e2, T.hb, T.dl, T.hd, T.hm,
+            T.dB, T.hp, T.hr, T.hA, T.h8,
+            T.hD, T.SkillVoid, T.hg, T.ee, T.hz
+        ]
+    )
     inherit_many(T.aZ, [T.dj, T.dw, T.dx, T.eh, T.bd, T.h1])
     inherit_many(T.x, [T.dI, T.c3, T.hF, T.fC, T.hY])
     inherit_many(T.Plr, [T.dR, T.aM, T.cz, T.fP, T.fU, T.fV, T.fQ, T.cy])
@@ -19133,6 +19149,7 @@ LangData.k_.prototype = {
     inherit(T.hy, T.ea)
     inherit(T.hc, T.SklCounter)
     inherit(LangData.SuperRC4, Y.RC4)
+
     mixin(H.cJ, H.hV)
     mixin(H.ey, P.z)
     mixin(H.ez, H.du)
