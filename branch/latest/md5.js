@@ -1857,7 +1857,7 @@ var A = {
         _NativeTypedArrayOfDouble_NativeTypedArray_ListMixin: function ey() {},
         _NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin: function ez() {},
         _NativeTypedArrayOfInt_NativeTypedArray_ListMixin: function eA() {},
-        eB: function eB() {},
+        _NativeTypedArrayOfInt_NativeTypedArray_ListMixin_FixedLengthListMixin: function eB() {},
         Rti__getQuestionFromStar(a, b) {
             var s = b.c
             return s == null ? b.c = H._Universe__lookupQuestionRti(a, b.z, true) : s
@@ -9623,7 +9623,7 @@ H.cx.prototype = {
 H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin.prototype = {}
 H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin.prototype = {}
 H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin.prototype = {}
-H.eB.prototype = {}
+H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin_FixedLengthListMixin.prototype = {}
 H.Rti.prototype = {
     i(a) {
         return H._Universe_evalInEnvironment(init.typeUniverse, this, a)
@@ -19094,8 +19094,8 @@ LangData.k_.prototype = {
     inherit_many(H.cw, [H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin, H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin])
     inherit(H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin, H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin)
     inherit(H.c9, H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin)
-    inherit(H.eB, H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin)
-    inherit(H.dK, H.eB)
+    inherit(H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin_FixedLengthListMixin, H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin)
+    inherit(H.dK, H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin_FixedLengthListMixin)
     inherit_many(H.dK, [H.fE, H.fF, H.fG, H.fH, H.fI, H.dL, H.cx])
     inherit(H.eI, H.i9)
     inherit_many(H.j5, [P.kC, P.kD, P._TimerImpl_internalCallback, P.jp, P.kH, P.kO, P.kM, P.kJ, P.kN, P.kI, P.kR, P.kQ, P.kP, P.kf, P.l2, P.kW, P.lo, P.kY, P.km, P.kl, X.je, X.j9, HtmlRenderer.send_win_data, Sgls.k4])
@@ -19184,7 +19184,7 @@ LangData.k_.prototype = {
     mixin(H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin, P.z)
     mixin(H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin, H.du)
     mixin(H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin, P.z)
-    mixin(H.eB, H.du)
+    mixin(H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin_FixedLengthListMixin, H.du)
     mixin(P.cK, P.i1)
     mixin(P.ev, P.z)
     mixin(P.eM, P.dY)
@@ -21109,7 +21109,7 @@ var t = (function rtii() {
     H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin.$nativeSuperclassTag = "ArrayBufferView"
     H.c9.$nativeSuperclassTag = "ArrayBufferView"
     H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin.$nativeSuperclassTag = "ArrayBufferView"
-    H.eB.$nativeSuperclassTag = "ArrayBufferView"
+    H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin_FixedLengthListMixin.$nativeSuperclassTag = "ArrayBufferView"
     H.dK.$nativeSuperclassTag = "ArrayBufferView"
 })()
 Function.prototype.$2 = function (a, b) {
