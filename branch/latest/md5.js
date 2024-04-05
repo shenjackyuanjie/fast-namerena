@@ -5756,7 +5756,7 @@ var A = {
                 } else {
                     j = e
                 }
-                console.log("weapon: " + j)
+                // console.log("weapon: " + j)
                 l = $.n3()
                 if (l == null) H.throw_expression(H.R(l))
                 if (H.iF(m, l, 0)) {
@@ -6052,7 +6052,7 @@ var A = {
             return s
         },
         tN(a, b) {
-            var s = new T.bL(a, b, P.aL($.av(), 0, false, t.B))
+            var s = new T.Weapon(a, b, P.aL($.av(), 0, false, t.B))
             s.a = a
             return s
         },
@@ -7297,7 +7297,7 @@ var A = {
             _.k1 = g
             _.k3 = _.k2 = null
             _.k4 = h
-            _.r1 = null
+            _.weapon = null
             _.r2 = i
             _.rx = j
             _.ry = k
@@ -7602,7 +7602,7 @@ var A = {
             _.f = _.e = _.d = null
             _.r = c
         },
-        bL: function bL(a, b, c) {
+        Weapon: function Weapon(a, b, c) {
             var _ = this
             _.a = null
             _.b = a
@@ -16915,25 +16915,30 @@ T.Plr.prototype = {
         this_.f = r
         q = this_.d // + 号以后的东西
         if (q != null && q !== "") {
-            this_.f = H.as_string(r) + "+" + H.as_string(q)
+            // DIY part
+            if(q.startsWith("diy")){
+                this_.diy = q.slice(3)
+            }else{
+                this_.f = H.as_string(r) + "+" + H.as_string(q)
 
-            // 武器列表
-            r = $.rj()
+                // 武器列表
+                r = $.rj()
+                console.log("$.rj()",$.rj())
+                if (r.J(0, q)) {
+                    p = r.h(0, q).$2(q, this_)
+                } else if (J.nz(q, $.cl())) {
+                    p = new T.j2(q, this_, P.aL($.av(), 0, false, t.B))
+                    p.a = q
+                    p.a = C.String.af(q, 0, q.length - $.i())
+                } else {
+                    p = T.tN(q, this_)
+                }
 
-            if (r.J(0, q)) {
-                p = r.h(0, q).$2(q, this_)
-            } else if (J.nz(q, $.cl())) {
-                p = new T.j2(q, this_, P.aL($.av(), 0, false, t.B))
-                p.a = q
-                p.a = C.String.af(q, 0, q.length - $.i())
-            } else {
-                p = T.tN(q, this_)
+                o = new LangData.SuperRC4()
+                o.bd(LangData.fZ(p.a), $.t())
+                p.b3(o)
+                this_.weapon = p
             }
-
-            o = new LangData.SuperRC4()
-            o.bd(LangData.fZ(p.a), $.t())
-            p.b3(o)
-            this_.r1 = p
         }
         if (J.lW(s, " ")) {
             this_.r = s.split(" ")[0]
@@ -17023,14 +17028,36 @@ T.Plr.prototype = {
     },
     az() {
         // buildAsync
-        var weapon, this_ = this
+        var weapon, diy, this_ = this
         this_.bf()
-        weapon = this_.r1
+        weapon = this_.weapon
         if (weapon != null) weapon.bn()
+       
         this_.aU() // initRawAttr
         this_.bP() // initLists
         this_.dm(C.Array.cL(this_.t, $.au()), C.Array.cL(this_.E, $.au())) // initSkills
-        weapon = this_.r1
+
+         // DIY自定义属性
+         diy=this_.diy
+         if (diy != null){
+            try{
+                var tmparr = diy.split("]");
+                var attrs = JSON.parse(tmparr[0]+"]");
+                if(tmparr[1].startsWith("{")) var skills = JSON.parse(tmparr[1]);
+                if(attrs.length!=8) throw new Error('八围要有八个元素')
+            }catch(error){
+                console.error(error)
+                alert("DIY捏人格式错误，请检查");
+            }
+            if(attrs){
+                for (var i = 0; i < 7; i++) {
+                      attrs[i] -= 36; // 为当前项减去36
+                  }
+                this.q=attrs
+            }
+         }
+
+        weapon = this_.weapon
         if (weapon != null) weapon.cs()
         this_.bs() // addSkillsToProc
         this_.cn() // initValues
@@ -17169,7 +17196,7 @@ T.Plr.prototype = {
             m += $.C()
         }
         for (; sortedSkills = this_.k2, n < sortedSkills.length; ++n) sortedSkills[n].ao(this_, 0)
-        console.log("sorted skills:",sortedSkills)
+        // console.log("sorted skills:",sortedSkills)
     },
     bs() {
         // addSkillsToProc
@@ -18582,20 +18609,23 @@ T.ep.prototype = {
         (r && C.Array).j(r, q)
     }
 }
-T.bL.prototype = {
+T.Weapon.prototype = {
     b3(a) {
-        var s, r, q, p, o, n, m, l, k, j, i, h, g, f = this,
+        var s, r, q, p, o, n, m, l, k, j, i, h, g, this_ = this,
             e = a.c
         e.toString
         s = H._arrayInstanceType(e).i("y<1,l*>")
-        f.d = P.List_List_of(new H.y(e, new T.ko(), s), true, s.i("M.E"))
-        f.e = a.ax($.bg())
+        this_.d = P.List_List_of(new H.y(e, new T.ko(), s), true, s.i("M.E"))
+        this_.e = a.ax($.bg())
         r = a.ax($.av())
         e = $.a4()
-        s = f.d
+        s = this_.d
         q = s && C.Array
-        if (r === e) p = q.al(s, $.bg(), $.aI())
-        else {
+        console.log("a",a)
+        console.log("r",r)
+        if (r === e){p = q.al(s, $.bg(), $.aI())
+        
+        }else {
             e = q.al(s, $.bg(), $.aI())
             s = H._arrayInstanceType(e).i("y<1,l*>")
             p = P.List_List_of(new H.y(e, new T.kp(), s), true, s.i("M.E"))
@@ -18610,16 +18640,16 @@ T.bL.prototype = {
             }
         }
         m *= $.B()
-        e = f.d
+        e = this_.d
         j = (e && C.Array).al(e, o, $.av())
         C.Array.aJ(j)
         i = j[$.i()] + j[$.C()] + n
         for (k = 0, h = i; e = $.ap(), k < e; ++k) {
             g = C.d.P(i * p[k], m)
             h -= g * $.B()
-            f.r[k] = g
+            this_.r[k] = g
         }
-        if (p[e] > 0) f.r[e] = h
+        if (p[e] > 0) this_.r[e] = h
     },
     cB(a, b, c, d) {
         var s, r, q, p, o, n, m = c[d] - a[d],
@@ -18640,6 +18670,7 @@ T.bL.prototype = {
         return Math.abs(m) + Math.abs(j) + Math.abs(r)
     },
     bn() {
+        // preUpgrade
         var s, r, q, p = this,
             o = 0
         for (s = $.Z(), r = p.c; s < $.d1(); s += $.B()) {
@@ -18653,6 +18684,7 @@ T.bL.prototype = {
         }
     },
     cs() {
+        // postUpgrade
         var s, r, q
         for (s = 0, r = this.c; s < $.av(); ++s) {
             q = r.q
@@ -18661,6 +18693,7 @@ T.bL.prototype = {
         this.b6()
     },
     b6() {
+        // upgradeSkill
         var s = this.c.k1[this.e],
             r = s.f
         if (r == 0) s.e = true
@@ -18876,7 +18909,7 @@ LangData.k_.prototype = {
     s.dU = s.aa
     s = T.ActionSkill.prototype
     s.aX = s.au
-    s = T.bL.prototype
+    s = T.Weapon.prototype
     s.cN = s.b3
     s.dW = s.bn
     s.dV = s.cs
@@ -18934,7 +18967,7 @@ LangData.k_.prototype = {
         inherit = hunkHelpers.inherit,
         inherit_many = hunkHelpers.inheritMany
     inherit(P.Object, null)
-    inherit_many(P.Object, [H.m8, J.Interceptor, J.db, P.O, P.ev, P.L, H.cv, P.fv, H.du, H.hV, H.kh, H.jR, H.dt, H.eE, H.c_, P.aU, H.jK, H.fA, H.JSSyntaxRegExp, H.ew, H.kz, H.bK, H.l3, H.aW, H.ib, H.iu, P.l8, P.i_, P.f3, P.i4, P.cN, P._Future, P.i0, P.em, P.hO, P.hP, P.im, P.i1, P.i3, P.i7, P.ii, P.io, P.lf, P.eM, P.kV, P.ie, P.z, P.dY, P.fg, P.js, P.lc, P.lb, P.dq, P.Duration, P.fM, P.el, P.kG, P.jm, P.N, P.iq, P.cH, W.j8, W.m5, W.cP, W.cr, W.dN, W.eD, W.is, W.dv, W.kE, W.l_, W.ix, P.l4, P.kw, P.eJ, P.jQ, P.kT, Y.RC4, L.iR, V.iV, X.iW, S.fK, HtmlRenderer.fq, HtmlRenderer.jT, HtmlRenderer.ax, Sgls.a_, Sgls.n, T.x, T.Plr, T.dk, T.fo, T.b7, T.IPlr, T.HDamage, T.HRecover, T.aX, T.aq, T.bG, T.bL, T.fl])
+    inherit_many(P.Object, [H.m8, J.Interceptor, J.db, P.O, P.ev, P.L, H.cv, P.fv, H.du, H.hV, H.kh, H.jR, H.dt, H.eE, H.c_, P.aU, H.jK, H.fA, H.JSSyntaxRegExp, H.ew, H.kz, H.bK, H.l3, H.aW, H.ib, H.iu, P.l8, P.i_, P.f3, P.i4, P.cN, P._Future, P.i0, P.em, P.hO, P.hP, P.im, P.i1, P.i3, P.i7, P.ii, P.io, P.lf, P.eM, P.kV, P.ie, P.z, P.dY, P.fg, P.js, P.lc, P.lb, P.dq, P.Duration, P.fM, P.el, P.kG, P.jm, P.N, P.iq, P.cH, W.j8, W.m5, W.cP, W.cr, W.dN, W.eD, W.is, W.dv, W.kE, W.l_, W.ix, P.l4, P.kw, P.eJ, P.jQ, P.kT, Y.RC4, L.iR, V.iV, X.iW, S.fK, HtmlRenderer.fq, HtmlRenderer.jT, HtmlRenderer.ax, Sgls.a_, Sgls.n, T.x, T.Plr, T.dk, T.fo, T.b7, T.IPlr, T.HDamage, T.HRecover, T.aX, T.aq, T.bG, T.Weapon, T.fl])
     inherit_many(J.Interceptor, [J.fw, J.cs, J.bE, J.JsArray, J.JsNumber, J.JsString, H.dJ, H.ab, W.fn, W.bX, W.fe, W.i6, W.bb, W.ja, W.jb, W.o, W.c4, W.jL, W.ig, W.il, W.iy, W.iA])
     inherit_many(J.bE, [J.PlainJavaScriptObject, J.UnknownJavaScriptObject, J.JavaScriptFunction])
     inherit(J.jG, J.JsArray)
@@ -19024,7 +19057,7 @@ LangData.k_.prototype = {
     inherit(T.ij, T.bH)
     inherit(T.dV, T.ij)
     inherit(T.e0, T.ik)
-    inherit_many(T.bL, [T.j2, T.eo, T.jq, T.jN, T.k1, T.ep, T.kv])
+    inherit_many(T.Weapon, [T.j2, T.eo, T.jq, T.jN, T.k1, T.ep, T.kv])
     inherit(T.hy, T.ea)
     inherit(T.hc, T.SklCounter)
     inherit(LangData.SuperRC4, Y.RC4)
