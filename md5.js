@@ -4936,7 +4936,7 @@ var A = {
                 b = H.b([], e)
                 e = H.b([], e)
                 a = 0
-                a = new T.fV(a4, a5, a4, a3, s, r, q, p, o, n, m, l, k, j, i, h, g, f, d, c, b, e, a, a, a, $.W(), a)
+                a = new T.PlrBossTest2(a4, a5, a4, a3, s, r, q, p, o, n, m, l, k, j, i, h, g, f, d, c, b, e, a, a, a, $.W(), a)
                 a.a1(a4, a5, a4, a3)
                 a.e5(a4, a5)
                 return a
@@ -6551,7 +6551,7 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        fV: function fV(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
+        PlrBossTest2: function fV(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
             var _ = this
             _.a = a
             _.b = b
@@ -15492,7 +15492,7 @@ T.PlrBossTest.prototype = {
         this.x = $.ao()
     }
 }
-T.fV.prototype = {
+T.PlrBossTest2.prototype = {
     e5(a, b) {
         var s, r, q
         for (s = 0; s < $.b1(); ++s) {
@@ -19177,7 +19177,7 @@ LangData.k_.prototype = {
     )
     inherit_many(T.aZ, [T.dj, T.dw, T.dx, T.eh, T.bd, T.h1])
     inherit_many(T.x, [T.dI, T.c3, T.hF, T.fC, T.hY])
-    inherit_many(T.Plr, [T.dR, T.aM, T.cz, T.fP, T.PlrBossTest, T.fV, T.fQ, T.cy])
+    inherit_many(T.Plr, [T.dR, T.aM, T.cz, T.fP, T.PlrBossTest, T.PlrBossTest2, T.fQ, T.cy])
     inherit_many(T.aB, [T.dn, T.dT, T.ik])
     inherit_many(T.bq, [T.dS, T.b8])
     inherit_many(T.aM, [T.PlrShadow, T.PlrSummon, T.fX])
