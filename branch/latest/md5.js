@@ -7758,7 +7758,7 @@ var A = {
             return s.eI(a, b)
         },
         HtmlElement: function HtmlElement() {},
-        f0: function f0() {},
+        AnchorElement: function AnchorElement() {},
         f1: function f1() {},
         cn: function cn() {},
         bX: function bX() {},
@@ -11250,7 +11250,7 @@ P.cH.prototype = {
     }
 }
 W.HtmlElement.prototype = {}
-W.f0.prototype = {
+W.AnchorElement.prototype = {
     k(a) {
         return String(a)
     }
@@ -19067,7 +19067,7 @@ LangData.k_.prototype = {
     inherit_many(W.fn, [W.v, W.dH, W.eq])
     inherit_many(W.v, [W.Q, W.b6, W.cL])
     inherit_many(W.Q, [W.HtmlElement, P.p])
-    inherit_many(W.HtmlElement, [W.f0, W.f1, W.cn, W.bY, W.di, W.c0, W.fp, W.dQ, W.h4, W.ek, W.ce, W.en, W.hQ, W.hR, W.cI])
+    inherit_many(W.HtmlElement, [W.AnchorElement, W.f1, W.cn, W.bY, W.di, W.c0, W.fp, W.dQ, W.h4, W.ek, W.ce, W.en, W.hQ, W.hR, W.cI])
     inherit(W.co, W.i6)
     inherit(W.dm, W.bb)
     inherit(W.cq, W.bX)
@@ -20533,7 +20533,7 @@ var t = (function rtii() {
         HTMLFrameSetElement: W.HtmlElement,
         HTMLMarqueeElement: W.HtmlElement,
         HTMLElement: W.HtmlElement,
-        HTMLAnchorElement: W.f0,
+        HTMLAnchorElement: W.AnchorElement,
         HTMLAreaElement: W.f1,
         HTMLBaseElement: W.cn,
         Blob: W.bX,
