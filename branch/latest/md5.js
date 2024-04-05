@@ -3411,7 +3411,7 @@ var A = {
         JsArray: function E(a) {
             this.$ti = a
         },
-        jG: function jG(a) {
+        JsUnmodifiableArray: function jG(a) {
             this.$ti = a
         },
         db: function db(a, b) {
@@ -4566,7 +4566,7 @@ var A = {
         m3() {
             return window.navigator.userAgent
         },
-        l4: function l4() {},
+        _StructuredClone: function l4() {},
         l5: function l5(a, b) {
             this.a = a
             this.b = b
@@ -7335,7 +7335,7 @@ var A = {
             _.I = null
         },
         jX: function jX() {},
-        boost_passive: function boost_passive() {}, // boostPassive
+        BoostPassive: function boost_passive() {}, // boostPassive
         jY: function jY() {},
         x: function x() {},
         aZ: function aZ() {},
@@ -7757,14 +7757,14 @@ var A = {
             if (s === C.f) return a
             return s.eI(a, b)
         },
-        r: function r() {},
-        f0: function f0() {},
-        f1: function f1() {},
-        cn: function cn() {},
-        bX: function bX() {},
-        bY: function bY() {},
-        di: function di() {},
-        fe: function fe() {},
+        HtmlElement: function HtmlElement() {},
+        AnchorElement: function AnchorElement() {},
+        AreaElement: function AreaElement() {},
+        BaseElement: function BaseElement() {},
+        Blob: function Blob() {},
+        BodyElement: function BodyElement() {},
+        CanvasElement: function CanvasElement() {},
+        CanvasRenderingContext2D: function CanvasRenderingContext2D() {},
         b6: function b6() {},
         co: function co() {},
         j8: function j8() {},
@@ -7772,7 +7772,7 @@ var A = {
         c0: function c0() {},
         ja: function ja() {},
         jb: function jb() {},
-        Q: function Q() {},
+        Element: function Element() {},
         jf: function jf() {},
         o: function o() {},
         fn: function fn() {},
@@ -8074,7 +8074,7 @@ var A = {
             let plist = s.querySelector(".plist")
             let pbody = s.querySelector(".pbody")
 
-            s = new HtmlRenderer.fq(plist, pbody, a, $.ro().ax(256))
+            s = new HtmlRenderer.inner_render(plist, pbody, a, $.ro().ax(256))
             s.e0(a)
             logger.debug("finish html.outer_main")
             return s
@@ -8263,15 +8263,16 @@ var A = {
             }
             return span_element
         },
-        fq: function fq(a, b, c, d) {
+        // MARK: html render init
+        inner_render: function inner_render(plist, pbody, profiler, randomer) {
             var _ = this
-            _.a = a
-            _.b = b
-            _.c = c
+            _.a = plist
+            _.b = pbody
+            _.c = profiler // 输入的 profiler
             _.d = null
             _.f = _.e = false
             _.r = 3
-            _.x = d
+            _.x = randomer
             _.y = 2
             // 既然加速之后就直接 2000
             // 直接初始化为 2000 如何
@@ -8580,7 +8581,7 @@ J.JsArray.prototype = {
     $iA: 1,
     $iw: 1
 }
-J.jG.prototype = {}
+J.JsUnmodifiableArray.prototype = {}
 J.db.prototype = {
     gC() {
         return this.d
@@ -11249,32 +11250,32 @@ P.cH.prototype = {
         return s.charCodeAt(0) == 0 ? s : s
     }
 }
-W.r.prototype = {}
-W.f0.prototype = {
+W.HtmlElement.prototype = {}
+W.AnchorElement.prototype = {
     k(a) {
         return String(a)
     }
 }
-W.f1.prototype = {
+W.AreaElement.prototype = {
     k(a) {
         return String(a)
     }
 }
-W.cn.prototype = {
+W.BaseElement.prototype = {
     $icn: 1
 }
-W.bX.prototype = {
+W.Blob.prototype = {
     $ibX: 1
 }
-W.bY.prototype = {
+W.BodyElement.prototype = {
     $ibY: 1
 }
-W.di.prototype = {
+W.CanvasElement.prototype = {
     geJ(a) {
         return a.getContext("2d")
     }
 }
-W.fe.prototype = {
+W.CanvasRenderingContext2D.prototype = {
     eN(a, b, c) {
         var s = P.my(a.createImageData(b, c))
         return s
@@ -11343,7 +11344,7 @@ W.jb.prototype = {
         return a.length
     }
 }
-W.Q.prototype = {
+W.Element.prototype = {
     geH(a) {
         return new W.i8(a)
     },
@@ -12068,7 +12069,7 @@ W.iy.prototype = {}
 W.iz.prototype = {}
 W.iA.prototype = {}
 W.iB.prototype = {}
-P.l4.prototype = {
+P._StructuredClone.prototype = {
     bj(a) {
         var s, r = this.a,
             q = r.length
@@ -12990,8 +12991,9 @@ S.fK.prototype = {
     },
     $iaN: 1
 }
-HtmlRenderer.fq.prototype = {
+HtmlRenderer.inner_render.prototype = {
     e0(a) {
+        // a -> profiler input
         var s, root, q, this_ = this
 
         if (this_.a == null) return
@@ -13021,10 +13023,11 @@ HtmlRenderer.fq.prototype = {
         q = HtmlRenderer.add_span("welcome2")
         q.textContent = LangData.get_lang("NosN")
         s.appendChild(q)
-        q = this_.c
-        if (q.gbu(q) != null) {
-            q = q.gbu(q)
-            root.appendChild(document.createTextNode(q))
+
+        profiler = this_.c
+        if (profiler.gbu(profiler) != null) {
+            profiler = profiler.gbu(profiler)
+            root.appendChild(document.createTextNode(profiler))
         }
         // 添加 event listener
         logger.debug("加速等待器 注册")
@@ -13032,18 +13035,20 @@ HtmlRenderer.fq.prototype = {
             W.es(window, "message", this_.gfb(this_), false)
         }
     },
+    // MARK: 接受加速按钮
     fc(func_self, event) {
-        var s = event.data,
-            r = new P.kx([], [])
-        r.c = true
-        // if (J.Y(r.aO(s), $.iK())) {
-        // if (r.aO(s) === $.iK()) {
-        // console.log("fq.fc", func_self, event, r.aO(s))
-        // event.data === ??
-        if (r.aO(s) === "??") {
+        // var s = event.data,
+        //     r = new P.kx([], [])
+        // r.c = true
+        // if (r.aO(s) === "??") {
+        //     this.y = 2000
+        // }
+        if (event.data == "??") {
             this.y = 2000
+            // 触发加速
         }
     },
+    // MARK: resize
     ds(a, b) {
         if (run_env.from_code) {
             return
@@ -13066,9 +13071,10 @@ HtmlRenderer.fq.prototype = {
     dI(a) {
         this.c.ae(0, this.x)
     },
+    // MARK: main?
     fe(a0) {
         // run update
-        logger.debug("fq.fe start")
+        logger.debug("html.fq.fe start")
         var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, this_ = this
         if (a0.length < 6) return
         s = X.f4(a0, 0)
@@ -17050,7 +17056,7 @@ T.Plr.prototype = {
 
         this_.aU() // initRawAttr
         this_.bP() // initLists
-        
+
 
         // DIY自定义属性
         diy = this_.diy
@@ -17070,11 +17076,11 @@ T.Plr.prototype = {
                 }
                 this.q = attrs
             }
-            if(diyskills){
-                console.log("this.k1",this.k1)
+            if (diyskills) {
+                console.log("this.k1", this.k1)
                 this.diy_skills(diyskills)
-            }else this_.dm(C.Array.cL(this_.t, $.au()), C.Array.cL(this_.E, $.au())) // initSkills
-        }else{
+            } else this_.dm(C.Array.cL(this_.t, $.au()), C.Array.cL(this_.E, $.au())) // initSkills
+        } else {
             this_.dm(C.Array.cL(this_.t, $.au()), C.Array.cL(this_.E, $.au())) // initSkills
         }
 
@@ -17188,20 +17194,20 @@ T.Plr.prototype = {
         skills.push(new T.SkillVoid(0))
         skills.push(new T.SkillVoid(0))
     },
-    diy_skills(diyskills){
+    diy_skills(diyskills) {
         // MARK: 自定义技能
-        var skills=this.k1
+        var skills = this.k1
         // 遍历diyskills字典的键
         for (var key in diyskills) {
             // 遍历skills数组中的对象
             for (var i = 0; i < skills.length; i++) {
-            if (skills[i].name === key) {
-                skills[i].f = diyskills[key];
-                break; 
-            }
+                if (skills[i].name === key) {
+                    skills[i].f = diyskills[key];
+                    break;
+                }
             }
         }
-  
+
     },
     dm(list, original) {
         // initSkills
@@ -17242,7 +17248,7 @@ T.Plr.prototype = {
             skl = sortedSkills[s]
             if (skl.f > 0 && skl instanceof T.ActionSkill) actions.push(skl)
         }
-        
+
         if (actions.length > 0)
             for (s = actions.length - 1; s >= 0; --s) {
                 act = actions[s]
@@ -17252,7 +17258,7 @@ T.Plr.prototype = {
                     break
                 }
             }
-        boostPassive = new T.boost_passive()
+        boostPassive = new T.BoostPassive()
         var skills = this_.k2
         if (skills.length >= $.aR()) {
             skills = skills[$.p7()]
@@ -17566,7 +17572,7 @@ T.jX.prototype = {
     },
     $S: 15
 }
-T.boost_passive.prototype = {
+T.BoostPassive.prototype = {
     boostPassive(a, b, c) {
         var s = a.f
         if (s > 0 && !a.e) {
@@ -18950,7 +18956,7 @@ LangData.k_.prototype = {
     s.dQ = s.k
     s = P.L.prototype
     s.dP = s.bV
-    s = W.Q.prototype
+    s = W.Element.prototype
     s.bY = s.aA
     s = W.eD.prototype
     s.dX = s.aM
@@ -18995,7 +19001,7 @@ LangData.k_.prototype = {
     install_static_tearoff(W, "uW", 4, null, ["$4"], ["tU"], 20, 0)
     static_2(HtmlRenderer, "oD", "rU", 62)
     var i
-    instance_1i(i = HtmlRenderer.fq.prototype, "gfb", "fc", 31)
+    instance_1i(i = HtmlRenderer.inner_render.prototype, "gfb", "fc", 31)
     instance_1i(i, "gff", "ds", 8)
     m(i, "gbc", "dI", 0)
     l(i, "gfd", "fe", 33)
@@ -19021,6 +19027,7 @@ LangData.k_.prototype = {
     instance_2u(T.SklCounter.prototype, "gdr", "f8", 54)
 })();
 (function inheritance() {
+    // MARK: 继承链
     var mixin = hunkHelpers.mixin,
         inherit = hunkHelpers.inherit,
         inherit_many = hunkHelpers.inheritMany
@@ -19032,16 +19039,16 @@ LangData.k_.prototype = {
             P._Future, P.i0, P.em, P.hO, P.hP, P.im, P.i1, P.i3, P.i7, P.ii, P.io, P.lf, P.eM, P.kV, P.ie, P.z, P.dY, P.fg, P.js, P.lc, P.lb, P.dq,
             P.Duration, P.fM, P.el, P.kG, P.jm, P.N, P.iq, P.cH,
             W.j8, W.m5, W.cP, W.cr, W.dN, W.eD, W.is, W.dv, W.kE, W.l_, W.ix,
-            P.l4, P.kw, P.eJ, P.jQ, P.kT, Y.RC4, L.ProfileWinChance, V.ProfileMain, X.ProfileFind,
+            P._StructuredClone, P.kw, P.eJ, P.jQ, P.kT, Y.RC4, L.ProfileWinChance, V.ProfileMain, X.ProfileFind,
             S.fK,
-            HtmlRenderer.fq, HtmlRenderer.jT, HtmlRenderer.ax,
+            HtmlRenderer.inner_render, HtmlRenderer.jT, HtmlRenderer.ax,
             Sgls.a_, Sgls.n,
             T.x, T.Plr, T.dk, T.fo, T.b7, T.IPlr, T.HDamage, T.HRecover, T.aX, T.aq, T.bG, T.Weapon, T.fl
         ]
     )
-    inherit_many(J.Interceptor, [J.fw, J.cs, J.bE, J.JsArray, J.JsNumber, J.JsString, H.dJ, H.ab, W.fn, W.bX, W.fe, W.i6, W.bb, W.ja, W.jb, W.o, W.c4, W.jL, W.ig, W.il, W.iy, W.iA])
+    inherit_many(J.Interceptor, [J.fw, J.cs, J.bE, J.JsArray, J.JsNumber, J.JsString, H.dJ, H.ab, W.fn, W.Blob, W.CanvasRenderingContext2D, W.i6, W.bb, W.ja, W.jb, W.o, W.c4, W.jL, W.ig, W.il, W.iy, W.iA])
     inherit_many(J.bE, [J.PlainJavaScriptObject, J.UnknownJavaScriptObject, J.JavaScriptFunction])
-    inherit(J.jG, J.JsArray)
+    inherit(J.JsUnmodifiableArray, J.JsArray)
     inherit_many(J.JsNumber, [J.JsInt, J.jF])
     inherit_many(P.O, [H.fz, H.dO, P.bc, H.fx, H.hU, H.h3, H.i9, P.f2, P.fL, P.aS, P.hW, P.hS, P.bJ, P.fh, P.fj])
     inherit(P.dE, P.ev)
@@ -19053,7 +19060,21 @@ LangData.k_.prototype = {
     inherit_many(P.fv, [H.fB, H.hX])
     inherit_many(H.M, [H.y, H.a9, P.id])
     inherit(H.NullError, P.bc)
-    inherit_many(H.c_, [H.j5, H.j6, H.kg, H.jH, H.lv, H.lx, P.kB, P.kA, P.lh, P.kK, P.kS, P.ke, P.kZ, P.Duration_toString_sixDigits, P.Duration_toString_twoDigits, W.jf, W.kF, W.jP, W.jO, W.l0, W.l1, W.l7, P.lE, P.lF, L.iS, L.iT, L.iU, V.j0, V.j1, X.iX, X.iY, X.iZ, HtmlRenderer.jx, HtmlRenderer.jy, HtmlRenderer.jw, HtmlRenderer.jz, HtmlRenderer.jB, HtmlRenderer.jC, HtmlRenderer.jD, HtmlRenderer.jV, HtmlRenderer.lp, HtmlRenderer.lq, Sgls.k5, Sgls.k6, T.k9, T.jk, T.jj, T.jl, T.ji, T.lD, T.jW, T.k3, T.kb, T.ko, T.kp, LangData.k_])
+    inherit_many(H.c_,
+        [H.j5, H.j6, H.kg, H.jH, H.lv, H.lx,
+            P.kB, P.kA, P.lh, P.kK, P.kS, P.ke, P.kZ, P.Duration_toString_sixDigits, P.Duration_toString_twoDigits,
+            W.jf, W.kF, W.jP, W.jO, W.l0, W.l1, W.l7,
+            P.lE, P.lF,
+            L.iS, L.iT, L.iU,
+            V.j0, V.j1,
+            X.iX, X.iY, X.iZ,
+            HtmlRenderer.jx, HtmlRenderer.jy, HtmlRenderer.jw, HtmlRenderer.jz, HtmlRenderer.jB,
+            HtmlRenderer.jC, HtmlRenderer.jD, HtmlRenderer.jV, HtmlRenderer.lp, HtmlRenderer.lq,
+            Sgls.k5, Sgls.k6,
+            T.k9, T.jk, T.jj, T.jl, T.ji, T.lD, T.BoostPassive, T.k3, T.kb, T.ko, T.kp,
+            LangData.k_
+        ]
+    )
     inherit_many(H.kg, [H.kc, H.dg])
     inherit(P.dG, P.aU)
     inherit_many(P.dG, [H.aT, P.ic, W.i2])
@@ -19084,12 +19105,12 @@ LangData.k_.prototype = {
     inherit(P.kj, P.jg)
     inherit_many(P.aS, [P.cD, P.fs])
     inherit_many(W.fn, [W.v, W.dH, W.eq])
-    inherit_many(W.v, [W.Q, W.b6, W.cL])
-    inherit_many(W.Q, [W.r, P.p])
-    inherit_many(W.r, [W.f0, W.f1, W.cn, W.bY, W.di, W.c0, W.fp, W.dQ, W.h4, W.ek, W.ce, W.en, W.hQ, W.hR, W.cI])
+    inherit_many(W.v, [W.Element, W.b6, W.cL])
+    inherit_many(W.Element, [W.HtmlElement, P.p])
+    inherit_many(W.HtmlElement, [W.AnchorElement, W.AreaElement, W.BaseElement, W.BodyElement, W.CanvasElement, W.c0, W.fp, W.dQ, W.h4, W.ek, W.ce, W.en, W.hQ, W.hR, W.cI])
     inherit(W.co, W.i6)
     inherit(W.dm, W.bb)
-    inherit(W.cq, W.bX)
+    inherit(W.cq, W.Blob)
     inherit_many(W.o, [W.c8, W.aY])
     inherit(W.bp, W.aY)
     inherit(W.ih, W.ig)
@@ -19102,13 +19123,29 @@ LangData.k_.prototype = {
     inherit(W.i8, W.i2)
     inherit(W.ia, P.hO)
     inherit(W.it, W.eD)
-    inherit(P._StructuredCloneDart2Js, P.l4)
+    inherit(P._StructuredCloneDart2Js, P._StructuredClone)
     inherit(P.kx, P.kw)
     inherit(P.cF, P.p)
     inherit(HtmlRenderer.fW, HtmlRenderer.ax)
     inherit_many(Sgls.n, [T.Skill, T.aZ, T.aB, T.bq, T.cB, T.bH, T.ah, T.aV, T.aF])
-    inherit_many(T.Skill, [T.ActionSkill, T.h6, T.he, T.hn, T.hq, T.ea, T.ef, T.SklCounter, T.SklDefend, T.SklHide, T.SklMerge, T.SklProtect, T.SklReflect, T.SklReraise, T.SklShield, T.SklUpgrade, T.SklZombie])
-    inherit_many(T.ActionSkill, [T.SklAbsorb, T.SklAccumulate, T.SklAssassinate, T.dd, T.SklBerserk, T.SklCharge, T.SklCharm, T.SklClone, T.SklCritical, T.SklCurse, T.SklDisperse, T.SklExchange, T.SklFire, T.sklHalf, T.SklHaste, T.SklHeal, T.SklIce, T.SklIron, T.SklPoison, T.SklQuake, T.SklRapid, T.SklRevive, T.hu, T.SklShadow, T.SklSlow, T.hj, T.SklSummon, T.SklThunder, T.e2, T.hb, T.dl, T.hd, T.hm, T.dB, T.hp, T.hr, T.hA, T.h8, T.hD, T.SkillVoid, T.hg, T.ee, T.hz])
+    inherit_many(T.Skill,
+        [T.ActionSkill, T.h6, T.he, T.hn, T.hq, T.ea, T.ef,
+            T.SklCounter, T.SklDefend, T.SklHide, T.SklMerge, T.SklProtect,
+            T.SklReflect, T.SklReraise, T.SklShield, T.SklUpgrade, T.SklZombie
+        ]
+    )
+    inherit_many(T.ActionSkill,
+        [T.SklAbsorb, T.SklAccumulate, T.SklAssassinate, T.dd, T.SklBerserk,
+            T.SklCharge, T.SklCharm, T.SklClone, T.SklCritical, T.SklCurse,
+            T.SklDisperse, T.SklExchange, T.SklFire, T.sklHalf, T.SklHaste,
+            T.SklHeal, T.SklIce, T.SklIron, T.SklPoison, T.SklQuake,
+            T.SklRapid, T.SklRevive, T.hu, T.SklShadow, T.SklSlow,
+            T.hj, T.SklSummon, T.SklThunder,
+            T.e2, T.hb, T.dl, T.hd, T.hm,
+            T.dB, T.hp, T.hr, T.hA, T.h8,
+            T.hD, T.SkillVoid, T.hg, T.ee, T.hz
+        ]
+    )
     inherit_many(T.aZ, [T.dj, T.dw, T.dx, T.eh, T.bd, T.h1])
     inherit_many(T.x, [T.dI, T.c3, T.hF, T.fC, T.hY])
     inherit_many(T.Plr, [T.dR, T.aM, T.cz, T.fP, T.fU, T.fV, T.fQ, T.cy])
@@ -19132,6 +19169,7 @@ LangData.k_.prototype = {
     inherit(T.hy, T.ea)
     inherit(T.hc, T.SklCounter)
     inherit(LangData.SuperRC4, Y.RC4)
+
     mixin(H.cJ, H.hV)
     mixin(H.ey, P.z)
     mixin(H.ez, H.du)
@@ -19303,9 +19341,9 @@ var t = (function rtii() {
 })();
 (function constants() {
     var make_const_list = hunkHelpers.makeConstList
-    C.n = W.bY.prototype
-    C.H = W.di.prototype
-    C.k = W.fe.prototype
+    C.n = W.BodyElement.prototype
+    C.H = W.CanvasElement.prototype
+    C.k = W.CanvasRenderingContext2D.prototype
     C.i = W.co.prototype
     C.h = W.c0.prototype
     C.J = J.Interceptor.prototype
@@ -19585,6 +19623,7 @@ var t = (function rtii() {
     lazy_old($, "Az", "ro", function () {
         return P.o_()
     })
+    // MARK: 字符串反混淆
     lazy_old($, "yg", "cl", function () {
         // return LangData.j("bB", 89)
         return "!"
@@ -19918,6 +19957,7 @@ var t = (function rtii() {
     lazy_old($, "zD", "r_", function () {
         return P.RegExp_RegExp("\\r?\\n")
     })
+    // MARK: 空 RunUpdate
     lazy_old($, "zR", "K", function () {
         var q = null
         return T.RunUpdate("\n", q, q, q, q, 0, 1000, 100)
@@ -19928,6 +19968,7 @@ var t = (function rtii() {
     lazy_old($, "vr", "rq", function () {
         return $.C()
     })
+    // MARK: 数字反混淆
     lazy_old($, "wX", "at", function () {
         return X.k("vF:G*ee&GC", 12)
     })
@@ -20449,6 +20490,7 @@ var t = (function rtii() {
         return new P.cK(null, null, null, H.findType("cK<m*>"))
     })
 })();
+// MARK: Native support
 (function nativeSupport() {
     ! function () {
 
@@ -20494,71 +20536,71 @@ var t = (function rtii() {
         Uint8ClampedArray: H.dL,
         CanvasPixelArray: H.dL,
         Uint8Array: H.cx,
-        HTMLAudioElement: W.r,
-        HTMLBRElement: W.r,
-        HTMLButtonElement: W.r,
-        HTMLContentElement: W.r,
-        HTMLDListElement: W.r,
-        HTMLDataElement: W.r,
-        HTMLDataListElement: W.r,
-        HTMLDetailsElement: W.r,
-        HTMLDialogElement: W.r,
-        HTMLEmbedElement: W.r,
-        HTMLFieldSetElement: W.r,
-        HTMLHRElement: W.r,
-        HTMLHeadElement: W.r,
-        HTMLHeadingElement: W.r,
-        HTMLHtmlElement: W.r,
-        HTMLIFrameElement: W.r,
-        HTMLImageElement: W.r,
-        HTMLInputElement: W.r,
-        HTMLLIElement: W.r,
-        HTMLLabelElement: W.r,
-        HTMLLegendElement: W.r,
-        HTMLLinkElement: W.r,
-        HTMLMapElement: W.r,
-        HTMLMediaElement: W.r,
-        HTMLMenuElement: W.r,
-        HTMLMetaElement: W.r,
-        HTMLMeterElement: W.r,
-        HTMLModElement: W.r,
-        HTMLOListElement: W.r,
-        HTMLObjectElement: W.r,
-        HTMLOptGroupElement: W.r,
-        HTMLOptionElement: W.r,
-        HTMLOutputElement: W.r,
-        HTMLParamElement: W.r,
-        HTMLPictureElement: W.r,
-        HTMLPreElement: W.r,
-        HTMLProgressElement: W.r,
-        HTMLQuoteElement: W.r,
-        HTMLScriptElement: W.r,
-        HTMLShadowElement: W.r,
-        HTMLSlotElement: W.r,
-        HTMLSourceElement: W.r,
-        HTMLStyleElement: W.r,
-        HTMLTableCaptionElement: W.r,
-        HTMLTableColElement: W.r,
-        HTMLTextAreaElement: W.r,
-        HTMLTimeElement: W.r,
-        HTMLTitleElement: W.r,
-        HTMLTrackElement: W.r,
-        HTMLUListElement: W.r,
-        HTMLUnknownElement: W.r,
-        HTMLVideoElement: W.r,
-        HTMLDirectoryElement: W.r,
-        HTMLFontElement: W.r,
-        HTMLFrameElement: W.r,
-        HTMLFrameSetElement: W.r,
-        HTMLMarqueeElement: W.r,
-        HTMLElement: W.r,
-        HTMLAnchorElement: W.f0,
-        HTMLAreaElement: W.f1,
-        HTMLBaseElement: W.cn,
-        Blob: W.bX,
-        HTMLBodyElement: W.bY,
-        HTMLCanvasElement: W.di,
-        CanvasRenderingContext2D: W.fe,
+        HTMLAudioElement: W.HtmlElement,
+        HTMLBRElement: W.HtmlElement,
+        HTMLButtonElement: W.HtmlElement,
+        HTMLContentElement: W.HtmlElement,
+        HTMLDListElement: W.HtmlElement,
+        HTMLDataElement: W.HtmlElement,
+        HTMLDataListElement: W.HtmlElement,
+        HTMLDetailsElement: W.HtmlElement,
+        HTMLDialogElement: W.HtmlElement,
+        HTMLEmbedElement: W.HtmlElement,
+        HTMLFieldSetElement: W.HtmlElement,
+        HTMLHRElement: W.HtmlElement,
+        HTMLHeadElement: W.HtmlElement,
+        HTMLHeadingElement: W.HtmlElement,
+        HTMLHtmlElement: W.HtmlElement,
+        HTMLIFrameElement: W.HtmlElement,
+        HTMLImageElement: W.HtmlElement,
+        HTMLInputElement: W.HtmlElement,
+        HTMLLIElement: W.HtmlElement,
+        HTMLLabelElement: W.HtmlElement,
+        HTMLLegendElement: W.HtmlElement,
+        HTMLLinkElement: W.HtmlElement,
+        HTMLMapElement: W.HtmlElement,
+        HTMLMediaElement: W.HtmlElement,
+        HTMLMenuElement: W.HtmlElement,
+        HTMLMetaElement: W.HtmlElement,
+        HTMLMeterElement: W.HtmlElement,
+        HTMLModElement: W.HtmlElement,
+        HTMLOListElement: W.HtmlElement,
+        HTMLObjectElement: W.HtmlElement,
+        HTMLOptGroupElement: W.HtmlElement,
+        HTMLOptionElement: W.HtmlElement,
+        HTMLOutputElement: W.HtmlElement,
+        HTMLParamElement: W.HtmlElement,
+        HTMLPictureElement: W.HtmlElement,
+        HTMLPreElement: W.HtmlElement,
+        HTMLProgressElement: W.HtmlElement,
+        HTMLQuoteElement: W.HtmlElement,
+        HTMLScriptElement: W.HtmlElement,
+        HTMLShadowElement: W.HtmlElement,
+        HTMLSlotElement: W.HtmlElement,
+        HTMLSourceElement: W.HtmlElement,
+        HTMLStyleElement: W.HtmlElement,
+        HTMLTableCaptionElement: W.HtmlElement,
+        HTMLTableColElement: W.HtmlElement,
+        HTMLTextAreaElement: W.HtmlElement,
+        HTMLTimeElement: W.HtmlElement,
+        HTMLTitleElement: W.HtmlElement,
+        HTMLTrackElement: W.HtmlElement,
+        HTMLUListElement: W.HtmlElement,
+        HTMLUnknownElement: W.HtmlElement,
+        HTMLVideoElement: W.HtmlElement,
+        HTMLDirectoryElement: W.HtmlElement,
+        HTMLFontElement: W.HtmlElement,
+        HTMLFrameElement: W.HtmlElement,
+        HTMLFrameSetElement: W.HtmlElement,
+        HTMLMarqueeElement: W.HtmlElement,
+        HTMLElement: W.HtmlElement,
+        HTMLAnchorElement: W.AnchorElement,
+        HTMLAreaElement: W.AreaElement,
+        HTMLBaseElement: W.BaseElement,
+        Blob: W.Blob,
+        HTMLBodyElement: W.BodyElement,
+        HTMLCanvasElement: W.CanvasElement,
+        CanvasRenderingContext2D: W.CanvasRenderingContext2D,
         CDATASection: W.b6,
         CharacterData: W.b6,
         Comment: W.b6,
@@ -20571,7 +20613,7 @@ var t = (function rtii() {
         HTMLDivElement: W.c0,
         DOMException: W.ja,
         DOMTokenList: W.jb,
-        Element: W.Q,
+        Element: W.Element,
         AbortPaymentEvent: W.o,
         AnimationEvent: W.o,
         AnimationPlaybackEvent: W.o,
@@ -21124,7 +21166,7 @@ function main() {
                 async_goto = 3
                 return P._asyncAwait(HtmlRenderer.static_init(), $async$iE)
             case 3:
-                // MARK: inedx.dart.js 输入位置
+                // MARK: 名字输入位置
                 // 战斗框输入位置
                 // 这里请输入一个被混淆过的名字
                 switch_to = 5
