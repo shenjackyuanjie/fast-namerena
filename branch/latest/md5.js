@@ -4849,10 +4849,10 @@ var A = {
             if (s > $.mR()) return $.py()
             return s
         },
-        jS(a4, a5, a6, a7) {
+        init_boss(name, clan_name, fgt, weapon_name) {
             // MARK: WTF 什么鬼这么长
             var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, a3 = null
-            if (a5 == $.nk()) {
+            if (clan_name == $.nk()) {
                 s = 0
                 r = $.T()
                 q = H.b([], t.q)
@@ -4891,13 +4891,13 @@ var A = {
                 b = H.b([], e)
                 e = H.b([], e)
                 a = 0
-                a = new T.fU(a4, a5, a4, a3, s, r, q, p, o, n, m, l, k, j, i, h, g, f, d, c, b, e, a, a, a, $.W(), a)
-                a.a1(a4, a5, a4, a3)
-                a.e4(a4, a5, a6)
+                a = new T.PlrBossTest(name, clan_name, name, a3, s, r, q, p, o, n, m, l, k, j, i, h, g, f, d, c, b, e, a, a, a, $.W(), a)
+                a.a1(name, clan_name, name, a3)
+                a.e4(name, clan_name, fgt)
                 return a
             }
             // MARK: BOSS INIT(上面也是)
-            if (a5 == $.qR()) {
+            if (clan_name == $.qR()) {
                 s = 0
                 r = $.T()
                 q = H.b([], t.q)
@@ -4936,18 +4936,18 @@ var A = {
                 b = H.b([], e)
                 e = H.b([], e)
                 a = 0
-                a = new T.fV(a4, a5, a4, a3, s, r, q, p, o, n, m, l, k, j, i, h, g, f, d, c, b, e, a, a, a, $.W(), a)
-                a.a1(a4, a5, a4, a3)
-                a.e5(a4, a5)
+                a = new T.PlrBossTest2(name, clan_name, name, a3, s, r, q, p, o, n, m, l, k, j, i, h, g, f, d, c, b, e, a, a, a, $.W(), a)
+                a.a1(name, clan_name, name, a3)
+                a.e5(name, clan_name)
                 return a
             }
             // MARK: 强评?
             // cl -> !
             s = $.cl()
-            if (a5 == s) {
-                if (a4 == $.lQ()) {
+            if (clan_name == s) {
+                if (name == $.lQ()) {
                     r = 0
-                    q = H.as_string(a4) + H.as_string($.aD())
+                    q = H.as_string(name) + H.as_string($.aD())
                     p = 0
                     o = $.T()
                     n = H.b([], t.q)
@@ -4986,13 +4986,13 @@ var A = {
                     a1 = H.b([], b)
                     b = H.b([], b)
                     a2 = 0
-                    a2 = new T.df(r, a4, s, q, a3, p, o, n, m, l, k, j, i, h, g, f, e, d, c, a, a0, a1, b, a2, a2, a2, $.W(), a2)
-                    a2.a1(a4, s, q, a3)
-                    a2.av(a4, s)
+                    a2 = new T.df(r, name, s, q, a3, p, o, n, m, l, k, j, i, h, g, f, e, d, c, a, a0, a1, b, a2, a2, a2, $.W(), a2)
+                    a2.a1(name, s, q, a3)
+                    a2.av(name, s)
                     return a2
                 }
-                if (a4 == $.qP()) {
-                    r = H.as_string(a4) + H.as_string($.aD())
+                if (name == $.qP()) {
+                    r = H.as_string(name) + H.as_string($.aD())
                     q = 0
                     p = $.T()
                     o = H.b([], t.q)
@@ -5031,13 +5031,13 @@ var A = {
                     a0 = H.b([], c)
                     c = H.b([], c)
                     a1 = 0
-                    a1 = new T.fc(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
-                    a1.a1(a4, s, r, a3)
-                    a1.av(a4, s)
+                    a1 = new T.fc(name, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                    a1.a1(name, s, r, a3)
+                    a1.av(name, s)
                     return a1
                 }
-                if (a4 == $.qo()) {
-                    r = H.as_string(a4) + H.as_string($.aD())
+                if (name == $.qo()) {
+                    r = H.as_string(name) + H.as_string($.aD())
                     q = 0
                     p = $.T()
                     o = H.b([], t.q)
@@ -5076,13 +5076,13 @@ var A = {
                     a0 = H.b([], c)
                     c = H.b([], c)
                     a1 = 0
-                    a1 = new T.f9(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
-                    a1.a1(a4, s, r, a3)
-                    a1.av(a4, s)
+                    a1 = new T.f9(name, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                    a1.a1(name, s, r, a3)
+                    a1.av(name, s)
                     return a1
                 }
-                if (a4 == $.qY()) {
-                    r = H.as_string(a4) + H.as_string($.aD())
+                if (name == $.qY()) {
+                    r = H.as_string(name) + H.as_string($.aD())
                     q = 0
                     p = $.T()
                     o = H.b([], t.q)
@@ -5121,14 +5121,14 @@ var A = {
                     a0 = H.b([], c)
                     c = H.b([], c)
                     a1 = 0
-                    a1 = new T.fd(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
-                    a1.a1(a4, s, r, a3)
-                    a1.av(a4, s)
+                    a1 = new T.fd(name, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                    a1.a1(name, s, r, a3)
+                    a1.av(name, s)
                     return a1
                 }
-                if (a4 == $.qO()) return T.rE(a4, s)
-                if (a4 == $.qh()) {
-                    r = H.as_string(a4) + H.as_string($.aD())
+                if (name == $.qO()) return T.rE(name, s)
+                if (name == $.qh()) {
+                    r = H.as_string(name) + H.as_string($.aD())
                     q = 0
                     p = $.T()
                     o = H.b([], t.q)
@@ -5167,13 +5167,13 @@ var A = {
                     a0 = H.b([], c)
                     c = H.b([], c)
                     a1 = 0
-                    a1 = new T.f8(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
-                    a1.a1(a4, s, r, a3)
-                    a1.av(a4, s)
+                    a1 = new T.f8(name, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                    a1.a1(name, s, r, a3)
+                    a1.av(name, s)
                     return a1
                 }
-                if (a4 == $.qb()) {
-                    r = H.as_string(a4) + H.as_string($.aD())
+                if (name == $.qb()) {
+                    r = H.as_string(name) + H.as_string($.aD())
                     q = 0
                     p = $.T()
                     o = H.b([], t.q)
@@ -5212,13 +5212,13 @@ var A = {
                     a0 = H.b([], c)
                     c = H.b([], c)
                     a1 = 0
-                    a1 = new T.f6(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
-                    a1.a1(a4, s, r, a3)
-                    a1.av(a4, s)
+                    a1 = new T.f6(name, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                    a1.a1(name, s, r, a3)
+                    a1.av(name, s)
                     return a1
                 }
-                if (a4 == $.q9()) {
-                    r = H.as_string(a4) + H.as_string($.aD())
+                if (name == $.q9()) {
+                    r = H.as_string(name) + H.as_string($.aD())
                     q = 0
                     p = $.T()
                     o = H.b([], t.q)
@@ -5257,13 +5257,13 @@ var A = {
                     a0 = H.b([], c)
                     c = H.b([], c)
                     a1 = 0
-                    a1 = new T.f5(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
-                    a1.a1(a4, s, r, a3)
-                    a1.av(a4, s)
+                    a1 = new T.f5(name, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                    a1.a1(name, s, r, a3)
+                    a1.av(name, s)
                     return a1
                 }
-                if (a4 == $.d5()) {
-                    r = H.as_string(a4) + H.as_string($.aD())
+                if (name == $.d5()) {
+                    r = H.as_string(name) + H.as_string($.aD())
                     q = 0
                     p = $.T()
                     o = H.b([], t.q)
@@ -5302,14 +5302,14 @@ var A = {
                     a0 = H.b([], c)
                     c = H.b([], c)
                     a1 = 0
-                    a1 = new T.de(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
-                    a1.a1(a4, s, r, a3)
-                    a1.av(a4, s)
+                    a1 = new T.de(name, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                    a1.a1(name, s, r, a3)
+                    a1.av(name, s)
                     return a1
                 }
                 // covid
-                if (a4 == $.ck()) {
-                    r = H.as_string(a4) + H.as_string($.aD())
+                if (name == $.ck()) {
+                    r = H.as_string(name) + H.as_string($.aD())
                     q = 0
                     p = $.T()
                     o = H.b([], t.q)
@@ -5348,13 +5348,13 @@ var A = {
                     a0 = H.b([], c)
                     c = H.b([], c)
                     a1 = 0
-                    a1 = new T.PlrBossCovid(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
-                    a1.a1(a4, s, r, a3)
-                    a1.av(a4, s)
+                    a1 = new T.PlrBossCovid(name, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                    a1.a1(name, s, r, a3)
+                    a1.av(name, s)
                     return a1
                 }
-                if (a4 == $.qL()) {
-                    r = H.as_string(a4) + H.as_string($.aD())
+                if (name == $.qL()) {
+                    r = H.as_string(name) + H.as_string($.aD())
                     q = 0
                     p = $.T()
                     o = H.b([], t.q)
@@ -5393,13 +5393,13 @@ var A = {
                     a0 = H.b([], c)
                     c = H.b([], c)
                     a1 = 0
-                    a1 = new T.fa(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
-                    a1.a1(a4, s, r, a3)
-                    a1.av(a4, s)
+                    a1 = new T.fa(name, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                    a1.a1(name, s, r, a3)
+                    a1.av(name, s)
                     return a1
                 }
                 r = $.ni()
-                if (J.m1(a4, r)) {
+                if (J.m1(name, r)) {
                     r = H.as_string(r) + H.as_string($.aD())
                     q = 0
                     p = $.T()
@@ -5439,16 +5439,16 @@ var A = {
                     a0 = H.b([], c)
                     c = H.b([], c)
                     a1 = 0
-                    a1 = new T.fR(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
-                    a1.a1(a4, s, r, a3)
-                    r = a1.r = C.String.ay(a4, $.X())
+                    a1 = new T.fR(name, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                    a1.a1(name, s, r, a3)
+                    r = a1.r = C.String.ay(name, $.X())
                     s = $.C()
                     $.vq = r.length > s && C.String.a8(r, s) === $.q0() ? $.pE() : $.mS()
                     return a1
                 }
-                if ($.nr().J(0, a4)) {
+                if ($.nr().J(0, name)) {
                     s = $.cl()
-                    r = $.nr().h(0, a4)
+                    r = $.nr().h(0, name)
                     q = 0
                     p = $.T()
                     o = H.b([], t.q)
@@ -5487,9 +5487,9 @@ var A = {
                     a0 = H.b([], c)
                     c = H.b([], c)
                     a1 = 0
-                    a1 = new T.fP(r, a4, s, a4, a7, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
-                    a1.a1(a4, s, a4, a7)
-                    a1.e1(a4, s, r, a7)
+                    a1 = new T.fP(r, name, s, name, weapon_name, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                    a1.a1(name, s, name, weapon_name)
+                    a1.e1(name, s, r, weapon_name)
                     return a1
                 }
                 s = $.cl()
@@ -5531,12 +5531,12 @@ var A = {
                 a = H.b([], d)
                 d = H.b([], d)
                 a0 = 0
-                a0 = new T.fQ(a4, s, a4, a7, r, q, p, o, n, m, l, k, j, i, h, g, f, e, c, b, a, d, a0, a0, a0, $.W(), a0)
-                a0.a1(a4, s, a4, a7)
-                a0.e2(a4, s, a4, a7)
+                a0 = new T.fQ(name, s, name, weapon_name, r, q, p, o, n, m, l, k, j, i, h, g, f, e, c, b, a, d, a0, a0, a0, $.W(), a0)
+                a0.a1(name, s, name, weapon_name)
+                a0.e2(name, s, name, weapon_name)
                 return a0
             }
-            return T.nT(a4, a5, a3, a7)
+            return T.nT(name, clan_name, a3, weapon_name)
         },
         oq(a) {
             var s = a.d
@@ -6513,7 +6513,7 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        fU: function fU(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
+        PlrBossTest: function fU(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
             var _ = this
             _.a = a
             _.b = b
@@ -6551,7 +6551,7 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        fV: function fV(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
+        PlrBossTest2: function fV(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
             var _ = this
             _.a = a
             _.b = b
@@ -12358,14 +12358,14 @@ L.ProfileWinChance.prototype = {
         for (s = k.a, r = s.length, q = k.e, p = k.r, o = 0; o < s.length; s.length === r || (0, H.F)(s), ++o) {
             n = s[o]
             m = J.a3(n)
-            l = T.jS(m.h(n, 0), m.h(n, 1), null, m.h(n, 2))
+            l = T.init_boss(m.h(n, 0), m.h(n, 1), null, m.h(n, 2))
             q.push(l)
             p.push(l.e)
         }
         for (s = k.b, r = s.length, p = k.f, o = 0; o < s.length; s.length === r || (0, H.F)(s), ++o) {
             n = s[o]
             m = J.a3(n)
-            p.push(T.jS(m.h(n, 0), m.h(n, 1), null, m.h(n, 2)))
+            p.push(T.init_boss(m.h(n, 0), m.h(n, 1), null, m.h(n, 2)))
         }
         s = q.length
         if (s + p.length >>> 4 === 0) {
@@ -12572,7 +12572,7 @@ V.ProfileMain.prototype = {
         for (s = k.length, r = this_.f, q = this_.r, p = 0; p < k.length; k.length === s || (0, H.F)(k), ++p) {
             o = k[p]
             n = J.a3(o)
-            m = T.jS(n.h(o, 0), n.h(o, 1), null, n.h(o, 2))
+            m = T.init_boss(n.h(o, 0), n.h(o, 1), null, n.h(o, 2))
             r.push(m)
             q.push(m.e)
         }
@@ -15479,7 +15479,7 @@ T.fP.prototype = {
         return (b.n() & 127) < this.a6
     }
 }
-T.fU.prototype = {
+T.PlrBossTest.prototype = {
     e4(a, b, c) {
         var s, r, q
         for (s = 0; s < $.b1(); ++s) {
@@ -15492,7 +15492,7 @@ T.fU.prototype = {
         this.x = $.ao()
     }
 }
-T.fV.prototype = {
+T.PlrBossTest2.prototype = {
     e5(a, b) {
         var s, r, q
         for (s = 0; s < $.b1(); ++s) {
@@ -16385,7 +16385,7 @@ T.fo.prototype = {
                                         a0 = $.i()
                                         a = a === a0 && J.ny(b.h(c, a0), 0) < $.pC()
                                     } else a = false
-                                    a2 = a ? T.jS(b.h(c, 0), b.h(c, $.i()), this_, a1) : T.nT(b.h(c, 0), b.h(c, $.i()), e.b, a1)
+                                    a2 = a ? T.init_boss(b.h(c, 0), b.h(c, $.i()), this_, a1) : T.nT(b.h(c, 0), b.h(c, $.i()), e.b, a1)
                                     if (a2 instanceof T.cy) {
                                         b3.push(a2.e)
                                         k.push(a2)
@@ -19177,7 +19177,7 @@ LangData.k_.prototype = {
     )
     inherit_many(T.aZ, [T.dj, T.dw, T.dx, T.eh, T.bd, T.h1])
     inherit_many(T.x, [T.dI, T.c3, T.hF, T.fC, T.hY])
-    inherit_many(T.Plr, [T.dR, T.aM, T.cz, T.fP, T.fU, T.fV, T.fQ, T.cy])
+    inherit_many(T.Plr, [T.dR, T.aM, T.cz, T.fP, T.PlrBossTest, T.PlrBossTest2, T.fQ, T.cy])
     inherit_many(T.aB, [T.dn, T.dT, T.ik])
     inherit_many(T.bq, [T.dS, T.b8])
     inherit_many(T.aM, [T.PlrShadow, T.PlrSummon, T.fX])
@@ -19783,32 +19783,40 @@ var t = (function rtii() {
         return "bossName_"
     })
     lazy_old($, "yB", "lQ", function () {
-        return LangData.j("6ct2H)A", 11)
+        // return LangData.j("6ct2H)A", 11)
+        return "mario"
     })
     lazy_old($, "zk", "qP", function () {
-        return LangData.j("`I|YpgA", 76)
+        // return LangData.j("`I|YpgA", 76)
+        return "sonic"
     })
     lazy_old($, "yF", "qo", function () {
-        return LangData.j("$v&,:z_4~N", 62)
+        // return LangData.j("$v&,:z_4~N", 62)
+        return "mosquito"
     })
     lazy_old($, "zz", "qY", function () {
-        return LangData.j("jh&DG", 89)
+        // return LangData.j("jh&DG", 89)
+        return "yuri"
     })
     lazy_old($, "zi", "qO", function () {
         // return LangData.j("~vBK@@A", 29)
         return "slime"
     })
     lazy_old($, "ys", "qh", function () {
-        return LangData.j("MWSWRPJLA", 99)
+        // return LangData.j("MWSWRPJLA", 99)
+        return "ikaruga"
     })
     lazy_old($, "yb", "qb", function () {
-        return LangData.j("()9--8A", 54)
+        // return LangData.j("()9--8A", 54)
+        return "conan"
     })
     lazy_old($, "y1", "q9", function () {
-        return LangData.j(" &~zX$CC", 55)
+        // return LangData.j(" &~zX$CC", 55)
+        return "aokiji"
     })
     lazy_old($, "yy", "d5", function () {
-        return LangData.j(":[+0Z", 31)
+        // return LangData.j(":[+0Z", 31)
+        return "lazy"
     })
     lazy_old($, "yd", "ck", function () {
         // return LangData.j("jtK1|]A", 31)
@@ -19906,10 +19914,12 @@ var t = (function rtii() {
         return LangData.j("?hEGt00!>5nL[OI", 41)
     })
     lazy_old($, "zd", "ni", function () {
-        return LangData.j("tU`0/mA", 2)
+        // return LangData.j("tU`0/mA", 2)
+        return "seed:"
     })
     lazy_old($, "yC", "qm", function () {
-        return LangData.j(";kC;Z", 12)
+        // return LangData.j(";kC;Z", 12)
+        return "dio"
     })
     lazy_old($, "yD", "qn", function () {
         return LangData.j("Ox2j(}6B", 62)
@@ -21339,6 +21349,6 @@ function main() {
     return P._asyncStartSync($async$iE, async_completer)
 }
 
+logger.debug("反混淆", LangData.j("6ct2H)A", 11))
 main();
 // logger.debug("running main:", main()) // 执行main函数
-logger.debug("反混淆", LangData.j("lA", 39))
