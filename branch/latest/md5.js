@@ -7760,7 +7760,7 @@ var A = {
         HtmlElement: function HtmlElement() {},
         AnchorElement: function AnchorElement() {},
         AreaElement: function AreaElement() {},
-        cn: function cn() {},
+        BaseElement: function BaseElement() {},
         bX: function bX() {},
         bY: function bY() {},
         di: function di() {},
@@ -11260,7 +11260,7 @@ W.AreaElement.prototype = {
         return String(a)
     }
 }
-W.cn.prototype = {
+W.BaseElement.prototype = {
     $icn: 1
 }
 W.bX.prototype = {
@@ -19067,7 +19067,7 @@ LangData.k_.prototype = {
     inherit_many(W.fn, [W.v, W.dH, W.eq])
     inherit_many(W.v, [W.Q, W.b6, W.cL])
     inherit_many(W.Q, [W.HtmlElement, P.p])
-    inherit_many(W.HtmlElement, [W.AnchorElement, W.AreaElement, W.cn, W.bY, W.di, W.c0, W.fp, W.dQ, W.h4, W.ek, W.ce, W.en, W.hQ, W.hR, W.cI])
+    inherit_many(W.HtmlElement, [W.AnchorElement, W.AreaElement, W.BaseElement, W.bY, W.di, W.c0, W.fp, W.dQ, W.h4, W.ek, W.ce, W.en, W.hQ, W.hR, W.cI])
     inherit(W.co, W.i6)
     inherit(W.dm, W.bb)
     inherit(W.cq, W.bX)
@@ -20535,7 +20535,7 @@ var t = (function rtii() {
         HTMLElement: W.HtmlElement,
         HTMLAnchorElement: W.AnchorElement,
         HTMLAreaElement: W.AreaElement,
-        HTMLBaseElement: W.cn,
+        HTMLBaseElement: W.BaseElement,
         Blob: W.bX,
         HTMLBodyElement: W.bY,
         HTMLCanvasElement: W.di,
