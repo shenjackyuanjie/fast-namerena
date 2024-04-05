@@ -7335,7 +7335,7 @@ var A = {
             _.I = null
         },
         jX: function jX() {},
-        jW: function jW() {},
+        boost_passive: function boost_passive() {}, // boostPassive
         jY: function jY() {},
         x: function x() {},
         aZ: function aZ() {},
@@ -7386,7 +7386,7 @@ var A = {
             this.a = a
             this.b = b
         },
-        q: function q() {},
+        Skill: function Skill() {},
         ActionSkill: function b5() {},
         h8: function h8(a) {
             var _ = this
@@ -16990,8 +16990,8 @@ T.Plr.prototype = {
         s = this_.t
         s = H.b(s.slice(0), H._arrayInstanceType(s))
         this_.E = s
-        this_.ac()
-        this_.k2 = this_.X.dH(this_.k1, t.c5)
+        this_.ac() // createSkills, 对this.k1直接操作，顺序固定
+        this_.k2 = this_.X.dH(this_.k1, t.c5) // 以某种方式打乱顺序？
     },
     bf() {
         var s, r = this,
@@ -17182,6 +17182,23 @@ T.Plr.prototype = {
         skills.push(new T.SkillVoid(0))
         skills.push(new T.SkillVoid(0))
     },
+    diy_skills(diyskills){
+        // MARK: 自定义技能
+        var skills=this.k1
+        // 遍历diyskills字典的键
+        for (var key in diyskills) {
+            // 遍历skills数组中的对象
+            for (var i = 0; i < skills.length; i++) {
+            
+            if (skills[i].name === key) {
+                // 如果找到匹配的对象，设置其f属性为diyskills字典中对应的值
+                skills[i].f = diyskills[key];
+                break; 
+            }
+            }
+        }
+  
+    },
     dm(list, original) {
         // initSkills
         var skill, sortedSkills, q, p, this_ = this,
@@ -17212,38 +17229,37 @@ T.Plr.prototype = {
         }
         // console.log("this_.k2:",this_.k2)
         for (; sortedSkills = this_.k2, n < sortedSkills.length; ++n) sortedSkills[n].ao(this_, 0)
-        // 最终的技能列表是this.k2, 其他地方也都是引用这个的
+        // sorted skills是this.k2, 
     },
     bs() {
         // addSkillsToProc
-        var s, r, sortedSkills, skl, o, n, m, this_ = this
-        for (s = 0, r = this_.k4; sortedSkills = this_.k2, s < sortedSkills.length; ++s) {
+        var s, actions, sortedSkills, skl, o, act, boostPassive, this_ = this
+        for (s = 0, actions = this_.k4; sortedSkills = this_.k2, s < sortedSkills.length; ++s) {
             skl = sortedSkills[s]
-            if (skl.f > 0 && skl instanceof T.ActionSkill) r.push(skl)
+            if (skl.f > 0 && skl instanceof T.ActionSkill) actions.push(skl)
         }
-        sortedSkills = r.length
-        o = 0
-        if (sortedSkills > o)
-            for (s = sortedSkills - $.i(); s >= o; --s) {
-                n = r[s]
-                if (!n.e) {
-                    n.f = n.f * $.t()
-                    n.e = true
+        
+        if (actions.length > 0)
+            for (s = actions.length - 1; s >= 0; --s) {
+                act = actions[s]
+                if (!act.e) { // !act.boosted
+                    act.f = act.f * 2
+                    act.e = true
                     break
                 }
             }
-        m = new T.jW()
-        r = this_.k2
-        if (r.length >= $.aR()) {
-            r = r[$.p7()]
+        boostPassive = new T.boost_passive()
+        var skills = this_.k2
+        if (skills.length >= $.aR()) {
+            skills = skills[$.p7()]
             sortedSkills = this_.t
-            m.$3(r, sortedSkills[$.a6()], sortedSkills[$.pR()])
+            boostPassive.boostPassive(skills, sortedSkills[$.a6()], sortedSkills[$.pR()])
             sortedSkills = this_.k2[$.eT()]
-            r = this_.t
-            m.$3(sortedSkills, r[$.n_()], r[$.b2()])
+            skills = this_.t
+            boostPassive.boostPassive(sortedSkills, skills[$.n_()], skills[$.b2()])
         }
-        for (s = 0, r = this_.k1; s < r.length; ++s) {
-            skl = r[s]
+        for (s = 0, skills = this_.k1; s < skills.length; ++s) {
+            skl = skills[s]
             if (skl.f > 0) skl.W()
         }
     },
@@ -17546,8 +17562,8 @@ T.jX.prototype = {
     },
     $S: 15
 }
-T.jW.prototype = {
-    $3(a, b, c) {
+T.boost_passive.prototype = {
+    boostPassive(a, b, c) {
         var s = a.f
         if (s > 0 && !a.e) {
             a.f = s + Math.min(Math.min(H.ar(b), H.ar(c)), s)
@@ -17628,7 +17644,7 @@ T.cp.prototype = {
     }
 }
 T.bG.prototype = {}
-T.q.prototype = {
+T.Skill.prototype = {
     ao(a, b) {
         var s
         this.r = a
@@ -18941,7 +18957,7 @@ LangData.k_.prototype = {
     s.dS = s.bP
     s.dR = s.bs
     s.dT = s.F
-    s = T.q.prototype
+    s = T.Skill.prototype
     s.bC = s.a9
     s.bZ = s.bx
     s.dU = s.aa
@@ -19086,8 +19102,8 @@ LangData.k_.prototype = {
     inherit(P.kx, P.kw)
     inherit(P.cF, P.p)
     inherit(HtmlRenderer.fW, HtmlRenderer.ax)
-    inherit_many(Sgls.n, [T.q, T.aZ, T.aB, T.bq, T.cB, T.bH, T.ah, T.aV, T.aF])
-    inherit_many(T.q, [T.ActionSkill, T.h6, T.he, T.hn, T.hq, T.ea, T.ef, T.SklCounter, T.SklDefend, T.SklHide, T.SklMerge, T.SklProtect, T.SklReflect, T.SklReraise, T.SklShield, T.SklUpgrade, T.SklZombie])
+    inherit_many(Sgls.n, [T.Skill, T.aZ, T.aB, T.bq, T.cB, T.bH, T.ah, T.aV, T.aF])
+    inherit_many(T.Skill, [T.ActionSkill, T.h6, T.he, T.hn, T.hq, T.ea, T.ef, T.SklCounter, T.SklDefend, T.SklHide, T.SklMerge, T.SklProtect, T.SklReflect, T.SklReraise, T.SklShield, T.SklUpgrade, T.SklZombie])
     inherit_many(T.ActionSkill, [T.SklAbsorb, T.SklAccumulate, T.SklAssassinate, T.dd, T.SklBerserk, T.SklCharge, T.SklCharm, T.SklClone, T.SklCritical, T.SklCurse, T.SklDisperse, T.SklExchange, T.SklFire, T.sklHalf, T.SklHaste, T.SklHeal, T.SklIce, T.SklIron, T.SklPoison, T.SklQuake, T.SklRapid, T.SklRevive, T.hu, T.SklShadow, T.SklSlow, T.hj, T.SklSummon, T.SklThunder, T.e2, T.hb, T.dl, T.hd, T.hm, T.dB, T.hp, T.hr, T.hA, T.h8, T.hD, T.SkillVoid, T.hg, T.ee, T.hz])
     inherit_many(T.aZ, [T.dj, T.dw, T.dx, T.eh, T.bd, T.h1])
     inherit_many(T.x, [T.dI, T.c3, T.hF, T.fC, T.hY])
