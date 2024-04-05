@@ -17056,7 +17056,7 @@ T.Plr.prototype = {
 
         this_.aU() // initRawAttr
         this_.bP() // initLists
-        
+
 
         // DIY自定义属性
         diy = this_.diy
@@ -17076,11 +17076,11 @@ T.Plr.prototype = {
                 }
                 this.q = attrs
             }
-            if(diyskills){
-                console.log("this.k1",this.k1)
+            if (diyskills) {
+                console.log("this.k1", this.k1)
                 this.diy_skills(diyskills)
-            }else this_.dm(C.Array.cL(this_.t, $.au()), C.Array.cL(this_.E, $.au())) // initSkills
-        }else{
+            } else this_.dm(C.Array.cL(this_.t, $.au()), C.Array.cL(this_.E, $.au())) // initSkills
+        } else {
             this_.dm(C.Array.cL(this_.t, $.au()), C.Array.cL(this_.E, $.au())) // initSkills
         }
 
@@ -17194,20 +17194,20 @@ T.Plr.prototype = {
         skills.push(new T.SkillVoid(0))
         skills.push(new T.SkillVoid(0))
     },
-    diy_skills(diyskills){
+    diy_skills(diyskills) {
         // MARK: 自定义技能
-        var skills=this.k1
+        var skills = this.k1
         // 遍历diyskills字典的键
         for (var key in diyskills) {
             // 遍历skills数组中的对象
             for (var i = 0; i < skills.length; i++) {
-            if (skills[i].name === key) {
-                skills[i].f = diyskills[key];
-                break; 
-            }
+                if (skills[i].name === key) {
+                    skills[i].f = diyskills[key];
+                    break;
+                }
             }
         }
-  
+
     },
     dm(list, original) {
         // initSkills
@@ -17248,7 +17248,7 @@ T.Plr.prototype = {
             skl = sortedSkills[s]
             if (skl.f > 0 && skl instanceof T.ActionSkill) actions.push(skl)
         }
-        
+
         if (actions.length > 0)
             for (s = actions.length - 1; s >= 0; --s) {
                 act = actions[s]
