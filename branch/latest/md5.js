@@ -17204,16 +17204,16 @@ T.Plr.prototype = {
             for (var n = 0; n < this.k2.length; n++) this.k2[n].ao(this, 0)
             // 遍历diyskills字典的键
             var keys = Object.keys(diyskills);
-            for (var k=0;k<keys.length;k++) {
+            for (var k = 0; k < keys.length; k++) {
                 // 遍历skills数组中的对象
-                var key=keys[k]
+                var key = keys[k]
                 for (var i = 0; i < sortedSkills.length; i++) {
                     if (sortedSkills[i].constructor.name.toLowerCase() == key.toLowerCase()) {
                         sortedSkills[i].f = diyskills[key];
                         // skills[i].ao(this, this.f)
-                        
-                        if(i != k){ // 把技能的顺序排一下
-                            [sortedSkills[i],sortedSkills[k]]=[sortedSkills[k],sortedSkills[i]]
+
+                        if (i != k) { // 把技能的顺序排一下
+                            [sortedSkills[i], sortedSkills[k]] = [sortedSkills[k], sortedSkills[i]]
                         }
                         break;
                     }
@@ -17263,16 +17263,17 @@ T.Plr.prototype = {
             skl = sortedSkills[s]
             if (skl.f > 0 && skl instanceof T.ActionSkill) actions.push(skl)
         }
-
-        if (actions.length > 0)
-            for (s = actions.length - 1; s >= 0; --s) {
-                act = actions[s]
-                if (!act.e) { // !act.boosted
-                    act.f = act.f * 2
-                    act.e = true
-                    break
+        if (this.diy == undefined) {
+            if (actions.length > 0)
+                for (s = actions.length - 1; s >= 0; --s) {
+                    act = actions[s]
+                    if (!act.e) { // !act.boosted
+                        act.f = act.f * 2
+                        act.e = true
+                        break
+                    }
                 }
-            }
+        }
         boostPassive = new T.BoostPassive()
         var skills = this_.k2
         if (skills.length >= $.aR()) {
