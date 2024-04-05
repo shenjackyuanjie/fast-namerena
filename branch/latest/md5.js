@@ -3500,6 +3500,7 @@ var A = {
             if (a) {
                 s = new Y.RC4()
                 s.bd(C.e.gaB().ab(q), 2)
+                // 这里会被 index.dart.js 随机成某个东西?
                 s.di(H.b([32, 46, 189, 177, 148, 32], t.i))
                 return s
             } else {
@@ -16397,7 +16398,12 @@ T.fo.prototype = {
                                         a0 = $.i()
                                         a = a === a0 && J.ny(b.h(c, a0), 0) < $.pC()
                                     } else a = false
-                                    a2 = a ? T.init_boss(b.h(c, 0), b.h(c, $.i()), this_, a1) : T.init_plr(b.h(c, 0), b.h(c, $.i()), e.b, a1)
+                                    if (a) {
+                                        a2 = T.init_boss(b.h(c, 0), b.h(c, $.i()), this_, a1)
+                                    } else {
+                                        a2 = T.init_plr(b.h(c, 0), b.h(c, $.i()), e.b, a1)
+                                    }
+                                    // a2 = a ? T.init_boss(b.h(c, 0), b.h(c, $.i()), this_, a1) : T.init_plr(b.h(c, 0), b.h(c, $.i()), e.b, a1)
                                     if (a2 instanceof T.cy) {
                                         b3.push(a2.e)
                                         k.push(a2)
@@ -16452,10 +16458,12 @@ T.fo.prototype = {
                     }
                     o = C.Array.aV(a8, "\r")
                     a9 = C.e.gaB().ab(o)
-                    o = new LangData.SuperRC4()
-                    o.bd(a9, $.i())
-                    this_.b = o
-                    o.bO(a9)
+
+                    rc4_holder = new LangData.SuperRC4()
+                    rc4_holder.bd(a9, $.i())
+                    this_.b = rc4_holder
+                    rc4_holder.bO(a9)
+
                     o = a7.length, h = 0
                 case 3:
                     if (!(h < a7.length)) {
@@ -21217,7 +21225,8 @@ function main() {
         async_completer = P._makeAsyncAwaitCompleter(t.z),
         q, switch_to = 2,
         async_result_1, n = [],
-        m, l, k, j, raw_names, h, profiler, f, e, d, c, b, a, a0_getter, a1, a2, a3, a4, a5, a6, a7, team_1, team_2, b0
+        m, l, rc4_holder, j, raw_names, h, profiler, f, e, d, c, 
+        b, a, a0_getter, a1, a2, a3, a4, a5, a6, a7, team_1, team_2, b0
     var $async$iE = P._wrapJsFunctionForAsync(function (error_code, async_result) {
         if (error_code === 1) {
             async_result_1 = async_result
@@ -21260,12 +21269,15 @@ function main() {
 
                     m = window.sessionStorage.getItem(LangData.eQ("k"))
                     l = X.f4(m, 0)
-                    k = LangData.oC(false)
+                    rc4_holder = LangData.oC(false)
                     let type_tmp = t.i
                     j = H.b([], type_tmp)
+                    // MARK: 这里会被替换成某个 随机? 255 长度数组
+                    // 然后把这个随机数组的所有内容 push 到 j 里去
                     J.rr(j, H.b([1, 3, 0, 9], type_tmp))
-                    k.bO(j)
-                    k.di(l)
+
+                    rc4_holder.bO(j) // update 他
+                    rc4_holder.di(l)
                     raw_names = C.e.bt(0, l)
                 }
 
