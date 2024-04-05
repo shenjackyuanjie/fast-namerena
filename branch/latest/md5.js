@@ -1854,7 +1854,7 @@ var A = {
         fI: function fI() {},
         dL: function dL() {},
         cx: function cx() {},
-        ey: function ey() {},
+        _NativeTypedArrayOfDouble_NativeTypedArray_ListMixin: function ey() {},
         ez: function ez() {},
         eA: function eA() {},
         eB: function eB() {},
@@ -9620,7 +9620,7 @@ H.cx.prototype = {
     },
     $icx: 1
 }
-H.ey.prototype = {}
+H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin.prototype = {}
 H.ez.prototype = {}
 H.eA.prototype = {}
 H.eB.prototype = {}
@@ -19091,8 +19091,8 @@ LangData.k_.prototype = {
     inherit_many(H.j6, [H.lw, P.li, P._wrapJsFunctionForAsync_closure, P.kL, P.jM, W.kd, W.le, P.l5, P.l6, P.ky, V.j_, HtmlRenderer.jA, Sgls.k7, LangData.lA, T.ka, T.jX, T.jY, T.k2, T.kq, T.kr, T.ks, T.kt, T.ku])
     inherit(H.hZ, P.dy)
     inherit(H.cw, H.ab)
-    inherit_many(H.cw, [H.ey, H.eA])
-    inherit(H.ez, H.ey)
+    inherit_many(H.cw, [H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin, H.eA])
+    inherit(H.ez, H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin)
     inherit(H.c9, H.ez)
     inherit(H.eB, H.eA)
     inherit(H.dK, H.eB)
@@ -19181,7 +19181,7 @@ LangData.k_.prototype = {
     inherit(LangData.SuperRC4, Y.RC4)
 
     mixin(H.cJ, H.hV)
-    mixin(H.ey, P.z)
+    mixin(H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin, P.z)
     mixin(H.ez, H.du)
     mixin(H.eA, P.z)
     mixin(H.eB, H.du)
@@ -21105,7 +21105,7 @@ var t = (function rtii() {
         SVGElement: false
     })
     H.cw.$nativeSuperclassTag = "ArrayBufferView"
-    H.ey.$nativeSuperclassTag = "ArrayBufferView"
+    H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin.$nativeSuperclassTag = "ArrayBufferView"
     H.ez.$nativeSuperclassTag = "ArrayBufferView"
     H.c9.$nativeSuperclassTag = "ArrayBufferView"
     H.eA.$nativeSuperclassTag = "ArrayBufferView"
