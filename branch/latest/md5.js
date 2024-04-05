@@ -5304,6 +5304,7 @@ var A = {
                     a1.av(a4, s)
                     return a1
                 }
+                // covid
                 if (a4 == $.ck()) {
                     r = H.as_string(a4) + H.as_string($.aD())
                     q = 0
@@ -5344,7 +5345,7 @@ var A = {
                     a0 = H.b([], c)
                     c = H.b([], c)
                     a1 = 0
-                    a1 = new T.f7(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                    a1 = new T.PlrBossCovid(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                     a1.a1(a4, s, r, a3)
                     a1.av(a4, s)
                     return a1
@@ -6670,7 +6671,7 @@ var A = {
             _.f = c
             _.c = _.b = _.a = _.r = null
         },
-        f7: function f7(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
+        PlrBossCovid: function f7(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
             var _ = this
             _.a = a
             _.b = b
@@ -15647,7 +15648,7 @@ T.hb.prototype = {
         if (q > o) r.l = o
     }
 }
-T.f7.prototype = {
+T.PlrBossCovid.prototype = {
     gan() {
         var s = $.Z(),
             r = $.n2(),
@@ -19163,7 +19164,7 @@ LangData.k_.prototype = {
     inherit_many(T.aB, [T.dn, T.dT, T.ik])
     inherit_many(T.bq, [T.dS, T.b8])
     inherit_many(T.aM, [T.PlrShadow, T.PlrSummon, T.fX])
-    inherit_many(T.cz, [T.f5, T.f6, T.f7, T.f8, T.de, T.df, T.f9, T.fa, T.bZ, T.fc, T.fd])
+    inherit_many(T.cz, [T.f5, T.f6, T.PlrBossCovid, T.f8, T.de, T.df, T.f9, T.fa, T.bZ, T.fc, T.fd])
     inherit(T.fR, T.cy)
     inherit(T.fb, T.bZ)
     inherit(T.eg, T.SklCharm)
@@ -19775,7 +19776,8 @@ var t = (function rtii() {
         return LangData.j(":[+0Z", 31)
     })
     lazy_old($, "yd", "ck", function () {
-        return LangData.j("jtK1|]A", 31)
+        // return LangData.j("jtK1|]A", 31)
+        return "covid"
     })
     lazy_old($, "zc", "qL", function () {
         return LangData.j("ki9e8.M(G", 13)
@@ -21304,4 +21306,4 @@ function main() {
 
 main();
 // logger.debug("running main:", main()) // 执行main函数
-// logger.debug(LangData.j("S,AF", 5))
+logger.debug("反混淆", LangData.j("jtK1|]A", 31))
