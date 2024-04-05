@@ -16936,7 +16936,7 @@ T.Plr.prototype = {
         this_.f = r
         q = this_.d // + 号以后的东西
         if (q != null && q !== "") {
-            // DIY part
+            // MARK: DIY part
             if (q.startsWith("diy")) {
                 this_.diy = q.slice(3)
             } else {
@@ -17056,7 +17056,7 @@ T.Plr.prototype = {
 
         this_.aU() // initRawAttr
         this_.bP() // initLists
-        this_.dm(C.Array.cL(this_.t, $.au()), C.Array.cL(this_.E, $.au())) // initSkills
+        
 
         // DIY自定义属性
         diy = this_.diy
@@ -17064,7 +17064,7 @@ T.Plr.prototype = {
             try {
                 var tmparr = diy.split("]");
                 var attrs = JSON.parse(tmparr[0] + "]");
-                if (tmparr[1].startsWith("{")) var skills = JSON.parse(tmparr[1]);
+                if (tmparr[1].startsWith("{")) var diyskills = JSON.parse(tmparr[1]);
                 if (attrs.length != 8) throw new Error('八围要有八个元素')
             } catch (error) {
                 console.error(error)
@@ -17076,6 +17076,12 @@ T.Plr.prototype = {
                 }
                 this.q = attrs
             }
+            if(diyskills){
+                console.log("this.k1",this.k1)
+                this.diy_skills(diyskills)
+            }else this_.dm(C.Array.cL(this_.t, $.au()), C.Array.cL(this_.E, $.au())) // initSkills
+        }else{
+            this_.dm(C.Array.cL(this_.t, $.au()), C.Array.cL(this_.E, $.au())) // initSkills
         }
 
         weapon = this_.weapon
@@ -17195,9 +17201,7 @@ T.Plr.prototype = {
         for (var key in diyskills) {
             // 遍历skills数组中的对象
             for (var i = 0; i < skills.length; i++) {
-            
             if (skills[i].name === key) {
-                // 如果找到匹配的对象，设置其f属性为diyskills字典中对应的值
                 skills[i].f = diyskills[key];
                 break; 
             }
