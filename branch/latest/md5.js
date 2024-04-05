@@ -6005,7 +6005,7 @@ var A = {
             return J.lV(a.e, b.e)
         },
         init_plr(name, clan_name, fgt, weapon) {
-            var s, r, q, p, o, n, m, l, k, j, i, h, Plr, f = 0,
+            var s, r, q, p, o, n, m, l, k, j, i, h, f = 0,
                 e = $.T(),
                 d = H.b([], t.q),
                 c = H.b([], t.H),
@@ -6042,10 +6042,9 @@ var A = {
             i = H.b([], k)
             h = H.b([], k)
             k = H.b([], k)
-            Plr = 0
-            Plr = new T.Plr(name, clan_name, fgt, weapon, f, e, d, c, b, a, s, r, q, p, o, n, m, l, j, i, h, k, Plr, Plr, Plr, $.W(), Plr)
-            Plr.a1(name, clan_name, fgt, weapon)
-            return Plr
+            let plr = new T.Plr(name, clan_name, fgt, weapon, f, e, d, c, b, a, s, r, q, p, o, n, m, l, j, i, h, k, plr, plr, plr, $.W(), plr)
+            plr.a1(name, clan_name, fgt, weapon)
+            return plr
         },
         t6(a, b) {
             return J.lV(b.b, a.b)
