@@ -45,8 +45,8 @@ if (run_env.from_code) {
     let stored_elements = [];
 
     global.window = {
-        sessionStorage: function () {},
-        localStorage: function () {},
+        sessionStorage: function () { },
+        localStorage: function () { },
     };
 
     class fake_class_list {
@@ -96,7 +96,7 @@ if (run_env.from_code) {
         appendChild(element) {
             this.childList.push(element);
         };
-        addEventListener() {};
+        addEventListener() { };
     }
 
     global.document = {
@@ -318,10 +318,10 @@ function updateHolder(a, b) {
 }
 var hunkHelpers = function () {
     var s = function (a, b, c, d, e) {
-            return function (f, g, h, i) {
-                return installInstanceTearOff(f, g, a, b, c, d, [h], i, e, false)
-            }
-        },
+        return function (f, g, h, i) {
+            return installInstanceTearOff(f, g, a, b, c, d, [h], i, e, false)
+        }
+    },
         r = function (a, b, c, d) {
             return function (e, f, g, h) {
                 return installStaticTearOff(e, f, a, b, c, [g], h, d)
@@ -354,23 +354,23 @@ var hunkHelpers = function () {
 }()
 
 var A = {
-        eR(a) {
-            var s = window.localStorage,
-                r = LangData.eQ("i")
-            s.setItem(r, a)
-            s = $.nx()
-            r = s.b
-            if (r >= 4) H.throw_expression(s.ee())
-            if ((r & 1) !== 0) s.cc(a)
-            else if ((r & 3) === 0) s.en().j(0, new P.er(a))
-        },
-        vo(a) {
-            var s = $.nx()
-            s.toString
-            new P.cM(s, H._instanceType(s).i("cM<1>")).f4(a)
-            return
-        }
+    eR(a) {
+        var s = window.localStorage,
+            r = LangData.eQ("i")
+        s.setItem(r, a)
+        s = $.nx()
+        r = s.b
+        if (r >= 4) H.throw_expression(s.ee())
+        if ((r & 1) !== 0) s.cc(a)
+        else if ((r & 3) === 0) s.en().j(0, new P.er(a))
     },
+    vo(a) {
+        var s = $.nx()
+        s.toString
+        new P.cM(s, H._instanceType(s).i("cM<1>")).f4(a)
+        return
+    }
+},
     C = {},
     Sgls = {
         o6(a) {
@@ -508,9 +508,9 @@ var A = {
             for (q = J.bv(s), p = 0; p < 256; ++p) q.gck(s)[p * 4 + 3] = r[p]
             C.k.dw(a, s, 0, 0)
         },
-        k7: function k7() {},
-        k4: function k4() {},
-        k5: function k5() {},
+        k7: function k7() { },
+        k4: function k4() { },
+        k5: function k5() { },
         k6: function k6(a, b, c) {
             this.a = a
             this.b = b
@@ -529,10 +529,10 @@ var A = {
             _.c = b
             _.$ti = c
         },
-        n: function n() {}
+        n: function n() { }
     },
     H = {
-        m8: function m8() {},
+        m8: function m8() { },
         ls(a, b, c) {
             if (a == null) throw H.wrap_expression(new H.dO(b, c.i("dO<0>")))
             return a
@@ -644,7 +644,7 @@ var A = {
                         if (p !== r) {
                             c.m(a3, p, c.h(a3, r))
                             c.m(a3, r, o)
-                        }++r
+                        } ++r
                     } else
                         for (; true;) {
                             n = a6.$2(c.h(a3, q), a)
@@ -678,7 +678,7 @@ var A = {
                         if (p !== r) {
                             c.m(a3, p, c.h(a3, r))
                             c.m(a3, r, o)
-                        }++r
+                        } ++r
                     } else if (a6.$2(o, a1) > 0)
                         for (; true;)
                             if (a6.$2(c.h(a3, q), a1) > 0) {
@@ -727,7 +727,7 @@ var A = {
                         if (p !== r) {
                             c.m(a3, p, c.h(a3, r))
                             c.m(a3, r, o)
-                        }++r
+                        } ++r
                     } else if (a6.$2(o, a1) === 0)
                         for (; true;)
                             if (a6.$2(c.h(a3, q), a1) === 0) {
@@ -763,8 +763,8 @@ var A = {
             this.a = a
             this.$ti = b
         },
-        A: function A() {},
-        M: function M() {},
+        A: function A() { },
+        M: function M() { },
         cv: function cv(a, b) {
             var _ = this
             _.a = a
@@ -801,9 +801,9 @@ var A = {
             this.a = a
             this.b = b
         },
-        du: function du() {},
-        hV: function hV() {},
-        cJ: function cJ() {},
+        du: function du() { },
+        hV: function hV() { },
+        cJ: function cJ() { },
         a9: function a9(a, b) {
             this.a = a
             this.$ti = b
@@ -1119,7 +1119,7 @@ var A = {
                 s = function (b) {
                     try {
                         return String(b)
-                    } catch (d) {}
+                    } catch (d) { }
                     return null
                 }(ex)
                 return H.saveStackTrace(ex, new P.aS(false, e, e, typeof s == "string" ? s.replace(/^RangeError:\s*/, "") : s))
@@ -1539,7 +1539,7 @@ var A = {
             // 检测是否在网页内运行
             if (typeof window != "undefined") {
                 window
-                q = function () {}
+                q = function () { }
                 for (p = 0; p < r.length; ++p) {
                     o = r[p]
                     n = $.oL.$1(o)
@@ -1739,11 +1739,11 @@ var A = {
             this.a = a
             this.b = null
         },
-        c_: function c_() {},
-        j5: function j5() {},
-        j6: function j6() {},
-        kg: function kg() {},
-        kc: function kc() {},
+        c_: function c_() { },
+        j5: function j5() { },
+        j6: function j6() { },
+        kg: function kg() { },
+        kc: function kc() { },
         dg: function dg(a, b) {
             this.a = a
             this.b = b
@@ -1845,22 +1845,22 @@ var A = {
             if (s) throw H.wrap_expression(H.uP(a, b, c))
             return b
         },
-        dJ: function dJ() {},
-        ab: function ab() {},
-        cw: function cw() {},
-        c9: function c9() {},
-        dK: function dK() {},
-        fE: function fE() {},
-        fF: function fF() {},
-        fG: function fG() {},
-        fH: function fH() {},
-        fI: function fI() {},
-        dL: function dL() {},
-        cx: function cx() {},
-        ey: function ey() {},
-        ez: function ez() {},
-        eA: function eA() {},
-        eB: function eB() {},
+        dJ: function dJ() { },
+        ab: function ab() { },
+        cw: function cw() { },
+        c9: function c9() { },
+        dK: function dK() { },
+        fE: function fE() { },
+        fF: function fF() { },
+        fG: function fG() { },
+        fH: function fH() { },
+        fI: function fI() { },
+        dL: function dL() { },
+        cx: function cx() { },
+        ey: function ey() { },
+        ez: function ez() { },
+        eA: function eA() { },
+        eB: function eB() { },
         Rti__getQuestionFromStar(a, b) {
             var s = b.c
             return s == null ? b.c = H._Universe__lookupQuestionRti(a, b.z, true) : s
@@ -2060,7 +2060,7 @@ var A = {
             if (p === o) return H.cQ(p, a, H.uq)
             if (!H.isStrongTopType(p))
                 if (!(p === t.c)) o = p === o
-            else o = true
+                else o = true
             else o = true
             if (o) return H.cQ(p, a, H.ut)
             o = p.y
@@ -2117,9 +2117,9 @@ var A = {
                 if (!(a === t.c))
                     if (!(a === t.aw))
                         if (r !== 7) t1 = r === 8 && H.ln(a.z) || a === t.P || a === t.T
-            else t1 = true
-            else t1 = true
-            else t1 = true
+                        else t1 = true
+                    else t1 = true
+                else t1 = true
             else t1 = true
             return t1
         },
@@ -2294,7 +2294,7 @@ var A = {
                     i = j.y
                     if (!(i === 2 || i === 3 || i === 4 || i === 5 || j === o))
                         if (!(j === n)) h = j === m
-                    else h = true
+                        else h = true
                     else h = true
                     if (!h) l += C.String.B(" extends ", H.aH(j, a5))
                 }
@@ -2475,8 +2475,8 @@ var A = {
                 if (!H.isStrongTopType(b))
                     if (!(b === t.P || b === t.T))
                         if (s !== 7) r = s === 8 && H.lz(b.z)
-                else r = true
-                else r = true
+                        else r = true
+                    else r = true
                 else r = true
                 if (r) return b
                 else if (s === 1 || b === t.aw) return t.P
@@ -2506,7 +2506,7 @@ var A = {
                 s = b.y
                 if (!H.isStrongTopType(b))
                     if (!(b === t.c)) r = b === t.K
-                else r = true
+                    else r = true
                 else r = true
                 if (r || b === t.K) return b
                 else if (s === 1) return H._Universe__lookupInterfaceRti(a, "bl", [b])
@@ -2868,7 +2868,7 @@ var A = {
             if (b === d) return true
             if (!H.isStrongTopType(d))
                 if (!(d === t.c)) s = d === t.K
-            else s = true
+                else s = true
             else s = true
             if (s) return true
             r = b.y
@@ -3015,9 +3015,9 @@ var A = {
                 if (!H.isStrongTopType(a))
                     if (r !== 7)
                         if (!(r === 6 && H.lz(a.z))) s = r === 8 && H.lz(a.z)
-            else s = true
-            else s = true
-            else s = true
+                        else s = true
+                    else s = true
+                else s = true
             else s = true
             return s
         },
@@ -3025,7 +3025,7 @@ var A = {
             var s
             if (!H.isStrongTopType(a))
                 if (!(a === t.c)) s = a === t.K
-            else s = true
+                else s = true
             else s = true
             return s
         },
@@ -3059,7 +3059,7 @@ var A = {
         iu: function iu(a) {
             this.a = a
         },
-        i9: function i9() {},
+        i9: function i9() { },
         eI: function eI(a) {
             this.a = a
         },
@@ -3099,13 +3099,13 @@ var A = {
                     H.initNativeDispatch()
                     n = a[init.dispatchPropertyName]
                 } if (n != null) {
-                proto = n.p
-                if (false === proto) return n.i
-                if (true === proto) return a
-                r = Object.getPrototypeOf(a)
-                if (proto === r) return n.i
-                if (n.e === r) throw H.wrap_expression(P.hT("Return interceptor for " + H.as_string(proto(a, n))))
-            }
+                    proto = n.p
+                    if (false === proto) return n.i
+                    if (true === proto) return a
+                    r = Object.getPrototypeOf(a)
+                    if (proto === r) return n.i
+                    if (n.e === r) throw H.wrap_expression(P.hT("Return interceptor for " + H.as_string(proto(a, n))))
+                }
             q = a.constructor
             if (q == null) interceptor = null
             else {
@@ -3401,13 +3401,13 @@ var A = {
             // return J.aQ(a).trim_name(a)
             J.JsString.prototype.trim_name(a)
         },
-        Interceptor: function af() {},
-        fw: function fw() {},
-        cs: function cs() {},
-        bE: function bE() {},
-        PlainJavaScriptObject: function fO() {},
-        UnknownJavaScriptObject: function bs() {},
-        JavaScriptFunction: function bn() {},
+        Interceptor: function af() { },
+        fw: function fw() { },
+        cs: function cs() { },
+        bE: function bE() { },
+        PlainJavaScriptObject: function fO() { },
+        UnknownJavaScriptObject: function bs() { },
+        JavaScriptFunction: function bn() { },
         JsArray: function E(a) {
             this.$ti = a
         },
@@ -3421,10 +3421,10 @@ var A = {
             _.c = 0
             _.d = null
         },
-        JsNumber: function dA() {},
-        JsInt: function dz() {},
-        jF: function jF() {},
-        JsString: function bD() {}
+        JsNumber: function dA() { },
+        JsInt: function dz() { },
+        jF: function jF() { },
+        JsString: function bD() { }
     },
     L = {
         ProfileWinChance: function iR(a, b, c, d, e, f, g) {
@@ -3441,8 +3441,8 @@ var A = {
             _.Q = null
             _.ch = g
         },
-        iS: function iS() {},
-        iT: function iT() {},
+        iS: function iS() { },
+        iT: function iT() { },
         iU: function iU(a) {
             this.a = a
         }
@@ -3484,7 +3484,7 @@ var A = {
         load_lang(a) {
             J.lY(a, new LangData.lA())
         },
-        lA: function lA() {},
+        lA: function lA() { },
         fZ(a) {
             var s = H.b([0], t.i)
             C.Array.a5(s, C.e.gaB().ab(a))
@@ -3869,7 +3869,7 @@ var A = {
         kD: function kD(a) {
             this.a = a
         },
-        l8: function l8() {},
+        l8: function l8() { },
         _TimerImpl_internalCallback: function l9(a, b) {
             this.a = a
             this.b = b
@@ -3897,7 +3897,7 @@ var A = {
             this.b = b
             this.c = c
         },
-        i4: function i4() {},
+        i4: function i4() { },
         cg: function cg(a, b) {
             this.a = a
             this.$ti = b
@@ -3970,7 +3970,7 @@ var A = {
             this.a = a
             this.b = null
         },
-        em: function em() {},
+        em: function em() { },
         ke: function ke(a, b) {
             this.a = a
             this.b = b
@@ -3979,13 +3979,13 @@ var A = {
             this.a = a
             this.b = b
         },
-        hO: function hO() {},
-        hP: function hP() {},
-        im: function im() {},
+        hO: function hO() { },
+        hP: function hP() { },
+        im: function im() { },
         l2: function l2(a) {
             this.a = a
         },
-        i1: function i1() {},
+        i1: function i1() { },
         cK: function cK(a, b, c, d) {
             var _ = this
             _.a = null
@@ -4007,14 +4007,14 @@ var A = {
             _.e = d
             _.r = null
         },
-        i3: function i3() {},
-        eF: function eF() {},
-        i7: function i7() {},
+        i3: function i3() { },
+        eF: function eF() { },
+        i7: function i7() { },
         er: function er(a) {
             this.b = a
             this.a = null
         },
-        ii: function ii() {},
+        ii: function ii() { },
         kW: function kW(a, b) {
             this.a = a
             this.b = b
@@ -4023,13 +4023,13 @@ var A = {
             this.c = this.b = null
             this.a = 0
         },
-        io: function io() {},
-        lf: function lf() {},
+        io: function io() { },
+        lf: function lf() { },
         lo: function lo(a, b) {
             this.a = a
             this.b = b
         },
-        kX: function kX() {},
+        kX: function kX() { },
         kY: function kY(a, b) {
             this.a = a
             this.b = b
@@ -4196,19 +4196,19 @@ var A = {
             _.b = b
             _.d = _.c = null
         },
-        dy: function dy() {},
-        dE: function dE() {},
-        z: function z() {},
-        dG: function dG() {},
+        dy: function dy() { },
+        dE: function dE() { },
+        z: function z() { },
+        dG: function dG() { },
         jM: function jM(a, b) {
             this.a = a
             this.b = b
         },
-        aU: function aU() {},
-        dY: function dY() {},
-        eC: function eC() {},
-        ev: function ev() {},
-        eM: function eM() {},
+        aU: function aU() { },
+        dY: function dY() { },
+        eC: function eC() { },
+        ev: function ev() { },
+        eM: function eM() { },
         uy(a, b) {
             var s, r, q, p = null
             try {
@@ -4295,19 +4295,19 @@ var A = {
         id: function id(a) {
             this.a = a
         },
-        km: function km() {},
-        kl: function kl() {},
-        fg: function fg() {},
-        fi: function fi() {},
-        jg: function jg() {},
-        js: function js() {},
-        jr: function jr() {},
-        jI: function jI() {},
+        km: function km() { },
+        kl: function kl() { },
+        fg: function fg() { },
+        fi: function fi() { },
+        jg: function jg() { },
+        js: function js() { },
+        jr: function jr() { },
+        jI: function jI() { },
         jJ: function jJ(a) {
             this.a = a
         },
-        kj: function kj() {},
-        kn: function kn() {},
+        kj: function kj() { },
+        kn: function kn() { },
         lc: function lc(a) {
             this.b = 0
             this.c = a
@@ -4478,14 +4478,14 @@ var A = {
         Duration: function c1(a) {
             this.a = a
         },
-        Duration_toString_sixDigits: function jc() {},
-        Duration_toString_twoDigits: function jd() {},
-        O: function O() {},
+        Duration_toString_sixDigits: function jc() { },
+        Duration_toString_twoDigits: function jd() { },
+        O: function O() { },
         f2: function f2(a) {
             this.a = a
         },
-        bc: function bc() {},
-        fL: function fL() {},
+        bc: function bc() { },
+        fL: function fL() { },
         aS: function aS(a, b, c, d) {
             var _ = this
             _.a = a
@@ -4522,8 +4522,8 @@ var A = {
         fh: function fh(a) {
             this.a = a
         },
-        fM: function fM() {},
-        el: function el() {},
+        fM: function fM() { },
+        el: function el() { },
         fj: function fj(a) {
             this.a = a
         },
@@ -4535,11 +4535,11 @@ var A = {
             this.b = b
             this.c = c
         },
-        L: function L() {},
-        fv: function fv() {},
-        N: function N() {},
-        Object: function H() {},
-        iq: function iq() {},
+        L: function L() { },
+        fv: function fv() { },
+        N: function N() { },
+        Object: function H() { },
+        iq: function iq() { },
         cH: function cH(a) {
             this.a = a
         },
@@ -4566,7 +4566,7 @@ var A = {
         m3() {
             return window.navigator.userAgent
         },
-        _StructuredClone: function l4() {},
+        _StructuredClone: function l4() { },
         l5: function l5(a, b) {
             this.a = a
             this.b = b
@@ -4575,7 +4575,7 @@ var A = {
             this.a = a
             this.b = b
         },
-        kw: function kw() {},
+        kw: function kw() { },
         ky: function ky(a, b) {
             this.a = a
             this.b = b
@@ -4612,12 +4612,12 @@ var A = {
         o_() {
             return C.F
         },
-        kT: function kT() {},
-        cF: function cF() {},
-        p: function p() {}
+        kT: function kT() { },
+        cF: function cF() { },
+        p: function p() { }
     },
     S = {
-        fK: function fK() {}
+        fK: function fK() { }
     },
     T = {
         ty(a, b, c, d, e) {
@@ -5832,7 +5832,7 @@ var A = {
                     case 3:
                         result = runner
                         async_goto = 1
-                        // break
+                    // break
                     case 1:
                         return P.async_return(result, async_completer)
                 }
@@ -6046,8 +6046,8 @@ var A = {
         t6(a, b) {
             return J.lV(b.b, a.b)
         },
-        tx(a, b, c, d, e) {},
-        tz(a, b, c, d, e) {},
+        tx(a, b, c, d, e) { },
+        tz(a, b, c, d, e) { },
         SklAttack(a) {
             var s = new T.h8(0)
             s.r = a
@@ -6172,7 +6172,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        k9: function k9() {},
+        k9: function k9() { },
         SklCritical: function SklCritical(a) {
             var _ = this
             _.e = false
@@ -6625,7 +6625,7 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        cz: function cz() {},
+        cz: function cz() { },
         f6: function f6(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
             var _ = this
             _.a = a
@@ -6990,7 +6990,7 @@ var A = {
             _.f = e
             _.c = _.b = _.a = _.r = null
         },
-        cy: function cy() {},
+        cy: function cy() { },
         fR: function fR(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
             var _ = this
             _.a = a
@@ -7108,7 +7108,7 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        hF: function hF() {},
+        hF: function hF() { },
         ef: function ef(a) {
             var _ = this
             _.e = false
@@ -7215,8 +7215,8 @@ var A = {
             _.db = j
             _.dx = k
         },
-        jk: function jk() {},
-        jj: function jj() {},
+        jk: function jk() { },
+        jj: function jj() { },
         jl: function jl(a) {
             this.a = a
         },
@@ -7232,7 +7232,7 @@ var A = {
             _.e = d
             _.f = e
         },
-        IPlr: function fr() {},
+        IPlr: function fr() { },
         NPlr: function bF() {
             this.a = null
         },
@@ -7295,7 +7295,7 @@ var A = {
             this.a = a
             this.b = b
         },
-        aM: function aM() {},
+        aM: function aM() { },
         Plr: function u(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
             var _ = this
             _.a = a
@@ -7334,18 +7334,18 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        jX: function jX() {},
-        BoostPassive: function boost_passive() {}, // boostPassive
-        jY: function jY() {},
-        x: function x() {},
-        aZ: function aZ() {},
-        cB: function cB() {},
-        bH: function bH() {},
-        aB: function aB() {},
-        ah: function ah() {},
-        aV: function aV() {},
-        bq: function bq() {},
-        aF: function aF() {},
+        jX: function jX() { },
+        BoostPassive: function boost_passive() { }, // boostPassive
+        jY: function jY() { },
+        x: function x() { },
+        aZ: function aZ() { },
+        cB: function cB() { },
+        bH: function bH() { },
+        aB: function aB() { },
+        ah: function ah() { },
+        aV: function aV() { },
+        bq: function bq() { },
+        aF: function aF() { },
         bd: function bd(a) {
             var _ = this
             _.x = a
@@ -7386,8 +7386,8 @@ var A = {
             this.a = a
             this.b = b
         },
-        Skill: function Skill() {},
-        ActionSkill: function b5() {},
+        Skill: function Skill() { },
+        ActionSkill: function b5() { },
         h8: function h8(a) {
             var _ = this
             _.e = false
@@ -7421,7 +7421,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        fC: function fC() {},
+        fC: function fC() { },
         SklMerge: function SklMerge(a) {
             var _ = this
             _.e = false
@@ -7517,7 +7517,7 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        hY: function hY() {},
+        hY: function hY() { },
         SklZombie: function SklZombie(a) {
             var _ = this
             _.e = false
@@ -7547,7 +7547,7 @@ var A = {
             _.f = _.e = _.d = null
             _.r = c
         },
-        fl: function fl() {},
+        fl: function fl() { },
         jq: function jq(a, b, c) {
             var _ = this
             _.a = null
@@ -7572,7 +7572,7 @@ var A = {
             _.f = _.e = _.d = null
             _.r = c
         },
-        k3: function k3() {},
+        k3: function k3() { },
         h0: function h0(a) {
             var _ = this
             _.r = a
@@ -7605,7 +7605,7 @@ var A = {
             _.f = b
             _.c = _.b = _.a = _.r = null
         },
-        kb: function kb() {},
+        kb: function kb() { },
         ep: function ep(a, b, c) {
             var _ = this
             _.a = null
@@ -7622,13 +7622,13 @@ var A = {
             _.f = _.e = _.d = null
             _.r = c
         },
-        kq: function kq() {},
-        kr: function kr() {},
-        ks: function ks() {},
-        kt: function kt() {},
-        ku: function ku() {},
-        ko: function ko() {},
-        kp: function kp() {},
+        kq: function kq() { },
+        kr: function kr() { },
+        ks: function ks() { },
+        kt: function kt() { },
+        ku: function ku() { },
+        ko: function ko() { },
+        kp: function kp() { },
         hc: function hc(a) {
             var _ = this
             _.Q = false
@@ -7645,8 +7645,8 @@ var A = {
             _.f = _.e = _.d = null
             _.r = c
         },
-        ij: function ij() {},
-        ik: function ik() {}
+        ij: function ij() { },
+        ik: function ik() { }
     },
     V = {
         // 评分
@@ -7671,7 +7671,7 @@ var A = {
             this.a = a
             this.b = b
         },
-        j0: function j0() {},
+        j0: function j0() { },
         j1: function j1(a) {
             this.a = a
         }
@@ -7733,7 +7733,7 @@ var A = {
                         r = q.protocol
                         r = r === ":" || r === ""
                     } else r = false
-            else r = false
+                else r = false
             else r = true
             return r
         },
@@ -7757,56 +7757,56 @@ var A = {
             if (s === C.f) return a
             return s.eI(a, b)
         },
-        HtmlElement: function HtmlElement() {},
-        AnchorElement: function AnchorElement() {},
-        AreaElement: function AreaElement() {},
-        BaseElement: function BaseElement() {},
-        Blob: function Blob() {},
-        BodyElement: function BodyElement() {},
-        CanvasElement: function CanvasElement() {},
-        CanvasRenderingContext2D: function CanvasRenderingContext2D() {},
-        b6: function b6() {},
-        co: function co() {},
-        j8: function j8() {},
-        dm: function dm() {},
-        c0: function c0() {},
-        ja: function ja() {},
-        jb: function jb() {},
-        Element: function Element() {},
-        jf: function jf() {},
-        o: function o() {},
-        fn: function fn() {},
-        cq: function cq() {},
-        fp: function fp() {},
-        c4: function c4() {},
-        jL: function jL() {},
-        c8: function c8() {},
-        dH: function dH() {},
-        bp: function bp() {},
+        HtmlElement: function HtmlElement() { },
+        AnchorElement: function AnchorElement() { },
+        AreaElement: function AreaElement() { },
+        BaseElement: function BaseElement() { },
+        Blob: function Blob() { },
+        BodyElement: function BodyElement() { },
+        CanvasElement: function CanvasElement() { },
+        CanvasRenderingContext2D: function CanvasRenderingContext2D() { },
+        b6: function b6() { },
+        co: function co() { },
+        j8: function j8() { },
+        dm: function dm() { },
+        c0: function c0() { },
+        ja: function ja() { },
+        jb: function jb() { },
+        Element: function Element() { },
+        jf: function jf() { },
+        o: function o() { },
+        fn: function fn() { },
+        cq: function cq() { },
+        fp: function fp() { },
+        c4: function c4() { },
+        jL: function jL() { },
+        c8: function c8() { },
+        dH: function dH() { },
+        bp: function bp() { },
         az: function az(a) {
             this.a = a
         },
-        v: function v() {},
-        dM: function dM() {},
-        dQ: function dQ() {},
-        h4: function h4() {},
-        ek: function ek() {},
-        hN: function hN() {},
+        v: function v() { },
+        dM: function dM() { },
+        dQ: function dQ() { },
+        h4: function h4() { },
+        ek: function ek() { },
+        hN: function hN() { },
         kd: function kd(a) {
             this.a = a
         },
-        bb: function bb() {},
-        ce: function ce() {},
-        en: function en() {},
-        hQ: function hQ() {},
-        hR: function hR() {},
-        cI: function cI() {},
-        aY: function aY() {},
-        eq: function eq() {},
-        cL: function cL() {},
-        ex: function ex() {},
-        eH: function eH() {},
-        i2: function i2() {},
+        bb: function bb() { },
+        ce: function ce() { },
+        en: function en() { },
+        hQ: function hQ() { },
+        hR: function hR() { },
+        cI: function cI() { },
+        aY: function aY() { },
+        eq: function eq() { },
+        cL: function cL() { },
+        ex: function ex() { },
+        eH: function eH() { },
+        i2: function i2() { },
         i8: function i8(a) {
             this.a = a
         },
@@ -7827,7 +7827,7 @@ var A = {
         cP: function cP(a) {
             this.a = a
         },
-        cr: function cr() {},
+        cr: function cr() { },
         dN: function dN(a) {
             this.a = a
         },
@@ -7839,9 +7839,9 @@ var A = {
             this.b = b
             this.c = c
         },
-        eD: function eD() {},
-        l0: function l0() {},
-        l1: function l1() {},
+        eD: function eD() { },
+        l0: function l0() { },
+        l1: function l1() { },
         it: function it(a, b, c, d, e) {
             var _ = this
             _.e = a
@@ -7850,8 +7850,8 @@ var A = {
             _.c = d
             _.d = e
         },
-        l7: function l7() {},
-        is: function is() {},
+        l7: function l7() { },
+        is: function is() { },
         dv: function dv(a, b) {
             var _ = this
             _.a = a
@@ -7873,14 +7873,14 @@ var A = {
         le: function le(a) {
             this.a = a
         },
-        i6: function i6() {},
-        ig: function ig() {},
-        ih: function ih() {},
-        il: function il() {},
-        iy: function iy() {},
-        iz: function iz() {},
-        iA: function iA() {},
-        iB: function iB() {}
+        i6: function i6() { },
+        ig: function ig() { },
+        ih: function ih() { },
+        il: function il() { },
+        iy: function iy() { },
+        iz: function iz() { },
+        iA: function iA() { },
+        iB: function iB() { }
     },
     X = {
         dc(a) {
@@ -7988,8 +7988,8 @@ var A = {
             logger.debug("X.D", a, b, result)
             return result
         },
-        je: function je() {},
-        j9: function j9() {},
+        je: function je() { },
+        j9: function j9() { },
         ProfileFind: function iW(a, b) {
             var _ = this
             _.a = a
@@ -7999,7 +7999,7 @@ var A = {
             _.f = null
             _.r = b
         },
-        iX: function iX() {},
+        iX: function iX() { },
         iY: function iY(a) {
             this.a = a
         },
@@ -8288,8 +8288,8 @@ var A = {
         jx: function jx(a) {
             this.a = a
         },
-        jy: function jy() {},
-        jw: function jw() {},
+        jy: function jy() { },
+        jw: function jw() { },
         jA: function jA(a, b, c, d) {
             var _ = this
             _.a = a
@@ -8300,8 +8300,8 @@ var A = {
         jz: function jz(a) {
             this.a = a
         },
-        jB: function jB() {},
-        jC: function jC() {},
+        jB: function jB() { },
+        jC: function jC() { },
         jD: function jD(a) {
             this.a = a
         },
@@ -9287,7 +9287,7 @@ H.aT.prototype = {
             s.toString
             q.d = s
             r.f = s.c = q
-        }++r.a
+        } ++r.a
         r.c9()
         return q
     },
@@ -10196,8 +10196,8 @@ P.i3.prototype = {
             a.bW(this)
         }
     },
-    d1() {},
-    d2() {},
+    d1() { },
+    d2() { },
     ec(a) {
         var s, r = this,
             q = r.r
@@ -10458,7 +10458,7 @@ P.eu.prototype = {
             s.toString
             q.c = s
             r.f = s.b = q
-        }++r.a
+        } ++r.a
         r.ef()
         return q
     },
@@ -10917,11 +10917,11 @@ P.lb.prototype = {
         }
         if (d && j > 32)
             if (s) h.a += H.cC(k)
-        else {
-            l.b = 77
-            l.c = c
-            return ""
-        }
+            else {
+                l.b = 77
+                l.c = c
+                return ""
+            }
         l.b = j
         l.c = i
         s = h.a
@@ -11314,8 +11314,8 @@ W.co.prototype = {
     eC(a, b) {
         var s
         if (b.replace(/^-ms-/, "ms-").replace(/-([\da-z])/ig, function (c, d) {
-                return d.toUpperCase()
-            }) in a) return b
+            return d.toUpperCase()
+        }) in a) return b
         s = $.oT() + b
         if (s in a) return s
         return b
@@ -12648,7 +12648,7 @@ V.ProfileMain.prototype = {
                             a3 = a1.d
                             if (C.String.bA(a3, "[0]"))
                                 if (n.J(0, a3)) n.m(0, a3, n.h(0, a3) + 1)
-                            else n.m(0, a3, 1)
+                                else n.m(0, a3, 1)
                         }
                     }
                 case 7:
@@ -13083,7 +13083,7 @@ HtmlRenderer.inner_render.prototype = {
         p = q.i("y<M.E,l*>")
         o = t.bQ
         n = P.List_List_of(new H.y(H.b(C.e.bt(0, P.List_List_of(new H.y(new H.a9(r, q),
-                new HtmlRenderer.jx(this_), p), true, p.i("M.E"))).split("\n"), t.s),
+            new HtmlRenderer.jx(this_), p), true, p.i("M.E"))).split("\n"), t.s),
             new HtmlRenderer.jy(), o), true, o.i("M.E"))
         r = n.length
         if (r > 1) {
@@ -13205,7 +13205,7 @@ HtmlRenderer.inner_render.prototype = {
                     async_goto = 6
                     // return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec(1, 0), t.z), $async$b4)
                     return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec(0, 0), t.z), $async$b4)
-                    // break
+                // break
                 case 6:
                     this_.db = null
                     this_.dx = true
@@ -13471,7 +13471,7 @@ HtmlRenderer.send_win_data.prototype = {
                     s = 2
                     // return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec(1, 0), n), $async$$0)
                     return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec(0, 0), n), $async$$0)
-                    // break
+                // break
                 case 2:
                     p = HtmlRenderer.rV(q.b, q.c)
                     win_data = P.dD(["winners",
@@ -15521,7 +15521,7 @@ T.fQ.prototype = {
         C.Array.a5(q, n.t)
         n.E = q
     },
-    cA(a) {},
+    cA(a) { },
     bf() {
         this.x = $.ao()
     }
@@ -15670,7 +15670,7 @@ T.dk.prototype = {
     gT() {
         return 0
     },
-    K(a, b) {},
+    K(a, b) { },
     $ix: 1
 }
 T.dl.prototype = {
@@ -15998,7 +15998,7 @@ T.hr.prototype = {
     gT() {
         return $.i()
     },
-    ao(a, b) {},
+    ao(a, b) { },
     au(a, b) {
         var s = this.fr,
             r = s.aC,
@@ -16051,7 +16051,7 @@ T.ea.prototype = {
     ga4() {
         return $.lG()
     },
-    ao(a, b) {},
+    ao(a, b) { },
     b1(a, b, c, d) {
         var s, r, q = this,
             p = null,
@@ -16080,7 +16080,7 @@ T.ea.prototype = {
         s.fx = s.fy
         t.ch.a(s).bi.K(null, b)
     },
-    dd(a, b) {},
+    dd(a, b) { },
     W() {
         this.r.L.j(0, this)
     },
@@ -16574,11 +16574,11 @@ T.fo.prototype = {
                     async_goto = 5
                     // return P._asyncAwait(this_.bE(), $async$O)
                     why_ns = 0
-                    // $.mc = 0 // 来自bE()
+                // $.mc = 0 // 来自bE()
                 case 5:
                     result_ = n
                     async_goto = 1
-                    // break
+                // break
                 case 4:
                     try {
                         for (; this_.cy == null;) {
@@ -17077,7 +17077,6 @@ T.Plr.prototype = {
                 this.q = attrs
             }
             if (diyskills) {
-                console.log("this.k1", this.k1)
                 this.diy_skills(diyskills)
             } else this_.dm(C.Array.cL(this_.t, $.au()), C.Array.cL(this_.E, $.au())) // initSkills
         } else {
@@ -17195,19 +17194,26 @@ T.Plr.prototype = {
         skills.push(new T.SkillVoid(0))
     },
     diy_skills(diyskills) {
-        // MARK: 自定义技能
-        var skills = this.k1
-        // 遍历diyskills字典的键
-        for (var key in diyskills) {
-            // 遍历skills数组中的对象
-            for (var i = 0; i < skills.length; i++) {
-                if (skills[i].name === key) {
-                    skills[i].f = diyskills[key];
-                    break;
+        try {
+            // MARK: 自定义技能
+            var skills = this.k1
+            var this_ = this
+            // 初始化技能
+            for (var n = 0; n < this.k2.length; n++) this.k2[n].ao(this, 0)
+            // 遍历diyskills字典的键
+            for (var key in diyskills) {
+                // 遍历skills数组中的对象
+                for (var i = 0; i < skills.length; i++) {
+                    if (skills[i].constructor.name === key) {
+                        skills[i].f = diyskills[key];
+                        // skills[i].ao(this, this.f)
+                        break;
+                    }
                 }
             }
+        } catch (error) {
+            console.error(error)
         }
-
     },
     dm(list, original) {
         // initSkills
@@ -17234,7 +17240,7 @@ T.Plr.prototype = {
                 else H.ei(sortedSkills, 0, q, J.bO())
                 q = 0
                 if (sortedSkills[q] - 10 <= q) skill.e = true
-            }++n
+            } ++n
             m += $.C() // 4
         }
         // console.log("this_.k2:",this_.k2)
@@ -17551,7 +17557,7 @@ T.Plr.prototype = {
             s.push(C.Array.dz(C.Array.al(q, $.B(), $.ap()), new T.jY()) + $.mK())
             for (r = 0; r < s.length; ++r)
                 if (o.q[r] > s[r]) n.push(H.as_string($.lO()) + H.as_string(o.q[r] - s[r]))
-            else n.push("")
+                else n.push("")
         }
         return H.as_string(o.e) + "\t" + H.as_string(o.r) + "\t" + H.as_string(o.c) + "\t" + H.as_string(o.f) + "\t" + H.as_string(o.fy) + n[$.ap()] + "\t" + H.as_string(o.aY(o.q[0])) + n[0] + "\t" + H.as_string(o.aY(o.q[$.i()])) + n[$.i()] + "\t" + H.as_string(o.aY(o.q[$.t()])) + n[$.t()] + "\t" + H.as_string(o.aY(o.q[$.B()])) + n[$.B()] + "\t" + H.as_string(o.aY(o.q[$.C()])) + n[$.C()] + "\t" + H.as_string(o.aY(o.q[$.X()])) + n[$.X()] + "\t" + H.as_string(o.aY(o.q[$.a4()])) + n[$.a4()] + "\t" + H.as_string(o.cE())
     },
@@ -17589,7 +17595,7 @@ T.jY.prototype = {
     $S: 15
 }
 T.x.prototype = {
-    K(a, b) {}
+    K(a, b) { }
 }
 T.aZ.prototype = {}
 T.cB.prototype = {}
@@ -17662,7 +17668,7 @@ T.Skill.prototype = {
         if (b > s) this.f = b
         else this.f = s
     },
-    W() {},
+    W() { },
     b9(a) {
         var s = this.gap().z
         return a.fm(s.a.e, s.f)
@@ -17676,8 +17682,8 @@ T.Skill.prototype = {
     bx(a, b, c, d) {
         if (b)
             if (this.gap().y.a.Q > $.t()) return T.f_(a) * a.y.f.length * a.H
-        else if (d) return T.f_(a) * a.M * a.H
-        else return $.i() / T.f_(a) * a.N * a.H
+            else if (d) return T.f_(a) * a.M * a.H
+            else return $.i() / T.f_(a) * a.N * a.H
         return c.gbo() + a.H
     },
     gb7() {
@@ -17889,7 +17895,7 @@ T.SklMerge.prototype = {
                         m.W()
                     } else m.f = q
                     o = true
-                }++s
+                } ++s
             }
             r = a.go
             q = k.r
@@ -18338,7 +18344,7 @@ T.hg.prototype = {
         var s = this.fx
         if (s != null && s.fx > 0)
             if (b) return s.y != this.r.y
-        else return a.n() < 128
+            else return a.n() < 128
         return false
     },
     W() {
@@ -18384,20 +18390,20 @@ T.fl.prototype = {
     gT() {
         return 0
     },
-    K(a, b) {},
+    K(a, b) { },
     $ix: 1
 }
 T.jq.prototype = {
-    b3(a) {},
-    bn() {},
+    b3(a) { },
+    bn() { },
     b6() {
         this.c.r2.m(0, $.a7(), new T.fl())
     }
 }
 T.jN.prototype = {
-    b3(a) {},
-    bn() {},
-    b6() {}
+    b3(a) { },
+    bn() { },
+    b6() { }
 }
 T.k1.prototype = {
     cs() {
@@ -18842,8 +18848,8 @@ T.hc.prototype = {
     }
 }
 T.kv.prototype = {
-    b3(a) {},
-    bn() {},
+    b3(a) { },
+    bn() { },
     b6() {
         var s = new T.hc(0),
             r = this.c
@@ -19034,16 +19040,16 @@ LangData.k_.prototype = {
     inherit(P.Object, null)
     inherit_many(P.Object,
         [H.m8, J.Interceptor, J.db, P.O, P.ev, P.L, H.cv, P.fv, H.du, H.hV, H.kh, H.jR, H.dt, H.eE, H.c_, P.aU, H.jK, H.fA,
-            H.JSSyntaxRegExp, H.ew, H.kz, H.bK, H.l3, H.aW, H.ib, H.iu,
-            P.l8, P.i_, P.f3, P.i4, P.cN,
-            P._Future, P.i0, P.em, P.hO, P.hP, P.im, P.i1, P.i3, P.i7, P.ii, P.io, P.lf, P.eM, P.kV, P.ie, P.z, P.dY, P.fg, P.js, P.lc, P.lb, P.dq,
-            P.Duration, P.fM, P.el, P.kG, P.jm, P.N, P.iq, P.cH,
-            W.j8, W.m5, W.cP, W.cr, W.dN, W.eD, W.is, W.dv, W.kE, W.l_, W.ix,
-            P._StructuredClone, P.kw, P.eJ, P.jQ, P.kT, Y.RC4, L.ProfileWinChance, V.ProfileMain, X.ProfileFind,
-            S.fK,
-            HtmlRenderer.inner_render, HtmlRenderer.jT, HtmlRenderer.ax,
-            Sgls.a_, Sgls.n,
-            T.x, T.Plr, T.dk, T.fo, T.b7, T.IPlr, T.HDamage, T.HRecover, T.aX, T.aq, T.bG, T.Weapon, T.fl
+        H.JSSyntaxRegExp, H.ew, H.kz, H.bK, H.l3, H.aW, H.ib, H.iu,
+        P.l8, P.i_, P.f3, P.i4, P.cN,
+        P._Future, P.i0, P.em, P.hO, P.hP, P.im, P.i1, P.i3, P.i7, P.ii, P.io, P.lf, P.eM, P.kV, P.ie, P.z, P.dY, P.fg, P.js, P.lc, P.lb, P.dq,
+        P.Duration, P.fM, P.el, P.kG, P.jm, P.N, P.iq, P.cH,
+        W.j8, W.m5, W.cP, W.cr, W.dN, W.eD, W.is, W.dv, W.kE, W.l_, W.ix,
+        P._StructuredClone, P.kw, P.eJ, P.jQ, P.kT, Y.RC4, L.ProfileWinChance, V.ProfileMain, X.ProfileFind,
+        S.fK,
+        HtmlRenderer.inner_render, HtmlRenderer.jT, HtmlRenderer.ax,
+        Sgls.a_, Sgls.n,
+        T.x, T.Plr, T.dk, T.fo, T.b7, T.IPlr, T.HDamage, T.HRecover, T.aX, T.aq, T.bG, T.Weapon, T.fl
         ]
     )
     inherit_many(J.Interceptor, [J.fw, J.cs, J.bE, J.JsArray, J.JsNumber, J.JsString, H.dJ, H.ab, W.fn, W.Blob, W.CanvasRenderingContext2D, W.i6, W.bb, W.ja, W.jb, W.o, W.c4, W.jL, W.ig, W.il, W.iy, W.iA])
@@ -19062,17 +19068,17 @@ LangData.k_.prototype = {
     inherit(H.NullError, P.bc)
     inherit_many(H.c_,
         [H.j5, H.j6, H.kg, H.jH, H.lv, H.lx,
-            P.kB, P.kA, P.lh, P.kK, P.kS, P.ke, P.kZ, P.Duration_toString_sixDigits, P.Duration_toString_twoDigits,
-            W.jf, W.kF, W.jP, W.jO, W.l0, W.l1, W.l7,
-            P.lE, P.lF,
-            L.iS, L.iT, L.iU,
-            V.j0, V.j1,
-            X.iX, X.iY, X.iZ,
-            HtmlRenderer.jx, HtmlRenderer.jy, HtmlRenderer.jw, HtmlRenderer.jz, HtmlRenderer.jB,
-            HtmlRenderer.jC, HtmlRenderer.jD, HtmlRenderer.jV, HtmlRenderer.lp, HtmlRenderer.lq,
-            Sgls.k5, Sgls.k6,
-            T.k9, T.jk, T.jj, T.jl, T.ji, T.lD, T.BoostPassive, T.k3, T.kb, T.ko, T.kp,
-            LangData.k_
+        P.kB, P.kA, P.lh, P.kK, P.kS, P.ke, P.kZ, P.Duration_toString_sixDigits, P.Duration_toString_twoDigits,
+        W.jf, W.kF, W.jP, W.jO, W.l0, W.l1, W.l7,
+        P.lE, P.lF,
+        L.iS, L.iT, L.iU,
+        V.j0, V.j1,
+        X.iX, X.iY, X.iZ,
+        HtmlRenderer.jx, HtmlRenderer.jy, HtmlRenderer.jw, HtmlRenderer.jz, HtmlRenderer.jB,
+        HtmlRenderer.jC, HtmlRenderer.jD, HtmlRenderer.jV, HtmlRenderer.lp, HtmlRenderer.lq,
+        Sgls.k5, Sgls.k6,
+        T.k9, T.jk, T.jj, T.jl, T.ji, T.lD, T.BoostPassive, T.k3, T.kb, T.ko, T.kp,
+        LangData.k_
         ]
     )
     inherit_many(H.kg, [H.kc, H.dg])
@@ -19130,20 +19136,20 @@ LangData.k_.prototype = {
     inherit_many(Sgls.n, [T.Skill, T.aZ, T.aB, T.bq, T.cB, T.bH, T.ah, T.aV, T.aF])
     inherit_many(T.Skill,
         [T.ActionSkill, T.h6, T.he, T.hn, T.hq, T.ea, T.ef,
-            T.SklCounter, T.SklDefend, T.SklHide, T.SklMerge, T.SklProtect,
-            T.SklReflect, T.SklReraise, T.SklShield, T.SklUpgrade, T.SklZombie
+        T.SklCounter, T.SklDefend, T.SklHide, T.SklMerge, T.SklProtect,
+        T.SklReflect, T.SklReraise, T.SklShield, T.SklUpgrade, T.SklZombie
         ]
     )
     inherit_many(T.ActionSkill,
         [T.SklAbsorb, T.SklAccumulate, T.SklAssassinate, T.dd, T.SklBerserk,
-            T.SklCharge, T.SklCharm, T.SklClone, T.SklCritical, T.SklCurse,
-            T.SklDisperse, T.SklExchange, T.SklFire, T.sklHalf, T.SklHaste,
-            T.SklHeal, T.SklIce, T.SklIron, T.SklPoison, T.SklQuake,
-            T.SklRapid, T.SklRevive, T.hu, T.SklShadow, T.SklSlow,
-            T.hj, T.SklSummon, T.SklThunder,
-            T.e2, T.hb, T.dl, T.hd, T.hm,
-            T.dB, T.hp, T.hr, T.hA, T.h8,
-            T.hD, T.SkillVoid, T.hg, T.ee, T.hz
+        T.SklCharge, T.SklCharm, T.SklClone, T.SklCritical, T.SklCurse,
+        T.SklDisperse, T.SklExchange, T.SklFire, T.sklHalf, T.SklHaste,
+        T.SklHeal, T.SklIce, T.SklIron, T.SklPoison, T.SklQuake,
+        T.SklRapid, T.SklRevive, T.hu, T.SklShadow, T.SklSlow,
+        T.hj, T.SklSummon, T.SklThunder,
+        T.e2, T.hb, T.dl, T.hd, T.hm,
+        T.dB, T.hp, T.hr, T.hA, T.h8,
+        T.hD, T.SkillVoid, T.hg, T.ee, T.hz
         ]
     )
     inherit_many(T.aZ, [T.dj, T.dw, T.dx, T.eh, T.bd, T.h1])
@@ -20500,7 +20506,7 @@ var t = (function rtii() {
         var r = "___dart_isolate_tags_"
         var q = Object[r] || (Object[r] = Object.create(null))
         var p = "_ZxYxX"
-        for (var o = 0;; o++) {
+        for (var o = 0; ; o++) {
             var n = p + "_" + o + "_"
             if (!(n in q)) {
                 q[n] = 1
