@@ -5447,6 +5447,7 @@ var A = {
                     $.vq = r.length > s && C.String.a8(r, s) === $.q0() ? $.pE() : $.mS()
                     return a1
                 }
+                // boosted
                 if ($.nr().J(0, name)) {
                     s = $.cl()
                     r = $.nr().h(0, name)
@@ -5488,7 +5489,7 @@ var A = {
                     a0 = H.b([], c)
                     c = H.b([], c)
                     a1 = 0
-                    a1 = new T.fP(r, name, s, name, weapon_name, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                    a1 = new T.PlrBoost(r, name, s, name, weapon_name, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                     a1.a1(name, s, name, weapon_name)
                     a1.e1(name, s, r, weapon_name)
                     return a1
@@ -6475,7 +6476,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        fP: function fP(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7, a8) {
+        PlrBoost: function fP(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7, a8) {
             var _ = this
             _.a6 = a
             _.a = b
@@ -15463,7 +15464,7 @@ T.e2.prototype = {
         }
     }
 }
-T.fP.prototype = {
+T.PlrBoost.prototype = {
     e1(a, b, c, d) {
         var s, r, q, p, o = this
         for (s = $.a4(), r = o.a6; s < $.b1(); ++s) {
@@ -19189,7 +19190,7 @@ LangData.k_.prototype = {
     )
     inherit_many(T.aZ, [T.dj, T.dw, T.dx, T.eh, T.bd, T.h1])
     inherit_many(T.x, [T.dI, T.c3, T.hF, T.fC, T.hY])
-    inherit_many(T.Plr, [T.dR, T.aM, T.cz, T.fP, T.PlrBossTest, T.PlrBossTest2, T.fQ, T.cy])
+    inherit_many(T.Plr, [T.dR, T.aM, T.cz, T.PlrBoost, T.PlrBossTest, T.PlrBossTest2, T.fQ, T.cy])
     inherit_many(T.aB, [T.dn, T.dT, T.ik])
     inherit_many(T.bq, [T.dS, T.b8])
     inherit_many(T.aM, [T.PlrShadow, T.PlrSummon, T.fX])
