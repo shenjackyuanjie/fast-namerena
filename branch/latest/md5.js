@@ -4850,6 +4850,7 @@ var A = {
             return s
         },
         jS(a4, a5, a6, a7) {
+            // MARK: WTF 什么鬼这么长
             var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, a3 = null
             if (a5 == $.nk()) {
                 s = 0
