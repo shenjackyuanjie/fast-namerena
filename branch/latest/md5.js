@@ -18979,16 +18979,17 @@ LangData.k_.prototype = {
     s.dV = s.cs
 })();
 (function installTearOffs() {
+    // MARK: 静态实例
     var static_2 = hunkHelpers._static_2,
         static_1 = hunkHelpers._static_1,
         static_0 = hunkHelpers._static_0,
         instance_2u = hunkHelpers._instance_2u,
         install_static_tearoff = hunkHelpers.installStaticTearOff,
         instance_1i = hunkHelpers._instance_1i,
-        m = hunkHelpers._instance_0i,
-        l = hunkHelpers._instance_1u,
-        k = hunkHelpers.installInstanceTearOff,
-        j = hunkHelpers._instance_0u
+        instance_0i = hunkHelpers._instance_0i,
+        instance_1u = hunkHelpers._instance_1u,
+        install_instance_tear_off = hunkHelpers.installInstanceTearOff,
+        instance_0u = hunkHelpers._instance_0u
     static_2(J, "bO", "t1", 59)
     static_1(H, "uv", "mv", 10)
     static_1(P, "uK", "_AsyncRun__scheduleImmediateJsOverride", 4)
@@ -19000,12 +19001,16 @@ LangData.k_.prototype = {
     install_static_tearoff(W, "uV", 4, null, ["$4"], ["tT"], 20, 0)
     install_static_tearoff(W, "uW", 4, null, ["$4"], ["tU"], 20, 0)
     static_2(HtmlRenderer, "oD", "rU", 62)
-    var i
-    instance_1i(i = HtmlRenderer.inner_render.prototype, "gfb", "fc", 31)
-    instance_1i(i, "gff", "ds", 8)
-    m(i, "gbc", "dI", 0)
-    l(i, "gfd", "fe", 33)
-    k(i, "gel", 0, 0, null, ["$1", "$0"], ["c5", "em"], 34, 0, 0)
+
+    let html_holder
+    instance_1i(html_holder = HtmlRenderer.inner_render.prototype, "gfb", "fc", 31)
+    instance_1i(html_holder, "gff", "ds", 8)
+    instance_0i(html_holder, "gbc", "dI", 0)
+    instance_1u(html_holder, "gfd", "fe", 33)
+    install_instance_tear_off(html_holder, "gel", 0, 0, null, ["$1", "$0"], ["c5", "em"], 34, 0, 0)
+    instance_0u(html_holder = T.Plr.prototype, "gfJ", "fK", 19)
+    instance_0u(html_holder, "gbT", "dE", 19)
+
     static_1(Sgls, "vg", "tv", 8)
     install_static_tearoff(T, "v6", 5, null, ["$5"], ["ty"], 1, 0)
     install_static_tearoff(T, "v7", 5, null, ["$5"], ["tA"], 1, 0)
@@ -19021,9 +19026,7 @@ LangData.k_.prototype = {
     static_2(T, "v5", "t6", 43)
     install_static_tearoff(T, "ad", 5, null, ["$5"], ["tx"], 1, 0)
     install_static_tearoff(T, "oH", 5, null, ["$5"], ["tz"], 1, 0)
-    k(T.dl.prototype, "gf9", 0, 5, null, ["$5"], ["fa"], 1, 0, 0)
-    j(i = T.Plr.prototype, "gfJ", "fK", 19)
-    j(i, "gbT", "dE", 19)
+    install_instance_tear_off(T.dl.prototype, "gf9", 0, 5, null, ["$5"], ["fa"], 1, 0, 0)
     instance_2u(T.SklCounter.prototype, "gdr", "f8", 54)
 })();
 (function inheritance() {
