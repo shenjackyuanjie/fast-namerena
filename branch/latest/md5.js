@@ -5121,7 +5121,7 @@ var A = {
                     a0 = H.b([], c)
                     c = H.b([], c)
                     a1 = 0
-                    a1 = new T.fd(name, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                    a1 = new T.PlrBossMosquito(name, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                     a1.a1(name, s, r, a3)
                     a1.av(name, s)
                     return a1
@@ -7155,7 +7155,7 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        fd: function fd(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
+        PlrBossMosquito: function fd(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
             var _ = this
             _.a = a
             _.b = b
@@ -16301,7 +16301,7 @@ T.PlrBossMario.prototype = {
         s.push(r)
     }
 }
-T.fd.prototype = {
+T.PlrBossMosquito.prototype = {
     gan() {
         return H.b([$.pt(), $.d1(), $.mX(), $.n2(), $.bg(), $.X(), $.at(), $.eW()], t.i)
     },
@@ -19181,7 +19181,7 @@ LangData.k_.prototype = {
     inherit_many(T.aB, [T.dn, T.dT, T.ik])
     inherit_many(T.bq, [T.dS, T.b8])
     inherit_many(T.aM, [T.PlrShadow, T.PlrSummon, T.fX])
-    inherit_many(T.cz, [T.f5, T.f6, T.PlrBossCovid, T.f8, T.de, T.df, T.PlrBossSonic, T.fa, T.PlrBossSlime, T.PlrBossMario, T.fd])
+    inherit_many(T.cz, [T.f5, T.f6, T.PlrBossCovid, T.f8, T.de, T.df, T.PlrBossSonic, T.fa, T.PlrBossSlime, T.PlrBossMario, T.PlrBossMosquito])
     inherit(T.fR, T.cy)
     inherit(T.fb, T.PlrBossSlime)
     inherit(T.eg, T.SklCharm)
