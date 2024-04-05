@@ -19661,33 +19661,40 @@ var t = (function rtii() {
         return "!test!"
     })
     lazy_old($, "zm", "nk", function () {
-        return LangData.j("lA", 39)
+        // return LangData.j("lA", 39)
+        return "\u0002"
     })
     lazy_old($, "zn", "qR", function () {
-        return LangData.j("iA", 33)
+        // return LangData.j("iA", 33)
+        return "\u0003"
     })
     lazy_old($, "yN", "iK", function () {
         // return O.j("=+A", 37)
         return "??"
     })
     lazy_old($, "y2", "d2", function () {
-        return LangData.j("+R/Iv*Y(WVEu;E", 21)
+        // return LangData.j("+R/Iv*Y(WVEu;E", 21)
+        return "assassinate"
     })
     lazy_old($, "yi", "d3", function () {
-        return LangData.j("<R;2&`|zWV", 30)
+        // return LangData.j("<R;2&`|zWV", 30)
+        return "exchange"
     })
     lazy_old($, "ym", "eZ", function () {
         // return LangData.j("U|,?M", 1)
         return "half"
     })
     lazy_old($, "y7", "a7", function () {
-        return LangData.j("@k%.*'GC", 5)
+        // return LangData.j("@k%.*'GC", 5)
+        return "charge"
     })
     lazy_old($, "yk", "eY", function () {
-        return LangData.j("K[WvM", 87)
+        // return LangData.j("K[WvM", 87)
+        return "fire"
     })
     lazy_old($, "yr", "bS", function () {
-        return LangData.j("OZFE", 74)
+        // return LangData.j("OZFE", 74)
+        return "ice"
     })
     lazy_old($, "y_", "lN", function () {
         // return LangData.j("w1{fb_W(wTt-B", 16)
@@ -21306,4 +21313,4 @@ function main() {
 
 main();
 // logger.debug("running main:", main()) // 执行main函数
-logger.debug("反混淆", LangData.j("jtK1|]A", 31))
+logger.debug("反混淆", LangData.j("lA", 39))
