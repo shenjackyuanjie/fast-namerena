@@ -1846,7 +1846,7 @@ var A = {
         ab: function ab() {},
         cw: function cw() {},
         c9: function c9() {},
-        dK: function dK() {},
+        NativeTypedArrayOfInt: function dK() {},
         fE: function fE() {},
         fF: function fF() {},
         fG: function fG() {},
@@ -9563,7 +9563,7 @@ H.c9.prototype = {
     $iA: 1,
     $iw: 1
 }
-H.dK.prototype = {
+H.NativeTypedArrayOfInt.prototype = {
     m(a, b, c) {
         H._checkValidIndex(b, a, a.length)
         a[b] = c
@@ -19095,8 +19095,8 @@ LangData.k_.prototype = {
     inherit(H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin, H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin)
     inherit(H.c9, H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin)
     inherit(H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin_FixedLengthListMixin, H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin)
-    inherit(H.dK, H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin_FixedLengthListMixin)
-    inherit_many(H.dK, [H.fE, H.fF, H.fG, H.fH, H.fI, H.dL, H.cx])
+    inherit(H.NativeTypedArrayOfInt, H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin_FixedLengthListMixin)
+    inherit_many(H.NativeTypedArrayOfInt, [H.fE, H.fF, H.fG, H.fH, H.fI, H.dL, H.cx])
     inherit(H.eI, H.i9)
     inherit_many(H.j5, [P.kC, P.kD, P._TimerImpl_internalCallback, P.jp, P.kH, P.kO, P.kM, P.kJ, P.kN, P.kI, P.kR, P.kQ, P.kP, P.kf, P.l2, P.kW, P.lo, P.kY, P.km, P.kl, X.je, X.j9, HtmlRenderer.send_win_data, Sgls.k4])
     inherit(P.cg, P.i4)
@@ -21110,7 +21110,7 @@ var t = (function rtii() {
     H.c9.$nativeSuperclassTag = "ArrayBufferView"
     H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin.$nativeSuperclassTag = "ArrayBufferView"
     H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin_FixedLengthListMixin.$nativeSuperclassTag = "ArrayBufferView"
-    H.dK.$nativeSuperclassTag = "ArrayBufferView"
+    H.NativeTypedArrayOfInt.$nativeSuperclassTag = "ArrayBufferView"
 })()
 Function.prototype.$2 = function (a, b) {
     return this(a, b)
