@@ -4986,7 +4986,7 @@ var A = {
                     a1 = H.b([], b)
                     b = H.b([], b)
                     a2 = 0
-                    a2 = new T.df(r, name, s, q, a3, p, o, n, m, l, k, j, i, h, g, f, e, d, c, a, a0, a1, b, a2, a2, a2, $.W(), a2)
+                    a2 = new T.PlrBossMario(r, name, s, q, a3, p, o, n, m, l, k, j, i, h, g, f, e, d, c, a, a0, a1, b, a2, a2, a2, $.W(), a2)
                     a2.a1(name, s, q, a3)
                     a2.av(name, s)
                     return a2
@@ -5031,7 +5031,7 @@ var A = {
                     a0 = H.b([], c)
                     c = H.b([], c)
                     a1 = 0
-                    a1 = new T.PlrBossMario(name, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                    a1 = new T.PlrBossSonic(name, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                     a1.a1(name, s, r, a3)
                     a1.av(name, s)
                     return a1
@@ -5076,7 +5076,7 @@ var A = {
                     a0 = H.b([], c)
                     c = H.b([], c)
                     a1 = 0
-                    a1 = new T.PlrBossSonic(name, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                    a1 = new T.PlrBossMosquito(name, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                     a1.a1(name, s, r, a3)
                     a1.av(name, s)
                     return a1
@@ -5121,7 +5121,7 @@ var A = {
                     a0 = H.b([], c)
                     c = H.b([], c)
                     a1 = 0
-                    a1 = new T.PlrBossMosquito(name, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                    a1 = new T.PlrBossYuri(name, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                     a1.a1(name, s, r, a3)
                     a1.av(name, s)
                     return a1
@@ -5167,7 +5167,7 @@ var A = {
                     a0 = H.b([], c)
                     c = H.b([], c)
                     a1 = 0
-                    a1 = new T.PlrBossYuri(name, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                    a1 = new T.PlrBossIkaruga(name, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                     a1.a1(name, s, r, a3)
                     a1.av(name, s)
                     return a1
@@ -6740,7 +6740,7 @@ var A = {
             _.f = b
             _.c = _.b = _.a = _.r = null
         },
-        PlrBossYuri: function f8(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
+        PlrBossIkaruga: function f8(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
             var _ = this
             _.a = a
             _.b = b
@@ -6851,7 +6851,7 @@ var A = {
             _.f = c
             _.c = _.b = _.a = _.r = null
         },
-        df: function df(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7, a8) {
+        PlrBossMario: function df(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7, a8) {
             var _ = this
             _.aC = a
             _.aR = _.bi = _.aj = null
@@ -6905,7 +6905,7 @@ var A = {
             _.f = b
             _.c = _.b = _.a = _.r = null
         },
-        PlrBossSonic: function f9(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
+        PlrBossMosquito: function f9(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
             var _ = this
             _.a = a
             _.b = b
@@ -7117,7 +7117,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        PlrBossMario: function fc(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
+        PlrBossSonic: function fc(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
             var _ = this
             _.a = a
             _.b = b
@@ -7155,7 +7155,7 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        PlrBossMosquito: function fd(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
+        PlrBossYuri: function fd(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
             var _ = this
             _.a = a
             _.b = b
@@ -15797,7 +15797,7 @@ T.hd.prototype = {
         return this.fr
     }
 }
-T.PlrBossYuri.prototype = {
+T.PlrBossIkaruga.prototype = {
     gan() {
         return H.b([$.aI(), $.iI(), $.mN(), $.mW(), $.Z(), $.mL(), $.mT(), $.mJ()], t.i)
     },
@@ -15960,7 +15960,7 @@ T.hp.prototype = {
         return this.fr
     }
 }
-T.df.prototype = {
+T.PlrBossMario.prototype = {
     gan() {
         return H.b([0, $.lL(), $.d1(), $.mX(), $.iI(), $.iH(), $.eT(), $.n0()], t.i)
     },
@@ -16088,7 +16088,7 @@ T.ea.prototype = {
     },
     $iaF: 1
 }
-T.PlrBossSonic.prototype = {
+T.PlrBossMosquito.prototype = {
     gan() {
         return H.b([-$.B(), $.eW(), $.pv(), $.pY(), $.X(), $.ap(), $.cY(), -$.lK()], t.i)
     },
@@ -16272,7 +16272,7 @@ T.ef.prototype = {
     },
     $iaF: 1
 }
-T.PlrBossMario.prototype = {
+T.PlrBossSonic.prototype = {
     gan() {
         var s = $.Z(),
             r = $.a4(),
@@ -16301,7 +16301,7 @@ T.PlrBossMario.prototype = {
         s.push(r)
     }
 }
-T.PlrBossMosquito.prototype = {
+T.PlrBossYuri.prototype = {
     gan() {
         return H.b([$.pt(), $.d1(), $.mX(), $.n2(), $.bg(), $.X(), $.at(), $.eW()], t.i)
     },
@@ -19181,7 +19181,7 @@ LangData.k_.prototype = {
     inherit_many(T.aB, [T.dn, T.dT, T.ik])
     inherit_many(T.bq, [T.dS, T.b8])
     inherit_many(T.aM, [T.PlrShadow, T.PlrSummon, T.fX])
-    inherit_many(T.cz, [T.f5, T.f6, T.PlrBossCovid, T.PlrBossYuri, T.de, T.df, T.PlrBossSonic, T.fa, T.PlrBossSlime, T.PlrBossMario, T.PlrBossMosquito])
+    inherit_many(T.cz, [T.f5, T.f6, T.PlrBossCovid, T.PlrBossIkaruga, T.de, T.PlrBossMario, T.PlrBossMosquito, T.fa, T.PlrBossSlime, T.PlrBossSonic, T.PlrBossYuri])
     inherit(T.fR, T.cy)
     inherit(T.fb, T.PlrBossSlime)
     inherit(T.eg, T.SklCharm)
