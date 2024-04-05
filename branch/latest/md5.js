@@ -1856,7 +1856,7 @@ var A = {
         cx: function cx() {},
         _NativeTypedArrayOfDouble_NativeTypedArray_ListMixin: function ey() {},
         _NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin: function ez() {},
-        eA: function eA() {},
+        _NativeTypedArrayOfInt_NativeTypedArray_ListMixin: function eA() {},
         eB: function eB() {},
         Rti__getQuestionFromStar(a, b) {
             var s = b.c
@@ -9622,7 +9622,7 @@ H.cx.prototype = {
 }
 H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin.prototype = {}
 H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin.prototype = {}
-H.eA.prototype = {}
+H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin.prototype = {}
 H.eB.prototype = {}
 H.Rti.prototype = {
     i(a) {
@@ -19091,10 +19091,10 @@ LangData.k_.prototype = {
     inherit_many(H.j6, [H.lw, P.li, P._wrapJsFunctionForAsync_closure, P.kL, P.jM, W.kd, W.le, P.l5, P.l6, P.ky, V.j_, HtmlRenderer.jA, Sgls.k7, LangData.lA, T.ka, T.jX, T.jY, T.k2, T.kq, T.kr, T.ks, T.kt, T.ku])
     inherit(H.hZ, P.dy)
     inherit(H.cw, H.ab)
-    inherit_many(H.cw, [H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin, H.eA])
+    inherit_many(H.cw, [H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin, H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin])
     inherit(H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin, H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin)
     inherit(H.c9, H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin)
-    inherit(H.eB, H.eA)
+    inherit(H.eB, H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin)
     inherit(H.dK, H.eB)
     inherit_many(H.dK, [H.fE, H.fF, H.fG, H.fH, H.fI, H.dL, H.cx])
     inherit(H.eI, H.i9)
@@ -19183,7 +19183,7 @@ LangData.k_.prototype = {
     mixin(H.cJ, H.hV)
     mixin(H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin, P.z)
     mixin(H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin, H.du)
-    mixin(H.eA, P.z)
+    mixin(H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin, P.z)
     mixin(H.eB, H.du)
     mixin(P.cK, P.i1)
     mixin(P.ev, P.z)
@@ -21108,7 +21108,7 @@ var t = (function rtii() {
     H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin.$nativeSuperclassTag = "ArrayBufferView"
     H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin.$nativeSuperclassTag = "ArrayBufferView"
     H.c9.$nativeSuperclassTag = "ArrayBufferView"
-    H.eA.$nativeSuperclassTag = "ArrayBufferView"
+    H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin.$nativeSuperclassTag = "ArrayBufferView"
     H.eB.$nativeSuperclassTag = "ArrayBufferView"
     H.dK.$nativeSuperclassTag = "ArrayBufferView"
 })()
