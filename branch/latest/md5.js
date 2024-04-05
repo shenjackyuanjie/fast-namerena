@@ -4040,6 +4040,7 @@ var A = {
             return new H.aT(a.i("@<0>").aL(b).i("aT<1,2>"))
         },
         dD(a, b, c) {
+            // Map<String, int>
             return H.uQ(a, new H.aT(b.i("@<0>").aL(c).i("aT<1,2>")))
         },
         cu(a, b) {
@@ -19359,8 +19360,8 @@ var t = (function rtii() {
         eb: find_type("e0*"),
         c5: find_type("q*"),
         S: find_type("eh*"),
-        X: find_type("m*"),
-        B: find_type("l*"),
+        X: find_type("m*"), // String
+        B: find_type("l*"), // int
         bG: find_type("bl<N>?"),
         cK: find_type("H?"),
         di: find_type("vc"),
@@ -19823,7 +19824,8 @@ var t = (function rtii() {
         return "covid"
     })
     lazy_old($, "zc", "qL", function () {
-        return LangData.j("ki9e8.M(G", 13)
+        // return LangData.j("ki9e8.M(G", 13)
+        return "saitama"
     })
     lazy_old($, "yP", "iL", function () {
         // return LangData.j("5,G0b3[B", 51)
@@ -20004,7 +20006,15 @@ var t = (function rtii() {
         return "https://deepmess.com/zh/namerena/"
     })
     lazy_old($, "zN", "nr", function () {
-        return P.dD([LangData.j("JIi6cgXO*d_", 22), $.iH(), LangData.j("Fmi6Vr!~c@]4ElFk,dC", 55), $.mO(), LangData.j("OeQh>Rep f~;YzR^Y%E", 16), $.lK()], t.X, t.B)
+        // return P.dD([LangData.j("JIi6cgXO*d_", 22), $.iH(), LangData.j("Fmi6Vr!~c@]4ElFk,dC", 55), $.mO(), LangData.j("OeQh>Rep f~;YzR^Y%E", 16), $.lK()], t.X, t.B)
+        /*  static Map<String, int> boosted = {
+            b('田一人'):18,
+            b('云剑狄卡敢'):25,
+            b('云剑穸跄祇'):35
+          };*/
+        return P.dD(
+            ["田一人", 18, "云剑狄卡敢", 25, "云剑穸跄祇", 35], t.X, t.B
+        )
     })
     lazy_old($, "zE", "r0", function () {
         return P.RegExp_RegExp("^\\s+[:@]*\\s*")
@@ -20234,7 +20244,8 @@ var t = (function rtii() {
         return X.k("uEp>@P0sNE", 48)
     })
     lazy_old($, "x4", "lK", function () {
-        return X.k("BcQuPEPOSD", 37)
+        // return X.k("BcQuPEPOSD", 37)
+        return 35
     })
     lazy_old($, "xV", "q5", function () {
         return X.k("_qlY:A@~RE", 97)
@@ -20252,7 +20263,8 @@ var t = (function rtii() {
         return X.k("o.qW!KX[gF", 31)
     })
     lazy_old($, "wE", "mO", function () {
-        return X.k("#U<=KBe&GC", 24)
+        // return X.k("#U<=KBe&GC", 24)
+        return 25
     })
     lazy_old($, "wL", "iI", function () {
         return X.k("s4Ff$Io{jB", 16)
@@ -20270,7 +20282,8 @@ var t = (function rtii() {
         return X.k("ji|Q32jBxF", 64)
     })
     lazy_old($, "we", "iH", function () {
-        return X.k("6GYapjUG%F", 33)
+        // return X.k("6GYapjUG%F", 33)
+        return 18
     })
     lazy_old($, "x1", "mT", function () {
         return X.k("'Y_#*mIydE", 25)
@@ -21349,6 +21362,6 @@ function main() {
     return P._asyncStartSync($async$iE, async_completer)
 }
 
-logger.debug("反混淆", LangData.j("6ct2H)A", 11))
+logger.debug("反混淆", $.nr())
 main();
 // logger.debug("running main:", main()) // 执行main函数
