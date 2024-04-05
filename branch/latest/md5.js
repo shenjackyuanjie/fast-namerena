@@ -18950,29 +18950,39 @@ LangData.k_.prototype = {
     }
 };
 (function aliases() {
+    // MARK: 类型别名
     var s = J.Interceptor.prototype
     s.dO = s.k
+
     s = J.bE.prototype
     s.dQ = s.k
+
     s = P.L.prototype
     s.dP = s.bV
+
     s = W.Element.prototype
     s.bY = s.aA
+
     s = W.eD.prototype
     s.dX = s.aM
+
     s = T.cz.prototype
     s.cM = s.a7
+
     s = T.Plr.prototype
     s.bB = s.aU
     s.dS = s.bP
     s.dR = s.bs
     s.dT = s.F
+
     s = T.Skill.prototype
     s.bC = s.a9
     s.bZ = s.bx
     s.dU = s.aa
+
     s = T.ActionSkill.prototype
     s.aX = s.au
+
     s = T.Weapon.prototype
     s.cN = s.b3
     s.dW = s.bn
