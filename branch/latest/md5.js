@@ -1844,7 +1844,7 @@ var A = {
         },
         dJ: function dJ() {},
         ab: function ab() {},
-        cw: function cw() {},
+        NativeTypedArray: function cw() {},
         NativeTypedArrayOfDouble: function c9() {},
         NativeTypedArrayOfInt: function dK() {},
         fE: function fE() {},
@@ -9545,7 +9545,7 @@ H.dJ.prototype = {
 H.ab.prototype = {
     $iab: 1
 }
-H.cw.prototype = {
+H.NativeTypedArray.prototype = {
     gp(a) {
         return a.length
     },
@@ -19090,8 +19090,8 @@ LangData.k_.prototype = {
     inherit_many(P.dG, [H.aT, P.ic, W.i2])
     inherit_many(H.j6, [H.lw, P.li, P._wrapJsFunctionForAsync_closure, P.kL, P.jM, W.kd, W.le, P.l5, P.l6, P.ky, V.j_, HtmlRenderer.jA, Sgls.k7, LangData.lA, T.ka, T.jX, T.jY, T.k2, T.kq, T.kr, T.ks, T.kt, T.ku])
     inherit(H.hZ, P.dy)
-    inherit(H.cw, H.ab)
-    inherit_many(H.cw, [H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin, H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin])
+    inherit(H.NativeTypedArray, H.ab)
+    inherit_many(H.NativeTypedArray, [H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin, H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin])
     inherit(H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin, H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin)
     inherit(H.NativeTypedArrayOfDouble, H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin)
     inherit(H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin_FixedLengthListMixin, H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin)
@@ -21104,7 +21104,7 @@ var t = (function rtii() {
         SVGMPathElement: true,
         SVGElement: false
     })
-    H.cw.$nativeSuperclassTag = "ArrayBufferView"
+    H.NativeTypedArray.$nativeSuperclassTag = "ArrayBufferView"
     H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin.$nativeSuperclassTag = "ArrayBufferView"
     H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin.$nativeSuperclassTag = "ArrayBufferView"
     H.NativeTypedArrayOfDouble.$nativeSuperclassTag = "ArrayBufferView"
