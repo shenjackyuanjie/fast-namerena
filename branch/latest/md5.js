@@ -6301,7 +6301,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        fS: function fS(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
+        PlrShadow: function fS(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
             var _ = this
             _.a6 = _.aj = null
             _.a = a
@@ -15008,7 +15008,7 @@ T.hu.prototype = {
         m.bm(q, o, c, d)
     }
 }
-T.fS.prototype = {
+T.PlrShadow.prototype = {
     gap() {
         return this.aj.r
     },
@@ -15084,7 +15084,7 @@ T.SklShadow.prototype = {
         a2 = H.b([], a)
         a = H.b([], a)
         a3 = 0
-        a4 = new T.fS(shadow_name, p, q, a6, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a0, a1, a2, a, a3, a3, a3, $.W(), a3)
+        a4 = new T.PlrShadow(shadow_name, p, q, a6, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a0, a1, a2, a, a3, a3, a3, $.W(), a3)
         a4.a1(shadow_name, p, q, a6)
         a4.a6 = new T.cp(a4)
         a4.aj = this_
@@ -19161,7 +19161,7 @@ LangData.k_.prototype = {
     inherit_many(T.Plr, [T.dR, T.aM, T.cz, T.fP, T.fU, T.fV, T.fQ, T.cy])
     inherit_many(T.aB, [T.dn, T.dT, T.ik])
     inherit_many(T.bq, [T.dS, T.b8])
-    inherit_many(T.aM, [T.fS, T.fT, T.fX])
+    inherit_many(T.aM, [T.PlrShadow, T.fT, T.fX])
     inherit_many(T.cz, [T.f5, T.f6, T.f7, T.f8, T.de, T.df, T.f9, T.fa, T.bZ, T.fc, T.fd])
     inherit(T.fR, T.cy)
     inherit(T.fb, T.bZ)
