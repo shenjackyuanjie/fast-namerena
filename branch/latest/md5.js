@@ -1845,7 +1845,7 @@ var A = {
         dJ: function dJ() {},
         ab: function ab() {},
         cw: function cw() {},
-        c9: function c9() {},
+        NativeTypedArrayOfDouble: function c9() {},
         NativeTypedArrayOfInt: function dK() {},
         fE: function fE() {},
         fF: function fF() {},
@@ -9551,7 +9551,7 @@ H.cw.prototype = {
     },
     $iag: 1
 }
-H.c9.prototype = {
+H.NativeTypedArrayOfDouble.prototype = {
     h(a, b) {
         H._checkValidIndex(b, a, a.length)
         return a[b]
@@ -19093,7 +19093,7 @@ LangData.k_.prototype = {
     inherit(H.cw, H.ab)
     inherit_many(H.cw, [H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin, H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin])
     inherit(H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin, H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin)
-    inherit(H.c9, H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin)
+    inherit(H.NativeTypedArrayOfDouble, H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin)
     inherit(H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin_FixedLengthListMixin, H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin)
     inherit(H.NativeTypedArrayOfInt, H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin_FixedLengthListMixin)
     inherit_many(H.NativeTypedArrayOfInt, [H.fE, H.fF, H.fG, H.fH, H.fI, H.dL, H.cx])
@@ -20536,8 +20536,8 @@ var t = (function rtii() {
         ArrayBuffer: H.dJ,
         DataView: H.ab,
         ArrayBufferView: H.ab,
-        Float32Array: H.c9,
-        Float64Array: H.c9,
+        Float32Array: H.NativeTypedArrayOfDouble,
+        Float64Array: H.NativeTypedArrayOfDouble,
         Int16Array: H.fE,
         Int32Array: H.fF,
         Int8Array: H.fG,
@@ -21107,7 +21107,7 @@ var t = (function rtii() {
     H.cw.$nativeSuperclassTag = "ArrayBufferView"
     H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin.$nativeSuperclassTag = "ArrayBufferView"
     H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin.$nativeSuperclassTag = "ArrayBufferView"
-    H.c9.$nativeSuperclassTag = "ArrayBufferView"
+    H.NativeTypedArrayOfDouble.$nativeSuperclassTag = "ArrayBufferView"
     H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin.$nativeSuperclassTag = "ArrayBufferView"
     H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin_FixedLengthListMixin.$nativeSuperclassTag = "ArrayBufferView"
     H.NativeTypedArrayOfInt.$nativeSuperclassTag = "ArrayBufferView"
