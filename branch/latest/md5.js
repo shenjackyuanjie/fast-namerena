@@ -3411,7 +3411,7 @@ var A = {
         JsArray: function E(a) {
             this.$ti = a
         },
-        jG: function jG(a) {
+        JsUnmodifiableArray: function jG(a) {
             this.$ti = a
         },
         db: function db(a, b) {
@@ -8581,7 +8581,7 @@ J.JsArray.prototype = {
     $iA: 1,
     $iw: 1
 }
-J.jG.prototype = {}
+J.JsUnmodifiableArray.prototype = {}
 J.db.prototype = {
     gC() {
         return this.d
@@ -19028,7 +19028,7 @@ LangData.k_.prototype = {
     )
     inherit_many(J.Interceptor, [J.fw, J.cs, J.bE, J.JsArray, J.JsNumber, J.JsString, H.dJ, H.ab, W.fn, W.Blob, W.CanvasRenderingContext2D, W.i6, W.bb, W.ja, W.jb, W.o, W.c4, W.jL, W.ig, W.il, W.iy, W.iA])
     inherit_many(J.bE, [J.PlainJavaScriptObject, J.UnknownJavaScriptObject, J.JavaScriptFunction])
-    inherit(J.jG, J.JsArray)
+    inherit(J.JsUnmodifiableArray, J.JsArray)
     inherit_many(J.JsNumber, [J.JsInt, J.jF])
     inherit_many(P.O, [H.fz, H.dO, P.bc, H.fx, H.hU, H.h3, H.i9, P.f2, P.fL, P.aS, P.hW, P.hS, P.bJ, P.fh, P.fj])
     inherit(P.dE, P.ev)
