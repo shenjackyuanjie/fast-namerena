@@ -7764,7 +7764,7 @@ var A = {
         Blob: function Blob() {},
         BodyElement: function BodyElement() {},
         CanvasElement: function CanvasElement() {},
-        fe: function fe() {},
+        CanvasRenderingContext2D: function CanvasRenderingContext2D() {},
         b6: function b6() {},
         co: function co() {},
         j8: function j8() {},
@@ -11274,7 +11274,7 @@ W.CanvasElement.prototype = {
         return a.getContext("2d")
     }
 }
-W.fe.prototype = {
+W.CanvasRenderingContext2D.prototype = {
     eN(a, b, c) {
         var s = P.my(a.createImageData(b, c))
         return s
@@ -19020,7 +19020,7 @@ LangData.k_.prototype = {
             T.x, T.Plr, T.dk, T.fo, T.b7, T.IPlr, T.HDamage, T.HRecover, T.aX, T.aq, T.bG, T.Weapon, T.fl
         ]
     )
-    inherit_many(J.Interceptor, [J.fw, J.cs, J.bE, J.JsArray, J.JsNumber, J.JsString, H.dJ, H.ab, W.fn, W.Blob, W.fe, W.i6, W.bb, W.ja, W.jb, W.o, W.c4, W.jL, W.ig, W.il, W.iy, W.iA])
+    inherit_many(J.Interceptor, [J.fw, J.cs, J.bE, J.JsArray, J.JsNumber, J.JsString, H.dJ, H.ab, W.fn, W.Blob, W.CanvasRenderingContext2D, W.i6, W.bb, W.ja, W.jb, W.o, W.c4, W.jL, W.ig, W.il, W.iy, W.iA])
     inherit_many(J.bE, [J.PlainJavaScriptObject, J.UnknownJavaScriptObject, J.JavaScriptFunction])
     inherit(J.jG, J.JsArray)
     inherit_many(J.JsNumber, [J.JsInt, J.jF])
@@ -19286,7 +19286,7 @@ var t = (function rtii() {
     var make_const_list = hunkHelpers.makeConstList
     C.n = W.BodyElement.prototype
     C.H = W.CanvasElement.prototype
-    C.k = W.fe.prototype
+    C.k = W.CanvasRenderingContext2D.prototype
     C.i = W.co.prototype
     C.h = W.c0.prototype
     C.J = J.Interceptor.prototype
@@ -20539,7 +20539,7 @@ var t = (function rtii() {
         Blob: W.Blob,
         HTMLBodyElement: W.BodyElement,
         HTMLCanvasElement: W.CanvasElement,
-        CanvasRenderingContext2D: W.fe,
+        CanvasRenderingContext2D: W.CanvasRenderingContext2D,
         CDATASection: W.b6,
         CharacterData: W.b6,
         Comment: W.b6,
