@@ -7757,7 +7757,7 @@ var A = {
             if (s === C.f) return a
             return s.eI(a, b)
         },
-        r: function r() {},
+        HtmlElement: function HtmlElement() {},
         f0: function f0() {},
         f1: function f1() {},
         cn: function cn() {},
@@ -11249,7 +11249,7 @@ P.cH.prototype = {
         return s.charCodeAt(0) == 0 ? s : s
     }
 }
-W.r.prototype = {}
+W.HtmlElement.prototype = {}
 W.f0.prototype = {
     k(a) {
         return String(a)
@@ -12992,6 +12992,7 @@ S.fK.prototype = {
 }
 HtmlRenderer.fq.prototype = {
     e0(a) {
+        // a -> profiler input
         var s, root, q, this_ = this
 
         if (this_.a == null) return
@@ -19065,8 +19066,8 @@ LangData.k_.prototype = {
     inherit_many(P.aS, [P.cD, P.fs])
     inherit_many(W.fn, [W.v, W.dH, W.eq])
     inherit_many(W.v, [W.Q, W.b6, W.cL])
-    inherit_many(W.Q, [W.r, P.p])
-    inherit_many(W.r, [W.f0, W.f1, W.cn, W.bY, W.di, W.c0, W.fp, W.dQ, W.h4, W.ek, W.ce, W.en, W.hQ, W.hR, W.cI])
+    inherit_many(W.Q, [W.HtmlElement, P.p])
+    inherit_many(W.HtmlElement, [W.f0, W.f1, W.cn, W.bY, W.di, W.c0, W.fp, W.dQ, W.h4, W.ek, W.ce, W.en, W.hQ, W.hR, W.cI])
     inherit(W.co, W.i6)
     inherit(W.dm, W.bb)
     inherit(W.cq, W.bX)
@@ -20474,64 +20475,64 @@ var t = (function rtii() {
         Uint8ClampedArray: H.dL,
         CanvasPixelArray: H.dL,
         Uint8Array: H.cx,
-        HTMLAudioElement: W.r,
-        HTMLBRElement: W.r,
-        HTMLButtonElement: W.r,
-        HTMLContentElement: W.r,
-        HTMLDListElement: W.r,
-        HTMLDataElement: W.r,
-        HTMLDataListElement: W.r,
-        HTMLDetailsElement: W.r,
-        HTMLDialogElement: W.r,
-        HTMLEmbedElement: W.r,
-        HTMLFieldSetElement: W.r,
-        HTMLHRElement: W.r,
-        HTMLHeadElement: W.r,
-        HTMLHeadingElement: W.r,
-        HTMLHtmlElement: W.r,
-        HTMLIFrameElement: W.r,
-        HTMLImageElement: W.r,
-        HTMLInputElement: W.r,
-        HTMLLIElement: W.r,
-        HTMLLabelElement: W.r,
-        HTMLLegendElement: W.r,
-        HTMLLinkElement: W.r,
-        HTMLMapElement: W.r,
-        HTMLMediaElement: W.r,
-        HTMLMenuElement: W.r,
-        HTMLMetaElement: W.r,
-        HTMLMeterElement: W.r,
-        HTMLModElement: W.r,
-        HTMLOListElement: W.r,
-        HTMLObjectElement: W.r,
-        HTMLOptGroupElement: W.r,
-        HTMLOptionElement: W.r,
-        HTMLOutputElement: W.r,
-        HTMLParamElement: W.r,
-        HTMLPictureElement: W.r,
-        HTMLPreElement: W.r,
-        HTMLProgressElement: W.r,
-        HTMLQuoteElement: W.r,
-        HTMLScriptElement: W.r,
-        HTMLShadowElement: W.r,
-        HTMLSlotElement: W.r,
-        HTMLSourceElement: W.r,
-        HTMLStyleElement: W.r,
-        HTMLTableCaptionElement: W.r,
-        HTMLTableColElement: W.r,
-        HTMLTextAreaElement: W.r,
-        HTMLTimeElement: W.r,
-        HTMLTitleElement: W.r,
-        HTMLTrackElement: W.r,
-        HTMLUListElement: W.r,
-        HTMLUnknownElement: W.r,
-        HTMLVideoElement: W.r,
-        HTMLDirectoryElement: W.r,
-        HTMLFontElement: W.r,
-        HTMLFrameElement: W.r,
-        HTMLFrameSetElement: W.r,
-        HTMLMarqueeElement: W.r,
-        HTMLElement: W.r,
+        HTMLAudioElement: W.HtmlElement,
+        HTMLBRElement: W.HtmlElement,
+        HTMLButtonElement: W.HtmlElement,
+        HTMLContentElement: W.HtmlElement,
+        HTMLDListElement: W.HtmlElement,
+        HTMLDataElement: W.HtmlElement,
+        HTMLDataListElement: W.HtmlElement,
+        HTMLDetailsElement: W.HtmlElement,
+        HTMLDialogElement: W.HtmlElement,
+        HTMLEmbedElement: W.HtmlElement,
+        HTMLFieldSetElement: W.HtmlElement,
+        HTMLHRElement: W.HtmlElement,
+        HTMLHeadElement: W.HtmlElement,
+        HTMLHeadingElement: W.HtmlElement,
+        HTMLHtmlElement: W.HtmlElement,
+        HTMLIFrameElement: W.HtmlElement,
+        HTMLImageElement: W.HtmlElement,
+        HTMLInputElement: W.HtmlElement,
+        HTMLLIElement: W.HtmlElement,
+        HTMLLabelElement: W.HtmlElement,
+        HTMLLegendElement: W.HtmlElement,
+        HTMLLinkElement: W.HtmlElement,
+        HTMLMapElement: W.HtmlElement,
+        HTMLMediaElement: W.HtmlElement,
+        HTMLMenuElement: W.HtmlElement,
+        HTMLMetaElement: W.HtmlElement,
+        HTMLMeterElement: W.HtmlElement,
+        HTMLModElement: W.HtmlElement,
+        HTMLOListElement: W.HtmlElement,
+        HTMLObjectElement: W.HtmlElement,
+        HTMLOptGroupElement: W.HtmlElement,
+        HTMLOptionElement: W.HtmlElement,
+        HTMLOutputElement: W.HtmlElement,
+        HTMLParamElement: W.HtmlElement,
+        HTMLPictureElement: W.HtmlElement,
+        HTMLPreElement: W.HtmlElement,
+        HTMLProgressElement: W.HtmlElement,
+        HTMLQuoteElement: W.HtmlElement,
+        HTMLScriptElement: W.HtmlElement,
+        HTMLShadowElement: W.HtmlElement,
+        HTMLSlotElement: W.HtmlElement,
+        HTMLSourceElement: W.HtmlElement,
+        HTMLStyleElement: W.HtmlElement,
+        HTMLTableCaptionElement: W.HtmlElement,
+        HTMLTableColElement: W.HtmlElement,
+        HTMLTextAreaElement: W.HtmlElement,
+        HTMLTimeElement: W.HtmlElement,
+        HTMLTitleElement: W.HtmlElement,
+        HTMLTrackElement: W.HtmlElement,
+        HTMLUListElement: W.HtmlElement,
+        HTMLUnknownElement: W.HtmlElement,
+        HTMLVideoElement: W.HtmlElement,
+        HTMLDirectoryElement: W.HtmlElement,
+        HTMLFontElement: W.HtmlElement,
+        HTMLFrameElement: W.HtmlElement,
+        HTMLFrameSetElement: W.HtmlElement,
+        HTMLMarqueeElement: W.HtmlElement,
+        HTMLElement: W.HtmlElement,
         HTMLAnchorElement: W.f0,
         HTMLAreaElement: W.f1,
         HTMLBaseElement: W.cn,
