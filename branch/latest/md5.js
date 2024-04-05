@@ -8263,11 +8263,12 @@ var A = {
             }
             return span_element
         },
+        // MARK: html render init
         fq: function fq(a, b, c, d) {
             var _ = this
             _.a = a
             _.b = b
-            _.c = c
+            _.c = c // 输入的 profiler
             _.d = null
             _.f = _.e = false
             _.r = 3
@@ -19002,6 +19003,7 @@ LangData.k_.prototype = {
     instance_2u(T.SklCounter.prototype, "gdr", "f8", 54)
 })();
 (function inheritance() {
+    // MARK: 继承链
     var mixin = hunkHelpers.mixin,
         inherit = hunkHelpers.inherit,
         inherit_many = hunkHelpers.inheritMany
@@ -19566,6 +19568,7 @@ var t = (function rtii() {
     lazy_old($, "Az", "ro", function () {
         return P.o_()
     })
+    // MARK: 字符串反混淆
     lazy_old($, "yg", "cl", function () {
         // return LangData.j("bB", 89)
         return "!"
@@ -19909,6 +19912,7 @@ var t = (function rtii() {
     lazy_old($, "vr", "rq", function () {
         return $.C()
     })
+    // MARK: 数字反混淆
     lazy_old($, "wX", "at", function () {
         return X.k("vF:G*ee&GC", 12)
     })
@@ -20430,6 +20434,7 @@ var t = (function rtii() {
         return new P.cK(null, null, null, H.findType("cK<m*>"))
     })
 })();
+// MARK: Native support
 (function nativeSupport() {
     ! function () {
 
@@ -21105,7 +21110,7 @@ function main() {
                 async_goto = 3
                 return P._asyncAwait(HtmlRenderer.static_init(), $async$iE)
             case 3:
-                // MARK: inedx.dart.js 输入位置
+                // MARK: 名字输入位置
                 // 战斗框输入位置
                 // 这里请输入一个被混淆过的名字
                 switch_to = 5
