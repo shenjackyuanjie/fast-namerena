@@ -7761,7 +7761,7 @@ var A = {
         AnchorElement: function AnchorElement() {},
         AreaElement: function AreaElement() {},
         BaseElement: function BaseElement() {},
-        bX: function bX() {},
+        Blob: function Blob() {},
         bY: function bY() {},
         di: function di() {},
         fe: function fe() {},
@@ -11263,7 +11263,7 @@ W.AreaElement.prototype = {
 W.BaseElement.prototype = {
     $icn: 1
 }
-W.bX.prototype = {
+W.Blob.prototype = {
     $ibX: 1
 }
 W.bY.prototype = {
@@ -19020,7 +19020,7 @@ LangData.k_.prototype = {
             T.x, T.Plr, T.dk, T.fo, T.b7, T.IPlr, T.HDamage, T.HRecover, T.aX, T.aq, T.bG, T.Weapon, T.fl
         ]
     )
-    inherit_many(J.Interceptor, [J.fw, J.cs, J.bE, J.JsArray, J.JsNumber, J.JsString, H.dJ, H.ab, W.fn, W.bX, W.fe, W.i6, W.bb, W.ja, W.jb, W.o, W.c4, W.jL, W.ig, W.il, W.iy, W.iA])
+    inherit_many(J.Interceptor, [J.fw, J.cs, J.bE, J.JsArray, J.JsNumber, J.JsString, H.dJ, H.ab, W.fn, W.Blob, W.fe, W.i6, W.bb, W.ja, W.jb, W.o, W.c4, W.jL, W.ig, W.il, W.iy, W.iA])
     inherit_many(J.bE, [J.PlainJavaScriptObject, J.UnknownJavaScriptObject, J.JavaScriptFunction])
     inherit(J.jG, J.JsArray)
     inherit_many(J.JsNumber, [J.JsInt, J.jF])
@@ -19070,7 +19070,7 @@ LangData.k_.prototype = {
     inherit_many(W.HtmlElement, [W.AnchorElement, W.AreaElement, W.BaseElement, W.bY, W.di, W.c0, W.fp, W.dQ, W.h4, W.ek, W.ce, W.en, W.hQ, W.hR, W.cI])
     inherit(W.co, W.i6)
     inherit(W.dm, W.bb)
-    inherit(W.cq, W.bX)
+    inherit(W.cq, W.Blob)
     inherit_many(W.o, [W.c8, W.aY])
     inherit(W.bp, W.aY)
     inherit(W.ih, W.ig)
@@ -20536,7 +20536,7 @@ var t = (function rtii() {
         HTMLAnchorElement: W.AnchorElement,
         HTMLAreaElement: W.AreaElement,
         HTMLBaseElement: W.BaseElement,
-        Blob: W.bX,
+        Blob: W.Blob,
         HTMLBodyElement: W.bY,
         HTMLCanvasElement: W.di,
         CanvasRenderingContext2D: W.fe,
