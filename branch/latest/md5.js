@@ -4566,7 +4566,7 @@ var A = {
         m3() {
             return window.navigator.userAgent
         },
-        l4: function l4() {},
+        _StructuredClone: function l4() {},
         l5: function l5(a, b) {
             this.a = a
             this.b = b
@@ -12069,7 +12069,7 @@ W.iy.prototype = {}
 W.iz.prototype = {}
 W.iA.prototype = {}
 W.iB.prototype = {}
-P.l4.prototype = {
+P._StructuredClone.prototype = {
     bj(a) {
         var s, r = this.a,
             q = r.length
@@ -19019,7 +19019,7 @@ LangData.k_.prototype = {
             P._Future, P.i0, P.em, P.hO, P.hP, P.im, P.i1, P.i3, P.i7, P.ii, P.io, P.lf, P.eM, P.kV, P.ie, P.z, P.dY, P.fg, P.js, P.lc, P.lb, P.dq,
             P.Duration, P.fM, P.el, P.kG, P.jm, P.N, P.iq, P.cH,
             W.j8, W.m5, W.cP, W.cr, W.dN, W.eD, W.is, W.dv, W.kE, W.l_, W.ix,
-            P.l4, P.kw, P.eJ, P.jQ, P.kT, Y.RC4, L.ProfileWinChance, V.ProfileMain, X.ProfileFind,
+            P._StructuredClone, P.kw, P.eJ, P.jQ, P.kT, Y.RC4, L.ProfileWinChance, V.ProfileMain, X.ProfileFind,
             S.fK,
             HtmlRenderer.inner_render, HtmlRenderer.jT, HtmlRenderer.ax,
             Sgls.a_, Sgls.n,
@@ -19103,7 +19103,7 @@ LangData.k_.prototype = {
     inherit(W.i8, W.i2)
     inherit(W.ia, P.hO)
     inherit(W.it, W.eD)
-    inherit(P._StructuredCloneDart2Js, P.l4)
+    inherit(P._StructuredCloneDart2Js, P._StructuredClone)
     inherit(P.kx, P.kw)
     inherit(P.cF, P.p)
     inherit(HtmlRenderer.fW, HtmlRenderer.ax)
