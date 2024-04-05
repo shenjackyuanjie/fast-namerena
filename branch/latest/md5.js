@@ -3,9 +3,6 @@
 
 'use strict';
 
-// 兼容nodejs, 要不然 window = {}; 会崩
-// 使用 global.window 修复了这个问题, 还是 strict 舒服
-
 let name_input = "!test!\n\natest\n\ntest2";
 let assets_data = {
     lang: null,
@@ -1847,9 +1844,9 @@ var A = {
         },
         dJ: function dJ() { },
         ab: function ab() { },
-        cw: function cw() { },
-        c9: function c9() { },
-        dK: function dK() { },
+        NativeTypedArray: function cw() { },
+        NativeTypedArrayOfDouble: function c9() { },
+        NativeTypedArrayOfInt: function dK() { },
         fE: function fE() { },
         fF: function fF() { },
         fG: function fG() { },
@@ -1857,10 +1854,10 @@ var A = {
         fI: function fI() { },
         dL: function dL() { },
         cx: function cx() { },
-        ey: function ey() { },
-        ez: function ez() { },
-        eA: function eA() { },
-        eB: function eB() { },
+        _NativeTypedArrayOfDouble_NativeTypedArray_ListMixin: function ey() { },
+        _NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin: function ez() { },
+        _NativeTypedArrayOfInt_NativeTypedArray_ListMixin: function eA() { },
+        _NativeTypedArrayOfInt_NativeTypedArray_ListMixin_FixedLengthListMixin: function eB() { },
         Rti__getQuestionFromStar(a, b) {
             var s = b.c
             return s == null ? b.c = H._Universe__lookupQuestionRti(a, b.z, true) : s
@@ -2431,7 +2428,7 @@ var A = {
         _Universe__lookupTerminalRti(a, b, c) {
             var s, r, q = a.eC.get(c)
             if (q != null) return q
-            s = new H.aW(null, null)
+            s = new H.Rti(null, null)
             s.y = b
             s.cy = c
             r = H._Universe__installTypeTests(a, s)
@@ -2454,7 +2451,7 @@ var A = {
                 else r = true
                 if (r) return b
             }
-            q = new H.aW(null, null)
+            q = new H.Rti(null, null)
             q.y = 6
             q.z = b
             q.cy = c
@@ -2486,7 +2483,7 @@ var A = {
                     else return H.Rti__getQuestionFromStar(a, b)
                 }
             }
-            p = new H.aW(null, null)
+            p = new H.Rti(null, null)
             p.y = 7
             p.z = b
             p.cy = c
@@ -2512,7 +2509,7 @@ var A = {
                 else if (s === 1) return H._Universe__lookupInterfaceRti(a, "bl", [b])
                 else if (b === t.P || b === t.T) return t.bG
             }
-            q = new H.aW(null, null)
+            q = new H.Rti(null, null)
             q.y = 8
             q.z = b
             q.cy = c
@@ -2522,7 +2519,7 @@ var A = {
             var s, r, q = "" + b + "^",
                 p = a.eC.get(q)
             if (p != null) return p
-            s = new H.aW(null, null)
+            s = new H.Rti(null, null)
             s.y = 13
             s.z = b
             s.cy = q
@@ -2550,7 +2547,7 @@ var A = {
             if (c.length > 0) p += "<" + H.iv(c) + ">"
             s = a.eC.get(p)
             if (s != null) return s
-            r = new H.aW(null, null)
+            r = new H.Rti(null, null)
             r.y = 9
             r.z = b
             r.Q = c
@@ -2572,7 +2569,7 @@ var A = {
             q = s.cy + (";<" + H.iv(r) + ">")
             p = a.eC.get(q)
             if (p != null) return p
-            o = new H.aW(null, null)
+            o = new H.Rti(null, null)
             o.y = 10
             o.z = s
             o.Q = r
@@ -2603,7 +2600,7 @@ var A = {
             q = n + (g + ")")
             p = a.eC.get(q)
             if (p != null) return p
-            o = new H.aW(null, null)
+            o = new H.Rti(null, null)
             o.y = 11
             o.z = b
             o.Q = c
@@ -2638,7 +2635,7 @@ var A = {
                     return H._Universe__lookupGenericFunctionRti(a, n, m, c !== m)
                 }
             }
-            l = new H.aW(null, null)
+            l = new H.Rti(null, null)
             l.y = 12
             l.z = b
             l.Q = c
@@ -3045,7 +3042,7 @@ var A = {
         ld(a) {
             return a > 0 ? new Array(a) : init.typeUniverse.sEA
         },
-        aW: function aW(a, b) {
+        Rti: function Rti(a, b) {
             var _ = this
             _.a = a
             _.b = b
@@ -4853,6 +4850,7 @@ var A = {
             return s
         },
         jS(a4, a5, a6, a7) {
+            // MARK: WTF 什么鬼这么长
             var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, a3 = null
             if (a5 == $.nk()) {
                 s = 0
@@ -4898,6 +4896,7 @@ var A = {
                 a.e4(a4, a5, a6)
                 return a
             }
+            // MARK: BOSS INIT(上面也是)
             if (a5 == $.qR()) {
                 s = 0
                 r = $.T()
@@ -4942,6 +4941,8 @@ var A = {
                 a.e5(a4, a5)
                 return a
             }
+            // MARK: 强评?
+            // cl -> !
             s = $.cl()
             if (a5 == s) {
                 if (a4 == $.lQ()) {
@@ -5306,6 +5307,7 @@ var A = {
                     a1.av(a4, s)
                     return a1
                 }
+                // covid
                 if (a4 == $.ck()) {
                     r = H.as_string(a4) + H.as_string($.aD())
                     q = 0
@@ -5346,7 +5348,7 @@ var A = {
                     a0 = H.b([], c)
                     c = H.b([], c)
                     a1 = 0
-                    a1 = new T.f7(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                    a1 = new T.PlrBossCovid(a4, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                     a1.a1(a4, s, r, a3)
                     a1.av(a4, s)
                     return a1
@@ -5666,7 +5668,7 @@ var A = {
             h = H.b([], k)
             k = H.b([], k)
             g = 0
-            g = new T.bZ(f, a2, a3, e, null, d, c, b, a, a0, a1, s, r, q, p, o, n, m, l, j, i, h, k, g, g, g, $.W(), g)
+            g = new T.PlrBossSlime(f, a2, a3, e, null, d, c, b, a, a0, a1, s, r, q, p, o, n, m, l, j, i, h, k, g, g, g, $.W(), g)
             g.a1(a2, a3, e, null)
             g.av(a2, a3)
             return g
@@ -6304,7 +6306,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        fS: function fS(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
+        PlrShadow: function fS(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
             var _ = this
             _.a6 = _.aj = null
             _.a = a
@@ -6368,7 +6370,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        fT: function fT(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
+        PlrSummon: function fT(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
             var _ = this
             _.bi = _.aj = null
             _.aR = false
@@ -6672,7 +6674,7 @@ var A = {
             _.f = c
             _.c = _.b = _.a = _.r = null
         },
-        f7: function f7(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
+        PlrBossCovid: function f7(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
             var _ = this
             _.a = a
             _.b = b
@@ -7029,7 +7031,7 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        bZ: function bZ(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7, a8) {
+        PlrBossSlime: function bZ(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7, a8) {
             var _ = this
             _.aC = a
             _.a = b
@@ -7684,7 +7686,7 @@ var A = {
         rP(a, b, c) {
             var s, doc_body = document.body
             doc_body.toString
-            s = C.n.aA(doc_body, a, b, c)
+            s = C.BodyElement.aA(doc_body, a, b, c)
             s.toString
             doc_body = new H.cf(new W.az(s), new W.jf(), t.ac.i("cf<z.E>"))
             return t.R.a(doc_body.gba(doc_body))
@@ -9548,13 +9550,13 @@ H.dJ.prototype = {
 H.ab.prototype = {
     $iab: 1
 }
-H.cw.prototype = {
+H.NativeTypedArray.prototype = {
     gp(a) {
         return a.length
     },
     $iag: 1
 }
-H.c9.prototype = {
+H.NativeTypedArrayOfDouble.prototype = {
     h(a, b) {
         H._checkValidIndex(b, a, a.length)
         return a[b]
@@ -9566,7 +9568,7 @@ H.c9.prototype = {
     $iA: 1,
     $iw: 1
 }
-H.dK.prototype = {
+H.NativeTypedArrayOfInt.prototype = {
     m(a, b, c) {
         H._checkValidIndex(b, a, a.length)
         a[b] = c
@@ -9623,11 +9625,11 @@ H.cx.prototype = {
     },
     $icx: 1
 }
-H.ey.prototype = {}
-H.ez.prototype = {}
-H.eA.prototype = {}
-H.eB.prototype = {}
-H.aW.prototype = {
+H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin.prototype = {}
+H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin.prototype = {}
+H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin.prototype = {}
+H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin_FixedLengthListMixin.prototype = {}
+H.Rti.prototype = {
     i(a) {
         return H._Universe_evalInEnvironment(init.typeUniverse, this, a)
     },
@@ -12274,7 +12276,7 @@ P.p.prototype = {
         s = document
         q = s.body
         q.toString
-        p = C.n.eM(q, r, c)
+        p = C.BodyElement.eM(q, r, c)
         o = s.createDocumentFragment()
         p.toString
         s = new W.az(p)
@@ -15011,7 +15013,7 @@ T.hu.prototype = {
         m.bm(q, o, c, d)
     }
 }
-T.fS.prototype = {
+T.PlrShadow.prototype = {
     gap() {
         return this.aj.r
     },
@@ -15087,7 +15089,7 @@ T.SklShadow.prototype = {
         a2 = H.b([], a)
         a = H.b([], a)
         a3 = 0
-        a4 = new T.fS(shadow_name, p, q, a6, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a0, a1, a2, a, a3, a3, a3, $.W(), a3)
+        a4 = new T.PlrShadow(shadow_name, p, q, a6, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a0, a1, a2, a, a3, a3, a3, $.W(), a3)
         a4.a1(shadow_name, p, q, a6)
         a4.a6 = new T.cp(a4)
         a4.aj = this_
@@ -15199,7 +15201,7 @@ T.hj.prototype = {
         n.r.bm(o, null, c, d)
     }
 }
-T.fT.prototype = {
+T.PlrSummon.prototype = {
     gap() {
         return this.aj.r
     },
@@ -15309,7 +15311,7 @@ T.SklSummon.prototype = {
             a1 = H.b([], b)
             b = H.b([], b)
             a2 = 0
-            a2 = new T.fT(s, q, r, a4, p, o, n, m, l, k, j, i, h, g, f, e, d, c, a, a0, a1, b, a2, a2, a2, $.W(), a2)
+            a2 = new T.PlrSummon(s, q, r, a4, p, o, n, m, l, k, j, i, h, g, f, e, d, c, a, a0, a1, b, a2, a2, a2, $.W(), a2)
             a2.a1(s, q, r, a4)
             a2.a6 = new T.cp(a2)
             a2.aj = this_
@@ -15649,7 +15651,7 @@ T.hb.prototype = {
         if (q > o) r.l = o
     }
 }
-T.f7.prototype = {
+T.PlrBossCovid.prototype = {
     gan() {
         var s = $.Z(),
             r = $.n2(),
@@ -16164,7 +16166,7 @@ T.hA.prototype = {
 }
 T.cy.prototype = {}
 T.fR.prototype = {}
-T.bZ.prototype = {
+T.PlrBossSlime.prototype = {
     gan() {
         var s = $.a4(),
             r = $.mN()
@@ -18963,45 +18965,56 @@ LangData.k_.prototype = {
     }
 };
 (function aliases() {
+    // MARK: 类型别名
     var s = J.Interceptor.prototype
     s.dO = s.k
+
     s = J.bE.prototype
     s.dQ = s.k
+
     s = P.L.prototype
     s.dP = s.bV
+
     s = W.Element.prototype
     s.bY = s.aA
+
     s = W.eD.prototype
     s.dX = s.aM
+
     s = T.cz.prototype
     s.cM = s.a7
+
     s = T.Plr.prototype
     s.bB = s.aU
     s.dS = s.bP
     s.dR = s.bs
     s.dT = s.F
+
     s = T.Skill.prototype
     s.bC = s.a9
     s.bZ = s.bx
     s.dU = s.aa
+
     s = T.ActionSkill.prototype
     s.aX = s.au
+
     s = T.Weapon.prototype
     s.cN = s.b3
     s.dW = s.bn
     s.dV = s.cs
 })();
 (function installTearOffs() {
+    // MARK: 静态实例
     var static_2 = hunkHelpers._static_2,
         static_1 = hunkHelpers._static_1,
         static_0 = hunkHelpers._static_0,
         instance_2u = hunkHelpers._instance_2u,
         install_static_tearoff = hunkHelpers.installStaticTearOff,
         instance_1i = hunkHelpers._instance_1i,
-        m = hunkHelpers._instance_0i,
-        l = hunkHelpers._instance_1u,
-        k = hunkHelpers.installInstanceTearOff,
-        j = hunkHelpers._instance_0u
+        instance_0i = hunkHelpers._instance_0i,
+        instance_1u = hunkHelpers._instance_1u,
+        install_instance_tear_off = hunkHelpers.installInstanceTearOff,
+        instance_0u = hunkHelpers._instance_0u
     static_2(J, "bO", "t1", 59)
     static_1(H, "uv", "mv", 10)
     static_1(P, "uK", "_AsyncRun__scheduleImmediateJsOverride", 4)
@@ -19013,12 +19026,16 @@ LangData.k_.prototype = {
     install_static_tearoff(W, "uV", 4, null, ["$4"], ["tT"], 20, 0)
     install_static_tearoff(W, "uW", 4, null, ["$4"], ["tU"], 20, 0)
     static_2(HtmlRenderer, "oD", "rU", 62)
-    var i
-    instance_1i(i = HtmlRenderer.inner_render.prototype, "gfb", "fc", 31)
-    instance_1i(i, "gff", "ds", 8)
-    m(i, "gbc", "dI", 0)
-    l(i, "gfd", "fe", 33)
-    k(i, "gel", 0, 0, null, ["$1", "$0"], ["c5", "em"], 34, 0, 0)
+
+    let html_holder
+    instance_1i(html_holder = HtmlRenderer.inner_render.prototype, "gfb", "fc", 31)
+    instance_1i(html_holder, "gff", "ds", 8)
+    instance_0i(html_holder, "gbc", "dI", 0)
+    instance_1u(html_holder, "gfd", "fe", 33)
+    install_instance_tear_off(html_holder, "gel", 0, 0, null, ["$1", "$0"], ["c5", "em"], 34, 0, 0)
+    instance_0u(html_holder = T.Plr.prototype, "gfJ", "fK", 19)
+    instance_0u(html_holder, "gbT", "dE", 19)
+
     static_1(Sgls, "vg", "tv", 8)
     install_static_tearoff(T, "v6", 5, null, ["$5"], ["ty"], 1, 0)
     install_static_tearoff(T, "v7", 5, null, ["$5"], ["tA"], 1, 0)
@@ -19034,9 +19051,7 @@ LangData.k_.prototype = {
     static_2(T, "v5", "t6", 43)
     install_static_tearoff(T, "ad", 5, null, ["$5"], ["tx"], 1, 0)
     install_static_tearoff(T, "oH", 5, null, ["$5"], ["tz"], 1, 0)
-    k(T.dl.prototype, "gf9", 0, 5, null, ["$5"], ["fa"], 1, 0, 0)
-    j(i = T.Plr.prototype, "gfJ", "fK", 19)
-    j(i, "gbT", "dE", 19)
+    install_instance_tear_off(T.dl.prototype, "gf9", 0, 5, null, ["$5"], ["fa"], 1, 0, 0)
     instance_2u(T.SklCounter.prototype, "gdr", "f8", 54)
 })();
 (function inheritance() {
@@ -19047,7 +19062,7 @@ LangData.k_.prototype = {
     inherit(P.Object, null)
     inherit_many(P.Object,
         [H.m8, J.Interceptor, J.db, P.O, P.ev, P.L, H.cv, P.fv, H.du, H.hV, H.kh, H.jR, H.dt, H.eE, H.c_, P.aU, H.jK, H.fA,
-        H.JSSyntaxRegExp, H.ew, H.kz, H.bK, H.l3, H.aW, H.ib, H.iu,
+        H.JSSyntaxRegExp, H.ew, H.kz, H.bK, H.l3, H.Rti, H.ib, H.iu,
         P.l8, P.i_, P.f3, P.i4, P.cN,
         P._Future, P.i0, P.em, P.hO, P.hP, P.im, P.i1, P.i3, P.i7, P.ii, P.io, P.lf, P.eM, P.kV, P.ie, P.z, P.dY, P.fg, P.js, P.lc, P.lb, P.dq,
         P.Duration, P.fM, P.el, P.kG, P.jm, P.N, P.iq, P.cH,
@@ -19093,13 +19108,13 @@ LangData.k_.prototype = {
     inherit_many(P.dG, [H.aT, P.ic, W.i2])
     inherit_many(H.j6, [H.lw, P.li, P._wrapJsFunctionForAsync_closure, P.kL, P.jM, W.kd, W.le, P.l5, P.l6, P.ky, V.j_, HtmlRenderer.jA, Sgls.k7, LangData.lA, T.ka, T.jX, T.jY, T.k2, T.kq, T.kr, T.ks, T.kt, T.ku])
     inherit(H.hZ, P.dy)
-    inherit(H.cw, H.ab)
-    inherit_many(H.cw, [H.ey, H.eA])
-    inherit(H.ez, H.ey)
-    inherit(H.c9, H.ez)
-    inherit(H.eB, H.eA)
-    inherit(H.dK, H.eB)
-    inherit_many(H.dK, [H.fE, H.fF, H.fG, H.fH, H.fI, H.dL, H.cx])
+    inherit(H.NativeTypedArray, H.ab)
+    inherit_many(H.NativeTypedArray, [H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin, H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin])
+    inherit(H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin, H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin)
+    inherit(H.NativeTypedArrayOfDouble, H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin)
+    inherit(H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin_FixedLengthListMixin, H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin)
+    inherit(H.NativeTypedArrayOfInt, H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin_FixedLengthListMixin)
+    inherit_many(H.NativeTypedArrayOfInt, [H.fE, H.fF, H.fG, H.fH, H.fI, H.dL, H.cx])
     inherit(H.eI, H.i9)
     inherit_many(H.j5, [P.kC, P.kD, P._TimerImpl_internalCallback, P.jp, P.kH, P.kO, P.kM, P.kJ, P.kN, P.kI, P.kR, P.kQ, P.kP, P.kf, P.l2, P.kW, P.lo, P.kY, P.km, P.kl, X.je, X.j9, HtmlRenderer.send_win_data, Sgls.k4])
     inherit(P.cg, P.i4)
@@ -19164,10 +19179,10 @@ LangData.k_.prototype = {
     inherit_many(T.Plr, [T.dR, T.aM, T.cz, T.fP, T.fU, T.fV, T.fQ, T.cy])
     inherit_many(T.aB, [T.dn, T.dT, T.ik])
     inherit_many(T.bq, [T.dS, T.b8])
-    inherit_many(T.aM, [T.fS, T.fT, T.fX])
-    inherit_many(T.cz, [T.f5, T.f6, T.f7, T.f8, T.de, T.df, T.f9, T.fa, T.bZ, T.fc, T.fd])
+    inherit_many(T.aM, [T.PlrShadow, T.PlrSummon, T.fX])
+    inherit_many(T.cz, [T.f5, T.f6, T.PlrBossCovid, T.f8, T.de, T.df, T.f9, T.fa, T.PlrBossSlime, T.fc, T.fd])
     inherit(T.fR, T.cy)
-    inherit(T.fb, T.bZ)
+    inherit(T.fb, T.PlrBossSlime)
     inherit(T.eg, T.SklCharm)
     inherit_many(T.IPlr, [T.NPlr, T.HPlr, T.MPlr, T.DPlr])
     inherit_many(T.aX, [T.h2, T.dX])
@@ -19184,10 +19199,10 @@ LangData.k_.prototype = {
     inherit(LangData.SuperRC4, Y.RC4)
 
     mixin(H.cJ, H.hV)
-    mixin(H.ey, P.z)
-    mixin(H.ez, H.du)
-    mixin(H.eA, P.z)
-    mixin(H.eB, H.du)
+    mixin(H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin, P.z)
+    mixin(H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin, H.du)
+    mixin(H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin, P.z)
+    mixin(H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin_FixedLengthListMixin, H.du)
     mixin(P.cK, P.i1)
     mixin(P.ev, P.z)
     mixin(P.eM, P.dY)
@@ -19354,7 +19369,7 @@ var t = (function rtii() {
 })();
 (function constants() {
     var make_const_list = hunkHelpers.makeConstList
-    C.n = W.BodyElement.prototype
+    C.BodyElement = W.BodyElement.prototype
     C.H = W.CanvasElement.prototype
     C.k = W.CanvasRenderingContext2D.prototype
     C.i = W.co.prototype
@@ -19421,7 +19436,16 @@ var t = (function rtii() {
     C.G = new P.iq()
     C.I = new P.Duration(0)
     C.L = new P.jJ(null)
-    C.M = H.b(make_const_list(["*::class", "*::dir", "*::draggable", "*::hidden", "*::id", "*::inert", "*::itemprop", "*::itemref", "*::itemscope", "*::lang", "*::spellcheck", "*::title", "*::translate", "A::accesskey", "A::coords", "A::hreflang", "A::name", "A::shape", "A::tabindex", "A::target", "A::type", "AREA::accesskey", "AREA::alt", "AREA::coords", "AREA::nohref", "AREA::shape", "AREA::tabindex", "AREA::target", "AUDIO::controls", "AUDIO::loop", "AUDIO::mediagroup", "AUDIO::muted", "AUDIO::preload", "BDO::dir", "BODY::alink", "BODY::bgcolor", "BODY::link", "BODY::text", "BODY::vlink", "BR::clear", "BUTTON::accesskey", "BUTTON::disabled", "BUTTON::name", "BUTTON::tabindex", "BUTTON::type", "BUTTON::value", "CANVAS::height", "CANVAS::width", "CAPTION::align", "COL::align", "COL::char", "COL::charoff", "COL::span", "COL::valign", "COL::width", "COLGROUP::align", "COLGROUP::char", "COLGROUP::charoff", "COLGROUP::span", "COLGROUP::valign", "COLGROUP::width", "COMMAND::checked", "COMMAND::command", "COMMAND::disabled", "COMMAND::label", "COMMAND::radiogroup", "COMMAND::type", "DATA::value", "DEL::datetime", "DETAILS::open", "DIR::compact", "DIV::align", "DL::compact", "FIELDSET::disabled", "FONT::color", "FONT::face", "FONT::size", "FORM::accept", "FORM::autocomplete", "FORM::enctype", "FORM::method", "FORM::name", "FORM::novalidate", "FORM::target", "FRAME::name", "H1::align", "H2::align", "H3::align", "H4::align", "H5::align", "H6::align", "HR::align", "HR::noshade", "HR::size", "HR::width", "HTML::version", "IFRAME::align", "IFRAME::frameborder", "IFRAME::height", "IFRAME::marginheight", "IFRAME::marginwidth", "IFRAME::width", "IMG::align", "IMG::alt", "IMG::border", "IMG::height", "IMG::hspace", "IMG::ismap", "IMG::name", "IMG::usemap", "IMG::vspace", "IMG::width", "INPUT::accept", "INPUT::accesskey", "INPUT::align", "INPUT::alt", "INPUT::autocomplete", "INPUT::autofocus", "INPUT::checked", "INPUT::disabled", "INPUT::inputmode", "INPUT::ismap", "INPUT::list", "INPUT::max", "INPUT::maxlength", "INPUT::min", "INPUT::multiple", "INPUT::name", "INPUT::placeholder", "INPUT::readonly", "INPUT::required", "INPUT::size", "INPUT::step", "INPUT::tabindex", "INPUT::type", "INPUT::usemap", "INPUT::value", "INS::datetime", "KEYGEN::disabled", "KEYGEN::keytype", "KEYGEN::name", "LABEL::accesskey", "LABEL::for", "LEGEND::accesskey", "LEGEND::align", "LI::type", "LI::value", "LINK::sizes", "MAP::name", "MENU::compact", "MENU::label", "MENU::type", "METER::high", "METER::low", "METER::max", "METER::min", "METER::value", "OBJECT::typemustmatch", "OL::compact", "OL::reversed", "OL::start", "OL::type", "OPTGROUP::disabled", "OPTGROUP::label", "OPTION::disabled", "OPTION::label", "OPTION::selected", "OPTION::value", "OUTPUT::for", "OUTPUT::name", "P::align", "PRE::width", "PROGRESS::max", "PROGRESS::min", "PROGRESS::value", "SELECT::autocomplete", "SELECT::disabled", "SELECT::multiple", "SELECT::name", "SELECT::required", "SELECT::size", "SELECT::tabindex", "SOURCE::type", "TABLE::align", "TABLE::bgcolor", "TABLE::border", "TABLE::cellpadding", "TABLE::cellspacing", "TABLE::frame", "TABLE::rules", "TABLE::summary", "TABLE::width", "TBODY::align", "TBODY::char", "TBODY::charoff", "TBODY::valign", "TD::abbr", "TD::align", "TD::axis", "TD::bgcolor", "TD::char", "TD::charoff", "TD::colspan", "TD::headers", "TD::height", "TD::nowrap", "TD::rowspan", "TD::scope", "TD::valign", "TD::width", "TEXTAREA::accesskey", "TEXTAREA::autocomplete", "TEXTAREA::cols", "TEXTAREA::disabled", "TEXTAREA::inputmode", "TEXTAREA::name", "TEXTAREA::placeholder", "TEXTAREA::readonly", "TEXTAREA::required", "TEXTAREA::rows", "TEXTAREA::tabindex", "TEXTAREA::wrap", "TFOOT::align", "TFOOT::char", "TFOOT::charoff", "TFOOT::valign", "TH::abbr", "TH::align", "TH::axis", "TH::bgcolor", "TH::char", "TH::charoff", "TH::colspan", "TH::headers", "TH::height", "TH::nowrap", "TH::rowspan", "TH::scope", "TH::valign", "TH::width", "THEAD::align", "THEAD::char", "THEAD::charoff", "THEAD::valign", "TR::align", "TR::bgcolor", "TR::char", "TR::charoff", "TR::valign", "TRACK::default", "TRACK::kind", "TRACK::label", "TRACK::srclang", "UL::compact", "UL::type", "VIDEO::controls", "VIDEO::height", "VIDEO::loop", "VIDEO::mediagroup", "VIDEO::muted", "VIDEO::preload", "VIDEO::width"]), t.V)
+    C.M = H.b(make_const_list(["*::class", "*::dir", "*::draggable", "*::hidden", "*::id", "*::inert", "*::itemprop", "*::itemref", "*::itemscope", "*::lang", "*::spellcheck", "*::title", "*::translate",
+        "A::accesskey", "A::coords", "A::hreflang", "A::name", "A::shape", "A::tabindex", "A::target", "A::type", "AREA::accesskey", "AREA::alt", "AREA::coords", "AREA::nohref", "AREA::shape", "AREA::tabindex", "AREA::target", "AUDIO::controls", "AUDIO::loop", "AUDIO::mediagroup", "AUDIO::muted", "AUDIO::preload", "BDO::dir",
+        "BODY::alink", "BODY::bgcolor", "BODY::link", "BODY::text", "BODY::vlink", "BR::clear", "BUTTON::accesskey", "BUTTON::disabled", "BUTTON::name", "BUTTON::tabindex", "BUTTON::type", "BUTTON::value", "CANVAS::height", "CANVAS::width", "CAPTION::align", "COL::align", "COL::char", "COL::charoff", "COL::span", "COL::valign", "COL::width", "COLGROUP::align", "COLGROUP::char", "COLGROUP::charoff", "COLGROUP::span", "COLGROUP::valign", "COLGROUP::width", "COMMAND::checked", "COMMAND::command", "COMMAND::disabled", "COMMAND::label", "COMMAND::radiogroup", "COMMAND::type", "DATA::value", "DEL::datetime", "DETAILS::open", "DIR::compact",
+        "DIV::align", "DL::compact", "FIELDSET::disabled", "FONT::color", "FONT::face", "FONT::size", "FORM::accept", "FORM::autocomplete", "FORM::enctype", "FORM::method", "FORM::name", "FORM::novalidate", "FORM::target", "FRAME::name", "H1::align", "H2::align", "H3::align", "H4::align", "H5::align", "H6::align", "HR::align", "HR::noshade", "HR::size", "HR::width", "HTML::version", "IFRAME::align", "IFRAME::frameborder", "IFRAME::height", "IFRAME::marginheight", "IFRAME::marginwidth", "IFRAME::width", "IMG::align", "IMG::alt", "IMG::border", "IMG::height", "IMG::hspace", "IMG::ismap", "IMG::name", "IMG::usemap", "IMG::vspace", "IMG::width",
+        "INPUT::accept", "INPUT::accesskey", "INPUT::align", "INPUT::alt", "INPUT::autocomplete", "INPUT::autofocus", "INPUT::checked", "INPUT::disabled", "INPUT::inputmode", "INPUT::ismap", "INPUT::list", "INPUT::max", "INPUT::maxlength", "INPUT::min", "INPUT::multiple", "INPUT::name", "INPUT::placeholder", "INPUT::readonly", "INPUT::required", "INPUT::size", "INPUT::step", "INPUT::tabindex", "INPUT::type", "INPUT::usemap", "INPUT::value",
+        "INS::datetime", "KEYGEN::disabled", "KEYGEN::keytype", "KEYGEN::name", "LABEL::accesskey", "LABEL::for", "LEGEND::accesskey", "LEGEND::align", "LI::type", "LI::value", "LINK::sizes", "MAP::name", "MENU::compact", "MENU::label", "MENU::type", "METER::high", "METER::low", "METER::max", "METER::min", "METER::value", "OBJECT::typemustmatch", "OL::compact", "OL::reversed", "OL::start", "OL::type", "OPTGROUP::disabled", "OPTGROUP::label", "OPTION::disabled", "OPTION::label", "OPTION::selected", "OPTION::value", "OUTPUT::for", "OUTPUT::name", "P::align", "PRE::width", "PROGRESS::max", "PROGRESS::min", "PROGRESS::value",
+        "SELECT::autocomplete", "SELECT::disabled", "SELECT::multiple", "SELECT::name", "SELECT::required", "SELECT::size", "SELECT::tabindex", "SOURCE::type", "TABLE::align", "TABLE::bgcolor", "TABLE::border", "TABLE::cellpadding", "TABLE::cellspacing", "TABLE::frame", "TABLE::rules", "TABLE::summary", "TABLE::width", "TBODY::align", "TBODY::char", "TBODY::charoff", "TBODY::valign",
+        "TD::abbr", "TD::align", "TD::axis", "TD::bgcolor", "TD::char", "TD::charoff", "TD::colspan", "TD::headers", "TD::height", "TD::nowrap", "TD::rowspan", "TD::scope", "TD::valign", "TD::width",
+        "TEXTAREA::accesskey", "TEXTAREA::autocomplete", "TEXTAREA::cols", "TEXTAREA::disabled", "TEXTAREA::inputmode", "TEXTAREA::name", "TEXTAREA::placeholder", "TEXTAREA::readonly", "TEXTAREA::required", "TEXTAREA::rows", "TEXTAREA::tabindex", "TEXTAREA::wrap", "TFOOT::align", "TFOOT::char", "TFOOT::charoff", "TFOOT::valign",
+        "TH::abbr", "TH::align", "TH::axis", "TH::bgcolor", "TH::char", "TH::charoff", "TH::colspan", "TH::headers", "TH::height", "TH::nowrap", "TH::rowspan", "TH::scope", "TH::valign", "TH::width", "THEAD::align", "THEAD::char", "THEAD::charoff", "THEAD::valign", "TR::align", "TR::bgcolor", "TR::char", "TR::charoff", "TR::valign", "TRACK::default", "TRACK::kind", "TRACK::label", "TRACK::srclang", "UL::compact", "UL::type", "VIDEO::controls", "VIDEO::height", "VIDEO::loop", "VIDEO::mediagroup", "VIDEO::muted", "VIDEO::preload", "VIDEO::width"]), t.V)
     C.N = H.b(make_const_list(["", "", "", "", "", "", "", "", "", ""]), t.V)
     C.O = H.b(make_const_list(["HEAD", "AREA", "BASE", "BASEFONT", "BR", "COL", "COLGROUP", "EMBED", "FRAME", "FRAMESET", "HR", "IMAGE", "IMG", "INPUT", "ISINDEX", "LINK", "META", "PARAM", "SOURCE", "STYLE", "TITLE", "WBR"]), t.V)
     C.P = H.b(make_const_list([]), t.V)
@@ -19662,40 +19686,48 @@ var t = (function rtii() {
         return "!test!"
     })
     lazy_old($, "zm", "nk", function () {
-        return LangData.j("lA", 39)
+        // return LangData.j("lA", 39)
+        return "\u0002"
     })
     lazy_old($, "zn", "qR", function () {
-        return LangData.j("iA", 33)
+        // return LangData.j("iA", 33)
+        return "\u0003"
     })
     lazy_old($, "yN", "iK", function () {
         // return O.j("=+A", 37)
         return "??"
     })
     lazy_old($, "y2", "d2", function () {
-        return LangData.j("+R/Iv*Y(WVEu;E", 21)
+        // return LangData.j("+R/Iv*Y(WVEu;E", 21)
+        return "assassinate"
     })
     lazy_old($, "yi", "d3", function () {
-        return LangData.j("<R;2&`|zWV", 30)
+        // return LangData.j("<R;2&`|zWV", 30)
+        return "exchange"
     })
     lazy_old($, "ym", "eZ", function () {
         // return LangData.j("U|,?M", 1)
         return "half"
     })
     lazy_old($, "y7", "a7", function () {
-        return LangData.j("@k%.*'GC", 5)
+        // return LangData.j("@k%.*'GC", 5)
+        return "charge"
     })
     lazy_old($, "yk", "eY", function () {
-        return LangData.j("K[WvM", 87)
+        // return LangData.j("K[WvM", 87)
+        return "fire"
     })
     lazy_old($, "yr", "bS", function () {
-        return LangData.j("OZFE", 74)
+        // return LangData.j("OZFE", 74)
+        return "ice"
     })
     lazy_old($, "y_", "lN", function () {
         // return LangData.j("w1{fb_W(wTt-B", 16)
         return "accumulate"
     })
     lazy_old($, "yK", "bT", function () {
-        return LangData.j("PGOv0X*A", 77)
+        // return LangData.j("PGOv0X*A", 77)
+        return "piston"
     })
     lazy_old($, "y5", "aJ", function () {
         return LangData.j("xQrBQ}JLA", 99)
@@ -19762,7 +19794,8 @@ var t = (function rtii() {
         return LangData.j("jh&DG", 89)
     })
     lazy_old($, "zi", "qO", function () {
-        return LangData.j("~vBK@@A", 29)
+        // return LangData.j("~vBK@@A", 29)
+        return "slime"
     })
     lazy_old($, "ys", "qh", function () {
         return LangData.j("MWSWRPJLA", 99)
@@ -19777,7 +19810,8 @@ var t = (function rtii() {
         return LangData.j(":[+0Z", 31)
     })
     lazy_old($, "yd", "ck", function () {
-        return LangData.j("jtK1|]A", 31)
+        // return LangData.j("jtK1|]A", 31)
+        return "covid"
     })
     lazy_old($, "zc", "qL", function () {
         return LangData.j("ki9e8.M(G", 13)
@@ -20539,8 +20573,8 @@ var t = (function rtii() {
         ArrayBuffer: H.dJ,
         DataView: H.ab,
         ArrayBufferView: H.ab,
-        Float32Array: H.c9,
-        Float64Array: H.c9,
+        Float32Array: H.NativeTypedArrayOfDouble,
+        Float64Array: H.NativeTypedArrayOfDouble,
         Int16Array: H.fE,
         Int32Array: H.fF,
         Int8Array: H.fG,
@@ -21107,13 +21141,13 @@ var t = (function rtii() {
         SVGMPathElement: true,
         SVGElement: false
     })
-    H.cw.$nativeSuperclassTag = "ArrayBufferView"
-    H.ey.$nativeSuperclassTag = "ArrayBufferView"
-    H.ez.$nativeSuperclassTag = "ArrayBufferView"
-    H.c9.$nativeSuperclassTag = "ArrayBufferView"
-    H.eA.$nativeSuperclassTag = "ArrayBufferView"
-    H.eB.$nativeSuperclassTag = "ArrayBufferView"
-    H.dK.$nativeSuperclassTag = "ArrayBufferView"
+    H.NativeTypedArray.$nativeSuperclassTag = "ArrayBufferView"
+    H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin.$nativeSuperclassTag = "ArrayBufferView"
+    H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin_FixedLengthListMixin.$nativeSuperclassTag = "ArrayBufferView"
+    H.NativeTypedArrayOfDouble.$nativeSuperclassTag = "ArrayBufferView"
+    H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin.$nativeSuperclassTag = "ArrayBufferView"
+    H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin_FixedLengthListMixin.$nativeSuperclassTag = "ArrayBufferView"
+    H.NativeTypedArrayOfInt.$nativeSuperclassTag = "ArrayBufferView"
 })()
 Function.prototype.$2 = function (a, b) {
     return this(a, b)
@@ -21306,4 +21340,4 @@ function main() {
 
 main();
 // logger.debug("running main:", main()) // 执行main函数
-// logger.debug(LangData.j("S,AF", 5))
+logger.debug("反混淆", LangData.j("lA", 39))
