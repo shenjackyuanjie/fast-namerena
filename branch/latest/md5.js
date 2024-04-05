@@ -8264,10 +8264,10 @@ var A = {
             return span_element
         },
         // MARK: html render init
-        inner_render: function inner_render(a, b, profiler, randomer) {
+        inner_render: function inner_render(plist, pbody, profiler, randomer) {
             var _ = this
-            _.a = a
-            _.b = b
+            _.a = plist
+            _.b = pbody
             _.c = profiler // 输入的 profiler
             _.d = null
             _.f = _.e = false
@@ -13023,10 +13023,11 @@ HtmlRenderer.inner_render.prototype = {
         q = HtmlRenderer.add_span("welcome2")
         q.textContent = LangData.get_lang("NosN")
         s.appendChild(q)
-        q = this_.c
-        if (q.gbu(q) != null) {
-            q = q.gbu(q)
-            root.appendChild(document.createTextNode(q))
+        
+        profiler = this_.c
+        if (profiler.gbu(profiler) != null) {
+            profiler = profiler.gbu(profiler)
+            root.appendChild(document.createTextNode(profiler))
         }
         // 添加 event listener
         logger.debug("加速等待器 注册")
@@ -13034,18 +13035,20 @@ HtmlRenderer.inner_render.prototype = {
             W.es(window, "message", this_.gfb(this_), false)
         }
     },
+    // MARK: 接受加速按钮
     fc(func_self, event) {
-        var s = event.data,
-            r = new P.kx([], [])
-        r.c = true
-        // if (J.Y(r.aO(s), $.iK())) {
-        // if (r.aO(s) === $.iK()) {
-        // console.log("fq.fc", func_self, event, r.aO(s))
-        // event.data === ??
-        if (r.aO(s) === "??") {
+        // var s = event.data,
+        //     r = new P.kx([], [])
+        // r.c = true
+        // if (r.aO(s) === "??") {
+        //     this.y = 2000
+        // }
+        if (event.data == "??") {
             this.y = 2000
+            // 触发加速
         }
     },
+    // MARK: resize
     ds(a, b) {
         if (run_env.from_code) {
             return
@@ -13068,9 +13071,10 @@ HtmlRenderer.inner_render.prototype = {
     dI(a) {
         this.c.ae(0, this.x)
     },
+    // MARK: main?
     fe(a0) {
         // run update
-        logger.debug("fq.fe start")
+        logger.debug("html.fq.fe start")
         var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, this_ = this
         if (a0.length < 6) return
         s = X.f4(a0, 0)
@@ -19902,6 +19906,7 @@ var t = (function rtii() {
     lazy_old($, "zD", "r_", function () {
         return P.RegExp_RegExp("\\r?\\n")
     })
+    // MARK: 空 RunUpdate
     lazy_old($, "zR", "K", function () {
         var q = null
         return T.RunUpdate("\n", q, q, q, q, 0, 1000, 100)
