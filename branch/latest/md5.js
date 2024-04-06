@@ -1,6 +1,3 @@
-// let document = document;
-// let window = window;
-
 'use strict';
 
 let name_input = "!test!\n\natest\n\ntest2";
