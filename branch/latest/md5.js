@@ -16945,9 +16945,11 @@ T.Plr.prototype = {
         // Plr 构造函数
         // 名字字符输入的处理在此
         var s, r, q, p, o, n, m, l, k, j, i, this_ = this
+
         this_.I = this_.gfJ()
         s = this_.r = this_.a // 名字第一部分
         r = this_.b // @ 号以后的东西
+
         if (r != null && r !== "" && r !== s) {
             // 有战队情况下构造名字
             r = this_.e = H.as_string(s) + "@" + H.as_string(this_.b)
@@ -16955,9 +16957,11 @@ T.Plr.prototype = {
             this_.e = this_.b = s
             r = s
         }
+
         this_.f = r
         q = this_.d // + 号以后的东西
         if (q != null && q !== "") {
+
             // MARK: DIY part
             if (q.startsWith("diy")) {
                 this_.diy = q.slice(3)
@@ -16982,7 +16986,9 @@ T.Plr.prototype = {
                 p.b3(o)
                 this_.weapon = p
             }
+
         }
+        
         if (J.lW(s, " ")) {
             this_.r = s.split(" ")[0]
         }
