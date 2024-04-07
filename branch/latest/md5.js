@@ -16394,7 +16394,7 @@ T.Engine.prototype = {
         var async_goto = 0,
             async_completer = P._makeAsyncAwaitCompleter(t.z),
             q, this_ = this,
-            o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, b0, b1, b2, b3
+            o, n, m, l, k, j, i, h, g, f, runner, d, c, b, a, a0, a1, player, a3, a4, a5, a6, a7, a8, a9, b0, b1, b2, b3
         var $async$bD = P._wrapJsFunctionForAsync(function (async_error_code, async_result) {
             if (async_error_code === 1) return P.async_rethrow(async_result, async_completer)
             while (true) switch (async_goto) {
@@ -16403,7 +16403,7 @@ T.Engine.prototype = {
                     for (o = this_.x, n = o.length, m = t.eG, l = this_.r, k = this_.z, j = t.L, i = this_.a, h = 0; h < o.length; o.length === n || (0, H.F)(o), ++h) {
                         g = o[h]
                         f = H.b([], j)
-                        e = new T.b7(this_, f, H.b([], j), H.b([], j), H.b([], j))
+                        runner = new T.b7(this_, f, H.b([], j), H.b([], j), H.b([], j))
                         for (d = (g && C.Array).ga0(g); d.u();) {
                             c = d.gC()
                             if (!(c instanceof T.Plr))
@@ -16420,33 +16420,33 @@ T.Engine.prototype = {
                                         a = a === a0 && J.ny(b.h(c, a0), 0) < $.pC()
                                     } else a = false
                                     if (a) {
-                                        a2 = T.create_player(b.h(c, 0), b.h(c, $.i()), this_, a1)
+                                        player = T.create_player(b.h(c, 0), b.h(c, $.i()), this_, a1)
                                     } else {
-                                        a2 = T.init_plr(b.h(c, 0), b.h(c, $.i()), e.b, a1)
+                                        player = T.init_plr(b.h(c, 0), b.h(c, $.i()), runner.b, a1)
                                     }
                                     // a2 = a ? T.init_boss(b.h(c, 0), b.h(c, $.i()), this_, a1) : T.init_plr(b.h(c, 0), b.h(c, $.i()), e.b, a1)
-                                    if (a2 instanceof T.cy) { // PlrSeed
-                                        b3.push(a2.e)
-                                        k.push(a2)
+                                    if (player instanceof T.cy) { // PlrSeed
+                                        b3.push(player.e)
+                                        k.push(player)
                                         continue
                                     }
-                                    if (l.J(0, a2.e)) continue
-                                    if (e.b == null) e.b = a2.c
-                                    a2.y = e
-                                    f.push(a2)
-                                    l.m(0, a2.e, a2)
+                                    if (l.J(0, player.e)) continue
+                                    if (runner.b == null) runner.b = player.c
+                                    player.y = runner
+                                    f.push(player)
+                                    l.m(0, player.e, player)
                                 }
                         }
                         if (f.length !== 0) {
-                            i.push(e)
+                            i.push(runner)
                             a3 = f.length
                             for (a4 = 0; a4 < a3; ++a4) {
-                                a2 = f[a4]
+                                player = f[a4]
                                 for (a5 = a4 + $.i(); a5 < a3; ++a5) {
                                     a6 = f[a5]
-                                    if (a2.b == a6.b) {
-                                        a2.cA(a6.E)
-                                        a6.cA(a2.E)
+                                    if (player.b == a6.b) {
+                                        player.cA(a6.E)
+                                        a6.cA(player.E)
                                     }
                                 }
                             }
@@ -16504,19 +16504,19 @@ T.Engine.prototype = {
                     break
                 case 5:
                     for (o = i.length, h = 0; h < i.length; i.length === o || (0, H.F)(i), ++h) {
-                        e = i[h]
-                        n = e.c
+                        runner = i[h]
+                        n = runner.c
                         m = H._arrayInstanceType(n)
                         k = H.b(n.slice(0), m)
-                        e.d = k
+                        runner.d = k
                         n = H.b(n.slice(0), m)
                         if (n.immutable$list) H.throw_expression(P.UnsupportError("sort"))
                         m = n.length - 1
                         if (m - 0 <= 32) H.ej(n, 0, m, T.mD())
                         else H.ei(n, 0, m, T.mD())
-                        e.e = n
+                        runner.e = n
                         n = H.b(n.slice(0), H._arrayInstanceType(n))
-                        e.f = n
+                        runner.f = n
                     }
                     o = l.gfP(l)
                     o = P.List_List_of(o, true, H._instanceType(o).i("L.E"))
@@ -16524,8 +16524,8 @@ T.Engine.prototype = {
                     this_.c = o
                     if (C.JsInt.am(l.gp(l) + $.X(), $.C()) === 0)
                         for (o = this_.c, n = o.length, h = 0; h < n; ++h) {
-                            a2 = o[h]
-                            a2.I = a2.gbT()
+                            player = o[h]
+                            player.I = player.gbT()
                         }
                     o = H.b(i.slice(0), H._arrayInstanceType(i))
                     C.Array.bb(o, T.v4())
@@ -16533,9 +16533,9 @@ T.Engine.prototype = {
                     for (n = o.length, m = t.i, l = this_.e, h = 0; h < o.length; o.length === n || (0, H.F)(o), ++h) {
                         b1 = o[h]
                         for (k = b1.f, j = k.length, b2 = 0; b2 < k.length; k.length === j || (0, H.F)(k), ++b2) {
-                            a2 = k[b2]
+                            player = k[b2]
                             i = this_.b
-                            f = a2.e
+                            f = player.e
                             i.bO(C.e.gaB().ab(f))
                         }
                         this_.b.bO(H.b([0], m))
