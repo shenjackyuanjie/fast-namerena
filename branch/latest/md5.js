@@ -6039,7 +6039,7 @@ var A = {
             i = H.b([], k)
             h = H.b([], k)
             k = H.b([], k)
-            let plr = new T.Plr(name, clan_name, fgt, weapon, f, e, d, c, b, a, s, r, q, p, o, n, m, l, j, i, h, k, plr, plr, plr, $.W(), 0)
+            let plr = new T.Plr(name, clan_name, fgt, weapon, f, e, d, c, b, a, s, r, q, p, o, n, m, l, j, i, h, k, 0, 0, 0, $.W(), 0)
             plr.a1(name, clan_name, fgt, weapon)
             return plr
         },
