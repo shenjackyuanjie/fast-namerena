@@ -77,3 +77,12 @@ wu
 n6w
 r
 ```
+
+## 2.seed 测试
+
+```plaintext
+adawada
+aeagfsdf
+
+seed:seed@!
+```

@@ -12572,7 +12572,7 @@ V.ProfileMain.prototype = {
     },
     dZ(a, b) {
         // 什么奇怪的算法?
-        var s, r, q, p, o, n, m, this_ = this,
+        var s, r, q, p, o, n, plr, this_ = this,
             names = this_.b
         // if (k.length === 2 && J.Y(J.J(k[0], 0), J.J(k[1], 0)) && J.Y(J.J(k[0], 1), J.J(k[1], 1))) {
         if (names.length === 2 && (names[0][0] == names[1][0]) && (names[0][1] == names[1][1])) {
@@ -12583,18 +12583,20 @@ V.ProfileMain.prototype = {
             o = names[p]
             // n = J.a3(o)
             // m = T.init_boss(n.h(o, 0), n.h(o, 1), null, n.h(o, 2))
-            m = T.create_player(o[0], o[1], null, o[2])
+            plr = T.create_player(o[0], o[1], null, o[2])
             // r.push(m)
-            this.f.push(m)
-            q.push(m.e)
+            this.f.push(plr)
+            q.push(plr.e)
         }
         names = r.length
         if (names + 5 >>> 4 === 0)
             for (p = 0; p < names; ++p) {
-                m = r[p]
-                m.I = m.gbT()
+                plr = r[p]
+                plr.I = plr.gbT()
             }
-        if (q.length === 1) this_.x = q[0]
+        if (q.length === 1) {
+            this_.x = q[0]
+        }
     },
     O() {
         // 实力评分 main
@@ -12736,14 +12738,14 @@ V.ProfileMain.prototype = {
         var async_goto = 0,
             async_completer = P._makeAsyncAwaitCompleter(t.z),
             this_ = this,
-            p, o, n, m, l
+            seed, o, n, m, l
         var $async$ae = P._wrapJsFunctionForAsync(function (async_error_code, async_result) {
             if (async_error_code === 1) return P.async_rethrow(async_result, async_completer)
             while (true) switch (async_goto) {
                 case 0:
                     this_.cx = b
-                    p = this_.cy
-                    p[0] = Date.now() + 1
+                    seed = this_.cy
+                    seed[0] = Date.now() + 1
                     o = this_.f
                     n = o.length
                     m = 0
@@ -12765,7 +12767,7 @@ V.ProfileMain.prototype = {
                     n = H.instanceType(o).i("a9<z.E>")
                     l = n.i("y<M.E,l*>")
                     l = P.List_List_of(new H.y(new H.a9(o, n), new V.j1(this_), l), true, l.i("M.E"))
-                    C.Array.a5(l, H.fJ(p.buffer, 0, null))
+                    C.Array.a5(l, H.fJ(seed.buffer, 0, null))
                     A.eR(X.dc(l))
                     return P.async_return(null, async_completer)
             }
@@ -16392,8 +16394,8 @@ T.fo.prototype = {
             async_completer = P._makeAsyncAwaitCompleter(t.z),
             q, this_ = this,
             o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, b0, b1, b2, b3
-        var $async$bD = P._wrapJsFunctionForAsync(function (b4, b5) {
-            if (b4 === 1) return P.async_rethrow(b5, async_completer)
+        var $async$bD = P._wrapJsFunctionForAsync(function (async_error_code, async_result) {
+            if (async_error_code === 1) return P.async_rethrow(async_result, async_completer)
             while (true) switch (async_goto) {
                 case 0:
                     b3 = H.b([], t.V)
@@ -16422,7 +16424,7 @@ T.fo.prototype = {
                                         a2 = T.init_plr(b.h(c, 0), b.h(c, $.i()), e.b, a1)
                                     }
                                     // a2 = a ? T.init_boss(b.h(c, 0), b.h(c, $.i()), this_, a1) : T.init_plr(b.h(c, 0), b.h(c, $.i()), e.b, a1)
-                                    if (a2 instanceof T.cy) {
+                                    if (a2 instanceof T.cy) { // PlrSeed
                                         b3.push(a2.e)
                                         k.push(a2)
                                         continue
