@@ -12583,7 +12583,8 @@ V.ProfileMain.prototype = {
             o = k[p]
             n = J.a3(o)
             m = T.init_boss(n.h(o, 0), n.h(o, 1), null, n.h(o, 2))
-            r.push(m)
+            // r.push(m)
+            this.f.push(m)
             q.push(m.e)
         }
         k = r.length
@@ -12601,7 +12602,7 @@ V.ProfileMain.prototype = {
         var async_goto = 0,
             async_completer = P._makeAsyncAwaitCompleter(t.d),
             q, this_ = this,
-            o, n, m, l, k, j, i, h, g, f, get_result, d, c, b, a, a0, a1, a2, a3, a4
+            o, n, m, l, k, j, round_count, h, g, f, get_result, d, c, b, a, a0, a1, a2, a3, a4
         var $async$O = P._wrapJsFunctionForAsync(function (async_error_code, async_result) {
             if (async_error_code === 1) return P.async_rethrow(async_result, async_completer)
             while (true) switch (async_goto) {
@@ -12617,9 +12618,17 @@ V.ProfileMain.prototype = {
                         async_goto = 1
                         break
                     }
-                    a4 = this_.r, o = t.v, n = this_.z, m = this_.b, l = this_.a, k = t.V, j = t.D, i = 0
+                    a4 = this_.r
+                    o = t.v
+                    n = this_.z
+                    m = this_.b
+                    l = this_.a
+                    k = t.V
+                    j = t.D
+                    round_count = 0
                 case 3:
-                    if (!(i < 100)) {
+                    if (!(round_count < 100)) {
+                        // 场数 >= 100
                         async_goto = 4
                         break
                     }
@@ -12670,9 +12679,14 @@ V.ProfileMain.prototype = {
                     async_goto = 6
                     break
                 case 8:
-                    if (C.Array.w(a4, o.a(d.a[0]).e.gb2())) ++this_.Q;
-                    ++i;
+                    // if (C.Array.w(a4, o.a(d.a[0]).e.gb2())) {
+                    if (a4.includes(o.a(d.a[0]).e.gb2())) {
+                        // 胜利场
+                        ++this_.Q
+                    };
+                    ++round_count;
                     ++this_.ch
+                    // this.ch -> 运行场数
                     async_goto = 3
                     break
                 case 4:
@@ -12682,6 +12696,7 @@ V.ProfileMain.prototype = {
                     // benchmarking
                     a4.push(T.RunUpdate(LangData.get_lang("pkGN"), null, null, C.JsInt.ag(this_.ch, 100), null, 0, 0, 0))
                     if (this_.ch >= this_.d) {
+                        // 阶段目标场数达到
                         this_.eS()
                     }
                     q = new T.aq(a4, o)
@@ -12704,7 +12719,8 @@ V.ProfileMain.prototype = {
         this_.y.push(new T.aq(q, p))
         if (this_.x != null) {
             s = new T.NPlr()
-            s.a = this_.f[0].e
+            // s.a = this_.f[0].e
+            s.a = this.f[0].e
             this_.z.aw(0, new V.j_(this_, s))
         }
         // console.log("iV.e5 this.d", this.d)
@@ -12718,16 +12734,18 @@ V.ProfileMain.prototype = {
     dK(a, b) {
         var async_goto = 0,
             async_completer = P._makeAsyncAwaitCompleter(t.z),
-            q = this,
+            this_ = this,
             p, o, n, m, l
-        var $async$ae = P._wrapJsFunctionForAsync(function (c, d) {
-            if (c === 1) return P.async_rethrow(d, async_completer)
+        var $async$ae = P._wrapJsFunctionForAsync(function (async_error_code, async_result) {
+            if (async_error_code === 1) return P.async_rethrow(async_result, async_completer)
             while (true) switch (async_goto) {
                 case 0:
-                    q.cx = b
-                    p = q.cy
+                    this_.cx = b
+                    p = this_.cy
                     p[0] = Date.now() + 1
-                    o = q.f, n = o.length, m = 0
+                    o = this_.f
+                    n = o.length
+                    m = 0
                 case 2:
                     if (!(m < o.length)) {
                         async_goto = 4
@@ -12745,7 +12763,7 @@ V.ProfileMain.prototype = {
                     o = C.e.gaB().ab(o)
                     n = H.instanceType(o).i("a9<z.E>")
                     l = n.i("y<M.E,l*>")
-                    l = P.List_List_of(new H.y(new H.a9(o, n), new V.j1(q), l), true, l.i("M.E"))
+                    l = P.List_List_of(new H.y(new H.a9(o, n), new V.j1(this_), l), true, l.i("M.E"))
                     C.Array.a5(l, H.fJ(p.buffer, 0, null))
                     A.eR(X.dc(l))
                     return P.async_return(null, async_completer)
