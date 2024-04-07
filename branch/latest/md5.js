@@ -5808,12 +5808,12 @@ var A = {
             if (o.length !== 0) c.push(o)
             return c
         },
-        start_main(a) {
+        start_main(target) {
             var async_goto = 0,
                 async_completer = P._makeAsyncAwaitCompleter(t.eF),
                 result, p, o, n, m, runner, k, j, i, h
-            var $async$c2 = P._wrapJsFunctionForAsync(function (b, c) {
-                if (b === 1) return P.async_rethrow(c, async_completer)
+            var $async$c2 = P._wrapJsFunctionForAsync(function (async_error_code, async_result) {
+                if (async_error_code === 1) return P.async_rethrow(async_result, async_completer)
                 while (true) switch (async_goto) {
                     case 0:
                         k = t.eV
@@ -5827,7 +5827,7 @@ var A = {
                         n = $.i()
                         m = -n
                         // run here?
-                        runner = new T.fo(j, h, k, i, new H.aT(t.d5), a, p, o, m, m, new Float64Array(n))
+                        runner = new T.Engine(j, h, k, i, new H.aT(t.d5), target, p, o, m, m, new Float64Array(n))
                         async_goto = 3
                         return P._asyncAwait(runner.bD(), $async$c2)
                     case 3:
@@ -7197,7 +7197,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        fo: function fo(a, b, c, d, e, f, g, h, i, j, k) {
+        Engine: function fo(a, b, c, d, e, f, g, h, i, j, k) {
             var _ = this
             _.a = a
             _.b = null
@@ -9726,7 +9726,8 @@ P.i_.prototype = {
     },
     cj(a, b) {
         var s
-        if (b == null) b = P.AsyncError_defaultStackTrace(a)
+        if (b == null) { b = P.AsyncError_defaultStackTrace(a) }
+        console.error(a, b)
         s = this.a
         if (this.b) s.be(a, b)
         else s.cT(a, b)
@@ -16386,7 +16387,7 @@ T.eg.prototype = {
         m.push(T.RunUpdate(C.String.B(LangData.get_lang("yjhn"), $.nd()), this.r, n, o, o, $.cZ(), 1000, 100))
     }
 }
-T.fo.prototype = {
+T.Engine.prototype = {
     bD() {
         logger.debug("看起来到 main 了")
         // 我盯上你了
@@ -19118,7 +19119,7 @@ LangData.k_.prototype = {
         S.fK,
         HtmlRenderer.inner_render, HtmlRenderer.jT, HtmlRenderer.ax,
         Sgls.a_, Sgls.n,
-        T.x, T.Plr, T.dk, T.fo, T.b7, T.IPlr, T.HDamage, T.HRecover, T.aX, T.aq, T.bG, T.Weapon, T.fl
+        T.x, T.Plr, T.dk, T.Engine, T.b7, T.IPlr, T.HDamage, T.HRecover, T.aX, T.aq, T.bG, T.Weapon, T.fl
         ]
     )
     inherit_many(J.Interceptor, [J.fw, J.cs, J.bE, J.JsArray, J.JsNumber, J.JsString, H.dJ, H.ab, W.fn, W.Blob, W.CanvasRenderingContext2D, W.i6, W.bb, W.ja, W.jb, W.o, W.c4, W.jL, W.ig, W.il, W.iy, W.iA])
