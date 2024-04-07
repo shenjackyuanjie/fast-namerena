@@ -12573,23 +12573,24 @@ V.ProfileMain.prototype = {
     dZ(a, b) {
         // 什么奇怪的算法?
         var s, r, q, p, o, n, m, this_ = this,
-            k = this_.b
+            names = this_.b
         // if (k.length === 2 && J.Y(J.J(k[0], 0), J.J(k[1], 0)) && J.Y(J.J(k[0], 1), J.J(k[1], 1))) {
-        if (k.length === 2 && (k[0][0] == k[1][0]) && (k[0][1] == k[1][1])) {
-            k.pop()
+        if (names.length === 2 && (names[0][0] == names[1][0]) && (names[0][1] == names[1][1])) {
+            names.pop()
             this_.c = true
         }
-        for (s = k.length, r = this_.f, q = this_.r, p = 0; p < k.length; k.length === s || (0, H.F)(k), ++p) {
-            o = k[p]
-            n = J.a3(o)
-            m = T.init_boss(n.h(o, 0), n.h(o, 1), null, n.h(o, 2))
+        for (s = names.length, r = this_.f, q = this_.r, p = 0; p < names.length; names.length === s || (0, H.F)(names), ++p) {
+            o = names[p]
+            // n = J.a3(o)
+            // m = T.init_boss(n.h(o, 0), n.h(o, 1), null, n.h(o, 2))
+            m = T.init_boss(o[0], o[1], null, o[2])
             // r.push(m)
             this.f.push(m)
             q.push(m.e)
         }
-        k = r.length
-        if (k + 5 >>> 4 === 0)
-            for (p = 0; p < k; ++p) {
+        names = r.length
+        if (names + 5 >>> 4 === 0)
+            for (p = 0; p < names; ++p) {
                 m = r[p]
                 m.I = m.gbT()
             }
