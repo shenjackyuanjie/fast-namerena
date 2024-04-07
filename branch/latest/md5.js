@@ -4847,7 +4847,7 @@ var A = {
             if (s > $.mR()) return $.py()
             return s
         },
-        init_boss(name, clan_name, fgt, weapon_name) {
+        create_player(name, clan_name, fgt, weapon_name) {
             // MARK: WTF 什么鬼这么长
             var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, a3 = null
             if (clan_name == $.nk()) {
@@ -12368,14 +12368,14 @@ L.ProfileWinChance.prototype = {
         for (s = k.a, r = s.length, q = k.e, p = k.r, o = 0; o < s.length; s.length === r || (0, H.F)(s), ++o) {
             n = s[o]
             m = J.a3(n)
-            l = T.init_boss(m.h(n, 0), m.h(n, 1), null, m.h(n, 2))
+            l = T.create_player(m.h(n, 0), m.h(n, 1), null, m.h(n, 2))
             q.push(l)
             p.push(l.e)
         }
         for (s = k.b, r = s.length, p = k.f, o = 0; o < s.length; s.length === r || (0, H.F)(s), ++o) {
             n = s[o]
             m = J.a3(n)
-            p.push(T.init_boss(m.h(n, 0), m.h(n, 1), null, m.h(n, 2)))
+            p.push(T.create_player(m.h(n, 0), m.h(n, 1), null, m.h(n, 2)))
         }
         s = q.length
         if (s + p.length >>> 4 === 0) {
@@ -12583,7 +12583,7 @@ V.ProfileMain.prototype = {
             o = names[p]
             // n = J.a3(o)
             // m = T.init_boss(n.h(o, 0), n.h(o, 1), null, n.h(o, 2))
-            m = T.init_boss(o[0], o[1], null, o[2])
+            m = T.create_player(o[0], o[1], null, o[2])
             // r.push(m)
             this.f.push(m)
             q.push(m.e)
@@ -16417,7 +16417,7 @@ T.fo.prototype = {
                                         a = a === a0 && J.ny(b.h(c, a0), 0) < $.pC()
                                     } else a = false
                                     if (a) {
-                                        a2 = T.init_boss(b.h(c, 0), b.h(c, $.i()), this_, a1)
+                                        a2 = T.create_player(b.h(c, 0), b.h(c, $.i()), this_, a1)
                                     } else {
                                         a2 = T.init_plr(b.h(c, 0), b.h(c, $.i()), e.b, a1)
                                     }
