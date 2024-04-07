@@ -16456,7 +16456,7 @@ T.fo.prototype = {
                     o = C.Array.aV(a8, "\r")
                     a9 = C.e.gaB().ab(o)
 
-                    rc4_holder = new LangData.SuperRC4()
+                    let rc4_holder = new LangData.SuperRC4()
                     rc4_holder.bd(a9, $.i())
                     this_.b = rc4_holder
                     rc4_holder.bO(a9)
