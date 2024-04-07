@@ -5808,7 +5808,7 @@ var A = {
             if (o.length !== 0) c.push(o)
             return c
         },
-        inner_main(a) {
+        start_main(a) {
             var async_goto = 0,
                 async_completer = P._makeAsyncAwaitCompleter(t.eF),
                 result, p, o, n, m, runner, k, j, i, h
@@ -12420,7 +12420,7 @@ L.ProfileWinChance.prototype = {
                     h = H.b([m, l, [H.b([H.as_string($.ni()) + this_.d++, $.cl()], k)]], j)
                     if (this_.z === 0) h.pop()
                     async_goto = 5
-                    return P._asyncAwait(T.inner_main(h), $async$O)
+                    return P._asyncAwait(T.start_main(h), $async$O)
                 case 5:
                     g = async_result
                     f = null
@@ -12647,7 +12647,7 @@ V.ProfileMain.prototype = {
                         for (f = 0; f < m.length; ++f) g.push(H.b(["" + this_.e++, l], k))
                     }
                     async_goto = 5
-                    return P._asyncAwait(T.inner_main(h), $async$O)
+                    return P._asyncAwait(T.start_main(h), $async$O)
                 case 5:
                     get_result = async_result
                     d = null
@@ -12881,7 +12881,7 @@ X.ProfileFind.prototype = {
                     this_.b = m + 1
                     k = H.b([H.b([l, H.b(["" + this_.c++, "\x02"], e)], o), H.b([H.b(["" + this_.c++, "\x02"], e), H.b(["" + this_.c++, "\x02"], e)], o)], n)
                     async_goto = 5
-                    return P._asyncAwait(T.inner_main(k), $async$O)
+                    return P._asyncAwait(T.start_main(k), $async$O)
                 case 5:
                     j = b
                     i = C.Array.dl(j.c, new X.iX())
@@ -12905,7 +12905,7 @@ X.ProfileFind.prototype = {
                         break
                     }
                     async_goto = 12
-                    return P._asyncAwait(T.inner_main(k), $async$O)
+                    return P._asyncAwait(T.start_main(k), $async$O)
                 case 12:
                     j = b
                 case 13:
@@ -21380,7 +21380,7 @@ function main() {
                 }
                 async_goto = 8
                 // c2 似乎是起始
-                return P._asyncAwait(T.inner_main(h), $async$iE)
+                return P._asyncAwait(T.start_main(h), $async$iE)
             case 8:
                 // a0_getter = async_result
                 // HtmlRenderer.jt(a0_getter)
