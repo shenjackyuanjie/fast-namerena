@@ -12623,10 +12623,12 @@ V.ProfileMain.prototype = {
                         async_goto = 4
                         break
                     }
-                    if (m.length === 1 && !this_.c) {h = H.b([
-                        [m[0], H.b(["" + this_.e++, l], k)],
-                        [H.b(["" + this_.e++, l], k), H.b(["" + this_.e++, l], k)]
-                    ], j)}
+                    if (m.length === 1 && !this_.c) {
+                        h = H.b([
+                            [m[0], H.b(["" + this_.e++, l], k)],
+                            [H.b(["" + this_.e++, l], k), H.b(["" + this_.e++, l], k)]
+                        ], j)
+                    }
                     else {
                         g = []
                         h = H.b([m, g], j)
@@ -16985,7 +16987,7 @@ T.Plr.prototype = {
             }
 
         }
-        
+
         if (J.lW(s, " ")) {
             this_.r = s.split(" ")[0]
         }
@@ -21228,7 +21230,7 @@ function main() {
         async_completer = P._makeAsyncAwaitCompleter(t.z),
         q, switch_to = 2,
         async_result_1, n = [],
-        m, l, rc4_holder, j, raw_names, h, profiler, f, e, d, c, 
+        m, l, rc4_holder, j, raw_names, h, profiler, f, e, d, c,
         b, a, a0_getter, a1, a2, a3, a4, a5, a6, a7, team_1, team_2, b0
     var $async$iE = P._wrapJsFunctionForAsync(function (error_code, async_result) {
         if (error_code === 1) {
