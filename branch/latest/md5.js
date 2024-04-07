@@ -120,7 +120,7 @@ if (run_env.from_code) {
 
     let fake_plist = document.createElement(".plist");
     let fake_pbody = document.createElement(".pbody");
-    logger.debug(stored_elements)
+    // logger.debug(stored_elements)
 
     global.self = global.window;
 
@@ -21388,6 +21388,6 @@ function main() {
     return P._asyncStartSync($async$iE, async_completer)
 }
 
-logger.debug("反混淆", $.nr())
+// logger.debug("反混淆", $.nr())
 main();
 // logger.debug("running main:", main()) // 执行main函数
