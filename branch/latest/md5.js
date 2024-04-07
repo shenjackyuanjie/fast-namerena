@@ -12623,10 +12623,10 @@ V.ProfileMain.prototype = {
                         async_goto = 4
                         break
                     }
-                    if (m.length === 1 && !this_.c) h = H.b([
+                    if (m.length === 1 && !this_.c) {h = H.b([
                         [m[0], H.b(["" + this_.e++, l], k)],
                         [H.b(["" + this_.e++, l], k), H.b(["" + this_.e++, l], k)]
-                    ], j)
+                    ], j)}
                     else {
                         g = []
                         h = H.b([m, g], j)
