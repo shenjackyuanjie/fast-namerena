@@ -1307,7 +1307,7 @@ var A = {
                 q = "self" + H.as_string(r)
                 r = "return function(){var " + q + " = this."
                 p = $.dh
-                return new Function(r + (p == null ? $.dh = H.j3(n) : p) + ";return " + q + "." + H.as_string(a) + "();}")()
+                return new Function(r + (p == null ? $.dh = H.BoundClosure_selfFieldName(n) : p) + ";return " + q + "." + H.as_string(a) + "();}")()
             }
             o = "abcdefghijklmnopqrstuvwxyz".split("").splice(0, s).join(",")
             r = $.bk
@@ -1315,7 +1315,7 @@ var A = {
             o += H.as_string(r)
             r = "return function(" + o + "){return this."
             p = $.dh
-            return new Function(r + (p == null ? $.dh = H.j3(n) : p) + "." + H.as_string(a) + "(" + o + ");}")()
+            return new Function(r + (p == null ? $.dh = H.BoundClosure_selfFieldName(n) : p) + "." + H.as_string(a) + "(" + o + ");}")()
         },
         Closure_cspForwardInterceptedCall(arity, is_super_call, name, func) {
             var get_self = H.BoundClosure_selfOf,
@@ -1370,24 +1370,24 @@ var A = {
             }
         },
         Closure_forwardInterceptedCallTo(a, b, c) {
-            var s, r, q, p, o, n = $.nE
-            if (n == null) n = $.nE = H.j3("interceptor")
-            s = $.dh
-            if (s == null) s = $.dh = H.j3("receiver")
-            r = b.length
-            q = c || r >= 28
-            if (q) return H.Closure_cspForwardInterceptedCall(r, c, a, b)
-            if (r === 1) {
-                q = "return function(){return this." + n + "." + H.as_string(a) + "(this." + s + ");"
-                p = $.bk
-                $.bk = p + 1
-                return new Function(q + H.as_string(p) + "}")()
+            var stub_name, arity, looked_up_func, t1, t2, args = $.nE
+            if (args == null) args = $.nE = H.BoundClosure_selfFieldName("interceptor")
+            stub_name = $.dh
+            if (stub_name == null) stub_name = $.dh = H.BoundClosure_selfFieldName("receiver")
+            arity = b.length
+            looked_up_func = c || arity >= 28
+            if (looked_up_func) return H.Closure_cspForwardInterceptedCall(arity, c, a, b)
+            if (arity === 1) {
+                looked_up_func = "return function(){return this." + args + "." + H.as_string(a) + "(this." + stub_name + ");"
+                t1 = $.bk
+                $.bk = t1 + 1
+                return new Function(looked_up_func + H.as_string(t1) + "}")()
             }
-            o = "abcdefghijklmnopqrstuvwxyz".split("").splice(0, r - 1).join(",")
-            q = "return function(" + o + "){return this." + n + "." + H.as_string(a) + "(this." + s + ", " + o + ");"
-            p = $.bk
-            $.bk = p + 1
-            return new Function(q + H.as_string(p) + "}")()
+            t2 = "abcdefghijklmnopqrstuvwxyz".split("").splice(0, arity - 1).join(",")
+            looked_up_func = "return function(" + t2 + "){return this." + args + "." + H.as_string(a) + "(this." + stub_name + ", " + t2 + ");"
+            t1 = $.bk
+            $.bk = t1 + 1
+            return new Function(looked_up_func + H.as_string(t1) + "}")()
         },
         mx(a) {
             // 理论上不能改, 但是似乎可以
@@ -1406,7 +1406,7 @@ var A = {
         BoundClosure_receiverOf(a) {
             return a.b
         },
-        j3(a) {
+        BoundClosure_selfFieldName(a) {
             var s, r, q, p = new H.dg("receiver", "interceptor"),
                 o = J.nL(Object.getOwnPropertyNames(p))
             for (s = o.length, r = 0; r < s; ++r) {
