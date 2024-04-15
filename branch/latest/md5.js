@@ -4735,7 +4735,7 @@ var A = {
                 r = b.r2
                 s = t.dK.a(r.h(0, $.bh()))
                 if (s == null) {
-                    s = new T.dn(a, b, $.pK(), $.t())
+                    s = new T.CurseState(a, b, $.pK(), $.t())
                     s.y = new T.bd(s)
                     r.m(0, $.bh(), s)
                     b.y2.j(0, s)
@@ -6187,7 +6187,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        dn: function dn(a, b, c, d) {
+        CurseState: function dn(a, b, c, d) {
             var _ = this
             _.r = a
             _.x = b
@@ -14393,13 +14393,15 @@ T.SklCritical.prototype = {
         r.a3(q, false, s.r, T.ad(), c, d)
     }
 }
-T.dn.prototype = {
+T.CurseState.prototype = {
     gT() {
         return -$.i()
     },
     aq(a, b, c, d, e) {
         var s = this
         if (a > 0 && (d.n() & 63) < s.z) {
+            // sklCurseDamage
+            // [诅咒]使伤害加倍
             e.a.push(T.RunUpdate(LangData.get_lang("wTSa"), s.r, s.x, null, null, 0, 1000, 100))
             a *= s.Q
         }
@@ -14418,6 +14420,8 @@ T.dn.prototype = {
         if (s.fx > 0) {
             r = b.a
             r.push($.K())
+            // sklCurseEnd
+            // [1]从[诅咒]中解除
             r.push(T.RunUpdateCancel(LangData.get_lang("yULA"), a, s))
         }
     },
@@ -19254,7 +19258,7 @@ LangData.k_.prototype = {
     inherit_many(T.UpdateStateEntry, [T.dj, T.dw, T.dx, T.SlowState, T.bd, T.h1])
     inherit_many(T.x, [T.dI, T.c3, T.hF, T.fC, T.hY])
     inherit_many(T.Plr, [T.dR, T.aM, T.cz, T.PlrBoost, T.PlrBossTest, T.PlrBossTest2, T.PlrEx, T.PlrSeed_])
-    inherit_many(T.aB, [T.dn, T.dT, T.ik])
+    inherit_many(T.aB, [T.CurseState, T.dT, T.ik])
     inherit_many(T.bq, [T.dS, T.b8])
     inherit_many(T.aM, [T.PlrShadow, T.PlrSummon, T.fX])
     inherit_many(T.cz, [T.PlrBossAokiji, T.PlrBossConan, T.PlrBossCovid, T.PlrBossIkaruga, T.PlrBossLazy, T.PlrBossMario, T.PlrBossMosquito, T.PlrBossSaitama, T.PlrBossSlime, T.PlrBossSonic, T.PlrBossYuri])
@@ -21441,5 +21445,5 @@ function main() {
 }
 
 main();
-logger.debug("反混淆", LangData.get_lang("EJLN"));
+logger.debug("反混淆", LangData.get_lang("yULA"));
 // logger.debug("running main:", main()) // 执行main函数
