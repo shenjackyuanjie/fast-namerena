@@ -13053,6 +13053,7 @@ HtmlRenderer.inner_render.prototype = {
         this_.d = P.Timer_Timer(P.duration_milsec_sec(0, 0), this.gbc(this_))
 
         if (!run_env.from_code) {
+            // this.gff -> this.ds
             W.es(window, "resize", this_.gff(this_), false)
         }
 
@@ -13074,6 +13075,8 @@ HtmlRenderer.inner_render.prototype = {
 
         profiler = this_.c
         if (profiler.gbu(profiler) != null) {
+            // MARK: 获取是否有 error
+            // 有 error 就加上去 (没啥意义, 默认为 null)
             // gbu: 获取某个东西, 只有 Engine 才是 this.f
             // 测号相关都是 null
             profiler = profiler.gbu(profiler)
@@ -13332,6 +13335,7 @@ HtmlRenderer.inner_render.prototype = {
     em() {
         return this.c5(true)
     },
+    // MARK: 结束
     fQ() {
         var s, r, q, p, o, n, m, l, k, j, i, h, g, this_ = this
         // e = "click",
