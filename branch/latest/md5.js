@@ -6229,7 +6229,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        dw: function dw(a, b, c) {
+        HasteState: function dw(a, b, c) {
             var _ = this
             _.x = a
             _.y = null
@@ -14595,7 +14595,7 @@ T.sklHalf.prototype = {
         if (j > 0) g.cr(j, p, i.r, c, d)
     }
 }
-T.dw.prototype = {
+T.HasteState.prototype = {
     gT() {
         return $.i()
     },
@@ -14618,6 +14618,8 @@ T.dw.prototype = {
         if (s.fx > 0) {
             r = b.a
             r.push($.K())
+            // sklHasteEnd
+            // [1]从[疾走]中解除
             r.push(T.RunUpdateCancel(LangData.get_lang("wlqa"), a, s))
         }
     },
@@ -14656,7 +14658,7 @@ T.SklHaste.prototype = {
         s = n.r2
         r = t.e_.a(s.h(0, $.d4()))
         if (r == null) {
-            r = new T.dw(n, $.t(), $.B())
+            r = new T.HasteState(n, $.t(), $.B())
             r.y = new T.b8(r)
             s.m(0, $.d4(), r)
             n.rx.j(0, r)
@@ -19255,7 +19257,7 @@ LangData.k_.prototype = {
         T.hD, T.SkillVoid, T.hg, T.ee, T.hz
         ]
     )
-    inherit_many(T.UpdateStateEntry, [T.dj, T.dw, T.dx, T.SlowState, T.bd, T.h1])
+    inherit_many(T.UpdateStateEntry, [T.dj, T.HasteState, T.dx, T.SlowState, T.bd, T.h1])
     inherit_many(T.x, [T.dI, T.c3, T.hF, T.fC, T.hY])
     inherit_many(T.Plr, [T.dR, T.aM, T.cz, T.PlrBoost, T.PlrBossTest, T.PlrBossTest2, T.PlrEx, T.PlrSeed_])
     inherit_many(T.aB, [T.CurseState, T.dT, T.ik])
@@ -21445,5 +21447,5 @@ function main() {
 }
 
 main();
-logger.debug("反混淆", LangData.get_lang("yULA"));
+logger.debug("反混淆", LangData.get_lang("wlqa"));
 // logger.debug("running main:", main()) // 执行main函数
