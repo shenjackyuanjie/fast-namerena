@@ -1026,7 +1026,7 @@ var A = {
                 }
             }(a)
         },
-        m9(a, b) {
+        JsNoSuchMethodError(a, b) {
             var s = b == null,
                 r = s ? null : b.method
             return new H.fx(a, r, s ? null : b.receiver)
@@ -1044,18 +1044,18 @@ var A = {
             return err
         },
         _unwrapNonDartException(ex) {
-            var s, r, q, t1, nsme, not_closure, null_call, null_literal_call, undef_call, undef_literal_call, null_property, undef_property, undef_literal_property, match, e = null
+            var message, number, is_error_code, t1, nsme, not_closure, null_call, null_literal_call, undef_call, undef_literal_call, null_property, undef_property, undef_literal_property, match, e = null
             if (!("message" in ex)) return ex
-            s = ex.message
+            message = ex.message
             if ("number" in ex && typeof ex.number == "number") {
-                r = ex.number
-                q = r & 65535
-                if ((C.JsInt.am(r, 16) & 8191) === 10) switch (q) {
+                number = ex.number
+                is_error_code = number & 65535
+                if ((C.JsInt.am(number, 16) & 8191) === 10) switch (is_error_code) {
                     case 438:
-                        return H.saveStackTrace(ex, H.m9(H.as_string(s) + " (Error " + q + ")", e))
+                        return H.saveStackTrace(ex, H.JsNoSuchMethodError(H.as_string(message) + " (Error " + is_error_code + ")", e))
                     case 445:
                     case 5007:
-                        t1 = H.as_string(s) + " (Error " + q + ")"
+                        t1 = H.as_string(message) + " (Error " + is_error_code + ")"
                         return H.saveStackTrace(ex, new H.NullError(t1, e))
                 }
             }
@@ -1070,29 +1070,29 @@ var A = {
                 $.rb()
                 undef_property = $.rg()
                 undef_literal_property = $.rf()
-                match = nsme.aH(s)
-                if (match != null) return H.saveStackTrace(ex, H.m9(s, match))
+                match = nsme.aH(message)
+                if (match != null) return H.saveStackTrace(ex, H.JsNoSuchMethodError(message, match))
                 else {
-                    match = not_closure.aH(s)
+                    match = not_closure.aH(message)
                     if (match != null) {
                         match.method = "call"
-                        return H.saveStackTrace(ex, H.m9(s, match))
+                        return H.saveStackTrace(ex, H.JsNoSuchMethodError(message, match))
                     } else {
-                        match = null_call.aH(s)
+                        match = null_call.aH(message)
                         if (match == null) {
-                            match = null_literal_call.aH(s)
+                            match = null_literal_call.aH(message)
                             if (match == null) {
-                                match = undef_call.aH(s)
+                                match = undef_call.aH(message)
                                 if (match == null) {
-                                    match = undef_literal_call.aH(s)
+                                    match = undef_literal_call.aH(message)
                                     if (match == null) {
-                                        match = null_property.aH(s)
+                                        match = null_property.aH(message)
                                         if (match == null) {
-                                            match = null_literal_call.aH(s)
+                                            match = null_literal_call.aH(message)
                                             if (match == null) {
-                                                match = undef_property.aH(s)
+                                                match = undef_property.aH(message)
                                                 if (match == null) {
-                                                    match = undef_literal_property.aH(s)
+                                                    match = undef_literal_property.aH(message)
                                                     t1 = match != null
                                                 } else
                                                     t1 = true
@@ -1109,24 +1109,24 @@ var A = {
                         } else
                             t1 = true
                         if (t1) {
-                            return H.saveStackTrace(ex, new H.NullError(s, match == null ? e : match.method))
+                            return H.saveStackTrace(ex, new H.NullError(message, match == null ? e : match.method))
                         }
                     }
                 }
-                return H.saveStackTrace(ex, new H.hU(typeof s == "string" ? s : ""))
+                return H.saveStackTrace(ex, new H.hU(typeof message == "string" ? message : ""))
             }
             if (ex instanceof RangeError) {
-                if (typeof s == "string" && s.indexOf("call stack") !== -1) return new P.el()
-                s = function (b) {
+                if (typeof message == "string" && message.indexOf("call stack") !== -1) return new P.el()
+                message = function (b) {
                     try {
                         return String(b)
                     } catch (d) { }
                     return null
                 }(ex)
-                return H.saveStackTrace(ex, new P.aS(false, e, e, typeof s == "string" ? s.replace(/^RangeError:\s*/, "") : s))
+                return H.saveStackTrace(ex, new P.aS(false, e, e, typeof message == "string" ? message.replace(/^RangeError:\s*/, "") : message))
             }
             if (typeof InternalError == "function" && ex instanceof InternalError)
-                if (typeof s == "string" && s === "too much recursion") return new P.el()
+                if (typeof message == "string" && message === "too much recursion") return new P.el()
             return ex
         },
         getTraceFromException(a) {
