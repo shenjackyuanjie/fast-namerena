@@ -7364,7 +7364,7 @@ var A = {
         bH: function bH() { },
         aB: function aB() { },
         ah: function ah() { },
-        aV: function aV() { },
+        PreActionEntry: function aV() { },
         bq: function bq() { },
         aF: function aF() { },
         bd: function bd(a) {
@@ -17690,7 +17690,7 @@ T.cB.prototype = {}
 T.bH.prototype = {}
 T.aB.prototype = {}
 T.ah.prototype = {}
-T.aV.prototype = {}
+T.PreActionEntry.prototype = {}
 T.bq.prototype = {}
 T.aF.prototype = {}
 T.bd.prototype = {
@@ -19238,7 +19238,7 @@ LangData.k_.prototype = {
     inherit(P.kx, P.kw)
     inherit(P.cF, P.p)
     inherit(HtmlRenderer.fW, HtmlRenderer.ax)
-    inherit_many(Sgls.MEntry, [T.Skill, T.UpdateStateEntry, T.aB, T.bq, T.cB, T.bH, T.ah, T.aV, T.aF])
+    inherit_many(Sgls.MEntry, [T.Skill, T.UpdateStateEntry, T.aB, T.bq, T.cB, T.bH, T.ah, T.PreActionEntry, T.aF])
     inherit_many(T.Skill,
         [T.ActionSkill, T.h6, T.he, T.hn, T.hq, T.ea, T.ef,
         T.SklCounter, T.SklDefend, T.SklHide, T.SklMerge, T.SklProtect,
@@ -19271,7 +19271,7 @@ LangData.k_.prototype = {
     inherit_many(T.aX, [T.h2, T.dX])
     inherit(T.fY, T.cB)
     inherit(T.cA, T.ah)
-    inherit_many(T.aV, [T.ca, T.RinickModifierPreAction])
+    inherit_many(T.PreActionEntry, [T.ca, T.RinickModifierPreAction])
     inherit(T.cp, T.aF)
     inherit(T.ij, T.bH)
     inherit(T.dV, T.ij)
