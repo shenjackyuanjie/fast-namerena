@@ -1044,7 +1044,7 @@ var A = {
             return err
         },
         _unwrapNonDartException(ex) {
-            var s, r, q, t1, nsme, not_closure, null_call, l, k, j, i, h, g, match, e = null
+            var s, r, q, t1, nsme, not_closure, null_call, null_literal_call, undef_call, undef_literal_call, null_property, undef_property, undef_literal_property, match, e = null
             if (!("message" in ex)) return ex
             s = ex.message
             if ("number" in ex && typeof ex.number == "number") {
@@ -1063,13 +1063,13 @@ var A = {
                 nsme = $.r7()
                 not_closure = $.r8()
                 null_call = $.r9()
-                l = $.ra()
-                k = $.rd()
-                j = $.re()
-                i = $.rc()
+                null_literal_call = $.ra()
+                undef_call = $.rd()
+                undef_literal_call = $.re()
+                null_property = $.rc()
                 $.rb()
-                h = $.rg()
-                g = $.rf()
+                undef_property = $.rg()
+                undef_literal_property = $.rf()
                 match = nsme.aH(s)
                 if (match != null) return H.saveStackTrace(ex, H.m9(s, match))
                 else {
@@ -1080,27 +1080,34 @@ var A = {
                     } else {
                         match = null_call.aH(s)
                         if (match == null) {
-                            match = l.aH(s)
+                            match = null_literal_call.aH(s)
                             if (match == null) {
-                                match = k.aH(s)
+                                match = undef_call.aH(s)
                                 if (match == null) {
-                                    match = j.aH(s)
+                                    match = undef_literal_call.aH(s)
                                     if (match == null) {
-                                        match = i.aH(s)
+                                        match = null_property.aH(s)
                                         if (match == null) {
-                                            match = l.aH(s)
+                                            match = null_literal_call.aH(s)
                                             if (match == null) {
-                                                match = h.aH(s)
+                                                match = undef_property.aH(s)
                                                 if (match == null) {
-                                                    match = g.aH(s)
+                                                    match = undef_literal_property.aH(s)
                                                     t1 = match != null
-                                                } else t1 = true
-                                            } else t1 = true
-                                        } else t1 = true
-                                    } else t1 = true
-                                } else t1 = true
-                            } else t1 = true
-                        } else t1 = true
+                                                } else
+                                                    t1 = true
+                                            } else
+                                                t1 = true
+                                        } else
+                                            t1 = true
+                                    } else
+                                        t1 = true
+                                } else
+                                    t1 = true
+                            } else
+                                t1 = true
+                        } else
+                            t1 = true
                         if (t1) {
                             return H.saveStackTrace(ex, new H.NullError(s, match == null ? e : match.method))
                         }
@@ -3568,17 +3575,17 @@ var A = {
         async_rethrow(a, b) {
             b.cj(H.unwrap_Exception(a), H.getTraceFromException(a))
         },
-        _awaitOnObject(a, body_function) {
+        _awaitOnObject(object, body_function) {
             var s, r, q = new P._awaitOnObject_closure(body_function),
                 p = new P._awaitOnObject_closure0(body_function)
-            if (a instanceof P._Future) a.d7(q, p, t.z)
+            if (object instanceof P._Future) object.d7(q, p, t.z)
             else {
                 s = t.z
-                if (t.h.b(a)) a.cz(q, p, s)
+                if (t.h.b(object)) object.cz(q, p, s)
                 else {
                     r = new P._Future($.P, t.eI)
                     r.a = 8
-                    r.c = a
+                    r.c = object
                     r.d7(q, p, s)
                 }
             }
