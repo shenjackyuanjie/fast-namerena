@@ -5561,7 +5561,7 @@ var A = {
                 s = 0
                 r = new T.dl(a, b, s, c, s)
                 r.k1 = new T.b8(r)
-                r.k2 = new T.ca(r)
+                r.k2 = new T.PreActionImpl(r)
                 m = m.a(n.h(0, $.ck()))
                 r.id = m
                 s = r.go
@@ -5597,7 +5597,7 @@ var A = {
             var s = new T.dB(a, b, 0)
             s.fy = new T.b8(s)
             s.go = new T.bd(s)
-            s.id = new T.ca(s)
+            s.id = new T.PreActionImpl(s)
             return s
         },
         nP(a, b, c) {
@@ -7388,7 +7388,7 @@ var A = {
             _.x = a
             _.c = _.b = _.a = null
         },
-        ca: function ca(a) {
+        PreActionImpl: function ca(a) {
             var _ = this
             _.x = a
             _.c = _.b = _.a = null
@@ -17246,7 +17246,7 @@ T.Plr.prototype = {
         r.fr = new T.bd(r)
         skills.push(r) // 20
         r = new T.SklAssassinate(0)
-        r.fr = new T.ca(r)
+        r.fr = new T.PreActionImpl(r)
         r.fx = new T.cA(r)
         skills.push(r) // 21
         skills.push(new T.SklSummon(0)); // 22
@@ -17265,7 +17265,7 @@ T.Plr.prototype = {
         skills.push(r) // 33
         r = new T.SklHide(0)
         r.ch = new T.bd(r)
-        r.Q = new T.ca(r)
+        r.Q = new T.PreActionImpl(r)
         skills.push(r) // 34
         skills.push(new T.SkillVoid(0))
         skills.push(new T.SkillVoid(0))
@@ -17722,7 +17722,7 @@ T.cA.prototype = {
         return 1 / 0
     }
 }
-T.ca.prototype = {
+T.PreActionImpl.prototype = {
     aN(a, b, c, d) {
         return this.x.aN(a, b, c, d)
     },
@@ -19271,7 +19271,7 @@ LangData.k_.prototype = {
     inherit_many(T.aX, [T.h2, T.dX])
     inherit(T.fY, T.cB)
     inherit(T.cA, T.ah)
-    inherit_many(T.PreActionEntry, [T.ca, T.RinickModifierPreAction])
+    inherit_many(T.PreActionEntry, [T.PreActionImpl, T.RinickModifierPreAction])
     inherit(T.cp, T.aF)
     inherit(T.ij, T.bH)
     inherit(T.dV, T.ij)
