@@ -1,6 +1,7 @@
 'use strict';
 
-let name_input = "!test!\n\natest\n\ntest2";
+// let name_input = "!test!\n\natest\n\ntest2";
+let name_input = "this_is_a\nthis_is_b";
 let assets_data = {
     lang: null,
     gAd: null,
