@@ -1416,7 +1416,7 @@ var A = {
             throw H.wrap_expression(P.bz("Field name " + a + " not found.", null))
         },
         throwCyclicInit(a) {
-            throw H.wrap_expression(new P.fj(a))
+            throw H.wrap_expression(new P.CyclicInitializationError(a))
         },
         getIsolateAffinityTag(a) {
             return init.getIsolateTag(a)
@@ -4526,7 +4526,7 @@ var A = {
         },
         fM: function fM() { },
         el: function el() { },
-        fj: function fj(a) {
+        CyclicInitializationError: function fj(a) {
             this.a = a
         },
         kG: function kG(a) {
@@ -11118,7 +11118,7 @@ P.el.prototype = {
     },
     $iO: 1
 }
-P.fj.prototype = {
+P.CyclicInitializationError.prototype = {
     k(a) {
         var s = this.a
         return s == null ? "Reading static variable during its initialization" : "Reading static variable '" + s + "' during its initialization"
@@ -19133,7 +19133,7 @@ LangData.k_.prototype = {
     inherit_many(J.bE, [J.PlainJavaScriptObject, J.UnknownJavaScriptObject, J.JavaScriptFunction])
     inherit(J.JsUnmodifiableArray, J.JsArray)
     inherit_many(J.JsNumber, [J.JsInt, J.jF])
-    inherit_many(P.O, [H.fz, H.dO, P.bc, H.fx, H.hU, H.h3, H.i9, P.f2, P.fL, P.aS, P.hW, P.hS, P.bJ, P.fh, P.fj])
+    inherit_many(P.O, [H.fz, H.dO, P.bc, H.fx, H.hU, H.h3, H.i9, P.f2, P.fL, P.aS, P.hW, P.hS, P.bJ, P.fh, P.CyclicInitializationError])
     inherit(P.dE, P.ev)
     inherit_many(P.dE, [H.cJ, W.az])
     inherit(H.ff, H.cJ)
