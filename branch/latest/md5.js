@@ -3568,9 +3568,9 @@ var A = {
         async_rethrow(a, b) {
             b.cj(H.unwrap_Exception(a), H.getTraceFromException(a))
         },
-        _awaitOnObject(a, b) {
-            var s, r, q = new P.lh(b),
-                p = new P.li(b)
+        _awaitOnObject(a, body_function) {
+            var s, r, q = new P._awaitOnObject_closure(body_function),
+                p = new P.li(body_function)
             if (a instanceof P._Future) a.d7(q, p, t.z)
             else {
                 s = t.z
@@ -3873,7 +3873,7 @@ var A = {
             this.b = false
             this.$ti = b
         },
-        lh: function lh(a) {
+        _awaitOnObject_closure: function lh(a) {
             this.a = a
         },
         li: function li(a) {
@@ -9733,7 +9733,7 @@ P.i_.prototype = {
         else s.cT(a, b)
     }
 }
-P.lh.prototype = {
+P._awaitOnObject_closure.prototype = {
     $1(a) {
         return this.a.$2(0, a)
     },
@@ -19138,7 +19138,7 @@ LangData.k_.prototype = {
     inherit(H.NullError, P.bc)
     inherit_many(H.c_,
         [H.j5, H.j6, H.kg, H.jH, H.lv, H.lx,
-        P.kB, P.kA, P.lh, P.kK, P.kS, P.ke, P.kZ, P.Duration_toString_sixDigits, P.Duration_toString_twoDigits,
+        P.kB, P.kA, P._awaitOnObject_closure, P.kK, P.kS, P.ke, P.kZ, P.Duration_toString_sixDigits, P.Duration_toString_twoDigits,
         W.jf, W.kF, W.jP, W.jO, W.l0, W.l1, W.l7,
         P.lE, P.lF,
         L.iS, L.iT, L.iU,
