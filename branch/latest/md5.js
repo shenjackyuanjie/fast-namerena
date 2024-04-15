@@ -7602,7 +7602,7 @@ var A = {
         k2: function k2(a) {
             this.a = a
         },
-        h1: function h1() {
+        RinickModifierUpdateState: function h1() {
             this.c = this.b = this.a = null
         },
         ee: function ee(a, b) {
@@ -18509,7 +18509,7 @@ T.k1.prototype = {
     },
     b6() {
         var s, r, q, p, o, n, m, l = this.c
-        l.rx.j(0, new T.h1())
+        l.rx.j(0, new T.RinickModifierUpdateState())
         // Rinick
         if (l.e != $.iL()) {
             for (l = l.k2, s = l.length, r = 0; r < l.length; l.length === s || (0, H.F)(l), ++r) {
@@ -18608,7 +18608,7 @@ T.k2.prototype = {
     },
     $S: 16
 }
-T.h1.prototype = {
+T.RinickModifierUpdateState.prototype = {
     ga4() {
         return $.ao()
     },
@@ -19257,7 +19257,7 @@ LangData.k_.prototype = {
         T.hD, T.SkillVoid, T.hg, T.ee, T.hz
         ]
     )
-    inherit_many(T.UpdateStateEntry, [T.dj, T.HasteState, T.dx, T.SlowState, T.bd, T.h1])
+    inherit_many(T.UpdateStateEntry, [T.dj, T.HasteState, T.dx, T.SlowState, T.bd, T.RinickModifierUpdateState])
     inherit_many(T.x, [T.dI, T.c3, T.hF, T.fC, T.hY])
     inherit_many(T.Plr, [T.dR, T.aM, T.cz, T.PlrBoost, T.PlrBossTest, T.PlrBossTest2, T.PlrEx, T.PlrSeed_])
     inherit_many(T.aB, [T.CurseState, T.dT, T.ik])
