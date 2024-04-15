@@ -6357,7 +6357,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        eh: function eh(a, b) {
+        SlowState: function SlowState(a, b) {
             var _ = this
             _.x = a
             _.y = null
@@ -15163,7 +15163,7 @@ T.SklShadow.prototype = {
         s.push(T.RunUpdate(shadow_name, q, o, a6, a6, 0, 1000, 100))
     }
 }
-T.eh.prototype = {
+T.SlowState.prototype = {
     gT() {
         return -$.i()
     },
@@ -15227,7 +15227,7 @@ T.SklSlow.prototype = {
         s = o.r2
         r = t.S.a(s.h(0, $.bi()))
         if (r == null) {
-            r = new T.eh(o, $.t())
+            r = new T.SlowState(o, $.t())
             r.y = new T.b8(r)
             s.m(0, $.bi(), r)
             o.rx.j(0, r)
@@ -19250,7 +19250,7 @@ LangData.k_.prototype = {
         T.hD, T.SkillVoid, T.hg, T.ee, T.hz
         ]
     )
-    inherit_many(T.aZ, [T.dj, T.dw, T.dx, T.eh, T.bd, T.h1])
+    inherit_many(T.aZ, [T.dj, T.dw, T.dx, T.SlowState, T.bd, T.h1])
     inherit_many(T.x, [T.dI, T.c3, T.hF, T.fC, T.hY])
     inherit_many(T.Plr, [T.dR, T.aM, T.cz, T.PlrBoost, T.PlrBossTest, T.PlrBossTest2, T.PlrEx, T.PlrSeed_])
     inherit_many(T.aB, [T.dn, T.dT, T.ik])
@@ -20099,7 +20099,7 @@ var t = (function rtii() {
     lazy_old($, "zD", "r_", function () {
         return P.RegExp_RegExp("\\r?\\n")
     })
-    // MARK: 空 RunUpdate
+    // MARK: 空 RunUpdate (newline)
     lazy_old($, "zR", "K", function () {
         var q = null
         return T.RunUpdate("\n", q, q, q, q, 0, 1000, 100)
