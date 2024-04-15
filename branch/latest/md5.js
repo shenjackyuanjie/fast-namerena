@@ -7594,7 +7594,7 @@ var A = {
             _.r = c
         },
         k3: function k3() { },
-        h0: function h0(a) {
+        RinickModifierPreAction: function h0(a) {
             var _ = this
             _.r = a
             _.c = _.b = _.a = null
@@ -7602,10 +7602,10 @@ var A = {
         k2: function k2(a) {
             this.a = a
         },
-        RinickModifierUpdateState: function h1() {
+        RinickModifierUpdateState: function RinickModifierUpdateState() {
             this.c = this.b = this.a = null
         },
-        SklRinickModifierClone: function ee(a, b) {
+        SklRinickModifierClone: function SklRinickModifierClone(a, b) {
             var _ = this
             _.fr = a
             _.e = false
@@ -18560,7 +18560,7 @@ T.k1.prototype = {
         s = l.k2;
         (s && C.Array).j(s, m)
         m.r.L.j(0, m)
-        l.x1.j(0, new T.h0(l))
+        l.x1.j(0, new T.RinickModifierPreAction(l))
     }
 }
 T.k3.prototype = {
@@ -18569,7 +18569,7 @@ T.k3.prototype = {
     },
     $S: 2
 }
-T.h0.prototype = {
+T.RinickModifierPreAction.prototype = {
     ga4() {
         return $.ao()
     },
@@ -19271,7 +19271,7 @@ LangData.k_.prototype = {
     inherit_many(T.aX, [T.h2, T.dX])
     inherit(T.fY, T.cB)
     inherit(T.cA, T.ah)
-    inherit_many(T.aV, [T.ca, T.h0])
+    inherit_many(T.aV, [T.ca, T.RinickModifierPreAction])
     inherit(T.cp, T.aF)
     inherit(T.ij, T.bH)
     inherit(T.dV, T.ij)
