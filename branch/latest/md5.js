@@ -7359,7 +7359,7 @@ var A = {
         BoostPassive: function boost_passive() { }, // boostPassive
         jY: function jY() { },
         x: function x() { },
-        aZ: function aZ() { },
+        UpdateStateEntry: function aZ() { },
         cB: function cB() { },
         bH: function bH() { },
         aB: function aB() { },
@@ -13940,8 +13940,9 @@ Sgls.a_.prototype = {
     }
 }
 Sgls.MEntry.prototype = {
+    // MARK: sortId
     ga4() {
-        return 1e4
+        return 1e4 // 10000
     },
     D() {
         var s = this.a
@@ -17678,7 +17679,7 @@ T.jY.prototype = {
 T.x.prototype = {
     K(a, b) { }
 }
-T.aZ.prototype = {}
+T.UpdateStateEntry.prototype = {}
 T.cB.prototype = {}
 T.bH.prototype = {}
 T.aB.prototype = {}
@@ -19231,7 +19232,7 @@ LangData.k_.prototype = {
     inherit(P.kx, P.kw)
     inherit(P.cF, P.p)
     inherit(HtmlRenderer.fW, HtmlRenderer.ax)
-    inherit_many(Sgls.MEntry, [T.Skill, T.aZ, T.aB, T.bq, T.cB, T.bH, T.ah, T.aV, T.aF])
+    inherit_many(Sgls.MEntry, [T.Skill, T.UpdateStateEntry, T.aB, T.bq, T.cB, T.bH, T.ah, T.aV, T.aF])
     inherit_many(T.Skill,
         [T.ActionSkill, T.h6, T.he, T.hn, T.hq, T.ea, T.ef,
         T.SklCounter, T.SklDefend, T.SklHide, T.SklMerge, T.SklProtect,
@@ -19250,7 +19251,7 @@ LangData.k_.prototype = {
         T.hD, T.SkillVoid, T.hg, T.ee, T.hz
         ]
     )
-    inherit_many(T.aZ, [T.dj, T.dw, T.dx, T.SlowState, T.bd, T.h1])
+    inherit_many(T.UpdateStateEntry, [T.dj, T.dw, T.dx, T.SlowState, T.bd, T.h1])
     inherit_many(T.x, [T.dI, T.c3, T.hF, T.fC, T.hY])
     inherit_many(T.Plr, [T.dR, T.aM, T.cz, T.PlrBoost, T.PlrBossTest, T.PlrBossTest2, T.PlrEx, T.PlrSeed_])
     inherit_many(T.aB, [T.dn, T.dT, T.ik])
