@@ -7605,7 +7605,7 @@ var A = {
         RinickModifierUpdateState: function h1() {
             this.c = this.b = this.a = null
         },
-        ee: function ee(a, b) {
+        SklRinickModifierClone: function ee(a, b) {
             var _ = this
             _.fr = a
             _.e = false
@@ -18595,7 +18595,7 @@ T.h0.prototype = {
         p = C.JsInt.am(q - o, $.i()) - o
         o = 0
         if (p > o) {
-            q = new T.ee(p, o)
+            q = new T.SklRinickModifierClone(p, o)
             q.ao(s, o)
             return q
         }
@@ -18653,7 +18653,7 @@ T.RinickModifierUpdateState.prototype = {
         }
     }
 }
-T.ee.prototype = {
+T.SklRinickModifierClone.prototype = {
     v(a, b, c, d) {
         var s, r, q, p, o, n, m, l, k = this,
             j = null
@@ -18696,7 +18696,7 @@ T.hy.prototype = {
         s = C.JsInt.am(p - q, $.i()) - q
         if (s > 0) {
             b.a.push($.K())
-            r = new T.ee(s, 0)
+            r = new T.SklRinickModifierClone(s, 0)
             r.ao(this.r, $.i())
             r.v(H.b([], t.F), true, a, b)
         }
@@ -19254,7 +19254,7 @@ LangData.k_.prototype = {
         T.hj, T.SklSummon, T.SklThunder,
         T.e2, T.hb, T.dl, T.hd, T.hm,
         T.dB, T.hp, T.hr, T.hA, T.h8,
-        T.hD, T.SkillVoid, T.hg, T.ee, T.hz
+        T.hD, T.SkillVoid, T.hg, T.SklRinickModifierClone, T.hz
         ]
     )
     inherit_many(T.UpdateStateEntry, [T.dj, T.HasteState, T.dx, T.SlowState, T.bd, T.RinickModifierUpdateState])
