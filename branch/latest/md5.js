@@ -3570,7 +3570,7 @@ var A = {
         },
         _awaitOnObject(a, body_function) {
             var s, r, q = new P._awaitOnObject_closure(body_function),
-                p = new P.li(body_function)
+                p = new P._awaitOnObject_closure0(body_function)
             if (a instanceof P._Future) a.d7(q, p, t.z)
             else {
                 s = t.z
@@ -3876,7 +3876,7 @@ var A = {
         _awaitOnObject_closure: function lh(a) {
             this.a = a
         },
-        li: function li(a) {
+        _awaitOnObject_closure0: function li(a) {
             this.a = a
         },
         _wrapJsFunctionForAsync_closure: function lr(a) {
@@ -9739,7 +9739,7 @@ P._awaitOnObject_closure.prototype = {
     },
     $S: 5
 }
-P.li.prototype = {
+P._awaitOnObject_closure0.prototype = {
     $2(a, b) {
         this.a.$2(1, new H.dt(a, b))
     },
@@ -19154,7 +19154,7 @@ LangData.k_.prototype = {
     inherit_many(H.kg, [H.kc, H.dg])
     inherit(P.dG, P.aU)
     inherit_many(P.dG, [H.aT, P.ic, W.i2])
-    inherit_many(H.j6, [H.lw, P.li, P._wrapJsFunctionForAsync_closure, P.kL, P.jM, W.kd, W.le, P.l5, P.l6, P.ky, V.j_, HtmlRenderer.jA, Sgls.k7, LangData.lA, T.ka, T.jX, T.jY, T.k2, T.kq, T.kr, T.ks, T.kt, T.ku])
+    inherit_many(H.j6, [H.lw, P._awaitOnObject_closure0, P._wrapJsFunctionForAsync_closure, P.kL, P.jM, W.kd, W.le, P.l5, P.l6, P.ky, V.j_, HtmlRenderer.jA, Sgls.k7, LangData.lA, T.ka, T.jX, T.jY, T.k2, T.kq, T.kr, T.ks, T.kt, T.ku])
     inherit(H.hZ, P.dy)
     inherit(H.NativeTypedArray, H.ab)
     inherit_many(H.NativeTypedArray, [H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin, H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin])
