@@ -6998,7 +6998,7 @@ var A = {
             _.f = e
             _.c = _.b = _.a = _.r = null
         },
-        cy: function cy() { },
+        PlrSeed_: function cy() { },
         PlrSeed: function fR(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
             var _ = this
             _.a = a
@@ -7205,7 +7205,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        Engine: function fo(a, b, c, d, e, f, g, h, i, j, k) {
+        Engine: function Engine(a, b, c, d, e, f, g, h, i, j, k) {
             var _ = this
             _.a = a
             _.b = null
@@ -7213,6 +7213,8 @@ var A = {
             _.d = c
             _.e = d
             _.f = null
+            // 可从 this.gbu 获取
+
             _.r = e
             _.x = f
             _.z = g
@@ -13072,6 +13074,8 @@ HtmlRenderer.inner_render.prototype = {
 
         profiler = this_.c
         if (profiler.gbu(profiler) != null) {
+            // gbu: 获取某个东西, 只有 Engine 才是 this.f
+            // 测号相关都是 null
             profiler = profiler.gbu(profiler)
             root.appendChild(document.createTextNode(profiler))
         }
@@ -16208,7 +16212,7 @@ T.hA.prototype = {
         return C.JsInt.P(a, $.ci())
     }
 }
-T.cy.prototype = {}
+T.PlrSeed_.prototype = {}
 T.PlrSeed.prototype = {}
 T.PlrBossSlime.prototype = {
     gan() {
@@ -16435,7 +16439,7 @@ T.Engine.prototype = {
                                         player = T.init_plr(b.h(c, 0), b.h(c, $.i()), runner.b, a1)
                                     }
                                     // a2 = a ? T.init_boss(b.h(c, 0), b.h(c, $.i()), this_, a1) : T.init_plr(b.h(c, 0), b.h(c, $.i()), e.b, a1)
-                                    if (player instanceof T.cy) { // PlrSeed
+                                    if (player instanceof T.PlrSeed_) { // PlrSeed
                                         b3.push(player.e)
                                         k.push(player)
                                         continue
@@ -19234,12 +19238,12 @@ LangData.k_.prototype = {
     )
     inherit_many(T.aZ, [T.dj, T.dw, T.dx, T.eh, T.bd, T.h1])
     inherit_many(T.x, [T.dI, T.c3, T.hF, T.fC, T.hY])
-    inherit_many(T.Plr, [T.dR, T.aM, T.cz, T.PlrBoost, T.PlrBossTest, T.PlrBossTest2, T.PlrEx, T.cy])
+    inherit_many(T.Plr, [T.dR, T.aM, T.cz, T.PlrBoost, T.PlrBossTest, T.PlrBossTest2, T.PlrEx, T.PlrSeed_])
     inherit_many(T.aB, [T.dn, T.dT, T.ik])
     inherit_many(T.bq, [T.dS, T.b8])
     inherit_many(T.aM, [T.PlrShadow, T.PlrSummon, T.fX])
     inherit_many(T.cz, [T.PlrBossAokiji, T.PlrBossConan, T.PlrBossCovid, T.PlrBossIkaruga, T.PlrBossLazy, T.PlrBossMario, T.PlrBossMosquito, T.PlrBossSaitama, T.PlrBossSlime, T.PlrBossSonic, T.PlrBossYuri])
-    inherit(T.PlrSeed, T.cy)
+    inherit(T.PlrSeed, T.PlrSeed_)
     inherit(T.fb, T.PlrBossSlime)
     inherit(T.eg, T.SklCharm)
     inherit_many(T.IPlr, [T.NPlr, T.HPlr, T.MPlr, T.DPlr])
