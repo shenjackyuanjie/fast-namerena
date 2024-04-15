@@ -524,7 +524,7 @@ var A = {
             _.c = b
             _.$ti = c
         },
-        n: function n() { }
+        MEntry: function n() { }
     },
     H = {
         m8: function m8() { },
@@ -13939,7 +13939,7 @@ Sgls.a_.prototype = {
         return true
     }
 }
-Sgls.n.prototype = {
+Sgls.MEntry.prototype = {
     ga4() {
         return 1e4
     },
@@ -19146,7 +19146,7 @@ LangData.k_.prototype = {
         P._StructuredClone, P.kw, P.eJ, P.jQ, P.kT, Y.RC4, L.ProfileWinChance, V.ProfileMain, X.ProfileFind,
         S.fK,
         HtmlRenderer.inner_render, HtmlRenderer.jT, HtmlRenderer.ax,
-        Sgls.a_, Sgls.n,
+        Sgls.a_, Sgls.MEntry,
         T.x, T.Plr, T.dk, T.Engine, T.b7, T.IPlr, T.HDamage, T.HRecover, T.aX, T.aq, T.bG, T.Weapon, T.fl
         ]
     )
@@ -19231,7 +19231,7 @@ LangData.k_.prototype = {
     inherit(P.kx, P.kw)
     inherit(P.cF, P.p)
     inherit(HtmlRenderer.fW, HtmlRenderer.ax)
-    inherit_many(Sgls.n, [T.Skill, T.aZ, T.aB, T.bq, T.cB, T.bH, T.ah, T.aV, T.aF])
+    inherit_many(Sgls.MEntry, [T.Skill, T.aZ, T.aB, T.bq, T.cB, T.bH, T.ah, T.aV, T.aF])
     inherit_many(T.Skill,
         [T.ActionSkill, T.h6, T.he, T.hn, T.hq, T.ea, T.ef,
         T.SklCounter, T.SklDefend, T.SklHide, T.SklMerge, T.SklProtect,
