@@ -5730,7 +5730,7 @@ var A = {
             h = H.b([], k)
             k = H.b([], k)
             g = 0
-            g = new T.fb(a2, f, a3, a4, e, null, d, c, b, a, a0, a1, s, r, q, p, o, n, m, l, j, i, h, k, g, g, g, $.W(), g)
+            g = new T.BossSlime2(a2, f, a3, a4, e, null, d, c, b, a, a0, a1, s, r, q, p, o, n, m, l, j, i, h, k, g, g, g, $.W(), g)
             g.a1(a3, a4, e, null)
             g.av(a3, a4)
             g.e = T.fD(a2)
@@ -7007,8 +7007,8 @@ var A = {
             _.f = e
             _.c = _.b = _.a = _.r = null
         },
-        PlrSeed_: function cy() { },
-        PlrSeed: function fR(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
+        PlrSeed_: function PlrSeed_() { },
+        PlrSeed: function PlrSeed(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
             var _ = this
             _.a = a
             _.b = b
@@ -7046,7 +7046,7 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        PlrBossSlime: function bZ(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7, a8) {
+        PlrBossSlime: function PlrBossSlime(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7, a8) {
             var _ = this
             _.aC = a
             _.a = b
@@ -7085,7 +7085,7 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        fb: function fb(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9) {
+        BossSlime2: function BossSlime2(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9) {
             var _ = this
             _.dk = a
             _.aC = b
@@ -16253,7 +16253,7 @@ T.PlrBossSlime.prototype = {
         this.k1.push(new T.SklSlimeSpawn(0))
     }
 }
-T.fb.prototype = {
+T.BossSlime2.prototype = {
     gan() {
         return null
     },
@@ -19282,7 +19282,7 @@ LangData.k_.prototype = {
     inherit_many(T.aM, [T.PlrShadow, T.PlrSummon, T.fX])
     inherit_many(T.cz, [T.PlrBossAokiji, T.PlrBossConan, T.PlrBossCovid, T.PlrBossIkaruga, T.PlrBossLazy, T.PlrBossMario, T.PlrBossMosquito, T.PlrBossSaitama, T.PlrBossSlime, T.PlrBossSonic, T.PlrBossYuri])
     inherit(T.PlrSeed, T.PlrSeed_)
-    inherit(T.fb, T.PlrBossSlime)
+    inherit(T.BossSlime2, T.PlrBossSlime)
     inherit(T.SklYuriControl, T.SklCharm)
     inherit_many(T.IPlr, [T.NPlr, T.HPlr, T.MPlr, T.DPlr])
     inherit_many(T.aX, [T.h2, T.dX])
