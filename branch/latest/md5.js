@@ -4657,7 +4657,7 @@ var A = {
                 if (a.r2.J(0, $.a7())) s.fr = s.fr + 1
             }
         },
-        nG(a, b) {
+        CharmState(a, b) {
             var s = new T.dj(a, b, $.i())
             s.y = new T.PostActionImpl(s)
             return s
@@ -14289,7 +14289,7 @@ T.SklCharm.prototype = {
         }
         r = t.o.a(o.r2.h(0, $.aE()))
         if (r == null) {
-            r = T.nG(q.r.z, o)
+            r = T.CharmState(q.r.z, o)
             r.aP(0)
         } else {
             s = q.r.z
@@ -16417,7 +16417,7 @@ T.eg.prototype = {
         q = t.o.a(n.r2.h(0, $.aE()))
         p = this.r
         if (q == null) {
-            q = T.nG(p.z, n)
+            q = T.CharmState(p.z, n)
             q.z = s
             q.aP(0)
         } else {
@@ -20139,7 +20139,8 @@ var t = (function rtii() {
         return 0
     })
     lazy_old($, "vP", "i", function () {
-        return X.k("P1JU9kNX~I", 52)
+        // return X.k("P1JU9kNX~I", 52)
+        return 1
     })
     lazy_old($, "wr", "t", function () {
         // return X.k("Oi}Eh'8SJR", 99)
@@ -21461,5 +21462,5 @@ function main() {
 }
 
 main();
-logger.debug("反混淆", LangData.get_lang("HBga"));
+logger.debug("反混淆", X.k("P1JU9kNX~I", 52));
 // logger.debug("running main:", main()) // 执行main函数
