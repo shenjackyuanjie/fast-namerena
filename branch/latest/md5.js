@@ -4736,7 +4736,7 @@ var A = {
                 s = t.dK.a(r.h(0, $.bh()))
                 if (s == null) {
                     s = new T.CurseState(a, b, $.pK(), $.t())
-                    s.y = new T.bd(s)
+                    s.y = new T.UpdateStateImpl(s)
                     r.m(0, $.bh(), s)
                     b.y2.j(0, s)
                     b.rx.j(0, s.y)
@@ -5601,7 +5601,7 @@ var A = {
         nO(a, b) {
             var s = new T.dB(a, b, 0)
             s.fy = new T.PostActionImpl(s)
-            s.go = new T.bd(s)
+            s.go = new T.UpdateStateImpl(s)
             s.id = new T.PreActionImpl(s)
             return s
         },
@@ -7361,7 +7361,7 @@ var A = {
             _.I = null
         },
         jX: function jX() { },
-        BoostPassive: function boost_passive() { }, // boostPassive
+        BoostPassive: function BoostPassive() { }, // boostPassive
         jY: function jY() { },
         x: function x() { },
         UpdateStateEntry: function aZ() { },
@@ -7372,7 +7372,7 @@ var A = {
         PreActionEntry: function aV() { },
         bq: function bq() { },
         aF: function aF() { },
-        bd: function bd(a) {
+        UpdateStateImpl: function UpdateStateImpl(a) {
             var _ = this
             _.x = a
             _.c = _.b = _.a = null
@@ -17243,16 +17243,16 @@ T.Plr.prototype = {
         q = new T.PostDefendImpl(1 / 0, r)
         r.fr = q
         r.fx = new T.PostActionImpl(r)
-        r.fy = new T.bd(r)
+        r.fy = new T.UpdateStateImpl(r)
         q.r = $.lG()
         skills.push(r) // 18
         r = 0
         r = new T.SklCharge(r, r)
-        r.fr = new T.bd(r)
+        r.fr = new T.UpdateStateImpl(r)
         r.fx = new T.PostActionImpl(r)
         skills.push(r) // 19
         r = new T.SklAccumulate($.pj(), 0)
-        r.fr = new T.bd(r)
+        r.fr = new T.UpdateStateImpl(r)
         skills.push(r) // 20
         r = new T.SklAssassinate(0)
         r.fr = new T.PreActionImpl(r)
@@ -17270,10 +17270,10 @@ T.Plr.prototype = {
         skills.push(new T.SklMerge(0)); // 31
         skills.push(new T.SklZombie(0)); // 32
         r = new T.SklUpgrade(0)
-        r.Q = new T.bd(r)
+        r.Q = new T.UpdateStateImpl(r)
         skills.push(r) // 33
         r = new T.SklHide(0)
-        r.ch = new T.bd(r)
+        r.ch = new T.UpdateStateImpl(r)
         r.Q = new T.PreActionImpl(r)
         skills.push(r) // 34
         skills.push(new T.SkillVoid(0))
@@ -17702,7 +17702,7 @@ T.ah.prototype = {}
 T.PreActionEntry.prototype = {}
 T.bq.prototype = {}
 T.aF.prototype = {}
-T.bd.prototype = {
+T.UpdateStateImpl.prototype = {
     ar(a) {
         this.x.ar(a)
     },
@@ -19266,7 +19266,7 @@ LangData.k_.prototype = {
         T.hD, T.SkillVoid, T.hg, T.SklRinickModifierClone, T.hz
         ]
     )
-    inherit_many(T.UpdateStateEntry, [T.dj, T.HasteState, T.dx, T.SlowState, T.bd, T.RinickModifierUpdateState])
+    inherit_many(T.UpdateStateEntry, [T.dj, T.HasteState, T.dx, T.SlowState, T.UpdateStateImpl, T.RinickModifierUpdateState])
     inherit_many(T.x, [T.dI, T.c3, T.hF, T.fC, T.hY])
     inherit_many(T.Plr, [T.dR, T.aM, T.cz, T.PlrBoost, T.PlrBossTest, T.PlrBossTest2, T.PlrEx, T.PlrSeed_])
     inherit_many(T.PostDefendEntry, [T.CurseState, T.PostDefendImpl, T.ik])
