@@ -7367,7 +7367,7 @@ var A = {
         UpdateStateEntry: function aZ() { },
         cB: function cB() { },
         bH: function bH() { },
-        aB: function aB() { },
+        PostDefendEntry: function aB() { },
         ah: function ah() { },
         PreActionEntry: function aV() { },
         bq: function bq() { },
@@ -16299,30 +16299,32 @@ T.hF.prototype = {
 }
 T.SklSlimeSpawn.prototype = {
     ga4() {
-        return $.ao()
+        return $.ao() // return 0
     },
     b1(a, b, c, d) {
-        var s, r, q, p, o, n, m, l = this,
+        var s, r, q, p, o, n, m, this_ = this,
             k = null
-        l.r.r2.m(0, $.iJ(), new T.hF())
+        this_.r.r2.m(0, $.iJ(), new T.hF())
         s = d.a
         s.push($.K())
         // sklSlimeSpawn
         // [0][分裂]
-        s.push(T.RunUpdate(LangData.get_lang("BJOA"), l.r, k, k, k, 0, 1000, 100))
+        s.push(T.RunUpdate(LangData.get_lang("BJOA"), this_.r, k, k, k, 0, 1000, 100))
         r = t.b8
-        q = r.a(l.r)
+        q = r.a(this_.r)
         p = T.nD(q, q.a, q.b)
-        p.y = l.r.y
+        p.y = this_.r.y
         p.az()
         p.l = c.n() * $.C()
-        l.r.y.aZ(p)
-        r = r.a(l.r)
+        this_.r.y.aZ(p)
+        r = r.a(this_.r)
         o = T.nD(r, r.a, r.b)
-        o.y = l.r.y
+        o.y = this_.r.y
         o.az()
         o.l = c.n() * $.C()
-        l.r.y.aZ(o)
+        this_.r.y.aZ(o)
+        // sklSlimeSpawned
+        // 分成了[0] 和  [1]
         r = LangData.get_lang("eHVA")
         q = p.fx
         n = new T.HPlr(q)
@@ -17695,7 +17697,7 @@ T.x.prototype = {
 T.UpdateStateEntry.prototype = {}
 T.cB.prototype = {}
 T.bH.prototype = {}
-T.aB.prototype = {}
+T.PostDefendEntry.prototype = {}
 T.ah.prototype = {}
 T.PreActionEntry.prototype = {}
 T.bq.prototype = {}
@@ -19245,7 +19247,7 @@ LangData.k_.prototype = {
     inherit(P.kx, P.kw)
     inherit(P.cF, P.p)
     inherit(HtmlRenderer.fW, HtmlRenderer.ax)
-    inherit_many(Sgls.MEntry, [T.Skill, T.UpdateStateEntry, T.aB, T.bq, T.cB, T.bH, T.ah, T.PreActionEntry, T.aF])
+    inherit_many(Sgls.MEntry, [T.Skill, T.UpdateStateEntry, T.PostDefendEntry, T.bq, T.cB, T.bH, T.ah, T.PreActionEntry, T.aF])
     inherit_many(T.Skill,
         [T.ActionSkill, T.h6, T.he, T.hn, T.hq, T.ea, T.SklSlimeSpawn,
         T.SklCounter, T.SklDefend, T.SklHide, T.SklMerge, T.SklProtect,
@@ -19267,7 +19269,7 @@ LangData.k_.prototype = {
     inherit_many(T.UpdateStateEntry, [T.dj, T.HasteState, T.dx, T.SlowState, T.bd, T.RinickModifierUpdateState])
     inherit_many(T.x, [T.dI, T.c3, T.hF, T.fC, T.hY])
     inherit_many(T.Plr, [T.dR, T.aM, T.cz, T.PlrBoost, T.PlrBossTest, T.PlrBossTest2, T.PlrEx, T.PlrSeed_])
-    inherit_many(T.aB, [T.CurseState, T.dT, T.ik])
+    inherit_many(T.PostDefendEntry, [T.CurseState, T.dT, T.ik])
     inherit_many(T.bq, [T.dS, T.PostActionImpl])
     inherit_many(T.aM, [T.PlrShadow, T.PlrSummon, T.fX])
     inherit_many(T.cz, [T.PlrBossAokiji, T.PlrBossConan, T.PlrBossCovid, T.PlrBossIkaruga, T.PlrBossLazy, T.PlrBossMario, T.PlrBossMosquito, T.PlrBossSaitama, T.PlrBossSlime, T.PlrBossSonic, T.PlrBossYuri])
@@ -20230,7 +20232,8 @@ var t = (function rtii() {
         return X.D("4S|&JW$AZI", 32)
     })
     lazy_old($, "vG", "ao", function () {
-        return X.D("G*Oej(8SJR", 99)
+        // return X.D("G*Oej(8SJR", 99)
+        return 0
     })
     lazy_old($, "wo", "mM", function () {
         return X.D("15uE1}!JpC", 7)
@@ -21454,5 +21457,5 @@ function main() {
 }
 
 main();
-logger.debug("反混淆", LangData.get_lang("BJOA"));
+logger.debug("反混淆", X.D("G*Oej(8SJR", 99));
 // logger.debug("running main:", main()) // 执行main函数
