@@ -7122,7 +7122,7 @@ var A = {
             _.I = null
         },
         hF: function hF() { },
-        ef: function ef(a) {
+        SklSlimeSpawn: function ef(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -15329,7 +15329,7 @@ T.SklSummon.prototype = {
         return H.b([], t.F)
     },
     v(a6, a7, a8, a9) {
-        var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, this_ = this,
+        var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, summoned_plr, this_ = this,
             a4 = null,
             a5 = a9.a
         a5.push(T.RunUpdate(LangData.get_lang("sCza"), this_.r, a4, a4, a4, $.a6(), 1000, 100))
@@ -15376,18 +15376,18 @@ T.SklSummon.prototype = {
             a0 = H.b([], b)
             a1 = H.b([], b)
             b = H.b([], b)
-            a2 = 0
-            a2 = new T.PlrSummon(s, q, r, a4, p, o, n, m, l, k, j, i, h, g, f, e, d, c, a, a0, a1, b, a2, a2, a2, $.W(), a2)
-            a2.a1(s, q, r, a4)
-            a2.a6 = new T.cp(a2)
-            a2.aj = this_
-            a2.e = T.fD(this_.r)
-            this_.fr = a2
+            summoned_plr = new T.PlrSummon(s, q, r, a4, p, o, n, m, l, k, j, i, h, g, f, e, d, c, a, a0, a1, b, 0, 0, 0, $.W(), 0)
+            summoned_plr.a1(s, q, r, a4)
+            summoned_plr.a6 = new T.cp(summoned_plr)
+            summoned_plr.aj = this_
+            summoned_plr.e = T.fD(this_.r)
+            this_.fr = summoned_plr
             // sklSummonName
-            a2.r = LangData.get_lang("DxYn") // 使魔
-            a2 = this_.fr
-            a2.y = this_.r.y
-            a2.az()
+            // 使魔
+            summoned_plr.r = LangData.get_lang("DxYn")
+            summoned_plr = this_.fr
+            summoned_plr.y = this_.r.y
+            summoned_plr.az()
         } else {
             s.bP()
             s.bs()
@@ -16246,7 +16246,7 @@ T.PlrBossSlime.prototype = {
     },
     ac() {
         this.k3 = T.hE(this)
-        this.k1.push(new T.ef(0))
+        this.k1.push(new T.SklSlimeSpawn(0))
     }
 }
 T.fb.prototype = {
@@ -16277,7 +16277,7 @@ T.fb.prototype = {
         q.aC = q.dk.aC + $.i()
         q.k3 = T.SklAttack(q)
         s = q.k1
-        if (q.aC == $.i()) s.push(new T.ef(0))
+        if (q.aC == $.i()) s.push(new T.SklSlimeSpawn(0))
         else {
             r = new T.sklHalf(0)
             r.f = $.at()
@@ -16297,7 +16297,7 @@ T.hF.prototype = {
         return 0
     }
 }
-T.ef.prototype = {
+T.SklSlimeSpawn.prototype = {
     ga4() {
         return $.ao()
     },
@@ -16307,6 +16307,8 @@ T.ef.prototype = {
         l.r.r2.m(0, $.iJ(), new T.hF())
         s = d.a
         s.push($.K())
+        // sklSlimeSpawn
+        // [0][分裂]
         s.push(T.RunUpdate(LangData.get_lang("BJOA"), l.r, k, k, k, 0, 1000, 100))
         r = t.b8
         q = r.a(l.r)
@@ -19245,7 +19247,7 @@ LangData.k_.prototype = {
     inherit(HtmlRenderer.fW, HtmlRenderer.ax)
     inherit_many(Sgls.MEntry, [T.Skill, T.UpdateStateEntry, T.aB, T.bq, T.cB, T.bH, T.ah, T.PreActionEntry, T.aF])
     inherit_many(T.Skill,
-        [T.ActionSkill, T.h6, T.he, T.hn, T.hq, T.ea, T.ef,
+        [T.ActionSkill, T.h6, T.he, T.hn, T.hq, T.ea, T.SklSlimeSpawn,
         T.SklCounter, T.SklDefend, T.SklHide, T.SklMerge, T.SklProtect,
         T.SklReflect, T.SklReraise, T.SklShield, T.SklUpgrade, T.SklZombie
         ]
@@ -21452,5 +21454,5 @@ function main() {
 }
 
 main();
-logger.debug("反混淆", LangData.get_lang("toAn"));
+logger.debug("反混淆", LangData.get_lang("BJOA"));
 // logger.debug("running main:", main()) // 执行main函数
