@@ -7208,7 +7208,7 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        eg: function eg(a) {
+        SklYuriControl: function eg(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -14272,34 +14272,34 @@ T.SklCharm.prototype = {
         return r.h(0, $.aE()) != null || r.h(0, $.aJ()) != null ? s / $.t() : s
     },
     v(a, b, c, d) {
-        var s, r, q = this,
+        var s, charm_state, this_ = this,
             p = null,
             o = a[0].a,
             n = d.a
         // sklCharm
         // [0]使用[魅惑]
-        n.push(T.RunUpdate(LangData.get_lang("UUan"), q.r, o, p, p, $.i(), 1000, 100))
-        if (!o.a7($.aE(), c)) s = o.fx > 0 && !o.A && T.bW(q.r.dx, o.db + o.dy, c)
+        n.push(T.RunUpdate(LangData.get_lang("UUan"), this_.r, o, p, p, $.i(), 1000, 100))
+        if (!o.a7($.aE(), c)) s = o.fx > 0 && !o.A && T.bW(this_.r.dx, o.db + o.dy, c)
         else s = true
         if (s) {
             // dodge (通用回避)
             // [0][回避]了攻击
-            n.push(T.RunUpdate(LangData.get_lang("BtqN"), o, q.r, p, p, $.as(), 1000, 100))
+            n.push(T.RunUpdate(LangData.get_lang("BtqN"), o, this_.r, p, p, $.as(), 1000, 100))
             return
         }
-        r = t.o.a(o.r2.h(0, $.aE()))
-        if (r == null) {
-            r = T.CharmState(q.r.z, o)
-            r.aP(0)
+        charm_state = t.o.a(o.r2.h(0, $.aE()))
+        if (charm_state == null) {
+            charm_state = T.CharmState(this_.r.z, o)
+            charm_state.aP(0)
         } else {
-            s = q.r.z
-            if (s != r.r) r.r = s
-            else r.z = r.z + 1
+            s = this_.r.z
+            if (s != charm_state.r) charm_state.r = s
+            else charm_state.z = charm_state.z + 1
         }
-        if (q.r.r2.J(0, $.a7())) r.z = r.z + $.B()
+        if (this_.r.r2.J(0, $.a7())) charm_state.z = charm_state.z + $.B()
         // sklCharmHit
         // [1]被[魅惑]了
-        n.push(T.RunUpdate(C.String.B(LangData.get_lang("yjhn"), $.nd()), q.r, o, p, p, $.cZ(), 1000, 100))
+        n.push(T.RunUpdate(C.String.B(LangData.get_lang("yjhn"), $.nd()), this_.r, o, p, p, $.cZ(), 1000, 100))
     }
 }
 T.dI.prototype = {
@@ -16389,7 +16389,7 @@ T.PlrBossYuri.prototype = {
         var s, r
         this.k3 = T.hE(this)
         s = this.k1
-        r = new T.eg(0)
+        r = new T.SklYuriControl(0)
         r.f = $.eX()
         s.push(r)
         r = new T.SklDefend(0)
@@ -16400,7 +16400,7 @@ T.PlrBossYuri.prototype = {
         s.push(r)
     }
 }
-T.eg.prototype = {
+T.SklYuriControl.prototype = {
     as(a, b) {
         var s = a.y,
             r = this.r
@@ -16410,6 +16410,8 @@ T.eg.prototype = {
         var s, r, q, p, o = null,
             n = a[0].a,
             m = d.a
+        // sklYuriControl
+        // [0]使用[心灵控制]
         m.push(T.RunUpdate(LangData.get_lang("wneN"), this.r, n, o, o, $.i(), 1000, 100))
         s = n.y.c.length
         r = $.B()
@@ -16424,6 +16426,8 @@ T.eg.prototype = {
             q.r = p.z
             q.z = q.z + s
         }
+        // sklCharmHit
+        // [1]被[魅惑]了
         m.push(T.RunUpdate(C.String.B(LangData.get_lang("yjhn"), $.nd()), this.r, n, o, o, $.cZ(), 1000, 100))
     }
 }
@@ -18561,7 +18565,7 @@ T.k1.prototype = {
         s.push(m)
         p = l.k2;
         (p && C.Array).j(p, m)
-        m = new T.eg(0)
+        m = new T.SklYuriControl(0)
         m.ao(l, $.Z())
         s.push(m)
         p = l.k2;
@@ -19279,7 +19283,7 @@ LangData.k_.prototype = {
     inherit_many(T.cz, [T.PlrBossAokiji, T.PlrBossConan, T.PlrBossCovid, T.PlrBossIkaruga, T.PlrBossLazy, T.PlrBossMario, T.PlrBossMosquito, T.PlrBossSaitama, T.PlrBossSlime, T.PlrBossSonic, T.PlrBossYuri])
     inherit(T.PlrSeed, T.PlrSeed_)
     inherit(T.fb, T.PlrBossSlime)
-    inherit(T.eg, T.SklCharm)
+    inherit(T.SklYuriControl, T.SklCharm)
     inherit_many(T.IPlr, [T.NPlr, T.HPlr, T.MPlr, T.DPlr])
     inherit_many(T.aX, [T.h2, T.dX])
     inherit(T.fY, T.cB)
@@ -21462,5 +21466,5 @@ function main() {
 }
 
 main();
-logger.debug("反混淆", X.k("P1JU9kNX~I", 52));
+logger.debug("反混淆", LangData.get_lang("wneN"));
 // logger.debug("running main:", main()) // 执行main函数
