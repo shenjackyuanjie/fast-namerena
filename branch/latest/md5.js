@@ -7382,7 +7382,7 @@ var A = {
             _.x = a
             _.c = _.b = _.a = null
         },
-        dT: function dT(a, b) {
+        PostDefendImpl: function PostDefendImpl(a, b) {
             var _ = this
             _.r = a
             _.x = b
@@ -16185,7 +16185,7 @@ T.PlrBossSaitama.prototype = {
         var s = 0,
             r = t.cr
         r = new T.hA(s, s, P.c5(r), P.c5(r), 0)
-        r.id = new T.dT(1 / 0, r)
+        r.id = new T.PostDefendImpl(1 / 0, r)
         this.k3 = r
         this.k1.push(r)
     }
@@ -17240,7 +17240,7 @@ T.Plr.prototype = {
         skills.push(new T.SklDisperse(0)); // 17
         r = 0
         r = new T.SklIron(r, r, r)
-        q = new T.dT(1 / 0, r)
+        q = new T.PostDefendImpl(1 / 0, r)
         r.fr = q
         r.fx = new T.PostActionImpl(r)
         r.fy = new T.bd(r)
@@ -17715,7 +17715,7 @@ T.fY.prototype = {
         return 1 / 0
     }
 }
-T.dT.prototype = {
+T.PostDefendImpl.prototype = {
     aq(a, b, c, d, e) {
         return this.x.aq(a, b, c, d, e)
     },
@@ -19269,7 +19269,7 @@ LangData.k_.prototype = {
     inherit_many(T.UpdateStateEntry, [T.dj, T.HasteState, T.dx, T.SlowState, T.bd, T.RinickModifierUpdateState])
     inherit_many(T.x, [T.dI, T.c3, T.hF, T.fC, T.hY])
     inherit_many(T.Plr, [T.dR, T.aM, T.cz, T.PlrBoost, T.PlrBossTest, T.PlrBossTest2, T.PlrEx, T.PlrSeed_])
-    inherit_many(T.PostDefendEntry, [T.CurseState, T.dT, T.ik])
+    inherit_many(T.PostDefendEntry, [T.CurseState, T.PostDefendImpl, T.ik])
     inherit_many(T.bq, [T.dS, T.PostActionImpl])
     inherit_many(T.aM, [T.PlrShadow, T.PlrSummon, T.fX])
     inherit_many(T.cz, [T.PlrBossAokiji, T.PlrBossConan, T.PlrBossCovid, T.PlrBossIkaruga, T.PlrBossLazy, T.PlrBossMario, T.PlrBossMosquito, T.PlrBossSaitama, T.PlrBossSlime, T.PlrBossSonic, T.PlrBossYuri])
