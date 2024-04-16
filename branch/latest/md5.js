@@ -4659,7 +4659,7 @@ var A = {
         },
         nG(a, b) {
             var s = new T.dj(a, b, $.i())
-            s.y = new T.b8(s)
+            s.y = new T.PostActionImpl(s)
             return s
         },
         fD(a) {
@@ -5552,6 +5552,7 @@ var A = {
             return s
         },
         j7(a, b, c, d, e) {
+            // Plr caster, Plr target, int mutation, R r, RunUpdates updates
             var s, r, q, p, o, n = b.r2,
                 m = t.cu,
                 l = m.a(n.h(0, $.ck()))
@@ -5560,7 +5561,7 @@ var A = {
             if (s) {
                 s = 0
                 r = new T.dl(a, b, s, c, s)
-                r.k1 = new T.b8(r)
+                r.k1 = new T.PostActionImpl(r)
                 r.k2 = new T.PreActionImpl(r)
                 m = m.a(n.h(0, $.ck()))
                 r.id = m
@@ -5576,13 +5577,17 @@ var A = {
                 b.x2.j(0, r.k1)
                 b.x1.j(0, r.k2)
                 b.F()
+                // sklCovidHit
+                // [1]感染了[新冠病毒]
                 e.a.push(T.RunUpdate(LangData.get_lang("toAn"), a, b, null, null, 0, 1000, 100))
                 for (n = a.y.a.e, m = n.length, p = 0; p < n.length; n.length === m || (0, H.F)(n), ++p) {
                     o = n[p]
                     // if (J.Y(o, b)) {
                     if (o === b) {
+                        // p.spsum += 2048
                         o.l = o.l + $.bx()
                     } else {
+                        // p.spsum -= 256
                         o.l = o.l - $.eX()
                     }
                 }
@@ -5595,7 +5600,7 @@ var A = {
         },
         nO(a, b) {
             var s = new T.dB(a, b, 0)
-            s.fy = new T.b8(s)
+            s.fy = new T.PostActionImpl(s)
             s.go = new T.bd(s)
             s.id = new T.PreActionImpl(s)
             return s
@@ -7393,7 +7398,7 @@ var A = {
             _.x = a
             _.c = _.b = _.a = null
         },
-        b8: function b8(a) {
+        PostActionImpl: function b8(a) {
             var _ = this
             _.x = a
             _.c = _.b = _.a = null
@@ -14659,7 +14664,7 @@ T.SklHaste.prototype = {
         r = t.e_.a(s.h(0, $.d4()))
         if (r == null) {
             r = new T.HasteState(n, $.t(), $.B())
-            r.y = new T.b8(r)
+            r.y = new T.PostActionImpl(r)
             s.m(0, $.d4(), r)
             n.rx.j(0, r)
             n.x2.j(0, r.y)
@@ -15235,7 +15240,7 @@ T.SklSlow.prototype = {
         r = t.S.a(s.h(0, $.bi()))
         if (r == null) {
             r = new T.SlowState(o, $.t())
-            r.y = new T.b8(r)
+            r.y = new T.PostActionImpl(r)
             s.m(0, $.bi(), r)
             o.rx.j(0, r)
             o.x2.j(0, r.y)
@@ -17233,14 +17238,14 @@ T.Plr.prototype = {
         r = new T.SklIron(r, r, r)
         q = new T.dT(1 / 0, r)
         r.fr = q
-        r.fx = new T.b8(r)
+        r.fx = new T.PostActionImpl(r)
         r.fy = new T.bd(r)
         q.r = $.lG()
         skills.push(r) // 18
         r = 0
         r = new T.SklCharge(r, r)
         r.fr = new T.bd(r)
-        r.fx = new T.b8(r)
+        r.fx = new T.PostActionImpl(r)
         skills.push(r) // 19
         r = new T.SklAccumulate($.pj(), 0)
         r.fr = new T.bd(r)
@@ -17730,7 +17735,7 @@ T.PreActionImpl.prototype = {
         return 1 / 0
     }
 }
-T.b8.prototype = {
+T.PostActionImpl.prototype = {
     at(a, b) {
         return this.x.at(a, b)
     },
@@ -19261,7 +19266,7 @@ LangData.k_.prototype = {
     inherit_many(T.x, [T.dI, T.c3, T.hF, T.fC, T.hY])
     inherit_many(T.Plr, [T.dR, T.aM, T.cz, T.PlrBoost, T.PlrBossTest, T.PlrBossTest2, T.PlrEx, T.PlrSeed_])
     inherit_many(T.aB, [T.CurseState, T.dT, T.ik])
-    inherit_many(T.bq, [T.dS, T.b8])
+    inherit_many(T.bq, [T.dS, T.PostActionImpl])
     inherit_many(T.aM, [T.PlrShadow, T.PlrSummon, T.fX])
     inherit_many(T.cz, [T.PlrBossAokiji, T.PlrBossConan, T.PlrBossCovid, T.PlrBossIkaruga, T.PlrBossLazy, T.PlrBossMario, T.PlrBossMosquito, T.PlrBossSaitama, T.PlrBossSlime, T.PlrBossSonic, T.PlrBossYuri])
     inherit(T.PlrSeed, T.PlrSeed_)
@@ -19374,7 +19379,7 @@ var t = (function rtii() {
         aU: find_type("ag<@>"),
         d5: find_type("aT<m*,u*>"),
         aH: find_type("w<@>"),
-        l: find_type("c<aF*>"),
+        l: find_type("c<aF*>"), // MList <T>
         m: find_type("c<fy*>"),
         G: find_type("c<bq*>"),
         k: find_type("c<ah*>"),
@@ -21447,5 +21452,5 @@ function main() {
 }
 
 main();
-logger.debug("反混淆", LangData.get_lang("wlqa"));
+logger.debug("反混淆", LangData.get_lang("toAn"));
 // logger.debug("running main:", main()) // 执行main函数
