@@ -217,26 +217,27 @@ function lazy(holder, name, getterName, initializer) {
     };
 }
 
-function lazyFinal(a, b, c, d) {
-    var s = a
-    a[b] = s
-    a[c] = function () {
-        if (a[b] === s) {
-            var r = d()
-            if (a[b] !== s) H.throwLateInitializationError(b)
-            a[b] = r
+function lazyFinal(holder, name, getterName, initializer) {
+    var uninitializedSentinel = holder;
+    holder[name] = uninitializedSentinel;
+    holder[getterName] = function () {
+        if (holder[name] === uninitializedSentinel) {
+            var value = initializer();
+            if (holder[name] !== uninitializedSentinel)
+                H.throwLateInitializationError(name);
+            holder[name] = value;
         }
-        a[c] = function () {
-            return this[b]
-        }
-        return a[b]
-    }
+        holder[getterName] = function () {
+            return this[name];
+        };
+        return holder[name];
+    };
 }
 
-function makeConstList(a) {
-    a.immutable$list = Array
-    a.fixed$length = Array
-    return a
+function makeConstList(list) {
+    list.immutable$list = Array
+    list.fixed$length = Array
+    return list
 }
 
 var y = 0
