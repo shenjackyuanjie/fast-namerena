@@ -7125,7 +7125,7 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        hF: function hF() { },
+        SklSlimeSpawnState: function hF() { },
         SklSlimeSpawn: function ef(a) {
             var _ = this
             _.e = false
@@ -16277,11 +16277,12 @@ T.BossSlime2.prototype = {
         return false
     },
     ac() {
-        var s, r, q = this
-        q.aC = q.dk.aC + $.i()
-        q.k3 = T.SklAttack(q)
-        s = q.k1
-        if (q.aC == $.i()) s.push(new T.SklSlimeSpawn(0))
+        // createSkills()
+        var s, r, this_ = this
+        this_.aC = this_.dk.aC + $.i()
+        this_.k3 = T.SklAttack(this_)
+        s = this_.k1
+        if (this_.aC == $.i()) s.push(new T.SklSlimeSpawn(0))
         else {
             r = new T.sklHalf(0)
             r.f = $.at()
@@ -16296,7 +16297,7 @@ T.BossSlime2.prototype = {
         return this.dk
     }
 }
-T.hF.prototype = {
+T.SklSlimeSpawnState.prototype = {
     gT() {
         return 0
     }
@@ -16308,7 +16309,7 @@ T.SklSlimeSpawn.prototype = {
     b1(a, b, c, d) {
         var s, r, q, p, o, n, m, this_ = this,
             k = null
-        this_.r.r2.m(0, $.iJ(), new T.hF())
+        this_.r.r2.m(0, $.iJ(), new T.SklSlimeSpawnState())
         s = d.a
         s.push($.K())
         // sklSlimeSpawn
@@ -19275,7 +19276,7 @@ LangData.k_.prototype = {
         ]
     )
     inherit_many(T.UpdateStateEntry, [T.dj, T.HasteState, T.IceState, T.SlowState, T.UpdateStateImpl, T.RinickModifierUpdateState])
-    inherit_many(T.x, [T.dI, T.c3, T.hF, T.fC, T.hY])
+    inherit_many(T.x, [T.dI, T.c3, T.SklSlimeSpawnState, T.fC, T.hY])
     inherit_many(T.Plr, [T.dR, T.aM, T.cz, T.PlrBoost, T.PlrBossTest, T.PlrBossTest2, T.PlrEx, T.PlrSeed_])
     inherit_many(T.PostDefendEntry, [T.CurseState, T.PostDefendImpl, T.ik])
     inherit_many(T.bq, [T.dS, T.PostActionImpl])
