@@ -152,66 +152,69 @@ function copyProperties(a, b) {
     }
 }
 
-function mixinProperties(a, b) {
-    var s = Object.keys(a)
+function mixinProperties(from, to) {
+    var s = Object.keys(from)
     for (var r = 0; r < s.length; r++) {
         var q = s[r]
-        if (!b.hasOwnProperty(q)) b[q] = a[q]
+        if (!to.hasOwnProperty(q)) to[q] = from[q]
     }
 }
 
-function inherit(a, b) {
-    a.prototype.constructor = a
-    a.prototype["$i" + a.name] = a
-    if (b != null) {
-        a.prototype.__proto__ = b.prototype
+function inherit(cls, sup) {
+    cls.prototype.constructor = cls
+    cls.prototype["$i" + cls.name] = cls
+    if (sup != null) {
+        cls.prototype.__proto__ = sup.prototype
         return
     }
 }
 
-function inheritMany(a, b) {
-    for (var s = 0; s < b.length; s++) inherit(b[s], a)
+function inheritMany(sup, classes) {
+    for (var s = 0; s < classes.length; s++) inherit(classes[s], sup)
 }
 
-function mixin(a, b) {
-    mixinProperties(b.prototype, a.prototype)
-    a.prototype.constructor = a
+function mixin(cls, mixin) {
+    mixinProperties(mixin.prototype, cls.prototype)
+    cls.prototype.constructor = cls
 }
 
-function lazyOld(a, b, c, d) {
-    var s = a
-    a[b] = s
-    a[c] = function () {
-        a[c] = function () {
-            H.throwCyclicInit(b)
-        }
-        var r
-        var q = d
+function lazyOld(holder, name, getterName, initializer) {
+    var uninitializedSentinel = holder;
+    holder[name] = uninitializedSentinel;
+    holder[getterName] = function () {
+        holder[getterName] = function () {
+            H.throwCyclicInit(name);
+        };
+        var result;
+        var sentinelInProgress = initializer;
         try {
-            if (a[b] === s) {
-                r = a[b] = q
-                r = a[b] = d()
-            } else r = a[b]
+            if (holder[name] === uninitializedSentinel) {
+                result = holder[name] = sentinelInProgress;
+                result = holder[name] = initializer();
+            } else
+                result = holder[name];
         } finally {
-            if (r === q) a[b] = null
-            a[c] = function () {
-                return this[b]
-            }
+            if (result === sentinelInProgress)
+                holder[name] = null;
+            holder[getterName] = function () {
+                return this[name];
+            };
         }
-        return r
-    }
+        return result;
+    };
 }
 
-function lazy(a, b, c, d) {
-    var s = a
-    a[b] = s
-    a[c] = function () {
-        if (a[b] === s) a[b] = d()
-        a[c] = function () {
-            return this[b]
-        }
-        return a[b]
-    }
+function lazy(holder, name, getterName, initializer) {
+    var uninitializedSentinel = holder;
+    holder[name] = uninitializedSentinel;
+    holder[getterName] = function () {
+        if (holder[name] === uninitializedSentinel)
+            holder[name] = initializer();
+        holder[getterName] = function () {
+            return this[name];
+        };
+        return holder[name];
+    };
 }
 
 function lazyFinal(a, b, c, d) {
@@ -220,7 +223,7 @@ function lazyFinal(a, b, c, d) {
     a[c] = function () {
         if (a[b] === s) {
             var r = d()
-            if (a[b] !== s) H.vm(b)
+            if (a[b] !== s) H.throwLateInitializationError(b)
             a[b] = r
         }
         a[c] = function () {
@@ -3081,7 +3084,7 @@ var A = {
             }
             throw "Unable to print message: " + String(a)
         },
-        vm(a) {
+        throwLateInitializationError(a) {
             return H.throw_expression(new H.fz("Field '" + H.as_string(a) + "' has been assigned during initialization."))
         }
     },
@@ -19172,8 +19175,7 @@ LangData.k_.prototype = {
         S.fK,
         HtmlRenderer.inner_render, HtmlRenderer.jT, HtmlRenderer.ax,
         Sgls.a_, Sgls.MEntry,
-        T.x, T.Plr, T.dk, T.Engine, T.b7, T.IPlr, T.HDamage, T.HRecover, T.aX, T.aq, T.bG, T.Weapon, T.fl
-        ]
+        T.x, T.Plr, T.dk, T.Engine, T.b7, T.IPlr, T.HDamage, T.HRecover, T.aX, T.aq, T.bG, T.Weapon, T.fl]
     )
     inherit_many(J.Interceptor, [J.fw, J.cs, J.bE, J.JsArray, J.JsNumber, J.JsString, H.dJ, H.ab, W.fn, W.Blob, W.CanvasRenderingContext2D, W.i6, W.bb, W.ja, W.jb, W.o, W.c4, W.jL, W.ig, W.il, W.iy, W.iA])
     inherit_many(J.bE, [J.PlainJavaScriptObject, J.UnknownJavaScriptObject, J.JavaScriptFunction])
@@ -19201,13 +19203,18 @@ LangData.k_.prototype = {
         HtmlRenderer.jC, HtmlRenderer.jD, HtmlRenderer.jV, HtmlRenderer.lp, HtmlRenderer.lq,
         Sgls.k5, Sgls.k6,
         T.k9, T.jk, T.jj, T.jl, T.ji, T.lD, T.BoostPassive, T.k3, T.kb, T.ko, T.kp,
-        LangData.k_
-        ]
+        LangData.k_]
     )
     inherit_many(H.kg, [H.kc, H.dg])
     inherit(P.dG, P.aU)
     inherit_many(P.dG, [H.aT, P.ic, W.i2])
-    inherit_many(H.j6, [H.lw, P._awaitOnObject_closure0, P._wrapJsFunctionForAsync_closure, P.kL, P.jM, W.kd, W.le, P.l5, P.l6, P.ky, V.j_, HtmlRenderer.jA, Sgls.k7, LangData.lA, T.ka, T.jX, T.jY, T.k2, T.kq, T.kr, T.ks, T.kt, T.ku])
+    inherit_many(H.j6,
+        [H.lw, P._awaitOnObject_closure0, P._wrapJsFunctionForAsync_closure, P.kL, P.jM,
+        W.kd, W.le, P.l5, P.l6, P.ky,
+        V.j_,
+        HtmlRenderer.jA, Sgls.k7, LangData.lA,
+        T.ka, T.jX, T.jY, T.k2, T.kq, T.kr, T.ks, T.kt, T.ku]
+    )
     inherit(H.hZ, P.dy)
     inherit(H.NativeTypedArray, H.ab)
     inherit_many(H.NativeTypedArray, [H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin, H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin])
@@ -19236,7 +19243,10 @@ LangData.k_.prototype = {
     inherit_many(W.fn, [W.v, W.dH, W.eq])
     inherit_many(W.v, [W.Element, W.b6, W.cL])
     inherit_many(W.Element, [W.HtmlElement, P.p])
-    inherit_many(W.HtmlElement, [W.AnchorElement, W.AreaElement, W.BaseElement, W.BodyElement, W.CanvasElement, W.c0, W.fp, W.dQ, W.h4, W.ek, W.ce, W.en, W.hQ, W.hR, W.cI])
+    inherit_many(W.HtmlElement,
+        [W.AnchorElement, W.AreaElement, W.BaseElement, W.BodyElement, W.CanvasElement,
+        W.c0, W.fp, W.dQ, W.h4, W.ek, W.ce, W.en, W.hQ, W.hR, W.cI]
+    )
     inherit(W.co, W.i6)
     inherit(W.dm, W.bb)
     inherit(W.cq, W.Blob)
@@ -19260,8 +19270,7 @@ LangData.k_.prototype = {
     inherit_many(T.Skill,
         [T.ActionSkill, T.h6, T.he, T.hn, T.hq, T.ea, T.SklSlimeSpawn,
         T.SklCounter, T.SklDefend, T.SklHide, T.SklMerge, T.SklProtect,
-        T.SklReflect, T.SklReraise, T.SklShield, T.SklUpgrade, T.SklZombie
-        ]
+        T.SklReflect, T.SklReraise, T.SklShield, T.SklUpgrade, T.SklZombie]
     )
     inherit_many(T.ActionSkill,
         [T.SklAbsorb, T.SklAccumulate, T.SklAssassinate, T.dd, T.SklBerserk,
@@ -19272,8 +19281,7 @@ LangData.k_.prototype = {
         T.hj, T.SklSummon, T.SklThunder,
         T.e2, T.hb, T.dl, T.hd, T.hm,
         T.dB, T.hp, T.hr, T.hA, T.h8,
-        T.hD, T.SkillVoid, T.hg, T.SklRinickModifierClone, T.hz
-        ]
+        T.hD, T.SkillVoid, T.hg, T.SklRinickModifierClone, T.hz]
     )
     inherit_many(T.UpdateStateEntry, [T.dj, T.HasteState, T.IceState, T.SlowState, T.UpdateStateImpl, T.RinickModifierUpdateState])
     inherit_many(T.x, [T.dI, T.c3, T.SklSlimeSpawnState, T.fC, T.hY])
@@ -19281,7 +19289,11 @@ LangData.k_.prototype = {
     inherit_many(T.PostDefendEntry, [T.CurseState, T.PostDefendImpl, T.ik])
     inherit_many(T.bq, [T.dS, T.PostActionImpl])
     inherit_many(T.aM, [T.PlrShadow, T.PlrSummon, T.fX])
-    inherit_many(T.cz, [T.PlrBossAokiji, T.PlrBossConan, T.PlrBossCovid, T.PlrBossIkaruga, T.PlrBossLazy, T.PlrBossMario, T.PlrBossMosquito, T.PlrBossSaitama, T.PlrBossSlime, T.PlrBossSonic, T.PlrBossYuri])
+    inherit_many(T.cz,
+        [T.PlrBossAokiji, T.PlrBossConan, T.PlrBossCovid, T.PlrBossIkaruga,
+        T.PlrBossLazy, T.PlrBossMario, T.PlrBossMosquito, T.PlrBossSaitama,
+        T.PlrBossSlime, T.PlrBossSonic, T.PlrBossYuri]
+    )
     inherit(T.PlrSeed, T.PlrSeed_)
     inherit(T.BossSlime2, T.PlrBossSlime)
     inherit(T.SklYuriControl, T.SklCharm)
