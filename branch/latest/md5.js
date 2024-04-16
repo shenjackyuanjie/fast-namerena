@@ -4787,20 +4787,24 @@ var A = {
             }
         },
         tF(a, b, c, d, e) {
-            var s, r = 0
+            var ica_state, r = 0
             if (c > r && !(b.fx <= r)) {
                 if (b.a7($.bS(), d)) return
                 r = b.r2
-                s = t.ck.a(r.h(0, $.bS()))
-                if (s == null) {
-                    s = new T.dx(b, $.cX())
-                    s.x = new T.fY(s)
-                    r.m(0, $.bS(), s)
-                    b.rx.j(0, s)
-                    b.ry.j(0, s.x)
+                ica_state = t.ck.a(r.h(0, $.bS()))
+                if (ica_state == null) {
+                    ica_state = new T.IceState(b, $.cX())
+                    ica_state.x = new T.fY(ica_state)
+                    r.m(0, $.bS(), ica_state)
+                    b.rx.j(0, ica_state)
+                    b.ry.j(0, ica_state.x)
                     b.F()
-                } else s.y = s.y + $.cX()
-                if (a.r2.J(0, $.a7())) s.y = s.y + $.bx()
+                } else ica_state.y = ica_state.y + $.cX()
+
+                // iceState.frozenStep += 2048;
+                if (a.r2.J(0, $.a7())) ica_state.y = ica_state.y + $.bx()
+                // sklIceHit
+                // [1]被[冰冻]了
                 r = T.RunUpdate(C.String.B(LangData.get_lang("HBga"), $.qF()), a, b, null, null, $.bg(), 1000, 100)
                 e.a.push(r)
             }
@@ -6257,7 +6261,7 @@ var A = {
         ka: function ka(a) {
             this.a = a
         },
-        dx: function dx(a, b) {
+        IceState: function dx(a, b) {
             var _ = this
             _.r = a
             _.x = null
@@ -14727,7 +14731,7 @@ T.ka.prototype = {
     },
     $S: 16
 }
-T.dx.prototype = {
+T.IceState.prototype = {
     gT() {
         return -$.i()
     },
@@ -19266,7 +19270,7 @@ LangData.k_.prototype = {
         T.hD, T.SkillVoid, T.hg, T.SklRinickModifierClone, T.hz
         ]
     )
-    inherit_many(T.UpdateStateEntry, [T.dj, T.HasteState, T.dx, T.SlowState, T.UpdateStateImpl, T.RinickModifierUpdateState])
+    inherit_many(T.UpdateStateEntry, [T.dj, T.HasteState, T.IceState, T.SlowState, T.UpdateStateImpl, T.RinickModifierUpdateState])
     inherit_many(T.x, [T.dI, T.c3, T.hF, T.fC, T.hY])
     inherit_many(T.Plr, [T.dR, T.aM, T.cz, T.PlrBoost, T.PlrBossTest, T.PlrBossTest2, T.PlrEx, T.PlrSeed_])
     inherit_many(T.PostDefendEntry, [T.CurseState, T.PostDefendImpl, T.ik])
@@ -21457,5 +21461,5 @@ function main() {
 }
 
 main();
-logger.debug("反混淆", X.D("G*Oej(8SJR", 99));
+logger.debug("反混淆", LangData.get_lang("HBga"));
 // logger.debug("running main:", main()) // 执行main函数
