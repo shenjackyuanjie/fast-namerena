@@ -5689,7 +5689,7 @@ var A = {
             g.av(a2, a3)
             return g
         },
-        nD(a2, a3, a4) {
+        init_BossSlime2(a2, a3, a4) {
             var s, r, q, p, o, n, m, l, k, j, i, h, g, f = 0,
                 e = H.as_string(a3) + H.as_string($.aD()),
                 d = 0,
@@ -16316,13 +16316,13 @@ T.SklSlimeSpawn.prototype = {
         s.push(T.RunUpdate(LangData.get_lang("BJOA"), this_.r, k, k, k, 0, 1000, 100))
         r = t.b8
         q = r.a(this_.r)
-        p = T.nD(q, q.a, q.b)
+        p = T.init_BossSlime2(q, q.a, q.b)
         p.y = this_.r.y
         p.az()
         p.l = c.n() * $.C()
         this_.r.y.aZ(p)
         r = r.a(this_.r)
-        o = T.nD(r, r.a, r.b)
+        o = T.init_BossSlime2(r, r.a, r.b)
         o.y = this_.r.y
         o.az()
         o.l = c.n() * $.C()
