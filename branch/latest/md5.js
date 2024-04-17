@@ -7581,7 +7581,7 @@ var A = {
             _.f = _.e = _.d = null
             _.r = c
         },
-        fl: function fl() { },
+        DummyChargeMeta: function fl() { },
         GuiYue: function jq(a, b, c) {
             var _ = this
             _.a = null
@@ -18564,7 +18564,7 @@ T.WeaponDeathNote.prototype = {
         (s && C.Array).j(s, r)
     }
 }
-T.fl.prototype = {
+T.DummyChargeMeta.prototype = {
     gT() {
         return 0
     },
@@ -18575,7 +18575,7 @@ T.GuiYue.prototype = {
     b3(a) { },
     bn() { },
     b6() {
-        this.c.r2.m(0, $.a7(), new T.fl())
+        this.c.r2.m(0, $.a7(), new T.DummyChargeMeta())
     }
 }
 T.NoWeapon.prototype = {
@@ -19244,7 +19244,7 @@ LangData.k_.prototype = {
         S.fK,
         HtmlRenderer.inner_render, HtmlRenderer.jT, HtmlRenderer.ax,
         Sgls.a_, Sgls.MEntry,
-        T.x, T.Plr, T.CovidMeta, T.Engine, T.b7, T.IPlr, T.HDamage, T.HRecover, T.aX, T.aq, T.bG, T.Weapon, T.fl]
+        T.x, T.Plr, T.CovidMeta, T.Engine, T.b7, T.IPlr, T.HDamage, T.HRecover, T.aX, T.aq, T.bG, T.Weapon, T.DummyChargeMeta]
     )
     inherit_many(J.Interceptor, [J.fw, J.cs, J.bE, J.JsArray, J.JsNumber, J.JsString, H.dJ, H.ab, W.fn, W.Blob, W.CanvasRenderingContext2D, W.i6, W.bb, W.ja, W.jb, W.o, W.c4, W.jL, W.ig, W.il, W.iy, W.iA])
     inherit_many(J.bE, [J.PlainJavaScriptObject, J.UnknownJavaScriptObject, J.JavaScriptFunction])
