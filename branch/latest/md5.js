@@ -6746,7 +6746,7 @@ var A = {
             _.f = e
             _.c = _.b = _.a = _.r = null
         },
-        he: function he(a) {
+        SklCovidDefend: function he(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -15785,7 +15785,7 @@ T.PlrBossCovid.prototype = {
     ac() {
         var s = 0
         this.k3 = new T.hd(this, s)
-        this.k1.push(new T.he(s))
+        this.k1.push(new T.SklCovidDefend(s))
     }
 }
 T.CovidMeta.prototype = {
@@ -15897,7 +15897,7 @@ T.CovidState.prototype = {
         return this.fr
     }
 }
-T.he.prototype = {
+T.SklCovidDefend.prototype = {
     W() {
         this.r.G.j(0, this)
     },
@@ -19319,7 +19319,7 @@ LangData.k_.prototype = {
     inherit(HtmlRenderer.fW, HtmlRenderer.ax)
     inherit_many(Sgls.MEntry, [T.Skill, T.UpdateStateEntry, T.PostDefendEntry, T.bq, T.cB, T.bH, T.ah, T.PreActionEntry, T.aF])
     inherit_many(T.Skill,
-        [T.ActionSkill, T.SklAokijiDefend, T.he, T.hn, T.hq, T.ea, T.SklSlimeSpawn,
+        [T.ActionSkill, T.SklAokijiDefend, T.SklCovidDefend, T.hn, T.hq, T.ea, T.SklSlimeSpawn,
         T.SklCounter, T.SklDefend, T.SklHide, T.SklMerge, T.SklProtect,
         T.SklReflect, T.SklReraise, T.SklShield, T.SklUpgrade, T.SklZombie]
     )
