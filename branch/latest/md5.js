@@ -6752,7 +6752,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        hd: function hd(a, b) {
+        SklCovidAttack: function hd(a, b) {
             var _ = this
             _.fr = a
             _.e = false
@@ -15784,7 +15784,7 @@ T.PlrBossCovid.prototype = {
     },
     ac() {
         var s = 0
-        this.k3 = new T.hd(this, s)
+        this.k3 = new T.SklCovidAttack(this, s)
         this.k1.push(new T.SklCovidDefend(s))
     }
 }
@@ -15850,6 +15850,8 @@ T.CovidState.prototype = {
                         if (o.y == r.y) k.fH(o, c, d)
                         else {
                             l = T.getAt(r, false, c)
+                            // sklAttack
+                            // [0]发起攻击
                             p = LangData.get_lang("EYAn")
                             m = new T.aX(0, i, 100, p, r, o, j, j)
                             m.aK(p, r, o, j, j, 0, i, 100)
@@ -15909,11 +15911,13 @@ T.SklCovidDefend.prototype = {
     },
     $iah: 1
 }
-T.hd.prototype = {
+T.SklCovidAttack.prototype = {
     v(a, b, c, d) {
         var s = a[0].a,
             r = this.fr,
             q = T.getAt(r, false, c)
+        // sklAttack
+        // [0]发起攻击
         d.a.push(T.RunUpdate(LangData.get_lang("EYAn"), r, s, null, null, 0, 1000, 100))
         s.a3(q, false, r, T.v8(), c, d)
     },
@@ -16077,6 +16081,8 @@ T.hp.prototype = {
         s = p.fr
         r = T.getAt(s, false, c)
         q = p.fx
+        // sklAttack
+        // [0]发起攻击
         d.a.push(T.RunUpdate(LangData.get_lang("EYAn"), s, o, null, null, 0, 1000, 100))
         if (o.a3(r * q, false, s, T.va(), c, d) > 0) p.fx = $.T()
     },
@@ -16272,6 +16278,8 @@ T.hA.prototype = {
         r = a[0].a
         s = T.getAt(o.r, false, c)
         q = $.cY()
+        // sklAttack
+        // [0]发起攻击
         d.a.push(T.RunUpdate(LangData.get_lang("EYAn"), o.r, r, n, n, 0, 1000, 100))
         r.a3(s * q, false, o.r, T.ad(), c, d)
         for (s = o.r.y.a.e, q = s.length, p = 0; p < q; ++p) s[p].l = 0
@@ -17914,6 +17922,8 @@ T.h8.prototype = {
             }
         }
         p = T.getAt(o.r, false, c)
+        // sklAttack
+        // [0]发起攻击
         d.a.push(T.RunUpdate(LangData.get_lang("EYAn"), o.r, m, n, n, 0, 1000, 100))
         m.a3(p, false, o.r, T.oH(), c, d)
     }
@@ -17922,6 +17932,8 @@ T.hD.prototype = {
     v(a, b, c, d) {
         var s = a[0].a,
             r = T.getAt(this.r, false, c)
+        // sklAttack
+        // [0]发起攻击
         d.a.push(T.RunUpdate(LangData.get_lang("EYAn"), this.r, s, null, null, 0, 1000, 100))
         s.a3(r, false, this.r, T.ad(), c, d)
     }
@@ -19330,7 +19342,7 @@ LangData.k_.prototype = {
         T.SklHeal, T.SklIce, T.SklIron, T.SklPoison, T.SklQuake,
         T.SklRapid, T.SklRevive, T.SklPossess, T.SklShadow, T.SklSlow,
         T.SklExplode, T.SklSummon, T.SklThunder,
-        T.SklAokijiIceAge, T.SklConan, T.CovidState, T.hd, T.hm,
+        T.SklAokijiIceAge, T.SklConan, T.CovidState, T.SklCovidAttack, T.hm,
         T.dB, T.hp, T.hr, T.hA, T.h8,
         T.hD, T.SkillVoid, T.hg, T.SklRinickModifierClone, T.hz]
     )
@@ -21530,5 +21542,5 @@ function main() {
 }
 
 main();
-logger.debug("反混淆", LangData.get_lang("VZaN"));
+logger.debug("反混淆", LangData.get_lang("EYAn"));
 // logger.debug("running main:", main()) // 执行main函数
