@@ -6481,7 +6481,7 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        h6: function h6(a) {
+        SklAokijiDefend: function h6(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -15503,7 +15503,7 @@ T.PlrBossAokiji.prototype = {
         var s, r
         this.k3 = T.SklAttack(this)
         s = this.k1
-        s.push(new T.h6(0))
+        s.push(new T.SklAokijiDefend(0))
         r = new T.e2(0)
         r.f = $.pW()
         s.push(r)
@@ -15512,10 +15512,12 @@ T.PlrBossAokiji.prototype = {
         s.push(r)
     }
 }
-T.h6.prototype = {
+T.SklAokijiDefend.prototype = {
     aq(a, b, c, d, e) {
         // if (a > 0 && J.Y(c, T.mE())) {
         if (a > 0 && (c === T.mE())) {
+            // sklAokijiDefend
+            // [0][吸收]所有冰冻伤害
             e.a.push(T.RunUpdate(LangData.get_lang("HwtN"), this.r, null, null, null, a, 1000, 100))
             return -a
         }
@@ -19297,7 +19299,7 @@ LangData.k_.prototype = {
     inherit(HtmlRenderer.fW, HtmlRenderer.ax)
     inherit_many(Sgls.MEntry, [T.Skill, T.UpdateStateEntry, T.PostDefendEntry, T.bq, T.cB, T.bH, T.ah, T.PreActionEntry, T.aF])
     inherit_many(T.Skill,
-        [T.ActionSkill, T.h6, T.he, T.hn, T.hq, T.ea, T.SklSlimeSpawn,
+        [T.ActionSkill, T.SklAokijiDefend, T.he, T.hn, T.hq, T.ea, T.SklSlimeSpawn,
         T.SklCounter, T.SklDefend, T.SklHide, T.SklMerge, T.SklProtect,
         T.SklReflect, T.SklReraise, T.SklShield, T.SklUpgrade, T.SklZombie]
     )
@@ -21508,5 +21510,5 @@ function main() {
 }
 
 main();
-logger.debug("反混淆", LangData.get_lang("Ycen"));
+logger.debug("反混淆", LangData.get_lang("HwtN"));
 // logger.debug("running main:", main()) // 执行main函数
