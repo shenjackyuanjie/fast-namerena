@@ -6646,7 +6646,7 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        cz: function cz() { },
+        PlrBoss: function cz() { },
         PlrBossConan: function f6(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
             var _ = this
             _.a = a
@@ -15634,7 +15634,7 @@ T.PlrEx.prototype = {
         this.x = $.ao()
     }
 }
-T.cz.prototype = {
+T.PlrBoss.prototype = {
     av(a, b) {
         LangData.get_lang(LangData.eQ(H.as_string($.n4()) + H.as_string(a)))
         this.r = LangData.get_lang(LangData.eQ(H.as_string($.n4()) + H.as_string(a)))
@@ -15664,6 +15664,7 @@ T.cz.prototype = {
         for (s = 0; s < r.length; ++s) r[s].W()
     },
     cE() {
+        // getScoreStr()
         // return $.iK()
         return "??"
     },
@@ -15671,6 +15672,7 @@ T.cz.prototype = {
         return []
     },
     gaG() {
+        // List<String> get immuned => [Dt.assassinate, Dt.charm, Dt.berserk, Dt.half, Dt.curse,  Dt.exchange, Dt.slow, Dt.ice];
         return H.b([$.d2(), $.aE(), $.aJ(), $.eZ(), $.bh(), $.d3(), $.bi(), $.bS()], t.V)
     },
     a7(a, b) {
@@ -17683,7 +17685,7 @@ T.Plr.prototype = {
     dE() {
         var s, r, q, p, o = this,
             n = H.b([], t.V)
-        if (o instanceof T.cz) n = C.N
+        if (o instanceof T.PlrBoss) n = C.N
         else {
             s = H.b([], t.i)
             for (r = 10; r < $.d1(); r += $.B()) {
@@ -19118,7 +19120,7 @@ LangData.k_.prototype = {
     s = W.eD.prototype
     s.dX = s.aM
 
-    s = T.cz.prototype
+    s = T.PlrBoss.prototype
     s.cM = s.a7
 
     s = T.Plr.prototype
@@ -19318,11 +19320,11 @@ LangData.k_.prototype = {
     )
     inherit_many(T.UpdateStateEntry, [T.dj, T.HasteState, T.IceState, T.SlowState, T.UpdateStateImpl, T.RinickModifierUpdateState])
     inherit_many(T.x, [T.dI, T.FireState, T.SklSlimeSpawnState, T.fC, T.hY])
-    inherit_many(T.Plr, [T.PlrClone, T.aM, T.cz, T.PlrBoost, T.PlrBossTest, T.PlrBossTest2, T.PlrEx, T.PlrSeed_])
+    inherit_many(T.Plr, [T.PlrClone, T.aM, T.PlrBoss, T.PlrBoost, T.PlrBossTest, T.PlrBossTest2, T.PlrEx, T.PlrSeed_])
     inherit_many(T.PostDefendEntry, [T.CurseState, T.PostDefendImpl, T.ik])
     inherit_many(T.bq, [T.PoisonState, T.PostActionImpl])
     inherit_many(T.aM, [T.PlrShadow, T.PlrSummon, T.fX])
-    inherit_many(T.cz,
+    inherit_many(T.PlrBoss,
         [T.PlrBossAokiji, T.PlrBossConan, T.PlrBossCovid, T.PlrBossIkaruga,
         T.PlrBossLazy, T.PlrBossMario, T.PlrBossMosquito, T.PlrBossSaitama,
         T.PlrBossSlime, T.PlrBossSonic, T.PlrBossYuri]
