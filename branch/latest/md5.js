@@ -6080,7 +6080,7 @@ var A = {
             return s
         },
         NoWeapon(a, b) {
-            var s = new T.jN(a, b, P.aL($.av(), 0, false, t.B))
+            var s = new T.NoWeapon(a, b, P.aL($.av(), 0, false, t.B))
             s.a = a
             return s
         },
@@ -7590,7 +7590,7 @@ var A = {
             _.f = _.e = _.d = null
             _.r = c
         },
-        jN: function jN(a, b, c) {
+        NoWeapon: function jN(a, b, c) {
             var _ = this
             _.a = null
             _.b = a
@@ -18578,7 +18578,7 @@ T.GuiYue.prototype = {
         this.c.r2.m(0, $.a7(), new T.fl())
     }
 }
-T.jN.prototype = {
+T.NoWeapon.prototype = {
     b3(a) { },
     bn() { },
     b6() { }
@@ -19375,7 +19375,7 @@ LangData.k_.prototype = {
     inherit(T.ij, T.bH)
     inherit(T.dV, T.ij)
     inherit(T.e0, T.ik)
-    inherit_many(T.Weapon, [T.j2, T.eo, T.GuiYue, T.jN, T.RinickModifier, T.ep, T.kv])
+    inherit_many(T.Weapon, [T.j2, T.eo, T.GuiYue, T.NoWeapon, T.RinickModifier, T.ep, T.kv])
     inherit(T.hy, T.SklMarioReraise)
     inherit(T.hc, T.SklCounter)
     inherit(LangData.SuperRC4, Y.RC4)
