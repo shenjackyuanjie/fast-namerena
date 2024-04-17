@@ -7598,7 +7598,7 @@ var A = {
             _.f = _.e = _.d = null
             _.r = c
         },
-        k1: function k1(a, b, c) {
+        RinickModifier: function k1(a, b, c) {
             var _ = this
             _.a = null
             _.b = a
@@ -18583,7 +18583,7 @@ T.jN.prototype = {
     bn() { },
     b6() { }
 }
-T.k1.prototype = {
+T.RinickModifier.prototype = {
     cs() {
         var s, r = this.c,
             q = r.q,
@@ -18969,7 +18969,7 @@ T.ks.prototype = {
         var s
         // Rinick
         if (b.b == $.iL()) {
-            s = new T.k1(a, b, P.aL($.av(), 0, false, t.B))
+            s = new T.RinickModifier(a, b, P.aL($.av(), 0, false, t.B))
             s.a = a
             return s
         } else return T.NoWeapon(a, b)
@@ -19375,7 +19375,7 @@ LangData.k_.prototype = {
     inherit(T.ij, T.bH)
     inherit(T.dV, T.ij)
     inherit(T.e0, T.ik)
-    inherit_many(T.Weapon, [T.j2, T.eo, T.jq, T.jN, T.k1, T.ep, T.kv])
+    inherit_many(T.Weapon, [T.j2, T.eo, T.jq, T.jN, T.RinickModifier, T.ep, T.kv])
     inherit(T.hy, T.SklMarioReraise)
     inherit(T.hc, T.SklCounter)
     inherit(LangData.SuperRC4, Y.RC4)
