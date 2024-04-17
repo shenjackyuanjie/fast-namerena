@@ -7000,7 +7000,7 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        hA: function hA(a, b, c, d, e) {
+        SklSaitama: function hA(a, b, c, d, e) {
             var _ = this
             _.fr = a
             _.fx = b
@@ -16254,13 +16254,13 @@ T.PlrBossSaitama.prototype = {
     ac() {
         var s = 0,
             r = t.cr
-        r = new T.hA(s, s, P.c5(r), P.c5(r), 0)
+        r = new T.SklSaitama(s, s, P.c5(r), P.c5(r), 0)
         r.id = new T.PostDefendImpl(1 / 0, r)
         this.k3 = r
         this.k1.push(r)
     }
 }
-T.hA.prototype = {
+T.SklSaitama.prototype = {
     W() {
         this.r.y2.j(0, this.id)
     },
@@ -19349,7 +19349,7 @@ LangData.k_.prototype = {
         T.SklRapid, T.SklRevive, T.SklPossess, T.SklShadow, T.SklSlow,
         T.SklExplode, T.SklSummon, T.SklThunder,
         T.SklAokijiIceAge, T.SklConan, T.CovidState, T.SklCovidAttack, T.SklIkarugaAttack,
-        T.dB, T.SklLazyAttack, T.SklMarioGet, T.hA, T.h8,
+        T.dB, T.SklLazyAttack, T.SklMarioGet, T.SklSaitama, T.h8,
         T.hD, T.SkillVoid, T.hg, T.SklRinickModifierClone, T.hz]
     )
     inherit_many(T.UpdateStateEntry, [T.dj, T.HasteState, T.IceState, T.SlowState, T.UpdateStateImpl, T.RinickModifierUpdateState])
