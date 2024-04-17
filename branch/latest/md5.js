@@ -6319,7 +6319,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        hu: function hu(a) {
+        SklPossess: function hu(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -15073,7 +15073,7 @@ T.SklRevive.prototype = {
         p.push(T.RunUpdate(o, n, m, new T.HRecover(r), k, 0, 1000, 100))
     }
 }
-T.hu.prototype = {
+T.SklPossess.prototype = {
     ao(a, b) {
         this.r = a
         this.f = C.JsInt.P(b, $.t()) + $.mU()
@@ -15083,6 +15083,8 @@ T.hu.prototype = {
             o = null,
             n = a[0].a,
             m = d.a
+        // sklPossess
+        // [0]使用[附体]
         m.push(T.RunUpdate(LangData.get_lang("dxVA"), p.r, n, o, o, 0, 1000, 100))
         if (!n.a7($.aJ(), c)) s = n.fx > 0 && !n.A && T.bW(p.r.dx, n.dy, c)
         else s = true
@@ -15098,6 +15100,8 @@ T.hu.prototype = {
             r.fr = $.C()
             r.aP(0)
         } else r.fr = r.fr + $.C()
+        // sklBerserkHit
+        // [1]进入[狂暴]状态
         m.push(T.RunUpdate(C.String.B(LangData.get_lang("jIRA"), $.nc()), p.r, n, o, o, 0, 1000, 100))
         m = p.r
         q = m.fx
@@ -15111,7 +15115,7 @@ T.PlrShadow.prototype = {
     },
     ac() {
         this.k3 = T.SklAttack(this)
-        this.k1.push(new T.hu(0))
+        this.k1.push(new T.SklPossess(0))
     },
     aU() {
         var s, r
@@ -19300,7 +19304,7 @@ LangData.k_.prototype = {
         T.SklCharge, T.SklCharm, T.SklClone, T.SklCritical, T.SklCurse,
         T.SklDisperse, T.SklExchange, T.SklFire, T.sklHalf, T.SklHaste,
         T.SklHeal, T.SklIce, T.SklIron, T.SklPoison, T.SklQuake,
-        T.SklRapid, T.SklRevive, T.hu, T.SklShadow, T.SklSlow,
+        T.SklRapid, T.SklRevive, T.SklPossess, T.SklShadow, T.SklSlow,
         T.hj, T.SklSummon, T.SklThunder,
         T.e2, T.hb, T.dl, T.hd, T.hm,
         T.dB, T.hp, T.hr, T.hA, T.h8,
@@ -21502,5 +21506,5 @@ function main() {
 }
 
 main();
-logger.debug("反混淆", LangData.get_lang("nEWa"));
+logger.debug("反混淆", LangData.get_lang("dxVA"));
 // logger.debug("running main:", main()) // 执行main函数
