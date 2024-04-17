@@ -7632,7 +7632,7 @@ var A = {
             _.f = b
             _.c = _.b = _.a = _.r = null
         },
-        hz: function hz(a, b) {
+        SklS11: function hz(a, b) {
             var _ = this
             _.fr = a
             _.e = false
@@ -18792,7 +18792,7 @@ T.hy.prototype = {
         }
     }
 }
-T.hz.prototype = {
+T.SklS11.prototype = {
     au(a, b) {
         if (this.f == 0) return false
         return (a.n() & 63) + this.f > this.r.fr
@@ -18852,7 +18852,7 @@ T.ep.prototype = {
     b6() {
         var s = this.c,
             r = s.k2,
-            q = new T.hz($.B(), 0)
+            q = new T.SklS11($.B(), 0)
         q.e = true
         q.ao(s, $.d1());
         (r && C.Array).j(r, q)
@@ -19350,7 +19350,7 @@ LangData.k_.prototype = {
         T.SklExplode, T.SklSummon, T.SklThunder,
         T.SklAokijiIceAge, T.SklConan, T.CovidState, T.SklCovidAttack, T.SklIkarugaAttack,
         T.dB, T.SklLazyAttack, T.SklMarioGet, T.SklSaitama, T.h8,
-        T.hD, T.SkillVoid, T.SklDeathNote, T.SklRinickModifierClone, T.hz]
+        T.hD, T.SkillVoid, T.SklDeathNote, T.SklRinickModifierClone, T.SklS11]
     )
     inherit_many(T.UpdateStateEntry, [T.dj, T.HasteState, T.IceState, T.SlowState, T.UpdateStateImpl, T.RinickModifierUpdateState])
     inherit_many(T.x, [T.dI, T.FireState, T.SklSlimeSpawnState, T.fC, T.hY])
