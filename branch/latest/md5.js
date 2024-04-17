@@ -6487,7 +6487,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        e2: function e2(a) {
+        SklAokijiIceAge: function e2(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -15504,7 +15504,7 @@ T.PlrBossAokiji.prototype = {
         this.k3 = T.SklAttack(this)
         s = this.k1
         s.push(new T.SklAokijiDefend(0))
-        r = new T.e2(0)
+        r = new T.SklAokijiIceAge(0)
         r.f = $.pW()
         s.push(r)
         r = new T.SklIce(0)
@@ -15529,7 +15529,7 @@ T.SklAokijiDefend.prototype = {
     },
     $iaB: 1
 }
-T.e2.prototype = {
+T.SklAokijiIceAge.prototype = {
     gb7() {
         return $.X()
     },
@@ -15540,6 +15540,8 @@ T.e2.prototype = {
         var s, r, q, p, o, n, m = t.j,
             l = H.b([], m)
         for (s = 0; s < a.length; ++s) l.push(a[s].a)
+        // sklAokijiIceAge
+        // [0]使用[冰河时代]
         r = LangData.get_lang("PRrA")
         q = this.r
         m = H.b(l.slice(0), m)
@@ -18594,7 +18596,7 @@ T.k1.prototype = {
                 } else q.f = n + $.aR()
             }
         }
-        m = new T.e2(0)
+        m = new T.SklAokijiIceAge(0)
         m.ao(l, $.as())
         s = l.k1
         s.push(m)
@@ -19310,7 +19312,7 @@ LangData.k_.prototype = {
         T.SklHeal, T.SklIce, T.SklIron, T.SklPoison, T.SklQuake,
         T.SklRapid, T.SklRevive, T.SklPossess, T.SklShadow, T.SklSlow,
         T.SklExplode, T.SklSummon, T.SklThunder,
-        T.e2, T.hb, T.dl, T.hd, T.hm,
+        T.SklAokijiIceAge, T.hb, T.dl, T.hd, T.hm,
         T.dB, T.hp, T.hr, T.hA, T.h8,
         T.hD, T.SkillVoid, T.hg, T.SklRinickModifierClone, T.hz]
     )
@@ -21510,5 +21512,5 @@ function main() {
 }
 
 main();
-logger.debug("反混淆", LangData.get_lang("HwtN"));
+logger.debug("反混淆", LangData.get_lang("PRrA"));
 // logger.debug("running main:", main()) // 执行main函数
