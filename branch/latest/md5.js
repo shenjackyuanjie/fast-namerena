@@ -4680,7 +4680,7 @@ var A = {
             r.b = q + 1
             return s + H.as_string(q) + "@" + H.as_string(a.b)
         },
-        nU(a4) {
+        init_PlrClone(a4) {
             var s, r, q, p, o, n, m, l, k, j, i, h, g, f = a4.a,
                 e = a4.b,
                 d = a4.c,
@@ -14359,7 +14359,7 @@ T.SklClone.prototype = {
             k.r.ci()
             k.r.F()
         }
-        p = T.nU(k.r)
+        p = T.init_PlrClone(k.r)
         p.y = k.r.y
         p.az()
         p.l = c.n() * $.C() + $.eX()
@@ -15426,21 +15426,23 @@ T.SklThunder.prototype = {
             j = null,
             i = 1000,
             h = a[0].a,
-            g = d.a
-        g.push(T.RunUpdate(LangData.get_lang("hyoA"), k.r, h, j, j, $.i(), i, 100))
+            updates = d.a
+        updates.push(T.RunUpdate(LangData.get_lang("hyoA"), k.r, h, j, j, $.i(), i, 100))
         s = $.B() + (c.n() & 3)
         r = $.ci() + k.r.db
         for (q = 0, p = q, o = false; q < s; ++q) {
             n = k.r
             if (n.fx > p && !n.A && h.fx > p) {
-                g.push($.K())
+                updates.push($.K())
                 if (h.fx > 0 && !h.A && T.bW(r, h.dy + h.db, c)) {
                     if (o) {
+                        // sklThunderEnd
+                        // [0][回避]了攻击(雷击)
                         p = LangData.get_lang("EORN")
                         n = k.r
                         m = new T.aX(0, i, 100, p, h, n, j, j)
                         m.aK(p, h, n, j, j, 0, i, 100)
-                        g.push(m)
+                        updates.push(m)
                     } else {
                         // dodge (通用回避)
                         // [0][回避]了攻击
@@ -15448,19 +15450,19 @@ T.SklThunder.prototype = {
                         n = k.r
                         m = new T.aX(0, i, 100, p, h, n, j, j)
                         m.aK(p, h, n, j, j, 0, i, 100)
-                        g.push(m)
+                        updates.push(m)
                     }
                     return
                 }
                 r -= $.Z()
                 p = T.I(k.r, true, c)
                 n = $.oZ()
-                l = g.length
+                l = updates.length
                 m = k.r
                 m = h.aF(h.aq(C.d.R(p * n / T.d9(h, true, c)), m, T.ad(), c, d), m, T.ad(), c, d)
                 n = 0
                 if (m > n) o = true
-                g[l].b = $.mR()
+                updates[l].b = $.mR()
                 p = n
             }
         }
@@ -18685,7 +18687,7 @@ T.SklRinickModifierClone.prototype = {
         // [0]使用[属性修改器]
         s.push(T.RunUpdate(LangData.get_lang("UeyA"), k.r, j, j, j, $.a6(), 1000, 100))
         for (r = 0, q = k.fr; r < q; ++r) {
-            p = T.nU(k.r)
+            p = T.init_PlrClone(k.r)
             p.y = k.r.y
             p.az()
             p.l = c.n() * $.C() + $.cX()
@@ -21480,5 +21482,5 @@ function main() {
 }
 
 main();
-logger.debug("反混淆", LangData.get_lang("wneN"));
+logger.debug("反混淆", LangData.get_lang("EORN"));
 // logger.debug("running main:", main()) // 执行main函数
