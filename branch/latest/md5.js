@@ -5577,7 +5577,7 @@ var A = {
                 if (m != null) m.c.j(0, s)
                 else {
                     m = P.c5(t.B)
-                    q = new T.dk(m)
+                    q = new T.CovidMeta(m)
                     m.j(0, s)
                     r.id = q
                     n.m(0, $.ck(), q)
@@ -6731,7 +6731,7 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        dk: function dk(a) {
+        CovidMeta: function dk(a) {
             this.b = false
             this.c = a
         },
@@ -15788,7 +15788,7 @@ T.PlrBossCovid.prototype = {
         this.k1.push(new T.he(s))
     }
 }
-T.dk.prototype = {
+T.CovidMeta.prototype = {
     gT() {
         return 0
     },
@@ -19226,7 +19226,7 @@ LangData.k_.prototype = {
         S.fK,
         HtmlRenderer.inner_render, HtmlRenderer.jT, HtmlRenderer.ax,
         Sgls.a_, Sgls.MEntry,
-        T.x, T.Plr, T.dk, T.Engine, T.b7, T.IPlr, T.HDamage, T.HRecover, T.aX, T.aq, T.bG, T.Weapon, T.fl]
+        T.x, T.Plr, T.CovidMeta, T.Engine, T.b7, T.IPlr, T.HDamage, T.HRecover, T.aX, T.aq, T.bG, T.Weapon, T.fl]
     )
     inherit_many(J.Interceptor, [J.fw, J.cs, J.bE, J.JsArray, J.JsNumber, J.JsString, H.dJ, H.ab, W.fn, W.Blob, W.CanvasRenderingContext2D, W.i6, W.bb, W.ja, W.jb, W.o, W.c4, W.jL, W.ig, W.il, W.iy, W.iA])
     inherit_many(J.bE, [J.PlainJavaScriptObject, J.UnknownJavaScriptObject, J.JavaScriptFunction])
