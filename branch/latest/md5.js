@@ -4784,7 +4784,7 @@ var A = {
                 r = b.r2
                 s = t.a.a(r.h(0, $.eY()))
                 if (s == null) {
-                    s = new T.c3($.ao())
+                    s = new T.FireState($.ao())
                     r.m(0, $.eY(), s)
                 }
                 s.b = s.b + $.b0()
@@ -6227,7 +6227,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        c3: function c3(a) {
+        FireState: function c3(a) {
             this.b = a
         },
         SklFire: function SklFire(a) {
@@ -14462,8 +14462,8 @@ T.SklCurse.prototype = {
     },
     // act
     v(a, b, c, d) {
-        var s = a[0].a,
-            atp = T.getAt(this.r, true, c)
+        var s = a[0].a
+        let atp = T.getAt(this.r, true, c)
         // sklCurse
         // [0]使用[诅咒]
         d.a.push(T.RunUpdate(LangData.get_lang("AqCN"), this.r, s, null, null, $.i(), 1000, 100))
@@ -14548,7 +14548,7 @@ T.SklExchange.prototype = {
         s.cr(o - s.fx, o, l.r, c, d)
     }
 }
-T.c3.prototype = {
+T.FireState.prototype = {
     gT() {
         return -$.i()
     }
@@ -14557,12 +14557,15 @@ T.SklFire.prototype = {
     v(a, b, c, d) {
         var s, r, q, p = a[0].a,
             o = t.a.a(p.r2.h(0, $.eY()))
-        if (o == null) o = new T.c3($.ao())
+        if (o == null) o = new T.FireState($.ao())
         s = T.getAt(this.r, true, c)
         r = $.mM()
         q = o.b
+        // sklFire
+        // [0]使用[火球术]
         d.a.push(T.RunUpdate(LangData.get_lang("mAoA"), this.r, p, null, null, $.i(), 1000, 100))
         p.a3(s * (r + q), true, this.r, T.oJ(), c, d)
+        // target.attacked(atp, true, owner, onFire, r, updates);
     }
 }
 T.sklHalf.prototype = {
@@ -15272,7 +15275,7 @@ T.hj.prototype = {
         var s, r, q, p, o, n = this,
             m = a[0].a,
             l = t.a.a(m.r2.h(0, $.eY()))
-        if (l == null) l = new T.c3($.ao())
+        if (l == null) l = new T.FireState($.ao())
         s = T.getAt(n.r, true, c)
         r = $.mZ()
         q = l.b
@@ -19296,7 +19299,7 @@ LangData.k_.prototype = {
         T.hD, T.SkillVoid, T.hg, T.SklRinickModifierClone, T.hz]
     )
     inherit_many(T.UpdateStateEntry, [T.dj, T.HasteState, T.IceState, T.SlowState, T.UpdateStateImpl, T.RinickModifierUpdateState])
-    inherit_many(T.x, [T.dI, T.c3, T.SklSlimeSpawnState, T.fC, T.hY])
+    inherit_many(T.x, [T.dI, T.FireState, T.SklSlimeSpawnState, T.fC, T.hY])
     inherit_many(T.Plr, [T.PlrClone, T.aM, T.cz, T.PlrBoost, T.PlrBossTest, T.PlrBossTest2, T.PlrEx, T.PlrSeed_])
     inherit_many(T.PostDefendEntry, [T.CurseState, T.PostDefendImpl, T.ik])
     inherit_many(T.bq, [T.dS, T.PostActionImpl])
