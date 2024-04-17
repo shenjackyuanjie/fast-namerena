@@ -4820,7 +4820,7 @@ var A = {
                 s = b.r2
                 r = t.ax.a(s.h(0, $.bT()))
                 if (r == null) {
-                    r = new T.dS(a, b, $.C())
+                    r = new T.PoisonState(a, b, $.C())
                     r.y = T.getAt(a, true, d) * $.eV()
                     s.m(0, $.bT(), r)
                     b.x2.j(0, r)
@@ -6287,7 +6287,7 @@ var A = {
             _.f = c
             _.c = _.b = _.a = _.r = null
         },
-        dS: function dS(a, b, c) {
+        PoisonState: function dS(a, b, c) {
             var _ = this
             _.r = a
             _.x = b
@@ -14893,7 +14893,7 @@ T.SklIron.prototype = {
     },
     $ix: 1
 }
-T.dS.prototype = {
+T.PoisonState.prototype = {
     gT() {
         return -$.i()
     },
@@ -14907,6 +14907,8 @@ T.dS.prototype = {
             p = s * (r + (q - r) * $.oX()) / q
             n.y = s - p
             o = C.d.R(p / (m.dx + $.au()))
+            // sklPoisonDamage
+            // [1][毒性发作]
             b.a.push(T.RunUpdate(LangData.get_lang("nEWa"), n.r, m, null, null, 0, 1000, 100))
             m.aF(o, n.r, T.ad(), a, b)
             m = n.z - 1
@@ -14921,6 +14923,8 @@ T.dS.prototype = {
         if (r.fx > 0) {
             s = b.a
             s.push($.K())
+            // sklPoisonEnd
+            // [1]从[中毒]中解除
             s.push(T.RunUpdateCancel(LangData.get_lang("hIga"), a, r))
         }
     },
@@ -19306,7 +19310,7 @@ LangData.k_.prototype = {
     inherit_many(T.x, [T.dI, T.FireState, T.SklSlimeSpawnState, T.fC, T.hY])
     inherit_many(T.Plr, [T.PlrClone, T.aM, T.cz, T.PlrBoost, T.PlrBossTest, T.PlrBossTest2, T.PlrEx, T.PlrSeed_])
     inherit_many(T.PostDefendEntry, [T.CurseState, T.PostDefendImpl, T.ik])
-    inherit_many(T.bq, [T.dS, T.PostActionImpl])
+    inherit_many(T.bq, [T.PoisonState, T.PostActionImpl])
     inherit_many(T.aM, [T.PlrShadow, T.PlrSummon, T.fX])
     inherit_many(T.cz,
         [T.PlrBossAokiji, T.PlrBossConan, T.PlrBossCovid, T.PlrBossIkaruga,
@@ -21498,5 +21502,5 @@ function main() {
 }
 
 main();
-logger.debug("反混淆", LangData.get_lang("AqCN"));
+logger.debug("反混淆", LangData.get_lang("nEWa"));
 // logger.debug("running main:", main()) // 执行main函数
