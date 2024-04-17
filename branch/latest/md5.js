@@ -1038,7 +1038,7 @@ var A = {
         },
         unwrap_Exception(ex) {
             if (ex == null) return new H.NullThrownFromJavaScriptException(ex)
-            if (ex instanceof H.dt) return H.saveStackTrace(ex, ex.a)
+            if (ex instanceof H.ExceptionAndStackTrace) return H.saveStackTrace(ex, ex.a)
             if (typeof ex !== "object") return ex
             if ("dartException" in ex) return H.saveStackTrace(ex, ex.dartException)
             return H._unwrapNonDartException(ex)
@@ -1136,7 +1136,7 @@ var A = {
         },
         getTraceFromException(a) {
             var s
-            if (a instanceof H.dt) return a.b
+            if (a instanceof H.ExceptionAndStackTrace) return a.b
             if (a == null) return new H.eE(a)
             s = a.$cachedTrace
             if (s != null) return s
@@ -1737,7 +1737,7 @@ var A = {
         NullThrownFromJavaScriptException: function jR(a) {
             this.a = a
         },
-        dt: function dt(a, b) {
+        ExceptionAndStackTrace: function dt(a, b) {
             this.a = a
             this.b = b
         },
@@ -9113,7 +9113,7 @@ H.NullThrownFromJavaScriptException.prototype = {
         return "Throw of null ('" + (this.a === null ? "null" : "undefined") + "' from JavaScript)"
     }
 }
-H.dt.prototype = {}
+H.ExceptionAndStackTrace.prototype = {}
 H.eE.prototype = {
     k(a) {
         var s, r = this.b
@@ -9764,7 +9764,7 @@ P._awaitOnObject_closure.prototype = {
 }
 P._awaitOnObject_closure0.prototype = {
     $2(a, b) {
-        this.a.$2(1, new H.dt(a, b))
+        this.a.$2(1, new H.ExceptionAndStackTrace(a, b))
     },
     $S: 60
 }
@@ -19166,7 +19166,7 @@ LangData.k_.prototype = {
         inherit_many = hunkHelpers.inheritMany
     inherit(P.Object, null)
     inherit_many(P.Object,
-        [H.m8, J.Interceptor, J.db, P.O, P.ev, P.L, H.cv, P.fv, H.du, H.hV, H.kh, H.NullThrownFromJavaScriptException, H.dt, H.eE, H.c_, P.aU, H.jK, H.fA,
+        [H.m8, J.Interceptor, J.db, P.O, P.ev, P.L, H.cv, P.fv, H.du, H.hV, H.kh, H.NullThrownFromJavaScriptException, H.ExceptionAndStackTrace, H.eE, H.c_, P.aU, H.jK, H.fA,
         H.JSSyntaxRegExp, H.ew, H.kz, H.bK, H.l3, H.Rti, H.ib, H.iu,
         P.l8, P.i_, P.f3, P.i4, P.cN,
         P._Future, P.i0, P.em, P.hO, P.hP, P.im, P.i1, P.i3, P.i7, P.ii, P.io, P.lf, P.eM, P.kV, P.ie, P.z, P.dY, P.fg, P.js, P.lc, P.lb, P.dq,
