@@ -6797,7 +6797,7 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        hn: function hn(a) {
+        SklIkarugaDefend: function hn(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -15940,13 +15940,13 @@ T.PlrBossIkaruga.prototype = {
         var s, r
         this.k3 = T.SklAttack(this)
         s = this.k1
-        s.push(new T.hn(0))
+        s.push(new T.SklIkarugaDefend(0))
         r = new T.hm(0)
         r.f = $.aI()
         s.push(r)
     }
 }
-T.hn.prototype = {
+T.SklIkarugaDefend.prototype = {
     ga4() {
         return $.pk()
     },
@@ -15957,6 +15957,8 @@ T.hn.prototype = {
             s = (a & s) >>> 0 === s
         } else s = false
         if (s) {
+            // sklIkarugaDefend
+            // [0][吸收]所有奇数伤害
             e.a.push(T.RunUpdate(LangData.get_lang("iOkN"), this.r, null, null, null, a, 1000, 100))
             return -a
         }
@@ -19331,7 +19333,7 @@ LangData.k_.prototype = {
     inherit(HtmlRenderer.fW, HtmlRenderer.ax)
     inherit_many(Sgls.MEntry, [T.Skill, T.UpdateStateEntry, T.PostDefendEntry, T.bq, T.cB, T.bH, T.ah, T.PreActionEntry, T.aF])
     inherit_many(T.Skill,
-        [T.ActionSkill, T.SklAokijiDefend, T.SklCovidDefend, T.hn, T.hq, T.ea, T.SklSlimeSpawn,
+        [T.ActionSkill, T.SklAokijiDefend, T.SklCovidDefend, T.SklIkarugaDefend, T.hq, T.ea, T.SklSlimeSpawn,
         T.SklCounter, T.SklDefend, T.SklHide, T.SklMerge, T.SklProtect,
         T.SklReflect, T.SklReraise, T.SklShield, T.SklUpgrade, T.SklZombie]
     )
@@ -21542,5 +21544,5 @@ function main() {
 }
 
 main();
-logger.debug("反混淆", LangData.get_lang("EYAn"));
+logger.debug("反混淆", LangData.get_lang("iOkN"));
 // logger.debug("running main:", main()) // 执行main函数
