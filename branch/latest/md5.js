@@ -5643,7 +5643,7 @@ var A = {
             }
         },
         tH(a, b) {
-            var s = new T.ea(b, 0)
+            var s = new T.SklMarioReraise(b, 0)
             s.r = a
             return s
         },
@@ -6917,7 +6917,7 @@ var A = {
             _.f = b
             _.c = _.b = _.a = _.r = null
         },
-        ea: function ea(a, b) {
+        SklMarioReraise: function ea(a, b) {
             var _ = this
             _.Q = a
             _.e = false
@@ -16185,7 +16185,7 @@ T.SklMarioGet.prototype = {
     },
     $ix: 1
 }
-T.ea.prototype = {
+T.SklMarioReraise.prototype = {
     ga4() {
         return $.lG()
     },
@@ -19337,7 +19337,7 @@ LangData.k_.prototype = {
     inherit(HtmlRenderer.fW, HtmlRenderer.ax)
     inherit_many(Sgls.MEntry, [T.Skill, T.UpdateStateEntry, T.PostDefendEntry, T.bq, T.cB, T.bH, T.ah, T.PreActionEntry, T.aF])
     inherit_many(T.Skill,
-        [T.ActionSkill, T.SklAokijiDefend, T.SklCovidDefend, T.SklIkarugaDefend, T.SklLazyDefend, T.ea, T.SklSlimeSpawn,
+        [T.ActionSkill, T.SklAokijiDefend, T.SklCovidDefend, T.SklIkarugaDefend, T.SklLazyDefend, T.SklMarioReraise, T.SklSlimeSpawn,
         T.SklCounter, T.SklDefend, T.SklHide, T.SklMerge, T.SklProtect,
         T.SklReflect, T.SklReraise, T.SklShield, T.SklUpgrade, T.SklZombie]
     )
@@ -19376,7 +19376,7 @@ LangData.k_.prototype = {
     inherit(T.dV, T.ij)
     inherit(T.e0, T.ik)
     inherit_many(T.Weapon, [T.j2, T.eo, T.jq, T.jN, T.k1, T.ep, T.kv])
-    inherit(T.hy, T.ea)
+    inherit(T.hy, T.SklMarioReraise)
     inherit(T.hc, T.SklCounter)
     inherit(LangData.SuperRC4, Y.RC4)
 
