@@ -5568,7 +5568,7 @@ var A = {
             else s = true
             if (s) {
                 s = 0
-                r = new T.dl(a, b, s, c, s)
+                r = new T.CovidState(a, b, s, c, s)
                 r.k1 = new T.PostActionImpl(r)
                 r.k2 = new T.PreActionImpl(r)
                 m = m.a(n.h(0, $.ck()))
@@ -6735,7 +6735,7 @@ var A = {
             this.b = false
             this.c = a
         },
-        dl: function dl(a, b, c, d, e) {
+        CovidState: function dl(a, b, c, d, e) {
             var _ = this
             _.fr = a
             _.fx = b
@@ -15795,7 +15795,7 @@ T.dk.prototype = {
     K(a, b) { },
     $ix: 1
 }
-T.dl.prototype = {
+T.CovidState.prototype = {
     at(a, b) {
         var s, r, q, p, o, n, m, l = this,
             k = l.fx
@@ -15803,6 +15803,8 @@ T.dl.prototype = {
             s = C.d.R((T.getAt(k, true, a) + l.go * $.b3()) / T.d9(k, true, a))
             r = l.fr
             q = b.a
+            // sklCovidDamage
+            // [1][肺炎]发作
             q.push(T.RunUpdate(LangData.get_lang("VZaN"), r, k, null, null, 0, 1000, 100))
             p = k.aF(s, r, T.ad(), a, b)
             o = 0
@@ -15813,6 +15815,8 @@ T.dl.prototype = {
                 if (m >= r.fy) n = C.JsInt.d5(n, $.t()) + o
                 if (n > p) n = p
                 r.fx = m + n
+                // recover
+                // [1]回复体力[2]点
                 o = LangData.get_lang("imin")
                 m = new T.HPlr(m)
                 m.a = r.e
@@ -19202,7 +19206,7 @@ LangData.k_.prototype = {
     static_2(T, "v5", "t6", 43)
     install_static_tearoff(T, "ad", 5, null, ["$5"], ["tx"], 1, 0)
     install_static_tearoff(T, "oH", 5, null, ["$5"], ["tz"], 1, 0)
-    install_instance_tear_off(T.dl.prototype, "gf9", 0, 5, null, ["$5"], ["fa"], 1, 0, 0)
+    install_instance_tear_off(T.CovidState.prototype, "gf9", 0, 5, null, ["$5"], ["fa"], 1, 0, 0)
     instance_2u(T.SklCounter.prototype, "gdr", "f8", 54)
 })();
 (function inheritance() {
@@ -19326,7 +19330,7 @@ LangData.k_.prototype = {
         T.SklHeal, T.SklIce, T.SklIron, T.SklPoison, T.SklQuake,
         T.SklRapid, T.SklRevive, T.SklPossess, T.SklShadow, T.SklSlow,
         T.SklExplode, T.SklSummon, T.SklThunder,
-        T.SklAokijiIceAge, T.SklConan, T.dl, T.hd, T.hm,
+        T.SklAokijiIceAge, T.SklConan, T.CovidState, T.hd, T.hm,
         T.dB, T.hp, T.hr, T.hA, T.h8,
         T.hD, T.SkillVoid, T.hg, T.SklRinickModifierClone, T.hz]
     )
@@ -21526,5 +21530,5 @@ function main() {
 }
 
 main();
-logger.debug("反混淆", LangData.get_lang("woia"));
+logger.debug("反混淆", LangData.get_lang("VZaN"));
 // logger.debug("running main:", main()) // 执行main函数
