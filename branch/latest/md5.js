@@ -7558,7 +7558,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        j2: function j2(a, b, c) {
+        BossWeapon: function j2(a, b, c) {
             var _ = this
             _.a = null
             _.b = a
@@ -17112,7 +17112,7 @@ T.Plr.prototype = {
                 if (r.J(0, q)) {
                     p = r.h(0, q).$2(q, this_)
                 } else if (J.nz(q, $.cl())) {
-                    p = new T.j2(q, this_, P.aL($.av(), 0, false, t.B))
+                    p = new T.BossWeapon(q, this_, P.aL($.av(), 0, false, t.B))
                     p.a = q
                     p.a = C.String.af(q, 0, q.length - $.i())
                 } else {
@@ -18483,7 +18483,7 @@ T.SklZombie.prototype = {
     },
     $ify: 1
 }
-T.j2.prototype = {
+T.BossWeapon.prototype = {
     b3(a) {
         a.dB(0, LangData.fZ(this.c.e), $.t())
         this.cN(a)
@@ -19375,7 +19375,7 @@ LangData.k_.prototype = {
     inherit(T.ij, T.bH)
     inherit(T.dV, T.ij)
     inherit(T.e0, T.ik)
-    inherit_many(T.Weapon, [T.j2, T.WeaponDeathNote, T.GuiYue, T.NoWeapon, T.RinickModifier, T.ep, T.kv])
+    inherit_many(T.Weapon, [T.BossWeapon, T.WeaponDeathNote, T.GuiYue, T.NoWeapon, T.RinickModifier, T.ep, T.kv])
     inherit(T.hy, T.SklMarioReraise)
     inherit(T.hc, T.SklCounter)
     inherit(LangData.SuperRC4, Y.RC4)
