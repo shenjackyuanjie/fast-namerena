@@ -4723,10 +4723,10 @@ var A = {
             h = H.b([], k)
             k = H.b([], k)
             g = 0
-            g = new T.dR(f, e, d, c, b, a, a0, a1, a2, a3, s, r, q, p, o, n, m, l, j, i, h, k, g, g, g, $.W(), g)
+            g = new T.PlrClone(f, e, d, c, b, a, a0, a1, a2, a3, s, r, q, p, o, n, m, l, j, i, h, k, g, g, g, $.W(), g)
             g.a1(f, e, d, c)
             g.cm = a4
-            g.e = T.fD(a4 instanceof T.dR ? g.a6 = a4.a6 : g.a6 = a4)
+            g.e = T.fD(a4 instanceof T.PlrClone ? g.a6 = a4.a6 : g.a6 = a4)
             f = a4.t
             f = H.b(f.slice(0), H._arrayInstanceType(f))
             g.t = f
@@ -6148,7 +6148,7 @@ var A = {
         dI: function dI(a) {
             this.b = a
         },
-        dR: function dR(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
+        PlrClone: function dR(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
             var _ = this
             _.cm = _.a6 = null
             _.a = a
@@ -14311,7 +14311,7 @@ T.dI.prototype = {
         return 0
     }
 }
-T.dR.prototype = {
+T.PlrClone.prototype = {
     gap() {
         return this.a6
     },
@@ -19288,7 +19288,7 @@ LangData.k_.prototype = {
     )
     inherit_many(T.UpdateStateEntry, [T.dj, T.HasteState, T.IceState, T.SlowState, T.UpdateStateImpl, T.RinickModifierUpdateState])
     inherit_many(T.x, [T.dI, T.c3, T.SklSlimeSpawnState, T.fC, T.hY])
-    inherit_many(T.Plr, [T.dR, T.aM, T.cz, T.PlrBoost, T.PlrBossTest, T.PlrBossTest2, T.PlrEx, T.PlrSeed_])
+    inherit_many(T.Plr, [T.PlrClone, T.aM, T.cz, T.PlrBoost, T.PlrBossTest, T.PlrBossTest2, T.PlrEx, T.PlrSeed_])
     inherit_many(T.PostDefendEntry, [T.CurseState, T.PostDefendImpl, T.ik])
     inherit_many(T.bq, [T.dS, T.PostActionImpl])
     inherit_many(T.aM, [T.PlrShadow, T.PlrSummon, T.fX])
