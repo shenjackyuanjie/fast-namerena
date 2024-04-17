@@ -6383,7 +6383,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        hj: function hj(a) {
+        SklExplode: function hj(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -15282,7 +15282,7 @@ T.SklSlow.prototype = {
         n.push(T.RunUpdate(C.String.B(LangData.get_lang("YNva"), $.qJ()), q.r, o, p, p, $.a6(), 1000, 100))
     }
 }
-T.hj.prototype = {
+T.SklExplode.prototype = {
     v(a, b, c, d) {
         var s, r, q, p, o, n = this,
             m = a[0].a,
@@ -15291,6 +15291,8 @@ T.hj.prototype = {
         s = T.getAt(n.r, true, c)
         r = $.mZ()
         q = l.b
+        // sklExplode
+        // [0]使用[自爆]
         d.a.push(T.RunUpdate(LangData.get_lang("Ycen"), n.r, m, null, null, 0, 1000, 100))
         p = n.r
         o = p.fx
@@ -15323,7 +15325,7 @@ T.PlrSummon.prototype = {
         var s = this.k1
         s.push(new T.SklFire(0))
         s.push(new T.SklFire(0))
-        s.push(new T.hj(0))
+        s.push(new T.SklExplode(0))
     },
     bP() {
         var s, r = this
@@ -19305,7 +19307,7 @@ LangData.k_.prototype = {
         T.SklDisperse, T.SklExchange, T.SklFire, T.sklHalf, T.SklHaste,
         T.SklHeal, T.SklIce, T.SklIron, T.SklPoison, T.SklQuake,
         T.SklRapid, T.SklRevive, T.SklPossess, T.SklShadow, T.SklSlow,
-        T.hj, T.SklSummon, T.SklThunder,
+        T.SklExplode, T.SklSummon, T.SklThunder,
         T.e2, T.hb, T.dl, T.hd, T.hm,
         T.dB, T.hp, T.hr, T.hA, T.h8,
         T.hD, T.SkillVoid, T.hg, T.SklRinickModifierClone, T.hz]
@@ -21506,5 +21508,5 @@ function main() {
 }
 
 main();
-logger.debug("反混淆", LangData.get_lang("dxVA"));
+logger.debug("反混淆", LangData.get_lang("Ycen"));
 // logger.debug("running main:", main()) // 执行main函数
