@@ -6262,7 +6262,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        ka: function ka(a) {
+        SklHealCallback: function ka(a) {
             this.a = a
         },
         IceState: function dx(a, b) {
@@ -14711,7 +14711,7 @@ T.SklHeal.prototype = {
         var s = {}
         if (b) {
             s.a = a.fy - a.fx
-            a.r2.aw(0, new T.ka(s))
+            a.r2.aw(0, new T.SklHealCallback(s))
             return s.a = s.a * a.M
         }
         return c.gbo()
@@ -14725,9 +14725,13 @@ T.SklHeal.prototype = {
         q = s.fy - s.fx
         if (r > q) r = q
         k = d.a
+        // sklHeal
+        // [0]使用[治愈魔法]
         k.push(T.RunUpdate(LangData.get_lang("Yiea"), l.r, s, null, null, r, 1000, 100))
         p = s.fx
         s.fx = p + r
+        // recover
+        // [1]回复体力[2]点
         o = LangData.get_lang("imin")
         n = l.r
         m = new T.HPlr(p)
@@ -14737,7 +14741,7 @@ T.SklHeal.prototype = {
         s.bL(l.r, d)
     }
 }
-T.ka.prototype = {
+T.SklHealCallback.prototype = {
     $2(a, b) {
         var s
         if (b.gT() < 0) {
@@ -19228,7 +19232,7 @@ LangData.k_.prototype = {
         W.kd, W.le, P.l5, P.l6, P.ky,
         V.j_,
         HtmlRenderer.jA, Sgls.k7, LangData.lA,
-        T.ka, T.jX, T.jY, T.k2, T.kq, T.kr, T.ks, T.kt, T.ku]
+        T.SklHealCallback, T.jX, T.jY, T.k2, T.kq, T.kr, T.ks, T.kt, T.ku]
     )
     inherit(H.hZ, P.dy)
     inherit(H.NativeTypedArray, H.ab)
