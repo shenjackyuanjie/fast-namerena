@@ -1034,7 +1034,7 @@ var A = {
         JsNoSuchMethodError(a, b) {
             var s = b == null,
                 r = s ? null : b.method
-            return new H.fx(a, r, s ? null : b.receiver)
+            return new H.JsNoSuchMethodError(a, r, s ? null : b.receiver)
         },
         unwrap_Exception(ex) {
             if (ex == null) return new H.NullThrownFromJavaScriptException(ex)
@@ -1726,7 +1726,7 @@ var A = {
             this.a = a
             this.b = b
         },
-        fx: function fx(a, b, c) {
+        JsNoSuchMethodError: function fx(a, b, c) {
             this.a = a
             this.b = b
             this.c = c
@@ -9091,7 +9091,7 @@ H.NullError.prototype = {
         return "NoSuchMethodError: method not found: '" + s + "' on null"
     }
 }
-H.fx.prototype = {
+H.JsNoSuchMethodError.prototype = {
     k(a) {
         var s, r = this,
             q = "NoSuchMethodError: method not found: '",
@@ -19182,7 +19182,7 @@ LangData.k_.prototype = {
     inherit_many(J.bE, [J.PlainJavaScriptObject, J.UnknownJavaScriptObject, J.JavaScriptFunction])
     inherit(J.JsUnmodifiableArray, J.JsArray)
     inherit_many(J.JsNumber, [J.JsInt, J.jF])
-    inherit_many(P.O, [H.fz, H.dO, P.bc, H.fx, H.hU, H.h3, H.i9, P.f2, P.fL, P.aS, P.hW, P.hS, P.bJ, P.fh, P.CyclicInitializationError])
+    inherit_many(P.O, [H.fz, H.dO, P.bc, H.JsNoSuchMethodError, H.hU, H.h3, H.i9, P.f2, P.fL, P.aS, P.hW, P.hS, P.bJ, P.fh, P.CyclicInitializationError])
     inherit(P.dE, P.ev)
     inherit_many(P.dE, [H.cJ, W.az])
     inherit(H.ff, H.cJ)
