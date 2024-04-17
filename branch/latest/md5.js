@@ -6910,7 +6910,7 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        hr: function hr(a, b) {
+        SklMarioGet: function hr(a, b) {
             var _ = this
             _.fr = a
             _.e = false
@@ -16120,7 +16120,7 @@ T.PlrBossMario.prototype = {
         q.k3 = T.hE(q)
         s = 0
         q.aj = new T.SklFire(s)
-        s = new T.hr(q, s)
+        s = new T.SklMarioGet(q, s)
         s.r = q
         s.f = $.b2()
         q.bi = s
@@ -16132,7 +16132,7 @@ T.PlrBossMario.prototype = {
         r.push(s)
     }
 }
-T.hr.prototype = {
+T.SklMarioGet.prototype = {
     gT() {
         return $.i()
     },
@@ -19349,7 +19349,7 @@ LangData.k_.prototype = {
         T.SklRapid, T.SklRevive, T.SklPossess, T.SklShadow, T.SklSlow,
         T.SklExplode, T.SklSummon, T.SklThunder,
         T.SklAokijiIceAge, T.SklConan, T.CovidState, T.SklCovidAttack, T.SklIkarugaAttack,
-        T.dB, T.SklLazyAttack, T.hr, T.hA, T.h8,
+        T.dB, T.SklLazyAttack, T.SklMarioGet, T.hA, T.h8,
         T.hD, T.SkillVoid, T.hg, T.SklRinickModifierClone, T.hz]
     )
     inherit_many(T.UpdateStateEntry, [T.dj, T.HasteState, T.IceState, T.SlowState, T.UpdateStateImpl, T.RinickModifierUpdateState])
