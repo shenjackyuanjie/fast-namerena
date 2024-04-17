@@ -7640,7 +7640,7 @@ var A = {
             _.c = _.b = _.a = _.r = null
         },
         kb: function kb() { },
-        ep: function ep(a, b, c) {
+        WeaponS11: function ep(a, b, c) {
             var _ = this
             _.a = null
             _.b = a
@@ -18841,7 +18841,7 @@ T.kb.prototype = {
     },
     $S: 55
 }
-T.ep.prototype = {
+T.WeaponS11.prototype = {
     b3(a) {
         var s, r
         this.cN(a)
@@ -18950,7 +18950,7 @@ T.Weapon.prototype = {
 }
 T.kq.prototype = {
     $2(a, b) {
-        var s = new T.ep(a, b, P.aL($.av(), 0, false, t.B))
+        var s = new T.WeaponS11(a, b, P.aL($.av(), 0, false, t.B))
         s.a = a
         return s
     },
@@ -19375,7 +19375,7 @@ LangData.k_.prototype = {
     inherit(T.ij, T.bH)
     inherit(T.dV, T.ij)
     inherit(T.e0, T.ik)
-    inherit_many(T.Weapon, [T.BossWeapon, T.WeaponDeathNote, T.GuiYue, T.NoWeapon, T.RinickModifier, T.ep, T.kv])
+    inherit_many(T.Weapon, [T.BossWeapon, T.WeaponDeathNote, T.GuiYue, T.NoWeapon, T.RinickModifier, T.WeaponS11, T.kv])
     inherit(T.hy, T.SklMarioReraise)
     inherit(T.hc, T.SklCounter)
     inherit(LangData.SuperRC4, Y.RC4)
