@@ -1036,12 +1036,12 @@ var A = {
                 r = s ? null : b.method
             return new H.fx(a, r, s ? null : b.receiver)
         },
-        unwrap_Exception(a) {
-            if (a == null) return new H.jR(a)
-            if (a instanceof H.dt) return H.saveStackTrace(a, a.a)
-            if (typeof a !== "object") return a
-            if ("dartException" in a) return H.saveStackTrace(a, a.dartException)
-            return H._unwrapNonDartException(a)
+        unwrap_Exception(ex) {
+            if (ex == null) return new H.NullThrownFromJavaScriptException(ex)
+            if (ex instanceof H.dt) return H.saveStackTrace(ex, ex.a)
+            if (typeof ex !== "object") return ex
+            if ("dartException" in ex) return H.saveStackTrace(ex, ex.dartException)
+            return H._unwrapNonDartException(ex)
         },
         saveStackTrace(ex, err) {
             if (t.u.b(err))
@@ -1734,7 +1734,7 @@ var A = {
         hU: function hU(a) {
             this.a = a
         },
-        jR: function jR(a) {
+        NullThrownFromJavaScriptException: function jR(a) {
             this.a = a
         },
         dt: function dt(a, b) {
@@ -9108,7 +9108,7 @@ H.hU.prototype = {
         return s.length === 0 ? "Error" : "Error: " + s
     }
 }
-H.jR.prototype = {
+H.NullThrownFromJavaScriptException.prototype = {
     k(a) {
         return "Throw of null ('" + (this.a === null ? "null" : "undefined") + "' from JavaScript)"
     }
@@ -19166,7 +19166,7 @@ LangData.k_.prototype = {
         inherit_many = hunkHelpers.inheritMany
     inherit(P.Object, null)
     inherit_many(P.Object,
-        [H.m8, J.Interceptor, J.db, P.O, P.ev, P.L, H.cv, P.fv, H.du, H.hV, H.kh, H.jR, H.dt, H.eE, H.c_, P.aU, H.jK, H.fA,
+        [H.m8, J.Interceptor, J.db, P.O, P.ev, P.L, H.cv, P.fv, H.du, H.hV, H.kh, H.NullThrownFromJavaScriptException, H.dt, H.eE, H.c_, P.aU, H.jK, H.fA,
         H.JSSyntaxRegExp, H.ew, H.kz, H.bK, H.l3, H.Rti, H.ib, H.iu,
         P.l8, P.i_, P.f3, P.i4, P.cN,
         P._Future, P.i0, P.em, P.hO, P.hP, P.im, P.i1, P.i3, P.i7, P.ii, P.io, P.lf, P.eM, P.kV, P.ie, P.z, P.dY, P.fg, P.js, P.lc, P.lb, P.dq,
