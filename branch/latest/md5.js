@@ -6856,7 +6856,7 @@ var A = {
             _.f = c
             _.c = _.b = _.a = _.r = null
         },
-        hq: function hq(a) {
+        SklLazyDefend: function hq(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -15980,6 +15980,8 @@ T.SklIkarugaAttack.prototype = {
         var s, r, q, p, o, n, m = t.j,
             l = H.b([], m)
         for (s = 0; s < a.length; ++s) l.push(a[s].a)
+        // sklIkarugaAttack
+        // [0]使用[能量释放]
         r = LangData.get_lang("UeNa")
         q = this.r
         m = H.b(l.slice(0), m)
@@ -16008,7 +16010,7 @@ T.PlrBossLazy.prototype = {
         var s = $.T(),
             r = 0
         this.k3 = new T.hp(this, s, r)
-        this.k1.push(new T.hq(r))
+        this.k1.push(new T.SklLazyDefend(r))
     }
 }
 T.dB.prototype = {
@@ -16059,13 +16061,15 @@ T.dB.prototype = {
         return this.fr
     }
 }
-T.hq.prototype = {
+T.SklLazyDefend.prototype = {
     W() {
         this.r.G.j(0, this)
     },
     aD(a, b, c, d) {
         if (t.r.a(b.r2.h(0, $.d5())) == null) {
             T.nO(this.r, b).aP(0)
+            // sklLazyHit
+            // [1]感染了[懒癌]
             d.a.push(T.RunUpdate(LangData.get_lang("JnTA"), this.r, b, null, null, 0, 1000, 100))
         }
     },
@@ -19333,7 +19337,7 @@ LangData.k_.prototype = {
     inherit(HtmlRenderer.fW, HtmlRenderer.ax)
     inherit_many(Sgls.MEntry, [T.Skill, T.UpdateStateEntry, T.PostDefendEntry, T.bq, T.cB, T.bH, T.ah, T.PreActionEntry, T.aF])
     inherit_many(T.Skill,
-        [T.ActionSkill, T.SklAokijiDefend, T.SklCovidDefend, T.SklIkarugaDefend, T.hq, T.ea, T.SklSlimeSpawn,
+        [T.ActionSkill, T.SklAokijiDefend, T.SklCovidDefend, T.SklIkarugaDefend, T.SklLazyDefend, T.ea, T.SklSlimeSpawn,
         T.SklCounter, T.SklDefend, T.SklHide, T.SklMerge, T.SklProtect,
         T.SklReflect, T.SklReraise, T.SklShield, T.SklUpgrade, T.SklZombie]
     )
@@ -21544,5 +21548,5 @@ function main() {
 }
 
 main();
-logger.debug("反混淆", LangData.get_lang("iOkN"));
+logger.debug("反混淆", LangData.get_lang("JnTA"));
 // logger.debug("running main:", main()) // 执行main函数
