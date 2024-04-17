@@ -6862,7 +6862,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        hp: function hp(a, b, c) {
+        SklLazyAttack: function hp(a, b, c) {
             var _ = this
             _.fr = a
             _.fx = b
@@ -16009,7 +16009,7 @@ T.PlrBossLazy.prototype = {
     ac() {
         var s = $.T(),
             r = 0
-        this.k3 = new T.hp(this, s, r)
+        this.k3 = new T.SklLazyAttack(this, s, r)
         this.k1.push(new T.SklLazyDefend(r))
     }
 }
@@ -16075,7 +16075,7 @@ T.SklLazyDefend.prototype = {
     },
     $iah: 1
 }
-T.hp.prototype = {
+T.SklLazyAttack.prototype = {
     v(a, b, c, d) {
         var s, r, q, p = this,
             o = a[0].a
@@ -19349,7 +19349,7 @@ LangData.k_.prototype = {
         T.SklRapid, T.SklRevive, T.SklPossess, T.SklShadow, T.SklSlow,
         T.SklExplode, T.SklSummon, T.SklThunder,
         T.SklAokijiIceAge, T.SklConan, T.CovidState, T.SklCovidAttack, T.SklIkarugaAttack,
-        T.dB, T.hp, T.hr, T.hA, T.h8,
+        T.dB, T.SklLazyAttack, T.hr, T.hA, T.h8,
         T.hD, T.SkillVoid, T.hg, T.SklRinickModifierClone, T.hz]
     )
     inherit_many(T.UpdateStateEntry, [T.dj, T.HasteState, T.IceState, T.SlowState, T.UpdateStateImpl, T.RinickModifierUpdateState])
