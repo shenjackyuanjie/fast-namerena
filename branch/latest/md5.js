@@ -6803,7 +6803,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        hm: function hm(a) {
+        SklIkarugaAttack: function hm(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -15941,7 +15941,7 @@ T.PlrBossIkaruga.prototype = {
         this.k3 = T.SklAttack(this)
         s = this.k1
         s.push(new T.SklIkarugaDefend(0))
-        r = new T.hm(0)
+        r = new T.SklIkarugaAttack(0)
         r.f = $.aI()
         s.push(r)
     }
@@ -15969,7 +15969,7 @@ T.SklIkarugaDefend.prototype = {
     },
     $iaB: 1
 }
-T.hm.prototype = {
+T.SklIkarugaAttack.prototype = {
     gb7() {
         return $.X()
     },
@@ -19344,7 +19344,7 @@ LangData.k_.prototype = {
         T.SklHeal, T.SklIce, T.SklIron, T.SklPoison, T.SklQuake,
         T.SklRapid, T.SklRevive, T.SklPossess, T.SklShadow, T.SklSlow,
         T.SklExplode, T.SklSummon, T.SklThunder,
-        T.SklAokijiIceAge, T.SklConan, T.CovidState, T.SklCovidAttack, T.hm,
+        T.SklAokijiIceAge, T.SklConan, T.CovidState, T.SklCovidAttack, T.SklIkarugaAttack,
         T.dB, T.hp, T.hr, T.hA, T.h8,
         T.hD, T.SkillVoid, T.hg, T.SklRinickModifierClone, T.hz]
     )
