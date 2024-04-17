@@ -4680,11 +4680,11 @@ var A = {
             r.b = q + 1
             return s + H.as_string(q) + "@" + H.as_string(a.b)
         },
-        init_PlrClone(a4) {
-            var s, r, q, p, o, n, m, l, k, j, i, h, g, f = a4.a,
-                e = a4.b,
-                d = a4.c,
-                c = a4.d,
+        init_PlrClone(owner) {
+            var s, r, q, p, o, n, m, l, k, j, i, h, g, f = owner.a,
+                e = owner.b,
+                d = owner.c,
+                c = owner.d,
                 b = 0,
                 a = $.T(),
                 a0 = H.b([], t.q),
@@ -4725,9 +4725,9 @@ var A = {
             g = 0
             g = new T.PlrClone(f, e, d, c, b, a, a0, a1, a2, a3, s, r, q, p, o, n, m, l, j, i, h, k, g, g, g, $.W(), g)
             g.a1(f, e, d, c)
-            g.cm = a4
-            g.e = T.fD(a4 instanceof T.PlrClone ? g.a6 = a4.a6 : g.a6 = a4)
-            f = a4.t
+            g.cm = owner
+            g.e = T.fD(owner instanceof T.PlrClone ? g.a6 = owner.a6 : g.a6 = owner)
+            f = owner.t
             f = H.b(f.slice(0), H._arrayInstanceType(f))
             g.t = f
             return g
@@ -6148,7 +6148,7 @@ var A = {
         dI: function dI(a) {
             this.b = a
         },
-        PlrClone: function dR(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
+        PlrClone: function PlrClone(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
             var _ = this
             _.cm = _.a6 = null
             _.a = a
@@ -6193,7 +6193,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        k9: function k9() { },
+        SklCloneCallback: function k9() { },
         SklCritical: function SklCritical(a) {
             var _ = this
             _.e = false
@@ -14370,14 +14370,18 @@ T.SklClone.prototype = {
             o = $.i()
             k.f = C.JsInt.am(q, o) + o
         }
-        q = C.Array.dl(p.k1, new T.k9())
+        q = C.Array.dl(p.k1, new T.SklCloneCallback())
         if (q != null) q.f = C.d.R(Math.sqrt(H.ar(k.f)))
+        // sklClone
+        // [0]使用[分身]
         q = LangData.get_lang("yWWn")
         o = new T.MPlr()
         o.cO(k.r)
         n = d.a
         n.push(T.RunUpdate(q, o, k.r, j, j, $.a6(), 1000, 100))
         k.r.y.aZ(p)
+        // sklCloned
+        // 出现一个新的[1]
         o = LangData.get_lang("pKQn")
         q = k.r
         m = p.fx
@@ -14387,7 +14391,7 @@ T.SklClone.prototype = {
         n.push(T.RunUpdate(o, q, l, j, j, 0, 1000, 100))
     }
 }
-T.k9.prototype = {
+T.SklCloneCallback.prototype = {
     $1(a) {
         return a instanceof T.SklClone
     },
@@ -19205,7 +19209,7 @@ LangData.k_.prototype = {
         HtmlRenderer.jx, HtmlRenderer.jy, HtmlRenderer.jw, HtmlRenderer.jz, HtmlRenderer.jB,
         HtmlRenderer.jC, HtmlRenderer.jD, HtmlRenderer.jV, HtmlRenderer.lp, HtmlRenderer.lq,
         Sgls.k5, Sgls.k6,
-        T.k9, T.jk, T.jj, T.jl, T.ji, T.lD, T.BoostPassive, T.k3, T.kb, T.ko, T.kp,
+        T.SklCloneCallback, T.jk, T.jj, T.jl, T.ji, T.lD, T.BoostPassive, T.k3, T.kb, T.ko, T.kp,
         LangData.k_]
     )
     inherit_many(H.kg, [H.kc, H.dg])
@@ -21482,5 +21486,5 @@ function main() {
 }
 
 main();
-logger.debug("反混淆", LangData.get_lang("EORN"));
+logger.debug("反混淆", LangData.get_lang("pKQn"));
 // logger.debug("running main:", main()) // 执行main函数
