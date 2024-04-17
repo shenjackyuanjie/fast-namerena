@@ -7573,7 +7573,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        eo: function eo(a, b, c) {
+        WeaponDeathNote: function eo(a, b, c) {
             var _ = this
             _.a = null
             _.b = a
@@ -18552,7 +18552,7 @@ T.SklDeathNote.prototype = {
         if (s) this.fx = b
     }
 }
-T.eo.prototype = {
+T.WeaponDeathNote.prototype = {
     b6() {
         var s, r = new T.SklDeathNote(0)
         r.e = true
@@ -18958,7 +18958,7 @@ T.kq.prototype = {
 }
 T.kr.prototype = {
     $2(a, b) {
-        var s = new T.eo(a, b, P.aL($.av(), 0, false, t.B))
+        var s = new T.WeaponDeathNote(a, b, P.aL($.av(), 0, false, t.B))
         s.a = a
         return s
     },
@@ -19375,7 +19375,7 @@ LangData.k_.prototype = {
     inherit(T.ij, T.bH)
     inherit(T.dV, T.ij)
     inherit(T.e0, T.ik)
-    inherit_many(T.Weapon, [T.j2, T.eo, T.GuiYue, T.NoWeapon, T.RinickModifier, T.ep, T.kv])
+    inherit_many(T.Weapon, [T.j2, T.WeaponDeathNote, T.GuiYue, T.NoWeapon, T.RinickModifier, T.ep, T.kv])
     inherit(T.hy, T.SklMarioReraise)
     inherit(T.hc, T.SklCounter)
     inherit(LangData.SuperRC4, Y.RC4)
