@@ -7566,7 +7566,7 @@ var A = {
             _.f = _.e = _.d = null
             _.r = c
         },
-        hg: function hg(a) {
+        SklDeathNote: function hg(a) {
             var _ = this
             _.fx = _.fr = null
             _.e = false
@@ -18517,7 +18517,7 @@ T.j2.prototype = {
         s.dW()
     }
 }
-T.hg.prototype = {
+T.SklDeathNote.prototype = {
     au(a, b) {
         var s = this.fx
         if (s != null && s.fx > 0)
@@ -18554,7 +18554,7 @@ T.hg.prototype = {
 }
 T.eo.prototype = {
     b6() {
-        var s, r = new T.hg(0)
+        var s, r = new T.SklDeathNote(0)
         r.e = true
         r.fr = new T.cA(r)
         s = this.c
@@ -19350,7 +19350,7 @@ LangData.k_.prototype = {
         T.SklExplode, T.SklSummon, T.SklThunder,
         T.SklAokijiIceAge, T.SklConan, T.CovidState, T.SklCovidAttack, T.SklIkarugaAttack,
         T.dB, T.SklLazyAttack, T.SklMarioGet, T.SklSaitama, T.h8,
-        T.hD, T.SkillVoid, T.hg, T.SklRinickModifierClone, T.hz]
+        T.hD, T.SkillVoid, T.SklDeathNote, T.SklRinickModifierClone, T.hz]
     )
     inherit_many(T.UpdateStateEntry, [T.dj, T.HasteState, T.IceState, T.SlowState, T.UpdateStateImpl, T.RinickModifierUpdateState])
     inherit_many(T.x, [T.dI, T.FireState, T.SklSlimeSpawnState, T.fC, T.hY])
