@@ -6685,7 +6685,7 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        hb: function hb(a, b, c) {
+        SklConan: function hb(a, b, c) {
             var _ = this
             _.fr = a
             _.fx = b
@@ -15690,12 +15690,12 @@ T.PlrBossConan.prototype = {
         return H.b([$.aE()], t.V)
     },
     ac() {
-        var s = new T.hb(this, -$.i(), 0)
+        var s = new T.SklConan(this, -$.i(), 0)
         s.r = this
         this.k3 = s
     }
 }
-T.hb.prototype = {
+T.SklConan.prototype = {
     gb7() {
         return $.B()
     },
@@ -15716,6 +15716,8 @@ T.hb.prototype = {
         if (r === -q && a.length === q) {
             m.fx = q
             r = d.a
+            // sklConanKillUnknown
+            // [0]在一间密室中发现了一具无名尸体
             r.push(T.RunUpdate(LangData.get_lang("uMZa"), m.r, l, l, l, 0, k, 100))
             r.push($.K())
         }
@@ -15723,6 +15725,8 @@ T.hb.prototype = {
         q = 0
         if (r > q) {
             m.fx = r - 1
+            // [0]正在进行推理
+            // sklConanThinking
             d.a.push(T.RunUpdate(LangData.get_lang("Gikn"), m.r, l, l, l, 0, k, 100))
             return
         }
@@ -15733,9 +15737,17 @@ T.hb.prototype = {
         r = o === n && r === q
         q = d.a
         if (r) {
+            // sklConanThinkingFinish
+            // [0]推理完毕
             q.push(T.RunUpdate(LangData.get_lang("dEsa"), m.r, l, l, l, 0, k, 100))
+            // sklConanThinkingFinish2
+            // 真相只有一个
             q.push(T.RunUpdate(LangData.get_lang("RmQa"), m.r, l, l, l, l, $.eS(), $.lH()))
+            // sklConanThinkingFinish3
+            // 凶手就是你
             q.push(T.RunUpdate(LangData.get_lang("imLn"), m.r, l, l, l, 0, k, 100))
+            // sklConanKillLast
+            // [1]
             r = LangData.get_lang("woia")
             o = m.r
             n = new T.HPlr(p)
@@ -19314,7 +19326,7 @@ LangData.k_.prototype = {
         T.SklHeal, T.SklIce, T.SklIron, T.SklPoison, T.SklQuake,
         T.SklRapid, T.SklRevive, T.SklPossess, T.SklShadow, T.SklSlow,
         T.SklExplode, T.SklSummon, T.SklThunder,
-        T.SklAokijiIceAge, T.hb, T.dl, T.hd, T.hm,
+        T.SklAokijiIceAge, T.SklConan, T.dl, T.hd, T.hm,
         T.dB, T.hp, T.hr, T.hA, T.h8,
         T.hD, T.SkillVoid, T.hg, T.SklRinickModifierClone, T.hz]
     )
@@ -21514,5 +21526,5 @@ function main() {
 }
 
 main();
-logger.debug("反混淆", LangData.get_lang("PRrA"));
+logger.debug("反混淆", LangData.get_lang("woia"));
 // logger.debug("running main:", main()) // 执行main函数
