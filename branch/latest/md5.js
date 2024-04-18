@@ -1199,7 +1199,7 @@ var A = {
                 a0 = i[b],
                 a1 = a2.fT
             a1.toString
-            s = h ? Object.create(new H.StaticClosure().constructor.prototype) : Object.create(new H.dg(null, null).constructor.prototype)
+            s = h ? Object.create(new H.StaticClosure().constructor.prototype) : Object.create(new H.BoundClosure(null, null).constructor.prototype)
             s.$initialize = s.constructor
             if (h) r = function static_tear_off() {
                 this.$initialize()
@@ -1412,7 +1412,7 @@ var A = {
             return a.b
         },
         BoundClosure_selfFieldName(a) {
-            var s, r, q, p = new H.dg("receiver", "interceptor"),
+            var s, r, q, p = new H.BoundClosure("receiver", "interceptor"),
                 o = J.nL(Object.getOwnPropertyNames(p))
             for (s = o.length, r = 0; r < s; ++r) {
                 q = o[r]
@@ -1750,7 +1750,7 @@ var A = {
         j6: function j6() { },
         kg: function kg() { },
         StaticClosure: function kc() { },
-        dg: function dg(a, b) {
+        BoundClosure: function dg(a, b) {
             this.a = a
             this.b = b
         },
@@ -9153,11 +9153,11 @@ H.StaticClosure.prototype = {
         return "Closure '" + H.oP(s) + "'"
     }
 }
-H.dg.prototype = {
+H.BoundClosure.prototype = {
     aW(a, b) {
         if (b == null) return false
         if (this === b) return true
-        if (!(b instanceof H.dg)) return false
+        if (!(b instanceof H.BoundClosure)) return false
         return this.$_target === b.$_target && this.a === b.a
     },
     gak(a) {
@@ -19276,7 +19276,7 @@ LangData.k_.prototype = {
         T.SklCloneCallback, T.jk, T.jj, T.jl, T.ji, T.lD, T.BoostPassive, T.k3, T.kb, T.ko, T.kp,
         LangData.k_]
     )
-    inherit_many(H.kg, [H.StaticClosure, H.dg])
+    inherit_many(H.kg, [H.StaticClosure, H.BoundClosure])
     inherit(P.dG, P.aU)
     inherit_many(P.dG, [H.aT, P.ic, W.i2])
     inherit_many(H.j6,
