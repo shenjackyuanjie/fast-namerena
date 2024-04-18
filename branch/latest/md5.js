@@ -7318,7 +7318,7 @@ var A = {
             this.a = a
             this.b = b
         },
-        aM: function aM() { },
+        Minion: function aM() { },
         Plr: function init_plr(a, b, c, d, e, f, skills, actions, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
             /*skl.f -> skl.level
             action.e -> action.boosted
@@ -14164,7 +14164,7 @@ T.SklBerserk.prototype = {
     as(a, b) {
         if (b) {
             if (a.r2.h(0, $.aJ()) != null) return false
-            return !(a instanceof T.aM)
+            return !(a instanceof T.Minion)
         }
         return true
     },
@@ -14477,7 +14477,7 @@ T.SklCurse.prototype = {
 T.SklDisperse.prototype = {
     a9(a, b, c) {
         var s = this.bC(a, b, c)
-        return b && a instanceof T.aM && a.fx > $.ci() ? s * $.t() : s
+        return b && a instanceof T.Minion && a.fx > $.ci() ? s * $.t() : s
     },
     v(a, b, c, d) {
         var s = this,
@@ -14497,7 +14497,7 @@ T.SklDisperse.prototype = {
         n = p.r2
         if (n.J(0, q)) n.h(0, q).K(s.r, d)
         if (n.J(0, "Dt.iron")) n.h(0, "Dt.iron").K(s.r, d)
-        if (p instanceof T.aM) p.bN(o * $.pw(), true, s.r, T.oI(), c, d)
+        if (p instanceof T.Minion) p.bN(o * $.pw(), true, s.r, T.oI(), c, d)
         else p.bN(o, true, s.r, T.oI(), c, d)
     }
 }
@@ -14662,7 +14662,7 @@ T.SklHaste.prototype = {
             if (a.fx < $.a6()) return false
             s = a.r2
             if (s.h(0, $.d4()) != null && (t.e_.a(s.h(0, $.d4())).Q + $.i()) * $.a6() > a.fx) return false
-            return !(a instanceof T.aM)
+            return !(a instanceof T.Minion)
         }
         return true
     },
@@ -15032,7 +15032,7 @@ T.SklRevive.prototype = {
         return a.b5(this.r.z.e)
     },
     as(a, b) {
-        return a.fx <= 0 && !(a instanceof T.aM) && !a.r2.J(0, $.iJ())
+        return a.fx <= 0 && !(a instanceof T.Minion) && !a.r2.J(0, $.iJ())
     },
     a9(a, b, c) {
         var s
@@ -15705,7 +15705,7 @@ T.SklConan.prototype = {
         return $.C()
     },
     as(a, b) {
-        return !(a instanceof T.aM)
+        return !(a instanceof T.Minion)
     },
     v(a, b, c, d) {
         var s, r, q, p, o, n, m = this,
@@ -16028,17 +16028,19 @@ T.LazyState.prototype = {
         if (q.fx > 0) {
             s = this.fr
             r = C.d.R(T.getAt(s, true, a) / T.d9(q, true, a))
+            // sklLazyDamage
+            // [1][懒癌]发作
             b.a.push(T.RunUpdate(LangData.get_lang("sPnN"), s, q, null, null, 0, 1000, 100))
             q.aF(r, s, T.ad(), a, b)
         }
     },
     aP(a) {
-        var s = this,
-            r = s.fx
-        r.r2.m(0, $.d5(), s)
-        r.rx.j(0, s.go)
-        r.x2.j(0, s.fy)
-        r.x1.j(0, s.id)
+        var this_ = this,
+            r = this_.fx
+        r.r2.m(0, $.d5(), this_)
+        r.rx.j(0, this_.go)
+        r.x2.j(0, this_.fy)
+        r.x1.j(0, this_.id)
         r.F()
     },
     K(a, b) {
@@ -17045,7 +17047,7 @@ T.lD.prototype = {
     },
     $S: 50
 }
-T.aM.prototype = {
+T.Minion.prototype = {
     b1(a, b, c, d) {
         var s = this,
             r = s.fx,
@@ -18163,7 +18165,7 @@ T.SklProtect.prototype = {
         return a.fk(s.z.f, s)
     },
     as(a, b) {
-        return !(a instanceof T.aM)
+        return !(a instanceof T.Minion)
     },
     a9(a, b, c) {
         var s, r
@@ -18413,7 +18415,7 @@ T.SklZombie.prototype = {
     bS(a6, a7, a8) {
         var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, a3, a4 = this,
             a5 = null
-        if (!(a6 instanceof T.aM) && (a7.n() & 63) < a4.f && a4.r.bw(a7)) {
+        if (!(a6 instanceof T.Minion) && (a7.n() & 63) < a4.f && a4.r.bw(a7)) {
             a6.r2.m(0, $.iJ(), new T.ZombieState())
             s = H.as_string(a4.r.a) + "?" + H.as_string($.qZ())
             r = a4.r
@@ -19359,14 +19361,13 @@ LangData.k_.prototype = {
     )
     inherit_many(T.UpdateStateEntry,
         [T.CharmState, T.HasteState, T.IceState,
-        T.SlowState, T.UpdateStateImpl, T.RinickModifierUpdateState
-        ]
+        T.SlowState, T.UpdateStateImpl, T.RinickModifierUpdateState]
     )
     inherit_many(T.IMeta, [T.MinionCount, T.FireState, T.SklSlimeSpawnState, T.MergeState, T.ZombieState])
-    inherit_many(T.Plr, [T.PlrClone, T.aM, T.PlrBoss, T.PlrBoost, T.PlrBossTest, T.PlrBossTest2, T.PlrEx, T.PlrSeed_])
+    inherit_many(T.Plr, [T.PlrClone, T.Minion, T.PlrBoss, T.PlrBoost, T.PlrBossTest, T.PlrBossTest2, T.PlrEx, T.PlrSeed_])
     inherit_many(T.PostDefendEntry, [T.CurseState, T.PostDefendImpl, T.ik])
     inherit_many(T.bq, [T.PoisonState, T.PostActionImpl])
-    inherit_many(T.aM, [T.PlrShadow, T.PlrSummon, T.PlrZombie])
+    inherit_many(T.Minion, [T.PlrShadow, T.PlrSummon, T.PlrZombie])
     inherit_many(T.PlrBoss,
         [T.PlrBossAokiji, T.PlrBossConan, T.PlrBossCovid, T.PlrBossIkaruga,
         T.PlrBossLazy, T.PlrBossMario, T.PlrBossMosquito, T.PlrBossSaitama,
