@@ -5875,7 +5875,7 @@ var A = {
         },
         RunUpdateCancel_init(a, b, c) {
             var s = null,
-                r = new T.h2(0, 1000, 500, a, b, c, s, s)
+                r = new T.RunUpdateCancel(0, 1000, 500, a, b, c, s, s)
             r.aK(a, b, c, s, s, 0, 1000, 500)
             return r
         },
@@ -7288,7 +7288,7 @@ var A = {
             _.r = g
             _.x = h
         },
-        h2: function h2(a, b, c, d, e, f, g, h) {
+        RunUpdateCancel: function h2(a, b, c, d, e, f, g, h) {
             var _ = this
             _.a = a
             _.b = b
@@ -13763,7 +13763,7 @@ HtmlRenderer.lq.prototype = {
         else if (q === "[2]") return r.a.$1(r.b.x)
         else {
             s = J.aQ(q)
-            if (r.b instanceof T.h2) return '<span class="sctext">' + s.af(q, 1, q.length - 1) + "</span>"
+            if (r.b instanceof T.RunUpdateCancel) return '<span class="sctext">' + s.af(q, 1, q.length - 1) + "</span>"
             else return '<span class="stext">' + s.af(q, 1, q.length - 1) + "</span>"
         }
     },
@@ -17025,7 +17025,7 @@ T.aX.prototype = {
         return r
     }
 }
-T.h2.prototype = {}
+T.RunUpdateCancel.prototype = {}
 T.RunUpdateWin.prototype = {}
 T.aq.prototype = {
     k(a) {
@@ -19394,7 +19394,7 @@ LangData.k_.prototype = {
     inherit(T.BossSlime2, T.PlrBossSlime)
     inherit(T.SklYuriControl, T.SklCharm)
     inherit_many(T.IPlr, [T.NPlr, T.HPlr, T.MPlr, T.DPlr])
-    inherit_many(T.aX, [T.h2, T.RunUpdateWin])
+    inherit_many(T.aX, [T.RunUpdateCancel, T.RunUpdateWin])
     inherit(T.fY, T.cB)
     inherit(T.PostDamageImpl, T.PostDamageEntry)
     inherit_many(T.PreActionEntry, [T.PreActionImpl, T.RinickModifierPreAction])
