@@ -4662,7 +4662,7 @@ var A = {
             }
         },
         CharmState_init(a, b) {
-            var s = new T.dj(a, b, $.i())
+            var s = new T.CharmState(a, b, $.i())
             s.y = new T.PostActionImpl(s)
             return s
         },
@@ -6131,7 +6131,7 @@ var A = {
             _.f = b
             _.c = _.b = _.a = _.r = null
         },
-        dj: function dj(a, b, c) {
+        CharmState: function dj(a, b, c) {
             var _ = this
             _.r = a
             _.x = b
@@ -14226,7 +14226,7 @@ T.SklCharge.prototype = {
     },
     $ix: 1
 }
-T.dj.prototype = {
+T.CharmState.prototype = {
     gT() {
         return -$.i()
     },
@@ -19339,7 +19339,8 @@ LangData.k_.prototype = {
     inherit(HtmlRenderer.fW, HtmlRenderer.ax)
     inherit_many(Sgls.MEntry, [T.Skill, T.UpdateStateEntry, T.PostDefendEntry, T.bq, T.cB, T.bH, T.ah, T.PreActionEntry, T.aF])
     inherit_many(T.Skill,
-        [T.ActionSkill, T.SklAokijiDefend, T.SklCovidDefend, T.SklIkarugaDefend, T.SklLazyDefend, T.SklMarioReraise, T.SklSlimeSpawn,
+        [T.ActionSkill, T.SklAokijiDefend, T.SklCovidDefend, T.SklIkarugaDefend,
+        T.SklLazyDefend, T.SklMarioReraise, T.SklSlimeSpawn,
         T.SklCounter, T.SklDefend, T.SklHide, T.SklMerge, T.SklProtect,
         T.SklReflect, T.SklReraise, T.SklShield, T.SklUpgrade, T.SklZombie]
     )
@@ -19354,7 +19355,7 @@ LangData.k_.prototype = {
         T.dB, T.SklLazyAttack, T.SklMarioGet, T.SklSaitama, T.h8,
         T.hD, T.SkillVoid, T.SklDeathNote, T.SklRinickModifierClone, T.SklS11]
     )
-    inherit_many(T.UpdateStateEntry, [T.dj, T.HasteState, T.IceState, T.SlowState, T.UpdateStateImpl, T.RinickModifierUpdateState])
+    inherit_many(T.UpdateStateEntry, [T.CharmState, T.HasteState, T.IceState, T.SlowState, T.UpdateStateImpl, T.RinickModifierUpdateState])
     inherit_many(T.x, [T.dI, T.FireState, T.SklSlimeSpawnState, T.fC, T.hY])
     inherit_many(T.Plr, [T.PlrClone, T.aM, T.PlrBoss, T.PlrBoost, T.PlrBossTest, T.PlrBossTest2, T.PlrEx, T.PlrSeed_])
     inherit_many(T.PostDefendEntry, [T.CurseState, T.PostDefendImpl, T.ik])
