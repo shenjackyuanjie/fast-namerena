@@ -1764,7 +1764,7 @@ var A = {
             _.r = 0
             _.$ti = a
         },
-        jH: function jH(a) {
+        JsLinkedHashMap_values_closure: function jH(a) {
             this.a = a
         },
         jK: function jK(a, b) {
@@ -9185,7 +9185,7 @@ H.JsLinkedHashMap.prototype = {
     gfP(a) {
         var s = this,
             r = H._instanceType(s)
-        return H.t5(s.gad(s), new H.jH(s), r.c, r.Q[1])
+        return H.t5(s.gad(s), new H.JsLinkedHashMap_values_closure(s), r.c, r.Q[1])
     },
     J(a, b) {
         var s, r
@@ -9373,7 +9373,7 @@ H.JsLinkedHashMap.prototype = {
         return r
     }
 }
-H.jH.prototype = {
+H.JsLinkedHashMap_values_closure.prototype = {
     $1(a) {
         return this.a.h(0, a)
     },
@@ -19263,7 +19263,7 @@ LangData.k_.prototype = {
     inherit_many(H.M, [H.y, H.a9, P.id])
     inherit(H.NullError, P.bc)
     inherit_many(H.c_,
-        [H.j5, H.j6, H.kg, H.jH, H.lv, H.lx,
+        [H.j5, H.j6, H.kg, H.JsLinkedHashMap_values_closure, H.lv, H.lx,
         P.kB, P.kA, P._awaitOnObject_closure, P.kK, P.kS, P.ke, P.kZ, P.Duration_toString_sixDigits, P.Duration_toString_twoDigits,
         W.jf, W.kF, W.jP, W.jO, W.l0, W.l1, W.l7,
         P.lE, P.lF,
