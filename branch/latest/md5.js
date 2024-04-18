@@ -4640,7 +4640,7 @@ var A = {
                 r = new T.HPlr(r)
                 r.a = a.e
                 r.d = a.fx
-                e.a.push(T.RunUpdate(p, a, r, new T.HRecover(s), null, s, 1000, 100))
+                e.a.push(T.RunUpdate_init(p, a, r, new T.HRecover(s), null, s, 1000, 100))
             }
         },
         nC(a) {
@@ -4656,7 +4656,7 @@ var A = {
                 if (s == null) {
                     s = T.nC(b)
                     s.aP(0)
-                    e.a.push(T.RunUpdate(C.String.B(LangData.get_lang("jIRA"), $.nc()), a, b, null, null, $.a6(), 1000, 100))
+                    e.a.push(T.RunUpdate_init(C.String.B(LangData.get_lang("jIRA"), $.nc()), a, b, null, null, $.a6(), 1000, 100))
                 } else s.fr = s.fr + 1
                 if (a.r2.J(0, $.a7())) s.fr = s.fr + 1
             }
@@ -4753,7 +4753,7 @@ var A = {
                     s.z = s.z + $.Z()
                     s.Q = s.Q + 1
                 }
-                e.a.push(T.RunUpdate(C.String.B(LangData.get_lang("spfN"), $.qx()), a, b, null, null, $.a6(), 1000, 100))
+                e.a.push(T.RunUpdate_init(C.String.B(LangData.get_lang("spfN"), $.qx()), a, b, null, null, $.a6(), 1000, 100))
             }
         },
         tD(a, b, c, d, e) {
@@ -4809,7 +4809,7 @@ var A = {
                 if (a.r2.J(0, $.a7())) ica_state.y = ica_state.y + $.bx()
                 // sklIceHit
                 // [1]被[冰冻]了
-                r = T.RunUpdate(C.String.B(LangData.get_lang("HBga"), $.qF()), a, b, null, null, $.bg(), 1000, 100)
+                r = T.RunUpdate_init(C.String.B(LangData.get_lang("HBga"), $.qF()), a, b, null, null, $.bg(), 1000, 100)
                 e.a.push(r)
             }
         },
@@ -4829,7 +4829,7 @@ var A = {
                     r.z = $.C()
                     r.r = a
                 }
-                e.a.push(T.RunUpdate(C.String.B(LangData.get_lang("Okln"), $.qH()), a, b, null, null, $.a6(), 1000, 100))
+                e.a.push(T.RunUpdate_init(C.String.B(LangData.get_lang("Okln"), $.qH()), a, b, null, null, $.a6(), 1000, 100))
             }
         },
         getAt(a, b, c) {
@@ -5587,7 +5587,7 @@ var A = {
                 b.F()
                 // sklCovidHit
                 // [1]感染了[新冠病毒]
-                e.a.push(T.RunUpdate(LangData.get_lang("toAn"), a, b, null, null, 0, 1000, 100))
+                e.a.push(T.RunUpdate_init(LangData.get_lang("toAn"), a, b, null, null, 0, 1000, 100))
                 for (n = a.y.a.e, m = n.length, p = 0; p < n.length; n.length === m || (0, H.F)(n), ++p) {
                     o = n[p]
                     // if (J.Y(o, b)) {
@@ -5619,27 +5619,27 @@ var A = {
                 p = b.n()
             if (p < $.b1()) {
                 s = c.a
-                s.push(T.RunUpdate(LangData.get_lang("yZbn"), a, r, r, r, 0, q, 100))
+                s.push(T.RunUpdate_init(LangData.get_lang("yZbn"), a, r, r, r, 0, q, 100))
             } else if (p < $.ci()) {
                 s = c.a
-                s.push(T.RunUpdate(LangData.get_lang("PdCA"), a, r, r, r, 0, q, 100))
+                s.push(T.RunUpdate_init(LangData.get_lang("PdCA"), a, r, r, r, 0, q, 100))
             } else if (p < $.mJ()) {
                 s = c.a
-                s.push(T.RunUpdate(LangData.get_lang("gjTN"), a, r, r, r, 0, q, 100))
+                s.push(T.RunUpdate_init(LangData.get_lang("gjTN"), a, r, r, r, 0, q, 100))
             } else if (p < $.pc()) {
                 s = c.a
-                s.push(T.RunUpdate(LangData.get_lang("xraA"), a, r, r, r, 0, q, 100))
+                s.push(T.RunUpdate_init(LangData.get_lang("xraA"), a, r, r, r, 0, q, 100))
             } else {
                 s = c.a
-                if (p < $.pp()) s.push(T.RunUpdate(LangData.get_lang("OBXn"), a, r, r, r, 0, q, 100))
-                else s.push(T.RunUpdate(LangData.get_lang("fNKA"), a, r, r, r, 0, q, 100))
+                if (p < $.pp()) s.push(T.RunUpdate_init(LangData.get_lang("OBXn"), a, r, r, r, 0, q, 100))
+                else s.push(T.RunUpdate_init(LangData.get_lang("fNKA"), a, r, r, r, 0, q, 100))
             }
-            s.push(T.RunUpdate(LangData.get_lang("hXqA"), a, r, r, r, 0, q, 100))
+            s.push(T.RunUpdate_init(LangData.get_lang("hXqA"), a, r, r, r, 0, q, 100))
         },
         tG(a, b, c, d, e) {
             if (t.r.a(b.r2.h(0, $.d5())) == null && !(b instanceof T.PlrBossLazy)) {
                 T.nO(a, b).aP(0)
-                e.a.push(T.RunUpdate(LangData.get_lang("JnTA"), a, b, null, null, 0, 1000, 100))
+                e.a.push(T.RunUpdate_init(LangData.get_lang("JnTA"), a, b, null, null, 0, 1000, 100))
             }
         },
         tH(a, b) {
@@ -5866,7 +5866,7 @@ var A = {
                 r = 0
             return T.nX(s[r], b.e[r])
         },
-        RunUpdate(message, caster, c, d, e, f, delay0, delay1) {
+        RunUpdate_init(message, caster, c, d, e, f, delay0, delay1) {
             var s = new T.aX(f, 0, 0, message, caster, c, e, d)
             // var s = new T.aX(f, delay0, delay1, message, caster, c, e, d)
             // s.aK(message, caster, c, d, e, f, delay0, delay1)
@@ -12478,13 +12478,13 @@ L.ProfileWinChance.prototype = {
                     l = H.b([], m)
                     // 实力评估中...[2]%
                     // benchmarking
-                    n.push(T.RunUpdate(LangData.get_lang("pkGN"), null, null, C.JsInt.ag(this_.z, 100), null, 0, 0, 0))
+                    n.push(T.RunUpdate_init(LangData.get_lang("pkGN"), null, null, C.JsInt.ag(this_.z, 100), null, 0, 0, 0))
                     if (this_.z >= this_.c) {
                         o = H.b([], o)
                         m = H.b([], m)
                         // 》 胜率: [2]%
                         // benchmarkRatio
-                        o.push(T.RunUpdate(LangData.get_lang("Pnrn"), null, null, this_.y * 100 / this_.c, null, 0, 1000, 100))
+                        o.push(T.RunUpdate_init(LangData.get_lang("Pnrn"), null, null, this_.y * 100 / this_.c, null, 0, 1000, 100))
                         d.push(new T.aq(o, m))
                         this_.c *= 10
                     }
@@ -12723,7 +12723,7 @@ V.ProfileMain.prototype = {
                     o = H.b([], t.Y)
                     // 实力评估中...[2]%
                     // benchmarking
-                    a4.push(T.RunUpdate(LangData.get_lang("pkGN"), null, null, C.JsInt.ag(this_.ch, 100), null, 0, 0, 0))
+                    a4.push(T.RunUpdate_init(LangData.get_lang("pkGN"), null, null, C.JsInt.ag(this_.ch, 100), null, 0, 0, 0))
                     if (this_.ch >= this_.d) {
                         // 阶段目标场数达到
                         this_.eS()
@@ -12744,7 +12744,7 @@ V.ProfileMain.prototype = {
             p = H.b([], t.Y)
         // 》 实力评分: [2]
         // benchmarkScore
-        q.push(T.RunUpdate(LangData.get_lang("JkWn"), null, null, this_.Q * 1e4 / this_.d, null, 0, 1000, 100))
+        q.push(T.RunUpdate_init(LangData.get_lang("JkWn"), null, null, this_.Q * 1e4 / this_.d, null, 0, 1000, 100))
         this_.y.push(new T.aq(q, p))
         if (this_.x != null) {
             s = new T.NPlr()
@@ -12816,10 +12816,10 @@ V.j_.prototype = {
                 get_quote = "0"
             }
             p = this.b
-            s.push(T.RunUpdate(a, p, o, get_quote, o, 0, 1000, 100))
+            s.push(T.RunUpdate_init(a, p, o, get_quote, o, 0, 1000, 100))
             // 频率: [2]%
             // benchmarkSkill
-            s.push(T.RunUpdate(LangData.get_lang("GJgn"), p, o, b * 100 / n.d, o, 0, 1000, 100))
+            s.push(T.RunUpdate_init(LangData.get_lang("GJgn"), p, o, b * 100 / n.d, o, 0, 1000, 100))
             n.y.push(new T.aq(s, r))
             // console.log("benchmark", a, b, n.d, s)
             let stack = new Error().stack
@@ -12890,9 +12890,9 @@ X.ProfileFind.prototype = {
                         o = H.b([], t.Y)
                         e.push($.K())
                         if (d.length >>> 13 > 0) {
-                            e.push(T.RunUpdate(LangData.get_lang("BUaa"), null, null, null, null, 0, 1000, 100))
+                            e.push(T.RunUpdate_init(LangData.get_lang("BUaa"), null, null, null, null, 0, 1000, 100))
                             this_.b = d.length + 1
-                        } else e.push(T.RunUpdate(LangData.get_lang("UZBn"), null, null, null, null, 0, 1000, 100))
+                        } else e.push(T.RunUpdate_init(LangData.get_lang("UZBn"), null, null, null, null, 0, 1000, 100))
                         q = new T.aq(e, o)
                         async_goto = 1
                         break
@@ -12983,9 +12983,9 @@ X.ProfileFind.prototype = {
                         console.log("outputing score")
                     }
                     if (this_.b >= d.length) {
-                        e.push(T.RunUpdate(LangData.get_lang("tdaa"), null, null, null, null, 0, 1000, 100))
+                        e.push(T.RunUpdate_init(LangData.get_lang("tdaa"), null, null, null, null, 0, 1000, 100))
                         if (this_.e === 0) {
-                            e.push(T.RunUpdate(LangData.get_lang("lIYA"), null, null, null, null, 0, 1000, 100))
+                            e.push(T.RunUpdate_init(LangData.get_lang("lIYA"), null, null, null, null, 0, 1000, 100))
                         }
                     }
                     q = new T.aq(e, o)
@@ -13990,7 +13990,7 @@ T.SklAbsorb.prototype = {
         var s = a[0].a,
             r = T.getAt(this.r, true, c),
             q = $.ph()
-        d.a.push(T.RunUpdate(LangData.get_lang("FfpA"), this.r, s, null, null, $.i(), 1000, 100))
+        d.a.push(T.RunUpdate_init(LangData.get_lang("FfpA"), this.r, s, null, null, $.i(), 1000, 100))
         s.a3(r * q, true, this.r, T.v6(), c, d)
     }
 }
@@ -14014,7 +14014,7 @@ T.SklAccumulate.prototype = {
             q = LangData.get_lang("zEuN"),
             p = s.r,
             o = d.a
-        o.push(T.RunUpdate(q, p, p, r, r, $.i(), 1000, 100))
+        o.push(T.RunUpdate_init(q, p, p, r, r, $.i(), 1000, 100))
         s.r.rx.j(0, s.fr)
         s.r.r2.m(0, $.lN(), s)
         if (s.r.r2.J(0, $.a7())) {
@@ -14027,7 +14027,7 @@ T.SklAccumulate.prototype = {
         q.l = q.l + $.lM()
         q = C.String.B(LangData.get_lang("gIKN"), $.qu())
         p = s.r
-        o.push(T.RunUpdate(q, p, p, r, r, 0, 1000, 100))
+        o.push(T.RunUpdate_init(q, p, p, r, r, 0, 1000, 100))
     },
     ar(a) {
         a.id = a.id * this.fx
@@ -14071,7 +14071,7 @@ T.SklAssassinate.prototype = {
             n = p.fy
         if (n == null) {
             p.fy = a[0].a
-            d.a.push(T.RunUpdate(LangData.get_lang("RmAN"), p.r, p.fy, o, o, $.i(), 1000, 100))
+            d.a.push(T.RunUpdate_init(LangData.get_lang("RmAN"), p.r, p.fy, o, o, $.i(), 1000, 100))
             p.r.x1.j(0, p.fr)
             n = p.r
             n.l = n.l + n.dx * $.B()
@@ -14083,7 +14083,7 @@ T.SklAssassinate.prototype = {
             p.ah(0)
             if (n.fx > 0) {
                 s = d.a
-                s.push(T.RunUpdate(LangData.get_lang("iLaN"), p.r, n, o, o, $.i(), 1000, 100))
+                s.push(T.RunUpdate_init(LangData.get_lang("iLaN"), p.r, n, o, o, $.i(), 1000, 100))
                 r = T.getAt(p.r, true, c)
                 q = T.getAt(p.r, true, c)
                 if (q > r) r = q
@@ -14092,7 +14092,7 @@ T.SklAssassinate.prototype = {
                 if (n.a7($.d2(), c)) {
                     // dodge (通用回避)
                     // [0][回避]了攻击
-                    s.push(T.RunUpdate(LangData.get_lang("BtqN"), n, p.r, o, o, 0, 1000, 100))
+                    s.push(T.RunUpdate_init(LangData.get_lang("BtqN"), n, p.r, o, o, 0, 1000, 100))
                     return
                 }
                 n.bN(r * $.mZ(), true, p.r, T.ad(), c, d)
@@ -14153,7 +14153,7 @@ T.BerserkState.prototype = {
         s = a[0].a
         r = T.getAt(p.r, false, c)
         q = $.eV()
-        d.a.push(T.RunUpdate(LangData.get_lang("UeAn"), p.r, s, null, null, 0, 1000, 100))
+        d.a.push(T.RunUpdate_init(LangData.get_lang("UeAn"), p.r, s, null, null, 0, 1000, 100))
         s.a3(r * q, false, p.r, T.ad(), c, d)
         if (p.fr == 0) p.K(null, d)
     },
@@ -14176,7 +14176,7 @@ T.SklBerserk.prototype = {
     v(a, b, c, d) {
         var s = a[0].a,
             r = T.getAt(this.r, true, c)
-        d.a.push(T.RunUpdate(LangData.get_lang("wnjN"), this.r, s, null, null, $.i(), 1000, 100))
+        d.a.push(T.RunUpdate_init(LangData.get_lang("wnjN"), this.r, s, null, null, $.i(), 1000, 100))
         s.a3(r, true, this.r, T.v7(), c, d)
     }
 }
@@ -14194,7 +14194,7 @@ T.SklCharge.prototype = {
         var s = this,
             r = LangData.get_lang("yUxA"),
             q = s.r
-        d.a.push(T.RunUpdate(r, q, q, null, null, $.i(), 1000, 100))
+        d.a.push(T.RunUpdate_init(r, q, q, null, null, $.i(), 1000, 100))
         s.fy = s.fy + $.t()
         s.r.x2.j(0, s.fx)
         s.r.rx.j(0, s.fr)
@@ -14284,13 +14284,13 @@ T.SklCharm.prototype = {
             n = d.a
         // sklCharm
         // [0]使用[魅惑]
-        n.push(T.RunUpdate(LangData.get_lang("UUan"), this_.r, o, p, p, $.i(), 1000, 100))
+        n.push(T.RunUpdate_init(LangData.get_lang("UUan"), this_.r, o, p, p, $.i(), 1000, 100))
         if (!o.a7($.aE(), c)) s = o.fx > 0 && !o.A && T.bW(this_.r.dx, o.db + o.dy, c)
         else s = true
         if (s) {
             // dodge (通用回避)
             // [0][回避]了攻击
-            n.push(T.RunUpdate(LangData.get_lang("BtqN"), o, this_.r, p, p, $.as(), 1000, 100))
+            n.push(T.RunUpdate_init(LangData.get_lang("BtqN"), o, this_.r, p, p, $.as(), 1000, 100))
             return
         }
         charm_state = t.o.a(o.r2.h(0, $.aE()))
@@ -14305,7 +14305,7 @@ T.SklCharm.prototype = {
         if (this_.r.r2.J(0, $.a7())) charm_state.z = charm_state.z + $.B()
         // sklCharmHit
         // [1]被[魅惑]了
-        n.push(T.RunUpdate(C.String.B(LangData.get_lang("yjhn"), $.nd()), this_.r, o, p, p, $.cZ(), 1000, 100))
+        n.push(T.RunUpdate_init(C.String.B(LangData.get_lang("yjhn"), $.nd()), this_.r, o, p, p, $.cZ(), 1000, 100))
     }
 }
 T.MinionCount.prototype = {
@@ -14380,7 +14380,7 @@ T.SklClone.prototype = {
         o = new T.MPlr()
         o.cO(k.r)
         n = d.a
-        n.push(T.RunUpdate(q, o, k.r, j, j, $.a6(), 1000, 100))
+        n.push(T.RunUpdate_init(q, o, k.r, j, j, $.a6(), 1000, 100))
         k.r.y.aZ(p)
         // sklCloned
         // 出现一个新的[1]
@@ -14390,7 +14390,7 @@ T.SklClone.prototype = {
         l = new T.HPlr(m)
         l.a = p.e
         l.d = m
-        n.push(T.RunUpdate(o, q, l, j, j, 0, 1000, 100))
+        n.push(T.RunUpdate_init(o, q, l, j, j, 0, 1000, 100))
     }
 }
 T.SklCloneCallback.prototype = {
@@ -14408,7 +14408,7 @@ T.SklCritical.prototype = {
         if (p > q) q = p
         p = T.getAt(s.r, false, c) * $.pg()
         if (p > q) q = p
-        d.a.push(T.RunUpdate(LangData.get_lang("mFkn"), s.r, r, null, null, $.i(), 1000, 100))
+        d.a.push(T.RunUpdate_init(LangData.get_lang("mFkn"), s.r, r, null, null, $.i(), 1000, 100))
         r.a3(q, false, s.r, T.ad(), c, d)
     }
 }
@@ -14421,7 +14421,7 @@ T.CurseState.prototype = {
         if (a > 0 && (d.n() & 63) < s.z) {
             // sklCurseDamage
             // [诅咒]使伤害加倍
-            e.a.push(T.RunUpdate(LangData.get_lang("wTSa"), s.r, s.x, null, null, 0, 1000, 100))
+            e.a.push(T.RunUpdate_init(LangData.get_lang("wTSa"), s.r, s.x, null, null, 0, 1000, 100))
             a *= s.Q
         }
         return a
@@ -14468,7 +14468,7 @@ T.SklCurse.prototype = {
         let atp = T.getAt(this.r, true, c)
         // sklCurse
         // [0]使用[诅咒]
-        d.a.push(T.RunUpdate(LangData.get_lang("AqCN"), this.r, s, null, null, $.i(), 1000, 100))
+        d.a.push(T.RunUpdate_init(LangData.get_lang("AqCN"), this.r, s, null, null, $.i(), 1000, 100))
 
         s.a3(atp, true, this.r, T.v9(), c, d)
         // target.attacked(atp, true, owner, onDamage, r, updates);
@@ -14487,11 +14487,11 @@ T.SklDisperse.prototype = {
             o = T.getAt(s.r, true, c),
             n = d.a
         // sklDisperse [0]使用[净化]
-        n.push(T.RunUpdate(LangData.get_lang("cDPa"), s.r, p, r, r, $.as(), 1000, 100))
+        n.push(T.RunUpdate_init(LangData.get_lang("cDPa"), s.r, p, r, r, $.as(), 1000, 100))
         if (p.a7($.lP(), c)) {
             // dodge (通用回避)
             // [0][回避]了攻击
-            n.push(T.RunUpdate(LangData.get_lang("BtqN"), p, s.r, r, r, $.as(), 1000, 100))
+            n.push(T.RunUpdate_init(LangData.get_lang("BtqN"), p, s.r, r, r, $.as(), 1000, 100))
             return
         }
         n = p.r2
@@ -14516,13 +14516,13 @@ T.SklExchange.prototype = {
         l.f = C.JsInt.P(l.f + $.i(), $.t())
         s = a[0].a
         r = d.a
-        r.push(T.RunUpdate(LangData.get_lang("fcfa"), l.r, s, k, k, $.i(), 1000, 100))
+        r.push(T.RunUpdate_init(LangData.get_lang("fcfa"), l.r, s, k, k, $.i(), 1000, 100))
         if (!s.a7($.d3(), c)) q = s.fx > 0 && !s.A && !l.r.r2.J(0, $.a7()) && T.bW(l.r.dx, s.dy + s.cx + s.db, c)
         else q = true
         if (q) {
             // dodge (通用回避)
             // [0][回避]了攻击
-            r.push(T.RunUpdate(LangData.get_lang("BtqN"), s, l.r, k, k, $.as(), 1000, 100))
+            r.push(T.RunUpdate_init(LangData.get_lang("BtqN"), s, l.r, k, k, $.as(), 1000, 100))
             return
         }
         if (l.r.r2.J(0, $.a7())) {
@@ -14546,7 +14546,7 @@ T.SklExchange.prototype = {
         n = new T.HPlr(o)
         n.a = s.e
         n.d = s.fx
-        r.push(T.RunUpdate(q, m, n, k, k, (o - p) * $.t(), 1000, 100))
+        r.push(T.RunUpdate_init(q, m, n, k, k, (o - p) * $.t(), 1000, 100))
         s.cr(o - s.fx, o, l.r, c, d)
     }
 }
@@ -14565,7 +14565,7 @@ T.SklFire.prototype = {
         q = o.b
         // sklFire
         // [0]使用[火球术]
-        d.a.push(T.RunUpdate(LangData.get_lang("mAoA"), this.r, p, null, null, $.i(), 1000, 100))
+        d.a.push(T.RunUpdate_init(LangData.get_lang("mAoA"), this.r, p, null, null, $.i(), 1000, 100))
         p.a3(s * (r + q), true, this.r, T.oJ(), c, d)
         // target.attacked(atp, true, owner, onFire, r, updates);
     }
@@ -14587,7 +14587,7 @@ T.sklHalf.prototype = {
             h = null,
             g = a[0].a,
             f = d.a
-        f.push(T.RunUpdate(LangData.get_lang("lSVA"), i.r, g, h, h, $.i(), 1000, 100))
+        f.push(T.RunUpdate_init(LangData.get_lang("lSVA"), i.r, g, h, h, $.i(), 1000, 100))
         s = i.r.fr + C.JsInt.P($.pG() - g.fx, $.B())
         r = 0
         if (s < r) s = r
@@ -14596,7 +14596,7 @@ T.sklHalf.prototype = {
         if (q) {
             // dodge (通用回避)
             // [0][回避]了攻击
-            f.push(T.RunUpdate(LangData.get_lang("BtqN"), g, i.r, h, h, $.as(), 1000, 100))
+            f.push(T.RunUpdate_init(LangData.get_lang("BtqN"), g, i.r, h, h, $.as(), 1000, 100))
             return
         }
         p = g.fx
@@ -14618,7 +14618,7 @@ T.sklHalf.prototype = {
         n = new T.HPlr(p)
         n.a = g.e
         n.d = g.fx
-        f.push(T.RunUpdate(o, q, n, new T.HDamage(l), h, j, 1000, 100))
+        f.push(T.RunUpdate_init(o, q, n, new T.HDamage(l), h, j, 1000, 100))
         if (j > 0) g.cr(j, p, i.r, c, d)
     }
 }
@@ -14679,7 +14679,7 @@ T.SklHaste.prototype = {
             o = null,
             n = a[0].a,
             m = d.a
-        m.push(T.RunUpdate(LangData.get_lang("pHka"), p.r, n, o, o, $.a6(), 1000, 100))
+        m.push(T.RunUpdate_init(LangData.get_lang("pHka"), p.r, n, o, o, $.a6(), 1000, 100))
         s = p.r
         s.l = s.l + s.cy
         s = n.r2
@@ -14698,7 +14698,7 @@ T.SklHaste.prototype = {
             r.z = s + q
             r.Q = r.Q + q
         }
-        m.push(T.RunUpdate(C.String.B(LangData.get_lang("DDWN"), $.qE()), p.r, n, o, o, 0, 1000, 100))
+        m.push(T.RunUpdate_init(C.String.B(LangData.get_lang("DDWN"), $.qE()), p.r, n, o, o, 0, 1000, 100))
     }
 }
 T.SklHeal.prototype = {
@@ -14729,7 +14729,7 @@ T.SklHeal.prototype = {
         k = d.a
         // sklHeal
         // [0]使用[治愈魔法]
-        k.push(T.RunUpdate(LangData.get_lang("Yiea"), l.r, s, null, null, r, 1000, 100))
+        k.push(T.RunUpdate_init(LangData.get_lang("Yiea"), l.r, s, null, null, r, 1000, 100))
         p = s.fx
         s.fx = p + r
         // recover
@@ -14739,7 +14739,7 @@ T.SklHeal.prototype = {
         m = new T.HPlr(p)
         m.a = s.e
         m.d = s.fx
-        k.push(T.RunUpdate(o, n, m, new T.HRecover(r), null, 0, 1000, 100))
+        k.push(T.RunUpdate_init(o, n, m, new T.HRecover(r), null, 0, 1000, 100))
         s.bL(l.r, d)
     }
 }
@@ -14799,7 +14799,7 @@ T.SklIce.prototype = {
         var s = a[0].a,
             r = T.getAt(this.r, true, c),
             q = $.p0()
-        d.a.push(T.RunUpdate(LangData.get_lang("yMvn"), this.r, s, null, null, $.i(), 1000, 100))
+        d.a.push(T.RunUpdate_init(LangData.get_lang("yMvn"), this.r, s, null, null, $.i(), 1000, 100))
         s.a3(r * q, true, this.r, T.mE(), c, d)
     }
 }
@@ -14820,7 +14820,7 @@ T.SklIron.prototype = {
             q = LangData.get_lang("syPN"),
             p = s.r,
             o = d.a
-        o.push(T.RunUpdate(q, p, p, r, r, $.a6(), 1000, 100))
+        o.push(T.RunUpdate_init(q, p, p, r, r, $.a6(), 1000, 100))
         s.r.y2.j(0, s.fr)
         s.r.x2.j(0, s.fx)
         s.r.rx.j(0, s.fy)
@@ -14840,7 +14840,7 @@ T.SklIron.prototype = {
         q.l = q.l - $.eX()
         q = C.String.B(LangData.get_lang("RCnN"), $.qG())
         p = s.r
-        o.push(T.RunUpdate(q, p, p, r, r, 0, 1000, 100))
+        o.push(T.RunUpdate_init(q, p, p, r, r, 0, 1000, 100))
     },
     aq(a, b, c, d, e) {
         var s = 0
@@ -14911,7 +14911,7 @@ T.PoisonState.prototype = {
             o = C.d.R(p / (m.dx + $.au()))
             // sklPoisonDamage
             // [1][毒性发作]
-            b.a.push(T.RunUpdate(LangData.get_lang("nEWa"), n.r, m, null, null, 0, 1000, 100))
+            b.a.push(T.RunUpdate_init(LangData.get_lang("nEWa"), n.r, m, null, null, 0, 1000, 100))
             m.aF(o, n.r, T.ad(), a, b)
             m = n.z - 1
             n.z = m
@@ -14936,7 +14936,7 @@ T.SklPoison.prototype = {
     v(a, b, c, d) {
         var s = a[0].a,
             r = T.getAt(this.r, true, c)
-        d.a.push(T.RunUpdate(LangData.get_lang("efnA"), this.r, s, null, null, $.i(), 1000, 100))
+        d.a.push(T.RunUpdate_init(LangData.get_lang("efnA"), this.r, s, null, null, $.i(), 1000, 100))
         s.a3(r, true, this.r, T.vb(), c, d)
     }
 }
@@ -14961,7 +14961,7 @@ T.SklQuake.prototype = {
         r = this.r
         m = H.b(l.slice(0), m)
         q = d.a
-        q.push(T.RunUpdate(s, r, null, null, m, $.i(), 1000, 100))
+        q.push(T.RunUpdate_init(s, r, null, null, m, $.i(), 1000, 100))
         for (k = 0; k < l.length; ++k) {
             m = T.getAt(this.r, true, c)
             s = $.px()
@@ -15052,8 +15052,8 @@ T.SklRevive.prototype = {
         q = s.fy
         if (r > q) r = q
         p = d.a
-        p.push(T.RunUpdate(LangData.get_lang("FXSa"), l.r, s, k, k, $.i(), 1000, 100))
-        p.push(T.RunUpdate(C.String.B(LangData.get_lang("rFJa"), $.ng()), l.r, s, k, k, r + $.a6(), 1000, 100))
+        p.push(T.RunUpdate_init(LangData.get_lang("FXSa"), l.r, s, k, k, $.i(), 1000, 100))
+        p.push(T.RunUpdate_init(C.String.B(LangData.get_lang("rFJa"), $.ng()), l.r, s, k, k, r + $.a6(), 1000, 100))
         s.fx = r
         o = s.y
         if (!C.Array.w(o.f, s)) {
@@ -15072,7 +15072,7 @@ T.SklRevive.prototype = {
         m = new T.HPlr(0)
         m.a = s.e
         m.d = s.fx
-        p.push(T.RunUpdate(o, n, m, new T.HRecover(r), k, 0, 1000, 100))
+        p.push(T.RunUpdate_init(o, n, m, new T.HRecover(r), k, 0, 1000, 100))
     }
 }
 T.SklPossess.prototype = {
@@ -15087,13 +15087,13 @@ T.SklPossess.prototype = {
             m = d.a
         // sklPossess
         // [0]使用[附体]
-        m.push(T.RunUpdate(LangData.get_lang("dxVA"), p.r, n, o, o, 0, 1000, 100))
+        m.push(T.RunUpdate_init(LangData.get_lang("dxVA"), p.r, n, o, o, 0, 1000, 100))
         if (!n.a7($.aJ(), c)) s = n.fx > 0 && !n.A && T.bW(p.r.dx, n.dy, c)
         else s = true
         if (s) {
             // dodge (通用回避)
             // [0][回避]了攻击
-            m.push(T.RunUpdate(LangData.get_lang("BtqN"), n, p.r, o, o, $.as(), 1000, 100))
+            m.push(T.RunUpdate_init(LangData.get_lang("BtqN"), n, p.r, o, o, $.as(), 1000, 100))
             return
         }
         r = t.aJ.a(n.r2.h(0, $.aJ()))
@@ -15104,7 +15104,7 @@ T.SklPossess.prototype = {
         } else r.fr = r.fr + $.C()
         // sklBerserkHit
         // [1]进入[狂暴]状态
-        m.push(T.RunUpdate(C.String.B(LangData.get_lang("jIRA"), $.nc()), p.r, n, o, o, 0, 1000, 100))
+        m.push(T.RunUpdate_init(C.String.B(LangData.get_lang("jIRA"), $.nc()), p.r, n, o, o, 0, 1000, 100))
         m = p.r
         q = m.fx
         m.fx = 0
@@ -15142,7 +15142,7 @@ T.SklShadow.prototype = {
             a6 = null
         this_.f = C.d.R(this_.f * $.mI())
         s = b0.a
-        s.push(T.RunUpdate(LangData.get_lang("USvA"), this_.r, a6, a6, a6, $.a6(), 1000, 100))
+        s.push(T.RunUpdate_init(LangData.get_lang("USvA"), this_.r, a6, a6, a6, $.a6(), 1000, 100))
         shadow_name = H.as_string(this_.r.a) + "?" + H.as_string($.qM())
         // r = name + "?" + "shadow"
         // console.log("T.hB.v", shadow_name, a5.r.a, H.e($.qM()))
@@ -15206,7 +15206,7 @@ T.SklShadow.prototype = {
         o = new T.HPlr(p)
         o.a = a4.e
         o.d = p
-        s.push(T.RunUpdate(shadow_name, q, o, a6, a6, 0, 1000, 100))
+        s.push(T.RunUpdate_init(shadow_name, q, o, a6, a6, 0, 1000, 100))
     }
 }
 T.SlowState.prototype = {
@@ -15260,13 +15260,13 @@ T.SklSlow.prototype = {
             p = null,
             o = a[0].a,
             n = d.a
-        n.push(T.RunUpdate(LangData.get_lang("hdla"), q.r, o, p, p, $.i(), 1000, 100))
+        n.push(T.RunUpdate_init(LangData.get_lang("hdla"), q.r, o, p, p, $.i(), 1000, 100))
         if (!o.a7($.bi(), c)) s = o.fx > 0 && !o.A && T.bW(q.r.dx, o.dy, c)
         else s = true
         if (s) {
             // dodge (通用回避)
             // [0][回避]了攻击
-            n.push(T.RunUpdate(LangData.get_lang("BtqN"), o, q.r, p, p, $.as(), 1000, 100))
+            n.push(T.RunUpdate_init(LangData.get_lang("BtqN"), o, q.r, p, p, $.as(), 1000, 100))
             return
         }
         o.l = o.l - (o.cy + $.au())
@@ -15281,7 +15281,7 @@ T.SklSlow.prototype = {
             o.F()
         } else r.z = r.z + $.t()
         if (q.r.r2.J(0, $.a7())) r.z = r.z + $.C()
-        n.push(T.RunUpdate(C.String.B(LangData.get_lang("YNva"), $.qJ()), q.r, o, p, p, $.a6(), 1000, 100))
+        n.push(T.RunUpdate_init(C.String.B(LangData.get_lang("YNva"), $.qJ()), q.r, o, p, p, $.a6(), 1000, 100))
     }
 }
 T.SklExplode.prototype = {
@@ -15295,7 +15295,7 @@ T.SklExplode.prototype = {
         q = l.b
         // sklExplode
         // [0]使用[自爆]
-        d.a.push(T.RunUpdate(LangData.get_lang("Ycen"), n.r, m, null, null, 0, 1000, 100))
+        d.a.push(T.RunUpdate_init(LangData.get_lang("Ycen"), n.r, m, null, null, 0, 1000, 100))
         p = n.r
         o = p.fx
         p.fx = 0
@@ -15368,7 +15368,7 @@ T.SklSummon.prototype = {
         var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, summoned_plr, this_ = this,
             a4 = null,
             a5 = a9.a
-        a5.push(T.RunUpdate(LangData.get_lang("sCza"), this_.r, a4, a4, a4, $.a6(), 1000, 100))
+        a5.push(T.RunUpdate_init(LangData.get_lang("sCza"), this_.r, a4, a4, a4, $.a6(), 1000, 100))
         s = this_.fr
         if (s == null) {
             s = H.as_string(this_.r.a) + "?" + H.as_string($.qQ())
@@ -15445,7 +15445,7 @@ T.SklSummon.prototype = {
         o = new T.HPlr(p)
         o.a = q.e
         o.d = p
-        a5.push(T.RunUpdate(s, r, o, a4, a4, 0, 1000, 100))
+        a5.push(T.RunUpdate_init(s, r, o, a4, a4, 0, 1000, 100))
     }
 }
 T.SklThunder.prototype = {
@@ -15455,7 +15455,7 @@ T.SklThunder.prototype = {
             i = 1000,
             h = a[0].a,
             updates = d.a
-        updates.push(T.RunUpdate(LangData.get_lang("hyoA"), k.r, h, j, j, $.i(), i, 100))
+        updates.push(T.RunUpdate_init(LangData.get_lang("hyoA"), k.r, h, j, j, $.i(), i, 100))
         s = $.B() + (c.n() & 3)
         r = $.ci() + k.r.db
         for (q = 0, p = q, o = false; q < s; ++q) {
@@ -15520,7 +15520,7 @@ T.SklAokijiDefend.prototype = {
         if (a > 0 && (c === T.mE())) {
             // sklAokijiDefend
             // [0][吸收]所有冰冻伤害
-            e.a.push(T.RunUpdate(LangData.get_lang("HwtN"), this.r, null, null, null, a, 1000, 100))
+            e.a.push(T.RunUpdate_init(LangData.get_lang("HwtN"), this.r, null, null, null, a, 1000, 100))
             return -a
         }
         // return a > 0 && J.Y(c, T.oH()) ? 0 : a
@@ -15548,7 +15548,7 @@ T.SklAokijiIceAge.prototype = {
         q = this.r
         m = H.b(l.slice(0), m)
         p = d.a
-        p.push(T.RunUpdate(r, q, null, null, m, $.i(), 1000, 100))
+        p.push(T.RunUpdate_init(r, q, null, null, m, $.i(), 1000, 100))
         o = T.getAt(this.r, true, c) * $.mQ() / (l.length + $.b0())
         for (s = 0; s < l.length; ++s) {
             n = l[s]
@@ -15720,7 +15720,7 @@ T.SklConan.prototype = {
             r = d.a
             // sklConanKillUnknown
             // [0]在一间密室中发现了一具无名尸体
-            r.push(T.RunUpdate(LangData.get_lang("uMZa"), m.r, l, l, l, 0, k, 100))
+            r.push(T.RunUpdate_init(LangData.get_lang("uMZa"), m.r, l, l, l, 0, k, 100))
             r.push($.K())
         }
         r = m.fx
@@ -15729,7 +15729,7 @@ T.SklConan.prototype = {
             m.fx = r - 1
             // [0]正在进行推理
             // sklConanThinking
-            d.a.push(T.RunUpdate(LangData.get_lang("Gikn"), m.r, l, l, l, 0, k, 100))
+            d.a.push(T.RunUpdate_init(LangData.get_lang("Gikn"), m.r, l, l, l, 0, k, 100))
             return
         }
         p = s.fx
@@ -15741,13 +15741,13 @@ T.SklConan.prototype = {
         if (r) {
             // sklConanThinkingFinish
             // [0]推理完毕
-            q.push(T.RunUpdate(LangData.get_lang("dEsa"), m.r, l, l, l, 0, k, 100))
+            q.push(T.RunUpdate_init(LangData.get_lang("dEsa"), m.r, l, l, l, 0, k, 100))
             // sklConanThinkingFinish2
             // 真相只有一个
-            q.push(T.RunUpdate(LangData.get_lang("RmQa"), m.r, l, l, l, l, $.eS(), $.lH()))
+            q.push(T.RunUpdate_init(LangData.get_lang("RmQa"), m.r, l, l, l, l, $.eS(), $.lH()))
             // sklConanThinkingFinish3
             // 凶手就是你
-            q.push(T.RunUpdate(LangData.get_lang("imLn"), m.r, l, l, l, 0, k, 100))
+            q.push(T.RunUpdate_init(LangData.get_lang("imLn"), m.r, l, l, l, 0, k, 100))
             // sklConanKillLast
             // [1]
             r = LangData.get_lang("woia")
@@ -15755,7 +15755,7 @@ T.SklConan.prototype = {
             n = new T.HPlr(p)
             n.a = s.e
             n.d = s.fx
-            q.push(T.RunUpdate(r, o, n, new T.HDamage(p), l, p + $.b3(), k, 100))
+            q.push(T.RunUpdate_init(r, o, n, new T.HDamage(p), l, p + $.b3(), k, 100))
         } else {
             m.fx = n
             r = LangData.get_lang("MtDN")
@@ -15763,7 +15763,7 @@ T.SklConan.prototype = {
             n = new T.HPlr(p)
             n.a = s.e
             n.d = s.fx
-            q.push(T.RunUpdate(r, o, n, new T.HDamage(p), l, p + $.b3(), k, 100))
+            q.push(T.RunUpdate_init(r, o, n, new T.HDamage(p), l, p + $.b3(), k, 100))
         }
         s.bm(p, m.r, c, d)
         r = m.r
@@ -15807,7 +15807,7 @@ T.CovidState.prototype = {
             q = b.a
             // sklCovidDamage
             // [1][肺炎]发作
-            q.push(T.RunUpdate(LangData.get_lang("VZaN"), r, k, null, null, 0, 1000, 100))
+            q.push(T.RunUpdate_init(LangData.get_lang("VZaN"), r, k, null, null, 0, 1000, 100))
             p = k.aF(s, r, T.ad(), a, b)
             o = 0
             if (p > o && r.fx > o) {
@@ -15823,7 +15823,7 @@ T.CovidState.prototype = {
                 m = new T.HPlr(m)
                 m.a = r.e
                 m.d = r.fx
-                q.push(T.RunUpdate(o, r, m, new T.HRecover(n), null, 0, 1000, 100))
+                q.push(T.RunUpdate_init(o, r, m, new T.HRecover(n), null, 0, 1000, 100))
             }
         }
         if (l.fy > $.a4()) {
@@ -15870,18 +15870,18 @@ T.CovidState.prototype = {
         q = k.fr
         p = k.fx
         m = d.a
-        if (r > $.t()) m.push(T.RunUpdate(LangData.get_lang("Ojba"), q, p, j, j, 0, i, 100))
-        else m.push(T.RunUpdate(LangData.get_lang("JBrN"), q, p, j, j, 0, i, 100))
+        if (r > $.t()) m.push(T.RunUpdate_init(LangData.get_lang("Ojba"), q, p, j, j, 0, i, 100))
+        else m.push(T.RunUpdate_init(LangData.get_lang("JBrN"), q, p, j, j, 0, i, 100))
     },
     fH(a, b, c) {
         var s, r = null,
             q = this.fx,
             p = c.a
-        p.push(T.RunUpdate(LangData.get_lang("UFQa"), q, a, r, r, 0, 1000, 100))
+        p.push(T.RunUpdate_init(LangData.get_lang("UFQa"), q, a, r, r, 0, 1000, 100))
         s = a.fr
         s = T.oq(a) ? s + $.pd() : C.JsInt.am(s, $.i())
         if (b.n() < s) {
-            p.push(T.RunUpdate(LangData.get_lang("kloA"), q, a, r, r, 0, 1000, 100))
+            p.push(T.RunUpdate_init(LangData.get_lang("kloA"), q, a, r, r, 0, 1000, 100))
             return false
         } else return T.j7(this.fr, a, this.go, b, c)
     },
@@ -15920,7 +15920,7 @@ T.SklCovidAttack.prototype = {
             q = T.getAt(r, false, c)
         // sklAttack
         // [0]发起攻击
-        d.a.push(T.RunUpdate(LangData.get_lang("EYAn"), r, s, null, null, 0, 1000, 100))
+        d.a.push(T.RunUpdate_init(LangData.get_lang("EYAn"), r, s, null, null, 0, 1000, 100))
         s.a3(q, false, r, T.v8(), c, d)
     },
     gap() {
@@ -15961,7 +15961,7 @@ T.SklIkarugaDefend.prototype = {
         if (s) {
             // sklIkarugaDefend
             // [0][吸收]所有奇数伤害
-            e.a.push(T.RunUpdate(LangData.get_lang("iOkN"), this.r, null, null, null, a, 1000, 100))
+            e.a.push(T.RunUpdate_init(LangData.get_lang("iOkN"), this.r, null, null, null, a, 1000, 100))
             return -a
         }
         return a
@@ -15988,7 +15988,7 @@ T.SklIkarugaAttack.prototype = {
         q = this.r
         m = H.b(l.slice(0), m)
         p = d.a
-        p.push(T.RunUpdate(r, q, null, null, m, $.i(), 1000, 100))
+        p.push(T.RunUpdate_init(r, q, null, null, m, $.i(), 1000, 100))
         o = T.getAt(this.r, true, c) * $.mQ() / (l.length + $.b0())
         for (s = 0; s < l.length; ++s) {
             n = l[s]
@@ -16030,7 +16030,7 @@ T.LazyState.prototype = {
             r = C.d.R(T.getAt(s, true, a) / T.d9(q, true, a))
             // sklLazyDamage
             // [1][懒癌]发作
-            b.a.push(T.RunUpdate(LangData.get_lang("sPnN"), s, q, null, null, 0, 1000, 100))
+            b.a.push(T.RunUpdate_init(LangData.get_lang("sPnN"), s, q, null, null, 0, 1000, 100))
             q.aF(r, s, T.ad(), a, b)
         }
     },
@@ -16074,7 +16074,7 @@ T.SklLazyDefend.prototype = {
             T.nO(this.r, b).aP(0)
             // sklLazyHit
             // [1]感染了[懒癌]
-            d.a.push(T.RunUpdate(LangData.get_lang("JnTA"), this.r, b, null, null, 0, 1000, 100))
+            d.a.push(T.RunUpdate_init(LangData.get_lang("JnTA"), this.r, b, null, null, 0, 1000, 100))
         }
     },
     $iah: 1
@@ -16093,7 +16093,7 @@ T.SklLazyAttack.prototype = {
         q = p.fx
         // sklAttack
         // [0]发起攻击
-        d.a.push(T.RunUpdate(LangData.get_lang("EYAn"), s, o, null, null, 0, 1000, 100))
+        d.a.push(T.RunUpdate_init(LangData.get_lang("EYAn"), s, o, null, null, 0, 1000, 100))
         if (o.a3(r * q, false, s, T.va(), c, d) > 0) p.fx = $.T()
     },
     gap() {
@@ -16163,20 +16163,20 @@ T.SklMarioGet.prototype = {
         s = n.aC = n.aC + 1
         if (s === $.i()) {
             s = d.a
-            s.push(T.RunUpdate(LangData.get_lang("iRhA"), q.r, p, p, p, 0, o, 100))
+            s.push(T.RunUpdate_init(LangData.get_lang("iRhA"), q.r, p, p, p, 0, o, 100))
             n.F()
-            s.push(T.RunUpdate(LangData.get_lang("zqHn"), q.r, p, p, p, 0, o, 100))
+            s.push(T.RunUpdate_init(LangData.get_lang("zqHn"), q.r, p, p, p, 0, o, 100))
         } else {
             r = d.a
             if (s === $.t()) {
-                r.push(T.RunUpdate(LangData.get_lang("LJOA"), q.r, p, p, p, 0, o, 100))
+                r.push(T.RunUpdate_init(LangData.get_lang("LJOA"), q.r, p, p, p, 0, o, 100))
                 n.aj.f = $.cZ()
-                r.push(T.RunUpdate(LangData.get_lang("cZhN"), q.r, p, p, p, 0, o, 100))
+                r.push(T.RunUpdate_init(LangData.get_lang("cZhN"), q.r, p, p, p, 0, o, 100))
             } else {
-                r.push(T.RunUpdate(LangData.get_lang("ovXA"), q.r, p, p, p, 0, o, 100))
+                r.push(T.RunUpdate_init(LangData.get_lang("ovXA"), q.r, p, p, p, 0, o, 100))
                 s = n.aR
                 s.Q = s.Q + 1
-                r.push(T.RunUpdate(LangData.get_lang("FshN"), q.r, p, n.aR.Q, p, 0, o, 100))
+                r.push(T.RunUpdate_init(LangData.get_lang("FshN"), q.r, p, n.aR.Q, p, 0, o, 100))
             }
         }
         n.l = n.l + $.lH()
@@ -16207,11 +16207,11 @@ T.SklMarioReraise.prototype = {
             r = new T.HPlr(0)
             r.a = s.e
             r.d = s.fx
-            r = T.RunUpdate(o, r, p, p, p, 0, 1000, 100)
+            r = T.RunUpdate_init(o, r, p, p, p, 0, 1000, 100)
             r.b = $.lJ()
             o = d.a
             o.push(r)
-            o.push(T.RunUpdate(LangData.get_lang("FshN"), q.r, p, q.Q, p, 0, 1000, 100))
+            o.push(T.RunUpdate_init(LangData.get_lang("FshN"), q.r, p, q.Q, p, 0, 1000, 100))
             q.dd(c, d)
             return true
         }
@@ -16273,9 +16273,9 @@ T.SklSaitama.prototype = {
             n = null
         if (o.fx / (o.fy.a + o.go.a / $.B() + $.i()) > $.mP()) {
             s = d.a
-            s.push(T.RunUpdate(LangData.get_lang("dlfA"), o.r, n, n, n, n, $.eS(), $.lH()))
+            s.push(T.RunUpdate_init(LangData.get_lang("dlfA"), o.r, n, n, n, n, $.eS(), $.lH()))
             s.push($.K())
-            s.push(T.RunUpdate(LangData.get_lang("tHLa"), o.r, n, n, n, 0, 1000, 100))
+            s.push(T.RunUpdate_init(LangData.get_lang("tHLa"), o.r, n, n, n, 0, 1000, 100))
             s = o.r
             s.y.dj(s)
             return
@@ -16290,7 +16290,7 @@ T.SklSaitama.prototype = {
         q = $.cY()
         // sklAttack
         // [0]发起攻击
-        d.a.push(T.RunUpdate(LangData.get_lang("EYAn"), o.r, r, n, n, 0, 1000, 100))
+        d.a.push(T.RunUpdate_init(LangData.get_lang("EYAn"), o.r, r, n, n, 0, 1000, 100))
         r.a3(s * q, false, o.r, T.ad(), c, d)
         for (s = o.r.y.a.e, q = s.length, p = 0; p < q; ++p) s[p].l = 0
         o.r.l = $.pb()
@@ -16386,7 +16386,7 @@ T.SklSlimeSpawn.prototype = {
         s.push($.K())
         // sklSlimeSpawn
         // [0][分裂]
-        s.push(T.RunUpdate(LangData.get_lang("BJOA"), this_.r, k, k, k, 0, 1000, 100))
+        s.push(T.RunUpdate_init(LangData.get_lang("BJOA"), this_.r, k, k, k, 0, 1000, 100))
         r = t.b8
         q = r.a(this_.r)
         p = T.init_BossSlime2(q, q.a, q.b)
@@ -16411,7 +16411,7 @@ T.SklSlimeSpawn.prototype = {
         m = new T.HPlr(q)
         m.a = o.e
         m.d = q
-        s.push(T.RunUpdate(r, n, m, k, k, 0, 1000, 100))
+        s.push(T.RunUpdate_init(r, n, m, k, k, 0, 1000, 100))
         return false
     },
     W() {
@@ -16485,7 +16485,7 @@ T.SklYuriControl.prototype = {
             m = d.a
         // sklYuriControl
         // [0]使用[心灵控制]
-        m.push(T.RunUpdate(LangData.get_lang("wneN"), this.r, n, o, o, $.i(), 1000, 100))
+        m.push(T.RunUpdate_init(LangData.get_lang("wneN"), this.r, n, o, o, $.i(), 1000, 100))
         s = n.y.c.length
         r = $.B()
         if (s < r) s = r
@@ -16501,7 +16501,7 @@ T.SklYuriControl.prototype = {
         }
         // sklCharmHit
         // [1]被[魅惑]了
-        m.push(T.RunUpdate(C.String.B(LangData.get_lang("yjhn"), $.nd()), this.r, n, o, o, $.cZ(), 1000, 100))
+        m.push(T.RunUpdate_init(C.String.B(LangData.get_lang("yjhn"), $.nd()), this.r, n, o, o, $.cZ(), 1000, 100))
     }
 }
 T.Engine.prototype = {
@@ -17632,7 +17632,7 @@ T.Plr.prototype = {
         if (p.fx > 0 && !p.A && T.bW(q, r, e)) {
             // dodge (通用回避)
             // [0][回避]了攻击
-            f.a.push(T.RunUpdate(LangData.get_lang("BtqN"), p, c, null, null, $.as(), 1000, 100))
+            f.a.push(T.RunUpdate_init(LangData.get_lang("BtqN"), p, c, null, null, $.as(), 1000, 100))
             return 0
         }
         return p.bN(a, b, c, d, e, f)
@@ -17652,13 +17652,13 @@ T.Plr.prototype = {
             q = new T.HPlr(s)
             q.a = n.e
             q.d = n.fx
-            e.a.push(T.RunUpdate(r, b, q, new T.HRecover(-a), null, 0, 1000, 100))
+            e.a.push(T.RunUpdate_init(r, b, q, new T.HRecover(-a), null, 0, 1000, 100))
             return 0
         }
         p = LangData.get_lang("kZsn")
         r = 0
         if (a === r) {
-            e.a.push(T.RunUpdate(C.String.B(C.String.fu(p, "1", "0"), $.ne()), n, n, new T.HDamage(0), null, 10, 1000, 100))
+            e.a.push(T.RunUpdate_init(C.String.B(C.String.fu(p, "1", "0"), $.ne()), n, n, new T.HDamage(0), null, 10, 1000, 100))
             return 0
         }
         s = n.fx
@@ -17670,7 +17670,7 @@ T.Plr.prototype = {
         r = new T.HPlr(s)
         r.a = n.e
         r.d = n.fx
-        o = T.RunUpdate(p, b, r, new T.HDamage(a), null, a, 1000, 100)
+        o = T.RunUpdate_init(p, b, r, new T.HDamage(a), null, a, 1000, 100)
         if (a > $.pr()) o.b = $.d0()
         else o.b = $.eS() + a * $.t()
         e.a.push(o)
@@ -17695,7 +17695,7 @@ T.Plr.prototype = {
         s = this_.cD()
         r = new T.DPlr()
         r.a = this_.e
-        p.push(T.RunUpdate(s, b, r, null, null, $.b1(), 1000, 100))
+        p.push(T.RunUpdate_init(s, b, r, null, null, $.b1(), 1000, 100))
         for (p = this_.L, p = new Sgls.a_(p, p.b, p.$ti.i("a_<1*>")); p.u();)
             if (p.b.b1(a, b, c, d)) break
         if (this_.fx > 0) return
@@ -17937,7 +17937,7 @@ T.SklAttack.prototype = {
             if (q >= r) {
                 s.go = q - r
                 p = T.getAt(s, true, c)
-                d.a.push(T.RunUpdate(LangData.get_lang("VQhA"), o.r, m, n, n, 0, 1000, 100))
+                d.a.push(T.RunUpdate_init(LangData.get_lang("VQhA"), o.r, m, n, n, 0, 1000, 100))
                 m.a3(p, true, o.r, T.ad(), c, d)
                 return
             }
@@ -17945,7 +17945,7 @@ T.SklAttack.prototype = {
         p = T.getAt(o.r, false, c)
         // sklAttack
         // [0]发起攻击
-        d.a.push(T.RunUpdate(LangData.get_lang("EYAn"), o.r, m, n, n, 0, 1000, 100))
+        d.a.push(T.RunUpdate_init(LangData.get_lang("EYAn"), o.r, m, n, n, 0, 1000, 100))
         m.a3(p, false, o.r, T.oH(), c, d)
     }
 }
@@ -17955,7 +17955,7 @@ T.SklSimpleAttack.prototype = {
             r = T.getAt(this.r, false, c)
         // sklAttack
         // [0]发起攻击
-        d.a.push(T.RunUpdate(LangData.get_lang("EYAn"), this.r, s, null, null, 0, 1000, 100))
+        d.a.push(T.RunUpdate_init(LangData.get_lang("EYAn"), this.r, s, null, null, 0, 1000, 100))
         s.a3(r, false, this.r, T.ad(), c, d)
     }
 }
@@ -17987,7 +17987,7 @@ T.SklCounter.prototype = {
             r = $.K()
             q = b.a
             q.push(r)
-            q.push(T.RunUpdate(C.String.B(LangData.get_lang("VgaN"), $.qw()), p.r, p.cx, null, null, $.i(), 1000, 100))
+            q.push(T.RunUpdate_init(C.String.B(LangData.get_lang("VgaN"), $.qw()), p.r, p.cx, null, null, $.i(), 1000, 100))
             p.cx.a3(s, false, p.r, T.ad(), a, b)
         }
     },
@@ -17999,7 +17999,7 @@ T.SklDefend.prototype = {
     },
     aq(a, b, c, d, e) {
         if (d.n() < this.f && this.r.bw(d)) {
-            e.a.push(T.RunUpdate(LangData.get_lang("NIMn"), this.r, b, null, null, $.bg(), 1000, 100))
+            e.a.push(T.RunUpdate_init(LangData.get_lang("NIMn"), this.r, b, null, null, $.bg(), 1000, 100))
             return C.JsInt.P(a, $.t())
         }
         return a
@@ -18026,7 +18026,7 @@ T.SklHide.prototype = {
             s.r.F()
             r = LangData.get_lang("oIIa")
             q = s.r
-            d.a.push(T.RunUpdate(r, q, q, null, null, $.Z(), 1000, 100))
+            d.a.push(T.RunUpdate_init(r, q, q, null, null, $.Z(), 1000, 100))
         }
     },
     aN(a, b, c, d) {
@@ -18107,11 +18107,11 @@ T.SklMerge.prototype = {
                 this_.r.F()
                 r = c.a
                 r.push($.K())
-                r.push(T.RunUpdate(LangData.get_lang("yGkN"), this_.r, a, j, j, $.a6(), $.d0(), 100))
+                r.push(T.RunUpdate_init(LangData.get_lang("yGkN"), this_.r, a, j, j, $.a6(), $.d0(), 100))
                 q = LangData.get_lang("PGSN")
                 p = new T.MPlr()
                 p.cO(this_.r)
-                r.push(T.RunUpdate(q, p, a, j, j, 0, 1000, 100))
+                r.push(T.RunUpdate_init(q, p, a, j, j, 0, 1000, 100))
                 return true
             }
         }
@@ -18159,7 +18159,7 @@ T.dV.prototype = {
         var s, r, q, p = this.dG(f)
         if (p != null) {
             s = p.r
-            g.a.push(T.RunUpdate(LangData.get_lang("JzmA"), s, d, null, null, $.bg(), 1000, 100))
+            g.a.push(T.RunUpdate_init(LangData.get_lang("JzmA"), s, d, null, null, $.bg(), 1000, 100))
             a = s.du(a, b, c, e, f, g)
             r = $.ao()
             if (a == r) return r
@@ -18226,7 +18226,7 @@ T.SklReflect.prototype = {
         if (f.n() < q.f && f.n() < 128 && q.r.bw(f)) {
             s = T.getAt(q.r, true, f) * $.b0()
             if (s > a) s = a
-            g.a.push(T.RunUpdate(C.String.B(LangData.get_lang("lnNA"), $.qI()), q.r, c, null, null, $.as(), $.d0(), 100))
+            g.a.push(T.RunUpdate_init(C.String.B(LangData.get_lang("lnNA"), $.qI()), q.r, c, null, null, $.as(), $.d0(), 100))
             c.a3(s, true, q.r, e, f, g)
             r = q.r
             r.l = r.l - $.mY()
@@ -18252,7 +18252,7 @@ T.SklReraise.prototype = {
             o = C.String.B(LangData.get_lang("DWRn"), $.ng())
             n = p.r
             s = d.a
-            s.push(T.RunUpdate(o, n, n, null, null, $.b3(), $.d0(), 100))
+            s.push(T.RunUpdate_init(o, n, n, null, null, $.b3(), $.d0(), 100))
             p.r.fx = (c.n() & 15) + 1
             n = LangData.get_lang("imin")
             o = p.r
@@ -18260,7 +18260,7 @@ T.SklReraise.prototype = {
             r.a = o.e
             q = o.fx
             r.d = q
-            s.push(T.RunUpdate(n, o, r, new T.HRecover(q), null, 0, 1000, 100))
+            s.push(T.RunUpdate_init(n, o, r, new T.HRecover(q), null, 0, 1000, 100))
             return true
         }
         return false
@@ -18342,10 +18342,10 @@ T.SklUpgrade.prototype = {
             o.push($.K())
             n = LangData.get_lang("TRcn")
             r = q.r
-            o.push(T.RunUpdate(n, r, r, p, p, $.a6(), $.d0(), 100))
+            o.push(T.RunUpdate_init(n, r, r, p, p, $.a6(), $.d0(), 100))
             r = C.String.B(LangData.get_lang("iTtn"), $.qK())
             n = q.r
-            o.push(T.RunUpdate(r, n, n, p, p, 0, 1000, 100))
+            o.push(T.RunUpdate_init(r, n, n, p, p, 0, 1000, 100))
             n = q.r
             n.l = n.l + $.lM()
         }
@@ -18488,7 +18488,7 @@ T.SklZombie.prototype = {
             r.push($.K())
             // sklZombie
             // [0][召唤亡灵]
-            r.push(T.RunUpdate(LangData.get_lang("apma"), this_.r, a6, a5, a5, $.a6(), $.d0(), 100))
+            r.push(T.RunUpdate_init(LangData.get_lang("apma"), this_.r, a6, a5, a5, $.a6(), $.d0(), 100))
             // sklZombied
             // [2]变成了[1]
             q = LangData.get_lang("kXba")
@@ -18497,7 +18497,7 @@ T.SklZombie.prototype = {
             b = new T.HPlr(a2)
             b.a = a3.e
             b.d = a2
-            r.push(T.RunUpdate(q, s, b, a6, H.b([a6], t.j), 0, 1000, 100))
+            r.push(T.RunUpdate_init(q, s, b, a6, H.b([a6], t.j), 0, 1000, 100))
             return true
         }
         return false
@@ -18554,7 +18554,7 @@ T.SklDeathNote.prototype = {
     },
     v(a, b, c, d) {
         var s, r, q, p = this
-        d.a.push(T.RunUpdate(LangData.get_lang("NbSn"), p.r, p.fx, null, null, $.as(), 1000, 100))
+        d.a.push(T.RunUpdate_init(LangData.get_lang("NbSn"), p.r, p.fx, null, null, $.as(), 1000, 100))
         s = p.fx
         s.aF(s.fx, p.r, T.ad(), c, d)
         s = p.r
@@ -18696,7 +18696,7 @@ T.RinickModifierPreAction.prototype = {
             if (o.length !== r) {
                 // weaponRModifierUse
                 // [0]使用[属性修改器]
-                C.Array.co(o, r, T.RunUpdate(LangData.get_lang("UeyA"), s, null, null, null, $.a6(), 1000, 100))
+                C.Array.co(o, r, T.RunUpdate_init(LangData.get_lang("UeyA"), s, null, null, null, $.a6(), 1000, 100))
                 o.push($.K())
             }
         }
@@ -18772,7 +18772,7 @@ T.SklRinickModifierClone.prototype = {
         s = d.a
         // weaponRModifierUse
         // [0]使用[属性修改器]
-        s.push(T.RunUpdate(LangData.get_lang("UeyA"), k.r, j, j, j, $.a6(), 1000, 100))
+        s.push(T.RunUpdate_init(LangData.get_lang("UeyA"), k.r, j, j, j, $.a6(), 1000, 100))
         for (r = 0, q = k.fr; r < q; ++r) {
             p = T.init_PlrClone(k.r)
             p.y = k.r.y
@@ -18826,9 +18826,9 @@ T.SklS11.prototype = {
             n = null,
             m = 1000,
             l = d.a
-        l.push(T.RunUpdate(LangData.get_lang("Rdya"), o.r, n, n, n, 0, m, 100))
+        l.push(T.RunUpdate_init(LangData.get_lang("Rdya"), o.r, n, n, n, 0, m, 100))
         if (c.n() < 64) {
-            l.push(T.RunUpdate(LangData.get_lang("ibDN"), o.r, n, n, n, 0, m, 100))
+            l.push(T.RunUpdate_init(LangData.get_lang("ibDN"), o.r, n, n, n, 0, m, 100))
             o.fr = o.fr - 1
         } else {
             s = c.ax($.ap())
@@ -18837,19 +18837,19 @@ T.SklS11.prototype = {
             p = q.q
             p[s] = p[s] + r
             q.F()
-            l.push(T.RunUpdate("[" + H.as_string($.r6()[s]) + "]" + LangData.get_lang("zbya"), o.r, n, r, n, 0, m, 100))
+            l.push(T.RunUpdate_init("[" + H.as_string($.r6()[s]) + "]" + LangData.get_lang("zbya"), o.r, n, r, n, 0, m, 100))
         }
         q = o.r
         q.l = q.l + $.cX()
         q = o.fr - (c.n() & 3)
         o.fr = q
         if (q <= 0) {
-            l.push(T.RunUpdate(LangData.get_lang("ToLa"), o.r, n, n, n, 0, m, 100))
+            l.push(T.RunUpdate_init(LangData.get_lang("ToLa"), o.r, n, n, n, 0, m, 100))
             if (o.f < $.as()) {
-                l.push(T.RunUpdate(LangData.get_lang("BcJa"), o.r, n, n, n, 0, m, 100))
+                l.push(T.RunUpdate_init(LangData.get_lang("BcJa"), o.r, n, n, n, 0, m, 100))
                 o.f = 0
             } else {
-                l.push(T.RunUpdate(LangData.get_lang("kHPN"), o.r, n, n, n, 0, m, 100))
+                l.push(T.RunUpdate_init(LangData.get_lang("kHPN"), o.r, n, n, n, 0, m, 100))
                 o.f = $.i()
             }
             o.r.aF((c.n() & 31) + $.aR(), o.r, T.ad(), c, d)
@@ -20235,7 +20235,7 @@ var t = (function rtii() {
     // MARK: 空 RunUpdate (newline)
     lazy_old($, "zR", "K", function () {
         var q = null
-        return T.RunUpdate("\n", q, q, q, q, 0, 1000, 100)
+        return T.RunUpdate_init("\n", q, q, q, q, 0, 1000, 100)
     })
     lazy_old($, "vq", "rp", function () {
         return $.mS()
