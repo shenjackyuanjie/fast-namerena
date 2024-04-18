@@ -1757,7 +1757,7 @@ var A = {
         RuntimeError: function h3(a) {
             this.a = a
         },
-        aT: function aT(a) {
+        JsLinkedHashMap: function aT(a) {
             var _ = this
             _.a = 0
             _.f = _.e = _.d = _.c = _.b = null
@@ -4046,14 +4046,14 @@ var A = {
             this.c = c
         },
         a0(a, b) {
-            return new H.aT(a.i("@<0>").aL(b).i("aT<1,2>"))
+            return new H.JsLinkedHashMap(a.i("@<0>").aL(b).i("aT<1,2>"))
         },
         dD(a, b, c) {
             // Map<String, int>
-            return H.uQ(a, new H.aT(b.i("@<0>").aL(c).i("aT<1,2>")))
+            return H.uQ(a, new H.JsLinkedHashMap(b.i("@<0>").aL(c).i("aT<1,2>")))
         },
         cu(a, b) {
-            return new H.aT(a.i("@<0>").aL(b).i("aT<1,2>"))
+            return new H.JsLinkedHashMap(a.i("@<0>").aL(b).i("aT<1,2>"))
         },
         c5(a) {
             return new P.eu(a.i("eu<0>"))
@@ -5848,7 +5848,7 @@ var A = {
                         n = $.i()
                         m = -n
                         // run here?
-                        runner = new T.Engine(j, h, k, i, new H.aT(t.d5), target, p, o, m, m, new Float64Array(n))
+                        runner = new T.Engine(j, h, k, i, new H.JsLinkedHashMap(t.d5), target, p, o, m, m, new Float64Array(n))
                         async_goto = 3
                         return P._asyncAwait(runner.bD(), $async$c2)
                     case 3:
@@ -9172,7 +9172,7 @@ H.RuntimeError.prototype = {
         return "RuntimeError: " + this.a
     }
 }
-H.aT.prototype = {
+H.JsLinkedHashMap.prototype = {
     gp(a) {
         return this.a
     },
@@ -19278,7 +19278,7 @@ LangData.k_.prototype = {
     )
     inherit_many(H.kg, [H.StaticClosure, H.BoundClosure])
     inherit(P.dG, P.aU)
-    inherit_many(P.dG, [H.aT, P.ic, W.i2])
+    inherit_many(P.dG, [H.JsLinkedHashMap, P.ic, W.i2])
     inherit_many(H.j6,
         [H.lw, P._awaitOnObject_closure0, P._wrapJsFunctionForAsync_closure, P.kL, P.jM,
         W.kd, W.le, P.l5, P.l6, P.ky,
