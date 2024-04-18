@@ -7455,7 +7455,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        fC: function fC() { },
+        MergeState: function fC() { },
         SklMerge: function SklMerge(a) {
             var _ = this
             _.e = false
@@ -18035,7 +18035,7 @@ T.SklHide.prototype = {
     },
     $iah: 1
 }
-T.fC.prototype = {
+T.MergeState.prototype = {
     gT() {
         return 0
     }
@@ -18088,7 +18088,7 @@ T.SklMerge.prototype = {
                 a.l = 0
             }
             if (o) {
-                a.r2.m(0, $.iJ(), new T.fC())
+                a.r2.m(0, $.iJ(), new T.MergeState())
                 k.r.F()
                 r = c.a
                 r.push($.K())
@@ -19355,8 +19355,12 @@ LangData.k_.prototype = {
         T.dB, T.SklLazyAttack, T.SklMarioGet, T.SklSaitama, T.h8,
         T.hD, T.SkillVoid, T.SklDeathNote, T.SklRinickModifierClone, T.SklS11]
     )
-    inherit_many(T.UpdateStateEntry, [T.CharmState, T.HasteState, T.IceState, T.SlowState, T.UpdateStateImpl, T.RinickModifierUpdateState])
-    inherit_many(T.x, [T.dI, T.FireState, T.SklSlimeSpawnState, T.fC, T.hY])
+    inherit_many(T.UpdateStateEntry,
+        [T.CharmState, T.HasteState, T.IceState,
+        T.SlowState, T.UpdateStateImpl, T.RinickModifierUpdateState
+        ]
+    )
+    inherit_many(T.x, [T.dI, T.FireState, T.SklSlimeSpawnState, T.MergeState, T.hY])
     inherit_many(T.Plr, [T.PlrClone, T.aM, T.PlrBoss, T.PlrBoost, T.PlrBossTest, T.PlrBossTest2, T.PlrEx, T.PlrSeed_])
     inherit_many(T.PostDefendEntry, [T.CurseState, T.PostDefendImpl, T.ik])
     inherit_many(T.bq, [T.PoisonState, T.PostActionImpl])
