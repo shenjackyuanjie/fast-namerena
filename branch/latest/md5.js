@@ -4644,7 +4644,7 @@ var A = {
             }
         },
         nC(a) {
-            var s = new T.dd($.i(), 0)
+            var s = new T.BerserkState($.i(), 0)
             s.r = a
             return s
         },
@@ -6110,7 +6110,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        dd: function dd(a, b) {
+        BerserkState: function dd(a, b) {
             var _ = this
             _.fr = a
             _.e = false
@@ -14117,7 +14117,7 @@ T.SklAssassinate.prototype = {
         this.fr.D()
     }
 }
-T.dd.prototype = {
+T.BerserkState.prototype = {
     gT() {
         return -$.i()
     },
@@ -14142,6 +14142,8 @@ T.dd.prototype = {
         if (r.r.fx > 0) {
             s = b.a
             s.push($.K())
+            // sklBerserkEnd
+            // [1]从[狂暴]中解除
             s.push(T.RunUpdateCancel(LangData.get_lang("cHVa"), a, r.r))
         }
     },
@@ -19345,7 +19347,7 @@ LangData.k_.prototype = {
         T.SklReflect, T.SklReraise, T.SklShield, T.SklUpgrade, T.SklZombie]
     )
     inherit_many(T.ActionSkill,
-        [T.SklAbsorb, T.SklAccumulate, T.SklAssassinate, T.dd, T.SklBerserk,
+        [T.SklAbsorb, T.SklAccumulate, T.SklAssassinate, T.BerserkState, T.SklBerserk,
         T.SklCharge, T.SklCharm, T.SklClone, T.SklCritical, T.SklCurse,
         T.SklDisperse, T.SklExchange, T.SklFire, T.sklHalf, T.SklHaste,
         T.SklHeal, T.SklIce, T.SklIron, T.SklPoison, T.SklQuake,
@@ -21555,5 +21557,5 @@ function main() {
 }
 
 main();
-logger.debug("反混淆", LangData.get_lang("JnTA"));
+logger.debug("反混淆", LangData.get_lang("cHVa"));
 // logger.debug("running main:", main()) // 执行main函数
