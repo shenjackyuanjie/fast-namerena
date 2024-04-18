@@ -7396,7 +7396,7 @@ var A = {
             _.x = b
             _.c = _.b = _.a = null
         },
-        cA: function cA(a) {
+        PostDamageImpl: function cA(a) {
             var _ = this
             _.x = a
             _.c = _.b = _.a = null
@@ -15333,7 +15333,7 @@ T.PlrSummon.prototype = {
         var s, r = this
         r.dS()
         s = r.bi
-        if (s == null) s = r.bi = new T.cA(r)
+        if (s == null) s = r.bi = new T.PostDamageImpl(r)
         r.G.j(0, s)
     },
     aD(a, b, c, d) {
@@ -17337,7 +17337,7 @@ T.Plr.prototype = {
         skills.push(r) // 20
         r = new T.SklAssassinate(0)
         r.fr = new T.PreActionImpl(r)
-        r.fx = new T.cA(r)
+        r.fx = new T.PostDamageImpl(r)
         skills.push(r) // 21
         skills.push(new T.SklSummon(0)); // 22
         skills.push(new T.SklClone(0)); // 23
@@ -17804,7 +17804,7 @@ T.PostDefendImpl.prototype = {
         return this.r
     }
 }
-T.cA.prototype = {
+T.PostDamageImpl.prototype = {
     aD(a, b, c, d) {
         return this.x.aD(a, b, c, d)
     },
@@ -18560,7 +18560,7 @@ T.WeaponDeathNote.prototype = {
     b6() {
         var s, r = new T.SklDeathNote(0)
         r.e = true
-        r.fr = new T.cA(r)
+        r.fr = new T.PostDamageImpl(r)
         s = this.c
         r.ao(s, $.i())
         s.k1.push(r)
@@ -19379,7 +19379,7 @@ LangData.k_.prototype = {
     inherit_many(T.IPlr, [T.NPlr, T.HPlr, T.MPlr, T.DPlr])
     inherit_many(T.aX, [T.h2, T.dX])
     inherit(T.fY, T.cB)
-    inherit(T.cA, T.ah)
+    inherit(T.PostDamageImpl, T.ah)
     inherit_many(T.PreActionEntry, [T.PreActionImpl, T.RinickModifierPreAction])
     inherit(T.cp, T.aF)
     inherit(T.ij, T.bH)
