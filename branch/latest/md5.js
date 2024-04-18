@@ -1748,7 +1748,7 @@ var A = {
         c_: function c_() { },
         j5: function j5() { },
         j6: function j6() { },
-        kg: function kg() { },
+        TearOffClosure: function kg() { },
         StaticClosure: function kc() { },
         BoundClosure: function dg(a, b) {
             this.a = a
@@ -9145,7 +9145,7 @@ H.j6.prototype = {
     $C: "$2",
     $R: 2
 }
-H.kg.prototype = {}
+H.TearOffClosure.prototype = {}
 H.StaticClosure.prototype = {
     k(a) {
         var s = this.$static_name
@@ -19263,7 +19263,7 @@ LangData.k_.prototype = {
     inherit_many(H.M, [H.y, H.a9, P.id])
     inherit(H.NullError, P.bc)
     inherit_many(H.c_,
-        [H.j5, H.j6, H.kg, H.JsLinkedHashMap_values_closure, H.lv, H.lx,
+        [H.j5, H.j6, H.TearOffClosure, H.JsLinkedHashMap_values_closure, H.lv, H.lx,
         P.kB, P.kA, P._awaitOnObject_closure, P.kK, P.kS, P.ke, P.kZ, P.Duration_toString_sixDigits, P.Duration_toString_twoDigits,
         W.jf, W.kF, W.jP, W.jO, W.l0, W.l1, W.l7,
         P.lE, P.lF,
@@ -19276,7 +19276,7 @@ LangData.k_.prototype = {
         T.SklCloneCallback, T.jk, T.jj, T.jl, T.ji, T.lD, T.BoostPassive, T.k3, T.kb, T.ko, T.kp,
         LangData.k_]
     )
-    inherit_many(H.kg, [H.StaticClosure, H.BoundClosure])
+    inherit_many(H.TearOffClosure, [H.StaticClosure, H.BoundClosure])
     inherit(P.dG, P.aU)
     inherit_many(P.dG, [H.JsLinkedHashMap, P.ic, W.i2])
     inherit_many(H.j6,
