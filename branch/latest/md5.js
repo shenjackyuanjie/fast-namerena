@@ -1199,7 +1199,7 @@ var A = {
                 a0 = i[b],
                 a1 = a2.fT
             a1.toString
-            s = h ? Object.create(new H.kc().constructor.prototype) : Object.create(new H.dg(null, null).constructor.prototype)
+            s = h ? Object.create(new H.StaticClosure().constructor.prototype) : Object.create(new H.dg(null, null).constructor.prototype)
             s.$initialize = s.constructor
             if (h) r = function static_tear_off() {
                 this.$initialize()
@@ -1749,7 +1749,7 @@ var A = {
         j5: function j5() { },
         j6: function j6() { },
         kg: function kg() { },
-        kc: function kc() { },
+        StaticClosure: function kc() { },
         dg: function dg(a, b) {
             this.a = a
             this.b = b
@@ -9146,7 +9146,7 @@ H.j6.prototype = {
     $R: 2
 }
 H.kg.prototype = {}
-H.kc.prototype = {
+H.StaticClosure.prototype = {
     k(a) {
         var s = this.$static_name
         if (s == null) return "Closure of unknown static method"
@@ -19276,7 +19276,7 @@ LangData.k_.prototype = {
         T.SklCloneCallback, T.jk, T.jj, T.jl, T.ji, T.lD, T.BoostPassive, T.k3, T.kb, T.ko, T.kp,
         LangData.k_]
     )
-    inherit_many(H.kg, [H.kc, H.dg])
+    inherit_many(H.kg, [H.StaticClosure, H.dg])
     inherit(P.dG, P.aU)
     inherit_many(P.dG, [H.aT, P.ic, W.i2])
     inherit_many(H.j6,
