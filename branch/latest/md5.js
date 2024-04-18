@@ -5873,7 +5873,7 @@ var A = {
             s.aK(message, caster, c, d, e, f, 0, 0)
             return s
         },
-        RunUpdateCancel(a, b, c) {
+        RunUpdateCancel_init(a, b, c) {
             var s = null,
                 r = new T.h2(0, 1000, 500, a, b, c, s, s)
             r.aK(a, b, c, s, s, 0, 1000, 500)
@@ -14043,7 +14043,7 @@ T.SklAccumulate.prototype = {
         if (a != null) {
             s = b.a
             s.push($.K())
-            s.push(T.RunUpdateCancel(LangData.get_lang("xrNA"), a, r.r))
+            s.push(T.RunUpdateCancel_init(LangData.get_lang("xrNA"), a, r.r))
         }
         r.fx = $.pi()
     },
@@ -14102,7 +14102,7 @@ T.SklAssassinate.prototype = {
     aD(a, b, c, d) {
         var s = d.a
         s.push($.K())
-        s.push(T.RunUpdateCancel(LangData.get_lang("kMgn"), this.r, this.fy))
+        s.push(T.RunUpdateCancel_init(LangData.get_lang("kMgn"), this.r, this.fy))
         this.ah(0)
     },
     aN(a, b, c, d) {
@@ -14144,7 +14144,7 @@ T.BerserkState.prototype = {
             s.push($.K())
             // sklBerserkEnd
             // [1]从[狂暴]中解除
-            s.push(T.RunUpdateCancel(LangData.get_lang("cHVa"), a, r.r))
+            s.push(T.RunUpdateCancel_init(LangData.get_lang("cHVa"), a, r.r))
         }
     },
     v(a, b, c, d) {
@@ -14223,7 +14223,7 @@ T.SklCharge.prototype = {
         if (a != null) {
             s = b.a
             s.push($.K())
-            s.push(T.RunUpdateCancel(LangData.get_lang("WNcn"), a, r.r))
+            s.push(T.RunUpdateCancel_init(LangData.get_lang("WNcn"), a, r.r))
         }
     },
     $ix: 1
@@ -14258,7 +14258,7 @@ T.CharmState.prototype = {
         if (s.fx > 0) {
             r = b.a
             r.push($.K())
-            r.push(T.RunUpdateCancel(LangData.get_lang("EsXa"), a, s))
+            r.push(T.RunUpdateCancel_init(LangData.get_lang("EsXa"), a, s))
         }
     },
     $ix: 1
@@ -14441,7 +14441,7 @@ T.CurseState.prototype = {
             r.push($.K())
             // sklCurseEnd
             // [1]从[诅咒]中解除
-            r.push(T.RunUpdateCancel(LangData.get_lang("yULA"), a, s))
+            r.push(T.RunUpdateCancel_init(LangData.get_lang("yULA"), a, s))
         }
     },
     $ix: 1
@@ -14647,7 +14647,7 @@ T.HasteState.prototype = {
             r.push($.K())
             // sklHasteEnd
             // [1]从[疾走]中解除
-            r.push(T.RunUpdateCancel(LangData.get_lang("wlqa"), a, s))
+            r.push(T.RunUpdateCancel_init(LangData.get_lang("wlqa"), a, s))
         }
     },
     $ix: 1
@@ -14785,7 +14785,7 @@ T.IceState.prototype = {
         if (s.fx > 0) {
             r = b.a
             r.push($.K())
-            r.push(T.RunUpdateCancel(LangData.get_lang("aQYN"), a, s))
+            r.push(T.RunUpdateCancel_init(LangData.get_lang("aQYN"), a, s))
         }
     },
     $ix: 1
@@ -14884,12 +14884,12 @@ T.SklIron.prototype = {
         s = b.a
         if (a != null) {
             s.push($.K())
-            s.push(T.RunUpdateCancel(LangData.get_lang("qomn"), a, p.r))
+            s.push(T.RunUpdateCancel_init(LangData.get_lang("qomn"), a, p.r))
         } else {
             s.push($.K())
             r = LangData.get_lang("GGuN")
             q = p.r
-            s.push(T.RunUpdateCancel(r, q, q))
+            s.push(T.RunUpdateCancel_init(r, q, q))
         }
         p.go = p.id = 0
     },
@@ -14927,7 +14927,7 @@ T.PoisonState.prototype = {
             s.push($.K())
             // sklPoisonEnd
             // [1]从[中毒]中解除
-            s.push(T.RunUpdateCancel(LangData.get_lang("hIga"), a, r))
+            s.push(T.RunUpdateCancel_init(LangData.get_lang("hIga"), a, r))
         }
     },
     $ix: 1
@@ -15234,7 +15234,7 @@ T.SlowState.prototype = {
             r.push($.K())
             // sklSlowEnd
             // [1]从[迟缓]中解除
-            r.push(T.RunUpdateCancel(LangData.get_lang("EJLN"), a, s))
+            r.push(T.RunUpdateCancel_init(LangData.get_lang("EJLN"), a, s))
         }
     },
     $ix: 1
@@ -18361,7 +18361,7 @@ T.SklUpgrade.prototype = {
         if (r.r.fx > 0) {
             s = b.a
             s.push($.K())
-            s.push(T.RunUpdateCancel(LangData.get_lang("Ebza"), a, r.r))
+            s.push(T.RunUpdateCancel_init(LangData.get_lang("Ebza"), a, r.r))
         }
     },
     ar(a) {
