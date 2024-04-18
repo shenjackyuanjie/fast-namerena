@@ -7512,7 +7512,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        PlrZombie: function fX(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
+        PlrZombie: function fX(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, dies, kills, s, a0, a1, a2, a3, a4, a5, a6, a7) {
             var _ = this
             _.a6 = _.aj = null
             _.a = a
@@ -7535,8 +7535,8 @@ var A = {
             _.y1 = n
             _.y2 = o
             _.G = p
-            _.L = q
-            _.S = r
+            _.L = dies
+            _.S = kills
             _.A = false
             _.q = s
             _.X = null
@@ -17060,6 +17060,8 @@ T.Minion.prototype = {
         return false
     },
     cD() {
+        // minionDie
+        // [1]消失了
         return LangData.get_lang("Kcon")
     },
     bf() {
@@ -17072,13 +17074,13 @@ T.Plr.prototype = {
         return false
     },
     bw(a) {
-        var s, r, q, p = this
-        if (p.fx <= 0 || p.A) return false
+        var s, r, q, this_ = this
+        if (this_.fx <= 0 || this_.A) return false
         s = a.n()
         r = (((s & 15) + 1) * ((C.JsInt.am(s, 4) & 15) + 1) >>> 5) + 1
-        q = p.go
+        q = this_.go
         if (q >= r) {
-            p.go = q - r
+            this_.go = q - r
             return true
         }
         return false
@@ -17170,16 +17172,16 @@ T.Plr.prototype = {
         this_.k2 = this_.X.dH(this_.k1, t.c5) // 以某种方式打乱顺序？
     },
     bf() {
-        var s, r = this,
-            q = r.a,
+        var s, this_ = this,
+            q = this_.a,
             p = q.length
         if (p > $.b3()) throw H.wrap_expression(p)
-        p = r.b.length
+        p = this_.b.length
         if (p > $.au()) throw H.wrap_expression(p)
         q = T.lC(q)
-        p = T.lC(r.b)
+        p = T.lC(this_.b)
         s = $.a4()
-        r.x = Math.max(H.ar(q), p - s)
+        this_.x = Math.max(H.ar(q), p - s)
     },
     b0(a, b) {
         return C.d.aI(a * ($.T() - this.x / b))
@@ -17238,7 +17240,7 @@ T.Plr.prototype = {
                 if (attrs.length != 8) throw new Error('八围要有八个元素')
             } catch (error) {
                 console.error(error)
-                alert("DIY捏人格式错误，请检查");
+                alert("DIY捏人格式错误, 请检查");
             }
             if (attrs) {
                 for (var i = 0; i < 7; i++) {
@@ -17291,9 +17293,9 @@ T.Plr.prototype = {
         this_.x2.ah(0)
         this_.y1.ah(0)
         this_.y2.ah(0)
-        this_.G.ah(0)
-        this_.L.ah(0)
-        this_.S.ah(0)
+        this_.G.ah(0) // postdamages
+        this_.L.ah(0) // dies
+        this_.S.ah(0) // kills
     },
     ac() {
         // create skills
@@ -17319,6 +17321,7 @@ T.Plr.prototype = {
         skills.push(new T.SklHeal(0)); // 15
         skills.push(new T.SklRevive(0)); // 16
         skills.push(new T.SklDisperse(0)); // 17
+
         r = 0
         r = new T.SklIron(r, r, r)
         q = new T.PostDefendImpl(1 / 0, r)
@@ -17327,18 +17330,22 @@ T.Plr.prototype = {
         r.fy = new T.UpdateStateImpl(r)
         q.r = $.lG()
         skills.push(r) // 18
+
         r = 0
         r = new T.SklCharge(r, r)
         r.fr = new T.UpdateStateImpl(r)
         r.fx = new T.PostActionImpl(r)
         skills.push(r) // 19
+
         r = new T.SklAccumulate($.pj(), 0)
         r.fr = new T.UpdateStateImpl(r)
         skills.push(r) // 20
+
         r = new T.SklAssassinate(0)
         r.fr = new T.PreActionImpl(r)
         r.fx = new T.PostDamageImpl(r)
         skills.push(r) // 21
+
         skills.push(new T.SklSummon(0)); // 22
         skills.push(new T.SklClone(0)); // 23
         skills.push(new T.SklShadow(0)); // 24
@@ -17350,13 +17357,16 @@ T.Plr.prototype = {
         skills.push(new T.SklCounter(0)); // 30
         skills.push(new T.SklMerge(0)); // 31
         skills.push(new T.SklZombie(0)); // 32
+
         r = new T.SklUpgrade(0)
         r.Q = new T.UpdateStateImpl(r)
         skills.push(r) // 33
+
         r = new T.SklHide(0)
         r.ch = new T.UpdateStateImpl(r)
         r.Q = new T.PreActionImpl(r)
         skills.push(r) // 34
+
         skills.push(new T.SkillVoid(0))
         skills.push(new T.SkillVoid(0))
         skills.push(new T.SkillVoid(0))
@@ -17526,30 +17536,30 @@ T.Plr.prototype = {
         i.H = $.W()
     },
     dN(a, b, c) {
-        var s, r, q, p = this
-        if (p.fx <= 0) return
-        s = p.cy * (b.n() & 3)
-        r = p.ry
+        var s, r, q, this_ = this
+        if (this_.fx <= 0) return
+        s = this_.cy * (b.n() & 3)
+        r = this_.ry
         if (!r.gbv(r))
             for (r = new Sgls.a_(r, r.b, r.$ti.i("a_<1*>")); r.u();) s = r.b.x.fo(s, b, c)
-        r = p.l = p.l + s
+        r = this_.l = this_.l + s
         q = $.bx()
         if (r > q) {
-            p.l = r - q
-            p.eE(0, b, c)
+            this_.l = r - q
+            this_.eE(0, b, c)
         }
     },
     eE(a, b, c) {
-        var s, r, q, p, o, n, m, l = this,
+        var s, r, q, p, o, n, m, this_ = this,
             k = null,
-            j = (b.n() & 63) < l.fr
+            j = (b.n() & 63) < this_.fr
         0
-        s = l.fn(j, b, c)
-        if (l.A) return
+        s = this_.fn(j, b, c)
+        if (this_.A) return
         if (s == null) {
             r = (b.n() & 15) + $.av()
-            if (l.go >= r) {
-                for (q = l.k4, p = q.length, o = k, n = 0; n < q.length; q.length === p || (0, H.F)(q), ++n) {
+            if (this_.go >= r) {
+                for (q = this_.k4, p = q.length, o = k, n = 0; n < q.length; q.length === p || (0, H.F)(q), ++n) {
                     m = q[n]
                     if (!m.au(b, j)) continue
                     o = m.aa(0, j, b)
@@ -17557,23 +17567,23 @@ T.Plr.prototype = {
                     s = m
                     break
                 }
-                l.go = l.go - r
+                this_.go = this_.go - r
             } else o = k
         } else o = k
-        if (s == null) s = l.k3
+        if (s == null) s = this_.k3
         s.v(o == null ? s.aa(0, j, b) : o, j, b, c)
-        if ((b.n() & 127) < l.fr + $.au()) l.go = l.go + $.aR()
-        l.at(b, c)
-        if (l.Z) l.bL(k, c)
+        if ((b.n() & 127) < this_.fr + $.au()) this_.go = this_.go + $.aR()
+        this_.at(b, c)
+        if (this_.Z) this_.bL(k, c)
     },
     bL(a, b) {
-        var s, r, q, p, o, n = this
-        if (n.a_) {
-            n.Z = true
+        var s, r, q, p, o, this_ = this
+        if (this_.a_) {
+            this_.Z = true
             return
         }
-        n.Z = false
-        for (s = n.r2, r = s.gad(s), r = P.List_List_of(r, true, H._instanceType(r).i("L.E")), C.Array.aJ(r), q = r.length, p = 0; p < r.length; r.length === q || (0, H.F)(r), ++p) {
+        this_.Z = false
+        for (s = this_.r2, r = s.gad(s), r = P.List_List_of(r, true, H._instanceType(r).i("L.E")), C.Array.aJ(r), q = r.length, p = 0; p < r.length; r.length === q || (0, H.F)(r), ++p) {
             o = r[p]
             if (s.h(0, o).gT() < 0) {
                 s.h(0, o).K(a, b)
@@ -17679,20 +17689,21 @@ T.Plr.prototype = {
         return LangData.get_lang("avqN")
     },
     bm(a, b, c, d) {
-        var s, r, q = this,
+        var s, r, this_ = this,
             p = d.a
         p.push($.K())
-        s = q.cD()
+        s = this_.cD()
         r = new T.DPlr()
-        r.a = q.e
+        r.a = this_.e
         p.push(T.RunUpdate(s, b, r, null, null, $.b1(), 1000, 100))
-        for (p = q.L, p = new Sgls.a_(p, p.b, p.$ti.i("a_<1*>")); p.u();)
+        for (p = this_.L, p = new Sgls.a_(p, p.b, p.$ti.i("a_<1*>")); p.u();)
             if (p.b.b1(a, b, c, d)) break
-        if (q.fx > 0) return
-        q.y.dj(q)
-        if (b != null && b.fx > 0) b.bS(q, c, d)
+        if (this_.fx > 0) return
+        this_.y.dj(this_)
+        if (b != null && b.fx > 0) b.bS(this_, c, d)
     },
     bS(a, b, c) {
+        // kill()
         var s
         for (s = this.S, s = new Sgls.a_(s, s.b, s.$ti.i("a_<1*>")); s.u();)
             if (s.b.bS(a, b, c)) break
@@ -18049,10 +18060,10 @@ T.SklMerge.prototype = {
         this.r.S.j(0, this)
     },
     bS(a, b, c) {
-        var s, r, q, p, o, n, m, l, k = this,
+        var s, r, q, p, o, n, m, l, this_ = this,
             j = null
-        if ((b.n() & 63) < k.f) {
-            for (s = 0, r = k.r.q, q = r.length, p = a.q, o = false; s < q; ++s) {
+        if ((b.n() & 63) < this_.f) {
+            for (s = 0, r = this_.r.q, q = r.length, p = a.q, o = false; s < q; ++s) {
                 n = p[s]
                 if (n > r[s]) {
                     r[s] = n
@@ -18062,7 +18073,7 @@ T.SklMerge.prototype = {
             s = 0
             r = a.k1
             while (true) {
-                q = k.r.k1
+                q = this_.r.k1
                 if (!(s < q.length && s < r.length)) break
                 m = q[s]
                 l = r[s]
@@ -18073,14 +18084,14 @@ T.SklMerge.prototype = {
                 if (q > p) {
                     if (p === 0) {
                         m.f = q
-                        if (m instanceof T.ActionSkill) k.r.k4.push(m)
+                        if (m instanceof T.ActionSkill) this_.r.k4.push(m)
                         m.W()
                     } else m.f = q
                     o = true
                 } ++s
             }
             r = a.go
-            q = k.r
+            q = this_.r
             if (r > q.go) {
                 q.go = r
                 a.go = 0
@@ -18093,13 +18104,13 @@ T.SklMerge.prototype = {
             }
             if (o) {
                 a.r2.m(0, $.iJ(), new T.MergeState())
-                k.r.F()
+                this_.r.F()
                 r = c.a
                 r.push($.K())
-                r.push(T.RunUpdate(LangData.get_lang("yGkN"), k.r, a, j, j, $.a6(), $.d0(), 100))
+                r.push(T.RunUpdate(LangData.get_lang("yGkN"), this_.r, a, j, j, $.a6(), $.d0(), 100))
                 q = LangData.get_lang("PGSN")
                 p = new T.MPlr()
-                p.cO(k.r)
+                p.cO(this_.r)
                 r.push(T.RunUpdate(q, p, a, j, j, 0, 1000, 100))
                 return true
             }
@@ -18413,12 +18424,12 @@ T.SklZombie.prototype = {
         this.r.S.j(0, this)
     },
     bS(a6, a7, a8) {
-        var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, a3, a4 = this,
+        var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, dies, kills, b, a, a0, a1, a2, a3, this_ = this,
             a5 = null
-        if (!(a6 instanceof T.Minion) && (a7.n() & 63) < a4.f && a4.r.bw(a7)) {
+        if (!(a6 instanceof T.Minion) && (a7.n() & 63) < this_.f && this_.r.bw(a7)) {
             a6.r2.m(0, $.iJ(), new T.ZombieState())
-            s = H.as_string(a4.r.a) + "?" + H.as_string($.qZ())
-            r = a4.r
+            s = H.as_string(this_.r.a) + "?" + H.as_string($.qZ())
+            r = this_.r
             q = r.b
             r = r.c
             p = 0
@@ -18447,35 +18458,41 @@ T.SklZombie.prototype = {
             e = new Sgls.MList(t.k)
             e.c = e
             e.b = e
-            d = new Sgls.MList(t.l)
-            d.c = d
-            d.b = d
-            c = new Sgls.MList(t.m)
-            c.c = c
-            c.b = c
+            dies = new Sgls.MList(t.l)
+            dies.c = dies
+            dies.b = dies
+            kills = new Sgls.MList(t.m)
+            kills.c = kills
+            kills.b = kills
             b = t.i
             a = H.b([], b)
             a0 = H.b([], b)
             a1 = H.b([], b)
             b = H.b([], b)
             a2 = 0
-            a3 = new T.PlrZombie(s, q, r, a5, p, o, n, m, l, k, j, i, h, g, f, e, d, c, a, a0, a1, b, a2, a2, a2, $.W(), a2)
+            a3 = new T.PlrZombie(s, q, r, a5, p, o, n, m, l, k, j, i, h, g, f, e, dies, kills, a, a0, a1, b, a2, a2, a2, $.W(), a2)
             a3.a1(s, q, r, a5)
             a3.a6 = new T.cp(a3)
-            a3.aj = a4
-            a3.e = T.getMinionName(a4.r)
+            a3.aj = this_
+            a3.e = T.getMinionName(this_.r)
+            // sklZombieName
+            // 丧尸
             a3.r = LangData.get_lang("KYSn")
-            r = a4.r
+            r = this_.r
             a3.y = r.y
             r.L.j(0, a3.a6)
             a3.az()
             a3.l = a7.n() * $.C()
-            a4.r.y.aZ(a3)
+            this_.r.y.aZ(a3)
             r = a8.a
             r.push($.K())
-            r.push(T.RunUpdate(LangData.get_lang("apma"), a4.r, a6, a5, a5, $.a6(), $.d0(), 100))
+            // sklZombie
+            // [0][召唤亡灵]
+            r.push(T.RunUpdate(LangData.get_lang("apma"), this_.r, a6, a5, a5, $.a6(), $.d0(), 100))
+            // sklZombied
+            // [2]变成了[1]
             q = LangData.get_lang("kXba")
-            s = a4.r
+            s = this_.r
             a2 = a3.fx
             b = new T.HPlr(a2)
             b.a = a3.e
@@ -19483,8 +19500,8 @@ var t = (function rtii() {
         aU: find_type("ag<@>"),
         d5: find_type("aT<m*,u*>"),
         aH: find_type("w<@>"),
-        l: find_type("c<aF*>"), // MList <T>
-        m: find_type("c<fy*>"),
+        l: find_type("c<aF*>"), // MList<DieEntry>
+        m: find_type("c<fy*>"), // MList<KillEntry>
         G: find_type("c<bq*>"),
         k: find_type("c<ah*>"),
         e: find_type("c<aB*>"),
@@ -21558,5 +21575,5 @@ function main() {
 }
 
 main();
-logger.debug("反混淆", LangData.get_lang("cHVa"));
+logger.debug("反混淆", LangData.get_lang("KYSn"));
 // logger.debug("running main:", main()) // 执行main函数
