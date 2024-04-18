@@ -4672,7 +4672,7 @@ var A = {
             s = a.r2
             r = t.f5.a(s.h(0, $.na()))
             if (r == null) {
-                r = new T.dI(0)
+                r = new T.MinionCount(0)
                 s.m(0, $.na(), r)
             }
             s = H.as_string(a.a) + "?"
@@ -6145,7 +6145,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        dI: function dI(a) {
+        MinionCount: function dI(a) {
             this.b = a
         },
         PlrClone: function PlrClone(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
@@ -14306,7 +14306,7 @@ T.SklCharm.prototype = {
         n.push(T.RunUpdate(C.String.B(LangData.get_lang("yjhn"), $.nd()), this_.r, o, p, p, $.cZ(), 1000, 100))
     }
 }
-T.dI.prototype = {
+T.MinionCount.prototype = {
     gT() {
         return 0
     }
@@ -19360,7 +19360,7 @@ LangData.k_.prototype = {
         T.SlowState, T.UpdateStateImpl, T.RinickModifierUpdateState
         ]
     )
-    inherit_many(T.IMeta, [T.dI, T.FireState, T.SklSlimeSpawnState, T.MergeState, T.ZombieState])
+    inherit_many(T.IMeta, [T.MinionCount, T.FireState, T.SklSlimeSpawnState, T.MergeState, T.ZombieState])
     inherit_many(T.Plr, [T.PlrClone, T.aM, T.PlrBoss, T.PlrBoost, T.PlrBossTest, T.PlrBossTest2, T.PlrEx, T.PlrSeed_])
     inherit_many(T.PostDefendEntry, [T.CurseState, T.PostDefendImpl, T.ik])
     inherit_many(T.bq, [T.PoisonState, T.PostActionImpl])
