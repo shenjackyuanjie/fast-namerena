@@ -7551,7 +7551,7 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        hY: function hY() { },
+        ZombieState: function hY() { },
         SklZombie: function SklZombie(a) {
             var _ = this
             _.e = false
@@ -18399,7 +18399,7 @@ T.fX.prototype = {
         s[r] = C.d.P(s[r], $.t())
     }
 }
-T.hY.prototype = {
+T.ZombieState.prototype = {
     gT() {
         return 0
     }
@@ -18412,7 +18412,7 @@ T.SklZombie.prototype = {
         var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, a3, a4 = this,
             a5 = null
         if (!(a6 instanceof T.aM) && (a7.n() & 63) < a4.f && a4.r.bw(a7)) {
-            a6.r2.m(0, $.iJ(), new T.hY())
+            a6.r2.m(0, $.iJ(), new T.ZombieState())
             s = H.as_string(a4.r.a) + "?" + H.as_string($.qZ())
             r = a4.r
             q = r.b
@@ -19360,7 +19360,7 @@ LangData.k_.prototype = {
         T.SlowState, T.UpdateStateImpl, T.RinickModifierUpdateState
         ]
     )
-    inherit_many(T.x, [T.dI, T.FireState, T.SklSlimeSpawnState, T.MergeState, T.hY])
+    inherit_many(T.x, [T.dI, T.FireState, T.SklSlimeSpawnState, T.MergeState, T.ZombieState])
     inherit_many(T.Plr, [T.PlrClone, T.aM, T.PlrBoss, T.PlrBoost, T.PlrBossTest, T.PlrBossTest2, T.PlrEx, T.PlrSeed_])
     inherit_many(T.PostDefendEntry, [T.CurseState, T.PostDefendImpl, T.ik])
     inherit_many(T.bq, [T.PoisonState, T.PostActionImpl])
