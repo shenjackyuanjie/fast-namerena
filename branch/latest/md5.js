@@ -7371,7 +7371,7 @@ var A = {
         jX: function jX() { },
         BoostPassive: function BoostPassive() { }, // boostPassive
         jY: function jY() { },
-        x: function x() { },
+        IMeta: function x() { },
         UpdateStateEntry: function aZ() { },
         cB: function cB() { },
         bH: function bH() { },
@@ -17768,7 +17768,7 @@ T.jY.prototype = {
     },
     $S: 15
 }
-T.x.prototype = {
+T.IMeta.prototype = {
     K(a, b) { }
 }
 T.UpdateStateEntry.prototype = {}
@@ -19246,7 +19246,7 @@ LangData.k_.prototype = {
         S.fK,
         HtmlRenderer.inner_render, HtmlRenderer.jT, HtmlRenderer.ax,
         Sgls.a_, Sgls.MEntry,
-        T.x, T.Plr, T.CovidMeta, T.Engine, T.b7, T.IPlr, T.HDamage, T.HRecover, T.aX, T.aq, T.bG, T.Weapon, T.DummyChargeMeta]
+        T.IMeta, T.Plr, T.CovidMeta, T.Engine, T.b7, T.IPlr, T.HDamage, T.HRecover, T.aX, T.aq, T.bG, T.Weapon, T.DummyChargeMeta]
     )
     inherit_many(J.Interceptor, [J.fw, J.cs, J.bE, J.JsArray, J.JsNumber, J.JsString, H.dJ, H.ab, W.fn, W.Blob, W.CanvasRenderingContext2D, W.i6, W.bb, W.ja, W.jb, W.o, W.c4, W.jL, W.ig, W.il, W.iy, W.iA])
     inherit_many(J.bE, [J.PlainJavaScriptObject, J.UnknownJavaScriptObject, J.JavaScriptFunction])
@@ -19360,7 +19360,7 @@ LangData.k_.prototype = {
         T.SlowState, T.UpdateStateImpl, T.RinickModifierUpdateState
         ]
     )
-    inherit_many(T.x, [T.dI, T.FireState, T.SklSlimeSpawnState, T.MergeState, T.ZombieState])
+    inherit_many(T.IMeta, [T.dI, T.FireState, T.SklSlimeSpawnState, T.MergeState, T.ZombieState])
     inherit_many(T.Plr, [T.PlrClone, T.aM, T.PlrBoss, T.PlrBoost, T.PlrBossTest, T.PlrBossTest2, T.PlrEx, T.PlrSeed_])
     inherit_many(T.PostDefendEntry, [T.CurseState, T.PostDefendImpl, T.ik])
     inherit_many(T.bq, [T.PoisonState, T.PostActionImpl])
@@ -19403,8 +19403,8 @@ LangData.k_.prototype = {
     mixin(W.iz, W.cr)
     mixin(W.iA, P.z)
     mixin(W.iB, W.cr)
-    mixin(T.ij, T.x)
-    mixin(T.ik, T.x)
+    mixin(T.ij, T.IMeta)
+    mixin(T.ik, T.IMeta)
 })()
 var init = {
     typeUniverse: {
