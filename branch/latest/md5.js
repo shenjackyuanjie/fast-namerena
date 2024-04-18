@@ -7487,7 +7487,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        e0: function e0(a, b) {
+        ShieldStat_: function e0(a, b) {
             var _ = this
             _.r = a
             _.x = b
@@ -18270,7 +18270,7 @@ T.SklReraise.prototype = {
     },
     $iaF: 1
 }
-T.e0.prototype = {
+T.ShieldStat_.prototype = {
     ga4() {
         return $.pP()
     },
@@ -18300,16 +18300,16 @@ T.e0.prototype = {
 }
 T.SklShield.prototype = {
     aN(a, b, c, d) {
-        var s, r, q, p = this
-        if (p.f > 0) {
-            s = t.eb.a(p.r.r2.h(0, $.lR()))
+        var s, r, q, this_ = this
+        if (this_.f > 0) {
+            s = t.eb.a(this_.r.r2.h(0, $.lR()))
             if (s == null) {
-                r = p.r
-                s = new T.e0(r, 0)
+                r = this_.r
+                s = new T.ShieldStat_(r, 0)
                 r.r2.m(0, $.lR(), s)
-                p.r.y2.j(0, s)
+                this_.r.y2.j(0, s)
             }
-            r = p.f
+            r = this_.f
             q = s.x
             if (r >= q) s.x = q + (c.ax($.i() + C.JsInt.P(r * $.B(), $.C())) + $.i())
         }
@@ -19401,7 +19401,7 @@ LangData.k_.prototype = {
     inherit(T.cp, T.aF)
     inherit(T.ij, T.bH)
     inherit(T.dV, T.ij)
-    inherit(T.e0, T.ShieldStat)
+    inherit(T.ShieldStat_, T.ShieldStat)
     inherit_many(T.Weapon, [T.BossWeapon, T.WeaponDeathNote, T.GuiYue, T.NoWeapon, T.RinickModifier, T.WeaponS11, T.kv])
     inherit(T.hy, T.SklMarioReraise)
     inherit(T.hc, T.SklCounter)
