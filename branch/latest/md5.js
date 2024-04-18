@@ -5865,7 +5865,7 @@ var A = {
             // T.v4
             var s = a.e,
                 r = 0
-            return T.nX(s[r], b.e[r])
+            return T.DummyRunUpdates(s[r], b.e[r])
         },
         RunUpdate_init(message, caster, c, d, e, f, delay0, delay1) {
             var s = new T.RunUpdate(f, 0, 0, message, caster, c, e, d)
@@ -6018,7 +6018,7 @@ var A = {
             }
             return $.ao()
         },
-        nX(a, b) {
+        DummyRunUpdates(a, b) {
             var s = a.Q - b.Q
             if (s !== 0) return s
             return J.lV(a.e, b.e)
@@ -16650,6 +16650,7 @@ T.Engine.prototype = {
                             player.I = player.gbT()
                         }
                     o = H.b(i.slice(0), H._arrayInstanceType(i))
+                    // T.DummyRunUpdates_init
                     C.Array.bb(o, T.v4())
                     this_.d = o
                     for (n = o.length, m = t.i, l = this_.e, h = 0; h < o.length; o.length === n || (0, H.F)(o), ++h) {
@@ -19243,7 +19244,7 @@ LangData.k_.prototype = {
     install_static_tearoff(T, "vb", 5, null, ["$5"], ["tI"], 1, 0)
     install_static_tearoff(T, "v8", 5, null, ["$5"], ["tB"], 1, 0)
     install_static_tearoff(T, "va", 5, null, ["$5"], ["tG"], 1, 0)
-    static_2(T, "v4", "rT", 63)
+    static_2(T, "v4", "DummyRunUpdates_init", 63)
     static_2(T, "mD", "nX", 64)
     static_2(T, "v5", "t6", 43)
     install_static_tearoff(T, "ad", 5, null, ["$5"], ["tx"], 1, 0)
