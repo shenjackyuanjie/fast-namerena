@@ -7299,7 +7299,7 @@ var A = {
             _.r = g
             _.x = h
         },
-        dX: function dX(a, b, c, d, e, f, g, h) {
+        RunUpdateWin: function dX(a, b, c, d, e, f, g, h) {
             var _ = this
             _.a = a
             _.b = b
@@ -13323,7 +13323,7 @@ HtmlRenderer.inner_render.prototype = {
             r = C.d.aI(s.scrollHeight) - s.clientHeight
             a = r - C.d.aI(s.scrollTop) < 50 || C.d.aI(s.scrollTop) / r > 0.95
         }
-        if (this_.cx instanceof T.dX) {
+        if (this_.cx instanceof T.RunUpdateWin) {
             this_.fQ()
         } else {
             s = this_.db
@@ -16731,7 +16731,7 @@ T.Engine.prototype = {
                     logger.debug("getting win from T.fo.O")
                     i = 0
                     h = $.lJ()
-                    g = new T.dX(i, h, 100, j, k, null, null, null)
+                    g = new T.RunUpdateWin(i, h, 100, j, k, null, null, null)
                     g.aK(j, k, null, null, null, i, h, 100)
                     n.a.push(g)
                     this_.cx = true
@@ -17026,7 +17026,7 @@ T.aX.prototype = {
     }
 }
 T.h2.prototype = {}
-T.dX.prototype = {}
+T.RunUpdateWin.prototype = {}
 T.aq.prototype = {
     k(a) {
         // return H.e(this.a)
@@ -19394,7 +19394,7 @@ LangData.k_.prototype = {
     inherit(T.BossSlime2, T.PlrBossSlime)
     inherit(T.SklYuriControl, T.SklCharm)
     inherit_many(T.IPlr, [T.NPlr, T.HPlr, T.MPlr, T.DPlr])
-    inherit_many(T.aX, [T.h2, T.dX])
+    inherit_many(T.aX, [T.h2, T.RunUpdateWin])
     inherit(T.fY, T.cB)
     inherit(T.PostDamageImpl, T.PostDamageEntry)
     inherit_many(T.PreActionEntry, [T.PreActionImpl, T.RinickModifierPreAction])
