@@ -5861,7 +5861,8 @@ var A = {
             })
             return P._asyncStartSync($async$c2, async_completer)
         },
-        rT(a, b) {
+        DummyRunUpdates_init(a, b) {
+            // T.v4
             var s = a.e,
                 r = 0
             return T.nX(s[r], b.e[r])
