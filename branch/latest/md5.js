@@ -1327,7 +1327,7 @@ var A = {
                 get_receiver = H.BoundClosure_receiverOf
             switch (is_super_call ? -1 : arity) {
                 case 0:
-                    throw H.wrap_expression(new H.h3("Intercepted function with no arguments."))
+                    throw H.wrap_expression(new H.RuntimeError("Intercepted function with no arguments."))
                 case 1:
                     return function (e, f, g) {
                         return function () {
@@ -1754,7 +1754,7 @@ var A = {
             this.a = a
             this.b = b
         },
-        h3: function h3(a) {
+        RuntimeError: function h3(a) {
             this.a = a
         },
         aT: function aT(a) {
@@ -9167,7 +9167,7 @@ H.BoundClosure.prototype = {
         return "Closure '" + H.as_string(this.$_name) + "' of " + ("Instance of '" + H.as_string(H.jZ(this.a)) + "'")
     }
 }
-H.h3.prototype = {
+H.RuntimeError.prototype = {
     k(a) {
         return "RuntimeError: " + this.a
     }
@@ -19252,7 +19252,7 @@ LangData.k_.prototype = {
     inherit_many(J.bE, [J.PlainJavaScriptObject, J.UnknownJavaScriptObject, J.JavaScriptFunction])
     inherit(J.JsUnmodifiableArray, J.JsArray)
     inherit_many(J.JsNumber, [J.JsInt, J.jF])
-    inherit_many(P.O, [H.fz, H.dO, P.bc, H.JsNoSuchMethodError, H.hU, H.h3, H.i9, P.f2, P.fL, P.aS, P.hW, P.hS, P.bJ, P.fh, P.CyclicInitializationError])
+    inherit_many(P.O, [H.fz, H.dO, P.bc, H.JsNoSuchMethodError, H.hU, H.RuntimeError, H.i9, P.f2, P.fL, P.aS, P.hW, P.hS, P.bJ, P.fh, P.CyclicInitializationError])
     inherit(P.dE, P.ev)
     inherit_many(P.dE, [H.cJ, W.az])
     inherit(H.ff, H.cJ)
