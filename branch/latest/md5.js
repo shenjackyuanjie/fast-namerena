@@ -5867,7 +5867,7 @@ var A = {
             return T.nX(s[r], b.e[r])
         },
         RunUpdate_init(message, caster, c, d, e, f, delay0, delay1) {
-            var s = new T.aX(f, 0, 0, message, caster, c, e, d)
+            var s = new T.RunUpdate(f, 0, 0, message, caster, c, e, d)
             // var s = new T.aX(f, delay0, delay1, message, caster, c, e, d)
             // s.aK(message, caster, c, d, e, f, delay0, delay1)
             s.aK(message, caster, c, d, e, f, 0, 0)
@@ -7277,7 +7277,7 @@ var A = {
         HRecover: function bm(a) {
             this.a = a
         },
-        aX: function aX(a, b, c, d, e, f, g, h) {
+        RunUpdate: function aX(a, b, c, d, e, f, g, h) {
             var _ = this
             _.a = a
             _.b = b
@@ -15009,14 +15009,14 @@ T.SklRapid.prototype = {
                 if (q === 0) {
                     k = LangData.get_lang("yGEA")
                     j = g.r
-                    i = new T.aX(0, e, 100, k, j, p, f, f)
+                    i = new T.RunUpdate(0, e, 100, k, j, p, f, f)
                     i.aK(k, j, p, f, f, 0, e, 100)
                     c.push(i)
                 } else {
                     k = LangData.get_lang("dRsa")
                     j = g.r
                     i = $.i()
-                    h = new T.aX(i, e, 100, k, j, p, f, f)
+                    h = new T.RunUpdate(i, e, 100, k, j, p, f, f)
                     h.aK(k, j, p, f, f, i, e, 100)
                     c.push(h)
                 }
@@ -15468,7 +15468,7 @@ T.SklThunder.prototype = {
                         // [0][回避]了攻击(雷击)
                         p = LangData.get_lang("EORN")
                         n = k.r
-                        m = new T.aX(0, i, 100, p, h, n, j, j)
+                        m = new T.RunUpdate(0, i, 100, p, h, n, j, j)
                         m.aK(p, h, n, j, j, 0, i, 100)
                         updates.push(m)
                     } else {
@@ -15476,7 +15476,7 @@ T.SklThunder.prototype = {
                         // [0][回避]了攻击
                         p = LangData.get_lang("BtqN")
                         n = k.r
-                        m = new T.aX(0, i, 100, p, h, n, j, j)
+                        m = new T.RunUpdate(0, i, 100, p, h, n, j, j)
                         m.aK(p, h, n, j, j, 0, i, 100)
                         updates.push(m)
                     }
@@ -15855,7 +15855,7 @@ T.CovidState.prototype = {
                             // sklAttack
                             // [0]发起攻击
                             p = LangData.get_lang("EYAn")
-                            m = new T.aX(0, i, 100, p, r, o, j, j)
+                            m = new T.RunUpdate(0, i, 100, p, r, o, j, j)
                             m.aK(p, r, o, j, j, 0, i, 100)
                             d.a.push(m)
                             o.a3(l, false, q, k.gf9(), c, d)
@@ -16964,7 +16964,7 @@ T.HRecover.prototype = {
         return J.b4(this.a)
     }
 }
-T.aX.prototype = {
+T.RunUpdate.prototype = {
     aK(a, b, c, d, e, f, g, h) {
         var s, r, q, this_ = this,
             tmp = this_.e
@@ -18788,7 +18788,7 @@ T.SklRinickModifierClone.prototype = {
             l = new T.HPlr(m)
             l.a = p.e
             l.d = m
-            m = new T.aX(0, 1000, 100, o, n, l, j, j)
+            m = new T.RunUpdate(0, 1000, 100, o, n, l, j, j)
             m.aK(o, n, l, j, j, 0, 1000, 100)
             s.push(m)
         }
@@ -19267,7 +19267,7 @@ LangData.k_.prototype = {
         S.fK,
         HtmlRenderer.inner_render, HtmlRenderer.jT, HtmlRenderer.ax,
         Sgls.a_, Sgls.MEntry,
-        T.IMeta, T.Plr, T.CovidMeta, T.Engine, T.b7, T.IPlr, T.HDamage, T.HRecover, T.aX, T.aq, T.bG, T.Weapon, T.DummyChargeMeta]
+        T.IMeta, T.Plr, T.CovidMeta, T.Engine, T.b7, T.IPlr, T.HDamage, T.HRecover, T.RunUpdate, T.aq, T.bG, T.Weapon, T.DummyChargeMeta]
     )
     inherit_many(J.Interceptor, [J.fw, J.cs, J.bE, J.JsArray, J.JsNumber, J.JsString, H.dJ, H.ab, W.fn, W.Blob, W.CanvasRenderingContext2D, W.i6, W.bb, W.ja, W.jb, W.o, W.c4, W.jL, W.ig, W.il, W.iy, W.iA])
     inherit_many(J.bE, [J.PlainJavaScriptObject, J.UnknownJavaScriptObject, J.JavaScriptFunction])
@@ -19394,7 +19394,7 @@ LangData.k_.prototype = {
     inherit(T.BossSlime2, T.PlrBossSlime)
     inherit(T.SklYuriControl, T.SklCharm)
     inherit_many(T.IPlr, [T.NPlr, T.HPlr, T.MPlr, T.DPlr])
-    inherit_many(T.aX, [T.RunUpdateCancel, T.RunUpdateWin])
+    inherit_many(T.RunUpdate, [T.RunUpdateCancel, T.RunUpdateWin])
     inherit(T.fY, T.cB)
     inherit(T.PostDamageImpl, T.PostDamageEntry)
     inherit_many(T.PreActionEntry, [T.PreActionImpl, T.RinickModifierPreAction])
