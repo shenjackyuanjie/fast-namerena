@@ -7680,7 +7680,7 @@ var A = {
             _.r = c
         },
         ij: function ij() { },
-        ik: function ik() { }
+        ShieldStat: function ik() { }
     },
     V = {
         // 评分
@@ -19057,7 +19057,7 @@ T.kv.prototype = {
     }
 }
 T.ij.prototype = {}
-T.ik.prototype = {}
+T.ShieldStat.prototype = {}
 
 LangData.SuperRC4.prototype = {
     // MARK: RC4 init
@@ -19382,7 +19382,7 @@ LangData.k_.prototype = {
     )
     inherit_many(T.IMeta, [T.MinionCount, T.FireState, T.SklSlimeSpawnState, T.MergeState, T.ZombieState])
     inherit_many(T.Plr, [T.PlrClone, T.Minion, T.PlrBoss, T.PlrBoost, T.PlrBossTest, T.PlrBossTest2, T.PlrEx, T.PlrSeed_])
-    inherit_many(T.PostDefendEntry, [T.CurseState, T.PostDefendImpl, T.ik])
+    inherit_many(T.PostDefendEntry, [T.CurseState, T.PostDefendImpl, T.ShieldStat])
     inherit_many(T.PostActionEntry, [T.PoisonState, T.PostActionImpl])
     inherit_many(T.Minion, [T.PlrShadow, T.PlrSummon, T.PlrZombie])
     inherit_many(T.PlrBoss,
@@ -19401,7 +19401,7 @@ LangData.k_.prototype = {
     inherit(T.cp, T.aF)
     inherit(T.ij, T.bH)
     inherit(T.dV, T.ij)
-    inherit(T.e0, T.ik)
+    inherit(T.e0, T.ShieldStat)
     inherit_many(T.Weapon, [T.BossWeapon, T.WeaponDeathNote, T.GuiYue, T.NoWeapon, T.RinickModifier, T.WeaponS11, T.kv])
     inherit(T.hy, T.SklMarioReraise)
     inherit(T.hc, T.SklCounter)
@@ -19424,7 +19424,7 @@ LangData.k_.prototype = {
     mixin(W.iA, P.z)
     mixin(W.iB, W.cr)
     mixin(T.ij, T.IMeta)
-    mixin(T.ik, T.IMeta)
+    mixin(T.ShieldStat, T.IMeta)
 })()
 var init = {
     typeUniverse: {
