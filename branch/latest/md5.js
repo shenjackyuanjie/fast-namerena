@@ -7378,7 +7378,7 @@ var A = {
         PostDefendEntry: function aB() { },
         ah: function ah() { },
         PreActionEntry: function aV() { },
-        bq: function bq() { },
+        PostActionEntry: function bq() { },
         aF: function aF() { },
         UpdateStateImpl: function UpdateStateImpl(a) {
             var _ = this
@@ -17781,7 +17781,7 @@ T.bH.prototype = {}
 T.PostDefendEntry.prototype = {}
 T.ah.prototype = {}
 T.PreActionEntry.prototype = {}
-T.bq.prototype = {}
+T.PostActionEntry.prototype = {}
 T.aF.prototype = {}
 T.UpdateStateImpl.prototype = {
     ar(a) {
@@ -19341,7 +19341,7 @@ LangData.k_.prototype = {
     inherit(P.kx, P.kw)
     inherit(P.cF, P.p)
     inherit(HtmlRenderer.fW, HtmlRenderer.ax)
-    inherit_many(Sgls.MEntry, [T.Skill, T.UpdateStateEntry, T.PostDefendEntry, T.bq, T.cB, T.bH, T.ah, T.PreActionEntry, T.aF])
+    inherit_many(Sgls.MEntry, [T.Skill, T.UpdateStateEntry, T.PostDefendEntry, T.PostActionEntry, T.cB, T.bH, T.ah, T.PreActionEntry, T.aF])
     inherit_many(T.Skill,
         [T.ActionSkill, T.SklAokijiDefend, T.SklCovidDefend, T.SklIkarugaDefend,
         T.SklLazyDefend, T.SklMarioReraise, T.SklSlimeSpawn,
@@ -19366,7 +19366,7 @@ LangData.k_.prototype = {
     inherit_many(T.IMeta, [T.MinionCount, T.FireState, T.SklSlimeSpawnState, T.MergeState, T.ZombieState])
     inherit_many(T.Plr, [T.PlrClone, T.Minion, T.PlrBoss, T.PlrBoost, T.PlrBossTest, T.PlrBossTest2, T.PlrEx, T.PlrSeed_])
     inherit_many(T.PostDefendEntry, [T.CurseState, T.PostDefendImpl, T.ik])
-    inherit_many(T.bq, [T.PoisonState, T.PostActionImpl])
+    inherit_many(T.PostActionEntry, [T.PoisonState, T.PostActionImpl])
     inherit_many(T.Minion, [T.PlrShadow, T.PlrSummon, T.PlrZombie])
     inherit_many(T.PlrBoss,
         [T.PlrBossAokiji, T.PlrBossConan, T.PlrBossCovid, T.PlrBossIkaruga,
