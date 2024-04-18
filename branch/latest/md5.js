@@ -5607,7 +5607,7 @@ var A = {
             if (b.r2.h(0, $.ck()) == null && (d.n() & 63) + 1 < c) T.j7(a, b, $.bg(), d, e)
         },
         nO(a, b) {
-            var s = new T.dB(a, b, 0)
+            var s = new T.LazyState(a, b, 0)
             s.fy = new T.PostActionImpl(s)
             s.go = new T.UpdateStateImpl(s)
             s.id = new T.PreActionImpl(s)
@@ -6847,7 +6847,7 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        dB: function dB(a, b, c) {
+        LazyState: function dB(a, b, c) {
             var _ = this
             _.fr = a
             _.fx = b
@@ -16015,7 +16015,7 @@ T.PlrBossLazy.prototype = {
         this.k1.push(new T.SklLazyDefend(r))
     }
 }
-T.dB.prototype = {
+T.LazyState.prototype = {
     gT() {
         return 0
     },
@@ -19354,7 +19354,7 @@ LangData.k_.prototype = {
         T.SklRapid, T.SklRevive, T.SklPossess, T.SklShadow, T.SklSlow,
         T.SklExplode, T.SklSummon, T.SklThunder,
         T.SklAokijiIceAge, T.SklConan, T.CovidState, T.SklCovidAttack, T.SklIkarugaAttack,
-        T.dB, T.SklLazyAttack, T.SklMarioGet, T.SklSaitama, T.SklAttack,
+        T.LazyState, T.SklLazyAttack, T.SklMarioGet, T.SklSaitama, T.SklAttack,
         T.SklSimpleAttack, T.SkillVoid, T.SklDeathNote, T.SklRinickModifierClone, T.SklS11]
     )
     inherit_many(T.UpdateStateEntry,
