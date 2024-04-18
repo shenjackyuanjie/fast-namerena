@@ -7512,7 +7512,7 @@ var A = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        fX: function fX(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
+        PlrZombie: function fX(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
             var _ = this
             _.a6 = _.aj = null
             _.a = a
@@ -18381,7 +18381,7 @@ T.SkillVoid.prototype = {
         return
     }
 }
-T.fX.prototype = {
+T.PlrZombie.prototype = {
     gap() {
         return this.aj.r
     },
@@ -18455,7 +18455,7 @@ T.SklZombie.prototype = {
             a1 = H.b([], b)
             b = H.b([], b)
             a2 = 0
-            a3 = new T.fX(s, q, r, a5, p, o, n, m, l, k, j, i, h, g, f, e, d, c, a, a0, a1, b, a2, a2, a2, $.W(), a2)
+            a3 = new T.PlrZombie(s, q, r, a5, p, o, n, m, l, k, j, i, h, g, f, e, d, c, a, a0, a1, b, a2, a2, a2, $.W(), a2)
             a3.a1(s, q, r, a5)
             a3.a6 = new T.cp(a3)
             a3.aj = a4
@@ -19364,7 +19364,7 @@ LangData.k_.prototype = {
     inherit_many(T.Plr, [T.PlrClone, T.aM, T.PlrBoss, T.PlrBoost, T.PlrBossTest, T.PlrBossTest2, T.PlrEx, T.PlrSeed_])
     inherit_many(T.PostDefendEntry, [T.CurseState, T.PostDefendImpl, T.ik])
     inherit_many(T.bq, [T.PoisonState, T.PostActionImpl])
-    inherit_many(T.aM, [T.PlrShadow, T.PlrSummon, T.fX])
+    inherit_many(T.aM, [T.PlrShadow, T.PlrSummon, T.PlrZombie])
     inherit_many(T.PlrBoss,
         [T.PlrBossAokiji, T.PlrBossConan, T.PlrBossCovid, T.PlrBossIkaruga,
         T.PlrBossLazy, T.PlrBossMario, T.PlrBossMosquito, T.PlrBossSaitama,
