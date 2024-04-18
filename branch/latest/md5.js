@@ -4666,19 +4666,19 @@ var A = {
             s.y = new T.PostActionImpl(s)
             return s
         },
-        fD(a) {
+        getMinionName(plr) {
             var s, r, q
-            for (s = t.fM; s.b(a);) a = a.gap()
-            s = a.r2
+            for (s = t.fM; s.b(plr);) plr = plr.gap()
+            s = plr.r2
             r = t.f5.a(s.h(0, $.na()))
             if (r == null) {
                 r = new T.MinionCount(0)
                 s.m(0, $.na(), r)
             }
-            s = H.as_string(a.a) + "?"
+            s = H.as_string(plr.a) + "?"
             q = r.b
             r.b = q + 1
-            return s + H.as_string(q) + "@" + H.as_string(a.b)
+            return s + H.as_string(q) + "@" + H.as_string(plr.b)
         },
         init_PlrClone(owner) {
             var s, r, q, p, o, n, m, l, k, j, i, h, g, f = owner.a,
@@ -4726,7 +4726,7 @@ var A = {
             g = new T.PlrClone(f, e, d, c, b, a, a0, a1, a2, a3, s, r, q, p, o, n, m, l, j, i, h, k, g, g, g, $.W(), g)
             g.a1(f, e, d, c)
             g.cm = owner
-            g.e = T.fD(owner instanceof T.PlrClone ? g.a6 = owner.a6 : g.a6 = owner)
+            g.e = T.getMinionName(owner instanceof T.PlrClone ? g.a6 = owner.a6 : g.a6 = owner)
             f = owner.t
             f = H.b(f.slice(0), H._arrayInstanceType(f))
             g.t = f
@@ -5737,7 +5737,7 @@ var A = {
             g = new T.BossSlime2(a2, f, a3, a4, e, null, d, c, b, a, a0, a1, s, r, q, p, o, n, m, l, j, i, h, k, g, g, g, $.W(), g)
             g.a1(a3, a4, e, null)
             g.av(a3, a4)
-            g.e = T.fD(a2)
+            g.e = T.getMinionName(a2)
             g.eV()
             return g
         },
@@ -15189,7 +15189,7 @@ T.SklShadow.prototype = {
         a4.a1(shadow_name, p, q, a6)
         a4.a6 = new T.cp(a4)
         a4.aj = this_
-        a4.e = T.fD(this_.r)
+        a4.e = T.getMinionName(this_.r)
         a4.r = LangData.get_lang("VdSN")
         q = this_.r
         a4.y = q.y
@@ -15414,7 +15414,7 @@ T.SklSummon.prototype = {
             summoned_plr.a1(s, q, r, a4)
             summoned_plr.a6 = new T.cp(summoned_plr)
             summoned_plr.aj = this_
-            summoned_plr.e = T.fD(this_.r)
+            summoned_plr.e = T.getMinionName(this_.r)
             this_.fr = summoned_plr
             // sklSummonName
             // 使魔
@@ -18459,7 +18459,7 @@ T.SklZombie.prototype = {
             a3.a1(s, q, r, a5)
             a3.a6 = new T.cp(a3)
             a3.aj = a4
-            a3.e = T.fD(a4.r)
+            a3.e = T.getMinionName(a4.r)
             a3.r = LangData.get_lang("KYSn")
             r = a4.r
             a3.y = r.y
