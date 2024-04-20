@@ -3555,7 +3555,7 @@ var A = {
             return P.Timer_impl(s < 0 ? 0 : s, b)
         },
         Timer_impl(a, b) {
-            var s = new P.l8()
+            var s = new P._TimerImpl()
             s.e8(a, b)
             return s
         },
@@ -3873,7 +3873,7 @@ var A = {
         kD: function kD(a) {
             this.a = a
         },
-        l8: function l8() { },
+        _TimerImpl: function l8() { },
         _TimerImpl_internalCallback: function l9(a, b) {
             this.a = a
             this.b = b
@@ -9693,12 +9693,12 @@ P.kB.prototype = {
     $S: 22
 }
 P._AsyncRun__initializeScheduleImmediate_closure.prototype = {
-    $1(a) {
-        var s, r
-        this.a.a = a
-        s = this.b
-        r = this.c
-        s.firstChild ? s.removeChild(r) : s.appendChild(r)
+    $1(callback) {
+        var t1, t2
+        this.a.a = callback
+        t1 = this.b
+        t2 = this.c
+        t1.firstChild ? t1.removeChild(t2) : t1.appendChild(t2)
     },
     $S: 27
 }
@@ -9714,7 +9714,7 @@ P.kD.prototype = {
     },
     $S: 18
 }
-P.l8.prototype = {
+P._TimerImpl.prototype = {
     e8(a, b) {
         if (run_env.from_code) {
             // b.$0()
@@ -9739,18 +9739,17 @@ P._TimerImpl_internalCallback.prototype = {
 }
 P.i_.prototype = {
     bM(a, b) {
-        var s, r = this
-        if (!r.b) r.a.cS(b)
+        var s, this_ = this
+        if (!this_.b) this_.a.cS(b)
         else {
-            s = r.a
-            if (r.$ti.i("bl<1>").b(b)) s.cW(b)
+            s = this_.a
+            if (this_.$ti.i("bl<1>").b(b)) s.cW(b)
             else s.c2(b)
         }
     },
     cj(a, b) {
         var s
         if (b == null) { b = P.AsyncError_defaultStackTrace(a) }
-        // console.error(a, b)
         s = this.a
         if (this.b) s.be(a, b)
         else s.cT(a, b)
@@ -19263,7 +19262,7 @@ LangData.k_.prototype = {
     inherit_many(P.Object,
         [H.m8, J.Interceptor, J.db, P.O, P.ev, P.L, H.cv, P.fv, H.du, H.hV, H.kh, H.NullThrownFromJavaScriptException, H.ExceptionAndStackTrace, H.eE, H.c_, P.aU, H.jK, H.fA,
         H.JSSyntaxRegExp, H.ew, H.kz, H.bK, H.l3, H.Rti, H.ib, H.iu,
-        P.l8, P.i_, P.f3, P.i4, P.cN,
+        P._TimerImpl, P.i_, P.f3, P.i4, P.cN,
         P._Future, P.i0, P.em, P.hO, P.hP, P.im, P.i1, P.i3, P.i7, P.ii, P.io, P.lf, P.eM, P.kV, P.ie, P.z, P.dY, P.fg, P.js, P.lc, P.lb, P.dq,
         P.Duration, P.fM, P.el, P.kG, P.jm, P.N, P.iq, P.cH,
         W.j8, W.m5, W.cP, W.cr, W.dN, W.eD, W.is, W.dv, W.kE, W.l_, W.ix,
