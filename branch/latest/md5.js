@@ -3747,7 +3747,7 @@ var A = {
                 s.a.$0()
             }
         },
-        uD() {
+        _startMicrotaskLoop() {
             $.ms = true
             try {
                 P._microtaskLoop()
