@@ -8,7 +8,8 @@ ON_CF = os.getenv("CF_PAGES") == "1"
 
 if ON_CF:
     print("Running on Cloudflare Pages, trying to git fetch --all")
-    run(["git", "fetch", "--all"], check=False)
+    result = run(["git", "fetch", "--all"], check=False)
+    print(f"git fetch --all: {result.stdout}")
 
 
 def get_env_info() -> dict[str, str]:
