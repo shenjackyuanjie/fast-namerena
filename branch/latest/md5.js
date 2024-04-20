@@ -9235,16 +9235,16 @@ H.JsLinkedHashMap.prototype = {
         var s, r, q = this
         if (typeof b == "string") {
             s = q.b
-            q.cQ(s == null ? q.b = q.ca() : s, b, c)
+            q.cQ(s == null ? q.b = q._newHashTable() : s, b, c)
         } else if (typeof b == "number" && (b & 0x3ffffff) === b) {
             r = q.c
-            q.cQ(r == null ? q.c = q.ca() : r, b, c)
+            q.cQ(r == null ? q.c = q._newHashTable() : r, b, c)
         } else q.f2(b, c)
     },
     f2(a, b) {
         var s, r, q, p = this,
             o = p.d
-        if (o == null) o = p.d = p.ca()
+        if (o == null) o = p.d = p._newHashTable()
         s = p.bQ(a)
         r = p.bG(o, s)
         if (r == null) p.cd(o, s, [p.c_(a, b)])
