@@ -3737,7 +3737,7 @@ var A = {
             if (t.J.b(a)) return a
             throw H.wrap_expression(P.da(a, "onError", u.c))
         },
-        uw() {
+        _microtaskLoop() {
             var s, r
             for (s = $.cR; s != null; s = $.cR) {
                 $.eO = null
@@ -3750,7 +3750,7 @@ var A = {
         uD() {
             $.ms = true
             try {
-                P.uw()
+                P._microtaskLoop()
             } finally {
                 $.eO = null
                 $.ms = false
