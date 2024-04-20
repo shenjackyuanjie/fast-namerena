@@ -51,11 +51,13 @@ def get_env_info() -> dict[str, str]:
     env_info["message"] = message.stdout.strip()
     # git tag
     if ON_CF:
-        tag = "cf_pages"
+        tag = "cf_pages" or run(
+            ["git", "describe", "--tags"], capture_output=True, text=True, encoding="utf-8"
+        ).stdout.split("-")[0]
     else:
         tag = run(
             ["git", "describe", "--tags"], capture_output=True, text=True, encoding="utf-8"
-        ).stdout
+        ).stdout.split("-")[0]
     env_info["tag"] = tag.strip()
     return env_info
 
@@ -94,7 +96,7 @@ if __name__ == "__main__":
             border = border_template.format(f"#{hash_color:06x}")
 
             # git 信息:
-            version_info = f"{file_branch_name}/{branch}:{tag}<br/>{message}"
+            version_info = f"{file_branch_name}/{branch}:{tag}-{commit[:6]}<br/>{message}"
             marker = marker_template.format(version_info)
 
             print(f"Branch: {file_branch_name}\n{border}\n{marker}\n")
@@ -104,7 +106,7 @@ if __name__ == "__main__":
             border = border_template.format("greenyellow")
 
             # git 信息:
-            version_info = f"{branch}:{tag}"
+            version_info = f"{branch}:{tag}-{commit[:6]}"
             marker = marker_template.format(version_info)
             print(f"Master: {border}\n{marker}\n")
 
