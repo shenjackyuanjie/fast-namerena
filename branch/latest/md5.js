@@ -19250,7 +19250,7 @@ LangData.k_.prototype = {
     install_static_tearoff(T, "v8", 5, null, ["$5"], ["tB"], 1, 0)
     install_static_tearoff(T, "va", 5, null, ["$5"], ["tG"], 1, 0)
     static_2(T, "v4", "DummyRunUpdates_init", 63)
-    static_2(T, "mD", "nX", 64)
+    static_2(T, "mD", "DummyRunUpdates", 64)
     static_2(T, "v5", "t6", 43)
     install_static_tearoff(T, "ad", 5, null, ["$5"], ["tx"], 1, 0)
     install_static_tearoff(T, "oH", 5, null, ["$5"], ["tz"], 1, 0)
