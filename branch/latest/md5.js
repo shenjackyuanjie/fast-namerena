@@ -3692,7 +3692,7 @@ var A = {
                     if ((e & 15) === 8) new P.kR(r, f, o).$0()
                     else if (p) {
                         if ((e & 1) !== 0) new P._Future__propagateToListeners_handleValueCallback(r, l).$0()
-                    } else if ((e & 2) !== 0) new P.kP(f, r).$0()
+                    } else if ((e & 2) !== 0) new P._Future__propagateToListeners_handleError(f, r).$0()
                     if (i != null) $.P = i
                     e = r.c
                     if (s.b(e)) {
@@ -3966,7 +3966,7 @@ var A = {
             this.a = a
             this.b = b
         },
-        kP: function kP(a, b) {
+        _Future__propagateToListeners_handleError: function kP(a, b) {
             this.a = a
             this.b = b
         },
@@ -10093,7 +10093,7 @@ P._Future__propagateToListeners_handleValueCallback.prototype = {
     },
     $S: 0
 }
-P.kP.prototype = {
+P._Future__propagateToListeners_handleError.prototype = {
     $0() {
         var s, r, q, p, o, n, m, l, k = this
         try {
@@ -19320,7 +19320,7 @@ LangData.k_.prototype = {
     inherit(H.NativeTypedArrayOfInt, H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin_FixedLengthListMixin)
     inherit_many(H.NativeTypedArrayOfInt, [H.fE, H.fF, H.fG, H.fH, H.fI, H.dL, H.cx])
     inherit(H.eI, H.i9)
-    inherit_many(H.j5, [P.kC, P.kD, P._TimerImpl_internalCallback, P.jp, P.kH, P.kO, P.kM, P.kJ, P.kN, P.kI, P.kR, P._Future__propagateToListeners_handleValueCallback, P.kP, P.kf, P.l2, P.kW, P.lo, P.kY, P.km, P.kl, X.je, X.j9, HtmlRenderer.send_win_data, Sgls.k4])
+    inherit_many(H.j5, [P.kC, P.kD, P._TimerImpl_internalCallback, P.jp, P.kH, P.kO, P.kM, P.kJ, P.kN, P.kI, P.kR, P._Future__propagateToListeners_handleValueCallback, P._Future__propagateToListeners_handleError, P.kf, P.l2, P.kW, P.lo, P.kY, P.km, P.kl, X.je, X.j9, HtmlRenderer.send_win_data, Sgls.k4])
     inherit(P.cg, P.i4)
     inherit(P.cK, P.im)
     inherit(P.eF, P.em)
