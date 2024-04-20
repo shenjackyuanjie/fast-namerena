@@ -3907,7 +3907,7 @@ var A = {
             this.a = a
             this.$ti = b
         },
-        cN: function cN(a, b, c, d, e) {
+        _FutureListener: function cN(a, b, c, d, e) {
             var _ = this
             _.a = null
             _.b = a
@@ -9809,7 +9809,7 @@ P.cg.prototype = {
         s.cS(b)
     }
 }
-P.cN.prototype = {
+P._FutureListener.prototype = {
     f6(a) {
         if ((this.c & 15) !== 6) return true
         return this.b.b.cv(this.d, a.a)
@@ -9839,7 +9839,7 @@ P._Future.prototype = {
         } else if (b != null) b = P._registerErrorHandler(b, q)
         s = new P._Future(q, c.i("U<0>"))
         r = b == null ? 1 : 3
-        this.c0(new P.cN(s, r, a, b, this.$ti.i("@<1>").aL(c).i("cN<1,2>")))
+        this.c0(new P._FutureListener(s, r, a, b, this.$ti.i("@<1>").aL(c).i("cN<1,2>")))
         return s
     },
     fI(a, b) {
@@ -9847,7 +9847,7 @@ P._Future.prototype = {
     },
     d7(a, b, c) {
         var s = new P._Future($.P, c.i("U<0>"))
-        this.c0(new P.cN(s, 19, a, b, this.$ti.i("@<1>").aL(c).i("cN<1,2>")))
+        this.c0(new P._FutureListener(s, 19, a, b, this.$ti.i("@<1>").aL(c).i("cN<1,2>")))
         return s
     },
     ex(a) {
@@ -19266,7 +19266,7 @@ LangData.k_.prototype = {
     inherit_many(P.Object,
         [H.m8, J.Interceptor, J.db, P.O, P.ev, P.L, H.cv, P.fv, H.du, H.hV, H.kh, H.NullThrownFromJavaScriptException, H.ExceptionAndStackTrace, H.eE, H.c_, P.aU, H.jK, H.fA,
         H.JSSyntaxRegExp, H.ew, H.kz, H.bK, H.l3, H.Rti, H.ib, H.iu,
-        P._TimerImpl, P.i_, P.f3, P.i4, P.cN,
+        P._TimerImpl, P.i_, P.f3, P.i4, P._FutureListener,
         P._Future, P.i0, P.em, P.hO, P.hP, P.im, P.i1, P.i3, P.i7, P.ii, P.io, P.lf, P.eM, P.kV, P.ie, P.z, P.dY, P.fg, P.js, P.lc, P.lb, P.dq,
         P.Duration, P.fM, P.el, P.kG, P.jm, P.N, P.iq, P.cH,
         W.j8, W.m5, W.cP, W.cr, W.dN, W.eD, W.is, W.dv, W.kE, W.l_, W.ix,
