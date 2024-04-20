@@ -4034,7 +4034,7 @@ var A = {
             this.a = a
             this.b = b
         },
-        kX: function kX() { },
+        _RootZone: function kX() { },
         kY: function kY(a, b) {
             this.a = a
             this.b = b
@@ -10348,7 +10348,7 @@ P.lo.prototype = {
     },
     $S: 0
 }
-P.kX.prototype = {
+P._RootZone.prototype = {
     fE(a) {
         var s, r, q
         try {
@@ -19330,7 +19330,7 @@ LangData.k_.prototype = {
     inherit(P.i5, P.i3)
     inherit(P.er, P.i7)
     inherit(P.eG, P.ii)
-    inherit(P.kX, P.lf)
+    inherit(P._RootZone, P.lf)
     inherit(P.eC, P.eM)
     inherit(P.eu, P.eC)
     inherit(P.fi, P.hP)
@@ -19647,7 +19647,7 @@ var t = (function rtii() {
     C.e = new P.kj()
     C.E = new P.kn()
     C.F = new P.kT()
-    C.f = new P.kX()
+    C.f = new P._RootZone()
     C.G = new P.iq()
     C.I = new P.Duration(0)
     C.L = new P.jJ(null)
