@@ -9366,7 +9366,7 @@ H.JsLinkedHashMap.prototype = {
     ei(a, b) {
         return this.bp(a, b) != null
     },
-    ca() {
+    _newHashTable() {
         var s = "<non-identifier-key>",
             r = Object.create(null)
         this.cd(r, s, r)
