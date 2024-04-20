@@ -864,7 +864,7 @@ var A = {
         },
         tc(a) {
             var s, r, q, p
-            if (a instanceof P.Object) return H.aH(H.instanceType(a), null)
+            if (a instanceof P.Object) return H._rtiToString(H.instanceType(a), null)
             if (J.cV(a) === C.J || t.bI.b(a)) {
                 s = C.p(a)
                 r = s !== "Object" && s !== ""
@@ -877,7 +877,7 @@ var A = {
                     if (r) return p
                 }
             }
-            return H.aH(H.instanceType(a), null)
+            return H._rtiToString(H.instanceType(a), null)
         },
         nY(a) {
             var s, r, q, p, o = a.length
@@ -2167,11 +2167,11 @@ var A = {
             H._failedAsCheck(a, s)
         },
         _failedAsCheck(a, b) {
-            throw H.wrap_expression(H.u_(H._Error_compose(a, H.instanceOrFunctionType(a, b), H.aH(b, null))))
+            throw H.wrap_expression(H.u_(H._Error_compose(a, H.instanceOrFunctionType(a, b), H._rtiToString(b, null))))
         },
         _Error_compose(a, b, c) {
             var s = P.jh(a),
-                r = H.aH(b == null ? H.instanceType(a) : b, null)
+                r = H._rtiToString(b == null ? H.instanceType(a) : b, null)
             return s + ": type '" + H.as_string(r) + "' is not a subtype of type '" + H.as_string(c) + "'"
         },
         u_(a) {
@@ -2279,7 +2279,7 @@ var A = {
         },
         uB(a, b) {
             var s, r, q
-            for (s = "", r = "", q = 0; q < a.length; ++q, r = ", ") s += C.String.B(r, H.aH(a[q], b))
+            for (s = "", r = "", q = 0; q < a.length; ++q, r = ", ") s += C.String.B(r, H._rtiToString(a[q], b))
             return s
         },
         op(a4, a5, a6) {
@@ -2300,7 +2300,7 @@ var A = {
                         if (!(j === n)) h = j === m
                         else h = true
                     else h = true
-                    if (!h) l += C.String.B(" extends ", H.aH(j, a5))
+                    if (!h) l += C.String.B(" extends ", H._rtiToString(j, a5))
                 }
                 l += ">"
             } else {
@@ -2315,11 +2315,11 @@ var A = {
             c = d.length
             b = g.c
             a = b.length
-            a0 = H.aH(o, a5)
-            for (a1 = "", a2 = "", p = 0; p < e; ++p, a2 = a3) a1 += C.String.B(a2, H.aH(f[p], a5))
+            a0 = H._rtiToString(o, a5)
+            for (a1 = "", a2 = "", p = 0; p < e; ++p, a2 = a3) a1 += C.String.B(a2, H._rtiToString(f[p], a5))
             if (c > 0) {
                 a1 += a2 + "["
-                for (a2 = "", p = 0; p < c; ++p, a2 = a3) a1 += C.String.B(a2, H.aH(d[p], a5))
+                for (a2 = "", p = 0; p < c; ++p, a2 = a3) a1 += C.String.B(a2, H._rtiToString(d[p], a5))
                 a1 += "]"
             }
             if (a > 0) {
@@ -2327,7 +2327,7 @@ var A = {
                 for (a2 = "", p = 0; p < a; p += 3, a2 = a3) {
                     a1 += a2
                     if (b[p + 1]) a1 += "required "
-                    a1 += J.iN(H.aH(b[p + 2], a5), " ") + b[p]
+                    a1 += J.iN(H._rtiToString(b[p + 2], a5), " ") + b[p]
                 }
                 a1 += "}"
             }
@@ -2337,7 +2337,7 @@ var A = {
             }
             return l + "(" + a1 + ") => " + H.as_string(a0)
         },
-        aH(a, b) {
+        _rtiToString(a, b) {
             var s, r, q, p, o, n, m = a.y
             if (m === 5) return "erased"
             if (m === 2) return "dynamic"
@@ -2345,16 +2345,16 @@ var A = {
             if (m === 1) return "Never"
             if (m === 4) return "any"
             if (m === 6) {
-                s = H.aH(a.z, b)
+                s = H._rtiToString(a.z, b)
                 return s
             }
             if (m === 7) {
                 r = a.z
-                s = H.aH(r, b)
+                s = H._rtiToString(r, b)
                 q = r.y
                 return J.iN(q === 11 || q === 12 ? C.String.B("(", s) + ")" : s, "?")
             }
-            if (m === 8) return "FutureOr<" + H.as_string(H.aH(a.z, b)) + ">"
+            if (m === 8) return "FutureOr<" + H.as_string(H._rtiToString(a.z, b)) + ">"
             if (m === 9) {
                 p = H.uG(a.z)
                 o = a.Q
@@ -9671,7 +9671,7 @@ H.Rti.prototype = {
 H.ib.prototype = {}
 H.iu.prototype = {
     k(a) {
-        return H.aH(this.a, null)
+        return H._rtiToString(this.a, null)
     }
 }
 H.i9.prototype = {
