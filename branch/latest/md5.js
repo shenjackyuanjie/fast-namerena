@@ -2161,8 +2161,9 @@ var A = {
             if (a == null) return a
             // set run time info
             else if (s.b(a)) return a
-            logger.debug("faild nullable as check", a)
             console.log("faild nullable as check", a, s)
+            let stack = new Error().stack
+            console.log(stack)
             H._failedAsCheck(a, s)
         },
         _failedAsCheck(a, b) {
@@ -4861,9 +4862,9 @@ var A = {
         },
         create_player(name, clan_name, fgt, weapon_name) {
             // MARK: WTF 什么鬼这么长
-            var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, a3 = null
+            var team_name, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, a3 = null
             if (clan_name == $.nk()) {
-                s = 0
+                team_name = 0
                 r = $.T()
                 q = H.b([], t.q)
                 p = H.b([], t.H)
@@ -4901,14 +4902,14 @@ var A = {
                 b = H.b([], e)
                 e = H.b([], e)
                 a = 0
-                a = new T.PlrBossTest(name, clan_name, name, a3, s, r, q, p, o, n, m, l, k, j, i, h, g, f, d, c, b, e, a, a, a, $.W(), a)
+                a = new T.PlrBossTest(name, clan_name, name, a3, team_name, r, q, p, o, n, m, l, k, j, i, h, g, f, d, c, b, e, a, a, a, $.W(), a)
                 a.a1(name, clan_name, name, a3)
                 a.e4(name, clan_name, fgt)
                 return a
             }
             // MARK: BOSS INIT(上面也是)
             if (clan_name == $.qR()) {
-                s = 0
+                team_name = 0
                 r = $.T()
                 q = H.b([], t.q)
                 p = H.b([], t.H)
@@ -4946,15 +4947,15 @@ var A = {
                 b = H.b([], e)
                 e = H.b([], e)
                 a = 0
-                a = new T.PlrBossTest2(name, clan_name, name, a3, s, r, q, p, o, n, m, l, k, j, i, h, g, f, d, c, b, e, a, a, a, $.W(), a)
+                a = new T.PlrBossTest2(name, clan_name, name, a3, team_name, r, q, p, o, n, m, l, k, j, i, h, g, f, d, c, b, e, a, a, a, $.W(), a)
                 a.a1(name, clan_name, name, a3)
                 a.e5(name, clan_name)
                 return a
             }
             // MARK: 强评?
             // cl -> !
-            s = $.cl()
-            if (clan_name == s) {
+            team_name = $.cl()
+            if (clan_name == team_name) {
                 if (name == $.lQ()) {
                     r = 0
                     q = H.as_string(name) + H.as_string($.aD())
@@ -4996,9 +4997,9 @@ var A = {
                     a1 = H.b([], b)
                     b = H.b([], b)
                     a2 = 0
-                    a2 = new T.PlrBossMario(r, name, s, q, a3, p, o, n, m, l, k, j, i, h, g, f, e, d, c, a, a0, a1, b, a2, a2, a2, $.W(), a2)
-                    a2.a1(name, s, q, a3)
-                    a2.av(name, s)
+                    a2 = new T.PlrBossMario(r, name, team_name, q, a3, p, o, n, m, l, k, j, i, h, g, f, e, d, c, a, a0, a1, b, a2, a2, a2, $.W(), a2)
+                    a2.a1(name, team_name, q, a3)
+                    a2.av(name, team_name)
                     return a2
                 }
                 if (name == $.qP()) {
@@ -5041,9 +5042,9 @@ var A = {
                     a0 = H.b([], c)
                     c = H.b([], c)
                     a1 = 0
-                    a1 = new T.PlrBossSonic(name, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
-                    a1.a1(name, s, r, a3)
-                    a1.av(name, s)
+                    a1 = new T.PlrBossSonic(name, team_name, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                    a1.a1(name, team_name, r, a3)
+                    a1.av(name, team_name)
                     return a1
                 }
                 if (name == $.qo()) {
@@ -5086,9 +5087,9 @@ var A = {
                     a0 = H.b([], c)
                     c = H.b([], c)
                     a1 = 0
-                    a1 = new T.PlrBossMosquito(name, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
-                    a1.a1(name, s, r, a3)
-                    a1.av(name, s)
+                    a1 = new T.PlrBossMosquito(name, team_name, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                    a1.a1(name, team_name, r, a3)
+                    a1.av(name, team_name)
                     return a1
                 }
                 if (name == $.qY()) {
@@ -5131,12 +5132,12 @@ var A = {
                     a0 = H.b([], c)
                     c = H.b([], c)
                     a1 = 0
-                    a1 = new T.PlrBossYuri(name, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
-                    a1.a1(name, s, r, a3)
-                    a1.av(name, s)
+                    a1 = new T.PlrBossYuri(name, team_name, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                    a1.a1(name, team_name, r, a3)
+                    a1.av(name, team_name)
                     return a1
                 }
-                if (name == $.qO()) return T.rE(name, s)
+                if (name == $.qO()) return T.rE(name, team_name)
                 if (name == $.qh()) {
                     r = H.as_string(name) + H.as_string($.aD())
                     q = 0
@@ -5177,9 +5178,9 @@ var A = {
                     a0 = H.b([], c)
                     c = H.b([], c)
                     a1 = 0
-                    a1 = new T.PlrBossIkaruga(name, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
-                    a1.a1(name, s, r, a3)
-                    a1.av(name, s)
+                    a1 = new T.PlrBossIkaruga(name, team_name, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                    a1.a1(name, team_name, r, a3)
+                    a1.av(name, team_name)
                     return a1
                 }
                 if (name == $.qb()) {
@@ -5206,7 +5207,7 @@ var A = {
                     h.b = h
                     g = new Sgls.MList(t.e)
                     g.c = g
-                    g.b = g
+                    g.b = g 
                     f = new Sgls.MList(t.k)
                     f.c = f
                     f.b = f
@@ -5222,9 +5223,9 @@ var A = {
                     a0 = H.b([], c)
                     c = H.b([], c)
                     a1 = 0
-                    a1 = new T.PlrBossConan(name, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
-                    a1.a1(name, s, r, a3)
-                    a1.av(name, s)
+                    a1 = new T.PlrBossConan(name, team_name, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                    a1.a1(name, team_name, r, a3)
+                    a1.av(name, team_name)
                     return a1
                 }
                 if (name == $.q9()) {
@@ -5267,9 +5268,9 @@ var A = {
                     a0 = H.b([], c)
                     c = H.b([], c)
                     a1 = 0
-                    a1 = new T.PlrBossAokiji(name, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
-                    a1.a1(name, s, r, a3)
-                    a1.av(name, s)
+                    a1 = new T.PlrBossAokiji(name, team_name, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                    a1.a1(name, team_name, r, a3)
+                    a1.av(name, team_name)
                     return a1
                 }
                 if (name == $.d5()) {
@@ -5312,9 +5313,9 @@ var A = {
                     a0 = H.b([], c)
                     c = H.b([], c)
                     a1 = 0
-                    a1 = new T.PlrBossLazy(name, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
-                    a1.a1(name, s, r, a3)
-                    a1.av(name, s)
+                    a1 = new T.PlrBossLazy(name, team_name, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                    a1.a1(name, team_name, r, a3)
+                    a1.av(name, team_name)
                     return a1
                 }
                 // covid
@@ -5358,9 +5359,9 @@ var A = {
                     a0 = H.b([], c)
                     c = H.b([], c)
                     a1 = 0
-                    a1 = new T.PlrBossCovid(name, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
-                    a1.a1(name, s, r, a3)
-                    a1.av(name, s)
+                    a1 = new T.PlrBossCovid(name, team_name, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                    a1.a1(name, team_name, r, a3)
+                    a1.av(name, team_name)
                     return a1
                 }
                 if (name == $.qL()) {
@@ -5403,9 +5404,9 @@ var A = {
                     a0 = H.b([], c)
                     c = H.b([], c)
                     a1 = 0
-                    a1 = new T.PlrBossSaitama(name, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
-                    a1.a1(name, s, r, a3)
-                    a1.av(name, s)
+                    a1 = new T.PlrBossSaitama(name, team_name, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                    a1.a1(name, team_name, r, a3)
+                    a1.av(name, team_name)
                     return a1
                 }
                 r = $.ni()
@@ -5449,16 +5450,16 @@ var A = {
                     a0 = H.b([], c)
                     c = H.b([], c)
                     a1 = 0
-                    a1 = new T.PlrSeed(name, s, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
-                    a1.a1(name, s, r, a3)
+                    a1 = new T.PlrSeed(name, team_name, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                    a1.a1(name, team_name, r, a3)
                     r = a1.r = C.String.ay(name, $.X())
-                    s = $.C()
-                    $.vq = r.length > s && C.String.a8(r, s) === $.q0() ? $.pE() : $.mS()
+                    team_name = $.C()
+                    $.vq = r.length > team_name && C.String.a8(r, team_name) === $.q0() ? $.pE() : $.mS()
                     return a1
                 }
                 // boosted
                 if ($.nr().J(0, name)) {
-                    s = $.cl()
+                    team_name = $.cl()
                     r = $.nr().h(0, name)
                     q = 0
                     p = $.T()
@@ -5498,12 +5499,12 @@ var A = {
                     a0 = H.b([], c)
                     c = H.b([], c)
                     a1 = 0
-                    a1 = new T.PlrBoost(r, name, s, name, weapon_name, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
-                    a1.a1(name, s, name, weapon_name)
-                    a1.e1(name, s, r, weapon_name)
+                    a1 = new T.PlrBoost(r, name, team_name, name, weapon_name, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                    a1.a1(name, team_name, name, weapon_name)
+                    a1.e1(name, team_name, r, weapon_name)
                     return a1
                 }
-                s = $.cl()
+                team_name = $.cl()
                 r = 0
                 q = $.T()
                 p = H.b([], t.q)
@@ -5542,9 +5543,9 @@ var A = {
                 a = H.b([], d)
                 d = H.b([], d)
                 a0 = 0
-                a0 = new T.PlrEx(name, s, name, weapon_name, r, q, p, o, n, m, l, k, j, i, h, g, f, e, c, b, a, d, a0, a0, a0, $.W(), a0)
-                a0.a1(name, s, name, weapon_name)
-                a0.e2(name, s, name, weapon_name)
+                a0 = new T.PlrEx(name, team_name, name, weapon_name, r, q, p, o, n, m, l, k, j, i, h, g, f, e, c, b, a, d, a0, a0, a0, $.W(), a0)
+                a0.a1(name, team_name, name, weapon_name)
+                a0.e2(name, team_name, name, weapon_name)
                 return a0
             }
             return T.init_plr(name, clan_name, a3, weapon_name)
@@ -9815,9 +9816,9 @@ P._FutureListener.prototype = {
         var s, error_callback = this.e,
             q = null,
             t4 = this.b.b
-        if (t.C.b(error_callback)) 
+        if (t.C.b(error_callback))
             q = t4.fC(error_callback, a.a, a.b)
-        else 
+        else
             q = t4.cv(error_callback, a.a)
         try {
             t4 = q
@@ -10393,7 +10394,7 @@ P._RootZone.prototype = {
         return this.fB(a, t.z)
     },
     fF(a, b) {
-        if ($.P === C.f) 
+        if ($.P === C.f)
             return a.$1(b)
         return P._rootRun(null, null, this, a, b)
     },
@@ -10401,7 +10402,7 @@ P._RootZone.prototype = {
         return this.fF(a, b, t.z, t.z)
     },
     fD(a, b, c) {
-        if ($.P === C.f) 
+        if ($.P === C.f)
             return a.$2(b, c)
         return P._rootRunUnary(null, null, this, a, b, c)
     },
@@ -12629,112 +12630,117 @@ V.ProfileMain.prototype = {
         logger.debug("评分 输出")
         var async_goto = 0,
             async_completer = P._makeAsyncAwaitCompleter(t.d),
-            q, this_ = this,
-            o, n, this_b, l, k, j, round_count, h, g, f, get_result, d, c, b, a, a0, a1, a2, a3, a4
+            result, this_ = this,
+            update_list, n, this_b, l, k, j, round_count, h, g, f, engine_result, some_d, result_getter, b, a, a0, a1, a2, a3, outer_display
         var $async$O = P._wrapJsFunctionForAsync(function (async_error_code, async_result) {
             if (async_error_code === 1) return P.async_rethrow(async_result, async_completer)
-            while (true) switch (async_goto) {
-                case 0:
-                    a4 = this_.y
-                    if (a4.length !== 0) {
-                        q = C.Array.cu(a4, 0)
-                        async_goto = 1
-                        break
-                    }
-                    if (this_.ch >= this_.d) {
-                        q = null
-                        async_goto = 1
-                        break
-                    }
-                    a4 = this_.r
-                    o = t.v
-                    n = this_.z
-                    this_b = this_.b
-                    l = this_.a
-                    k = t.V
-                    j = t.D
-                    round_count = 0
-                case 3:
-                    if (!(round_count < 100)) {
-                        // 场数 >= 100
-                        async_goto = 4
-                        break
-                    }
-                    // 继续运行
-                    if (this_b.length === 1 && !this_.c) {
-                        console.log("this_b length === 1")
-                        h = H.b([
-                            [this_b[0], H.b(["" + this_.e++, l], k)], [H.b(["" + this_.e++, l], k), H.b(["" + this_.e++, l], k)]
-                        ], j)
-                    }
-                    else {
-                        console.log("this_b length !== 1")
-                        g = []
-                        h = H.b([this_b, g], j)
-                        for (f = 0; f < this_b.length; ++f) g.push(H.b(["" + this_.e++, l], k))
-                    }
-                    async_goto = 5
-                    return P._asyncAwait(T.start_main(h), $async$O)
-                case 5:
-                    get_result = async_result
-                    d = null
-                case 6:
-                    // if (!true) {
-                    //     async_goto = 8
-                    //     break
-                    // }
-                    async_goto = 9
-                    return P._asyncAwait(get_result.O(), $async$O)
-                case 9:
-                    c = async_result
-                    if (c == null) {
-                        async_goto = 8
-                        break
-                    }
-                    for (b = c.a, a = b.length, a0 = 0; a0 < b.length; b.length === a || (0, H.F)(b), ++a0) {
-                        a1 = b[a0]
-                        if (a1.a > 0) {
-                            a2 = a1.e
-                            a2 = a2 != null && a2.gb2() == this_.x
-                        } else a2 = false
-                        if (a2) {
-                            a3 = a1.d
-                            if (C.String.bA(a3, "[0]"))
-                            // a3.startWith("[0]")
-                                if (n.J(0, a3)) n.m(0, a3, n.h(0, a3) + 1)
-                                else n.m(0, a3, 1)
+            while (true) {
+                console.log("running case", async_goto)
+                switch (async_goto) {
+                    case 0:
+                        outer_display = this_.y
+                        if (outer_display.length !== 0) {
+                            result = C.Array.cu(outer_display, 0)
+                            async_goto = 1
+                            break
                         }
-                    }
-                case 7:
-                    d = c
-                    async_goto = 6
-                    break
-                case 8:
-                    // if (C.Array.w(a4, o.a(d.a[0]).e.gb2())) {
-                    if (a4.includes(o.a(d.a[0]).e.gb2())) {
-                        // 胜利场
-                        ++this_.Q
-                    };
-                    ++round_count;
-                    ++this_.ch
-                    // this.ch -> 运行场数
-                    async_goto = 3
-                    break
-                case 4:
-                    a4 = H.b([], t.U)
-                    o = H.b([], t.Y)
-                    // 实力评估中...[2]%
-                    // benchmarking
-                    a4.push(T.RunUpdate_init(LangData.get_lang("pkGN"), null, null, C.JsInt.ag(this_.ch, 100), null, 0, 0, 0))
-                    if (this_.ch >= this_.d) {
-                        // 阶段目标场数达到
-                        this_.eS()
-                    }
-                    q = new T.aq(a4, o)
-                    async_goto = 1
-                    break
-                case 1:
-                    return P._asyncReturn(q, async_completer)
+                        if (this_.ch >= this_.d) {
+                            result = null
+                            async_goto = 1
+                            break
+                        }
+                        outer_display = this_.r
+                        update_list = t.v
+                        n = this_.z
+                        this_b = this_.b
+                        l = this_.a
+                        k = t.V
+                        j = t.D
+                        round_count = 0
+                    case 3:
+                        console.log("start case 3")
+                        if (!(round_count < 100)) {
+                            // 场数 >= 100
+                            async_goto = 4
+                            break
+                        }
+                        // 继续运行
+                        if (this_b.length === 1 && !this_.c) {
+                            console.log("this_b length === 1")
+                            h = H.b([
+                                [this_b[0], H.b(["" + this_.e++, l], k)], [H.b(["" + this_.e++, l], k), H.b(["" + this_.e++, l], k)]
+                            ], j)
+                        }
+                        else {
+                            console.log("this_b length !== 1")
+                            g = []
+                            h = H.b([this_b, g], j)
+                            for (f = 0; f < this_b.length; ++f) g.push(H.b(["" + this_.e++, l], k))
+                        }
+                        async_goto = 5
+                        return P._asyncAwait(T.start_main(h), $async$O)
+                    case 5:
+                        console.log("start case 5")
+                        engine_result = async_result
+                        some_d = null
+                    case 6:
+                        console.log("start case 6")
+                        async_goto = 9
+                        return P._asyncAwait(engine_result.O(), $async$O)
+                    case 9:
+                        console.log("start case 9")
+                        result_getter = async_result
+                        if (result_getter == null) {
+                            async_goto = 8
+                            break
+                        }
+                        for (b = result_getter.a, a = b.length, a0 = 0; a0 < b.length; b.length === a || (0, H.F)(b), ++a0) {
+                            a1 = b[a0]
+                            if (a1.a > 0) {
+                                a2 = a1.e
+                                a2 = a2 != null && a2.gb2() == this_.x
+                            } else a2 = false
+                            if (a2) {
+                                a3 = a1.d
+                                if (a3.startsWith("[0]")) {
+                                    if (n.J(0, a3)) { n.m(0, a3, n.h(0, a3) + 1) }
+                                    else { n.m(0, a3, 1) }
+                                }
+                            }
+                        }
+                    case 7:
+                        console.log("start case 7")
+                        some_d = result_getter
+                        async_goto = 6
+                        break
+                    case 8:
+                        console.log("start case 8")
+                        console.log(outer_display, "\n", update_list, "\n", some_d)
+                        if (outer_display.includes(update_list.a(some_d.a[0]).e.gb2())) {
+                            // 胜利场
+                            ++this_.Q
+                        };
+                        ++round_count;
+                        ++this_.ch
+                        // this.ch -> 运行场数
+                        async_goto = 3
+                        break
+                    case 4:
+                        outer_display = H.b([], t.U)
+                        update_list = H.b([], t.Y)
+                        // 实力评估中...[2]%
+                        // benchmarking
+                        outer_display.push(T.RunUpdate_init(LangData.get_lang("pkGN"), null, null, C.JsInt.ag(this_.ch, 100), null, 0, 0, 0))
+                        if (this_.ch >= this_.d) {
+                            // 阶段目标场数达到
+                            this_.eS()
+                        }
+                        result = new T.aq(outer_display, update_list)
+                        async_goto = 1
+                        break
+                    case 1:
+                        return P._asyncReturn(result, async_completer)
+                }
             }
         })
         return P._asyncStartSync($async$O, async_completer)
@@ -12869,8 +12875,7 @@ X.ProfileFind.prototype = {
         }
     },
     O() {
-        // 另一个评分主循环
-        logger.debug("评分2 主循环")
+        logger.debug("搜索 主循环")
         var async_goto = 0,
             async_completer = P._makeAsyncAwaitCompleter(t.d),
             q, this_ = this,
@@ -12892,9 +12897,15 @@ X.ProfileFind.prototype = {
                         o = H.b([], t.Y)
                         e.push($.K())
                         if (d.length >>> 13 > 0) {
+                            // searchInvalid
+                            // 错误，目前最多支持8000人搜索
                             e.push(T.RunUpdate_init(LangData.get_lang("BUaa"), null, null, null, null, 0, 1000, 100))
                             this_.b = d.length + 1
-                        } else e.push(T.RunUpdate_init(LangData.get_lang("UZBn"), null, null, null, null, 0, 1000, 100))
+                        } else {
+                            // searchStart
+                            // 搜索开始...
+                            e.push(T.RunUpdate_init(LangData.get_lang("UZBn"), null, null, null, null, 0, 1000, 100))
+                        }
                         q = new T.aq(e, o)
                         async_goto = 1
                         break
@@ -21582,5 +21593,5 @@ function main() {
 }
 
 main();
-logger.debug("反混淆", LangData.get_lang("KYSn"));
+logger.debug("反混淆", LangData.get_lang("BUaa"));
 // logger.debug("running main:", main()) // 执行main函数
