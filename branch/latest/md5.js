@@ -3552,9 +3552,9 @@ var A = {
         },
         Timer__createTimer(a, b) {
             var s = C.JsInt.ag(a.a, 1000)
-            return P.Timer_impl(s < 0 ? 0 : s, b)
+            return P.Timerimpl(s < 0 ? 0 : s, b)
         },
-        Timer_impl(a, b) {
+        Timerimpl(a, b) {
             var s = new P._TimerImpl()
             s.e8(a, b)
             return s
