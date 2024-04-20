@@ -3571,7 +3571,7 @@ var A = {
         _asyncAwait(a, b) {
             P._awaitOnObject(a, b)
         },
-        async_return(a, b) {
+        _asyncReturn(a, b) {
             b.bM(0, a)
         },
         async_rethrow(a, b) {
@@ -5854,7 +5854,7 @@ var A = {
                         async_goto = 1
                     // break
                     case 1:
-                        return P.async_return(result, async_completer)
+                        return P._asyncReturn(result, async_completer)
                 }
             })
             return P._asyncStartSync($async$c2, async_completer)
@@ -8096,7 +8096,7 @@ var A = {
                                 LangData.load_lang(t.cF.a(C.C.bt(0, p)))
                             }
                         }
-                        return P.async_return(null, r)
+                        return P._asyncReturn(null, r)
                 }
             })
             return P._asyncStartSync($async$jv, r)
@@ -12491,7 +12491,7 @@ L.ProfileWinChance.prototype = {
                     async_goto = 1
                     break
                 case 1:
-                    return P.async_return(some_q, async_completer)
+                    return P._asyncReturn(some_q, async_completer)
             }
         })
         // let stack = new Error().stack
@@ -12551,7 +12551,7 @@ L.ProfileWinChance.prototype = {
                     l = P.List_List_of(new H.y(new H.a9(o, n), new L.iU(this_), l), true, l.i("M.E"))
                     C.Array.a5(l, H.fJ(p.buffer, 0, null))
                     A.eR(X.dc(l))
-                    return P.async_return(null, async_completer)
+                    return P._asyncReturn(null, async_completer)
             }
         })
         return P._asyncStartSync($async$ae, async_completer)
@@ -12734,7 +12734,7 @@ V.ProfileMain.prototype = {
                     async_goto = 1
                     break
                 case 1:
-                    return P.async_return(q, async_completer)
+                    return P._asyncReturn(q, async_completer)
             }
         })
         return P._asyncStartSync($async$O, async_completer)
@@ -12797,7 +12797,7 @@ V.ProfileMain.prototype = {
                     l = P.List_List_of(new H.y(new H.a9(o, n), new V.j1(this_), l), true, l.i("M.E"))
                     C.Array.a5(l, H.fJ(seed.buffer, 0, null))
                     A.eR(X.dc(l))
-                    return P.async_return(null, async_completer)
+                    return P._asyncReturn(null, async_completer)
             }
         })
         return P._asyncStartSync($async$ae, async_completer)
@@ -12994,7 +12994,7 @@ X.ProfileFind.prototype = {
                     async_goto = 1
                     break
                 case 1:
-                    return P.async_return(q, async_completer)
+                    return P._asyncReturn(q, async_completer)
             }
         })
         console.log("X.iW.O")
@@ -13021,7 +13021,7 @@ X.ProfileFind.prototype = {
                     m = P.List_List_of(new H.y(new H.a9(o, n), new X.iZ(this_), m), true, m.i("M.E"))
                     C.Array.a5(m, H.fJ(p.buffer, 0, null))
                     A.eR(X.dc(m))
-                    return P.async_return(null, async_completer)
+                    return P._asyncReturn(null, async_completer)
             }
         })
         return P._asyncStartSync($async$ae, async_completer)
@@ -13286,7 +13286,7 @@ HtmlRenderer.inner_render.prototype = {
                     }
                     this_.ft(C.Array.cu(o.a, 0))
                 case 1:
-                    return P.async_return(q, async_complete)
+                    return P._asyncReturn(q, async_complete)
             }
         })
         // console.log("输出 实力评分.ing")
@@ -13557,7 +13557,7 @@ HtmlRenderer.send_win_data.prototype = {
                     // if (from_node) {
                     //     // 怎么着输出一下 win_data
                     // }
-                    return P.async_return(null, r)
+                    return P._asyncReturn(null, r)
             }
         })
         return P._asyncStartSync($async$$0, r)
@@ -16667,7 +16667,7 @@ T.Engine.prototype = {
                     }
                     for (o = this_.c, n = o.length, h = 0; h < o.length; o.length === n || (0, H.F)(o), ++h) o[h].l = this_.b.n()
                 case 1:
-                    return P.async_return(q, async_completer)
+                    return P._asyncReturn(q, async_completer)
             }
         })
         return P._asyncStartSync($async$bD, async_completer)
@@ -16769,7 +16769,7 @@ T.Engine.prototype = {
                     async_goto = 1
                     break
                 case 1:
-                    return P.async_return(result_, async_completer)
+                    return P._asyncReturn(result_, async_completer)
             }
         })
         return P._asyncStartSync($async$O, async_completer)
@@ -16859,7 +16859,7 @@ T.Engine.prototype = {
                     o = P.List_List_of(new H.y(new H.a9(n, p), new T.ji(q), o), true, o.i("M.E"))
                     C.Array.a5(o, H.fJ(q.dx.buffer, 0, null))
                     A.eR(X.dc(o))
-                    return P.async_return(null, r)
+                    return P._asyncReturn(null, r)
             }
         })
         return P._asyncStartSync($async$cq, r)
@@ -17217,7 +17217,7 @@ T.Plr.prototype = {
             while (true) switch (s) {
                 case 0:
                     this_.az()
-                    return P.async_return(null, r)
+                    return P._asyncReturn(null, r)
             }
         })
         return P._asyncStartSync($async$cg, r)
@@ -21569,7 +21569,7 @@ function main() {
                 logger.debug("so just here?", async_goto, error_code)
             case 1:
                 logger.debug("返回中")
-                return P.async_return(q, async_completer)
+                return P._asyncReturn(q, async_completer)
             case 2:
                 return P.async_rethrow(async_result_1, async_completer)
         }
