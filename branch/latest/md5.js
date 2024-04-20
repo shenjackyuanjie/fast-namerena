@@ -7810,7 +7810,7 @@ var A = {
         jf: function jf() { },
         o: function o() { },
         fn: function fn() { },
-        cq: function cq() { },
+        File: function cq() { },
         fp: function fp() { },
         c4: function c4() { },
         jL: function jL() { },
@@ -11514,7 +11514,7 @@ W.fn.prototype = {
         // return receiver.addEventListener(type, listener, false)
     }
 }
-W.cq.prototype = {
+W.File.prototype = {
     $icq: 1
 }
 W.fp.prototype = {
@@ -19348,7 +19348,7 @@ LangData.k_.prototype = {
     )
     inherit(W.co, W.i6)
     inherit(W.dm, W.bb)
-    inherit(W.cq, W.Blob)
+    inherit(W.File, W.Blob)
     inherit_many(W.o, [W.c8, W.aY])
     inherit(W.bp, W.aY)
     inherit(W.ih, W.ig)
@@ -20973,7 +20973,7 @@ var t = (function rtii() {
         InputEvent: W.o,
         SubmitEvent: W.o,
         EventTarget: W.fn,
-        File: W.cq,
+        File: W.File,
         HTMLFormElement: W.fp,
         ImageData: W.c4,
         Location: W.jL,
