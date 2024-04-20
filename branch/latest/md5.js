@@ -2090,7 +2090,7 @@ var A = {
             a.b = c
             return a.b(b)
         },
-        uk(a) {
+        _installSpecializedAsCheck(a) {
             var s, r, this_ = this
             if (!H.isStrongTopType(this_)) {
                 if (!(this_ === t.c)) {
@@ -2111,7 +2111,6 @@ var A = {
                 }
             }
             this_.a = r
-            // logger.debug("进入 H.uk", r, r(a))
             return this_.a(a)
         },
         ln(a) {
@@ -2163,7 +2162,7 @@ var A = {
             // set run time info
             else if (s.b(a)) return a
             logger.debug("faild nullable as check", a)
-            console.log("faild nullable as check", a)
+            console.log("faild nullable as check", a, s)
             H._failedAsCheck(a, s)
         },
         _failedAsCheck(a, b) {
@@ -2428,7 +2427,7 @@ var A = {
             return q
         },
         _Universe__installTypeTests(a, b) {
-            b.a = H.uk
+            b.a = H._installSpecializedAsCheck
             b.b = H.ul
             return b
         },
