@@ -6185,14 +6185,14 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        SklClone: function SklClone(a) {
+        SklClone: function e4(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
         SklCloneCallback: function k9() { },
-        SklCritical: function SklCritical(a) {
+        SklCritical: function e5(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -6207,19 +6207,19 @@ var A = {
             _.Q = d
             _.c = _.b = _.a = null
         },
-        SklCurse: function SklCurse(a) {
+        SklCurse: function hf(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        SklDisperse: function SklDisperse(a) {
+        SklDisperse: function hh(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        SklExchange: function SklExchange(a) {
+        SklExchange: function hi(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -6228,13 +6228,13 @@ var A = {
         FireState: function c3(a) {
             this.b = a
         },
-        SklFire: function SklFire(a) {
+        SklFire: function cc(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        sklHalf: function sklHalf(a) {
+        sklHalf: function e7(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -6248,13 +6248,13 @@ var A = {
             _.Q = c
             _.c = _.b = _.a = null
         },
-        SklHaste: function SklHaste(a) {
+        SklHaste: function hk(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        SklHeal: function SklHeal(a) {
+        SklHeal: function e8(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -6270,13 +6270,13 @@ var A = {
             _.y = b
             _.c = _.b = _.a = null
         },
-        SklIce: function SklIce(a) {
+        SklIce: function e9(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        SklIron: function SklIron(a, b, c) {
+        SklIron: function ho(a, b, c) {
             var _ = this
             _.fy = _.fx = _.fr = null
             _.go = a
@@ -6293,25 +6293,25 @@ var A = {
             _.z = c
             _.c = _.b = _.a = null
         },
-        SklPoison: function SklPoison(a) {
+        SklPoison: function ht(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        SklQuake: function SklQuake(a) {
+        SklQuake: function hv(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        SklRapid: function SklRapid(a) {
+        SklRapid: function ec(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        SklRevive: function SklRevive(a) {
+        SklRevive: function hx(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -6362,20 +6362,20 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        SklShadow: function SklShadow(a) {
+        SklShadow: function hB(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        SlowState: function SlowState(a, b) {
+        SlowState: function eh(a, b) {
             var _ = this
             _.x = a
             _.y = null
             _.z = b
             _.c = _.b = _.a = null
         },
-        SklSlow: function SklSlow(a) {
+        SklSlow: function hG(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -12635,7 +12635,7 @@ V.ProfileMain.prototype = {
         var $async$O = P._wrapJsFunctionForAsync(function (async_error_code, async_result) {
             if (async_error_code === 1) return P.async_rethrow(async_result, async_completer)
             while (true) {
-                console.log("running case", async_goto)
+                // console.log("running case", async_goto)
                 switch (async_goto) {
                     case 0:
                         outer_display = this_.y
@@ -12658,7 +12658,7 @@ V.ProfileMain.prototype = {
                         j = t.D
                         round_count = 0
                     case 3:
-                        console.log("start case 3")
+                        // console.log("start case 3")
                         if (!(round_count < 100)) {
                             // 场数 >= 100
                             async_goto = 4
@@ -12666,13 +12666,13 @@ V.ProfileMain.prototype = {
                         }
                         // 继续运行
                         if (this_b.length === 1 && !this_.c) {
-                            console.log("this_b length === 1")
+                            // console.log("this_b length === 1")
                             h = H.b([
                                 [this_b[0], H.b(["" + this_.e++, l], k)], [H.b(["" + this_.e++, l], k), H.b(["" + this_.e++, l], k)]
                             ], j)
                         }
                         else {
-                            console.log("this_b length !== 1")
+                            // console.log("this_b length !== 1")
                             g = []
                             h = H.b([this_b, g], j)
                             for (f = 0; f < this_b.length; ++f) g.push(H.b(["" + this_.e++, l], k))
@@ -12680,15 +12680,15 @@ V.ProfileMain.prototype = {
                         async_goto = 5
                         return P._asyncAwait(T.start_main(h), $async$O)
                     case 5:
-                        console.log("start case 5")
+                        // console.log("start case 5")
                         engine_result = async_result
                         some_d = null
                     case 6:
-                        console.log("start case 6")
+                        // console.log("start case 6")
                         async_goto = 9
                         return P._asyncAwait(engine_result.O(), $async$O)
                     case 9:
-                        console.log("start case 9")
+                        // console.log("start case 9")
                         result_getter = async_result
                         if (result_getter == null) {
                             async_goto = 8
@@ -12709,13 +12709,13 @@ V.ProfileMain.prototype = {
                             }
                         }
                     case 7:
-                        console.log("start case 7")
+                        // console.log("start case 7")
                         some_d = result_getter
                         async_goto = 6
                         break
                     case 8:
-                        console.log("start case 8")
-                        console.log(outer_display, "\n", update_list, "\n", some_d)
+                        // console.log("start case 8")
+                        // console.log(outer_display, "\n", update_list, "\n", some_d)
                         if (outer_display.includes(update_list.a(some_d.a[0]).e.gb2())) {
                             // 胜利场
                             ++this_.Q
