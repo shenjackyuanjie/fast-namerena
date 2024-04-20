@@ -13091,7 +13091,7 @@ HtmlRenderer.inner_render.prototype = {
         q.textContent = LangData.get_lang("NosN")
         s.appendChild(q)
 
-        profiler = this_.c
+        let profiler = this_.c
         if (profiler.gbu(profiler) != null) {
             // MARK: 获取是否有 error
             // 有 error 就加上去 (没啥意义, 默认为 null)
