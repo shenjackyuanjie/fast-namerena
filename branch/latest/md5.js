@@ -3578,17 +3578,17 @@ var A = {
             b.cj(H.unwrap_Exception(a), H.getTraceFromException(a))
         },
         _awaitOnObject(object, body_function) {
-            var s, r, q = new P._awaitOnObject_closure(body_function),
+            var s, future, q = new P._awaitOnObject_closure(body_function),
                 p = new P._awaitOnObject_closure0(body_function)
             if (object instanceof P._Future) object.d7(q, p, t.z)
             else {
                 s = t.z
                 if (t.h.b(object)) object.cz(q, p, s)
                 else {
-                    r = new P._Future($.P, t.eI)
-                    r.a = 8
-                    r.c = object
-                    r.d7(q, p, s)
+                    future = new P._Future($.P, t.eI)
+                    future.a = 8
+                    future.c = object
+                    future.d7(q, p, s)
                 }
             }
         },
@@ -3689,7 +3689,7 @@ var A = {
                     if (i !== j) $.P = j
                     else i = null
                     e = e.c
-                    if ((e & 15) === 8) new P.kR(r, f, o).$0()
+                    if ((e & 15) === 8) new P._Future__propagateToListeners_handleWhenCompleteCallback(r, f, o).$0()
                     else if (p) {
                         if ((e & 1) !== 0) new P._Future__propagateToListeners_handleValueCallback(r, l).$0()
                     } else if ((e & 2) !== 0) new P._Future__propagateToListeners_handleError(f, r).$0()
@@ -3954,7 +3954,7 @@ var A = {
             this.b = b
             this.c = c
         },
-        kR: function kR(a, b, c) {
+        _Future__propagateToListeners_handleWhenCompleteCallback: function kR(a, b, c) {
             this.a = a
             this.b = b
             this.c = c
@@ -10030,7 +10030,7 @@ P.kI.prototype = {
     },
     $S: 0
 }
-P.kR.prototype = {
+P._Future__propagateToListeners_handleWhenCompleteCallback.prototype = {
     $0() {
         var s, r, q, p, o, n, m = this,
             l = null
@@ -19319,7 +19319,7 @@ LangData.k_.prototype = {
     inherit(H.NativeTypedArrayOfInt, H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin_FixedLengthListMixin)
     inherit_many(H.NativeTypedArrayOfInt, [H.fE, H.fF, H.fG, H.fH, H.fI, H.dL, H.cx])
     inherit(H.eI, H.i9)
-    inherit_many(H.j5, [P.kC, P.kD, P._TimerImpl_internalCallback, P.jp, P.kH, P.kO, P.kM, P.kJ, P.kN, P.kI, P.kR, P._Future__propagateToListeners_handleValueCallback, P._Future__propagateToListeners_handleError, P.kf, P.l2, P.kW, P.lo, P.kY, P.km, P.kl, X.je, X.j9, HtmlRenderer.send_win_data, Sgls.k4])
+    inherit_many(H.j5, [P.kC, P.kD, P._TimerImpl_internalCallback, P.jp, P.kH, P.kO, P.kM, P.kJ, P.kN, P.kI, P._Future__propagateToListeners_handleWhenCompleteCallback, P._Future__propagateToListeners_handleValueCallback, P._Future__propagateToListeners_handleError, P.kf, P.l2, P.kW, P.lo, P.kY, P.km, P.kl, X.je, X.j9, HtmlRenderer.send_win_data, Sgls.k4])
     inherit(P.cg, P.i4)
     inherit(P.cK, P.im)
     inherit(P.eF, P.em)
