@@ -16526,12 +16526,12 @@ T.Engine.prototype = {
         var async_goto = 0,
             async_completer = P._makeAsyncAwaitCompleter(t.z),
             q, this_ = this,
-            o, n, m, l, k, j, i, h, g, f, runner, d, c, b, a, a0, a1, player, a3, a4, a5, a6, a7, a8, a9, b0, b1, b2, b3
+            o, n, m, l, k, j, i, h, g, f, runner, d, c, b, a, a0, a1, player, a3, a4, a5, a6, a7, a8, a9, b0, b1, b2, seed_names
         var $async$bD = P._wrapJsFunctionForAsync(function (async_error_code, async_result) {
             if (async_error_code === 1) return P.async_rethrow(async_result, async_completer)
             while (true) switch (async_goto) {
                 case 0:
-                    b3 = H.b([], t.V)
+                    seed_names = H.b([], t.V)
                     for (o = this_.x, n = o.length, m = t.eG, l = this_.r, k = this_.z, j = t.L, i = this_.a, h = 0; h < o.length; o.length === n || (0, H.F)(o), ++h) {
                         g = o[h]
                         f = H.b([], j)
@@ -16559,7 +16559,7 @@ T.Engine.prototype = {
                                     }
                                     // a2 = a ? T.init_boss(b.h(c, 0), b.h(c, $.i()), this_, a1) : T.init_plr(b.h(c, 0), b.h(c, $.i()), e.b, a1)
                                     if (player instanceof T.PlrSeed_) { // PlrSeed
-                                        b3.push(player.e)
+                                        seed_names.push(player.e)
                                         k.push(player)
                                         continue
                                     }
@@ -16605,9 +16605,9 @@ T.Engine.prototype = {
                     o = l.gad(l)
                     a7 = P.List_List_of(o, true, H._instanceType(o).i("L.E"))
                     C.Array.aJ(a7)
-                    if (b3.length !== 0) {
+                    if (seed_names.length !== 0) {
                         a8 = H.b(a7.slice(0), H._arrayInstanceType(a7))
-                        C.Array.a5(a8, b3)
+                        C.Array.a5(a8, seed_names)
                         C.Array.aJ(a8)
                     } else {
                         a8 = a7
