@@ -5207,7 +5207,7 @@ var A = {
                     h.b = h
                     g = new Sgls.MList(t.e)
                     g.c = g
-                    g.b = g 
+                    g.b = g
                     f = new Sgls.MList(t.k)
                     f.c = f
                     f.b = f
@@ -5826,6 +5826,7 @@ var A = {
             if (o.length !== 0) c.push(o)
             return c
         },
+        // Engine start!
         start_main(target) {
             var async_goto = 0,
                 async_completer = P._makeAsyncAwaitCompleter(t.eF),
@@ -8306,10 +8307,6 @@ var A = {
             _.r = 3
             _.x = randomer
             _.y = 2
-            // 既然加速之后就直接 2000
-            // 直接初始化为 2000 如何
-            // _.y = 2000
-            // 当我没说, 没用
             _.Q = _.z = null
             _.ch = 0
             _.cx = null
@@ -12601,23 +12598,23 @@ V.ProfileMain.prototype = {
     },
     dZ(a, b) {
         // 什么奇怪的算法?
-        var s, r, q, p, o, n, plr, this_ = this,
+        var s, lst, q, p, o, n, plr, this_ = this,
             names = this_.b
         // if (k.length === 2 && J.Y(J.J(k[0], 0), J.J(k[1], 0)) && J.Y(J.J(k[0], 1), J.J(k[1], 1))) {
         if (names.length === 2 && (names[0][0] == names[1][0]) && (names[0][1] == names[1][1])) {
             names.pop()
             this_.c = true
         }
-        for (s = names.length, r = this_.f, q = this_.r, p = 0; p < names.length; names.length === s || (0, H.F)(names), ++p) {
+        for (s = names.length, lst = this_.f, q = this_.r, p = 0; p < names.length; names.length === s || (0, H.F)(names), ++p) {
             o = names[p]
             plr = T.choose_boss(o[0], o[1], null, o[2])
             this.f.push(plr)
             q.push(plr.e)
         }
-        names = r.length
+        names = lst.length
         if (names + 5 >>> 4 === 0)
             for (p = 0; p < names; ++p) {
-                plr = r[p]
+                plr = lst[p]
                 plr.I = plr.gbT()
             }
         if (q.length === 1) {
@@ -12631,7 +12628,7 @@ V.ProfileMain.prototype = {
         var async_goto = 0,
             async_completer = P._makeAsyncAwaitCompleter(t.d),
             result, this_ = this,
-            update_list, n, this_b, l, k, j, round_count, h, g, f, engine_result, some_d, result_getter, b, a, a0, a1, a2, a3, outer_display
+            update_list, n, this_b, l, k, j, round_count, flighter, g, f, engine_result, some_d, result_getter, b, a, a0, a1, a2, a3, outer_display
         var $async$O = P._wrapJsFunctionForAsync(function (async_error_code, async_result) {
             if (async_error_code === 1) return P.async_rethrow(async_result, async_completer)
             while (true) {
@@ -12658,7 +12655,6 @@ V.ProfileMain.prototype = {
                         j = t.D
                         round_count = 0
                     case 3:
-                        // console.log("start case 3")
                         if (!(round_count < 100)) {
                             // 场数 >= 100
                             async_goto = 4
@@ -12666,29 +12662,26 @@ V.ProfileMain.prototype = {
                         }
                         // 继续运行
                         if (this_b.length === 1 && !this_.c) {
-                            // console.log("this_b length === 1")
-                            h = H.b([
+                            // 单人
+                            flighter = H.b([
                                 [this_b[0], H.b(["" + this_.e++, l], k)], [H.b(["" + this_.e++, l], k), H.b(["" + this_.e++, l], k)]
                             ], j)
                         }
                         else {
-                            // console.log("this_b length !== 1")
+                            // 多人
                             g = []
-                            h = H.b([this_b, g], j)
-                            for (f = 0; f < this_b.length; ++f) g.push(H.b(["" + this_.e++, l], k))
+                            flighter = H.b([this_b, g], j)
+                            for (f = 0; f < this_b.length; ++f) { g.push(H.b(["" + this_.e++, l], k)) }
                         }
                         async_goto = 5
-                        return P._asyncAwait(T.start_main(h), $async$O)
+                        return P._asyncAwait(T.start_main(flighter), $async$O)
                     case 5:
-                        // console.log("start case 5")
                         engine_result = async_result
                         some_d = null
                     case 6:
-                        // console.log("start case 6")
                         async_goto = 9
                         return P._asyncAwait(engine_result.O(), $async$O)
                     case 9:
-                        // console.log("start case 9")
                         result_getter = async_result
                         if (result_getter == null) {
                             async_goto = 8
@@ -12730,7 +12723,12 @@ V.ProfileMain.prototype = {
                         update_list = H.b([], t.Y)
                         // 实力评估中...[2]%
                         // benchmarking
-                        outer_display.push(T.RunUpdate_init(LangData.get_lang("pkGN"), null, null, C.JsInt.ag(this_.ch, 100), null, 0, 0, 0))
+                        let benchmarking = LangData.get_lang("pkGN")
+                        // 实力评估中...[2]% + this.Q
+                        // benchmarking = benchmarking + "胜场: " + this_.Q + "胜率: " + (this_.Q / this_.ch)
+                        // debug 用, 输出csv格式
+                        benchmarking = this_.Q + "," + this_.ch + "," + (this_.Q / this_.ch)
+                        outer_display.push(T.RunUpdate_init(benchmarking, null, null, C.JsInt.ag(this_.ch, 100), null, 0, 0, 0))
                         if (this_.ch >= this_.d) {
                             // 阶段目标场数达到
                             this_.eS()
@@ -13072,6 +13070,7 @@ HtmlRenderer.inner_render.prototype = {
 
         if (this_.a == null) return
 
+        // this.gfd -> this.fe
         A.vo(this_.gfd())
         // this_.d = P.Timer_Timer(P.duration_milsec_sec(10, 0), this_.gbc(this_))
 
@@ -13087,9 +13086,7 @@ HtmlRenderer.inner_render.prototype = {
         s = HtmlRenderer.add_p("row")
 
         root = this_.b
-        logger.debug("html fq e0 0")
         root.appendChild(s)
-        logger.debug("html fq e0 1")
 
         q = HtmlRenderer.add_span("welcome")
         q.textContent = LangData.get_lang("CeaN")
@@ -13105,23 +13102,19 @@ HtmlRenderer.inner_render.prototype = {
             // 有 error 就加上去 (没啥意义, 默认为 null)
             // gbu: 获取某个东西, 只有 Engine 才是 this.f
             // 测号相关都是 null
+            // get error
             profiler = profiler.gbu(profiler)
             root.appendChild(document.createTextNode(profiler))
         }
         // 添加 event listener
         logger.debug("加速等待器 注册")
         if (!run_env.from_code) {
+            // this.gfb -> this.fc
             W.es(window, "message", this_.gfb(this_), false)
         }
     },
     // MARK: 接受加速按钮
     fc(func_self, event) {
-        // var s = event.data,
-        //     r = new P.kx([], [])
-        // r.c = true
-        // if (r.aO(s) === "??") {
-        //     this.y = 2000
-        // }
         if (event.data == "??") {
             this.y = 2000
             // 触发加速
@@ -13211,34 +13204,16 @@ HtmlRenderer.inner_render.prototype = {
             // this.y -> plrlen
             // this.r -> preboost
             q = this_.y = q.gp(q)
-
             r = q > 10 ? this_.y = 10 : q
-
             r += this_.r
 
-            // this_.y = r
             // 这里才是有用的加速
             this_.y = 2000
-
-            // if (r > 2000) this_.y = 2000
 
             if (this_.Q != null) return
 
             this_.b4()
             this_.z = n
-            // console.log("start fq.fe end")
-            // 合着压根不需要这操作是吧……
-            // for (r = n.length, m = 0; m < n.length; n.length === r || (0, H.F)(n), ++m) {
-            //     for (q = J.by(n[m]); q.u();) {
-            //         // console.log("fq.fe q type", typeof n[m])
-            //         console.log(q, m, n, r)
-            //         J.ry(q.gC(), 4)
-            //         // set length (J.ry)
-            //     }
-            // }
-            // q = J.by(n[0])
-            // q.u()
-            // J.ry(q.gC(), 4)
         } else {
             e = n[0]
             r = J.a3(e)
@@ -13261,8 +13236,6 @@ HtmlRenderer.inner_render.prototype = {
         }
     },
     b4() {
-        // 实力评估 主循环?
-        logger.debug("评估 主循环")
         var async_goto = 0,
             async_complete = P._makeAsyncAwaitCompleter(t.z),
             q, this_ = this,
@@ -13326,6 +13299,7 @@ HtmlRenderer.inner_render.prototype = {
             this_.cy = false
         } else {
             // this_.d = P.Timer_Timer(P.duration_milsec_sec(C.JsInt.P(s, C.d.aI(Math.sqrt(q / 2))), 0), this_.gel())
+            // this.gel -> this.c5, em?
             this_.d = P.Timer_Timer(P.duration_milsec_sec(0, 0), this_.gel())
         }
     },
@@ -19241,8 +19215,8 @@ LangData.k_.prototype = {
     install_static_tearoff(W, "uW", 4, null, ["$4"], ["tU"], 20, 0)
     static_2(HtmlRenderer, "oD", "rU", 62)
 
-    let html_holder
-    instance_1i(html_holder = HtmlRenderer.inner_render.prototype, "gfb", "fc", 31)
+    let html_holder = HtmlRenderer.inner_render.prototype
+    instance_1i(html_holder, "gfb", "fc", 31)
     instance_1i(html_holder, "gff", "ds", 8)
     instance_0i(html_holder, "gbc", "dI", 0)
     instance_1u(html_holder, "gfd", "fe", 33)
