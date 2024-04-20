@@ -16660,23 +16660,6 @@ T.Engine.prototype = {
         return P._asyncStartSync($async$bD, async_completer)
     },
     bE() {
-        // var async_goto = 0,
-        //     r = P._makeAsyncAwaitCompleter(t.z)
-        // var $async$bE = P._wrapJsFunctionForAsync(function (a, b) {
-        //     if (a === 1) return P.async_rethrow(b, r)
-        //     while (true) switch (async_goto) {
-        //         case 0:
-        //             async_goto = 2
-        //             // return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec($.C(), 0), t.z), $async$bE)
-        //             return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec(0, 0), t.z), $async$bE)
-        //             // break
-        //         case 2:
-        //             $.mc = 0
-        //             return P.async_return(null, r)
-        //     }
-        // })
-        // return P._asyncStartSync($async$bE, r)
-        // $.mc = 0
         why_ns = 0
     },
     fz(a, b) {
@@ -16791,9 +16774,7 @@ T.Engine.prototype = {
         //                     m += "\n" + H.as_string(k.e) + "\t" + H.as_string(k.a)
         //                 }
         //             p = C.e.gaB().ab(m)
-        //             logger.debug("initing in T.fi.dM")
         //             o = H.instanceType(p).i("a9<z.E>")
-        //             logger.debug("initing in T.fi.dM")
         //             j = o.i("y<M.E,l*>")
         //             j = P.List_List_of(new H.y(new H.a9(p, o), new T.jl(this_), j), true, j.i("M.E"))
         //             C.Array.a5(j, H.fJ(n.buffer, 0, null))
@@ -16819,9 +16800,7 @@ T.Engine.prototype = {
                 m += "\n" + H.as_string(k.e) + "\t" + H.as_string(k.a)
             }
         p = C.e.gaB().ab(m)
-        logger.debug("initing in T.fi.dM")
         o = H.instanceType(p).i("a9<z.E>")
-        logger.debug("initing in T.fi.dM")
         j = o.i("y<M.E,l*>")
         j = P.List_List_of(new H.y(new H.a9(p, o), new T.jl(this_), j), true, j.i("M.E"))
         C.Array.a5(j, H.fJ(n.buffer, 0, null))
