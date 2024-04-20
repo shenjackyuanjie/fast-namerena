@@ -3786,7 +3786,7 @@ var A = {
                 if (q == null) $.eN = s
             }
         },
-        oN(a) {
+        scheduleMicrotask(a) {
             var s = null,
                 r = $.P
             if (C.f === r) {
@@ -9923,7 +9923,7 @@ P._Future.prototype = {
         } catch (q) {
             s = H.unwrap_Exception(q)
             r = H.getTraceFromException(q)
-            P.oN(new P.kM(p, s, r))
+            P.scheduleMicrotask(new P.kM(p, s, r))
         }
     },
     // 动画帧调用?
@@ -10310,7 +10310,7 @@ P.ii.prototype = {
             s.a = 1
             return
         }
-        P.oN(new P.kW(s, a))
+        P.scheduleMicrotask(new P.kW(s, a))
         s.a = 1
     }
 }
