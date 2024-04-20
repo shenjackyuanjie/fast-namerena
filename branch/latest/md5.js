@@ -3655,7 +3655,7 @@ var A = {
                 if (b == null) {
                     if (o && (q & 1) === 0) {
                         t1 = t1.c
-                        P.iC(t1.a, t1.b)
+                        P._rootHandleUncaughtError(t1.a, t1.b)
                     }
                     return
                 }
@@ -3682,7 +3682,7 @@ var A = {
                         q = !(q || q)
                     } else q = false
                     if (q) {
-                        P.iC(l.a, l.b)
+                        P._rootHandleUncaughtError(l.a, l.b)
                         return
                     }
                     i = $.P
@@ -3809,14 +3809,14 @@ var A = {
             throw H.wrap_expression(P.bz("handleError callback must take either an Object (the error), or both an Object (the error) and a StackTrace.", null))
         },
         ux(a, b) {
-            P.iC(a, b)
+            P._rootHandleUncaughtError(a, b)
         },
         Timer_Timer(a, b) {
             var s = $.P
             if (s === C.f) return P.Timer__createTimer(a, b)
             return P.Timer__createTimer(a, s.cf(b))
         },
-        iC(a, b) {
+        _rootHandleUncaughtError(a, b) {
             P.uC(new P.lo(a, b))
         },
         os(a, b, c, d) {
@@ -10358,7 +10358,7 @@ P.kX.prototype = {
         } catch (q) {
             s = H.unwrap_Exception(q)
             r = H.getTraceFromException(q)
-            P.iC(s, r)
+            P._rootHandleUncaughtError(s, r)
         }
     },
     fG(a, b) {
@@ -10372,7 +10372,7 @@ P.kX.prototype = {
         } catch (q) {
             s = H.unwrap_Exception(q)
             r = H.getTraceFromException(q)
-            P.iC(s, r)
+            P._rootHandleUncaughtError(s, r)
         }
     },
     dC(a, b) {
