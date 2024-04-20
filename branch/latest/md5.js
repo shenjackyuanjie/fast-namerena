@@ -3767,7 +3767,7 @@ var A = {
                 }
             } else $.eN = r.b = s
         },
-        uC(a) {
+        _schedulePriorityAsyncCallback(a) {
             var s, r, q, p = $.cR
             if (p == null) {
                 P._scheduleAsyncCallback(a)
@@ -3817,7 +3817,7 @@ var A = {
             return P.Timer__createTimer(a, s.cf(b))
         },
         _rootHandleUncaughtError(a, b) {
-            P.uC(new P.lo(a, b))
+            P._schedulePriorityAsyncCallback(new P.lo(a, b))
         },
         os(a, b, c, d) {
             var s, r = $.P
