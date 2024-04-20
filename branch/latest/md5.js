@@ -4044,10 +4044,10 @@ var A = {
             this.b = b
             this.c = c
         },
-        a0(a, b) {
+        create_meta_map(a, b) {
             return new H.JsLinkedHashMap(a.i("@<0>").aL(b).i("aT<1,2>"))
         },
-        dD(a, b, c) {
+        create_StringInt_map(a, b, c) {
             // Map<String, int>
             return H.uQ(a, new H.JsLinkedHashMap(b.i("@<0>").aL(c).i("aT<1,2>")))
         },
@@ -4688,7 +4688,7 @@ var A = {
                 a = $.T(),
                 a0 = H.b([], t.q),
                 a1 = H.b([], t.H),
-                a2 = P.a0(t.X, t.W),
+                a2 = P.create_meta_map(t.X, t.W),
                 a3 = new Sgls.MList(t.n)
             a3.c = a3
             a3.b = a3
@@ -4870,7 +4870,7 @@ var A = {
                 r = $.T()
                 q = H.b([], t.q)
                 p = H.b([], t.H)
-                o = P.a0(t.X, t.W)
+                o = P.create_meta_map(t.X, t.W)
                 n = new Sgls.MList(t.n)
                 n.c = n
                 n.b = n
@@ -4915,7 +4915,7 @@ var A = {
                 r = $.T()
                 q = H.b([], t.q)
                 p = H.b([], t.H)
-                o = P.a0(t.X, t.W)
+                o = P.create_meta_map(t.X, t.W)
                 n = new Sgls.MList(t.n)
                 n.c = n
                 n.b = n
@@ -4965,7 +4965,7 @@ var A = {
                     o = $.T()
                     n = H.b([], t.q)
                     m = H.b([], t.H)
-                    l = P.a0(t.X, t.W)
+                    l = P.create_meta_map(t.X, t.W)
                     k = new Sgls.MList(t.n)
                     k.c = k
                     k.b = k
@@ -5010,7 +5010,7 @@ var A = {
                     p = $.T()
                     o = H.b([], t.q)
                     n = H.b([], t.H)
-                    m = P.a0(t.X, t.W)
+                    m = P.create_meta_map(t.X, t.W)
                     l = new Sgls.MList(t.n)
                     l.c = l
                     l.b = l
@@ -5055,7 +5055,7 @@ var A = {
                     p = $.T()
                     o = H.b([], t.q)
                     n = H.b([], t.H)
-                    m = P.a0(t.X, t.W)
+                    m = P.create_meta_map(t.X, t.W)
                     l = new Sgls.MList(t.n)
                     l.c = l
                     l.b = l
@@ -5100,7 +5100,7 @@ var A = {
                     p = $.T()
                     o = H.b([], t.q)
                     n = H.b([], t.H)
-                    m = P.a0(t.X, t.W)
+                    m = P.create_meta_map(t.X, t.W)
                     l = new Sgls.MList(t.n)
                     l.c = l
                     l.b = l
@@ -5146,7 +5146,7 @@ var A = {
                     p = $.T()
                     o = H.b([], t.q)
                     n = H.b([], t.H)
-                    m = P.a0(t.X, t.W)
+                    m = P.create_meta_map(t.X, t.W)
                     l = new Sgls.MList(t.n)
                     l.c = l
                     l.b = l
@@ -5191,7 +5191,7 @@ var A = {
                     p = $.T()
                     o = H.b([], t.q)
                     n = H.b([], t.H)
-                    m = P.a0(t.X, t.W)
+                    m = P.create_meta_map(t.X, t.W)
                     l = new Sgls.MList(t.n)
                     l.c = l
                     l.b = l
@@ -5236,7 +5236,7 @@ var A = {
                     p = $.T()
                     o = H.b([], t.q)
                     n = H.b([], t.H)
-                    m = P.a0(t.X, t.W)
+                    m = P.create_meta_map(t.X, t.W)
                     l = new Sgls.MList(t.n)
                     l.c = l
                     l.b = l
@@ -5281,7 +5281,7 @@ var A = {
                     p = $.T()
                     o = H.b([], t.q)
                     n = H.b([], t.H)
-                    m = P.a0(t.X, t.W)
+                    m = P.create_meta_map(t.X, t.W)
                     l = new Sgls.MList(t.n)
                     l.c = l
                     l.b = l
@@ -5327,7 +5327,7 @@ var A = {
                     p = $.T()
                     o = H.b([], t.q)
                     n = H.b([], t.H)
-                    m = P.a0(t.X, t.W)
+                    m = P.create_meta_map(t.X, t.W)
                     l = new Sgls.MList(t.n)
                     l.c = l
                     l.b = l
@@ -5372,7 +5372,7 @@ var A = {
                     p = $.T()
                     o = H.b([], t.q)
                     n = H.b([], t.H)
-                    m = P.a0(t.X, t.W)
+                    m = P.create_meta_map(t.X, t.W)
                     l = new Sgls.MList(t.n)
                     l.c = l
                     l.b = l
@@ -5418,7 +5418,7 @@ var A = {
                     p = $.T()
                     o = H.b([], t.q)
                     n = H.b([], t.H)
-                    m = P.a0(t.X, t.W)
+                    m = P.create_meta_map(t.X, t.W)
                     l = new Sgls.MList(t.n)
                     l.c = l
                     l.b = l
@@ -5467,7 +5467,7 @@ var A = {
                     p = $.T()
                     o = H.b([], t.q)
                     n = H.b([], t.H)
-                    m = P.a0(t.X, t.W)
+                    m = P.create_meta_map(t.X, t.W)
                     l = new Sgls.MList(t.n)
                     l.c = l
                     l.b = l
@@ -5511,7 +5511,7 @@ var A = {
                 q = $.T()
                 p = H.b([], t.q)
                 o = H.b([], t.H)
-                n = P.a0(t.X, t.W)
+                n = P.create_meta_map(t.X, t.W)
                 m = new Sgls.MList(t.n)
                 m.c = m
                 m.b = m
@@ -5653,7 +5653,7 @@ var A = {
                 c = $.T(),
                 b = H.b([], t.q),
                 a = H.b([], t.H),
-                a0 = P.a0(t.X, t.W),
+                a0 = P.create_meta_map(t.X, t.W),
                 a1 = new Sgls.MList(t.n)
             a1.c = a1
             a1.b = a1
@@ -5699,7 +5699,7 @@ var A = {
                 c = $.T(),
                 b = H.b([], t.q),
                 a = H.b([], t.H),
-                a0 = P.a0(t.X, t.W),
+                a0 = P.create_meta_map(t.X, t.W),
                 a1 = new Sgls.MList(t.n)
             a1.c = a1
             a1.b = a1
@@ -6027,7 +6027,7 @@ var A = {
                 e = $.T(),
                 d = H.b([], t.q),
                 c = H.b([], t.H),
-                b = P.a0(t.X, t.W),
+                b = P.create_meta_map(t.X, t.W),
                 a = new Sgls.MList(t.n)
             a.c = a
             a.b = a
@@ -13511,14 +13511,14 @@ HtmlRenderer.jz.prototype = {
 HtmlRenderer.jB.prototype = {
     $1(a) {
         var s = t.X
-        J.m0(W.ll(window.parent), P.dD(["button", "refresh"], s, s), "*")
+        J.m0(W.ll(window.parent), P.create_StringInt_map(["button", "refresh"], s, s), "*")
     },
     $S: 6
 }
 HtmlRenderer.jC.prototype = {
     $1(a) {
         var s = t.X
-        J.m0(W.ll(window.parent), P.dD(["button", "share"], s, s), "*")
+        J.m0(W.ll(window.parent), P.create_StringInt_map(["button", "share"], s, s), "*")
     },
     $S: 6
 }
@@ -13545,7 +13545,7 @@ HtmlRenderer.send_win_data.prototype = {
                 // break
                 case 2:
                     p = HtmlRenderer.rV(q.b, q.c)
-                    win_data = P.dD(["winners",
+                    win_data = P.create_StringInt_map(["winners",
                         q.d,
                         "all",
                         q.a.z,
@@ -15157,7 +15157,7 @@ T.SklShadow.prototype = {
         n = $.T()
         m = H.b([], t.q)
         l = H.b([], t.H)
-        k = P.a0(t.X, t.W)
+        k = P.create_meta_map(t.X, t.W)
         j = new Sgls.MList(t.n)
         j.c = j
         j.b = j
@@ -15372,6 +15372,8 @@ T.SklSummon.prototype = {
         var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, summoned_plr, this_ = this,
             a4 = null,
             a5 = a9.a
+        // sklSummon
+        // [0]使用[血祭]
         a5.push(T.RunUpdate_init(LangData.get_lang("sCza"), this_.r, a4, a4, a4, $.a6(), 1000, 100))
         s = this_.fr
         if (s == null) {
@@ -15383,7 +15385,7 @@ T.SklSummon.prototype = {
             o = $.T()
             n = H.b([], t.q)
             m = H.b([], t.H)
-            l = P.a0(t.X, t.W)
+            l = P.create_meta_map(t.X, t.W)
             k = new Sgls.MList(t.n)
             k.c = k
             k.b = k
@@ -18441,7 +18443,7 @@ T.SklZombie.prototype = {
             o = $.T()
             n = H.b([], t.q)
             m = H.b([], t.H)
-            l = P.a0(t.X, t.W)
+            l = P.create_meta_map(t.X, t.W)
             k = new Sgls.MList(t.n)
             k.c = k
             k.b = k
@@ -19696,7 +19698,7 @@ var t = (function rtii() {
     $.ay = P.cu(t.X, H.findType("ax*"))
     $.rW = function () {
         var s = t.X
-        return P.dD(["aokiji", "R0lGODlhEAAQAMIDAAAAAEB2/4Kl/////////////////////yH5BAEKAAQALAAAAAAQABAAAANISLrQsJC1MVwkLgSqLW6bQFFi4ACjIGxDoI7gqHFsO9UsXgFuPXIr0Or3691kHGSMxuRMSMPWi3IK/UqeTM7UuDio3YskDEkAADs=", "conan", "R0lGODlhEAAQAMIAAAAAANAYISpXyf///wAAAAAAAAAAAAAAACH5BAEKAAQALAAAAAAQABAAAANISATczkqBQasFcQlrBV6MsHGiEzQj5TEnELzM5cIsbdLLC+/6N/O/E6j3IP5ilVqrBUgNVi6HyDltSJoiVekTCU23me4DEkkAADs=", "covid", "R0lGODlhEAAQAIIAMf/GAOpK/f///wAAAP///wAAAAAAAAAAACH5BAEAAAQALAAAAAAQABAAAgNKSLrTvZC4AeqIqgEttoNU1wSOx1BBmoabNJGDGpjURlqBAJf6ba+WWgwmy3kcRYFO6AKolMuJBCAqmjIUJKd12moemNrxgnF9IgkAOw==", "ikaruga", "R0lGODlhEAAQAMIEAAAAAAcHB7MABFuV/////////////////yH5BAEKAAcALAAAAAAQABAAAANKeLrRsZA1Qlw8jmoCGgzaMAiC9iiTOFBk6WGUypLUk4pbW00EvhG0XWz1C2Z8o9kO1uuNSqUKCqR60l5MZ1AqAf0skczudJliFwkAOw==", "lazy", "R0lGODlhEAAQAMICAAAAAAgICP+3t/////+3t/+3t/+3t/+3tyH5BAEKAAQALAAAAAAQABAAAANPSLpM8K9JMCqQDoIwwp3VQG1fBnFeWFKW6GnL1rFi87raSQQcvXEhHkeQGwqOncBxKeAxj07io6kkQZXPKJM3YCa7yySwIhwnd5qAokhIAAA7", "mario", "R0lGODlhEAAQAIEAMQAAANgoAPz8/AAAACH5BAEAAAAALAAAAAAQABAAAQJBhD2px6AhRFgshRvvHCdJGH1CgoDhKXEWqLHboH2tvEItpq3ZvXvnfPIphooI0YgcLXyjpLKDQnE6g6hxSiVSAAUAOw==", "mosquito", "R0lGODlhEAAQAKECAAAAAP8AAP///////yH5BAEKAAMALAAAAAAQABAAAAJB3ICpaCnxRIRKoAkpsJu/AHpch4DgxR0kcK6GKrGB+zrylrzH2OL62or9SKcYYIgr5mq82eXI5AQtw1gxhVwwDAUAOw==", "saitama", "R0lGODlhEAAQAMIGAAAAAAgICGxsbP/AmP/PV/////jIUfjIUSH5BAEKAAcALAAAAAAQABAAAANKeLrRsZC1MVw8juraYNhUIVYSGIodZprPtG7ZC8YyFxSC8OZFAIi4nJAnAhgLx2DxZwQQCMZn7hmFOp/YKZZa3Xqth6bR1xADDgkAOw==", "seed", "R0lGODlhEAAQAMIDAAAAAG9tbUCy5////////////////////yH5BAEKAAQALAAAAAAQABAAAANFSLrQsJC1MVwkjuraVN6gA4CDIJCNSW5BkJon2LZpAMdzMLiAYN85HQ/28wWHpmJrN3sRjUya4xm0YJzNTmTKe1wkWkgCADs=", "slime", "R0lGODlhEAAQAMIEAAABAFaSRV6qSLn9qgAAAAAAAAAAAAAAACH5BAEKAAQALAAAAAAQABAAAANCSKrQvpA4QcWDrWoLsB5bxwDVYApB2jClaaaqRMIuCk92CuYBR8G9DSUjLBI3wMpRQzvhis4OqVUbjopKkczBvSQAADs=", "sonic", "R0lGODlhEAAQAMIDAAgICOgSJh9O/////////////////////yH5BAEKAAQALAAAAAAQABAAAANBSLrQsJA1IVwkjuraINDDsFUSFYZbh5knqj2T0LpUBp4jN9JpnJuc1S8UIGE+uUBRJRQonzXP5LlkSpCWy/URSQAAOw==", "yuri", "R0lGODlhEAAQAKEDAAAAAN4H28asxv///yH5BAEKAAMALAAAAAAQABAAAAI+hI85EB3s4DNBiFcvs3NjvmlL9WkesEDnKI7fw8Lpi6roMJ42jh8NNeEJVb+bsFc0HIfB5ZFhdPIO0mf0WAAAOw=="], s, s)
+        return P.create_StringInt_map(["aokiji", "R0lGODlhEAAQAMIDAAAAAEB2/4Kl/////////////////////yH5BAEKAAQALAAAAAAQABAAAANISLrQsJC1MVwkLgSqLW6bQFFi4ACjIGxDoI7gqHFsO9UsXgFuPXIr0Or3691kHGSMxuRMSMPWi3IK/UqeTM7UuDio3YskDEkAADs=", "conan", "R0lGODlhEAAQAMIAAAAAANAYISpXyf///wAAAAAAAAAAAAAAACH5BAEKAAQALAAAAAAQABAAAANISATczkqBQasFcQlrBV6MsHGiEzQj5TEnELzM5cIsbdLLC+/6N/O/E6j3IP5ilVqrBUgNVi6HyDltSJoiVekTCU23me4DEkkAADs=", "covid", "R0lGODlhEAAQAIIAMf/GAOpK/f///wAAAP///wAAAAAAAAAAACH5BAEAAAQALAAAAAAQABAAAgNKSLrTvZC4AeqIqgEttoNU1wSOx1BBmoabNJGDGpjURlqBAJf6ba+WWgwmy3kcRYFO6AKolMuJBCAqmjIUJKd12moemNrxgnF9IgkAOw==", "ikaruga", "R0lGODlhEAAQAMIEAAAAAAcHB7MABFuV/////////////////yH5BAEKAAcALAAAAAAQABAAAANKeLrRsZA1Qlw8jmoCGgzaMAiC9iiTOFBk6WGUypLUk4pbW00EvhG0XWz1C2Z8o9kO1uuNSqUKCqR60l5MZ1AqAf0skczudJliFwkAOw==", "lazy", "R0lGODlhEAAQAMICAAAAAAgICP+3t/////+3t/+3t/+3t/+3tyH5BAEKAAQALAAAAAAQABAAAANPSLpM8K9JMCqQDoIwwp3VQG1fBnFeWFKW6GnL1rFi87raSQQcvXEhHkeQGwqOncBxKeAxj07io6kkQZXPKJM3YCa7yySwIhwnd5qAokhIAAA7", "mario", "R0lGODlhEAAQAIEAMQAAANgoAPz8/AAAACH5BAEAAAAALAAAAAAQABAAAQJBhD2px6AhRFgshRvvHCdJGH1CgoDhKXEWqLHboH2tvEItpq3ZvXvnfPIphooI0YgcLXyjpLKDQnE6g6hxSiVSAAUAOw==", "mosquito", "R0lGODlhEAAQAKECAAAAAP8AAP///////yH5BAEKAAMALAAAAAAQABAAAAJB3ICpaCnxRIRKoAkpsJu/AHpch4DgxR0kcK6GKrGB+zrylrzH2OL62or9SKcYYIgr5mq82eXI5AQtw1gxhVwwDAUAOw==", "saitama", "R0lGODlhEAAQAMIGAAAAAAgICGxsbP/AmP/PV/////jIUfjIUSH5BAEKAAcALAAAAAAQABAAAANKeLrRsZC1MVw8juraYNhUIVYSGIodZprPtG7ZC8YyFxSC8OZFAIi4nJAnAhgLx2DxZwQQCMZn7hmFOp/YKZZa3Xqth6bR1xADDgkAOw==", "seed", "R0lGODlhEAAQAMIDAAAAAG9tbUCy5////////////////////yH5BAEKAAQALAAAAAAQABAAAANFSLrQsJC1MVwkjuraVN6gA4CDIJCNSW5BkJon2LZpAMdzMLiAYN85HQ/28wWHpmJrN3sRjUya4xm0YJzNTmTKe1wkWkgCADs=", "slime", "R0lGODlhEAAQAMIEAAABAFaSRV6qSLn9qgAAAAAAAAAAAAAAACH5BAEKAAQALAAAAAAQABAAAANCSKrQvpA4QcWDrWoLsB5bxwDVYApB2jClaaaqRMIuCk92CuYBR8G9DSUjLBI3wMpRQzvhis4OqVUbjopKkczBvSQAADs=", "sonic", "R0lGODlhEAAQAMIDAAgICOgSJh9O/////////////////////yH5BAEKAAQALAAAAAAQABAAAANBSLrQsJA1IVwkjuraINDDsFUSFYZbh5knqj2T0LpUBp4jN9JpnJuc1S8UIGE+uUBRJRQonzXP5LlkSpCWy/URSQAAOw==", "yuri", "R0lGODlhEAAQAKEDAAAAAN4H28asxv///yH5BAEKAAMALAAAAAAQABAAAAI+hI85EB3s4DNBiFcvs3NjvmlL9WkesEDnKI7fw8Lpi6roMJ42jh8NNeEJVb+bsFc0HIfB5ZFhdPIO0mf0WAAAOw=="], s, s)
     }()
     $.mg = function () {
         var s = t.X
@@ -20226,7 +20228,7 @@ var t = (function rtii() {
             b('云剑狄卡敢'):25,
             b('云剑穸跄祇'):35
           };*/
-        return P.dD(
+        return P.create_StringInt_map(
             ["田一人", 18, "云剑狄卡敢", 25, "云剑穸跄祇", 35], t.X, t.B
         )
     })
@@ -20749,7 +20751,7 @@ var t = (function rtii() {
     lazy_old($, "Ac", "rj", function () {
         // 武器那一堆
         // return P.dD([LangData.j("e%XTi8O%`kSB", 94), new T.kq(), LangData.j("yz*^A*wx}^-:r`d", 95), new T.kr(), LangData.j("^dYkSp{^[&&o2d0:E2E", 59), new T.ks(), LangData.j("~47]&y= +_5ji7P", 85), new T.kt(), LangData.j("l+&iUIpO;.M(}FX", 23), new T.ku()], t.X, H.find_type("bL*(m*,u*)*"))
-        return P.dD([
+        return P.create_StringInt_map([
             "剁手刀",
             new T.kq(),
             "死亡笔记",
