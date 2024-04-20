@@ -3630,7 +3630,7 @@ var A = {
         rM(a) {
             return new P.cg(new P._Future($.P, a.i("U<0>")), a.i("cg<0>"))
         },
-        mk(a, b) {
+        _Future__chainCoreFuture(a, b) {
             var s, r
             for (; s = a.a, (s & 4) !== 0;) a = a.c
             if ((s & 24) !== 0) {
@@ -3710,7 +3710,7 @@ var A = {
                                 h.c = t1.c
                                 f.a = t1
                                 continue
-                            } else P.mk(t1, h)
+                            } else P._Future__chainCoreFuture(t1, h)
                         else h.cV(t1)
                         return
                     }
@@ -9963,7 +9963,7 @@ P._Future.prototype = {
             if ((a.a & 16) !== 0) {
                 s.a ^= 2
                 P.cS(null, null, s.b, new P.kN(s, a))
-            } else P.mk(a, s)
+            } else P._Future__chainCoreFuture(a, s)
             return
         }
         s.cV(a)
@@ -10020,7 +10020,7 @@ P.kJ.prototype = {
 }
 P.kN.prototype = {
     $0() {
-        P.mk(this.b, this.a)
+        P._Future__chainCoreFuture(this.b, this.a)
     },
     $S: 0
 }
