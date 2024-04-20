@@ -8,28 +8,38 @@ ON_CF = os.getenv("CF_PAGES") == "1"
 
 if ON_CF:
     print("Running on Cloudflare Pages, trying to git fetch --all")
+    # add remote
+    run(
+        ["git", "remote", "add", "origin", "https://github.com/shenjackyuanjie/fast-namerena.git"],
+    )
     result = run(["git", "fetch", "--all"], check=False)
-    print(f"git fetch --all: {result.stdout}")
+    print(f"git fetch --all: {result}")
 
 
 def get_env_info() -> dict[str, str]:
     # 读取环境变量
     env_info = {}
     # git branch
-    branch = run(
-        ["git", "branch", "--show-current"],
-        capture_output=True,
-        text=True,
-        encoding="utf-8",
-    ).stdout
+    if ON_CF:
+        branch = os.getenv("CF_PAGES_BRANCH") or "unknown"
+    else:
+        branch = run(
+            ["git", "branch", "--show-current"],
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+        ).stdout
     env_info["branch"] = branch.strip()
     # git commit hash
-    commit = run(
-        ["git", "rev-parse", "HEAD"],
-        capture_output=True,
-        text=True,
-        encoding="utf-8",
-    ).stdout
+    if ON_CF:
+        commit = os.getenv("CF_PAGES_COMMIT_SHA") or "unknown"
+    else:
+        commit = run(
+            ["git", "rev-parse", "HEAD"],
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+        ).stdout
     env_info["commit"] = commit.strip()
     # git commit message
     message = run(
@@ -40,9 +50,12 @@ def get_env_info() -> dict[str, str]:
     )
     env_info["message"] = message.stdout.strip()
     # git tag
-    tag = run(
-        ["git", "describe", "--tags"], capture_output=True, text=True, encoding="utf-8"
-    ).stdout
+    if ON_CF:
+        tag = "cf_pages"
+    else:
+        tag = run(
+            ["git", "describe", "--tags"], capture_output=True, text=True, encoding="utf-8"
+        ).stdout
     env_info["tag"] = tag.strip()
     return env_info
 
