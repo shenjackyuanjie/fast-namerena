@@ -7244,7 +7244,7 @@ var A = {
         ji: function ji(a) {
             this.a = a
         },
-        b7: function b7(a, b, c, d, e) {
+        Grp: function b7(a, b, c, d, e) {
             var _ = this
             _.a = a
             _.b = null
@@ -16535,7 +16535,7 @@ T.Engine.prototype = {
                     for (o = this_.x, n = o.length, m = t.eG, l = this_.r, k = this_.z, j = t.L, i = this_.a, h = 0; h < o.length; o.length === n || (0, H.F)(o), ++h) {
                         g = o[h]
                         f = H.b([], j)
-                        runner = new T.b7(this_, f, H.b([], j), H.b([], j), H.b([], j))
+                        runner = new T.Grp(this_, f, H.b([], j), H.b([], j), H.b([], j))
                         for (d = (g && C.Array).ga0(g); d.u();) {
                             c = d.gC()
                             if (!(c instanceof T.Plr))
@@ -16906,7 +16906,7 @@ T.ji.prototype = {
     },
     $S: 2
 }
-T.b7.prototype = {
+T.Grp.prototype = {
     aZ(a) {
         var s, r, q = this,
             p = q.a
@@ -19285,7 +19285,7 @@ LangData.k_.prototype = {
         S.fK,
         HtmlRenderer.inner_render, HtmlRenderer.jT, HtmlRenderer.ax,
         Sgls.a_, Sgls.MEntry,
-        T.IMeta, T.Plr, T.CovidMeta, T.Engine, T.b7, T.IPlr, T.HDamage, T.HRecover, T.RunUpdate, T.aq, T.bG, T.Weapon, T.DummyChargeMeta]
+        T.IMeta, T.Plr, T.CovidMeta, T.Engine, T.Grp, T.IPlr, T.HDamage, T.HRecover, T.RunUpdate, T.aq, T.bG, T.Weapon, T.DummyChargeMeta]
     )
     inherit_many(J.Interceptor, [J.fw, J.cs, J.bE, J.JsArray, J.JsNumber, J.JsString, H.dJ, H.ab, W.fn, W.Blob, W.CanvasRenderingContext2D, W.i6, W.bb, W.ja, W.jb, W.o, W.c4, W.jL, W.ig, W.il, W.iy, W.iA])
     inherit_many(J.bE, [J.PlainJavaScriptObject, J.UnknownJavaScriptObject, J.JavaScriptFunction])
