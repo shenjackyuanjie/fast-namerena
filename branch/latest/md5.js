@@ -3800,6 +3800,7 @@ var A = {
             return new P.io()
         },
         mu(a) {
+            // what?
             return
         },
         tS(a, b) {
@@ -10189,6 +10190,7 @@ P.im.prototype = {
 }
 P.l2.prototype = {
     $0() {
+        // do nothing
         P.mu(this.a.d)
     },
     $S: 0
@@ -19216,12 +19218,14 @@ LangData.k_.prototype = {
         instance_0u = hunkHelpers._instance_0u
     static_2(J, "bO", "t1", 59)
     static_1(H, "uv", "mv", 10)
+
     static_1(P, "uK", "_AsyncRun__scheduleImmediateJsOverride", 4)
     static_1(P, "uL", "_AsyncRun__scheduleImmediateWithSetImmediate", 4)
     static_1(P, "uM", "_AsyncRun__scheduleImmediateWithTimer", 4)
-    static_0(P, "ow", "uD", 0)
+    static_0(P, "ow", "_startMicrotaskLoop", 0)
     static_2(P, "uN", "ux", 9)
     instance_2u(P._Future.prototype, "geg", "be", 9)
+
     install_static_tearoff(W, "uV", 4, null, ["$4"], ["tT"], 20, 0)
     install_static_tearoff(W, "uW", 4, null, ["$4"], ["tU"], 20, 0)
     static_2(HtmlRenderer, "oD", "rU", 62)
