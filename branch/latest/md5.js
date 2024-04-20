@@ -2167,9 +2167,9 @@ var A = {
             H._failedAsCheck(a, s)
         },
         _failedAsCheck(a, b) {
-            throw H.wrap_expression(H.u_(H.ob(a, H.instanceOrFunctionType(a, b), H.aH(b, null))))
+            throw H.wrap_expression(H.u_(H._Error_compose(a, H.instanceOrFunctionType(a, b), H.aH(b, null))))
         },
-        ob(a, b, c) {
+        _Error_compose(a, b, c) {
             var s = P.jh(a),
                 r = H.aH(b == null ? H.instanceType(a) : b, null)
             return s + ": type '" + H.as_string(r) + "' is not a subtype of type '" + H.as_string(c) + "'"
@@ -2178,7 +2178,7 @@ var A = {
             return new H.eI("TypeError: " + a)
         },
         aC(a, b) {
-            return new H.eI("TypeError: " + H.ob(a, null, b))
+            return new H.eI("TypeError: " + H._Error_compose(a, null, b))
         },
         uq(a) {
             return a != null
