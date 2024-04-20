@@ -2155,7 +2155,7 @@ var A = {
             var s = this
             if (a == null) return a
             else if (s.b(a)) return a
-            H.oo(a, s)
+            H._failedAsCheck(a, s)
         },
         _generalNullableAsCheckImplementation(a) {
             var s = this
@@ -2164,9 +2164,9 @@ var A = {
             else if (s.b(a)) return a
             logger.debug("faild nullable as check", a)
             console.log("faild nullable as check", a)
-            H.oo(a, s)
+            H._failedAsCheck(a, s)
         },
-        oo(a, b) {
+        _failedAsCheck(a, b) {
             throw H.wrap_expression(H.u_(H.ob(a, H.instanceOrFunctionType(a, b), H.aH(b, null))))
         },
         ob(a, b, c) {
