@@ -4860,7 +4860,7 @@ var A = {
             if (s > $.mR()) return $.py()
             return s
         },
-        create_player(name, clan_name, fgt, weapon_name) {
+        choose_boss(name, clan_name, fgt, weapon_name) {
             // MARK: WTF 什么鬼这么长
             var team_name, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, a3 = null
             if (clan_name == $.nk()) {
@@ -12395,14 +12395,14 @@ L.ProfileWinChance.prototype = {
         for (s = k.a, r = s.length, q = k.e, p = k.r, o = 0; o < s.length; s.length === r || (0, H.F)(s), ++o) {
             n = s[o]
             m = J.a3(n)
-            l = T.create_player(m.h(n, 0), m.h(n, 1), null, m.h(n, 2))
+            l = T.choose_boss(m.h(n, 0), m.h(n, 1), null, m.h(n, 2))
             q.push(l)
             p.push(l.e)
         }
         for (s = k.b, r = s.length, p = k.f, o = 0; o < s.length; s.length === r || (0, H.F)(s), ++o) {
             n = s[o]
             m = J.a3(n)
-            p.push(T.create_player(m.h(n, 0), m.h(n, 1), null, m.h(n, 2)))
+            p.push(T.choose_boss(m.h(n, 0), m.h(n, 1), null, m.h(n, 2)))
         }
         s = q.length
         if (s + p.length >>> 4 === 0) {
@@ -12610,7 +12610,7 @@ V.ProfileMain.prototype = {
         }
         for (s = names.length, r = this_.f, q = this_.r, p = 0; p < names.length; names.length === s || (0, H.F)(names), ++p) {
             o = names[p]
-            plr = T.create_player(o[0], o[1], null, o[2])
+            plr = T.choose_boss(o[0], o[1], null, o[2])
             this.f.push(plr)
             q.push(plr.e)
         }
@@ -16553,7 +16553,7 @@ T.Engine.prototype = {
                                     } else
                                         a = false
                                     if (a) {
-                                        player = T.create_player(b.h(c, 0), b.h(c, $.i()), this_, a1)
+                                        player = T.choose_boss(b.h(c, 0), b.h(c, $.i()), this_, a1)
                                     } else {
                                         player = T.init_plr(b.h(c, 0), b.h(c, $.i()), runner.b, a1)
                                     }
