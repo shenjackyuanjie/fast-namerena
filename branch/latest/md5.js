@@ -3959,7 +3959,7 @@ var A = {
             this.b = b
             this.c = c
         },
-        kS: function kS(a) {
+        _Future__propagateToListeners_handleWhenCompleteCallback_closure: function kS(a) {
             this.a = a
         },
         _Future__propagateToListeners_handleValueCallback: function kQ(a, b) {
@@ -10064,13 +10064,13 @@ P.kR.prototype = {
         if (t.h.b(l)) {
             n = m.b.a
             q = m.a
-            q.c = l.fI(new P.kS(n), t.z)
+            q.c = l.fI(new P._Future__propagateToListeners_handleWhenCompleteCallback_closure(n), t.z)
             q.b = false
         }
     },
     $S: 0
 }
-P.kS.prototype = {
+P._Future__propagateToListeners_handleWhenCompleteCallback_closure.prototype = {
     $1(a) {
         return this.a
     },
@@ -19289,7 +19289,7 @@ LangData.k_.prototype = {
     inherit(H.NullError, P.bc)
     inherit_many(H.c_,
         [H.j5, H.j6, H.TearOffClosure, H.JsLinkedHashMap_values_closure, H.lv, H.lx,
-        P.kB, P.kA, P._awaitOnObject_closure, P.kK, P.kS, P.ke, P.kZ, P.Duration_toString_sixDigits, P.Duration_toString_twoDigits,
+        P.kB, P.kA, P._awaitOnObject_closure, P.kK, P._Future__propagateToListeners_handleWhenCompleteCallback_closure, P.ke, P.kZ, P.Duration_toString_sixDigits, P.Duration_toString_twoDigits,
         W.jf, W.kF, W.jP, W.jO, W.l0, W.l1, W.l7,
         P.lE, P.lF,
         L.iS, L.iT, L.iU,
