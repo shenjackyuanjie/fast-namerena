@@ -3309,10 +3309,7 @@ var A = {
             return J.cW(a).a5(a, b)
         },
         rs(a, b, c, d) {
-            // if (run_env.from_code) {
-            //     console.log("rs", a, "|", b, "|", c, "|", d)
-            //     return
-            // }
+            // add_event_listener
             return J.bv(a).eF(a, b, c, d)
         },
         lU(a, b) {
@@ -3605,6 +3602,7 @@ var A = {
                         fn(error_code, async_result)
                         break
                     } catch (error) {
+                        console.error(error.stack)
                         async_result = error
                         error_code = error_
                     }
@@ -3693,7 +3691,7 @@ var A = {
                     e = e.c
                     if ((e & 15) === 8) new P.kR(r, f, o).$0()
                     else if (p) {
-                        if ((e & 1) !== 0) new P.kQ(r, l).$0()
+                        if ((e & 1) !== 0) new P._Future__propagateToListeners_handleValueCallback(r, l).$0()
                     } else if ((e & 2) !== 0) new P.kP(f, r).$0()
                     if (i != null) $.P = i
                     e = r.c
@@ -3964,7 +3962,7 @@ var A = {
         kS: function kS(a) {
             this.a = a
         },
-        kQ: function kQ(a, b) {
+        _Future__propagateToListeners_handleValueCallback: function kQ(a, b) {
             this.a = a
             this.b = b
         },
@@ -9752,7 +9750,7 @@ P.i_.prototype = {
     cj(a, b) {
         var s
         if (b == null) { b = P.AsyncError_defaultStackTrace(a) }
-        console.error(a, b)
+        // console.error(a, b)
         s = this.a
         if (this.b) s.be(a, b)
         else s.cT(a, b)
@@ -10078,7 +10076,7 @@ P.kS.prototype = {
     },
     $S: 52
 }
-P.kQ.prototype = {
+P._Future__propagateToListeners_handleValueCallback.prototype = {
     $0() {
         var s, r, q, p, o
         try {
@@ -19322,7 +19320,7 @@ LangData.k_.prototype = {
     inherit(H.NativeTypedArrayOfInt, H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin_FixedLengthListMixin)
     inherit_many(H.NativeTypedArrayOfInt, [H.fE, H.fF, H.fG, H.fH, H.fI, H.dL, H.cx])
     inherit(H.eI, H.i9)
-    inherit_many(H.j5, [P.kC, P.kD, P._TimerImpl_internalCallback, P.jp, P.kH, P.kO, P.kM, P.kJ, P.kN, P.kI, P.kR, P.kQ, P.kP, P.kf, P.l2, P.kW, P.lo, P.kY, P.km, P.kl, X.je, X.j9, HtmlRenderer.send_win_data, Sgls.k4])
+    inherit_many(H.j5, [P.kC, P.kD, P._TimerImpl_internalCallback, P.jp, P.kH, P.kO, P.kM, P.kJ, P.kN, P.kI, P.kR, P._Future__propagateToListeners_handleValueCallback, P.kP, P.kf, P.l2, P.kW, P.lo, P.kY, P.km, P.kl, X.je, X.j9, HtmlRenderer.send_win_data, Sgls.k4])
     inherit(P.cg, P.i4)
     inherit(P.cK, P.im)
     inherit(P.eF, P.em)
