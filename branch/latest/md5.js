@@ -3732,7 +3732,7 @@ var A = {
                 t1 = h
             }
         },
-        uz(a, b) {
+        _registerErrorHandler(a, b) {
             if (t.C.b(a)) return b.ct(a)
             if (t.J.b(a)) return a
             throw H.wrap_expression(P.da(a, "onError", u.c))
@@ -9835,7 +9835,7 @@ P._Future.prototype = {
         var s, r, q = $.P
         if (q === C.f) {
             if (b != null && !t.C.b(b) && !t.J.b(b)) throw H.wrap_expression(P.da(b, "onError", u.c))
-        } else if (b != null) b = P.uz(b, q)
+        } else if (b != null) b = P._registerErrorHandler(b, q)
         s = new P._Future(q, c.i("U<0>"))
         r = b == null ? 1 : 3
         this.c0(new P.cN(s, r, a, b, this.$ti.i("@<1>").aL(c).i("cN<1,2>")))
