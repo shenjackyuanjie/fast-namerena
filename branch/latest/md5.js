@@ -3844,7 +3844,7 @@ var A = {
                 $.P = s
             }
         },
-        uA(a, b, c, d, e, f) {
+        _rootRunUnary(a, b, c, d, e, f) {
             var s, r = $.P
             if (r === c) return d.$2(e, f)
             $.P = c
@@ -10401,8 +10401,9 @@ P._RootZone.prototype = {
         return this.fF(a, b, t.z, t.z)
     },
     fD(a, b, c) {
-        if ($.P === C.f) return a.$2(b, c)
-        return P.uA(null, null, this, a, b, c)
+        if ($.P === C.f) 
+            return a.$2(b, c)
+        return P._rootRunUnary(null, null, this, a, b, c)
     },
     fC(a, b, c) {
         return this.fD(a, b, c, t.z, t.z, t.z)
