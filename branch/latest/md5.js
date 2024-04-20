@@ -3532,7 +3532,7 @@ var A = {
                 new self.MutationObserver(H.convert_dart_closure_to_js_md5(new P.kB(q), 1)).observe(s, {
                     childList: true
                 })
-                return new P.kA(q, s, r)
+                return new P._AsyncRun__initializeScheduleImmediate_closure(q, s, r)
             } else if (self.setImmediate != null) {
                 // _AsyncRun__scheduleImmediateWithSetImmediate
                 return P.uL()
@@ -3862,7 +3862,7 @@ var A = {
         kB: function kB(a) {
             this.a = a
         },
-        kA: function kA(a, b, c) {
+        _AsyncRun__initializeScheduleImmediate_closure: function kA(a, b, c) {
             this.a = a
             this.b = b
             this.c = c
@@ -9692,7 +9692,7 @@ P.kB.prototype = {
     },
     $S: 22
 }
-P.kA.prototype = {
+P._AsyncRun__initializeScheduleImmediate_closure.prototype = {
     $1(a) {
         var s, r
         this.a.a = a
@@ -10078,17 +10078,17 @@ P._Future__propagateToListeners_handleWhenCompleteCallback_closure.prototype = {
 }
 P._Future__propagateToListeners_handleValueCallback.prototype = {
     $0() {
-        var s, r, q, p, o
+        var e, s, t1, t2, exception
         try {
-            q = this.a
-            p = q.a
-            q.c = p.b.b.cv(p.d, this.b)
-        } catch (o) {
-            s = H.unwrap_Exception(o)
-            r = H.getTraceFromException(o)
-            q = this.a
-            q.c = P.async_error(s, r)
-            q.b = true
+            t1 = this.a
+            t2 = t1.a
+            t1.c = t2.b.b.cv(t2.d, this.b)
+        } catch (exception) {
+            e = H.unwrap_Exception(exception)
+            s = H.getTraceFromException(exception)
+            t1 = this.a
+            t1.c = P.async_error(e, s)
+            t1.b = true
         }
     },
     $S: 0
@@ -19289,7 +19289,7 @@ LangData.k_.prototype = {
     inherit(H.NullError, P.bc)
     inherit_many(H.c_,
         [H.j5, H.j6, H.TearOffClosure, H.JsLinkedHashMap_values_closure, H.lv, H.lx,
-        P.kB, P.kA, P._awaitOnObject_closure, P.kK, P._Future__propagateToListeners_handleWhenCompleteCallback_closure, P.ke, P.kZ, P.Duration_toString_sixDigits, P.Duration_toString_twoDigits,
+        P.kB, P._AsyncRun__initializeScheduleImmediate_closure, P._awaitOnObject_closure, P.kK, P._Future__propagateToListeners_handleWhenCompleteCallback_closure, P.ke, P.kZ, P.Duration_toString_sixDigits, P.Duration_toString_twoDigits,
         W.jf, W.kF, W.jP, W.jO, W.l0, W.l1, W.l7,
         P.lE, P.lF,
         L.iS, L.iT, L.iU,
