@@ -66,7 +66,7 @@ if __name__ == "__main__":
             border = border_template.format("#000")
 
             # git 信息:
-            version_info = f"{branch}:{tag.split("-")[0]}"
+            version_info = f"{branch}:{tag.split('-')[0]}"
             marker = marker_template.format(version_info)
             print(f"Master: {border}\n{marker}\n")
         
