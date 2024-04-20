@@ -3757,7 +3757,7 @@ var A = {
                 if ($.cR != null) $.nw().$1(P.ow())
             }
         },
-        ou(a) {
+        _scheduleAsyncCallback(a) {
             var s = new P.i0(a),
                 r = $.eN
             if (r == null) {
@@ -3770,7 +3770,7 @@ var A = {
         uC(a) {
             var s, r, q, p = $.cR
             if (p == null) {
-                P.ou(a)
+                P._scheduleAsyncCallback(a)
                 $.eO = $.eN
                 return
             }
@@ -3857,7 +3857,7 @@ var A = {
         },
         cS(a, b, c, d) {
             if (C.f !== c) d = c.cf(d)
-            P.ou(d)
+            P._scheduleAsyncCallback(d)
         },
         kB: function kB(a) {
             this.a = a
