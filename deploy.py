@@ -43,7 +43,7 @@ def get_env_info() -> dict[str, str]:
     env_info["message"] = message.stdout.strip()
     # git tag
     if ON_CF:
-        tag = os.getenv("CF_PAGES_COMMIT_TAG") or "cf"
+        tag = os.getenv("CF_PAGES_COMMIT_TAG") or "cf_deploy"
     else:
         tag = run(
             ["git", "describe", "--tags"], capture_output=True, text=True, encoding="utf-8"
