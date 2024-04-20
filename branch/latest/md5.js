@@ -3795,7 +3795,7 @@ var A = {
             }
             P.cS(s, s, r, r.cf(a))
         },
-        zZ(a) {
+        StreamIterator_StreamIterator(a) {
             H.ls(a, "stream", t.K)
             return new P.io()
         },
