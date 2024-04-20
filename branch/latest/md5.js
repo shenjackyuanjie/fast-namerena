@@ -3832,7 +3832,7 @@ var A = {
                 $.P = s
             }
         },
-        ot(a, b, c, d, e) {
+        _rootRun(a, b, c, d, e) {
             var s, r = $.P
             if (r === c) return d.$1(e)
             $.P = c
@@ -10370,7 +10370,7 @@ P._RootZone.prototype = {
                 a.$1(b)
                 return
             }
-            P.ot(null, null, this, a, b)
+            P._rootRun(null, null, this, a, b)
         } catch (q) {
             s = H.unwrap_Exception(q)
             r = H.getTraceFromException(q)
@@ -10395,7 +10395,7 @@ P._RootZone.prototype = {
     },
     fF(a, b) {
         if ($.P === C.f) return a.$1(b)
-        return P.ot(null, null, this, a, b)
+        return P._rootRun(null, null, this, a, b)
     },
     cv(a, b) {
         return this.fF(a, b, t.z, t.z)
