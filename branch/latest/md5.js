@@ -12608,10 +12608,7 @@ V.ProfileMain.prototype = {
         }
         for (s = names.length, r = this_.f, q = this_.r, p = 0; p < names.length; names.length === s || (0, H.F)(names), ++p) {
             o = names[p]
-            // n = J.a3(o)
-            // m = T.init_boss(n.h(o, 0), n.h(o, 1), null, n.h(o, 2))
             plr = T.create_player(o[0], o[1], null, o[2])
-            // r.push(m)
             this.f.push(plr)
             q.push(plr.e)
         }
