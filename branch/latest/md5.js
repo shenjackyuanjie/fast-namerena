@@ -8818,6 +8818,7 @@ J.JsString.prototype = {
         return m
     },
     bA(a, b) {
+        // a start with b
         var s
         if (typeof b == "string") {
             s = b.length
@@ -12632,7 +12633,7 @@ V.ProfileMain.prototype = {
         var async_goto = 0,
             async_completer = P._makeAsyncAwaitCompleter(t.d),
             q, this_ = this,
-            o, n, m, l, k, j, round_count, h, g, f, get_result, d, c, b, a, a0, a1, a2, a3, a4
+            o, n, this_b, l, k, j, round_count, h, g, f, get_result, d, c, b, a, a0, a1, a2, a3, a4
         var $async$O = P._wrapJsFunctionForAsync(function (async_error_code, async_result) {
             if (async_error_code === 1) return P.async_rethrow(async_result, async_completer)
             while (true) switch (async_goto) {
@@ -12651,7 +12652,7 @@ V.ProfileMain.prototype = {
                     a4 = this_.r
                     o = t.v
                     n = this_.z
-                    m = this_.b
+                    this_b = this_.b
                     l = this_.a
                     k = t.V
                     j = t.D
@@ -12662,16 +12663,18 @@ V.ProfileMain.prototype = {
                         async_goto = 4
                         break
                     }
-                    if (m.length === 1 && !this_.c) {
+                    // 继续运行
+                    if (this_b.length === 1 && !this_.c) {
+                        console.log("this_b length === 1")
                         h = H.b([
-                            [m[0], H.b(["" + this_.e++, l], k)],
-                            [H.b(["" + this_.e++, l], k), H.b(["" + this_.e++, l], k)]
+                            [this_b[0], H.b(["" + this_.e++, l], k)], [H.b(["" + this_.e++, l], k), H.b(["" + this_.e++, l], k)]
                         ], j)
                     }
                     else {
+                        console.log("this_b length !== 1")
                         g = []
-                        h = H.b([m, g], j)
-                        for (f = 0; f < m.length; ++f) g.push(H.b(["" + this_.e++, l], k))
+                        h = H.b([this_b, g], j)
+                        for (f = 0; f < this_b.length; ++f) g.push(H.b(["" + this_.e++, l], k))
                     }
                     async_goto = 5
                     return P._asyncAwait(T.start_main(h), $async$O)
@@ -12700,6 +12703,7 @@ V.ProfileMain.prototype = {
                         if (a2) {
                             a3 = a1.d
                             if (C.String.bA(a3, "[0]"))
+                            // a3.startWith("[0]")
                                 if (n.J(0, a3)) n.m(0, a3, n.h(0, a3) + 1)
                                 else n.m(0, a3, 1)
                         }
