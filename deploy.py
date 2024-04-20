@@ -7,19 +7,19 @@ def get_env_info() -> dict[str, str]:
     env_info = {}
     # git branch
     branch = run(
-        "git branch --show-current", capture_output=True, text=True, encoding="utf-8"
+        ["git", "branch", "--show-current"], capture_output=True, text=True, encoding="utf-8"
     )
     env_info["branch"] = branch.stdout.strip()
     # git commit hash
-    commit = run("git rev-parse HEAD", capture_output=True, text=True, encoding="utf-8")
+    commit = run(["git", "rev-parse", "HEAD"], capture_output=True, text=True, encoding="utf-8")
     env_info["commit"] = commit.stdout.strip()
     # git commit message
     message = run(
-        "git log -1 --pretty=%B", capture_output=True, text=True, encoding="utf-8"
+        ["git", "log", "-1", "--pretty=%B"], capture_output=True, text=True, encoding="utf-8"
     )
     env_info["message"] = message.stdout.strip()
     # git tag
-    tag = run("git describe --tags", capture_output=True, text=True, encoding="utf-8")
+    tag = run(["git", "describe", "--tags"], capture_output=True, text=True, encoding="utf-8")
     env_info["tag"] = tag.stdout.strip()
     return env_info
 
