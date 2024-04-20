@@ -1,26 +1,54 @@
+import os
+
 from subprocess import run
 from pathlib import Path
+
+ON_CF = os.getenv("CF_PAGES") == "1"
 
 
 def get_env_info() -> dict[str, str]:
     # 读取环境变量
     env_info = {}
     # git branch
-    branch = run(
-        ["git", "branch", "--show-current"], capture_output=True, text=True, encoding="utf-8"
-    )
-    env_info["branch"] = branch.stdout.strip()
+    # if on cf, read it from env: CF_PAGES_BRANCH
+    if ON_CF:
+        branch = os.getenv("CF_PAGES_BRANCH") or "unknown"
+    else:
+        branch = run(
+            ["git", "branch", "--show-current"],
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+        ).stdout
+    env_info["branch"] = branch.strip()
     # git commit hash
-    commit = run(["git", "rev-parse", "HEAD"], capture_output=True, text=True, encoding="utf-8")
-    env_info["commit"] = commit.stdout.strip()
+    # on cf -> get from CF_PAGES_COMMIT_SHA
+    if ON_CF:
+        commit = os.getenv("CF_PAGES_COMMIT_SHA") or "unknown"
+    else:
+        commit = run(
+            ["git", "rev-parse", "HEAD"],
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+        ).stdout
+    env_info["commit"] = commit.strip()
     # git commit message
     message = run(
-        ["git", "log", "-1", "--pretty=%B"], capture_output=True, text=True, encoding="utf-8"
+        ["git", "log", "-1", "--pretty=%B"],
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
     )
     env_info["message"] = message.stdout.strip()
     # git tag
-    tag = run(["git", "describe", "--tags"], capture_output=True, text=True, encoding="utf-8")
-    env_info["tag"] = tag.stdout.strip()
+    if ON_CF:
+        tag = os.getenv("CF_PAGES_COMMIT_TAG") or "cf"
+    else:
+        tag = run(
+            ["git", "describe", "--tags"], capture_output=True, text=True, encoding="utf-8"
+        ).stdout
+    env_info["tag"] = tag.strip()
     return env_info
 
 
@@ -55,11 +83,11 @@ if __name__ == "__main__":
             file_branch_name = file.parent.name
             hash_color = hash(file_branch_name) & 0xFFFFFF
             border = border_template.format(f"#{hash_color:06x}")
-            
+
             # git 信息:
             version_info = f"{file_branch_name}/{branch}:{tag}<br/>{message}"
             marker = marker_template.format(version_info)
-            
+
             print(f"Branch: {file_branch_name}\n{border}\n{marker}\n")
 
         else:
@@ -69,8 +97,10 @@ if __name__ == "__main__":
             version_info = f"{branch}:{tag.split('-')[0]}"
             marker = marker_template.format(version_info)
             print(f"Master: {border}\n{marker}\n")
-        
-        raw_content = raw_content.replace(border_raw, border).replace(marker_raw, marker)
+
+        raw_content = raw_content.replace(border_raw, border).replace(
+            marker_raw, marker
+        )
 
         # 写入文件
         try:
