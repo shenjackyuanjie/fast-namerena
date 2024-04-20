@@ -5,6 +5,11 @@ from pathlib import Path
 
 ON_CF = os.getenv("CF_PAGES") == "1"
 
+if ON_CF:
+    print("Running on Cloudflare Pages, trying to git fetch --all")
+    run(["git", "fetch", "--all"], check=False)
+
+
 
 def get_env_info() -> dict[str, str]:
     # 读取环境变量
@@ -23,10 +28,10 @@ def get_env_info() -> dict[str, str]:
     env_info["branch"] = branch.strip()
     # git commit hash
     # on cf -> get from CF_PAGES_COMMIT_SHA
-    if ON_CF:
-        commit = os.getenv("CF_PAGES_COMMIT_SHA") or "unknown"
-    else:
-        commit = run(
+    # if ON_CF:
+    #     commit = os.getenv("CF_PAGES_COMMIT_SHA") or "unknown"
+    # else:
+    commit = run(
             ["git", "rev-parse", "HEAD"],
             capture_output=True,
             text=True,
@@ -43,7 +48,7 @@ def get_env_info() -> dict[str, str]:
     env_info["message"] = message.stdout.strip()
     # git tag
     if ON_CF:
-        tag = os.getenv("CF_PAGES_COMMIT_TAG") or "cf_deploy"
+        tag = os.getenv("CF_PAGES_COMMIT_SHA") or "cf_deploy"
     else:
         tag = run(
             ["git", "describe", "--tags"], capture_output=True, text=True, encoding="utf-8"
