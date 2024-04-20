@@ -2095,24 +2095,21 @@ var A = {
             if (!H.isStrongTopType(this_)) {
                 if (!(this_ === t.c)) {
                     s = this_ === t.K
-                    logger.debug("进入 H.uk")
                 } else {
                     s = true
                 }
             } else {
                 s = true
             }
-            logger.debug("进入 H.uk")
             if (s) {
                 r = H.ue
             } else {
                 if (this_ === t.K) {
                     r = H.ud
                 } else {
-                    r = H.ui
+                    r = H._generalNullableAsCheckImplementation
                 }
             }
-            logger.debug("进入 H.uk")
             this_.a = r
             // logger.debug("进入 H.uk", r, r(a))
             return this_.a(a)
@@ -2160,12 +2157,13 @@ var A = {
             else if (s.b(a)) return a
             H.oo(a, s)
         },
-        ui(a) {
+        _generalNullableAsCheckImplementation(a) {
             var s = this
             if (a == null) return a
             // set run time info
             else if (s.b(a)) return a
             logger.debug("faild nullable as check", a)
+            console.log("faild nullable as check", a)
             H.oo(a, s)
         },
         oo(a, b) {
@@ -9879,14 +9877,14 @@ P._Future.prototype = {
         }
     },
     d3(a) {
-        var s, r, q, p, o, n = this,
+        var s, r, q, p, o, this_ = this,
             m = {}
         m.a = a
         if (a == null) return
-        s = n.a
+        s = this_.a
         if (s <= 3) {
-            r = n.c
-            n.c = a
+            r = this_.c
+            this_.c = a
             if (r != null) {
                 q = a.a
                 for (p = a; q != null; p = q, q = o) o = q.a
@@ -9894,15 +9892,15 @@ P._Future.prototype = {
             }
         } else {
             if ((s & 4) !== 0) {
-                s = n.c
+                s = this_.c
                 if ((s.a & 24) === 0) {
                     s.d3(a)
                     return
                 }
-                n.c1(s)
+                this_.c1(s)
             }
-            m.a = n.bJ(a)
-            P.cS(null, null, n.b, new P.kO(m, n))
+            m.a = this_.bJ(a)
+            P.cS(null, null, this_.b, new P.kO(m, this_))
         }
     },
     bI() {
@@ -9911,22 +9909,22 @@ P._Future.prototype = {
         return this.bJ(s)
     },
     bJ(a) {
-        var s, r, q
-        for (s = a, r = null; s != null; r = s, s = q) {
-            q = s.a
-            s.a = r
+        var current, prev, next
+        for (current = a, prev = null; current != null; prev = current, current = next) {
+            next = current.a
+            current.a = prev
         }
-        return r
+        return prev
     },
     cV(a) {
-        var s, r, q, p = this
-        p.a ^= 2
+        var s, r, q, this_ = this
+        this_.a ^= 2
         try {
-            a.cz(new P.kK(p), new P.kL(p), t.P)
+            a.cz(new P.kK(this_), new P.kL(this_), t.P)
         } catch (q) {
             s = H.unwrap_Exception(q)
             r = H.getTraceFromException(q)
-            P.scheduleMicrotask(new P.kM(p, s, r))
+            P.scheduleMicrotask(new P.kM(this_, s, r))
         }
     },
     // 动画帧调用?
@@ -9961,15 +9959,15 @@ P._Future.prototype = {
         P.cS(null, null, this.b, new P.kJ(this, a))
     },
     cW(a) {
-        var s = this
-        if (s.$ti.b(a)) {
+        var this_ = this
+        if (this_.$ti.b(a)) {
             if ((a.a & 16) !== 0) {
-                s.a ^= 2
-                P.cS(null, null, s.b, new P.kN(s, a))
-            } else P._Future__chainCoreFuture(a, s)
+                this_.a ^= 2
+                P.cS(null, null, this_.b, new P.kN(this_, a))
+            } else P._Future__chainCoreFuture(a, this_)
             return
         }
-        s.cV(a)
+        this_._chainForeignFuture(a)
     },
     cT(a, b) {
         this.a ^= 2
