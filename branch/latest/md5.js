@@ -4039,7 +4039,7 @@ var A = {
             this.a = a
             this.b = b
         },
-        kZ: function kZ(a, b, c) {
+        _RootZone_bindCallback_closure: function kZ(a, b, c) {
             this.a = a
             this.b = b
             this.c = c
@@ -9815,14 +9815,16 @@ P._FutureListener.prototype = {
         return this.b.b.cv(this.d, a.a)
     },
     eZ(a) {
-        var s, r = this.e,
+        var s, error_callback = this.e,
             q = null,
-            p = this.b.b
-        if (t.C.b(r)) q = p.fC(r, a.a, a.b)
-        else q = p.cv(r, a.a)
+            t4 = this.b.b
+        if (t.C.b(error_callback)) 
+            q = t4.fC(error_callback, a.a, a.b)
+        else 
+            q = t4.cv(error_callback, a.a)
         try {
-            p = q
-            return p
+            t4 = q
+            return t4
         } catch (s) {
             if (t.eK.b(H.unwrap_Exception(s))) {
                 if ((this.c & 1) !== 0) throw H.wrap_expression(P.bz("The error handler of Future.then must return a value of the returned future's type", "onError"))
@@ -10384,7 +10386,7 @@ P._RootZone.prototype = {
         return new P.kY(this, a)
     },
     eI(a, b) {
-        return new P.kZ(this, a, b)
+        return new P._RootZone_bindCallback_closure(this, a, b)
     },
     fB(a) {
         if ($.P === C.f) return a.$0()
@@ -10394,7 +10396,8 @@ P._RootZone.prototype = {
         return this.fB(a, t.z)
     },
     fF(a, b) {
-        if ($.P === C.f) return a.$1(b)
+        if ($.P === C.f) 
+            return a.$1(b)
         return P._rootRun(null, null, this, a, b)
     },
     cv(a, b) {
@@ -10421,7 +10424,7 @@ P.kY.prototype = {
     },
     $S: 0
 }
-P.kZ.prototype = {
+P._RootZone_bindCallback_closure.prototype = {
     $1(a) {
         return this.a.dC(this.b, a)
     },
@@ -19292,7 +19295,7 @@ LangData.k_.prototype = {
     inherit(H.NullError, P.bc)
     inherit_many(H.c_,
         [H.j5, H.j6, H.TearOffClosure, H.JsLinkedHashMap_values_closure, H.lv, H.lx,
-        P.kB, P._AsyncRun__initializeScheduleImmediate_closure, P._awaitOnObject_closure, P.kK, P._Future__propagateToListeners_handleWhenCompleteCallback_closure, P.ke, P.kZ, P.Duration_toString_sixDigits, P.Duration_toString_twoDigits,
+        P.kB, P._AsyncRun__initializeScheduleImmediate_closure, P._awaitOnObject_closure, P.kK, P._Future__propagateToListeners_handleWhenCompleteCallback_closure, P.ke, P._RootZone_bindCallback_closure, P.Duration_toString_sixDigits, P.Duration_toString_twoDigits,
         W.jf, W.kF, W.jP, W.jO, W.l0, W.l1, W.l7,
         P.lE, P.lF,
         L.iS, L.iT, L.iU,
