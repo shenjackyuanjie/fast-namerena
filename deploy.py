@@ -8,12 +8,13 @@ ON_CF = os.getenv("CF_PAGES") == "1"
 
 if ON_CF:
     print("Running on Cloudflare Pages, trying to git fetch --all")
-    # add remote
-    run(
-        ["git", "remote", "add", "origin", "https://github.com/shenjackyuanjie/fast-namerena.git"],
-    )
     result = run(["git", "fetch", "--all"], check=False)
     print(f"git fetch --all: {result}")
+    # 提前尝试输出一遍下面这堆信息
+    run(["git", "branch", "--show-current"], check=False)
+    run(["git", "rev-parse", "HEAD"], check=False)
+    run(["git", "describe", "--tags"], check=False)
+    run(["git", "log", "-1", "--pretty=%B"], check=False)
 
 
 def get_env_info() -> dict[str, str]:
