@@ -8343,7 +8343,7 @@ var A = {
             _.d = d
             _.e = e
         },
-        jT: function jT(a) {
+        PlrGroup: function jT(a) {
             this.a = a
             this.b = null
         },
@@ -13187,7 +13187,7 @@ HtmlRenderer.inner_render.prototype = {
                     j = this_.f
                     i = document.createElement("div")
                     i.classList.add("plrg_list")
-                    h = new HtmlRenderer.jT(i)
+                    h = new HtmlRenderer.PlrGroup(i)
                     h.e3(l, o, j)
                     q.appendChild(i)
                     p.appendChild(h.b)
@@ -13558,7 +13558,7 @@ HtmlRenderer.send_win_data.prototype = {
     },
     $S: 40
 }
-HtmlRenderer.jT.prototype = {
+HtmlRenderer.PlrGroup.prototype = {
     e3(a, b, c) {
         var s, r, q, p, o = this
         if (b || c) o.b = HtmlRenderer.add_div("plrg_body_gouped")
@@ -19246,7 +19246,7 @@ LangData.k_.prototype = {
         W.j8, W.m5, W.cP, W.cr, W.dN, W.eD, W.is, W.dv, W.kE, W.l_, W.ix,
         P._StructuredClone, P.kw, P.eJ, P.jQ, P.kT, Y.RC4, L.ProfileWinChance, V.ProfileMain, X.ProfileFind,
         S.fK,
-        HtmlRenderer.inner_render, HtmlRenderer.jT, HtmlRenderer.PlrView,
+        HtmlRenderer.inner_render, HtmlRenderer.PlrGroup, HtmlRenderer.PlrView,
         Sgls.a_, Sgls.MEntry,
         T.IMeta, T.Plr, T.CovidMeta, T.Engine, T.Grp, T.IPlr, T.HDamage, T.HRecover, T.RunUpdate, T.aq, T.bG, T.Weapon, T.DummyChargeMeta]
     )
