@@ -5866,6 +5866,7 @@ var A = {
             return T.DummyRunUpdates(s[r], b.e[r])
         },
         RunUpdate_init(message, caster, c, d, e, f, delay0, delay1) {
+            logger.debug("RunUpdate_init", message, H.as_string(caster), H.as_string(c), H.as_string(d))
             var s = new T.RunUpdate(f, 0, 0, message, caster, c, e, d)
             // var s = new T.aX(f, delay0, delay1, message, caster, c, e, d)
             // s.aK(message, caster, c, d, e, f, delay0, delay1)
@@ -8255,7 +8256,7 @@ var A = {
             if (f > 0 && a.e != null) $.ay.h(0, a.e.gb2()).dc(f)
             s = H.b([], t.j)
             span_element = HtmlRenderer.add_span("u")
-            C.R.by(span_element, H.oO(a.d, $.rm(), new HtmlRenderer.lq(new HtmlRenderer.lp(s, a), a), null), $.bV())
+            C.R.by(span_element, H.oO(a.d, $.rm(), new HtmlRenderer.lq(new HtmlRenderer._renderItem(s, a), a), null), $.bV())
             for (f = s.length, q = t.A, p = 0; p < s.length; s.length === f || (0, H.F)(s), ++p) {
                 o = s[p]
                 if (o instanceof T.HPlr) {
@@ -8384,7 +8385,7 @@ var A = {
             _.fy = _.fx = _.fr = _.dy = _.dx = _.db = _.cy = null
             _.go = 0
         },
-        lp: function lp(a, b) {
+        _renderItem: function lp(a, b) {
             this.a = a
             this.b = b
         },
@@ -13071,10 +13072,15 @@ HtmlRenderer.inner_render.prototype = {
         if (this_.a == null) return
 
         // this.gfd -> this.fe
-        A.vo(this_.gfd())
-        // this_.d = P.Timer_Timer(P.duration_milsec_sec(10, 0), this_.gbc(this_))
-
+        if (run_env.from_code) {
+            this_.b4()
+            logger.debug("主循环启动")
+            return
+        } else {
+            A.vo(this_.gfd())
+        }
         // this.gbc -> this.dI
+        // this_.d = P.Timer_Timer(P.duration_milsec_sec(10, 0), this_.gbc(this_))
         this_.d = P.Timer_Timer(P.duration_milsec_sec(0, 0), this.gbc(this_))
 
         if (!run_env.from_code) {
@@ -13145,33 +13151,33 @@ HtmlRenderer.inner_render.prototype = {
     },
     // MARK: main?
     fe(a0) {
-        // run update
+        // onNames()
         logger.debug("html.fq.fe start")
-        var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, this_ = this
+        var s, r, q, p, o, group_raw, m, l, k, j, i, h, g, f, e, d, c, b, this_ = this
         if (a0.length < 6) return
         s = X.f4(a0, 0)
         r = C.Array.al(s, 0, s.length - 8)
         q = H._arrayInstanceType(r).i("a9<1>")
         p = q.i("y<M.E,l*>")
         o = t.bQ
-        n = P.List_List_of(new H.y(H.b(C.e.bt(0, P.List_List_of(new H.y(new H.a9(r, q),
+        group_raw = P.List_List_of(new H.y(H.b(C.e.bt(0, P.List_List_of(new H.y(new H.a9(r, q),
             new HtmlRenderer.jx(this_), p), true, p.i("M.E"))).split("\n"), t.s),
             new HtmlRenderer.jy(), o), true, o.i("M.E"))
-        r = n.length
+        r = group_raw.length
         if (r > 1) {
             // if (!J.Y(J.J(J.J(n[0], 0), 0), "")) {
             // 如果第一个元素不是空字符串
-            if (n[0][0][0] !== "") {
-                for (m = 0; m < n.length; n.length === r || (0, H.F)(n), ++m) {
-                    l = n[m]
+            if (group_raw[0][0][0] !== "") {
+                for (m = 0; m < group_raw.length; group_raw.length === r || (0, H.F)(group_raw), ++m) {
+                    l = group_raw[m]
                     q = J.a3(l)
-                    if (q.gp(l) > 1) this_.e = true
+                    if (q.gp(l) > 1) {this_.e = true}
                     for (q = q.ga0(l); q.u();)
-                        if (J.aw(q.gC()) > 7) this_.f = true
+                        if (J.aw(q.gC()) > 7) {this_.f = true}
                 }
                 k = H.b([], t.t)
-                for (r = n.length, q = this_.a, p = this_.b, m = 0; m < n.length; n.length === r || (0, H.F)(n), ++m) {
-                    l = n[m]
+                for (r = group_raw.length, q = this_.a, p = this_.b, m = 0; m < group_raw.length; group_raw.length === r || (0, H.F)(group_raw), ++m) {
+                    l = group_raw[m]
                     o = J.a3(l)
                     if (o.gp(l) === 1 && J.aw(o.h(l, 0)) < 3) {
                         if (J.aw(o.h(l, 0)) > 1) k.push(o.h(l, 0))
@@ -13208,14 +13214,17 @@ HtmlRenderer.inner_render.prototype = {
             r += this_.r
 
             // 这里才是有用的加速
+            // if this_.y > 2000
+            // = 2000
             this_.y = 2000
 
             if (this_.Q != null) return
 
             this_.b4()
-            this_.z = n
+            logger.debug("renderer start!")
+            this_.z = group_raw
         } else {
-            e = n[0]
+            e = group_raw[0]
             r = J.a3(e)
             // q = J.J(r.h(e, 0), 0)
             q = r.h(e, 0)[0]
@@ -13250,7 +13259,7 @@ HtmlRenderer.inner_render.prototype = {
                     break
                 case 3:
                     async_goto = 5
-                    // 输出 "实力评估中...[2]%"
+                    // O -> nextUpdates
                     return P._asyncAwait(this_.c.O(), $async$b4)
                 case 5:
                     this_.Q = async_result
@@ -13277,6 +13286,7 @@ HtmlRenderer.inner_render.prototype = {
         return P._asyncStartSync($async$b4, async_complete)
     },
     ft(a) {
+        // renderUpdate()
         var s, r, q, p, this_ = this
         if (a == $.K()) {
             this_.db = null
@@ -13304,8 +13314,9 @@ HtmlRenderer.inner_render.prototype = {
         }
     },
     c5(a) {
+        // _doRenderUpdate
         var s, r, this_ = this
-        if (a) {
+        if (a && !run_env.from_code) {
             s = this_.b
             r = C.d.aI(s.scrollHeight) - s.clientHeight
             a = r - C.d.aI(s.scrollTop) < 50 || C.d.aI(s.scrollTop) / r > 0.95
@@ -13425,7 +13436,6 @@ HtmlRenderer.inner_render.prototype = {
         document_ = "" + (C.d.aI(m.offsetWidth) - C.d.aI(h.offsetWidth) - 8) + "px"
         d.marginLeft = document_
         if (W.ll(window.parent) !== window) {
-            // new Z.jE(f, p, o, n, $.ay.h(0, J.J(J.J(f.z[0], 0), 0))).$0()
             new HtmlRenderer.send_win_data(this_, p, o, n, $.ay.h(0, this_.z[0][0][0])).$0()
         }
 
@@ -13699,8 +13709,9 @@ HtmlRenderer.jV.prototype = {
     $S: 17
 }
 HtmlRenderer.fW.prototype = {}
-HtmlRenderer.lp.prototype = {
+HtmlRenderer._renderItem.prototype = {
     $1(a) {
+        // _renderItem
         var s, r, q
         if (a instanceof T.NPlr) return $.ay.h(0, a.a).fr
         if (a instanceof T.HPlr) {
@@ -19263,7 +19274,7 @@ LangData.k_.prototype = {
         V.j0, V.j1,
         X.iX, X.iY, X.iZ,
         HtmlRenderer.jx, HtmlRenderer.jy, HtmlRenderer.jw, HtmlRenderer.jz, HtmlRenderer.jB,
-        HtmlRenderer.jC, HtmlRenderer.jD, HtmlRenderer.jV, HtmlRenderer.lp, HtmlRenderer.lq,
+        HtmlRenderer.jC, HtmlRenderer.jD, HtmlRenderer.jV, HtmlRenderer._renderItem, HtmlRenderer.lq,
         Sgls.k5, Sgls.k6,
         T.SklCloneCallback, T.jk, T.jj, T.jl, T.ji, T.lD, T.BoostPassive, T.k3, T.kb, T.ko, T.kp,
         LangData.k_]
@@ -21516,9 +21527,6 @@ function main() {
                 async_goto = 8
                 return P._asyncAwait(T.start_main(h), $async$iE)
             case 8:
-                // a0_getter = async_result
-                // HtmlRenderer.jt(a0_getter)
-                logger.debug("main case 8")
                 HtmlRenderer.outer_main(async_result)
                 switch_to = 2
                 async_goto = 7
@@ -21534,9 +21542,7 @@ function main() {
                 async_goto = 2
                 break
             case 7:
-                logger.debug("so just here?", async_goto, error_code)
             case 1:
-                logger.debug("返回中")
                 return P._asyncReturn(q, async_completer)
             case 2:
                 return P.async_rethrow(async_result_1, async_completer)
