@@ -2161,9 +2161,9 @@ var A = {
             if (a == null) return a
             // set run time info
             else if (s.b(a)) return a
-            console.log("faild nullable as check", a, s)
+            // console.log("faild nullable as check", a, s)
             let stack = new Error().stack
-            console.log(stack)
+            // console.log(stack)
             H._failedAsCheck(a, s)
         },
         _failedAsCheck(a, b) {
@@ -3515,10 +3515,6 @@ var A = {
     },
     P = {
         _AsyncRun__initializeScheduleImmediate() {
-            // if (run_env.from_code) {
-            //     console.log("creating scheduleImmediate")
-            // }
-            logger.debug("creating scheduleImmediate")
             var s, r, q = {}
             if (self.scheduleImmediate != null) {
                 return P.uK()
@@ -5866,7 +5862,7 @@ var A = {
             return T.DummyRunUpdates(s[r], b.e[r])
         },
         RunUpdate_init(message, caster, c, d, e, f, delay0, delay1) {
-            logger.debug("RunUpdate_init", message, H.as_string(caster), H.as_string(c), H.as_string(d))
+            // logger.debug("RunUpdate_init", message, H.as_string(caster), H.as_string(c), H.as_string(d))
             var s = new T.RunUpdate(f, 0, 0, message, caster, c, e, d)
             // var s = new T.aX(f, delay0, delay1, message, caster, c, e, d)
             // s.aK(message, caster, c, d, e, f, delay0, delay1)
@@ -8087,7 +8083,6 @@ var A = {
                     case 2:
                         if (run_env.from_code) {
                             logger.debug("loading gAd data")
-                            // 暂时有问题, 还得调试
                             LangData.load_lang(t.cF.a(C.C.bt(0, assets_data.lang)))
                             // LangData.v1(assets_data.lang)
                             // LangData.load_lang(assets_data.lang)
@@ -12547,7 +12542,7 @@ L.ProfileWinChance.prototype = {
                     o = new H.y(o, new L.iS(), H._arrayInstanceType(o).i("y<1,@>")).aV(0, "\r") + "\n" + new H.y(n, new L.iT(), H._arrayInstanceType(n).i("y<1,@>")).aV(0, "\r") + "\n"
                     o = C.e.gaB().ab(o)
                     // MARK: bun/nodejs 运行时报错
-                    console.log(o)
+                    // console.log(o)
                     n = H.instanceType(o).i("a9<z.E>")
                     l = n.i("y<M.E,l*>")
                     l = P.List_List_of(new H.y(new H.a9(o, n), new L.iU(this_), l), true, l.i("M.E"))
@@ -13715,8 +13710,6 @@ HtmlRenderer._renderItem.prototype = {
         if (a instanceof T.NPlr) return $.ay.h(0, a.a).fr
         if (a instanceof T.HPlr) {
             s = $.ay.h(0, a.a)
-            // plv.updateHp(obj.newHp);
-            // console.log("lp.$1", s)
             s.bU(a.d)
             a.b = s.cy
             this.a.push(a)
