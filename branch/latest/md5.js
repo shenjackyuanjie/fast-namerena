@@ -6104,7 +6104,7 @@ var A = {
         tx(a, b, c, d, e) { },
         tz(a, b, c, d, e) { },
         SklAttack(a) {
-            var s = new T.h8(0)
+            var s = new T.SklAttack(0)
             s.r = a
             return s
         },
@@ -7456,7 +7456,7 @@ var A = {
         },
         Skill: function Skill() { },
         ActionSkill: function b5() { },
-        h8: function h8(a) {
+        SklAttack: function h8(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -17937,7 +17937,7 @@ T.ActionSkill.prototype = {
         return (a.n() & 127) < this.f
     }
 }
-T.h8.prototype = {
+T.SklAttack.prototype = {
     v(a, b, c, d) {
         var s, r, q, p, o = this,
             n = null,
@@ -19391,7 +19391,7 @@ LangData.k_.prototype = {
         T.SklRapid, T.SklRevive, T.SklPossess, T.SklShadow, T.SklSlow,
         T.SklExplode, T.SklSummon, T.SklThunder,
         T.SklAokijiIceAge, T.SklConan, T.CovidState, T.SklCovidAttack, T.SklIkarugaAttack,
-        T.LazyState, T.SklLazyAttack, T.SklMarioGet, T.SklSaitama, T.h8,
+        T.LazyState, T.SklLazyAttack, T.SklMarioGet, T.SklSaitama, T.SklAttack,
         T.SklSimpleAttack, T.SkillVoid, T.SklDeathNote, T.SklRinickModifierClone, T.SklS11]
     )
     inherit_many(T.UpdateStateEntry,
