@@ -5864,7 +5864,7 @@ var A = {
             return T.DummyRunUpdates(s[r], b.e[r])
         },
         RunUpdate_init(message, caster, c, d, e, f, delay0, delay1) {
-            // logger.debug("RunUpdate_init", message, H.as_string(caster), H.as_string(c), H.as_string(d))
+            logger.debug("RunUpdate_init", message, H.as_string(caster), H.as_string(c), H.as_string(d))
             var s = new T.RunUpdate(f, 0, 0, message, caster, c, e, d)
             // var s = new T.aX(f, delay0, delay1, message, caster, c, e, d)
             // s.aK(message, caster, c, d, e, f, delay0, delay1)
@@ -8248,7 +8248,7 @@ var A = {
             m.cP(a, b, false, {})
             return m
         },
-        uI(a) {
+        _updateToHtml(a) {
             var s, span_element, q, p, o, max_hp_element, m, l, k, j, i, h, g, f = a.a
             if (f > 0 && a.e != null) $.ay.h(0, a.e.gb2()).dc(f)
             s = H.b([], t.j)
@@ -13331,7 +13331,7 @@ HtmlRenderer.inner_render.prototype = {
                     (s && C.Q).cJ(s, "\u2003")
                 }
             } else s.appendChild(document.createTextNode(", "))
-            this_.db.appendChild(HtmlRenderer.uI(this_.cx))
+            this_.db.appendChild(HtmlRenderer._updateToHtml(this_.cx))
             this_.b4()
         }
         if (a) {
@@ -20250,7 +20250,8 @@ var t = (function rtii() {
         return X.k("p,,c!10-FQ", 93)
     })
     lazy_old($, "wq", "pj", function () {
-        return X.D("qCDXr5,MXA", 61)
+        // return X.D("qCDXr5,MXA", 61)
+        return 1.7000000476837158
     })
     lazy_old($, "wp", "pi", function () {
         return X.D("Lo=*]5Lg#G", 25)
