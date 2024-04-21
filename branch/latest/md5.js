@@ -15,13 +15,14 @@ let run_env = {
 
 console.log("run_env", run_env);
 
+// let is_debug = true;
+let is_debug = false;
+
 let logger = {
     // debug: 只在 from_code 时输出
     debug: function (...msg) {
-        if (run_env.from_code) {
+        if (run_env.from_code && is_debug) {
             // 上个色
-            // let last_stack = new Error().stack;
-            // console.log("\x1b[32mlogger<", last_stack, ">:", ...msg, "\x1b[0m")
             console.log("\x1b[32mlogger:", ...msg, "\x1b[0m")
         }
     },
@@ -33,7 +34,12 @@ let logger = {
 function fmt_RunUpdate(update) {
     let message = update.d;
     let source_plr = update.e.a;
-    let target_plr = update.f.a;
+    let target_plr = update.f;
+    if (target_plr !== null && target_plr.a !== null) {
+        target_plr = target_plr.a
+    } else {
+        target_plr = "none"
+    }
     let affect = update.x;
     if (affect !== null && affect.a !== null) {
         affect = affect.a
@@ -13338,6 +13344,9 @@ HtmlRenderer.inner_render.prototype = {
         }
         if (this_.cx instanceof T.RunUpdateWin) {
             this_.fQ()
+        } else if (run_env.from_code) {
+            logger.debug(fmt_RunUpdate(this_.cx))
+            this_.b4()
         } else {
             s = this_.db
             if (s == null) {
@@ -13350,11 +13359,7 @@ HtmlRenderer.inner_render.prototype = {
                     (s && C.Q).cJ(s, "\u2003")
                 }
             } else s.appendChild(document.createTextNode(", "))
-            if (run_env.from_code) {
-                logger.debug(fmt_RunUpdate(this_.cx))
-            } else {
-                this_.db.appendChild(HtmlRenderer._updateToHtml(this_.cx))
-            } 
+            this_.db.appendChild(HtmlRenderer._updateToHtml(this_.cx))
             this_.b4()
         }
         if (a && !run_env.from_code) {
@@ -13371,6 +13376,12 @@ HtmlRenderer.inner_render.prototype = {
         // e = "click",
         let d = this_.b,
             document_ = document
+        if (run_env.from_code) {
+            logger.debug("到达代码最高层! fQ!")
+            logger.info(fmt_RunUpdate(this_.cx))
+            return
+        }
+
         d.appendChild(document_.createElement("br"))
         s = this_.cx.e.gb2()
         r = $.ay.h(0, s).a
@@ -13436,21 +13447,16 @@ HtmlRenderer.inner_render.prototype = {
         g = document_.createElement("button")
         g.textContent = LangData.get_lang("xPRN") // 返回
         h.appendChild(g)
-        if (!run_env.from_code) {
-            W.es(g, "click", new HtmlRenderer.jB(), false)
-        }
+        W.es(g, "click", new HtmlRenderer.jB(), false)
         g = document_.createElement("button")
         g.textContent = LangData.get_lang("KXmn") // 分享
         h.appendChild(g)
-        if (!run_env.from_code) {
-            W.es(g, "click", new HtmlRenderer.jC(), false)
-        }
+        W.es(g, "click", new HtmlRenderer.jC(), false)
         g = document_.createElement("button")
         g.textContent = LangData.get_lang("Zvon") // 帮助
         h.appendChild(g)
-        if (!run_env.from_code) {
-            W.es(g, "click", new HtmlRenderer.jD($.qq()), false)
-        }
+        W.es(g, "click", new HtmlRenderer.jD($.qq()), false)
+
         d = h.style
         document_ = "" + (C.d.aI(m.offsetWidth) - C.d.aI(h.offsetWidth) - 8) + "px"
         d.marginLeft = document_
@@ -21456,7 +21462,7 @@ function main() {
 
                 if (run_env.from_code) {
                     raw_names = name_input
-                    console.log("node input:|\n", raw_names, "\n|")
+                    console.log("node input\n----------\n" + raw_names, "\n----------")
                 } else {
 
                     m = window.sessionStorage.getItem(LangData.eQ("k"))
