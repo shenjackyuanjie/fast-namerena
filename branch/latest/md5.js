@@ -5599,7 +5599,7 @@ var A = {
         tB(a, b, c, d, e) {
             if (b.r2.h(0, $.ck()) == null && (d.n() & 63) + 1 < c) T.j7(a, b, $.bg(), d, e)
         },
-        nO(a, b) {
+        LazyState_init(a, b) {
             var s = new T.LazyState(a, b, 0)
             s.fy = new T.PostActionImpl(s)
             s.go = new T.UpdateStateImpl(s)
@@ -5631,7 +5631,7 @@ var A = {
         },
         tG(a, b, c, d, e) {
             if (t.r.a(b.r2.h(0, $.d5())) == null && !(b instanceof T.PlrBossLazy)) {
-                T.nO(a, b).aP(0)
+                T.LazyState_init(a, b).aP(0)
                 e.a.push(T.RunUpdate_init(LangData.get_lang("JnTA"), a, b, null, null, 0, 1000, 100))
             }
         },
@@ -16063,7 +16063,7 @@ T.SklLazyDefend.prototype = {
     },
     aD(a, b, c, d) {
         if (t.r.a(b.r2.h(0, $.d5())) == null) {
-            T.nO(this.r, b).aP(0)
+            T.LazyState_init(this.r, b).aP(0)
             // sklLazyHit
             // [1]感染了[懒癌]
             d.a.push(T.RunUpdate_init(LangData.get_lang("JnTA"), this.r, b, null, null, 0, 1000, 100))
