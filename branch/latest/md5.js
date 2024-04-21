@@ -6103,8 +6103,8 @@ var A = {
         },
         tx(a, b, c, d, e) { },
         tz(a, b, c, d, e) { },
-        SklAttack(a) {
-            var s = new T.SklAttack(0)
+        SklAttack_init(a) {
+            var s = new T.h8(0)
             s.r = a
             return s
         },
@@ -7456,7 +7456,7 @@ var A = {
         },
         Skill: function Skill() { },
         ActionSkill: function b5() { },
-        SklAttack: function h8(a) {
+        h8: function h8(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -15150,7 +15150,7 @@ T.PlrShadow.prototype = {
         return this.aj.r
     },
     ac() {
-        this.k3 = T.SklAttack(this)
+        this.k3 = T.SklAttack_init(this)
         this.k1.push(new T.SklPossess(0))
     },
     aU() {
@@ -15357,7 +15357,7 @@ T.PlrSummon.prototype = {
         s[r] = p[r]
     },
     ac() {
-        this.k3 = T.SklAttack(this)
+        this.k3 = T.SklAttack_init(this)
         var s = this.k1
         s.push(new T.SklFire(0))
         s.push(new T.SklFire(0))
@@ -15539,7 +15539,7 @@ T.PlrBossAokiji.prototype = {
     },
     ac() {
         var s, r
-        this.k3 = T.SklAttack(this)
+        this.k3 = T.SklAttack_init(this)
         s = this.k1
         s.push(new T.SklAokijiDefend(0))
         r = new T.SklAokijiIceAge(0)
@@ -15976,7 +15976,7 @@ T.PlrBossIkaruga.prototype = {
     },
     ac() {
         var s, r
-        this.k3 = T.SklAttack(this)
+        this.k3 = T.SklAttack_init(this)
         s = this.k1
         s.push(new T.SklIkarugaDefend(0))
         r = new T.SklIkarugaAttack(0)
@@ -16388,7 +16388,7 @@ T.BossSlime2.prototype = {
         // createSkills()
         var s, r, this_ = this
         this_.aC = this_.dk.aC + $.i()
-        this_.k3 = T.SklAttack(this_)
+        this_.k3 = T.SklAttack_init(this_)
         s = this_.k1
         if (this_.aC == $.i()) s.push(new T.SklSlimeSpawn(0))
         else {
@@ -17317,7 +17317,7 @@ T.Plr.prototype = {
         // create skills
         // createSkills()
         var skills, r, q
-        this.k3 = T.SklAttack(this)
+        this.k3 = T.SklAttack_init(this)
         skills = this.k1
         skills.push(new T.SklFire(0)); // 0
         skills.push(new T.SklIce(0)); // 1
@@ -17937,7 +17937,7 @@ T.ActionSkill.prototype = {
         return (a.n() & 127) < this.f
     }
 }
-T.SklAttack.prototype = {
+T.h8.prototype = {
     v(a, b, c, d) {
         var s, r, q, p, o = this,
             n = null,
@@ -17953,6 +17953,8 @@ T.SklAttack.prototype = {
             if (q >= r) {
                 s.go = q - r
                 p = T.getAt(s, true, c)
+                // sklAttack
+                // [0]发起攻击
                 d.a.push(T.RunUpdate_init(LangData.get_lang("VQhA"), o.r, m, n, n, 0, 1000, 100))
                 m.a3(p, true, o.r, T.ad(), c, d)
                 return
@@ -18417,7 +18419,7 @@ T.PlrZombie.prototype = {
         return this.aj.r
     },
     ac() {
-        this.k3 = T.SklAttack(this)
+        this.k3 = T.SklAttack_init(this)
     },
     aU() {
         var s, r
@@ -19391,7 +19393,7 @@ LangData.k_.prototype = {
         T.SklRapid, T.SklRevive, T.SklPossess, T.SklShadow, T.SklSlow,
         T.SklExplode, T.SklSummon, T.SklThunder,
         T.SklAokijiIceAge, T.SklConan, T.CovidState, T.SklCovidAttack, T.SklIkarugaAttack,
-        T.LazyState, T.SklLazyAttack, T.SklMarioGet, T.SklSaitama, T.SklAttack,
+        T.LazyState, T.SklLazyAttack, T.SklMarioGet, T.SklSaitama, T.h8,
         T.SklSimpleAttack, T.SkillVoid, T.SklDeathNote, T.SklRinickModifierClone, T.SklS11]
     )
     inherit_many(T.UpdateStateEntry,
@@ -21591,5 +21593,5 @@ function main() {
 }
 
 main();
-logger.debug("反混淆", LangData.get_lang("BUaa"));
+logger.debug("反混淆", LangData.get_lang("EYAn"));
 // logger.debug("running main:", main()) // 执行main函数
