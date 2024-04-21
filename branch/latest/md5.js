@@ -13107,7 +13107,9 @@ HtmlRenderer.inner_render.prototype = {
 
         // this.gfd -> this.fe
         if (run_env.from_code) {
+            logger.info("before main")
             this_.b4()
+            logger.info("after main")
             return
         } else {
             A.vo(this_.gfd())
@@ -13311,6 +13313,7 @@ HtmlRenderer.inner_render.prototype = {
                         async_goto = 1
                         break
                     }
+                    // logger.debug("nextUpdate", o.a[0])
                     this_.ft(C.Array.cu(o.a, 0))
                 case 1:
                     return P._asyncReturn(q, async_complete)
@@ -16793,11 +16796,13 @@ T.Engine.prototype = {
     },
     ae(a, b) {
         if (run_env.from_code) {
+            // 这里已经在外面跑过了
             return null
         }
         return this.dM(0, b)
     },
     dM(a, b) {
+        // start(int tt) async {
         // var async_goto = 0,
         //     async_completer = P._makeAsyncAwaitCompleter(t.z),
         //     this_ = this,
