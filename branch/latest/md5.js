@@ -13205,10 +13205,10 @@ HtmlRenderer.inner_render.prototype = {
             q = document
             r.appendChild(q.createElement("hr"))
             r.appendChild(q.createElement("br"))
-            q = $.ay
             // r -> 中间变量
             // this.y -> plrlen
             // this.r -> preboost
+            q = $.ay
             q = this_.y = q.gp(q)
             r = q > 10 ? this_.y = 10 : q
             r += this_.r
