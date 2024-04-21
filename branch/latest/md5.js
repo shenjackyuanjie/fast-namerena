@@ -6080,7 +6080,7 @@ var A = {
             s.a = a
             return s
         },
-        tN(a, b) {
+        Weapon_factory(a, b) {
             var s = new T.Weapon(a, b, P.aL($.av(), 0, false, t.B))
             s.a = a
             return s
@@ -17094,7 +17094,7 @@ T.Plr.prototype = {
                     p.a = q
                     p.a = C.String.af(q, 0, q.length - $.i())
                 } else {
-                    p = T.tN(q, this_)
+                    p = T.Weapon_factory(q, this_)
                 }
 
                 o = new LangData.SuperRC4()
