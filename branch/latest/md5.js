@@ -30,6 +30,25 @@ let logger = {
     }
 }
 
+function fmt_RunUpdate(update) {
+    let message = update.d;
+    let source_plr = update.e.a;
+    let target_plr = update.f.a;
+    let affect = update.x;
+    if (affect !== null && affect.a !== null) {
+        affect = affect.a
+    } else {
+        affect = "none"
+    }
+    return {
+        message: message,
+        source_plr: source_plr,
+        target_plr: target_plr,
+        affect: affect,
+        // raw: update,
+    }
+}
+
 if (run_env.from_code) {
     console.log("Running from code");
 
@@ -13241,6 +13260,7 @@ HtmlRenderer.inner_render.prototype = {
         }
     },
     b4() {
+        // MARK: 渲染器主"循环"
         var async_goto = 0,
             async_complete = P._makeAsyncAwaitCompleter(t.z),
             q, this_ = this,
@@ -13278,7 +13298,6 @@ HtmlRenderer.inner_render.prototype = {
                     return P._asyncReturn(q, async_complete)
             }
         })
-        // console.log("输出 实力评分.ing")
         return P._asyncStartSync($async$b4, async_complete)
     },
     ft(a) {
@@ -13331,10 +13350,14 @@ HtmlRenderer.inner_render.prototype = {
                     (s && C.Q).cJ(s, "\u2003")
                 }
             } else s.appendChild(document.createTextNode(", "))
-            this_.db.appendChild(HtmlRenderer._updateToHtml(this_.cx))
+            if (run_env.from_code) {
+                logger.debug(fmt_RunUpdate(this_.cx))
+            } else {
+                this_.db.appendChild(HtmlRenderer._updateToHtml(this_.cx))
+            } 
             this_.b4()
         }
-        if (a) {
+        if (a && !run_env.from_code) {
             s = this_.b
             s.scrollTop = C.JsInt.aI(C.d.aI(s.scrollHeight) - s.clientHeight)
         }
