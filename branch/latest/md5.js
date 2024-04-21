@@ -12726,7 +12726,7 @@ V.ProfileMain.prototype = {
                         // benchmarking
                         let benchmarking = LangData.get_lang("pkGN")
                         // 实力评估中...[2]% + this.Q
-                        benchmarking = benchmarking + "胜场: " + this_.Q + "胜率: " + (this_.Q / this_.ch)
+                        // benchmarking = benchmarking + "胜场: " + this_.Q + "胜率: " + (this_.Q / this_.ch)
                         // debug 用, 输出csv格式
                         // benchmarking = this_.Q + "," + this_.ch + "," + (this_.Q / this_.ch)
                         outer_display.push(T.RunUpdate_init(benchmarking, null, null, C.JsInt.ag(this_.ch, 100), null, 0, 0, 0))
