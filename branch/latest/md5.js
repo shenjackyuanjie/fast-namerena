@@ -2,6 +2,16 @@
 
 // let name_input = "!test!\n\natest\n\ntest2";
 let name_input = "this_is_a\nthis_is_b";
+// let name_input = `
+// '9tEUG@LuoTianyi
+// t2W%(s@LuoTianyi
+// mTWD1soR原创@LuoTianyi
+
+// 天依 VEfVDZVpD@candle
+// 凶镬9aY5DnWAq@candle
+// Raven qPu%yV$O@candle
+
+// seed:自生自灭 #1@!`;
 let assets_data = {
     lang: null,
     gAd: null,
@@ -15,8 +25,8 @@ let run_env = {
 
 console.log("run_env", run_env);
 
-// let is_debug = true;
-let is_debug = false;
+let is_debug = true;
+// let is_debug = false;
 
 let logger = {
     // debug: 只在 from_code 时输出
@@ -558,7 +568,8 @@ var A = {
     H = {
         m8: function m8() { },
         ls(a, b, c) {
-            if (a == null) throw H.wrap_expression(new H.dO(b, c.i("dO<0>")))
+            if (a == null) 
+                throw H.wrap_expression(new H.dO(b, c.i("dO<0>")))
             return a
         },
         t5(a, b, c, d) {
@@ -4875,7 +4886,7 @@ var A = {
             if (s > $.au()) s = C.JsInt.P(s, $.C()) + $.aI()
             return c.n() <= s
         },
-        f_(a) {
+        rateHiHp(a) {
             var s = a.fx
             if (s < $.as()) return $.pz()
             if (s > $.mR()) return $.py()
@@ -5889,7 +5900,7 @@ var A = {
             return T.DummyRunUpdates(s[r], b.e[r])
         },
         RunUpdate_init(message, caster, c, d, e, f, delay0, delay1) {
-            logger.debug("RunUpdate_init", message, H.as_string(caster), H.as_string(c), H.as_string(d))
+            // logger.debug("RunUpdate_init", message, H.as_string(caster), H.as_string(c), H.as_string(d))
             var s = new T.RunUpdate(f, 0, 0, message, caster, c, e, d)
             // var s = new T.aX(f, delay0, delay1, message, caster, c, e, d)
             // s.aK(message, caster, c, d, e, f, delay0, delay1)
@@ -10130,8 +10141,10 @@ P._Future__propagateToListeners_handleError.prototype = {
             n = p.a
             m = r
             l = k.b
-            if (n == null ? m == null : n === m) l.c = p
-            else l.c = P.async_error(r, q)
+            if (n == null ? m == null : n === m) 
+                l.c = p
+            else 
+                l.c = P.async_error(r, q)
             l.b = true
         }
     },
@@ -13174,7 +13187,6 @@ HtmlRenderer.inner_render.prototype = {
     // MARK: main?
     fe(a0) {
         // onNames()
-        logger.debug("html.fq.fe start")
         var s, r, q, p, o, group_raw, m, l, k, j, i, h, g, f, e, d, c, b, this_ = this
         if (a0.length < 6) return
         s = X.f4(a0, 0)
@@ -13345,8 +13357,9 @@ HtmlRenderer.inner_render.prototype = {
         if (this_.cx instanceof T.RunUpdateWin) {
             this_.fQ()
         } else if (run_env.from_code) {
-            logger.debug(fmt_RunUpdate(this_.cx))
+            logger.info(fmt_RunUpdate(this_.cx))
             this_.b4()
+            return
         } else {
             s = this_.db
             if (s == null) {
@@ -14690,7 +14703,7 @@ T.SklHaste.prototype = {
     a9(a, b, c) {
         var s
         if (b) {
-            s = T.f_(a) * a.M
+            s = T.rateHiHp(a) * a.M
             return a.r2.h(0, $.d4()) != null ? s / $.C() : s
         }
         return c.gbo()
@@ -16711,7 +16724,7 @@ T.Engine.prototype = {
     },
     O() {
         // 运行时?
-        logger.debug("运行 主循环")
+        // logger.debug("运行 主循环")
         var async_goto = 0,
             async_completer = P._makeAsyncAwaitCompleter(t.d),
             result_, p = [],
@@ -17873,9 +17886,9 @@ T.Skill.prototype = {
     },
     bx(a, b, c, d) {
         if (b)
-            if (this.gap().y.a.Q > $.t()) return T.f_(a) * a.y.f.length * a.H
-            else if (d) return T.f_(a) * a.M * a.H
-            else return $.i() / T.f_(a) * a.N * a.H
+            if (this.gap().y.a.Q > $.t()) return T.rateHiHp(a) * a.y.f.length * a.H
+            else if (d) return T.rateHiHp(a) * a.M * a.H
+            else return $.i() / T.rateHiHp(a) * a.N * a.H
         return c.gbo() + a.H
     },
     gb7() {
@@ -18187,7 +18200,7 @@ T.SklProtect.prototype = {
             s = $.i()
             r = t.Q.a(a.r2.h(0, $.d6()))
             if (r != null) s = r.x.length + $.i()
-            return $.i() / T.f_(a) * a.N / s
+            return $.i() / T.rateHiHp(a) * a.N / s
         }
         return c.gbo()
     },
