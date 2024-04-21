@@ -8234,7 +8234,7 @@ var A = {
                 n = HtmlRenderer.add_div("hp"),
                 m = $.jU + 1
             $.jU = m
-            m = new HtmlRenderer.ax(a, s, r, q, p, o, n, m)
+            m = new HtmlRenderer.PlrView(a, s, r, q, p, o, n, m)
             m.cP(a, b, c, {})
             return m
         },
@@ -8347,7 +8347,7 @@ var A = {
             this.a = a
             this.b = null
         },
-        ax: function ax(a, b, c, d, e, f, g, h) {
+        PlrView: function ax(a, b, c, d, e, f, g, h) {
             var _ = this
             _.a = a
             _.b = null
@@ -13572,7 +13572,7 @@ HtmlRenderer.jT.prototype = {
         }
     }
 }
-HtmlRenderer.ax.prototype = {
+HtmlRenderer.PlrView.prototype = {
     da() {
         var s = this.b
         if (s != null) s.da()
@@ -19246,7 +19246,7 @@ LangData.k_.prototype = {
         W.j8, W.m5, W.cP, W.cr, W.dN, W.eD, W.is, W.dv, W.kE, W.l_, W.ix,
         P._StructuredClone, P.kw, P.eJ, P.jQ, P.kT, Y.RC4, L.ProfileWinChance, V.ProfileMain, X.ProfileFind,
         S.fK,
-        HtmlRenderer.inner_render, HtmlRenderer.jT, HtmlRenderer.ax,
+        HtmlRenderer.inner_render, HtmlRenderer.jT, HtmlRenderer.PlrView,
         Sgls.a_, Sgls.MEntry,
         T.IMeta, T.Plr, T.CovidMeta, T.Engine, T.Grp, T.IPlr, T.HDamage, T.HRecover, T.RunUpdate, T.aq, T.bG, T.Weapon, T.DummyChargeMeta]
     )
@@ -19338,7 +19338,7 @@ LangData.k_.prototype = {
     inherit(P._StructuredCloneDart2Js, P._StructuredClone)
     inherit(P.kx, P.kw)
     inherit(P.cF, P.p)
-    inherit(HtmlRenderer.fW, HtmlRenderer.ax)
+    inherit(HtmlRenderer.fW, HtmlRenderer.PlrView)
     inherit_many(Sgls.MEntry, [T.Skill, T.UpdateStateEntry, T.PostDefendEntry, T.PostActionEntry, T.cB, T.bH, T.PostDamageEntry, T.PreActionEntry, T.aF])
     inherit_many(T.Skill,
         [T.ActionSkill, T.SklAokijiDefend, T.SklCovidDefend, T.SklIkarugaDefend,
