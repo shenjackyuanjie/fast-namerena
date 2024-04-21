@@ -13205,7 +13205,7 @@ HtmlRenderer.inner_render.prototype = {
             q = document
             r.appendChild(q.createElement("hr"))
             r.appendChild(q.createElement("br"))
-            // q = $.ay
+            q = $.ay
             // r -> 中间变量
             // this.y -> plrlen
             // this.r -> preboost
