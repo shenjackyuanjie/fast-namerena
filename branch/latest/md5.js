@@ -6123,13 +6123,13 @@ var A = {
             s.a = a
             return s
         },
-        SklAbsorb: function SklAbsorb(a) {
+        SklAbsorb: function e1(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        SklAccumulate: function SklAccumulate(a, b) {
+        SklAccumulate: function h5(a, b) {
             var _ = this
             _.fr = null
             _.fx = a
@@ -6137,7 +6137,7 @@ var A = {
             _.f = b
             _.c = _.b = _.a = _.r = null
         },
-        SklAssassinate: function SklAssassinate(a) {
+        SklAssassinate: function h7(a) {
             var _ = this
             _.fy = _.fx = _.fr = null
             _.e = false
@@ -6151,13 +6151,13 @@ var A = {
             _.f = b
             _.c = _.b = _.a = _.r = null
         },
-        SklBerserk: function SklBerserk(a) {
+        SklBerserk: function h9(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        SklCharge: function SklCharge(a, b) {
+        SklCharge: function ha(a, b) {
             var _ = this
             _.fx = _.fr = null
             _.fy = a
@@ -6173,7 +6173,7 @@ var A = {
             _.z = c
             _.c = _.b = _.a = null
         },
-        SklCharm: function SklCharm(a) {
+        SklCharm: function e3(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -6464,14 +6464,14 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        SklSummon: function SklSummon(a) {
+        SklSummon: function hx(a) {
             var _ = this
             _.fr = null
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        SklThunder: function SklThunder(a) {
+        SklThunder: function hu(a) {
             var _ = this
             _.e = false
             _.f = a
