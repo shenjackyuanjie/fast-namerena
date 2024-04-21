@@ -5606,7 +5606,7 @@ var A = {
             s.id = new T.PreActionImpl(s)
             return s
         },
-        nP(a, b, c) {
+        beLazy(a, b, c) {
             var s, r = null,
                 q = 1000,
                 p = b.n()
@@ -5624,8 +5624,10 @@ var A = {
                 s.push(T.RunUpdate_init(LangData.get_lang("xraA"), a, r, r, r, 0, q, 100))
             } else {
                 s = c.a
-                if (p < $.pp()) s.push(T.RunUpdate_init(LangData.get_lang("OBXn"), a, r, r, r, 0, q, 100))
-                else s.push(T.RunUpdate_init(LangData.get_lang("fNKA"), a, r, r, r, 0, q, 100))
+                if (p < $.pp())
+                    s.push(T.RunUpdate_init(LangData.get_lang("OBXn"), a, r, r, r, 0, q, 100))
+                else
+                    s.push(T.RunUpdate_init(LangData.get_lang("fNKA"), a, r, r, r, 0, q, 100))
             }
             s.push(T.RunUpdate_init(LangData.get_lang("hXqA"), a, r, r, r, 0, q, 100))
         },
@@ -13166,9 +13168,9 @@ HtmlRenderer.inner_render.prototype = {
                 for (m = 0; m < group_raw.length; group_raw.length === r || (0, H.F)(group_raw), ++m) {
                     l = group_raw[m]
                     q = J.a3(l)
-                    if (q.gp(l) > 1) {this_.e = true}
+                    if (q.gp(l) > 1) { this_.e = true }
                     for (q = q.ga0(l); q.u();)
-                        if (J.aw(q.gC()) > 7) {this_.f = true}
+                        if (J.aw(q.gC()) > 7) { this_.f = true }
                 }
                 k = H.b([], t.t)
                 for (r = group_raw.length, q = this_.a, p = this_.b, m = 0; m < group_raw.length; group_raw.length === r || (0, H.F)(group_raw), ++m) {
@@ -16046,7 +16048,7 @@ T.LazyState.prototype = {
         s.F()
     },
     v(a, b, c, d) {
-        T.nP(this.fx, c, d)
+        T.beLazy(this.fx, c, d)
     },
     aN(a, b, c, d) {
         if (c.n() < 128) return this
@@ -16076,7 +16078,7 @@ T.SklLazyAttack.prototype = {
         var s, r, q, p = this,
             o = a[0].a
         if (t.r.a(o.r2.h(0, $.d5())) != null && c.n() < 128) {
-            T.nP(p.fr, c, d)
+            T.beLazy(p.fr, c, d)
             p.fx = p.fx + $.b0()
             return
         }
