@@ -4661,7 +4661,7 @@ var A = {
                 if (a.r2.J(0, $.a7())) s.fr = s.fr + 1
             }
         },
-        CharmState(a, b) {
+        CharmState_init(a, b) {
             var s = new T.dj(a, b, $.i())
             s.y = new T.PostActionImpl(s)
             return s
@@ -14293,7 +14293,7 @@ T.SklCharm.prototype = {
         }
         charm_state = t.o.a(o.r2.h(0, $.aE()))
         if (charm_state == null) {
-            charm_state = T.CharmState(this_.r.z, o)
+            charm_state = T.CharmState_init(this_.r.z, o)
             charm_state.aP(0)
         } else {
             s = this_.r.z
@@ -16488,7 +16488,7 @@ T.SklYuriControl.prototype = {
         q = t.o.a(n.r2.h(0, $.aE()))
         p = this.r
         if (q == null) {
-            q = T.CharmState(p.z, n)
+            q = T.CharmState_init(p.z, n)
             q.z = s
             q.aP(0)
         } else {
