@@ -8327,7 +8327,7 @@ var A = {
             _.c = c
             _.d = d
         },
-        jz: function jz(a) {
+        addPlrToTable: function jz(a) {
             this.a = a
         },
         jB: function jB() { },
@@ -13205,7 +13205,7 @@ HtmlRenderer.inner_render.prototype = {
             q = document
             r.appendChild(q.createElement("hr"))
             r.appendChild(q.createElement("br"))
-            q = $.ay
+            // q = $.ay
             // r -> 中间变量
             // this.y -> plrlen
             // this.r -> preboost
@@ -13221,7 +13221,6 @@ HtmlRenderer.inner_render.prototype = {
             if (this_.Q != null) return
 
             this_.b4()
-            logger.debug("renderer start!")
             this_.z = group_raw
         } else {
             e = group_raw[0]
@@ -13363,7 +13362,7 @@ HtmlRenderer.inner_render.prototype = {
         C.Array.bb(p, HtmlRenderer.oD())
         C.Array.bb(o, HtmlRenderer.oD())
         m = document_.createElement("table")
-        l = new HtmlRenderer.jz(m)
+        l = new HtmlRenderer.addPlrToTable(m)
         k = document_.createElement("tr")
         j = document_.createElement("td")
         k.appendChild(j)
@@ -13474,7 +13473,7 @@ HtmlRenderer.jA.prototype = {
     },
     $S: 37
 }
-HtmlRenderer.jz.prototype = {
+HtmlRenderer.addPlrToTable.prototype = {
     $1(a) {
         var s, r, q = "beforeend",
             p = document,
@@ -19273,7 +19272,7 @@ LangData.k_.prototype = {
         L.iS, L.iT, L.iU,
         V.j0, V.j1,
         X.iX, X.iY, X.iZ,
-        HtmlRenderer.jx, HtmlRenderer.jy, HtmlRenderer.jw, HtmlRenderer.jz, HtmlRenderer.jB,
+        HtmlRenderer.jx, HtmlRenderer.jy, HtmlRenderer.jw, HtmlRenderer.addPlrToTable, HtmlRenderer.jB,
         HtmlRenderer.jC, HtmlRenderer.jD, HtmlRenderer.jV, HtmlRenderer._renderItem, HtmlRenderer.lq,
         Sgls.k5, Sgls.k6,
         T.SklCloneCallback, T.jk, T.jj, T.jl, T.ji, T.lD, T.BoostPassive, T.k3, T.kb, T.ko, T.kp,
@@ -19668,6 +19667,8 @@ var t = (function rtii() {
     $.nI = null
     $.et = P.cu(t.N, t.Z)
     $.jU = 0
+    // PlrView plv = PlrView.dict[update.caster.idName];
+    // $.ay -> plv
     $.ay = P.cu(t.X, H.findType("ax*"))
     $.rW = function () {
         var s = t.X
