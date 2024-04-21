@@ -568,7 +568,7 @@ var A = {
     H = {
         m8: function m8() { },
         ls(a, b, c) {
-            if (a == null) 
+            if (a == null)
                 throw H.wrap_expression(new H.dO(b, c.i("dO<0>")))
             return a
         },
@@ -9752,7 +9752,6 @@ P._TimerImpl.prototype = {
             setTimeout(H.convert_dart_closure_to_js_md5(new P.kC(b), 0), 0)
         } else {
             if (self.setTimeout != null) {
-                // self.setTimeout(H.convert_dart_closure_to_js_md5(new P.l9(this, b), 0), a)
                 self.setTimeout(H.convert_dart_closure_to_js_md5(new P._TimerImpl_internalCallback(this, b), 0), 0)
                 // b.$0() // 草,这下…… 6
             } else {
@@ -10141,9 +10140,9 @@ P._Future__propagateToListeners_handleError.prototype = {
             n = p.a
             m = r
             l = k.b
-            if (n == null ? m == null : n === m) 
+            if (n == null ? m == null : n === m)
                 l.c = p
-            else 
+            else
                 l.c = P.async_error(r, q)
             l.b = true
         }
@@ -13109,7 +13108,6 @@ HtmlRenderer.inner_render.prototype = {
         // this.gfd -> this.fe
         if (run_env.from_code) {
             this_.b4()
-            logger.debug("主循环启动")
             return
         } else {
             A.vo(this_.gfd())
@@ -13278,7 +13276,8 @@ HtmlRenderer.inner_render.prototype = {
         }
     },
     b4() {
-        // MARK: 渲染器主"循环"
+        // nextUpdate()
+        // MARK: 渲染器主"循环" 
         var async_goto = 0,
             async_complete = P._makeAsyncAwaitCompleter(t.z),
             q, this_ = this,
@@ -13298,8 +13297,9 @@ HtmlRenderer.inner_render.prototype = {
                 case 5:
                     this_.Q = async_result
                     async_goto = 6
-                    // return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec(1, 0), t.z), $async$b4)
-                    return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec(0, 0), t.z), $async$b4)
+                // 我们仍然不知道他为啥要在这里 delay 1ms
+                // return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec(1, 0), t.z), $async$b4)
+                // return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec(0, 0), t.z), $async$b4)
                 // break
                 case 6:
                     this_.db = null
@@ -13336,7 +13336,7 @@ HtmlRenderer.inner_render.prototype = {
         if (q >= 2000) {
             p = this_.Q
             p = !(p == null || p.a.length === 0)
-        } else p = false
+        } else { p = false }
         if (p) {
             this_.c5(this_.cy)
             this_.cy = false
