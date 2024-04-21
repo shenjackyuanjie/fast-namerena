@@ -6070,7 +6070,7 @@ var A = {
             s.r = a
             return s
         },
-        hE(a) {
+        SklSimpleAttack_init(a) {
             var s = new T.SklSimpleAttack(0)
             s.r = a
             return s
@@ -16113,7 +16113,7 @@ T.PlrBossMario.prototype = {
     },
     ac() {
         var s, r, q = this
-        q.k3 = T.hE(q)
+        q.k3 = T.SklSimpleAttack_init(q)
         s = 0
         q.aj = new T.SklFire(s)
         s = new T.SklMarioGet(q, s)
@@ -16231,7 +16231,7 @@ T.PlrBossMosquito.prototype = {
         return H.b([$.aJ(), $.aE()], t.V)
     },
     ac() {
-        this.k3 = T.hE(this)
+        this.k3 = T.SklSimpleAttack_init(this)
         var s = new T.SklAbsorb(0)
         s.f = $.ci()
         this.k1.push(s)
@@ -16313,7 +16313,7 @@ T.PlrBossSlime.prototype = {
         return H.b([$.bT()], t.V)
     },
     ac() {
-        this.k3 = T.hE(this)
+        this.k3 = T.SklSimpleAttack_init(this)
         this.k1.push(new T.SklSlimeSpawn(0))
     }
 }
@@ -16427,7 +16427,7 @@ T.PlrBossSonic.prototype = {
     },
     ac() {
         var s, r
-        this.k3 = T.hE(this)
+        this.k3 = T.SklSimpleAttack_init(this)
         s = this.k1
         r = new T.SklRapid(0)
         r.f = $.aI()
@@ -16452,7 +16452,7 @@ T.PlrBossYuri.prototype = {
     },
     ac() {
         var s, r
-        this.k3 = T.hE(this)
+        this.k3 = T.SklSimpleAttack_init(this)
         s = this.k1
         r = new T.SklYuriControl(0)
         r.f = $.eX()
