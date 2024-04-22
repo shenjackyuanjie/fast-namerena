@@ -7353,7 +7353,7 @@ var A = {
             this.b = b
         },
         Minion: function aM() { },
-        Plr: function init_plr(a, b, c, d, e, f, skills, actions, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
+        Plr: function u(a, b, c, d, e, f, skills, actions, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
             /*skl.f -> skl.level
             action.e -> action.boosted
 
@@ -17190,7 +17190,8 @@ T.Plr.prototype = {
         s = H.b(s.slice(0), H._arrayInstanceType(s))
         this_.E = s
         this_.ac() // createSkills, 对this.k1直接操作，顺序固定
-        this_.k2 = this_.X.dH(this_.k1, t.c5) // 以某种方式打乱顺序？
+        this_.k2 = this_.X.dH(this_.k1, t.c5) 
+        // rc4.next
     },
     bf() {
         var s, this_ = this,
