@@ -6168,14 +6168,14 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        SklClone: function SklClone(a) {
+        SklClone: function e4(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
         k9: function k9() { },
-        SklCritical: function SklCritical(a) {
+        SklCritical: function e5(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -6190,19 +6190,19 @@ var A = {
             _.Q = d
             _.c = _.b = _.a = null
         },
-        SklCurse: function SklCurse(a) {
+        SklCurse: function hf(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        SklDisperse: function SklDisperse(a) {
+        SklDisperse: function hh(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        SklExchange: function SklExchange(a) {
+        SklExchange: function hi(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -6211,13 +6211,13 @@ var A = {
         c3: function c3(a) {
             this.b = a
         },
-        SklFire: function SklFire(a) {
+        SklFire: function cc(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        sklHalf: function sklHalf(a) {
+        sklHalf: function e7(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -6231,13 +6231,13 @@ var A = {
             _.Q = c
             _.c = _.b = _.a = null
         },
-        SklHaste: function SklHaste(a) {
+        SklHaste: function hk(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        SklHeal: function SklHeal(a) {
+        SklHeal: function e8(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -6253,13 +6253,13 @@ var A = {
             _.y = b
             _.c = _.b = _.a = null
         },
-        SklIce: function SklIce(a) {
+        SklIce: function e9(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        SklIron: function SklIron(a, b, c) {
+        SklIron: function ho(a, b, c) {
             var _ = this
             _.fy = _.fx = _.fr = null
             _.go = a
@@ -6276,25 +6276,25 @@ var A = {
             _.z = c
             _.c = _.b = _.a = null
         },
-        SklPoison: function SklPoison(a) {
+        SklPoison: function ht(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        SklQuake: function SklQuake(a) {
+        SklQuake: function hv(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        SklRapid: function SklRapid(a) {
+        SklRapid: function ec(a) {
             var _ = this
             _.e = false
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        SklRevive: function SklRevive(a) {
+        SklRevive: function hx(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -6345,7 +6345,7 @@ var A = {
             _.a_ = _.Z = false
             _.I = null
         },
-        SklShadow: function SklShadow(a) {
+        SklShadow: function hB(a) {
             var _ = this
             _.e = false
             _.f = a
@@ -6358,7 +6358,7 @@ var A = {
             _.z = b
             _.c = _.b = _.a = null
         },
-        SklSlow: function SklSlow(a) {
+        SklSlow: function hG(a) {
             var _ = this
             _.e = false
             _.f = a
