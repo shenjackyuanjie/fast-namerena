@@ -7353,7 +7353,7 @@ var A = {
             this.b = b
         },
         Minion: function aM() { },
-        Plr: function u(a, b, c, d, e, f, skills, actions, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
+        Plr: function u(name, clan_name, fgt, weapon, e, f, skills, actions, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
             /*skl.f -> skl.level
             action.e -> action.boosted
 
@@ -7366,10 +7366,10 @@ var A = {
             k1,k2,k4数组应该是引用技能对象（地址）的，所以更改一个后，在其他会随时同步
             */
             var _ = this
-            _.a = a
-            _.b = b
-            _.c = c
-            _.d = d
+            _.a = name
+            _.b = clan_name
+            _.c = fgt
+            _.d = weapon
             _.z = _.y = _.x = _.r = _.f = _.e = null
             _.Q = e
             _.go = _.fy = _.fx = _.fr = _.dy = _.dx = _.db = _.cy = _.cx = _.ch = null
@@ -17109,21 +17109,21 @@ T.Plr.prototype = {
     a1(a, b, c, d) {
         // Plr 构造函数
         // 名字字符输入的处理在此
-        var s, r, q, p, o, n, m, l, k, j, i, this_ = this
+        var name, team, q, p, o, n, m, l, k, j, i, this_ = this
 
         this_.I = this_.gfJ()
-        s = this_.r = this_.a // 名字第一部分
-        r = this_.b // @ 号以后的东西
+        name = this_.r = this_.a // 名字第一部分
+        team = this_.b // @ 号以后的东西
 
-        if (r != null && r !== "" && r !== s) {
+        if (team != null && team !== "" && team !== name) {
             // 有战队情况下构造名字
-            r = this_.e = H.as_string(s) + "@" + H.as_string(this_.b)
+            team = this_.e = H.as_string(name) + "@" + H.as_string(this_.b)
         } else {
-            this_.e = this_.b = s
-            r = s
+            this_.e = this_.b = name
+            team = name
         }
 
-        this_.f = r
+        this_.f = team
         q = this_.d // + 号以后的东西
         if (q != null && q !== "") {
 
@@ -17131,13 +17131,13 @@ T.Plr.prototype = {
             if (q.startsWith("diy")) {
                 this_.diy = q.slice(3)
             } else {
-                this_.f = H.as_string(r) + "+" + H.as_string(q)
+                this_.f = H.as_string(team) + "+" + H.as_string(q)
 
                 // 武器列表
-                r = $.rj()
+                team = $.rj()
                 console.log("$.rj()", $.rj())
-                if (r.J(0, q)) {
-                    p = r.h(0, q).$2(q, this_)
+                if (team.J(0, q)) {
+                    p = team.h(0, q).$2(q, this_)
                 } else if (J.nz(q, $.cl())) {
                     p = new T.BossWeapon(q, this_, P.aL($.av(), 0, false, t.B))
                     p.a = q
@@ -17154,16 +17154,16 @@ T.Plr.prototype = {
 
         }
 
-        if (J.lW(s, " ")) {
-            this_.r = s.split(" ")[0]
+        if (J.lW(name, " ")) {
+            this_.r = name.split(" ")[0]
         }
         if (this_.c == null) {
             this_.c = this_.b
         }
-        r = new LangData.SuperRC4()
+        team = new LangData.SuperRC4()
 
-        r.bd(LangData.fZ(this_.b), $.i())
-        this_.X = r
+        team.bd(LangData.fZ(this_.b), $.i())
+        this_.X = team
         // q = $.ns()
         // $.mc = q + 1
         q = why_ns
@@ -17172,23 +17172,23 @@ T.Plr.prototype = {
         q = C.JsInt.P(Math.abs(q), $.bx())
         n = 0
         if (q > n) {
-            q = r.c
+            q = team.c
             m = q[n]
             l = $.i()
             q[n] = q[l]
             q[l] = m
         }
-        r.dB(0, LangData.fZ(s), $.t())
-        for (s = this_.X.c, s.length, r = this_.a2, k = 0; k < 256; ++k) {
-            j = s[k]
+        team.dB(0, LangData.fZ(name), $.t())
+        for (name = this_.X.c, name.length, team = this_.a2, k = 0; k < 256; ++k) {
+            j = name[k]
             i = (j * $.nW + $.nV & $.mP()) >>> 0
             if (i >= $.mb && i < $.r2()) {
                 C.Array.j(this_.t, (i + $.r3() * $.r4().ax($.eX()) & $.b2()) >>> 0)
-            } else r.push(j)
+            } else team.push(j)
         }
-        s = this_.t
-        s = H.b(s.slice(0), H._arrayInstanceType(s))
-        this_.E = s
+        name = this_.t
+        name = H.b(name.slice(0), H._arrayInstanceType(name))
+        this_.E = name
         this_.ac() // createSkills, 对this.k1直接操作，顺序固定
         this_.k2 = this_.X.dH(this_.k1, t.c5) 
         // rc4.next
