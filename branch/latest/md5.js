@@ -17268,10 +17268,10 @@ T.Plr.prototype = {
                 for (var i = 0; i < 7; i++) {
                     attrs[i] -= 36; // 为当前项减去36
                 }
-                this.q = attrs
+                this_.q = attrs
             }
             if (diyskills) {
-                this.diy_skills(diyskills)
+                this_.diy_skills(diyskills)
             } else this_.dm(C.Array.cL(this_.t, $.au()), C.Array.cL(this_.E, $.au())) // initSkills
         } else {
             this_.dm(C.Array.cL(this_.t, $.au()), C.Array.cL(this_.E, $.au())) // initSkills
