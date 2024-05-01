@@ -12374,38 +12374,39 @@ Y.RC4.prototype = {
     },
     bO(a) {
         // update
-        var s, r, q, p, o, n = this,
+        var s, r, q, p, o, this_ = this,
             m = a.length
         for (s = 0; s < m; ++s) {
-            r = n.a = n.a + 1 & 255
-            q = n.b
-            p = n.c
+            r = this_.a = this_.a + 1 & 255
+            q = this_.b
+            p = this_.c
             o = p[r]
-            q = n.b = q + o & 255
+            q = this_.b = q + o & 255
             p[r] = p[q]
             p[q] = o
             a[s] = (a[s] ^ p[p[r] + p[q] & 255]) >>> 0
-            n.b = q + a[s] & 255
+            this_.b = q + a[s] & 255
         }
     },
     di(a) {
         // init?
-        var s, r, q, p, o, n, m = this,
+        var s, r, q, p, o, n, this_ = this,
             l = a.length
         for (s = 0; s < l; ++s) {
-            r = m.a = m.a + 1 & 255
-            q = m.b
-            p = m.c
+            r = this_.a = this_.a + 1 & 255
+            q = this_.b
+            p = this_.c
             o = p[r]
-            q = m.b = q + o & 255
+            q = this_.b = q + o & 255
             p[r] = p[q]
             p[q] = o
             n = a[s]
             a[s] = (n ^ p[p[r] + p[q] & 255]) >>> 0
-            m.b = q + n & 255
+            this_.b = q + n & 255
         }
     },
     n() {
+        // nextByte
         // next byte from ShadowR
         var _this = this,
             r = _this.a = _this.a + 1 & 255,
@@ -19163,16 +19164,17 @@ LangData.SuperRC4.prototype = {
         return (this.n() << 8 | this.n()) >>> 0
     },
     ax(a) {
-        var s, r
+        // nextInt
+        var n, round
         if (a === 0) return 0
-        s = this.n()
-        r = a
+        n = this.n()
+        round = a
         do {
-            s = (s << 8 | this.n()) >>> 0
-            if (s >= a) s = C.JsInt.V(s, a)
-            r = C.JsInt.am(r, 8)
-        } while (r !== 0)
-        return s
+            n = (n << 8 | this.n()) >>> 0
+            if (n >= a) n = C.JsInt.V(n, a)
+            round = C.JsInt.am(round, 8)
+        } while (round !== 0)
+        return n
     }
 }
 LangData.k_.prototype = {
