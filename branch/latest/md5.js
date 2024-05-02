@@ -12373,7 +12373,7 @@ Y.RC4.prototype = {
         this.a = this.b = 0
     },
     bO(a) {
-        // update
+        // xorBytes
         var s, r, q, p, o, this_ = this,
             m = a.length
         for (s = 0; s < m; ++s) {
@@ -12389,7 +12389,7 @@ Y.RC4.prototype = {
         }
     },
     di(a) {
-        // init?
+        // decryptBytes
         var s, r, q, p, o, n, this_ = this,
             l = a.length
         for (s = 0; s < l; ++s) {
@@ -19101,6 +19101,7 @@ LangData.SuperRC4.prototype = {
     },
     // MARK: RC4 next
     dH(a, b) {
+        // sortList
         var s, r, q, p, o, n, m = a.length
         if (m <= 1) return a
         s = H.b([], t.i)
@@ -19119,6 +19120,7 @@ LangData.SuperRC4.prototype = {
         return P.List_List_of(new H.y(s, new LangData.k_(a, b), m), true, m.i("M.E"))
     },
     fi(a) {
+        // pick<T>
         var s = a.length
         if (s === 1)
             return a[0]
@@ -19130,6 +19132,7 @@ LangData.SuperRC4.prototype = {
         return this.fi(a, t.z)
     },
     fj(a, b) {
+        // pickSkip<T>
         var s, r, q = a.length
         if (q === 1) {
             // if (!J.Y(a[0], b)) return a[0]
@@ -19146,14 +19149,16 @@ LangData.SuperRC4.prototype = {
         return this.fj(a, b, t.z)
     },
     fl(a, b) {
-        var s, r, q, p, o = b.length
-        if (o === 0) return this.b5(a)
-        s = C.Array.geT(b)
-        r = b.length
-        if (a.length > r) {
-            q = C.Array.aT(a, s)
-            p = this.ax(a.length - r)
-            return a[p >= q ? p + r : p]
+        // pickSkipRange<TT>
+        var first, skip_len, q, n, len = b.length
+        if (len === 0) 
+            return this.b5(a)
+        first = C.Array.geT(b) // first
+        skip_len = b.length
+        if (a.length > skip_len) {
+            q = C.Array.aT(a, first)
+            n = this.ax(a.length - skip_len)
+            return a[n >= q ? n + skip_len : n]
         }
         return null
     },
@@ -19161,6 +19166,7 @@ LangData.SuperRC4.prototype = {
         return this.fl(a, b, t.z)
     },
     gbo() {
+        // rFFFF
         return (this.n() << 8 | this.n()) >>> 0
     },
     ax(a) {
