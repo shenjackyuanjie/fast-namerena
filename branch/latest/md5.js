@@ -4941,6 +4941,7 @@ var H = {
                 return a
             }
             // MARK: BOSS INIT(上面也是)
+            // \u0003
             if (clan_name == $.qR()) {
                 team_name = 0
                 r = $.T()
@@ -5444,7 +5445,9 @@ var H = {
                     return a1
                 }
                 r = $.ni()
+                // seed:
                 if (J.m1(name, r)) {
+                    // startwith seed:
                     r = H.as_string(r) + H.as_string($.aD())
                     q = 0
                     p = $.T()
@@ -15607,23 +15610,23 @@ T.SklAokijiIceAge.prototype = {
 }
 T.PlrBoost.prototype = {
     e1(a, b, c, d) {
-        var s, r, q, p, o = this
-        for (s = $.a4(), r = o.a6; s < $.b1(); ++s) {
-            q = o.t
+        var s, r, q, p, this_ = this
+        for (s = $.a4(), r = this_.a6; s < $.b1(); ++s) {
+            q = this_.t
             p = (q[s] | $.at()) >>> 0
             q[s] = p
             q[s] = p + r
         }
         for (s = $.p6(); s < $.aR(); ++s) {
-            q = o.t
+            q = this_.t
             q[s] = q[s] + r
         }
         for (s = $.mO(); s < $.iI(); ++s) {
-            q = o.t
+            q = this_.t
             q[s] = q[s] + r
         }
         for (s = $.au(); s < $.d_(); ++s) {
-            q = o.t
+            q = this_.t
             p = (q[s] | $.aR()) >>> 0
             q[s] = p
             q[s] = p + r
@@ -15643,7 +15646,8 @@ T.PlrBossTest.prototype = {
         }
     },
     bf() {
-        this.x = $.ao()
+        // this.x = $.ao()
+        this.x = 0
     }
 }
 T.PlrBossTest2.prototype = {
@@ -15656,26 +15660,27 @@ T.PlrBossTest2.prototype = {
         }
     },
     bf() {
-        this.x = $.ao()
+        // this.x = $.ao()
+        this.x = 0
     }
 }
 T.PlrEx.prototype = {
     e2(a, b, c, d) {
-        var s, r, q, p, o, n = this
+        var s, r, q, p, o, this_ = this
         for (s = $.a4(); r = $.b1(), s < r; ++s) {
-            q = n.t
+            q = this_.t
             p = q[s]
             o = $.mV()
             if (p < o) q[s] = ((p & $.eT()) >>> 0) + o
         }
         for (s = r; s < $.d_(); ++s) {
-            q = n.t
+            q = this_.t
             p = q[s]
             if (p < $.aR()) q[s] = p + $.at()
         }
         q = H.b([], t.i)
-        C.Array.a5(q, n.t)
-        n.E = q
+        C.Array.a5(q, this_.t)
+        this_.E = q
     },
     cA(a) { },
     bf() {
@@ -15691,10 +15696,10 @@ T.PlrBoss.prototype = {
         return null
     },
     aU() {
-        var s, r, q = this
-        q.bB()
-        if (q.gan() != null)
-            for (s = 0; r = q.q, s < r.length; ++s) r[s] = r[s] + q.gan()[s]
+        var s, r, this_ = this
+        this_.bB()
+        if (this_.gan() != null)
+            for (s = 0; r = this_.q, s < r.length; ++s) r[s] = r[s] + this_.gan()[s]
     },
     dm(a, b) {
         var s, r, q
@@ -15717,6 +15722,7 @@ T.PlrBoss.prototype = {
         return "??"
     },
     gaS() {
+        // List get immunedx => [];
         return []
     },
     gaG() {
@@ -15724,6 +15730,7 @@ T.PlrBoss.prototype = {
         return H.b([$.d2(), $.aE(), $.aJ(), $.eZ(), $.bh(), $.d3(), $.bi(), $.bS()], t.V)
     },
     a7(a, b) {
+        // bool immune(String key, R r) {
         if (C.Array.w(this.gaS(), a)) return b.n() < 240
         if (C.Array.w(this.gaG(), a)) return b.n() < 192
         return b.n() < 84
