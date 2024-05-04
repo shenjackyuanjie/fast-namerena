@@ -1,17 +1,17 @@
 'use strict';
 
-// let name_input = "!test!\n\natest\n\ntest2";
+let name_input = "!test!\n\natest\n\ntest2";
 // let name_input = "this_is_a\nthis_is_b";
-let name_input = `
-'9tEUG@LuoTianyi
-t2W%(s@LuoTianyi
-mTWD1soR原创@LuoTianyi
+// let name_input = `
+// '9tEUG@LuoTianyi
+// t2W%(s@LuoTianyi
+// mTWD1soR原创@LuoTianyi
 
-天依 VEfVDZVpD@candle
-凶镬9aY5DnWAq@candle
-Raven qPu%yV$O@candle
+// 天依 VEfVDZVpD@candle
+// 凶镬9aY5DnWAq@candle
+// Raven qPu%yV$O@candle
 
-seed:自生自灭 #1@!`;
+// seed:自生自灭 #1@!`;
 let assets_data = {
     lang: null,
     gAd: null,
@@ -25,8 +25,11 @@ let run_env = {
 
 console.log("run_env", run_env);
 
-let is_debug = true;
-// let is_debug = false;
+// let is_debug = true;
+let is_debug = false;
+
+// let output_on_console = false;
+let output_on_console = true;
 
 let logger = {
     // debug: 只在 from_code 时输出
@@ -37,17 +40,17 @@ let logger = {
         }
     },
     info: function (...msg) {
-        console.log("logger: ", msg)
+        if (output_on_console) {
+            console.log("logger: ", msg)
+        }
     }
 }
 
 function fmt_RunUpdate(update) {
     let message = update.d;
-    // let source_plr = update.e.a;
+    let source_plr = "none"
     if (update.e !== null && update.e.a !== null) {
         source_plr = update.e.a
-    } else {
-        source_plr = "none"
     }
     let target_plr = update.f;
     if (target_plr !== null && target_plr.a !== null) {
@@ -9829,9 +9832,9 @@ P.kD.prototype = {
 P._TimerImpl.prototype = {
     e8(a, b) {
         if (run_env.from_code) {
-            // b.$0()
+            b.$0()
+            // setTimeout(H.convert_dart_closure_to_js_md5(new P.kC(b), 0), 0)
             // setTimeout
-            setTimeout(H.convert_dart_closure_to_js_md5(new P.kC(b), 0), 0)
         } else {
             if (self.setTimeout != null) {
                 self.setTimeout(H.convert_dart_closure_to_js_md5(new P._TimerImpl_internalCallback(this, b), 0), 0)
@@ -11078,7 +11081,7 @@ P.lb.prototype = {
         this_.c = i
         s = str_holder.a
         // return s.charCodeAt(0) == 0 ? s : s
-        console.log("P.lb" + s)
+        // console.log("P.lb" + s)
         return s
     }
 }
@@ -12470,7 +12473,7 @@ L.ProfileWinChance.prototype = {
     },
     O() {
         // 胜率评分
-        logger.info("胜率输出 main")
+        logger.debug("胜率输出 main")
         var async_goto = 0,
             async_completer = P._makeAsyncAwaitCompleter(t.d),
             some_q, this_ = this,
@@ -12539,6 +12542,7 @@ L.ProfileWinChance.prototype = {
                         m = H.b([], m)
                         // 》 胜率: [2]%
                         // benchmarkRatio
+                        logger.info("胜率: " + (this_.y * 100 / this_.c) + "%")
                         o.push(T.RunUpdate_init(LangData.get_lang("Pnrn"), null, null, this_.y * 100 / this_.c, null, 0, 1000, 100))
                         d.push(new T.aq(o, m))
                         this_.c *= 10
@@ -13382,7 +13386,7 @@ HtmlRenderer.inner_render.prototype = {
         if (this_.cx instanceof T.RunUpdateWin) {
             this_.fQ()
         } else if (run_env.from_code) {
-            logger.info(fmt_RunUpdate(this_.cx))
+            logger.debug(fmt_RunUpdate(this_.cx))
             this_.b4()
             return
         } else {
@@ -16832,7 +16836,7 @@ T.Engine.prototype = {
                         }
                     } catch (e) {
                         // 报出错误
-                        console.error("来自 round() 的报错, 在意料之内, 可以忽略\n", e)
+                        logger.debug("来自 round() 的报错, 在意料之内, 可以忽略\n", e)
                         // m = H.unwrap_Exception(e)
                         // l = H.getTraceFromException(e)
                     }
@@ -17265,7 +17269,7 @@ T.Plr.prototype = {
         p = T.lC(this_.b) // team
         s = $.a4() // 6
         this_.x = Math.max(H.ar(q), p - s)
-        console.log("name", this.a, "team", this.b, "x(final)", this_.x, "p(team)", p, "q(name)", q)
+        logger.debug("name", this.a, "team", this.b, "x(final)", this_.x, "p(team)", p, "q(name)", q)
     },
     b0(a, b) {
         // 这又是啥
@@ -19465,7 +19469,7 @@ LangData.k_.prototype = {
     inherit(HtmlRenderer.fW, HtmlRenderer.PlrView)
     inherit_many(Sgls.MEntry,
         [T.Skill, T.UpdateStateEntry, T.PostDefendEntry,
-        T.PostActionEntry, T.PreStepEntry, T.PreDefendEntry, 
+        T.PostActionEntry, T.PreStepEntry, T.PreDefendEntry,
         T.PostDamageEntry, T.PreActionEntry, T.aF]
     )
     inherit_many(T.Skill,
