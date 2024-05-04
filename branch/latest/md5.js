@@ -16792,7 +16792,8 @@ T.Engine.prototype = {
                 // break
                 case 4:
                     try {
-                        for (; this_.cy == null;) {
+                        while (this_.cy == null) {
+                            // round
                             this_.fz(0, rc4)
                             if (rc4.a.length !== 0) {
                                 result_ = rc4
@@ -16801,12 +16802,16 @@ T.Engine.prototype = {
                             }
                         }
                     } catch (e) {
-                        m = H.unwrap_Exception(e)
-                        l = H.getTraceFromException(e)
+                        // 报出错误
+                        console.error("来自 round() 的报错, 在意料之内, 可以忽略\n", e)
+                        // m = H.unwrap_Exception(e)
+                        // l = H.getTraceFromException(e)
                     }
                     if (rc4.a.length !== 0) {
+                        // updates.updates.isNotEmpty
                         result_ = rc4
                         async_goto = 1
+                        // return updates
                         break
                     }
                     result_ = null
