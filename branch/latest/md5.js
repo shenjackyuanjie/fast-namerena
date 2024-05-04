@@ -13304,8 +13304,10 @@ HtmlRenderer.inner_render.prototype = {
                     this_.Q = async_result
                     async_goto = 6
                 // 我们仍然不知道他为啥要在这里 delay 1ms
+                // 我们现在知道了, 为了让分身可用
+                // 其实就是等一个循环
                 // return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec(1, 0), t.z), $async$b4)
-                // return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec(0, 0), t.z), $async$b4)
+                return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec(0, 0), t.z), $async$b4)
                 // break
                 case 6:
                     this_.db = null
