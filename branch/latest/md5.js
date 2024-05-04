@@ -1,6 +1,8 @@
 'use strict';
 
-let name_input = "!test!\n\natest\n\ntest2";
+// let name_input = "!test!\n\natest\n\ntest2";
+let name_input = "!test!\n\nthis_is_a";
+// let name_input = "!test!\n!\n\nthis_is_a";
 // let name_input = "this_is_a\nthis_is_b";
 // let name_input = `
 // '9tEUG@LuoTianyi
@@ -12790,6 +12792,7 @@ V.ProfileMain.prototype = {
                         outer_display.push(T.RunUpdate_init(benchmarking, null, null, C.JsInt.ag(this_.ch, 100), null, 0, 0, 0))
                         if (this_.ch >= this_.d) {
                             // 阶段目标场数达到
+                            logger.info("胜率: " + (this_.Q * 100 / this_.ch) + "%")
                             this_.eS()
                         }
                         result = new T.aq(outer_display, update_list)
