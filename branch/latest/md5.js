@@ -3512,7 +3512,7 @@ var H = {
         j(a, b) {
             // let result = C.e.bt(0, X.f4(a, b))
             let result = C.T_kk.ab(X.f4(a, b))
-            logger.debug("O.j", a, b, result)
+            logger.info("O.j", a, b, result)
             return result
         },
         get_lang(a) {
@@ -11001,7 +11001,7 @@ P.lb.prototype = {
             k = 65533,
             j = this_.b,
             i = this_.c,
-            h = new P.cH(""),
+            str_holder = new P.cH(""),
             g = b + 1,
             f = a[b]
         $label0$0: for (s = this_.a; true;) {
@@ -11010,22 +11010,22 @@ P.lb.prototype = {
                 i = j <= 32 ? f & 61694 >>> r : (f & 63 | i << 6) >>> 0
                 j = C.String.a8(" \x000:XECCCCCN:lDb \x000:XECCCCCNvlDb \x000:XECCCCCN:lDb AAAAA\x00\x00\x00\x00\x00AAAAA00000AAAAA:::::AAAAAGG000AAAAA00KKKAAAAAG::::AAAAA:IIIIAAAAA000\x800AAAAA\x00\x00\x00\x00 AAAAA", j + r)
                 if (j === 0) {
-                    h.a += H.char_code_to_char(i)
+                    str_holder.a += H.char_code_to_char(i)
                     if (g === c) break $label0$0
                     break
                 } else if ((j & 1) !== 0) {
                     if (s) switch (j) {
                         case 69:
                         case 67:
-                            h.a += H.char_code_to_char(k)
+                            str_holder.a += H.char_code_to_char(k)
                             break
                         case 65:
-                            h.a += H.char_code_to_char(k);
+                            str_holder.a += H.char_code_to_char(k);
                             --g
                             break
                         default:
-                            q = h.a += H.char_code_to_char(k)
-                            h.a = q + H.char_code_to_char(k)
+                            q = str_holder.a += H.char_code_to_char(k)
+                            str_holder.a = q + H.char_code_to_char(k)
                             break
                     } else {
                         this_.b = j
@@ -11056,14 +11056,14 @@ P.lb.prototype = {
                     p = n
                 }
                 if (o - g < 20)
-                    for (m = g; m < o; ++m) h.a += H.char_code_to_char(a[m])
-                else h.a += P.mh(a, g, o)
+                    for (m = g; m < o; ++m) str_holder.a += H.char_code_to_char(a[m])
+                else str_holder.a += P.mh(a, g, o)
                 if (o === c) break $label0$0
                 g = p
             } else g = p
         }
         if (d && j > 32)
-            if (s) h.a += H.char_code_to_char(k)
+            if (s) str_holder.a += H.char_code_to_char(k)
             else {
                 this_.b = 77
                 this_.c = c
@@ -11071,8 +11071,10 @@ P.lb.prototype = {
             }
         this_.b = j
         this_.c = i
-        s = h.a
-        return s.charCodeAt(0) == 0 ? s : s
+        s = str_holder.a
+        // return s.charCodeAt(0) == 0 ? s : s
+        console.log("P.lb" + s)
+        return s
     }
 }
 P.dq.prototype = {
@@ -20238,75 +20240,96 @@ var t = (function rtii() {
         return LangData.j("Ox2j(}6B", 62)
     })
     lazy_old($, "zb", "nh", function () {
-        return LangData.j("[uA.6OlzvO7Io;KYC<#H!O04nL9lDiKDyXAl?D", 53)
+        // return LangData.j("[uA.6OlzvO7Io;KYC<#H!O04nL9lDiKDyXAl?D", 53)
+        return '<div class="smile s_win"></div>'
     })
     lazy_old($, "z5", "nf", function () {
-        return LangData.j("yW+04ekCs/(`M<^%pzOPaP!1g.9`f=6Iowx7KqyA", 12)
+        // return LangData.j("yW+04ekCs/(`M<^%pzOPaP!1g.9`f=6Iowx7KqyA", 12)
+        return '<div class="smile s_lose"></div>'
     })
     lazy_old($, "yZ", "qA", function () {
-        return LangData.j("k/#av`/R%K.8Z7cPJ9pwz`{AF+bl~3A#IuZEVK'4QE", 95)
+        // return LangData.j("k/#av`/R%K.8Z7cPJ9pwz`{AF+bl~3A#IuZEVK'4QE", 95)
+        return '<div class="smile s_elite1"></div>'
     })
     lazy_old($, "z_", "qB", function () {
-        return LangData.j("v$CbW=5[7IUs)PPLW,sxa=*&f1P>)'phAl2JRm,c,S", 83)
+        // return LangData.j("v$CbW=5[7IUs)PPLW,sxa=*&f1P>)'phAl2JRm,c,S", 83)
+        return '<div class="smile s_elite2"></div>'
     })
     lazy_old($, "z0", "qC", function () {
-        return LangData.j("teGc0KOSrNDn<3!fVR;xwKG}r,gwB5]wrX:A]M-i)A", 47)
+        // return LangData.j("teGc0KOSrNDn<3!fVR;xwKG}r,gwB5]wrX:A]M-i)A", 47)
+        return '<div class="smile s_elite3"></div>'
     })
     lazy_old($, "yS", "qv", function () {
-        return LangData.j("~6[*>;8,bI~u#l=L&&YF];/;,IMvuigm*[3EuNSB", 81)
+        // return LangData.j("~6[*>;8,bI~u#l=L&&YF];/;,IMvuigm*[3EuNSB", 81)
+        return '<div class="smile s_boss"></div>'
     })
     lazy_old($, "yW", "ne", function () {
-        return LangData.j("HOa,^Auk1x84LRKOnLivoA,^CvRYpI$Y&JxtF7P", 33)
+        // return LangData.j("HOa,^Auk1x84LRKOnLivoA,^CvRYpI$Y&JxtF7P", 33)
+        return '<div class="smile s_dmg0"></div>'
     })
     lazy_old($, "yX", "qy", function () {
-        return LangData.j("r;.1;m!Y`$*76X[kFwDg?m<on%f`.X:NNRQ)s^v=4G", 24)
+        // return LangData.j("r;.1;m!Y`$*76X[kFwDg?m<on%f`.X:NNRQ)s^v=4G", 24)
+        return '<div class="smile s_dmg120"></div>'
     })
     lazy_old($, "yY", "qz", function () {
-        return LangData.j("|Y`+RJRHLN.p,;hg%L5FNJDN7MKOXiBKr0vtWyC!eD", 45)
+        // return LangData.j("|Y`+RJRHLN.p,;hg%L5FNJDN7MKOXiBKr0vtWyC!eD", 45)
+        return '<div class="smile s_dmg160"></div>'
     })
     lazy_old($, "yQ", "qu", function () {
-        return LangData.j("4TmcbC~p%FZ3OG+Nv~jBrzk7&MBPvE-'xObSK3%KlTmcRUA", 35)
+        // return LangData.j("4TmcbC~p%FZ3OG+Nv~jBrzk7&MBPvE-'xObSK3%KlTmcRUA", 35)
+        return '<div class="s_accumulate s_win"></div>'
     })
     lazy_old($, "yR", "nc", function () {
-        return LangData.j("j||XsipWY) l7j11O!(Mqi^.bZXl$Gh1z0YF~kMkhwe", 68)
+        // return LangData.j("j||XsipWY) l7j11O!(Mqi^.bZXl$Gh1z0YF~kMkhwe", 68)
+        return '<div class="smile s_berserk"></div>'
     })
     lazy_old($, "yT", "nd", function () {
-        return LangData.j("[IwfNb&!5RS,05|n#na1Jbyuc9[0Gb?M`.w)|/~zD", 7)
+        // return LangData.j("[IwfNb&!5RS,05|n#na1Jbyuc9[0Gb?M`.w)|/~zD", 7)
+        return '<div class="smile s_charm"></div>'
     })
     lazy_old($, "yV", "qx", function () {
         // return LangData.j("ai[u(+{WLzw?FbpUW~44<j{#'ZHo<,YST,twmLV9D", 72)
-        return "<div class=\"smile s_curse\"></div>"
+        return '<div class="smile s_curse"></div>'
     })
     lazy_old($, "z1", "qD", function () {
-        return LangData.j("m^Jd-SooyPlLaL/Ysyzz;S1Xa8kh4Zid1[SY;Ez^Jd8D", 59)
+        // return LangData.j("m^Jd-SooyPlLaL/Ysyzz;S1Xa8kh4Zid1[SY;Ez^Jd8D", 59)
+        return '<div class="smile s_exchange"></div>'
     })
     lazy_old($, "z2", "qE", function () {
-        return LangData.j("gM2vT&:&)xr*lb#RYZ:ZP&#[`yi*b5+ho<2JdcW<H", 64)
+        // return LangData.j("gM2vT&:&)xr*lb#RYZ:ZP&#[`yi*b5+ho<2JdcW<H", 64)
+        return '<div class="smile s_haste"></div>'
     })
     lazy_old($, "z3", "qF", function () {
-        return LangData.j("U4|wQ;P'v0hw&aSMs)SbU;f[=1U-}*cln4|w./A", 80)
+        // return LangData.j("U4|wQ;P'v0hw&aSMs)SbU;f[=1U-}*cln4|w./A", 80)
+        return '<div class="smile s_ice"></div>'
     })
     lazy_old($, "z4", "qG", function () {
-        return LangData.j("j||XsipWY) l7j11O!(Mqi^.^v(d`hFV;7p4YRdB", 68)
+        // return LangData.j("j||XsipWY) l7j11O!(Mqi^.^v(d`hFV;7p4YRdB", 68)
+        return '<div class="smile s_iron"></div>'
     })
     lazy_old($, "z6", "qH", function () {
-        return LangData.j("yW+04ekCs/(`M<^%pzOPaP!1*:+)XT_QG)Jj;j9,fE", 12)
+        // return LangData.j("yW+04ekCs/(`M<^%pzOPaP!1*:+)XT_QG)Jj;j9,fE", 12)
+        return '<div class="smile s_poison"></div>'
     })
     lazy_old($, "z8", "ng", function () {
-        return LangData.j("_vW+4>&y~Iv0z?VN#;^E8>?3&Gow5j0Q0fK1Ei/RoS", 85)
+        // return LangData.j("_vW+4>&y~Iv0z?VN#;^E8>?3&Gow5j0Q0fK1Ei/RoS", 85)
+        return '<div class="smile s_revive"></div>'
     })
     lazy_old($, "z9", "qJ", function () {
-        return LangData.j("SWAyuI%B&,6%p;k8VH,Nd %*JE53*T,AxA#v{MB", 44)
+        // return LangData.j("SWAyuI%B&,6%p;k8VH,Nd %*JE53*T,AxA#v{MB", 44)
+        return '<div class="smile s_slow"></div>'
     })
     lazy_old($, "yU", "qw", function () {
         // return LangData.j("Gc[I~fhNT#6]XuGrfUx.`fSI=!'?Pa~kiiRw<W:o&UY", 14)
-        return "<div class=\"smile s_counter\"></div>"
+        return '<div class="smile s_counter"></div>'
     })
     lazy_old($, "z7", "qI", function () {
-        return LangData.j(">)z*M_<GhK0#T? P13VEIrAGEEjU3&ibv`7H'#?+@iM", 93)
+        // return LangData.j(">)z*M_<GhK0#T? P13VEIrAGEEjU3&ibv`7H'#?+@iM", 93)
+        return '<div class="smile s_reflect"></div>'
     })
     lazy_old($, "za", "qK", function () {
-        return LangData.j("4TmcbC~p%FZ3OG+NROs)LBB[)kvXjGQy?A8^J'Kzl-B", 35)
+        // return LangData.j("4TmcbC~p%FZ3OG+NROs)LBB[)kvXjGQy?A8^J'Kzl-B", 35)
+        return '<div class="smile s_upgrade"></div>'
     })
     lazy_old($, "yG", "qp", function () {
         // return O.j("H<|dA6D5:4]j*v#HA'XH>zwoSP", 57)
@@ -21678,5 +21701,5 @@ function main() {
 }
 
 main();
-logger.debug("反混淆", LangData.get_lang("imin"));
+// logger.info("反混淆", LangData.j("HOa,^Auk1x84LRKOnLivoA,^CvRYpI$Y&JxtF7P", 33));
 // logger.debug("running main:", main()) // 执行main函数
