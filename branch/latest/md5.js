@@ -7413,7 +7413,7 @@ var H = {
         jY: function jY() { },
         IMeta: function x() { },
         UpdateStateEntry: function aZ() { },
-        cB: function cB() { },
+        PreStepEntry: function cB() { },
         PreDefendEntry: function bH() { },
         PostDefendEntry: function aB() { },
         PostDamageEntry: function ah() { },
@@ -17864,7 +17864,7 @@ T.IMeta.prototype = {
     K(a, b) { }
 }
 T.UpdateStateEntry.prototype = {}
-T.cB.prototype = {}
+T.PreStepEntry.prototype = {}
 T.PreDefendEntry.prototype = {}
 T.PostDefendEntry.prototype = {}
 T.PostDamageEntry.prototype = {}
@@ -19447,7 +19447,7 @@ LangData.k_.prototype = {
     inherit(P.kx, P.kw)
     inherit(P.cF, P.p)
     inherit(HtmlRenderer.fW, HtmlRenderer.PlrView)
-    inherit_many(Sgls.MEntry, [T.Skill, T.UpdateStateEntry, T.PostDefendEntry, T.PostActionEntry, T.cB, T.PreDefendEntry, T.PostDamageEntry, T.PreActionEntry, T.aF])
+    inherit_many(Sgls.MEntry, [T.Skill, T.UpdateStateEntry, T.PostDefendEntry, T.PostActionEntry, T.PreStepEntry, T.PreDefendEntry, T.PostDamageEntry, T.PreActionEntry, T.aF])
     inherit_many(T.Skill,
         [T.ActionSkill, T.SklAokijiDefend, T.SklCovidDefend, T.SklIkarugaDefend,
         T.SklLazyDefend, T.SklMarioReraise, T.SklSlimeSpawn,
@@ -19484,7 +19484,7 @@ LangData.k_.prototype = {
     inherit(T.SklYuriControl, T.SklCharm)
     inherit_many(T.IPlr, [T.NPlr, T.HPlr, T.MPlr, T.DPlr])
     inherit_many(T.RunUpdate, [T.RunUpdateCancel, T.RunUpdateWin])
-    inherit(T.PreStepImpl, T.cB)
+    inherit(T.PreStepImpl, T.PreStepEntry)
     inherit(T.PostDamageImpl, T.PostDamageEntry)
     inherit_many(T.PreActionEntry, [T.PreActionImpl, T.RinickModifierPreAction])
     inherit(T.cp, T.aF)
