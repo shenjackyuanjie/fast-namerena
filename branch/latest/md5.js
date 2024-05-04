@@ -16667,7 +16667,7 @@ T.Engine.prototype = {
 
                     this_.b = new LangData.SuperRC4()
                     this_.b.bd(sorted_hash, 1) // init 1
-                    this_.b.bO(sorted_hash)
+                    this_.b.bO(sorted_hash) // xor bytes once
 
                     o = sorted_names.length
                     h = 0
@@ -16677,9 +16677,10 @@ T.Engine.prototype = {
                         break
                     }
                     b0 = sorted_names[h]
-                    async_goto = 6
-                    return P._asyncAwait(name2p.h(0, b0).cg(), $async$bD)
-                case 6:
+                    // async_goto = 6
+                    name2p.h(0, b0).az()
+                //     return P._asyncAwait(name2p.h(0, b0).cg(), $async$bD)
+                // case 6:
                     n = name2p.h(0, b0)
                     m = this_.b // rc4_holder
                     // name2p[name].sortInt = r.rFFFFFF;
@@ -17263,7 +17264,7 @@ T.Plr.prototype = {
         }
     },
     cg() {
-        // 
+        // buildAsync outer?
         var s = 0,
             r = P._makeAsyncAwaitCompleter(t.z),
             this_ = this
@@ -17282,7 +17283,7 @@ T.Plr.prototype = {
         var weapon, diy, this_ = this
         this_.bf()
         weapon = this_.weapon
-        if (weapon != null) weapon.bn()
+        if (weapon != null) weapon.bn() // preUpgrade
 
         this_.aU() // initRawAttr
         this_.bP() // initLists
