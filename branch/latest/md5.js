@@ -5170,7 +5170,8 @@ var H = {
                     a1.av(name, team_name)
                     return a1
                 }
-                if (name == $.qO()) return T.rE(name, team_name)
+                // slime
+                if (name == $.qO()) return T.init_BossSlime(name, team_name)
                 if (name == $.qh()) {
                     r = H.as_string(name) + H.as_string($.aD())
                     q = 0
@@ -5679,7 +5680,7 @@ var H = {
             s.r = a
             return s
         },
-        rE(a2, a3) {
+        init_BossSlime(a2, a3) {
             var s, r, q, p, o, n, m, l, k, j, i, h, g, f = 0,
                 e = H.as_string(a2) + H.as_string($.aD()),
                 d = 0,
@@ -16556,7 +16557,7 @@ T.Engine.prototype = {
         var async_goto = 0,
             async_completer = P._makeAsyncAwaitCompleter(t.z),
             q, this_ = this,
-            o, n, m, name2p, k, j, i, h, g, f, runner, d, c, b, is_boss, a0, a1, player, a3, a4, a5, a6, a7, a8, a9, b0, b1, b2, seed_names
+            o, n, m, name2p, k, j, i, h, g, f, runner, d, c, b, is_boss, a0, weapon_name, player, a3, a4, a5, a6, a7, a8, a9, b0, b1, b2, seed_names
         var $async$bD = P._wrapJsFunctionForAsync(function (async_error_code, async_result) {
             if (async_error_code === 1) return P.async_rethrow(async_result, async_completer)
             while (true) switch (async_goto) {
@@ -16575,7 +16576,7 @@ T.Engine.prototype = {
                                     b.h(c, $.i())
                                     is_boss = b.gp(c)
                                     a0 = $.t()
-                                    a1 = is_boss > a0 ? b.h(c, a0) : null
+                                    weapon_name = is_boss > a0 ? b.h(c, a0) : null
                                     if (typeof b.h(c, $.i()) == "string") {
                                         is_boss = J.aw(b.h(c, $.i()))
                                         a0 = $.i()
@@ -16583,9 +16584,9 @@ T.Engine.prototype = {
                                     } else
                                         is_boss = false
                                     if (is_boss) {
-                                        player = T.choose_boss(b.h(c, 0), b.h(c, $.i()), this_, a1)
+                                        player = T.choose_boss(b.h(c, 0), b.h(c, $.i()), this_, weapon_name)
                                     } else {
-                                        player = T.init_plr(b.h(c, 0), b.h(c, $.i()), runner.b, a1)
+                                        player = T.init_plr(b.h(c, 0), b.h(c, $.i()), runner.b, weapon_name)
                                     }
                                     // a2 = a ? T.init_boss(b.h(c, 0), b.h(c, $.i()), this_, a1) : T.init_plr(b.h(c, 0), b.h(c, $.i()), e.b, a1)
                                     if (player instanceof T.PlrSeed_) { // PlrSeed
@@ -16603,6 +16604,7 @@ T.Engine.prototype = {
                                     name2p.m(0, player.e, player)
                                 }
                         }
+                        // group.initPlayers.length != 0
                         if (f.length !== 0) {
                             i.push(runner)
                             a3 = f.length
