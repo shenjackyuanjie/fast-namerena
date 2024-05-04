@@ -16556,13 +16556,13 @@ T.Engine.prototype = {
         var async_goto = 0,
             async_completer = P._makeAsyncAwaitCompleter(t.z),
             q, this_ = this,
-            o, n, m, l, k, j, i, h, g, f, runner, d, c, b, a, a0, a1, player, a3, a4, a5, a6, a7, a8, a9, b0, b1, b2, seed_names
+            o, n, m, name2p, k, j, i, h, g, f, runner, d, c, b, is_boss, a0, a1, player, a3, a4, a5, a6, a7, a8, a9, b0, b1, b2, seed_names
         var $async$bD = P._wrapJsFunctionForAsync(function (async_error_code, async_result) {
             if (async_error_code === 1) return P.async_rethrow(async_result, async_completer)
             while (true) switch (async_goto) {
                 case 0:
                     seed_names = H.b([], t.V)
-                    for (o = this_.x, n = o.length, m = t.eG, l = this_.r, k = this_.z, j = t.L, i = this_.a, h = 0; h < o.length; o.length === n || (0, H.F)(o), ++h) {
+                    for (o = this_.x, n = o.length, m = t.eG, name2p = this_.r, k = this_.z, j = t.L, i = this_.a, h = 0; h < o.length; o.length === n || (0, H.F)(o), ++h) {
                         g = o[h]
                         f = H.b([], j)
                         runner = new T.Grp(this_, f, H.b([], j), H.b([], j), H.b([], j))
@@ -16573,16 +16573,16 @@ T.Engine.prototype = {
                                     b = J.a3(c)
                                     b.h(c, 0)
                                     b.h(c, $.i())
-                                    a = b.gp(c)
+                                    is_boss = b.gp(c)
                                     a0 = $.t()
-                                    a1 = a > a0 ? b.h(c, a0) : null
+                                    a1 = is_boss > a0 ? b.h(c, a0) : null
                                     if (typeof b.h(c, $.i()) == "string") {
-                                        a = J.aw(b.h(c, $.i()))
+                                        is_boss = J.aw(b.h(c, $.i()))
                                         a0 = $.i()
-                                        a = a === a0 && J.ny(b.h(c, a0), 0) < $.pC()
+                                        is_boss = is_boss === a0 && J.ny(b.h(c, a0), 0) < $.pC()
                                     } else
-                                        a = false
-                                    if (a) {
+                                        is_boss = false
+                                    if (is_boss) {
                                         player = T.choose_boss(b.h(c, 0), b.h(c, $.i()), this_, a1)
                                     } else {
                                         player = T.init_plr(b.h(c, 0), b.h(c, $.i()), runner.b, a1)
@@ -16593,13 +16593,14 @@ T.Engine.prototype = {
                                         k.push(player)
                                         continue
                                     }
-                                    if (l.J(0, player.e))
-                                        continue
+                                    if (name2p.J(0, player.e)) { 
+                                        // if name2p.containsKey(p.idName)
+                                        continue }
                                     if (runner.b == null)
                                         runner.b = player.c
                                     player.y = runner
                                     f.push(player)
-                                    l.m(0, player.e, player)
+                                    name2p.m(0, player.e, player)
                                 }
                         }
                         if (f.length !== 0) {
@@ -16618,22 +16619,23 @@ T.Engine.prototype = {
                         }
                     }
                     this_.Q = i.length
-                    if (C.JsInt.am(l.gp(l), $.Z()) > 0) {
+                    if (C.JsInt.am(name2p.gp(name2p), $.Z()) > 0) {
                         // errorMaxPlayer
                         // 错误，目前最多支持1000人PK
                         this_.f = LangData.get_lang("CefA")
                         async_goto = 1
                         break
                     }
-                    if (l.gp(l) < $.t()) {
+                    if (name2p.gp(name2p) < $.t()) {
                         // errorMinPlayer
                         // 错误，请至少输入两行名字
                         this_.f = LangData.get_lang("MAda")
                         async_goto = 1
                         break
                     }
-                    o = l.gad(l)
+                    o = name2p.gad(name2p)
                     a7 = P.List_List_of(o, true, H._instanceType(o).i("L.E"))
+
                     C.Array.aJ(a7)
                     if (seed_names.length !== 0) {
                         a8 = H.b(a7.slice(0), H._arrayInstanceType(a7))
@@ -16658,10 +16660,11 @@ T.Engine.prototype = {
                     }
                     b0 = a7[h]
                     async_goto = 6
-                    return P._asyncAwait(l.h(0, b0).cg(), $async$bD)
+                    return P._asyncAwait(name2p.h(0, b0).cg(), $async$bD)
                 case 6:
-                    n = l.h(0, b0)
-                    m = this_.b
+                    n = name2p.h(0, b0)
+                    m = this_.b // rc4_holder
+                    // name2p[name].sortInt = r.rFFFFFF;
                     n.Q = (m.n() << 16 | m.n() << 8 | m.n()) >>> 0
                 case 4:
                     a7.length === o || (0, H.F)(a7), ++h
@@ -16675,8 +16678,8 @@ T.Engine.prototype = {
                         k = H.b(n.slice(0), m)
                         runner.d = k
                         n = H.b(n.slice(0), m)
-                        if (n.immutable$list)
-                            H.throw_expression(P.UnsupportError("sort"))
+                        // if (n.immutable$list)
+                        //     H.throw_expression(P.UnsupportError("sort"))
                         m = n.length - 1
                         if (m - 0 <= 32) H.ej(n, 0, m, T.mD())
                         else H.ei(n, 0, m, T.mD())
@@ -16684,11 +16687,11 @@ T.Engine.prototype = {
                         n = H.b(n.slice(0), H._arrayInstanceType(n))
                         runner.f = n
                     }
-                    o = l.gfP(l)
+                    o = name2p.gfP(name2p)
                     o = P.List_List_of(o, true, H._instanceType(o).i("L.E"))
                     C.Array.bb(o, T.mD())
                     this_.c = o
-                    if (C.JsInt.am(l.gp(l) + $.X(), $.C()) === 0)
+                    if (C.JsInt.am(name2p.gp(name2p) + $.X(), $.C()) === 0)
                         for (o = this_.c, n = o.length, h = 0; h < n; ++h) {
                             player = o[h]
                             player.I = player.gbT()
@@ -16697,7 +16700,7 @@ T.Engine.prototype = {
                     // T.DummyRunUpdates_init
                     C.Array.bb(o, T.v4())
                     this_.d = o
-                    for (n = o.length, m = t.i, l = this_.e, h = 0; h < o.length; o.length === n || (0, H.F)(o), ++h) {
+                    for (n = o.length, m = t.i, name2p = this_.e, h = 0; h < o.length; o.length === n || (0, H.F)(o), ++h) {
                         b1 = o[h]
                         for (k = b1.f, j = k.length, b2 = 0; b2 < k.length; k.length === j || (0, H.F)(k), ++b2) {
                             player = k[b2]
@@ -16706,7 +16709,7 @@ T.Engine.prototype = {
                             i.bO(C.e.gaB().ab(f))
                         }
                         this_.b.bO(H.b([0], m))
-                        C.Array.a5(l, b1.f)
+                        C.Array.a5(name2p, b1.f)
                     }
                     for (o = this_.c, n = o.length, h = 0; h < o.length; o.length === n || (0, H.F)(o), ++h) o[h].l = this_.b.n()
                 case 1:
