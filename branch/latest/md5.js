@@ -404,168 +404,169 @@ var A = {
         new P.cM(s, H._instanceType(s).i("cM<1>")).f4(a)
         return
     }
-},
-    C = {},
-    Sgls = {
-        o6(a) {
-            var s, r, q
-            if ($.k8.J(0, a)) return $.k8.h(0, a)
-            s = $.e_
-            $.e_ = s + 1
-            r = "icon_" + s
-            $.k8.m(0, a, r)
-            q = Sgls.tt(a).toDataURL("image/png", null)
-            $.mg.m(0, a, q)
-            t.w.a(C.v.gbl(document.styleSheets)).insertRule("div." + r + ' { background-image:url("' + H.as_string(q) + '"); }', $.e_ - 1)
-            return r
-        },
-        tw() {
-            $.rW.aw(0, new Sgls.k7())
-        },
-        tv(a) {
-            var s, r, q, p, o, n, m, l, k, j, i, h, g, f = W.j4()
-            f.width = 128
-            f.height = 128
-            f.getContext("2d").drawImage($.md, 0, 0)
-            s = J.cm(P.my(f.getContext("2d").getImageData(0, 0, 128, 128)))
-            for (r = t.i, q = 0; q < 38; ++q) {
-                p = C.JsInt.V(q, 8) * 64 + C.JsInt.ag(q, 8) * 8192
-                o = H.b([], r)
-                for (n = 0; n < 16; ++n)
-                    for (m = n * 512, l = 0; l < 16; ++l) {
-                        k = p + l * 4 + m
-                        j = s[k]
-                        if (j > s[k + 1]) o.push(j)
-                        else o.push(0)
-                    }
-                $.dZ.push(o)
-            }
-            for (q = 0; q < 8; ++q) {
-                p = q * 64 + 57344
-                i = H.b([], r)
-                h = H.b([], r)
-                for (n = 0; n < 16; ++n)
-                    for (m = n * 512, l = 0; l < 16; ++l) {
-                        k = p + l * 4 + m
-                        j = s[k]
-                        g = k + 1
-                        if (j > s[g]) i.push(j)
-                        else i.push(0)
-                        j = s[g]
-                        if (j > s[k + 2]) h.push(255 - j)
-                        else h.push(255)
-                    }
-                $.me.push(i)
-                $.o5.push(h)
-            }
-            $.nt().bM(0, "")
-        },
-        tt(a) {
-            var s, r, q = new LangData.SuperRC4()
-            q.bd(LangData.fZ(a), 2)
-            s = q.c
-            s.toString
-            r = H._arrayInstanceType(s).i("y<1,l*>")
-            return Sgls.ts(P.List_List_of(new H.y(s, new Sgls.k5(), r), true, r.i("M.E")))
-        },
-        ts(a) {
-            var s, r, q, p, o, n, m, l, k, j, i, h, g, f = C.d.V(a[0], $.me.length),
-                e = t.i,
-                d = H.b([], e)
-            d.push(C.d.V(a[1], $.dZ.length))
-            s = a[2]
-            r = $.dZ.length
-            q = C.d.V(s, r)
-            if (q === d[0]) {
-                q = C.d.V(a[3], r)
-                p = 4
-            } else p = 3
-            d.push(q)
+}
+var C = {}
+
+var Sgls = {
+    o6(a) {
+        var s, r, q
+        if ($.k8.J(0, a)) return $.k8.h(0, a)
+        s = $.e_
+        $.e_ = s + 1
+        r = "icon_" + s
+        $.k8.m(0, a, r)
+        q = Sgls.tt(a).toDataURL("image/png", null)
+        $.mg.m(0, a, q)
+        t.w.a(C.v.gbl(document.styleSheets)).insertRule("div." + r + ' { background-image:url("' + H.as_string(q) + '"); }', $.e_ - 1)
+        return r
+    },
+    tw() {
+        $.rW.aw(0, new Sgls.k7())
+    },
+    tv(a) {
+        var s, r, q, p, o, n, m, l, k, j, i, h, g, f = W.j4()
+        f.width = 128
+        f.height = 128
+        f.getContext("2d").drawImage($.md, 0, 0)
+        s = J.cm(P.my(f.getContext("2d").getImageData(0, 0, 128, 128)))
+        for (r = t.i, q = 0; q < 38; ++q) {
+            p = C.JsInt.V(q, 8) * 64 + C.JsInt.ag(q, 8) * 8192
+            o = H.b([], r)
+            for (n = 0; n < 16; ++n)
+                for (m = n * 512, l = 0; l < 16; ++l) {
+                    k = p + l * 4 + m
+                    j = s[k]
+                    if (j > s[k + 1]) o.push(j)
+                    else o.push(0)
+                }
+            $.dZ.push(o)
+        }
+        for (q = 0; q < 8; ++q) {
+            p = q * 64 + 57344
+            i = H.b([], r)
+            h = H.b([], r)
+            for (n = 0; n < 16; ++n)
+                for (m = n * 512, l = 0; l < 16; ++l) {
+                    k = p + l * 4 + m
+                    j = s[k]
+                    g = k + 1
+                    if (j > s[g]) i.push(j)
+                    else i.push(0)
+                    j = s[g]
+                    if (j > s[k + 2]) h.push(255 - j)
+                    else h.push(255)
+                }
+            $.me.push(i)
+            $.o5.push(h)
+        }
+        $.nt().bM(0, "")
+    },
+    tt(a) {
+        var s, r, q = new LangData.SuperRC4()
+        q.bd(LangData.fZ(a), 2)
+        s = q.c
+        s.toString
+        r = H._arrayInstanceType(s).i("y<1,l*>")
+        return Sgls.ts(P.List_List_of(new H.y(s, new Sgls.k5(), r), true, r.i("M.E")))
+    },
+    ts(a) {
+        var s, r, q, p, o, n, m, l, k, j, i, h, g, f = C.d.V(a[0], $.me.length),
+            e = t.i,
+            d = H.b([], e)
+        d.push(C.d.V(a[1], $.dZ.length))
+        s = a[2]
+        r = $.dZ.length
+        q = C.d.V(s, r)
+        if (q === d[0]) {
+            q = C.d.V(a[3], r)
+            p = 4
+        } else p = 3
+        d.push(q)
+        o = p + 1
+        if (a[p] < 4) {
+            p = o + 1
+            d.push(C.d.V(a[o], $.dZ.length))
             o = p + 1
-            if (a[p] < 4) {
+            if (a[p] < 64) {
                 p = o + 1
                 d.push(C.d.V(a[o], $.dZ.length))
-                o = p + 1
-                if (a[p] < 64) {
-                    p = o + 1
-                    d.push(C.d.V(a[o], $.dZ.length))
-                } else p = o
             } else p = o
-            n = $.nu().getContext("2d")
+        } else p = o
+        n = $.nu().getContext("2d")
+        o = p + 1
+        m = C.d.V(a[p], $.d7() - 6)
+        l = $.mf[m]
+        s = l[0]
+        r = l[1]
+        k = l[2]
+        n.toString
+        n.fillStyle = "rgba(" + s + ", " + r + ", " + k + ", 1)"
+        n.fillRect(1, 1, 14, 14)
+        j = H.b([], e)
+        i = new Sgls.k6(j, m, d)
+        for (p = o, h = 0; h < d.length; ++h) {
             o = p + 1
-            m = C.d.V(a[p], $.d7() - 6)
-            l = $.mf[m]
-            s = l[0]
-            r = l[1]
-            k = l[2]
-            n.toString
-            n.fillStyle = "rgba(" + s + ", " + r + ", " + k + ", 1)"
-            n.fillRect(1, 1, 14, 14)
-            j = H.b([], e)
-            i = new Sgls.k6(j, m, d)
-            for (p = o, h = 0; h < d.length; ++h) {
+            g = C.d.V(a[p], $.d7())
+            for (p = o; !i.$1(g); p = o) {
                 o = p + 1
                 g = C.d.V(a[p], $.d7())
-                for (p = o; !i.$1(g); p = o) {
-                    o = p + 1
-                    g = C.d.V(a[p], $.d7())
-                }
-                j.push(g)
-                Sgls.o4(n, $.dZ[d[h]], $.mf[g])
             }
-            Sgls.tu(n, f)
-            return $.nu()
-        },
-        o4(a, b, c) {
-            var s, r, q, p, o
-            for (s = 0, r = 0, q = 0; q < 16; ++q)
-                for (p = 0; p < 16; ++p) {
-                    o = r + 3
-                    if (b[s] > 0) {
-                        J.cm($.d8())[r] = c[0]
-                        J.cm($.d8())[r + 1] = c[1]
-                        J.cm($.d8())[r + 2] = c[2]
-                        J.cm($.d8())[o] = b[s]
-                    } else J.cm($.d8())[o] = 0;
-                    ++s
-                    r += 4
-                }
-            o = $.lS().getContext("2d");
-            (o && C.k).dw(o, $.d8(), 0, 0)
-            a.drawImage($.lS(), 0, 0)
-        },
-        tu(a, b) {
-            var s, r, q, p
-            Sgls.o4(a, $.me[b], H.b([64, 64, 64], t.i))
-            s = P.my(a.getImageData(0, 0, 16, 16))
-            r = $.o5[b]
-            for (q = J.bv(s), p = 0; p < 256; ++p) q.gck(s)[p * 4 + 3] = r[p]
-            C.k.dw(a, s, 0, 0)
-        },
-        k7: function k7() { },
-        k4: function k4() { },
-        k5: function k5() { },
-        k6: function k6(a, b, c) {
-            this.a = a
-            this.b = b
-            this.c = c
-        },
-        MList: function c(a) {
-            var _ = this
-            _.a = 0
-            _.c = _.b = null
-            _.$ti = a
-        },
-        a_: function a_(a, b, c) {
-            var _ = this
-            _.a = a
-            _.b = null
-            _.c = b
-            _.$ti = c
-        },
-        MEntry: function n() { }
+            j.push(g)
+            Sgls.o4(n, $.dZ[d[h]], $.mf[g])
+        }
+        Sgls.tu(n, f)
+        return $.nu()
     },
-    H = {
+    o4(a, b, c) {
+        var s, r, q, p, o
+        for (s = 0, r = 0, q = 0; q < 16; ++q)
+            for (p = 0; p < 16; ++p) {
+                o = r + 3
+                if (b[s] > 0) {
+                    J.cm($.d8())[r] = c[0]
+                    J.cm($.d8())[r + 1] = c[1]
+                    J.cm($.d8())[r + 2] = c[2]
+                    J.cm($.d8())[o] = b[s]
+                } else J.cm($.d8())[o] = 0;
+                ++s
+                r += 4
+            }
+        o = $.lS().getContext("2d");
+        (o && C.k).dw(o, $.d8(), 0, 0)
+        a.drawImage($.lS(), 0, 0)
+    },
+    tu(a, b) {
+        var s, r, q, p
+        Sgls.o4(a, $.me[b], H.b([64, 64, 64], t.i))
+        s = P.my(a.getImageData(0, 0, 16, 16))
+        r = $.o5[b]
+        for (q = J.bv(s), p = 0; p < 256; ++p) q.gck(s)[p * 4 + 3] = r[p]
+        C.k.dw(a, s, 0, 0)
+    },
+    k7: function k7() { },
+    k4: function k4() { },
+    k5: function k5() { },
+    k6: function k6(a, b, c) {
+        this.a = a
+        this.b = b
+        this.c = c
+    },
+    MList: function c(a) {
+        var _ = this
+        _.a = 0
+        _.c = _.b = null
+        _.$ti = a
+    },
+    a_: function a_(a, b, c) {
+        var _ = this
+        _.a = a
+        _.b = null
+        _.c = b
+        _.$ti = c
+    },
+    MEntry: function n() { }
+}
+var H = {
         m8: function m8() { },
         ls(a, b, c) {
             if (a == null)
@@ -8080,356 +8081,423 @@ var A = {
             this.b = this.a = 0
             this.c = null
         }
-    },
-    HtmlRenderer = {
-        add_span(a) {
-            var s = document.createElement("span")
-            s.classList.add(a)
-            return s
-        },
-        add_div(a) {
-            var s = document.createElement("div")
-            s.classList.add(a)
-            return s
-        },
-        add_p(a) {
-            var s = document.createElement("p")
-            s.classList.add(a)
-            return s
-        },
-        static_init() {
-            var async_goto = 0,
-                r = P._makeAsyncAwaitCompleter(t.z),
-                q, p
-            var $async$jv = P._wrapJsFunctionForAsync(function (a, b) {
-                if (a === 1) return P.async_rethrow(b, r)
-                while (true) switch (async_goto) {
-                    case 0:
-                        if (run_env.from_code) {
-                            // 直接忽略这里的 wait
-                            async_goto = 2
-                        } else {
-                            Sgls.tw()
-                            q = W.nK()
-                            $.md = q
-                            W.es(q, "load", Sgls.vg(), false)
-                            $.md.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACAAgMAAAC+UIlYAAAADFBMVEX/AAD/AP8A/wD///8SU+EWAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wwaCg0BGtaVrQAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAADHUlEQVRYw+2WPY6jMBTHLejhMNOu4BRkpTTp5xIgzQGmilKmSjFUkbZFCpp6tN3mHGikpAK8/r/nZwhxMlllViOtFsWxsX/2+7SNKj941E7r/lr5Q6BNuW5iqqtv3xLlBtKW67jpd3XY75SyAF4wAwMAwpqLAVgEADuDANOu4iahCQ7AIAaUSrBalbYEDCI+BESPiyJk0KukmCnlzMybHHVXLD4M9w35oIJC6R4FbVm6UNw2QB0UoQcIawGaoIg9QNwI0AZF6gHSVgAdFNoDmH4BXp88gOl7FeD92QOYvvcTYDBvAAE5ET4AYpySPgCKOjO9gDHVOcoLGGc5V3sB424XLC9gAvYZ+WAT1Joa0KahxEWWx/0AkKntAJhBQANApjYEcDZhx+kB2JKpdTQA2GEjoGLzEidCN0kVW4BmKCilegGedRttU0RTgBpKhQ544iC+DkADpWIHFJwGwQCY5SFGACwPMU5JUtAoKkDFZicjoI5gqjOTze5HAOeFA2r0hWOAM+tiLCQ3z2LxGedDnVSjnNwqFU3OKDho6KDTltu049SuhYtT3os4Bu0BKjuOrTCFdjPaOERHVinMxip0HsixPPKLYvmKTxS5M0aeVWxBnWzjJqrCOhks4B3nAAwCOgNEBJaXg4vFWBGiJBSUg4sVFSWtmc5UAGyqNdM6CsvKwWWdZR01cfXI3dbVk2BNA/Yp+WCX5TSPxncFiZAXB5ivALIGXwM+ALcuANQ/Ht5+ngHbsI4AoK7eHpKrK5zcmxd18FkhLicdrgGkw00ioOhVJcfA2Eynw6UVnA5j4CYzT4J1fz5cGnDfD38RkM+DLwTc7f/VwLXb/37g/nz4D/yTwEuWPWbmKTN6ynI5K7P5JkNZZtlMLbWe5Vp3m1x35jdfLg6zfL/q8l/fu4XWB7XW+ghgpQHoPTrzwwJtKoo6TGPNHUcZcIA0FlwfLgLTIitfBES3rwROlLQvh8VkkDyJP+PFPZy0niyPmly90XoON6/sLDuhWx8WRwrWS949IlAIGIK1ybs5grXer44U7pKjXdKfCTe9I9zzzew3hQ1VpfX/zmMAAAAASUVORK5CYII="
-                            async_goto = 2
-                            // 等待这个 callback 被调用
-                            return P._asyncAwait($.nt().a, $async$jv)
-                        }
-                    case 2:
-                        if (run_env.from_code) {
-                            logger.debug("loading gAd data")
-                            LangData.load_lang(t.cF.a(C.C.bt(0, assets_data.lang)))
-                            // LangData.v1(assets_data.lang)
-                            // LangData.load_lang(assets_data.lang)
-                        } else {
-                            p = window.sessionStorage.getItem(LangData.eQ("ll"))
-                            if (typeof p == "string") {
-                                LangData.load_lang(t.cF.a(C.C.bt(0, p)))
-                            }
-                        }
-                        return P._asyncReturn(null, r)
-                }
-            })
-            return P._asyncStartSync($async$jv, r)
-        },
-        outer_main(engine) {
-            var s = document
-
-            let plist = s.querySelector(".plist")
-            let pbody = s.querySelector(".pbody")
-
-            s = new HtmlRenderer.inner_render(plist, pbody, engine, $.ro().ax(256))
-            s.e0(engine)
-            logger.debug("finish html.outer_main")
-            return s
-        },
-        aA(a, b, c, d, e, f) {
-            var s = a.measureText(b)
-            if (f && s.width < e) c += C.d.ag(e - s.width, 2)
-            a.fillText(b, c, d + 15, e)
-            return s.width
-        },
-        ju(a, b, c, d) {
-            $.bU().src = $.mg.h(0, b.fy)
-            a.drawImage($.bU(), c + 4, d + 6)
-            HtmlRenderer.aA(a, b.dx, c + 24, d + 5, 90, false)
-        },
-        rV(a, b) {
-            logger.debug("reaching html.rV")
-            var s, r, q, p, o, n, m, l, k, j, i, h = "#000000",
-                g = "#EEEEEE",
-                f = W.j4(),
-                e = 1
-            if (a.length + b.length <= 128) e = 2
-            f.width = 320 * e
-            f.height = ((a.length + b.length) * 26 + 88) * e + 24
-            s = f.getContext("2d")
-            s.imageSmoothingEnabled = false
-            s.fillStyle = "white"
-            J.bj(s, 0, 0, f.width, f.height)
-            if (!J.Y(e, 1)) J.rC(s, e, 0, 0, e, 0, 0)
-            q = document.body
-            q.toString
-            s.font = window.getComputedStyle(q, "").font
-            s.fillStyle = h
-            HtmlRenderer.aA(s, "\u21dc\u3000" + LangData.get_lang("CeaN") + "\u3000\u21dd", 0, 4, 320, true)
-            r = 26
-            s.fillStyle = "#FAFAFA"
-            J.bj(s, 0, r, 320, 32)
-            s.fillStyle = g
-            J.bj(s, 0, r, 320, 2)
-            s.fillStyle = h
-            p = HtmlRenderer.aA(s, LangData.get_lang("ePya"), 0, r + 8, 114, true)
-            HtmlRenderer.aA(s, LangData.get_lang("AoUA"), 114, r + 8, 46, true)
-            HtmlRenderer.aA(s, LangData.get_lang("aXIa"), 160, r + 8, 46, true)
-            HtmlRenderer.aA(s, LangData.get_lang("MdQa"), 206, r + 8, 114, true)
-            $.bU().src = "data:image/gif;base64,R0lGODlhFAAUALMAAAAAAP///98AJDsBRb3L09fi6NHf5ur2/JbFU63abcPuhcLthc/1mf///wAAAAAAACH5BAEAAA0ALAAAAAAUABQAAASCsMk5x6A4y6Gu/pyCXMJUaqGiJELbtCc1MOqiwnhl7aq675WAUGgIDYaBQ7FxTA4OyuIRengalr+fL2thWnrgcKLLLFS53ALh0nxWoe64mi1s1++BwZyJt+fre3p/g356axuEfQEFA4cbjIp5c44beowFl2sEax4yjY2aoZ0ZaEAUEQA7"
-            q = $.bU()
-            o = C.d.ag(114 - p, 2) - 24
-            J.iO(s, q, o, r + 6)
-            q = $.bU()
-            n = C.d.ag(114 + p, 2) + 4
-            J.iO(s, q, n, r + 6)
-            r += 32
-            for (q = a.length, m = 0; m < a.length; a.length === q || (0, H.F)(a), ++m) {
-                l = a[m]
-                s.fillStyle = g
-                J.bj(s, 0, r, 320, 2)
-                s.fillStyle = "#ddddd0"
-                J.bj(s, 22, r + 4, C.d.aI(l.z.offsetWidth), 2)
-                s.fillStyle = "#4c4"
-                J.bj(s, 22, r + 4, C.d.R(l.go / 4), 2)
-                s.fillStyle = h
-                HtmlRenderer.ju(s, l, 0, r)
-                HtmlRenderer.aA(s, C.JsInt.k(l.c), 114, r + 5, 46, true)
-                HtmlRenderer.aA(s, C.JsInt.k(l.d), 160, r + 5, 46, true)
-                k = l.e
-                if (k != null) HtmlRenderer.ju(s, $.ay.h(0, k), 206, r)
-                r += 26
-            }
-            s.fillStyle = "#FAFAFA"
-            J.bj(s, 0, r, 320, 32)
-            s.fillStyle = g
-            J.bj(s, 0, r, 320, 2)
-            s.fillStyle = h
-            HtmlRenderer.aA(s, LangData.get_lang("eFKN"), 0, r + 8, 114, true)
-            HtmlRenderer.aA(s, LangData.get_lang("AoUA"), 114, r + 8, 46, true)
-            HtmlRenderer.aA(s, LangData.get_lang("aXIa"), 160, r + 8, 46, true)
-            HtmlRenderer.aA(s, LangData.get_lang("MdQa"), 206, r + 8, 114, true)
-            $.bU().src = "data:image/gif;base64,R0lGODlhFAAUAMQAAAAAAP///98AJDsBRd3y/vv+/4m4RpbFU6LPYqLOYqLPY6PPY6HNYq3abazYbbfgfcPuhc/1mdL1n9/9td78td36tHqpNYi3Q4i2Q4azQ5/JYZzEYMPqiv39/f///wAAACH5BAEAAB4ALAAAAAAUABQAAAWOoCeO4zCQaCoO0Km+LHScwlirMQQ1Qu/1N9IgoisCj6hhZFLcHYOryLKp4/mE0gmT6nStJBXKlru7eAcSMrXRcLHS6iLbcjLZ7cX73RPrEAhqfgR0fBASHQWAZIiDdQgNHZGBBR1mK5CSi5FnGpSKa5EEXnyeXGyeKaEOegMIoSkEfgMJCwkKDAYDsQQjIQA7"
-            J.iO(s, $.bU(), o, r + 6)
-            J.iO(s, $.bU(), n, r + 6)
-            r += 32
-            for (q = b.length, m = 0; m < b.length; b.length === q || (0, H.F)(b), ++m) {
-                j = b[m]
-                s.fillStyle = g
-                J.bj(s, 0, r, 320, 2)
-                s.fillStyle = h
-                HtmlRenderer.ju(s, j, 0, r)
-                HtmlRenderer.aA(s, C.JsInt.k(j.c), 114, r + 5, 46, true)
-                HtmlRenderer.aA(s, C.JsInt.k(j.d), 160, r + 5, 46, true)
-                o = j.e
-                if (o != null) HtmlRenderer.ju(s, $.ay.h(0, o), 206, r)
-                r += 26
-            }
-            s.fillStyle = "#F8F8F8"
-            J.bj(s, 0, r, 320, 2)
-            try {
-                J.rx(s)
-                r *= e
-                s.fillStyle = "#888888"
-                HtmlRenderer.aA(s, $.qp(), 0, r + 2, 140, false)
-            } catch (i) {
-                H.unwrap_Exception(i)
-            }
-            return f
-        },
-        rU(a, b) {
-            var s = a.c,
-                r = b.c
-            if (s === r) return a.cx - b.cx
-            return r - s
-        },
-        t9(a) {
-            var s = J.m_(a, "+")
-            if (s > -1) return C.String.af(a, 0, s) + '<span class="small">' + C.String.ay(a, s) + "</span>"
-            return a
-        },
-        t7(a, b, c) {
-            var s = HtmlRenderer.add_div("plr_list"),
-                r = HtmlRenderer.add_div("sgl"),
-                q = HtmlRenderer.add_div("name"),
-                p = HtmlRenderer.add_div("maxhp"),
-                o = HtmlRenderer.add_div("oldhp"),
-                n = HtmlRenderer.add_div("hp"),
-                m = $.jU + 1
-            $.jU = m
-            m = new HtmlRenderer.PlrView(a, s, r, q, p, o, n, m)
-            m.cP(a, b, c, {})
-            return m
-        },
-        t8(a, b, c) {
-            var s = HtmlRenderer.add_div("plr_list"),
-                r = HtmlRenderer.add_div("sgl"),
-                q = HtmlRenderer.add_div("name"),
-                p = HtmlRenderer.add_div("maxhp"),
-                o = HtmlRenderer.add_div("oldhp"),
-                n = HtmlRenderer.add_div("hp"),
-                m = $.jU + 1
-            $.jU = m
-            m = new HtmlRenderer.fW(a, s, r, q, p, o, n, m)
-            m.cP(a, b, false, {})
-            return m
-        },
-        _updateToHtml(a) {
-            var s, span_element, q, p, o, max_hp_element, m, l, k, j, i, h, g, f = a.a
-            if (f > 0 && a.e != null) $.ay.h(0, a.e.gb2()).dc(f)
-            s = H.b([], t.j)
-            span_element = HtmlRenderer.add_span("u")
-            C.R.by(span_element, H.oO(a.d, $.rm(), new HtmlRenderer.lq(new HtmlRenderer._renderItem(s, a), a), null), $.bV())
-            for (f = s.length, q = t.A, p = 0; p < s.length; s.length === f || (0, H.F)(s), ++p) {
-                o = s[p]
-                if (o instanceof T.HPlr) {
-                    max_hp_element = q.a(span_element.querySelector("." + H.as_string(o.b) + " > .maxhp"))
-                    m = o.c
-                    if (m >= o.d) {
-                        l = document
-                        k = l.createElement("div")
-                        k.classList.add("oldhp")
-                        j = k.style
-                        m = "" + C.d.R(m / 4) + "px"
-                        j.width = m
-                        i = l.createElement("div")
-                        i.classList.add("hp")
-                        m = i.style
-                        l = "" + C.d.R(o.d / 4) + "px"
-                        m.width = l
-                        max_hp_element.appendChild(k)
-                        max_hp_element.appendChild(i)
-                    } else {
-                        l = document
-                        h = l.createElement("div")
-                        h.classList.add("healhp")
-                        j = h.style
-                        g = "" + C.d.R(o.d / 4) + "px"
-                        j.width = g
-                        i = l.createElement("div")
-                        i.classList.add("hp")
-                        l = i.style
-                        m = "" + C.d.R(m / 4) + "px"
-                        l.width = m
-                        max_hp_element.appendChild(h)
-                        max_hp_element.appendChild(i)
-                    }
-                } else if (o instanceof T.DPlr) {
-                    q.a(span_element.querySelector(".name")).classList.add("namedie")
-                }
-            }
-            return span_element
-        },
-        // MARK: html render init
-        inner_render: function inner_render(plist, pbody, profiler, randomer) {
-            var _ = this
-            _.a = plist
-            _.b = pbody
-            _.c = profiler // 输入的 profiler
-            _.d = null
-            _.f = _.e = false
-            _.r = 3
-            _.x = randomer
-            _.y = 2
-            _.Q = _.z = null
-            _.ch = 0
-            _.cx = null
-            _.cy = true
-            _.db = null
-            _.dx = true
-        },
-        jx: function jx(a) {
-            this.a = a
-        },
-        jy: function jy() { },
-        jw: function jw() { },
-        jA: function jA(a, b, c, d) {
-            var _ = this
-            _.a = a
-            _.b = b
-            _.c = c
-            _.d = d
-        },
-        addPlrToTable: function jz(a) {
-            this.a = a
-        },
-        jB: function jB() { },
-        jC: function jC() { },
-        jD: function jD(a) {
-            this.a = a
-        },
-        send_win_data: function jE(a, b, c, d, e) {
-            var _ = this
-            _.a = a
-            _.b = b
-            _.c = c
-            _.d = d
-            _.e = e
-        },
-        PlrGroup: function jT(a) {
-            this.a = a
-            this.b = null
-        },
-        PlrView: function ax(a, b, c, d, e, f, g, h) {
-            var _ = this
-            _.a = a
-            _.b = null
-            _.d = _.c = 0
-            _.e = null
-            _.f = b
-            _.r = null
-            _.x = c
-            _.y = d
-            _.z = e
-            _.Q = f
-            _.ch = g
-            _.cx = h
-            _.fy = _.fx = _.fr = _.dy = _.dx = _.db = _.cy = null
-            _.go = 0
-        },
-        jV: function jV(a, b) {
-            this.a = a
-            this.b = b
-        },
-        fW: function fW(a, b, c, d, e, f, g, h) {
-            var _ = this
-            _.a = a
-            _.b = null
-            _.d = _.c = 0
-            _.e = null
-            _.f = b
-            _.r = null
-            _.x = c
-            _.y = d
-            _.z = e
-            _.Q = f
-            _.ch = g
-            _.cx = h
-            _.fy = _.fx = _.fr = _.dy = _.dx = _.db = _.cy = null
-            _.go = 0
-        },
-        _renderItem: function lp(a, b) {
-            this.a = a
-            this.b = b
-        },
-        lq: function lq(a, b) {
-            this.a = a
-            this.b = b
-        }
     }
+
+Y.RC4.prototype = {
+    bd(a, b) {
+        // init
+        var s, r, q, p, o, n, m, l = new Array(256)
+        l.fixed$length = Array
+        l = this.c = H.b(l, t.i)
+        for (s = 0; s < 256; ++s) l[s] = s
+        r = a.length
+        for (q = 0; q < b; ++q)
+            for (p = 0, o = 0; o < 256; ++o) {
+                n = a[C.JsInt.V(o, r)]
+                m = l[o]
+                p = p + m + n & 255
+                l[o] = l[p]
+                l[p] = m
+            }
+        this.a = this.b = 0
+    },
+    bO(a) {
+        // xorBytes
+        var s, r, q, p, o, this_ = this,
+            m = a.length
+        for (s = 0; s < m; ++s) {
+            r = this_.a = this_.a + 1 & 255
+            q = this_.b
+            p = this_.c
+            o = p[r]
+            q = this_.b = q + o & 255
+            p[r] = p[q]
+            p[q] = o
+            a[s] = (a[s] ^ p[p[r] + p[q] & 255]) >>> 0
+            this_.b = q + a[s] & 255
+        }
+    },
+    di(a) {
+        // decryptBytes
+        var s, r, q, p, o, n, this_ = this,
+            l = a.length
+        for (s = 0; s < l; ++s) {
+            r = this_.a = this_.a + 1 & 255
+            q = this_.b
+            p = this_.c
+            o = p[r]
+            q = this_.b = q + o & 255
+            p[r] = p[q]
+            p[q] = o
+            n = a[s]
+            a[s] = (n ^ p[p[r] + p[q] & 255]) >>> 0
+            this_.b = q + n & 255
+        }
+    },
+    n() {
+        // nextByte
+        // next byte from ShadowR
+        var _this = this,
+            r = _this.a = _this.a + 1 & 255,
+            q = _this.b,
+            p = _this.c,
+            o = p[r]
+        q = _this.b = q + o & 255
+        p[r] = p[q]
+        p[q] = o
+        return p[p[r] + p[q] & 255]
+    }
+}
+var HtmlRenderer = {
+    add_span(a) {
+        var s = document.createElement("span")
+        s.classList.add(a)
+        return s
+    },
+    add_div(a) {
+        var s = document.createElement("div")
+        s.classList.add(a)
+        return s
+    },
+    add_p(a) {
+        var s = document.createElement("p")
+        s.classList.add(a)
+        return s
+    },
+    static_init() {
+        var async_goto = 0,
+            r = P._makeAsyncAwaitCompleter(t.z),
+            q, p
+        var $async$jv = P._wrapJsFunctionForAsync(function (a, b) {
+            if (a === 1) return P.async_rethrow(b, r)
+            while (true) switch (async_goto) {
+                case 0:
+                    if (run_env.from_code) {
+                        // 直接忽略这里的 wait
+                        async_goto = 2
+                    } else {
+                        Sgls.tw()
+                        q = W.nK()
+                        $.md = q
+                        W.es(q, "load", Sgls.vg(), false)
+                        $.md.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACAAgMAAAC+UIlYAAAADFBMVEX/AAD/AP8A/wD///8SU+EWAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wwaCg0BGtaVrQAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAADHUlEQVRYw+2WPY6jMBTHLejhMNOu4BRkpTTp5xIgzQGmilKmSjFUkbZFCpp6tN3mHGikpAK8/r/nZwhxMlllViOtFsWxsX/2+7SNKj941E7r/lr5Q6BNuW5iqqtv3xLlBtKW67jpd3XY75SyAF4wAwMAwpqLAVgEADuDANOu4iahCQ7AIAaUSrBalbYEDCI+BESPiyJk0KukmCnlzMybHHVXLD4M9w35oIJC6R4FbVm6UNw2QB0UoQcIawGaoIg9QNwI0AZF6gHSVgAdFNoDmH4BXp88gOl7FeD92QOYvvcTYDBvAAE5ET4AYpySPgCKOjO9gDHVOcoLGGc5V3sB424XLC9gAvYZ+WAT1Joa0KahxEWWx/0AkKntAJhBQANApjYEcDZhx+kB2JKpdTQA2GEjoGLzEidCN0kVW4BmKCilegGedRttU0RTgBpKhQ544iC+DkADpWIHFJwGwQCY5SFGACwPMU5JUtAoKkDFZicjoI5gqjOTze5HAOeFA2r0hWOAM+tiLCQ3z2LxGedDnVSjnNwqFU3OKDho6KDTltu049SuhYtT3os4Bu0BKjuOrTCFdjPaOERHVinMxip0HsixPPKLYvmKTxS5M0aeVWxBnWzjJqrCOhks4B3nAAwCOgNEBJaXg4vFWBGiJBSUg4sVFSWtmc5UAGyqNdM6CsvKwWWdZR01cfXI3dbVk2BNA/Yp+WCX5TSPxncFiZAXB5ivALIGXwM+ALcuANQ/Ht5+ngHbsI4AoK7eHpKrK5zcmxd18FkhLicdrgGkw00ioOhVJcfA2Eynw6UVnA5j4CYzT4J1fz5cGnDfD38RkM+DLwTc7f/VwLXb/37g/nz4D/yTwEuWPWbmKTN6ynI5K7P5JkNZZtlMLbWe5Vp3m1x35jdfLg6zfL/q8l/fu4XWB7XW+ghgpQHoPTrzwwJtKoo6TGPNHUcZcIA0FlwfLgLTIitfBES3rwROlLQvh8VkkDyJP+PFPZy0niyPmly90XoON6/sLDuhWx8WRwrWS949IlAIGIK1ybs5grXer44U7pKjXdKfCTe9I9zzzew3hQ1VpfX/zmMAAAAASUVORK5CYII="
+                        async_goto = 2
+                        // 等待这个 callback 被调用
+                        return P._asyncAwait($.nt().a, $async$jv)
+                    }
+                case 2:
+                    if (run_env.from_code) {
+                        logger.debug("loading gAd data")
+                        LangData.load_lang(t.cF.a(C.C.bt(0, assets_data.lang)))
+                        // LangData.v1(assets_data.lang)
+                        // LangData.load_lang(assets_data.lang)
+                    } else {
+                        p = window.sessionStorage.getItem(LangData.eQ("ll"))
+                        if (typeof p == "string") {
+                            LangData.load_lang(t.cF.a(C.C.bt(0, p)))
+                        }
+                    }
+                    return P._asyncReturn(null, r)
+            }
+        })
+        return P._asyncStartSync($async$jv, r)
+    },
+    outer_main(engine) {
+        var s = document
+
+        let plist = s.querySelector(".plist")
+        let pbody = s.querySelector(".pbody")
+
+        s = new HtmlRenderer.inner_render(plist, pbody, engine, $.ro().ax(256))
+        s.e0(engine)
+        logger.debug("finish html.outer_main")
+        return s
+    },
+    aA(a, b, c, d, e, f) {
+        var s = a.measureText(b)
+        if (f && s.width < e) c += C.d.ag(e - s.width, 2)
+        a.fillText(b, c, d + 15, e)
+        return s.width
+    },
+    ju(a, b, c, d) {
+        $.bU().src = $.mg.h(0, b.fy)
+        a.drawImage($.bU(), c + 4, d + 6)
+        HtmlRenderer.aA(a, b.dx, c + 24, d + 5, 90, false)
+    },
+    rV(a, b) {
+        logger.debug("reaching html.rV")
+        var s, r, q, p, o, n, m, l, k, j, i, h = "#000000",
+            g = "#EEEEEE",
+            f = W.j4(),
+            e = 1
+        if (a.length + b.length <= 128) e = 2
+        f.width = 320 * e
+        f.height = ((a.length + b.length) * 26 + 88) * e + 24
+        s = f.getContext("2d")
+        s.imageSmoothingEnabled = false
+        s.fillStyle = "white"
+        J.bj(s, 0, 0, f.width, f.height)
+        if (!J.Y(e, 1)) J.rC(s, e, 0, 0, e, 0, 0)
+        q = document.body
+        q.toString
+        s.font = window.getComputedStyle(q, "").font
+        s.fillStyle = h
+        HtmlRenderer.aA(s, "\u21dc\u3000" + LangData.get_lang("CeaN") + "\u3000\u21dd", 0, 4, 320, true)
+        r = 26
+        s.fillStyle = "#FAFAFA"
+        J.bj(s, 0, r, 320, 32)
+        s.fillStyle = g
+        J.bj(s, 0, r, 320, 2)
+        s.fillStyle = h
+        p = HtmlRenderer.aA(s, LangData.get_lang("ePya"), 0, r + 8, 114, true)
+        HtmlRenderer.aA(s, LangData.get_lang("AoUA"), 114, r + 8, 46, true)
+        HtmlRenderer.aA(s, LangData.get_lang("aXIa"), 160, r + 8, 46, true)
+        HtmlRenderer.aA(s, LangData.get_lang("MdQa"), 206, r + 8, 114, true)
+        $.bU().src = "data:image/gif;base64,R0lGODlhFAAUALMAAAAAAP///98AJDsBRb3L09fi6NHf5ur2/JbFU63abcPuhcLthc/1mf///wAAAAAAACH5BAEAAA0ALAAAAAAUABQAAASCsMk5x6A4y6Gu/pyCXMJUaqGiJELbtCc1MOqiwnhl7aq675WAUGgIDYaBQ7FxTA4OyuIRengalr+fL2thWnrgcKLLLFS53ALh0nxWoe64mi1s1++BwZyJt+fre3p/g356axuEfQEFA4cbjIp5c44beowFl2sEax4yjY2aoZ0ZaEAUEQA7"
+        q = $.bU()
+        o = C.d.ag(114 - p, 2) - 24
+        J.iO(s, q, o, r + 6)
+        q = $.bU()
+        n = C.d.ag(114 + p, 2) + 4
+        J.iO(s, q, n, r + 6)
+        r += 32
+        for (q = a.length, m = 0; m < a.length; a.length === q || (0, H.F)(a), ++m) {
+            l = a[m]
+            s.fillStyle = g
+            J.bj(s, 0, r, 320, 2)
+            s.fillStyle = "#ddddd0"
+            J.bj(s, 22, r + 4, C.d.aI(l.z.offsetWidth), 2)
+            s.fillStyle = "#4c4"
+            J.bj(s, 22, r + 4, C.d.R(l.go / 4), 2)
+            s.fillStyle = h
+            HtmlRenderer.ju(s, l, 0, r)
+            HtmlRenderer.aA(s, C.JsInt.k(l.c), 114, r + 5, 46, true)
+            HtmlRenderer.aA(s, C.JsInt.k(l.d), 160, r + 5, 46, true)
+            k = l.e
+            if (k != null) HtmlRenderer.ju(s, $.ay.h(0, k), 206, r)
+            r += 26
+        }
+        s.fillStyle = "#FAFAFA"
+        J.bj(s, 0, r, 320, 32)
+        s.fillStyle = g
+        J.bj(s, 0, r, 320, 2)
+        s.fillStyle = h
+        HtmlRenderer.aA(s, LangData.get_lang("eFKN"), 0, r + 8, 114, true)
+        HtmlRenderer.aA(s, LangData.get_lang("AoUA"), 114, r + 8, 46, true)
+        HtmlRenderer.aA(s, LangData.get_lang("aXIa"), 160, r + 8, 46, true)
+        HtmlRenderer.aA(s, LangData.get_lang("MdQa"), 206, r + 8, 114, true)
+        $.bU().src = "data:image/gif;base64,R0lGODlhFAAUAMQAAAAAAP///98AJDsBRd3y/vv+/4m4RpbFU6LPYqLOYqLPY6PPY6HNYq3abazYbbfgfcPuhc/1mdL1n9/9td78td36tHqpNYi3Q4i2Q4azQ5/JYZzEYMPqiv39/f///wAAACH5BAEAAB4ALAAAAAAUABQAAAWOoCeO4zCQaCoO0Km+LHScwlirMQQ1Qu/1N9IgoisCj6hhZFLcHYOryLKp4/mE0gmT6nStJBXKlru7eAcSMrXRcLHS6iLbcjLZ7cX73RPrEAhqfgR0fBASHQWAZIiDdQgNHZGBBR1mK5CSi5FnGpSKa5EEXnyeXGyeKaEOegMIoSkEfgMJCwkKDAYDsQQjIQA7"
+        J.iO(s, $.bU(), o, r + 6)
+        J.iO(s, $.bU(), n, r + 6)
+        r += 32
+        for (q = b.length, m = 0; m < b.length; b.length === q || (0, H.F)(b), ++m) {
+            j = b[m]
+            s.fillStyle = g
+            J.bj(s, 0, r, 320, 2)
+            s.fillStyle = h
+            HtmlRenderer.ju(s, j, 0, r)
+            HtmlRenderer.aA(s, C.JsInt.k(j.c), 114, r + 5, 46, true)
+            HtmlRenderer.aA(s, C.JsInt.k(j.d), 160, r + 5, 46, true)
+            o = j.e
+            if (o != null) HtmlRenderer.ju(s, $.ay.h(0, o), 206, r)
+            r += 26
+        }
+        s.fillStyle = "#F8F8F8"
+        J.bj(s, 0, r, 320, 2)
+        try {
+            J.rx(s)
+            r *= e
+            s.fillStyle = "#888888"
+            HtmlRenderer.aA(s, $.qp(), 0, r + 2, 140, false)
+        } catch (i) {
+            H.unwrap_Exception(i)
+        }
+        return f
+    },
+    rU(a, b) {
+        var s = a.c,
+            r = b.c
+        if (s === r) return a.cx - b.cx
+        return r - s
+    },
+    t9(a) {
+        var s = J.m_(a, "+")
+        if (s > -1) return C.String.af(a, 0, s) + '<span class="small">' + C.String.ay(a, s) + "</span>"
+        return a
+    },
+    t7(a, b, c) {
+        var s = HtmlRenderer.add_div("plr_list"),
+            r = HtmlRenderer.add_div("sgl"),
+            q = HtmlRenderer.add_div("name"),
+            p = HtmlRenderer.add_div("maxhp"),
+            o = HtmlRenderer.add_div("oldhp"),
+            n = HtmlRenderer.add_div("hp"),
+            m = $.jU + 1
+        $.jU = m
+        m = new HtmlRenderer.PlrView(a, s, r, q, p, o, n, m)
+        m.cP(a, b, c, {})
+        return m
+    },
+    t8(a, b, c) {
+        var s = HtmlRenderer.add_div("plr_list"),
+            r = HtmlRenderer.add_div("sgl"),
+            q = HtmlRenderer.add_div("name"),
+            p = HtmlRenderer.add_div("maxhp"),
+            o = HtmlRenderer.add_div("oldhp"),
+            n = HtmlRenderer.add_div("hp"),
+            m = $.jU + 1
+        $.jU = m
+        m = new HtmlRenderer.fW(a, s, r, q, p, o, n, m)
+        m.cP(a, b, false, {})
+        return m
+    },
+    _updateToHtml(a) {
+        var s, span_element, q, p, o, max_hp_element, m, l, k, j, i, h, g, f = a.a
+        if (f > 0 && a.e != null) $.ay.h(0, a.e.gb2()).dc(f)
+        s = H.b([], t.j)
+        span_element = HtmlRenderer.add_span("u")
+        C.R.by(span_element, H.oO(a.d, $.rm(), new HtmlRenderer.lq(new HtmlRenderer._renderItem(s, a), a), null), $.bV())
+        for (f = s.length, q = t.A, p = 0; p < s.length; s.length === f || (0, H.F)(s), ++p) {
+            o = s[p]
+            if (o instanceof T.HPlr) {
+                max_hp_element = q.a(span_element.querySelector("." + H.as_string(o.b) + " > .maxhp"))
+                m = o.c
+                if (m >= o.d) {
+                    l = document
+                    k = l.createElement("div")
+                    k.classList.add("oldhp")
+                    j = k.style
+                    m = "" + C.d.R(m / 4) + "px"
+                    j.width = m
+                    i = l.createElement("div")
+                    i.classList.add("hp")
+                    m = i.style
+                    l = "" + C.d.R(o.d / 4) + "px"
+                    m.width = l
+                    max_hp_element.appendChild(k)
+                    max_hp_element.appendChild(i)
+                } else {
+                    l = document
+                    h = l.createElement("div")
+                    h.classList.add("healhp")
+                    j = h.style
+                    g = "" + C.d.R(o.d / 4) + "px"
+                    j.width = g
+                    i = l.createElement("div")
+                    i.classList.add("hp")
+                    l = i.style
+                    m = "" + C.d.R(m / 4) + "px"
+                    l.width = m
+                    max_hp_element.appendChild(h)
+                    max_hp_element.appendChild(i)
+                }
+            } else if (o instanceof T.DPlr) {
+                q.a(span_element.querySelector(".name")).classList.add("namedie")
+            }
+        }
+        return span_element
+    },
+    // MARK: html render init
+    inner_render: function inner_render(plist, pbody, profiler, randomer) {
+        var _ = this
+        _.a = plist
+        _.b = pbody
+        _.c = profiler // 输入的 profiler
+        _.d = null
+        _.f = _.e = false
+        _.r = 3
+        _.x = randomer
+        _.y = 2
+        _.Q = _.z = null
+        _.ch = 0
+        _.cx = null
+        _.cy = true
+        _.db = null
+        _.dx = true
+    },
+    jx: function jx(a) {
+        this.a = a
+    },
+    jy: function jy() { },
+    jw: function jw() { },
+    jA: function jA(a, b, c, d) {
+        var _ = this
+        _.a = a
+        _.b = b
+        _.c = c
+        _.d = d
+    },
+    addPlrToTable: function jz(a) {
+        this.a = a
+    },
+    jB: function jB() { },
+    jC: function jC() { },
+    jD: function jD(a) {
+        this.a = a
+    },
+    send_win_data: function jE(a, b, c, d, e) {
+        var _ = this
+        _.a = a
+        _.b = b
+        _.c = c
+        _.d = d
+        _.e = e
+    },
+    PlrGroup: function jT(a) {
+        this.a = a
+        this.b = null
+    },
+    PlrView: function ax(a, b, c, d, e, f, g, h) {
+        var _ = this
+        _.a = a
+        _.b = null
+        _.d = _.c = 0
+        _.e = null
+        _.f = b
+        _.r = null
+        _.x = c
+        _.y = d
+        _.z = e
+        _.Q = f
+        _.ch = g
+        _.cx = h
+        _.fy = _.fx = _.fr = _.dy = _.dx = _.db = _.cy = null
+        _.go = 0
+    },
+    jV: function jV(a, b) {
+        this.a = a
+        this.b = b
+    },
+    fW: function fW(a, b, c, d, e, f, g, h) {
+        var _ = this
+        _.a = a
+        _.b = null
+        _.d = _.c = 0
+        _.e = null
+        _.f = b
+        _.r = null
+        _.x = c
+        _.y = d
+        _.z = e
+        _.Q = f
+        _.ch = g
+        _.cx = h
+        _.fy = _.fx = _.fr = _.dy = _.dx = _.db = _.cy = null
+        _.go = 0
+    },
+    _renderItem: function lp(a, b) {
+        this.a = a
+        this.b = b
+    },
+    lq: function lq(a, b) {
+        this.a = a
+        this.b = b
+    }
+}
 var w = [A, C, Sgls, H, J, L, LangData, P, S, T, V, W, X, Y, HtmlRenderer]
 
 var $ = {}
+
 H.m8.prototype = {}
 J.Interceptor.prototype = {
     aW(a, b) {
@@ -12353,71 +12421,6 @@ P.p.prototype = {
         return o
     },
     $ip: 1
-}
-Y.RC4.prototype = {
-    bd(a, b) {
-        // init
-        var s, r, q, p, o, n, m, l = new Array(256)
-        l.fixed$length = Array
-        l = this.c = H.b(l, t.i)
-        for (s = 0; s < 256; ++s) l[s] = s
-        r = a.length
-        for (q = 0; q < b; ++q)
-            for (p = 0, o = 0; o < 256; ++o) {
-                n = a[C.JsInt.V(o, r)]
-                m = l[o]
-                p = p + m + n & 255
-                l[o] = l[p]
-                l[p] = m
-            }
-        this.a = this.b = 0
-    },
-    bO(a) {
-        // xorBytes
-        var s, r, q, p, o, this_ = this,
-            m = a.length
-        for (s = 0; s < m; ++s) {
-            r = this_.a = this_.a + 1 & 255
-            q = this_.b
-            p = this_.c
-            o = p[r]
-            q = this_.b = q + o & 255
-            p[r] = p[q]
-            p[q] = o
-            a[s] = (a[s] ^ p[p[r] + p[q] & 255]) >>> 0
-            this_.b = q + a[s] & 255
-        }
-    },
-    di(a) {
-        // decryptBytes
-        var s, r, q, p, o, n, this_ = this,
-            l = a.length
-        for (s = 0; s < l; ++s) {
-            r = this_.a = this_.a + 1 & 255
-            q = this_.b
-            p = this_.c
-            o = p[r]
-            q = this_.b = q + o & 255
-            p[r] = p[q]
-            p[q] = o
-            n = a[s]
-            a[s] = (n ^ p[p[r] + p[q] & 255]) >>> 0
-            this_.b = q + n & 255
-        }
-    },
-    n() {
-        // nextByte
-        // next byte from ShadowR
-        var _this = this,
-            r = _this.a = _this.a + 1 & 255,
-            q = _this.b,
-            p = _this.c,
-            o = p[r]
-        q = _this.b = q + o & 255
-        p[r] = p[q]
-        p[q] = o
-        return p[p[r] + p[q] & 255]
-    }
 }
 L.ProfileWinChance.prototype = {
     gbu(a) {
@@ -17191,7 +17194,7 @@ T.Plr.prototype = {
         name = H.b(name.slice(0), H._arrayInstanceType(name))
         this_.E = name
         this_.ac() // createSkills, 对this.k1直接操作，顺序固定
-        this_.k2 = this_.X.dH(this_.k1, t.c5) 
+        this_.k2 = this_.X.dH(this_.k1, t.c5)
         // rc4.next
     },
     bf() {
@@ -19099,7 +19102,6 @@ LangData.SuperRC4.prototype = {
             }
         this.a = this.b = 0
     },
-    // MARK: RC4 next
     dH(a, b) {
         // sortList
         var s, r, q, p, o, n, m = a.length
@@ -19151,7 +19153,7 @@ LangData.SuperRC4.prototype = {
     fl(a, b) {
         // pickSkipRange<TT>
         var first, skip_len, q, n, len = b.length
-        if (len === 0) 
+        if (len === 0)
             return this.b5(a)
         first = C.Array.geT(b) // first
         skip_len = b.length
