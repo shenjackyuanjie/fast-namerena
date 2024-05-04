@@ -1,17 +1,17 @@
 'use strict';
 
 // let name_input = "!test!\n\natest\n\ntest2";
-let name_input = "this_is_a\nthis_is_b";
-// let name_input = `
-// '9tEUG@LuoTianyi
-// t2W%(s@LuoTianyi
-// mTWD1soR原创@LuoTianyi
+// let name_input = "this_is_a\nthis_is_b";
+let name_input = `
+'9tEUG@LuoTianyi
+t2W%(s@LuoTianyi
+mTWD1soR原创@LuoTianyi
 
-// 天依 VEfVDZVpD@candle
-// 凶镬9aY5DnWAq@candle
-// Raven qPu%yV$O@candle
+天依 VEfVDZVpD@candle
+凶镬9aY5DnWAq@candle
+Raven qPu%yV$O@candle
 
-// seed:自生自灭 #1@!`;
+seed:自生自灭 #1@!`;
 let assets_data = {
     lang: null,
     gAd: null,
@@ -43,7 +43,12 @@ let logger = {
 
 function fmt_RunUpdate(update) {
     let message = update.d;
-    let source_plr = update.e.a;
+    // let source_plr = update.e.a;
+    if (update.e !== null && update.e.a !== null) {
+        source_plr = update.e.a
+    } else {
+        source_plr = "none"
+    }
     let target_plr = update.f;
     if (target_plr !== null && target_plr.a !== null) {
         target_plr = target_plr.a
