@@ -4661,7 +4661,7 @@ var H = {
         ty(a, b, c, d, e) {
             var s, r, q, p = 0
             if (c > p && !(a.fx <= p)) {
-                s = C.JsInt.P(c + $.i(), $.t())
+                s = C.JsInt.P(c + 1, $.t())
                 p = a.fy
                 r = a.fx
                 q = p - r
@@ -4675,7 +4675,7 @@ var H = {
             }
         },
         nC(a) {
-            var s = new T.BerserkState($.i(), 0)
+            var s = new T.BerserkState(1, 0)
             s.r = a
             return s
         },
@@ -4693,7 +4693,7 @@ var H = {
             }
         },
         CharmState_init(a, b) {
-            var s = new T.CharmState(a, b, $.i())
+            var s = new T.CharmState(a, b, 1)
             s.y = new T.PostActionImpl(s)
             return s
         },
@@ -4875,7 +4875,7 @@ var H = {
             p = $.au()
             n = H.b([(m & 63) + r, (q & 63) + p, o + p], n)
             C.Array.aJ(n)
-            return s * n[$.i()] * a.id
+            return s * n[1] * a.id
         },
         d9(a, b, c) {
             if (b) return a.dy + $.au()
@@ -5819,8 +5819,8 @@ var H = {
                 // if (H.iF(m, l, 0)) {
                 if (m.includes("+")) {
                     k = C.String.aT(m, $.lO())
-                    // j = C.String.dF(C.String.ay(m, k + $.i()))
-                    j = C.String.trim_name(C.String.ay(m, k + $.i()))
+                    // j = C.String.dF(C.String.ay(m, k + 1))
+                    j = C.String.trim_name(C.String.ay(m, k + 1))
                     l = C.String.af(m, 0, k)
                     i = $.nq()
                     m = H.iG(l, i, "", 0)
@@ -5834,10 +5834,10 @@ var H = {
                     h = C.String.cK(m, $.n3())
                     if (J.m1(h[0], " ")) {
                         l = 0
-                        h[l] = J.nB(h[l], $.i())
+                        h[l] = J.nB(h[l], 1)
                     }
-                    if (!J.Y(h[$.i()], "")) {
-                        l = h[$.i()]
+                    if (!J.Y(h[1], "")) {
+                        l = h[1]
                         i = $.n5()
                         l.toString
                         if (i == null) H.throw_expression(H.R(i))
@@ -5847,14 +5847,14 @@ var H = {
                         l = H.iF(l, i, 0)
                     } else l = true
                     if (l) o.push(H.b([h[0], null, j], r))
-                    else o.push(H.b([h[0], h[$.i()], j], r))
+                    else o.push(H.b([h[0], h[1], j], r))
                 } else if (C.String.bA(m, " ")) {
-                    o.push(H.b([C.String.ay(m, $.i()), n, j], r))
+                    o.push(H.b([C.String.ay(m, 1), n, j], r))
                 } else {
-                    if (s + $.i() < b.length) {
+                    if (s + 1 < b.length) {
                         l = $.n5()
                         if (l == null) H.throw_expression(H.R(l))
-                        l = !H.iF(m, l, 0) && J.m1(b[s + $.i()], " ")
+                        l = !H.iF(m, l, 0) && J.m1(b[s + 1], " ")
                     } else l = false
                     if (l) n = m
                     else {
@@ -5883,7 +5883,7 @@ var H = {
                         i = H.b([], i)
                         p = H.b([], t.gr)
                         o = 0
-                        n = $.i()
+                        n = 1
                         m = -n
                         // run here?
                         runner = new T.Engine(j, h, k, i, new H.JsLinkedHashMap(t.d5), target, p, o, m, m, new Float64Array(n))
@@ -5923,7 +5923,7 @@ var H = {
             var s, r, q, p
             if ($.lj == null) {
                 $.lj = P.c5(t.B)
-                s = -$.i()
+                s = -1
                 for (r = 0; q = $.ox, p = q.length, r < p; ++r) {
                     s += C.String.a8(q, r) - $.b2()
                     $.lj.j(0, C.JsInt.V(s * $.pF(), $.pn()) + $.p9() + p)
@@ -5937,7 +5937,7 @@ var H = {
                 c = H.b([d, d, d, d, d, d], t.i),
                 b = 0
             e.a = -$.t()
-            e.b = -$.i()
+            e.b = -1
             e.c = b
             s = new T.lD(e, c)
             for (d = a.length, r = b; r < d; ++r) {
@@ -5950,7 +5950,7 @@ var H = {
                     if (q !== $.mW()) p = q >= $.aI() && q <= $.pO()
                     else p = true
                     if (p) s.$1(0)
-                    else if (q >= $.q6() && q <= $.p5()) s.$1($.i())
+                    else if (q >= $.q6() && q <= $.p5()) s.$1(1)
                     else if (q >= $.pT() && q <= $.q3()) s.$1($.t())
                     else s.$1($.B())
                 } else if (T.mw().w(0, q)) s.$1($.C())
@@ -6008,7 +6008,7 @@ var H = {
             }
             d = $.C()
             p = c[d]
-            o = $.i()
+            o = 1
             if (p == o) {
                 p = $.X()
                 c[p] = c[p] + o
@@ -6020,7 +6020,7 @@ var H = {
             H.ar(p)
             p = Math.pow(d, p)
             d = $.pB()
-            o = c[$.i()]
+            o = c[1]
             H.ar(d)
             H.ar(o)
             o = Math.pow(d, o)
@@ -14038,7 +14038,7 @@ T.SklAbsorb.prototype = {
         var s = a[0].a,
             r = T.getAt(this.r, true, c),
             q = $.ph()
-        d.a.push(T.RunUpdate_init(LangData.get_lang("FfpA"), this.r, s, null, null, $.i(), 1000, 100))
+        d.a.push(T.RunUpdate_init(LangData.get_lang("FfpA"), this.r, s, null, null, 1, 1000, 100))
         s.a3(r * q, true, this.r, T.v6(), c, d)
     }
 }
@@ -14062,11 +14062,11 @@ T.SklAccumulate.prototype = {
             q = LangData.get_lang("zEuN"),
             p = s.r,
             o = d.a
-        o.push(T.RunUpdate_init(q, p, p, r, r, $.i(), 1000, 100))
+        o.push(T.RunUpdate_init(q, p, p, r, r, 1, 1000, 100))
         s.r.rx.j(0, s.fr)
         s.r.r2.m(0, $.lN(), s)
         if (s.r.r2.J(0, $.a7())) {
-            s.fx = s.fx + $.i()
+            s.fx = s.fx + 1
             q = s.r
             q.l = q.l + $.pM()
         }
@@ -14081,7 +14081,7 @@ T.SklAccumulate.prototype = {
         a.id = a.id * this.fx
     },
     gT() {
-        return $.i()
+        return 1
     },
     K(a, b) {
         var s, r = this
@@ -14119,7 +14119,7 @@ T.SklAssassinate.prototype = {
             n = p.fy
         if (n == null) {
             p.fy = a[0].a
-            d.a.push(T.RunUpdate_init(LangData.get_lang("RmAN"), p.r, p.fy, o, o, $.i(), 1000, 100))
+            d.a.push(T.RunUpdate_init(LangData.get_lang("RmAN"), p.r, p.fy, o, o, 1, 1000, 100))
             p.r.x1.j(0, p.fr)
             n = p.r
             n.l = n.l + n.dx * $.B()
@@ -14131,7 +14131,7 @@ T.SklAssassinate.prototype = {
             p.ah(0)
             if (n.fx > 0) {
                 s = d.a
-                s.push(T.RunUpdate_init(LangData.get_lang("iLaN"), p.r, n, o, o, $.i(), 1000, 100))
+                s.push(T.RunUpdate_init(LangData.get_lang("iLaN"), p.r, n, o, o, 1, 1000, 100))
                 r = T.getAt(p.r, true, c)
                 q = T.getAt(p.r, true, c)
                 if (q > r) r = q
@@ -14167,7 +14167,7 @@ T.SklAssassinate.prototype = {
 }
 T.BerserkState.prototype = {
     gT() {
-        return -$.i()
+        return -1
     },
     b9(a) {
         return a.b5(this.r.y.a.e)
@@ -14224,7 +14224,7 @@ T.SklBerserk.prototype = {
     v(a, b, c, d) {
         var s = a[0].a,
             r = T.getAt(this.r, true, c)
-        d.a.push(T.RunUpdate_init(LangData.get_lang("wnjN"), this.r, s, null, null, $.i(), 1000, 100))
+        d.a.push(T.RunUpdate_init(LangData.get_lang("wnjN"), this.r, s, null, null, 1, 1000, 100))
         s.a3(r, true, this.r, T.v7(), c, d)
     }
 }
@@ -14242,7 +14242,7 @@ T.SklCharge.prototype = {
         var s = this,
             r = LangData.get_lang("yUxA"),
             q = s.r
-        d.a.push(T.RunUpdate_init(r, q, q, null, null, $.i(), 1000, 100))
+        d.a.push(T.RunUpdate_init(r, q, q, null, null, 1, 1000, 100))
         s.fy = s.fy + $.t()
         s.r.x2.j(0, s.fx)
         s.r.rx.j(0, s.fr)
@@ -14260,7 +14260,7 @@ T.SklCharge.prototype = {
         a.id = a.id * $.B()
     },
     gT() {
-        return $.i()
+        return 1
     },
     K(a, b) {
         var s, r = this
@@ -14278,7 +14278,7 @@ T.SklCharge.prototype = {
 }
 T.CharmState.prototype = {
     gT() {
-        return -$.i()
+        return -1
     },
     ar(a) {
         this.x.z = this.r
@@ -14316,7 +14316,7 @@ T.SklCharm.prototype = {
         var s
         if (b) {
             s = a.r2
-            if (s.J(0, $.aE()) && t.o.a(s.h(0, $.aE())).z > $.i()) return false
+            if (s.J(0, $.aE()) && t.o.a(s.h(0, $.aE())).z > 1) return false
         }
         return true
     },
@@ -14332,7 +14332,7 @@ T.SklCharm.prototype = {
             n = d.a
         // sklCharm
         // [0]使用[魅惑]
-        n.push(T.RunUpdate_init(LangData.get_lang("UUan"), this_.r, o, p, p, $.i(), 1000, 100))
+        n.push(T.RunUpdate_init(LangData.get_lang("UUan"), this_.r, o, p, p, 1, 1000, 100))
         if (!o.a7($.aE(), c)) s = o.fx > 0 && !o.A && T.bW(this_.r.dx, o.db + o.dy, c)
         else s = true
         if (s) {
@@ -14417,7 +14417,7 @@ T.SklClone.prototype = {
         p.fx = q.fx
         if (q.fx + q.dx < c.n()) {
             q = k.f
-            o = $.i()
+            o = 1
             k.f = C.JsInt.am(q, o) + o
         }
         q = C.Array.dl(p.k1, new T.SklCloneCallback())
@@ -14456,13 +14456,13 @@ T.SklCritical.prototype = {
         if (p > q) q = p
         p = T.getAt(s.r, false, c) * $.pg()
         if (p > q) q = p
-        d.a.push(T.RunUpdate_init(LangData.get_lang("mFkn"), s.r, r, null, null, $.i(), 1000, 100))
+        d.a.push(T.RunUpdate_init(LangData.get_lang("mFkn"), s.r, r, null, null, 1, 1000, 100))
         r.a3(q, false, s.r, T.ad(), c, d)
     }
 }
 T.CurseState.prototype = {
     gT() {
-        return -$.i()
+        return -1
     },
     aq(a, b, c, d, e) {
         var s = this
@@ -14516,7 +14516,7 @@ T.SklCurse.prototype = {
         let atp = T.getAt(this.r, true, c)
         // sklCurse
         // [0]使用[诅咒]
-        d.a.push(T.RunUpdate_init(LangData.get_lang("AqCN"), this.r, s, null, null, $.i(), 1000, 100))
+        d.a.push(T.RunUpdate_init(LangData.get_lang("AqCN"), this.r, s, null, null, 1, 1000, 100))
 
         s.a3(atp, true, this.r, T.v9(), c, d)
         // target.attacked(atp, true, owner, onDamage, r, updates);
@@ -14561,10 +14561,10 @@ T.SklExchange.prototype = {
     v(a, b, c, d) {
         var s, r, q, p, o, n, m, l = this,
             k = null
-        l.f = C.JsInt.P(l.f + $.i(), $.t())
+        l.f = C.JsInt.P(l.f + 1, $.t())
         s = a[0].a
         r = d.a
-        r.push(T.RunUpdate_init(LangData.get_lang("fcfa"), l.r, s, k, k, $.i(), 1000, 100))
+        r.push(T.RunUpdate_init(LangData.get_lang("fcfa"), l.r, s, k, k, 1, 1000, 100))
         if (!s.a7($.d3(), c)) q = s.fx > 0 && !s.A && !l.r.r2.J(0, $.a7()) && T.bW(l.r.dx, s.dy + s.cx + s.db, c)
         else q = true
         if (q) {
@@ -14600,7 +14600,7 @@ T.SklExchange.prototype = {
 }
 T.FireState.prototype = {
     gT() {
-        return -$.i()
+        return -1
     }
 }
 T.SklFire.prototype = {
@@ -14613,7 +14613,7 @@ T.SklFire.prototype = {
         q = o.b
         // sklFire
         // [0]使用[火球术]
-        d.a.push(T.RunUpdate_init(LangData.get_lang("mAoA"), this.r, p, null, null, $.i(), 1000, 100))
+        d.a.push(T.RunUpdate_init(LangData.get_lang("mAoA"), this.r, p, null, null, 1, 1000, 100))
         p.a3(s * (r + q), true, this.r, T.oJ(), c, d)
         // target.attacked(atp, true, owner, onFire, r, updates);
     }
@@ -14635,7 +14635,7 @@ T.sklHalf.prototype = {
             h = null,
             g = a[0].a,
             f = d.a
-        f.push(T.RunUpdate_init(LangData.get_lang("lSVA"), i.r, g, h, h, $.i(), 1000, 100))
+        f.push(T.RunUpdate_init(LangData.get_lang("lSVA"), i.r, g, h, h, 1, 1000, 100))
         s = i.r.fr + C.JsInt.P($.pG() - g.fx, $.B())
         r = 0
         if (s < r) s = r
@@ -14672,7 +14672,7 @@ T.sklHalf.prototype = {
 }
 T.HasteState.prototype = {
     gT() {
-        return $.i()
+        return 1
     },
     ar(a) {
         var s = this.x
@@ -14709,7 +14709,7 @@ T.SklHaste.prototype = {
         if (b) {
             if (a.fx < $.a6()) return false
             s = a.r2
-            if (s.h(0, $.d4()) != null && (t.e_.a(s.h(0, $.d4())).Q + $.i()) * $.a6() > a.fx) return false
+            if (s.h(0, $.d4()) != null && (t.e_.a(s.h(0, $.d4())).Q + 1) * $.a6() > a.fx) return false
             return !(a instanceof T.Minion)
         }
         return true
@@ -14803,7 +14803,7 @@ T.SklHealCallback.prototype = {
 }
 T.IceState.prototype = {
     gT() {
-        return -$.i()
+        return -1
     },
     ar(a) {
         a.A = true
@@ -14847,7 +14847,7 @@ T.SklIce.prototype = {
         var s = a[0].a,
             r = T.getAt(this.r, true, c),
             q = $.p0()
-        d.a.push(T.RunUpdate_init(LangData.get_lang("yMvn"), this.r, s, null, null, $.i(), 1000, 100))
+        d.a.push(T.RunUpdate_init(LangData.get_lang("yMvn"), this.r, s, null, null, 1, 1000, 100))
         s.a3(r * q, true, this.r, T.mE(), c, d)
     }
 }
@@ -14895,7 +14895,7 @@ T.SklIron.prototype = {
         if (a > s) {
             s = this.go
             if (a <= s) {
-                a = $.i()
+                a = 1
                 this.go = s - (a - a)
             } else {
                 a -= s
@@ -14945,14 +14945,14 @@ T.SklIron.prototype = {
 }
 T.PoisonState.prototype = {
     gT() {
-        return -$.i()
+        return -1
     },
     at(a, b) {
         var s, r, q, p, o, n = this,
             m = n.x
         if (m.fx > 0) {
             s = n.y
-            r = $.i()
+            r = 1
             q = n.z
             p = s * (r + (q - r) * $.oX()) / q
             n.y = s - p
@@ -14984,7 +14984,7 @@ T.SklPoison.prototype = {
     v(a, b, c, d) {
         var s = a[0].a,
             r = T.getAt(this.r, true, c)
-        d.a.push(T.RunUpdate_init(LangData.get_lang("efnA"), this.r, s, null, null, $.i(), 1000, 100))
+        d.a.push(T.RunUpdate_init(LangData.get_lang("efnA"), this.r, s, null, null, 1, 1000, 100))
         s.a3(r, true, this.r, T.vb(), c, d)
     }
 }
@@ -15009,7 +15009,7 @@ T.SklQuake.prototype = {
         r = this.r
         m = H.b(l.slice(0), m)
         q = d.a
-        q.push(T.RunUpdate_init(s, r, null, null, m, $.i(), 1000, 100))
+        q.push(T.RunUpdate_init(s, r, null, null, m, 1, 1000, 100))
         for (k = 0; k < l.length; ++k) {
             m = T.getAt(this.r, true, c)
             s = $.px()
@@ -15063,7 +15063,7 @@ T.SklRapid.prototype = {
                 } else {
                     k = LangData.get_lang("dRsa")
                     j = g.r
-                    i = $.i()
+                    i = 1
                     h = new T.RunUpdate(i, e, 100, k, j, p, f, f)
                     h.aK(k, j, p, f, f, i, e, 100)
                     c.push(h)
@@ -15094,13 +15094,13 @@ T.SklRevive.prototype = {
     v(a, b, c, d) {
         var s, r, q, p, o, n, m, l = this,
             k = null
-        l.f = C.JsInt.P(l.f + $.i(), $.t())
+        l.f = C.JsInt.P(l.f + 1, $.t())
         s = a[0].a
         r = C.d.R(T.getAt(l.r, true, c) / $.pZ())
         q = s.fy
         if (r > q) r = q
         p = d.a
-        p.push(T.RunUpdate_init(LangData.get_lang("FXSa"), l.r, s, k, k, $.i(), 1000, 100))
+        p.push(T.RunUpdate_init(LangData.get_lang("FXSa"), l.r, s, k, k, 1, 1000, 100))
         p.push(T.RunUpdate_init(C.String.B(LangData.get_lang("rFJa"), $.ng()), l.r, s, k, k, r + $.a6(), 1000, 100))
         s.fx = r
         o = s.y
@@ -15110,7 +15110,7 @@ T.SklRevive.prototype = {
             n = n.e
             if (!C.Array.w(n, s)) {
                 m = o.f
-                if (m.length > 0) C.Array.co(n, C.Array.aT(n, C.Array.gbl(m)) + $.i(), s)
+                if (m.length > 0) C.Array.co(n, C.Array.aT(n, C.Array.gbl(m)) + 1, s)
                 else n.push(s)
             }
             C.Array.j(o.f, s)
@@ -15259,7 +15259,7 @@ T.SklShadow.prototype = {
 }
 T.SlowState.prototype = {
     gT() {
-        return -$.i()
+        return -1
     },
     ar(a) {
         var s = this.x
@@ -15293,7 +15293,7 @@ T.SklSlow.prototype = {
         if (b) {
             if (!(a.fx < $.b3())) {
                 s = a.r2
-                s = s.J(0, $.bi()) && t.S.a(s.h(0, $.bi())).z > $.i()
+                s = s.J(0, $.bi()) && t.S.a(s.h(0, $.bi())).z > 1
             } else s = true
             if (s) return false
         }
@@ -15308,7 +15308,7 @@ T.SklSlow.prototype = {
             p = null,
             o = a[0].a,
             n = d.a
-        n.push(T.RunUpdate_init(LangData.get_lang("hdla"), q.r, o, p, p, $.i(), 1000, 100))
+        n.push(T.RunUpdate_init(LangData.get_lang("hdla"), q.r, o, p, p, 1, 1000, 100))
         if (!o.a7($.bi(), c)) s = o.fx > 0 && !o.A && T.bW(q.r.dx, o.dy, c)
         else s = true
         if (s) {
@@ -15363,7 +15363,7 @@ T.PlrSummon.prototype = {
         s[r] = C.d.P(s[r], $.B())
         r = 0
         s[r] = r
-        q = $.i()
+        q = 1
         p = this.aj.r.q
         s[q] = p[q]
         s[$.C()] = r
@@ -15505,7 +15505,7 @@ T.SklThunder.prototype = {
             i = 1000,
             h = a[0].a,
             updates = d.a
-        updates.push(T.RunUpdate_init(LangData.get_lang("hyoA"), k.r, h, j, j, $.i(), i, 100))
+        updates.push(T.RunUpdate_init(LangData.get_lang("hyoA"), k.r, h, j, j, 1, i, 100))
         s = $.B() + (c.n() & 3)
         r = $.ci() + k.r.db
         for (q = 0, p = q, o = false; q < s; ++q) {
@@ -15598,7 +15598,7 @@ T.SklAokijiIceAge.prototype = {
         q = this.r
         m = H.b(l.slice(0), m)
         p = d.a
-        p.push(T.RunUpdate_init(r, q, null, null, m, $.i(), 1000, 100))
+        p.push(T.RunUpdate_init(r, q, null, null, m, 1, 1000, 100))
         o = T.getAt(this.r, true, c) * $.mQ() / (l.length + $.b0())
         for (s = 0; s < l.length; ++s) {
             n = l[s]
@@ -15746,7 +15746,7 @@ T.PlrBossConan.prototype = {
         return H.b([$.aE()], t.V)
     },
     ac() {
-        var s = new T.SklConan(this, -$.i(), 0)
+        var s = new T.SklConan(this, -1, 0)
         s.r = this
         this.k3 = s
     }
@@ -15768,7 +15768,7 @@ T.SklConan.prototype = {
         for (; a == null;) a = m.aa(0, true, c)
         s = a[0].a
         r = m.fx
-        q = $.i()
+        q = 1
         if (r === -q && a.length === q) {
             m.fx = q
             r = d.a
@@ -15789,7 +15789,7 @@ T.SklConan.prototype = {
         p = s.fx
         s.fx = q
         o = a.length
-        n = $.i()
+        n = 1
         r = o === n && r === q
         q = d.a
         if (r) {
@@ -15855,7 +15855,7 @@ T.CovidState.prototype = {
     at(a, b) {
         var s, r, q, p, o, n, m, l = this,
             k = l.fx
-        if (k.fx > 0 && l.fy > $.i()) {
+        if (k.fx > 0 && l.fy > 1) {
             s = C.d.R((T.getAt(k, true, a) + l.go * $.b3()) / T.d9(k, true, a))
             r = l.fr
             q = b.a
@@ -15865,7 +15865,7 @@ T.CovidState.prototype = {
             p = k.aF(s, r, T.ad(), a, b)
             o = 0
             if (p > o && r.fx > o) {
-                o = $.i()
+                o = 1
                 n = C.JsInt.am(s, o)
                 m = r.fx
                 if (m >= r.fy) n = C.JsInt.d5(n, $.t()) + o
@@ -15933,7 +15933,7 @@ T.CovidState.prototype = {
             p = c.a
         p.push(T.RunUpdate_init(LangData.get_lang("UFQa"), q, a, r, r, 0, 1000, 100))
         s = a.fr
-        s = T.oq(a) ? s + $.pd() : C.JsInt.am(s, $.i())
+        s = T.oq(a) ? s + $.pd() : C.JsInt.am(s, 1)
         if (b.n() < s) {
             p.push(T.RunUpdate_init(LangData.get_lang("kloA"), q, a, r, r, 0, 1000, 100))
             return false
@@ -16009,7 +16009,7 @@ T.SklIkarugaDefend.prototype = {
     aq(a, b, c, d, e) {
         var s
         if (a > 0) {
-            s = $.i()
+            s = 1
             s = (a & s) >>> 0 === s
         } else s = false
         if (s) {
@@ -16042,7 +16042,7 @@ T.SklIkarugaAttack.prototype = {
         q = this.r
         m = H.b(l.slice(0), m)
         p = d.a
-        p.push(T.RunUpdate_init(r, q, null, null, m, $.i(), 1000, 100))
+        p.push(T.RunUpdate_init(r, q, null, null, m, 1, 1000, 100))
         o = T.getAt(this.r, true, c) * $.mQ() / (l.length + $.b0())
         for (s = 0; s < l.length; ++s) {
             n = l[s]
@@ -16192,7 +16192,7 @@ T.PlrBossMario.prototype = {
 }
 T.SklMarioGet.prototype = {
     gT() {
-        return $.i()
+        return 1
     },
     ao(a, b) { },
     au(a, b) {
@@ -16215,7 +16215,7 @@ T.SklMarioGet.prototype = {
             n = q.fr
         n.r2.m(0, $.lQ(), q)
         s = n.aC = n.aC + 1
-        if (s === $.i()) {
+        if (s === 1) {
             s = d.a
             s.push(T.RunUpdate_init(LangData.get_lang("iRhA"), q.r, p, p, p, 0, o, 100))
             n.F()
@@ -16325,7 +16325,7 @@ T.SklSaitama.prototype = {
     v(a, b, c, d) {
         var s, r, q, p, o = this,
             n = null
-        if (o.fx / (o.fy.a + o.go.a / $.B() + $.i()) > $.mP()) {
+        if (o.fx / (o.fy.a + o.go.a / $.B() + 1) > $.mP()) {
             s = d.a
             s.push(T.RunUpdate_init(LangData.get_lang("dlfA"), o.r, n, n, n, n, $.eS(), $.lH()))
             s.push($.K())
@@ -16385,7 +16385,7 @@ T.BossSlime2.prototype = {
     },
     eV() {
         var s, r, q, p = this
-        if (p.aC == $.i()) {
+        if (p.aC == 1) {
             for (s = 0; r = $.Z(), s < r; ++s) p.t[s] = $.aR()
             for (s = r; s < $.b1(); ++s) {
                 q = p.t
@@ -16405,10 +16405,10 @@ T.BossSlime2.prototype = {
     ac() {
         // createSkills()
         var s, r, this_ = this
-        this_.aC = this_.dk.aC + $.i()
+        this_.aC = this_.dk.aC + 1
         this_.k3 = T.SklAttack_init(this_)
         s = this_.k1
-        if (this_.aC == $.i()) s.push(new T.SklSlimeSpawn(0))
+        if (this_.aC == 1) s.push(new T.SklSlimeSpawn(0))
         else {
             r = new T.sklHalf(0)
             r.f = $.at()
@@ -16539,7 +16539,7 @@ T.SklYuriControl.prototype = {
             m = d.a
         // sklYuriControl
         // [0]使用[心灵控制]
-        m.push(T.RunUpdate_init(LangData.get_lang("wneN"), this.r, n, o, o, $.i(), 1000, 100))
+        m.push(T.RunUpdate_init(LangData.get_lang("wneN"), this.r, n, o, o, 1, 1000, 100))
         s = n.y.c.length
         r = $.B()
         if (s < r) s = r
@@ -16565,7 +16565,7 @@ T.Engine.prototype = {
         var async_goto = 0,
             async_completer = P._makeAsyncAwaitCompleter(t.z),
             q, this_ = this,
-            o, n, m, name2p, k, j, i, h, g, f, runner, d, c, b, is_boss, a0, weapon_name, player, a3, a4, a5, a6, a7, a8, a9, b0, b1, b2, seed_names
+            o, n, m, name2p, k, j, i, h, g, f, runner, d, c, b, is_boss, a0, weapon_name, player, a3, a4, a5, a6, sorted_names, sorted_hash_names, sorted_hash, b0, b1, b2, seed_names
         var $async$bD = P._wrapJsFunctionForAsync(function (async_error_code, async_result) {
             if (async_error_code === 1) return P.async_rethrow(async_result, async_completer)
             while (true) switch (async_goto) {
@@ -16581,22 +16581,22 @@ T.Engine.prototype = {
                                 if (m.b(c) && J.aw(c) >= $.t()) {
                                     b = J.a3(c)
                                     b.h(c, 0)
-                                    b.h(c, $.i())
+                                    b.h(c, 1)
                                     is_boss = b.gp(c)
                                     a0 = $.t()
                                     weapon_name = is_boss > a0 ? b.h(c, a0) : null
-                                    if (typeof b.h(c, $.i()) == "string") {
-                                        is_boss = J.aw(b.h(c, $.i()))
-                                        a0 = $.i()
+                                    if (typeof b.h(c, 1) == "string") {
+                                        is_boss = J.aw(b.h(c, 1))
+                                        a0 = 1
                                         is_boss = is_boss === a0 && J.ny(b.h(c, a0), 0) < $.pC()
                                     } else
                                         is_boss = false
                                     if (is_boss) {
-                                        player = T.choose_boss(b.h(c, 0), b.h(c, $.i()), this_, weapon_name)
+                                        player = T.choose_boss(b.h(c, 0), b.h(c, 1), this_, weapon_name)
                                     } else {
-                                        player = T.init_plr(b.h(c, 0), b.h(c, $.i()), runner.b, weapon_name)
+                                        player = T.init_plr(b.h(c, 0), b.h(c, 1), runner.b, weapon_name)
                                     }
-                                    // a2 = a ? T.init_boss(b.h(c, 0), b.h(c, $.i()), this_, a1) : T.init_plr(b.h(c, 0), b.h(c, $.i()), e.b, a1)
+                                    // a2 = a ? T.init_boss(b.h(c, 0), b.h(c, 1), this_, a1) : T.init_plr(b.h(c, 0), b.h(c, 1), e.b, a1)
                                     if (player instanceof T.PlrSeed_) { // PlrSeed
                                         seed_names.push(player.e)
                                         k.push(player)
@@ -16619,7 +16619,7 @@ T.Engine.prototype = {
                             a3 = f.length
                             for (a4 = 0; a4 < a3; ++a4) {
                                 player = f[a4]
-                                for (a5 = a4 + $.i(); a5 < a3; ++a5) {
+                                for (a5 = a4 + 1; a5 < a3; ++a5) {
                                     a6 = f[a5]
                                     if (player.b == a6.b) {
                                         player.cA(a6.E)
@@ -16644,32 +16644,39 @@ T.Engine.prototype = {
                         async_goto = 1
                         break
                     }
+
                     o = name2p.gad(name2p)
-                    a7 = P.List_List_of(o, true, H._instanceType(o).i("L.E"))
+                    sorted_names = P.List_List_of(o, true, H._instanceType(o).i("L.E"))
+                    C.Array.aJ(sorted_names)
+                    // sort_names = name2p.keys.toList()
+                    // sort_names.sort()
 
-                    C.Array.aJ(a7)
                     if (seed_names.length !== 0) {
-                        a8 = H.b(a7.slice(0), H._arrayInstanceType(a7))
-                        C.Array.a5(a8, seed_names)
-                        C.Array.aJ(a8)
+                        sorted_hash_names = H.b(sorted_names.slice(0), H._arrayInstanceType(sorted_names))
+                        C.Array.a5(sorted_hash_names, seed_names)
+                        C.Array.aJ(sorted_hash_names)
+                        // = sorted_names.toList()
+                        // addAll(seed_names)
+                        // sort()
                     } else {
-                        a8 = a7
+                        sorted_hash_names = sorted_names
                     }
-                    o = C.Array.aV(a8, "\r")
-                    a9 = C.e.gaB().ab(o)
 
-                    let rc4_holder = new LangData.SuperRC4()
-                    rc4_holder.bd(a9, $.i())
-                    this_.b = rc4_holder
-                    rc4_holder.bO(a9)
+                    o = C.Array.aV(sorted_hash_names, "\r")
+                    sorted_hash = C.e.gaB().ab(o)
 
-                    o = a7.length, h = 0
+                    this_.b = new LangData.SuperRC4()
+                    this_.b.bd(sorted_hash, 1) // init 1
+                    this_.b.bO(sorted_hash)
+
+                    o = sorted_names.length
+                    h = 0
                 case 3:
-                    if (!(h < a7.length)) {
+                    if (!(h < sorted_names.length)) {
                         async_goto = 5
                         break
                     }
-                    b0 = a7[h]
+                    b0 = sorted_names[h]
                     async_goto = 6
                     return P._asyncAwait(name2p.h(0, b0).cg(), $async$bD)
                 case 6:
@@ -16678,7 +16685,7 @@ T.Engine.prototype = {
                     // name2p[name].sortInt = r.rFFFFFF;
                     n.Q = (m.n() << 16 | m.n() << 8 | m.n()) >>> 0
                 case 4:
-                    a7.length === o || (0, H.F)(a7), ++h
+                    sorted_names.length === o || (0, H.F)(sorted_names), ++h
                     async_goto = 3
                     break
                 case 5:
@@ -16736,7 +16743,7 @@ T.Engine.prototype = {
         // void round(RunUpdates updates) {
         var s, this_ = this,
             q = this_.ch,
-            p = $.i(),
+            p = 1,
             players = this_.c
         p = C.JsInt.V(q + p, players.length)
         this_.ch = p
@@ -16952,9 +16959,9 @@ T.Grp.prototype = {
         s = p.e
         if (!C.Array.w(s, a)) {
             r = q.f
-            if (r.length > 0) C.Array.co(s, C.Array.aT(s, C.Array.gbl(r)) + $.i(), a)
+            if (r.length > 0) C.Array.co(s, C.Array.aT(s, C.Array.gbl(r)) + 1, a)
             else s.push(a)
-            if (p.db > -$.i()) p.cq(a, q)
+            if (p.db > -1) p.cq(a, q)
         }
         // if (!C.Array.w(q.e, a)) C.Array.j(q.e, a)
         // if (!C.Array.w(q.d, a)) C.Array.j(q.d, a)
@@ -17170,7 +17177,7 @@ T.Plr.prototype = {
                 } else if (J.nz(q, $.cl())) {
                     p = new T.BossWeapon(q, this_, P.aL($.av(), 0, false, t.B))
                     p.a = q
-                    p.a = C.String.af(q, 0, q.length - $.i())
+                    p.a = C.String.af(q, 0, q.length - 1)
                 } else {
                     p = T.Weapon_factory(q, this_)
                 }
@@ -17191,7 +17198,7 @@ T.Plr.prototype = {
         }
         team = new LangData.SuperRC4()
 
-        team.bd(LangData.fZ(this_.b), $.i())
+        team.bd(LangData.fZ(this_.b), 1)
         this_.X = team
         // q = $.ns()
         // $.mc = q + 1
@@ -17203,7 +17210,7 @@ T.Plr.prototype = {
         if (q > n) {
             q = team.c
             m = q[n]
-            l = $.i()
+            l = 1
             q[n] = q[l]
             q[l] = m
         }
@@ -17243,8 +17250,8 @@ T.Plr.prototype = {
         var s, this_ = this
         if (a.length === this_.t.length) {
             for (s = $.ap(); s < this_.t.length; ++s)
-                // if (J.Y(a[s - $.i()], r.E[s]) && a[s] > r.t[s]) {
-                if ((a[s - $.i()] === this_.E[s]) && a[s] > this_.t[s]) {
+                // if (J.Y(a[s - 1], r.E[s]) && a[s] > r.t[s]) {
+                if ((a[s - 1] === this_.E[s]) && a[s] > this_.t[s]) {
                     this_.t[s] = a[s]
                 }
             if (this_.a == this_.b)
@@ -17321,7 +17328,7 @@ T.Plr.prototype = {
             p = q.length - 1
             if (p - 0 <= 32) H.ej(q, 0, p, J.bO())
             else H.ei(q, 0, p, J.bO())
-            C.Array.j(r, q[$.i()])
+            C.Array.j(r, q[1])
         }
         r = this_.q
 
@@ -17576,7 +17583,7 @@ T.Plr.prototype = {
         }
         q = this_.q
         p = q[0]
-        o = q[$.i()]
+        o = q[1]
         n = $.t()
         m = q[n]
         l = q[$.C()]
@@ -17795,7 +17802,7 @@ T.Plr.prototype = {
                 p = q.length - 1
                 if (p - 0 <= 32) H.ej(q, 0, p, J.bO())
                 else H.ei(q, 0, p, J.bO())
-                s.push(q[$.i()])
+                s.push(q[1])
             }
             q = C.Array.al(o.E, 0, 10)
             C.Array.aJ(q)
@@ -17804,7 +17811,7 @@ T.Plr.prototype = {
                 if (o.q[r] > s[r]) n.push(H.as_string($.lO()) + H.as_string(o.q[r] - s[r]))
                 else n.push("")
         }
-        return H.as_string(o.e) + "\t" + H.as_string(o.r) + "\t" + H.as_string(o.c) + "\t" + H.as_string(o.f) + "\t" + H.as_string(o.fy) + n[$.ap()] + "\t" + H.as_string(o.aY(o.q[0])) + n[0] + "\t" + H.as_string(o.aY(o.q[$.i()])) + n[$.i()] + "\t" + H.as_string(o.aY(o.q[$.t()])) + n[$.t()] + "\t" + H.as_string(o.aY(o.q[$.B()])) + n[$.B()] + "\t" + H.as_string(o.aY(o.q[$.C()])) + n[$.C()] + "\t" + H.as_string(o.aY(o.q[$.X()])) + n[$.X()] + "\t" + H.as_string(o.aY(o.q[$.a4()])) + n[$.a4()] + "\t" + H.as_string(o.cE())
+        return H.as_string(o.e) + "\t" + H.as_string(o.r) + "\t" + H.as_string(o.c) + "\t" + H.as_string(o.f) + "\t" + H.as_string(o.fy) + n[$.ap()] + "\t" + H.as_string(o.aY(o.q[0])) + n[0] + "\t" + H.as_string(o.aY(o.q[1])) + n[1] + "\t" + H.as_string(o.aY(o.q[$.t()])) + n[$.t()] + "\t" + H.as_string(o.aY(o.q[$.B()])) + n[$.B()] + "\t" + H.as_string(o.aY(o.q[$.C()])) + n[$.C()] + "\t" + H.as_string(o.aY(o.q[$.X()])) + n[$.X()] + "\t" + H.as_string(o.aY(o.q[$.a4()])) + n[$.a4()] + "\t" + H.as_string(o.cE())
     },
     aY(a) {
         var s = $.mU()
@@ -17928,7 +17935,7 @@ T.Skill.prototype = {
         if (b)
             if (this.gap().y.a.Q > $.t()) return T.rateHiHp(a) * a.y.f.length * a.H
             else if (d) return T.rateHiHp(a) * a.M * a.H
-            else return $.i() / T.rateHiHp(a) * a.N * a.H
+            else return 1 / T.rateHiHp(a) * a.N * a.H
         return c.gbo() + a.H
     },
     gb7() {
@@ -18045,7 +18052,7 @@ T.SklCounter.prototype = {
             r = $.K()
             q = b.a
             q.push(r)
-            q.push(T.RunUpdate_init(C.String.B(LangData.get_lang("VgaN"), $.qw()), p.r, p.cx, null, null, $.i(), 1000, 100))
+            q.push(T.RunUpdate_init(C.String.B(LangData.get_lang("VgaN"), $.qw()), p.r, p.cx, null, null, 1, 1000, 100))
             p.cx.a3(s, false, p.r, T.ad(), a, b)
         }
     },
@@ -18079,7 +18086,7 @@ T.SklHide.prototype = {
             q = 0
         if (r <= q || s.ch.a != null) return
         r = s.r
-        if (r.fx > q && !r.A && r.z.f.length > $.i() && (c.n() & 63) < s.f) {
+        if (r.fx > q && !r.A && r.z.f.length > 1 && (c.n() & 63) < s.f) {
             s.r.rx.j(0, s.ch)
             s.r.F()
             r = LangData.get_lang("oIIa")
@@ -18239,10 +18246,10 @@ T.SklProtect.prototype = {
     a9(a, b, c) {
         var s, r
         if (b) {
-            s = $.i()
+            s = 1
             r = t.Q.a(a.r2.h(0, $.d6()))
-            if (r != null) s = r.x.length + $.i()
-            return $.i() / T.rateHiHp(a) * a.N / s
+            if (r != null) s = r.x.length + 1
+            return 1 / T.rateHiHp(a) * a.N / s
         }
         return c.gbo()
     },
@@ -18306,7 +18313,7 @@ T.SklReraise.prototype = {
             o = c.n(),
             n = p.f
         if ((o & 127) < n) {
-            p.f = C.JsInt.P(n + $.i(), $.t())
+            p.f = C.JsInt.P(n + 1, $.t())
             o = C.String.B(LangData.get_lang("DWRn"), $.ng())
             n = p.r
             s = d.a
@@ -18335,7 +18342,7 @@ T.ShieldStat_.prototype = {
     gT() {
         var s = this.x,
             r = 0
-        if (s > r) return $.i()
+        if (s > r) return 1
         return r
     },
     aq(a, b, c, d, e) {
@@ -18369,7 +18376,7 @@ T.SklShield.prototype = {
             }
             r = this_.f
             q = s.x
-            if (r >= q) s.x = q + (c.ax($.i() + C.JsInt.P(r * $.B(), $.C())) + $.i())
+            if (r >= q) s.x = q + (c.ax(1 + C.JsInt.P(r * $.B(), $.C())) + 1)
         }
         return a
     },
@@ -18409,7 +18416,7 @@ T.SklUpgrade.prototype = {
         }
     },
     gT() {
-        return $.i()
+        return 1
     },
     K(a, b) {
         var s, r = this
@@ -18570,7 +18577,7 @@ T.BossWeapon.prototype = {
     cB(a, b, c, d) {
         var s, r, q, p, o, n, m, l, k = c[d],
             j = a[d],
-            i = d + $.i(),
+            i = d + 1,
             h = c[i]
         i = a[i]
         s = d + $.t()
@@ -18637,7 +18644,7 @@ T.WeaponDeathNote.prototype = {
         r.e = true
         r.fr = new T.PostDamageImpl(r)
         s = this.c
-        r.ao(s, $.i())
+        r.ao(s, 1)
         s.k1.push(r)
         s = s.k2;
         (s && C.Array).j(s, r)
@@ -18687,7 +18694,7 @@ T.RinickModifier.prototype = {
                 if (p == 0) {
                     q.f = $.C()
                     q.W()
-                } else q.f = C.JsInt.ez(p, $.i())
+                } else q.f = C.JsInt.ez(p, 1)
             }
             return
         }
@@ -18761,7 +18768,7 @@ T.RinickModifierPreAction.prototype = {
         o = s.y
         q = o.a.e.length
         o = o.f.length
-        p = C.JsInt.am(q - o, $.i()) - o
+        p = C.JsInt.am(q - o, 1) - o
         o = 0
         if (p > o) {
             q = new T.SklRinickModifierClone(p, o)
@@ -18790,7 +18797,7 @@ T.RinickModifierUpdateState.prototype = {
             s[r] = p
             a.ch = p
         }
-        r = $.i()
+        r = 1
         if (s[r] < p) {
             s[r] = p
             a.cx = p
@@ -18862,11 +18869,11 @@ T.hy.prototype = {
         var s, r, q = this.r.y,
             p = q.a.e.length
         q = q.f.length
-        s = C.JsInt.am(p - q, $.i()) - q
+        s = C.JsInt.am(p - q, 1) - q
         if (s > 0) {
             b.a.push($.K())
             r = new T.SklRinickModifierClone(s, 0)
-            r.ao(this.r, $.i())
+            r.ao(this.r, 1)
             r.v(H.b([], t.F), true, a, b)
         }
     }
@@ -18908,7 +18915,7 @@ T.SklS11.prototype = {
                 o.f = 0
             } else {
                 l.push(T.RunUpdate_init(LangData.get_lang("kHPN"), o.r, n, n, n, 0, m, 100))
-                o.f = $.i()
+                o.f = 1
             }
             o.r.aF((c.n() & 31) + $.aR(), o.r, T.ad(), c, d)
         }
@@ -18970,7 +18977,7 @@ T.Weapon.prototype = {
         e = this_.d
         j = (e && C.Array).al(e, o, $.av())
         C.Array.aJ(j)
-        i = j[$.i()] + j[$.C()] + n
+        i = j[1] + j[$.C()] + n
         for (k = 0, h = i; e = $.ap(), k < e; ++k) {
             g = C.d.P(i * p[k], m)
             h -= g * $.B()
@@ -18980,7 +18987,7 @@ T.Weapon.prototype = {
     },
     cB(a, b, c, d) {
         var s, r, q, p, o, n, m = c[d] - a[d],
-            l = $.i(),
+            l = 1,
             k = d + l,
             j = c[k] - a[k]
         k = $.t()
@@ -19110,7 +19117,7 @@ T.kv.prototype = {
     b6() {
         var s = new T.hc(0),
             r = this.c
-        s.ao(r, $.i())
+        s.ao(r, 1)
         r.k1.push(s)
     }
 }
