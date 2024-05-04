@@ -959,7 +959,8 @@ var H = {
         }
         return r
     },
-    cC(a) {
+    char_code_to_char(a) {
+        // unicodeToChar
         var s
         if (a <= 65535) return String.fromCharCode(a)
         if (a <= 1114111) {
@@ -4659,6 +4660,8 @@ var H = {
     },
     T = {
         ty(a, b, c, d, e) {
+            // SklAbsorb 的 onDamage (static)
+            // static void onDamage(Plr caster, Plr target, int dmg, R r, RunUpdates updates) {
             var s, r, q, p = 0
             if (c > p && !(a.fx <= p)) {
                 s = C.JsInt.P(c + 1, $.t())
@@ -4667,6 +4670,7 @@ var H = {
                 q = p - r
                 if (s > q) s = q
                 a.fx = r + s
+                // [1]回复体力[2]点
                 p = LangData.get_lang("imin")
                 r = new T.HPlr(r)
                 r.a = a.e
@@ -10993,39 +10997,39 @@ P.lb.prototype = {
         return q.eO(a, b, c, d)
     },
     eO(a, b, c, d) {
-        var s, r, q, p, o, n, m, l = this,
+        var s, r, q, p, o, n, m, this_ = this,
             k = 65533,
-            j = l.b,
-            i = l.c,
+            j = this_.b,
+            i = this_.c,
             h = new P.cH(""),
             g = b + 1,
             f = a[b]
-        $label0$0: for (s = l.a; true;) {
+        $label0$0: for (s = this_.a; true;) {
             for (; true; g = p) {
                 r = C.String.a8("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFFFFFFFFFFFFFFFFGGGGGGGGGGGGGGGGHHHHHHHHHHHHHHHHHHHHHHHHHHHIHHHJEEBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBKCCCCCCCCCCCCDCLONNNMEEEEEEEEEEE", f) & 31
                 i = j <= 32 ? f & 61694 >>> r : (f & 63 | i << 6) >>> 0
                 j = C.String.a8(" \x000:XECCCCCN:lDb \x000:XECCCCCNvlDb \x000:XECCCCCN:lDb AAAAA\x00\x00\x00\x00\x00AAAAA00000AAAAA:::::AAAAAGG000AAAAA00KKKAAAAAG::::AAAAA:IIIIAAAAA000\x800AAAAA\x00\x00\x00\x00 AAAAA", j + r)
                 if (j === 0) {
-                    h.a += H.cC(i)
+                    h.a += H.char_code_to_char(i)
                     if (g === c) break $label0$0
                     break
                 } else if ((j & 1) !== 0) {
                     if (s) switch (j) {
                         case 69:
                         case 67:
-                            h.a += H.cC(k)
+                            h.a += H.char_code_to_char(k)
                             break
                         case 65:
-                            h.a += H.cC(k);
+                            h.a += H.char_code_to_char(k);
                             --g
                             break
                         default:
-                            q = h.a += H.cC(k)
-                            h.a = q + H.cC(k)
+                            q = h.a += H.char_code_to_char(k)
+                            h.a = q + H.char_code_to_char(k)
                             break
                     } else {
-                        l.b = j
-                        l.c = g - 1
+                        this_.b = j
+                        this_.c = g - 1
                         return ""
                     }
                     j = 0
@@ -11052,21 +11056,21 @@ P.lb.prototype = {
                     p = n
                 }
                 if (o - g < 20)
-                    for (m = g; m < o; ++m) h.a += H.cC(a[m])
+                    for (m = g; m < o; ++m) h.a += H.char_code_to_char(a[m])
                 else h.a += P.mh(a, g, o)
                 if (o === c) break $label0$0
                 g = p
             } else g = p
         }
         if (d && j > 32)
-            if (s) h.a += H.cC(k)
+            if (s) h.a += H.char_code_to_char(k)
             else {
-                l.b = 77
-                l.c = c
+                this_.b = 77
+                this_.c = c
                 return ""
             }
-        l.b = j
-        l.c = i
+        this_.b = j
+        this_.c = i
         s = h.a
         return s.charCodeAt(0) == 0 ? s : s
     }
@@ -14038,6 +14042,8 @@ T.SklAbsorb.prototype = {
         var s = a[0].a,
             r = T.getAt(this.r, true, c),
             q = $.ph()
+        // sklAbsorb
+        // [0]发起[吸血攻击]
         d.a.push(T.RunUpdate_init(LangData.get_lang("FfpA"), this.r, s, null, null, 1, 1000, 100))
         s.a3(r * q, true, this.r, T.v6(), c, d)
     }
@@ -14148,8 +14154,11 @@ T.SklAssassinate.prototype = {
         }
     },
     aD(a, b, c, d) {
+        // postDamage
         var s = d.a
         s.push($.K())
+        // sklAssassinateFailed
+        // [0]的[潜行]被识破
         s.push(T.RunUpdateCancel_init(LangData.get_lang("kMgn"), this.r, this.fy))
         this.ah(0)
     },
@@ -16684,8 +16693,8 @@ T.Engine.prototype = {
                     // 因为 .cg 实际上只是 .az 的 async 包装
                     // 这里又直接 await 了，实际上是多余的
                     // 所以直接去掉这个分支, 同时直接调用 .az
-                //     return P._asyncAwait(name2p.h(0, b0).cg(), $async$bD)
-                // case 6:
+                    //     return P._asyncAwait(name2p.h(0, b0).cg(), $async$bD)
+                    // case 6:
                     n = name2p.h(0, b0)
                     m = this_.b // rc4_holder
                     // name2p[name].sortInt = r.rFFFFFF;
@@ -16756,7 +16765,7 @@ T.Engine.prototype = {
 
         // players[roundPos].step(r, updates);
         J.rz(players[p], this_.b, b)
-        
+
         for (q = t.Y; p = b.b, p.length !== 0;) {
             b.b = H.b([], q)
             for (players = p.length, s = 0; s < p.length; p.length === players || (0, H.F)(p), ++s) p[s].$2(this_.b, b)
@@ -19447,7 +19456,11 @@ LangData.k_.prototype = {
     inherit(P.kx, P.kw)
     inherit(P.cF, P.p)
     inherit(HtmlRenderer.fW, HtmlRenderer.PlrView)
-    inherit_many(Sgls.MEntry, [T.Skill, T.UpdateStateEntry, T.PostDefendEntry, T.PostActionEntry, T.PreStepEntry, T.PreDefendEntry, T.PostDamageEntry, T.PreActionEntry, T.aF])
+    inherit_many(Sgls.MEntry,
+        [T.Skill, T.UpdateStateEntry, T.PostDefendEntry,
+        T.PostActionEntry, T.PreStepEntry, T.PreDefendEntry, 
+        T.PostDamageEntry, T.PreActionEntry, T.aF]
+    )
     inherit_many(T.Skill,
         [T.ActionSkill, T.SklAokijiDefend, T.SklCovidDefend, T.SklIkarugaDefend,
         T.SklLazyDefend, T.SklMarioReraise, T.SklSlimeSpawn,
@@ -21665,5 +21678,5 @@ function main() {
 }
 
 main();
-logger.debug("反混淆", LangData.get_lang("JzmA"));
+logger.debug("反混淆", LangData.get_lang("imin"));
 // logger.debug("running main:", main()) // 执行main函数
