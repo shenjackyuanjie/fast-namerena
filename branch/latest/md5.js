@@ -4829,7 +4829,7 @@ var H = {
                 ica_state = t.ck.a(r.h(0, $.bS()))
                 if (ica_state == null) {
                     ica_state = new T.IceState(b, $.cX())
-                    ica_state.x = new T.fY(ica_state)
+                    ica_state.x = new T.PreStepImpl(ica_state)
                     r.m(0, $.bS(), ica_state)
                     b.rx.j(0, ica_state)
                     b.ry.j(0, ica_state.x)
@@ -7425,7 +7425,7 @@ var H = {
             _.x = a
             _.c = _.b = _.a = null
         },
-        fY: function fY(a) {
+        PreStepImpl: function fY(a) {
             var _ = this
             _.x = a
             _.c = _.b = _.a = null
@@ -17879,7 +17879,7 @@ T.UpdateStateImpl.prototype = {
         return 1 / 0
     }
 }
-T.fY.prototype = {
+T.PreStepImpl.prototype = {
     ga4() {
         return 1 / 0
     }
@@ -19484,7 +19484,7 @@ LangData.k_.prototype = {
     inherit(T.SklYuriControl, T.SklCharm)
     inherit_many(T.IPlr, [T.NPlr, T.HPlr, T.MPlr, T.DPlr])
     inherit_many(T.RunUpdate, [T.RunUpdateCancel, T.RunUpdateWin])
-    inherit(T.fY, T.cB)
+    inherit(T.PreStepImpl, T.cB)
     inherit(T.PostDamageImpl, T.PostDamageEntry)
     inherit_many(T.PreActionEntry, [T.PreActionImpl, T.RinickModifierPreAction])
     inherit(T.cp, T.aF)
