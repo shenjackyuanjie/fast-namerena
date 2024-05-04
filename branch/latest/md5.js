@@ -1,8 +1,8 @@
 'use strict';
 
 // let name_input = "!test!\n\natest\n\ntest2";
-let name_input = "!test!\n\nthis_is_a";
-// let name_input = "!test!\n!\n\nthis_is_a";
+// let name_input = "!test!\n\nthis_is_a";
+let name_input = "!test!\n!\n\nthis_is_a";
 // let name_input = "this_is_a\nthis_is_b";
 // let name_input = `
 // '9tEUG@LuoTianyi
