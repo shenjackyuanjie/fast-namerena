@@ -3418,6 +3418,7 @@ var H = {
             return J.aQ(a).bA(a, b)
         },
         rz(a, b, c) {
+            // call a.step()
             return J.uS(a).dN(a, b, c)
         },
         nB(a, b) {
@@ -16601,9 +16602,10 @@ T.Engine.prototype = {
                                         k.push(player)
                                         continue
                                     }
-                                    if (name2p.J(0, player.e)) { 
+                                    if (name2p.J(0, player.e)) {
                                         // if name2p.containsKey(p.idName)
-                                        continue }
+                                        continue
+                                    }
                                     if (runner.b == null)
                                         runner.b = player.c
                                     player.y = runner
@@ -16731,16 +16733,20 @@ T.Engine.prototype = {
         why_ns = 0
     },
     fz(a, b) {
+        // void round(RunUpdates updates) {
         var s, this_ = this,
             q = this_.ch,
             p = $.i(),
-            o = this_.c
-        p = C.JsInt.V(q + p, o.length)
+            players = this_.c
+        p = C.JsInt.V(q + p, players.length)
         this_.ch = p
-        J.rz(o[p], this_.b, b)
+
+        // players[roundPos].step(r, updates);
+        J.rz(players[p], this_.b, b)
+        
         for (q = t.Y; p = b.b, p.length !== 0;) {
             b.b = H.b([], q)
-            for (o = p.length, s = 0; s < p.length; p.length === o || (0, H.F)(p), ++s) p[s].$2(this_.b, b)
+            for (players = p.length, s = 0; s < p.length; p.length === players || (0, H.F)(p), ++s) p[s].$2(this_.b, b)
         }
     },
     O() {
@@ -16750,7 +16756,7 @@ T.Engine.prototype = {
             async_completer = P._makeAsyncAwaitCompleter(t.d),
             result_, p = [],
             this_ = this,
-            n, m, l, k, j, i, h, g, f
+            rc4, m, l, k, j, i, h, g, f
         var $async$O = P._wrapJsFunctionForAsync(function (a, b) {
             if (a === 1) return P.async_rethrow(b, async_completer)
             while (true) $async$outer: switch (async_goto) {
@@ -16760,7 +16766,7 @@ T.Engine.prototype = {
                         async_goto = 1
                         break
                     }
-                    n = new T.aq(H.b([], t.U), H.b([], t.Y))
+                    rc4 = new T.aq(H.b([], t.U), H.b([], t.Y))
                     k = this_.cy
                     async_goto = k != null ? 3 : 4
                     break
@@ -16774,22 +16780,22 @@ T.Engine.prototype = {
                     h = $.lJ()
                     g = new T.RunUpdateWin(i, h, 100, j, k, null, null, null)
                     g.aK(j, k, null, null, null, i, h, 100)
-                    n.a.push(g)
+                    rc4.a.push(g)
                     this_.cx = true
                     async_goto = 5
                     // return P._asyncAwait(this_.bE(), $async$O)
                     why_ns = 0
                 // $.mc = 0 // 来自bE()
                 case 5:
-                    result_ = n
+                    result_ = rc4
                     async_goto = 1
                 // break
                 case 4:
                     try {
                         for (; this_.cy == null;) {
-                            this_.fz(0, n)
-                            if (n.a.length !== 0) {
-                                result_ = n
+                            this_.fz(0, rc4)
+                            if (rc4.a.length !== 0) {
+                                result_ = rc4
                                 async_goto = 1
                                 break $async$outer
                             }
@@ -16798,8 +16804,8 @@ T.Engine.prototype = {
                         m = H.unwrap_Exception(e)
                         l = H.getTraceFromException(e)
                     }
-                    if (n.a.length !== 0) {
-                        result_ = n
+                    if (rc4.a.length !== 0) {
+                        result_ = rc4
                         async_goto = 1
                         break
                     }
@@ -17576,6 +17582,7 @@ T.Plr.prototype = {
         i.H = $.W()
     },
     dN(a, b, c) {
+        // void step(R r, RunUpdates updates) {
         var s, r, q, this_ = this
         if (this_.fx <= 0) return
         s = this_.cy * (b.n() & 3)
@@ -17590,19 +17597,21 @@ T.Plr.prototype = {
         }
     },
     eE(a, b, c) {
+        // void action(R r, RunUpdates updates) {
         var s, r, q, p, o, n, m, this_ = this,
             k = null,
-            j = (b.n() & 63) < this_.fr
+            smart = (b.n() & 63) < this_.fr
         0
-        s = this_.fn(j, b, c)
+        // preAction
+        s = this_.fn(smart, b, c)
         if (this_.A) return
         if (s == null) {
             r = (b.n() & 15) + $.av()
             if (this_.go >= r) {
                 for (q = this_.k4, p = q.length, o = k, n = 0; n < q.length; q.length === p || (0, H.F)(q), ++n) {
                     m = q[n]
-                    if (!m.au(b, j)) continue
-                    o = m.aa(0, j, b)
+                    if (!m.au(b, smart)) continue
+                    o = m.aa(0, smart, b)
                     if (o == null) continue
                     s = m
                     break
@@ -17611,7 +17620,8 @@ T.Plr.prototype = {
             } else o = k
         } else o = k
         if (s == null) s = this_.k3
-        s.v(o == null ? s.aa(0, j, b) : o, j, b, c)
+        // skl.act(targets, smart, r, updates);
+        s.v(o == null ? s.aa(0, smart, b) : o, smart, b, c)
         if ((b.n() & 127) < this_.fr + $.au()) this_.go = this_.go + $.aR()
         this_.at(b, c)
         if (this_.Z) this_.bL(k, c)
@@ -17631,10 +17641,11 @@ T.Plr.prototype = {
             }
         }
     },
-    fn(a, b, c) {
-        var s, r
-        for (s = this.x1, s = new Sgls.a_(s, s.b, s.$ti.i("a_<1*>")), r = null; s.u();) r = s.b.aN(r, a, b, c)
-        return r
+    fn(smart, r, updates) {
+        // ActionSkl preAction(bool smart, R r, RunUpdates updates) {
+        var s, skl
+        for (s = this.x1, s = new Sgls.a_(s, s.b, s.$ti.i("a_<1*>")), skl = null; s.u();) { skl = s.b.aN(skl, smart, r, updates) }
+        return skl
     },
     at(a, b) {
         var s
