@@ -5936,14 +5936,14 @@ var H = {
                 d = 0,
                 c = H.b([d, d, d, d, d, d], t.i),
                 b = 0
-            e.a = -$.t()
+            e.a = -$.t() // -2
             e.b = -1
             e.c = b
             s = new T.lD(e, c)
             for (d = a.length, r = b; r < d; ++r) {
                 q = C.String.a8(a, r)
                 if (q < $.d_()) {
-                    if (q === $.at()) {
+                    if (q === $.at()) { // 32
                         ++b
                         continue
                     }
@@ -6019,9 +6019,9 @@ var H = {
             H.ar(d)
             H.ar(p)
             p = Math.pow(d, p)
-            d = $.pB()
+            d = $.pB() // 32
             o = c[1]
-            H.ar(d)
+            H.ar(d) // 检查是否为 number
             H.ar(o)
             o = Math.pow(d, o)
             d = $.pS()
@@ -6055,7 +6055,7 @@ var H = {
                 d = $.rq()
                 if (g < -d) return (g + d) / ($.pD() + d - T.mw().a)
             }
-            return $.ao()
+            return $.ao() // 0
         },
         DummyRunUpdates(a, b) {
             var s = a.Q - b.Q
@@ -7502,7 +7502,7 @@ var H = {
             _.f = a
             _.c = _.b = _.a = _.r = null
         },
-        dV: function dV(a, b) {
+        ProtectStat: function dV(a, b) {
             var _ = this
             _.r = a
             _.x = b
@@ -14387,7 +14387,7 @@ T.PlrClone.prototype = {
     bf() {
         var s = T.lC(this.a6.a),
             r = T.lC(this.b),
-            q = $.a4()
+            q = $.a4() // 6
         this.x = Math.max(H.ar(s), r - q)
     },
     $ibC: 1
@@ -16679,6 +16679,11 @@ T.Engine.prototype = {
                     b0 = sorted_names[h]
                     // async_goto = 6
                     name2p.h(0, b0).az()
+                    // 说明:
+                    // 这里的 await 实际上是没意义的
+                    // 因为 .cg 实际上只是 .az 的 async 包装
+                    // 这里又直接 await 了，实际上是多余的
+                    // 所以直接去掉这个分支, 同时直接调用 .az
                 //     return P._asyncAwait(name2p.h(0, b0).cg(), $async$bD)
                 // case 6:
                     n = name2p.h(0, b0)
@@ -17231,18 +17236,23 @@ T.Plr.prototype = {
         // rc4.next
     },
     bf() {
+        // 检查名字长度
         var s, this_ = this,
-            q = this_.a,
-            p = q.length
+            q = this_.a, // name
+            p = q.length // name.length
+        // > 80
         if (p > $.b3()) throw H.wrap_expression(p)
         p = this_.b.length
+        // > 64
         if (p > $.au()) throw H.wrap_expression(p)
-        q = T.lC(q)
-        p = T.lC(this_.b)
-        s = $.a4()
+        q = T.lC(q) // name
+        p = T.lC(this_.b) // team
+        s = $.a4() // 6
         this_.x = Math.max(H.ar(q), p - s)
+        console.log("name", this.a, "team", this.b, "x(final)", this_.x, "p(team)", p, "q(name)", q)
     },
     b0(a, b) {
+        // 这又是啥
         return C.d.aI(a * ($.T() - this.x / b))
     },
     cA(a) {
@@ -17264,7 +17274,7 @@ T.Plr.prototype = {
         }
     },
     cg() {
-        // buildAsync outer?
+        // buildAsync wrapper
         var s = 0,
             r = P._makeAsyncAwaitCompleter(t.z),
             this_ = this
@@ -17279,9 +17289,12 @@ T.Plr.prototype = {
         return P._asyncStartSync($async$cg, r)
     },
     az() {
-        // buildAsync
+        // buildAsync inner
         var weapon, diy, this_ = this
+
+        // 检查名字长度
         this_.bf()
+
         weapon = this_.weapon
         if (weapon != null) weapon.bn() // preUpgrade
 
@@ -17309,7 +17322,7 @@ T.Plr.prototype = {
             }
             if (diyskills) {
                 this_.diy_skills(diyskills)
-            } else this_.dm(C.Array.cL(this_.t, $.au()), C.Array.cL(this_.E, $.au())) // initSkills
+            } else this_.dm(C.Array.cL(this_.t, 64), C.Array.cL(this_.E, 64)) // initSkills
         } else {
             this_.dm(C.Array.cL(this_.t, $.au()), C.Array.cL(this_.E, $.au())) // initSkills
         }
@@ -18185,7 +18198,7 @@ T.SklMerge.prototype = {
     },
     $ify: 1
 }
-T.dV.prototype = {
+T.ProtectStat.prototype = {
     gT() {
         return 0
     },
@@ -18225,6 +18238,8 @@ T.dV.prototype = {
         var s, r, q, p = this.dG(f)
         if (p != null) {
             s = p.r
+            // sklProtect
+            // [0][守护][1]
             g.a.push(T.RunUpdate_init(LangData.get_lang("JzmA"), s, d, null, null, $.bg(), 1000, 100))
             a = s.du(a, b, c, e, f, g)
             r = $.ao()
@@ -18269,7 +18284,7 @@ T.SklProtect.prototype = {
             n = o.r2
             r = t.Q.a(n.h(0, $.d6()))
             if (r == null) {
-                r = new T.dV(o, H.b([], t.gN))
+                r = new T.ProtectStat(o, H.b([], t.gN))
                 n.m(0, $.d6(), r)
                 o.y1.j(0, r)
             }
@@ -19474,7 +19489,7 @@ LangData.k_.prototype = {
     inherit_many(T.PreActionEntry, [T.PreActionImpl, T.RinickModifierPreAction])
     inherit(T.cp, T.aF)
     inherit(T.ij, T.bH)
-    inherit(T.dV, T.ij)
+    inherit(T.ProtectStat, T.ij)
     inherit(T.ShieldStat_, T.ShieldStat)
     inherit_many(T.Weapon, [T.BossWeapon, T.WeaponDeathNote, T.GuiYue, T.NoWeapon, T.RinickModifier, T.WeaponS11, T.kv])
     inherit(T.hy, T.SklMarioReraise)
@@ -20321,7 +20336,8 @@ var t = (function rtii() {
     })
     // MARK: 数字反混淆
     lazy_old($, "wX", "at", function () {
-        return X.k("vF:G*ee&GC", 12)
+        // return X.k("vF:G*ee&GC", 12)
+        return 32
     })
     lazy_old($, "vF", "a", function () {
         // return X.k("IIq4zN_QaD", 19)
@@ -20383,7 +20399,8 @@ var t = (function rtii() {
         return 6
     })
     lazy_old($, "xA", "au", function () {
-        return X.k("[kT:g-|3XH", 42)
+        // return X.k("[kT:g-|3XH", 42)
+        return 64
     })
     lazy_old($, "w1", "cj", function () {
         return X.D("`H)#qK]@HN", 15)
@@ -20714,7 +20731,8 @@ var t = (function rtii() {
         return X.D("q;}N|c|3wS", 42)
     })
     lazy_old($, "x0", "pB", function () {
-        return X.D("}2ZxxZec)R", 37)
+        // return X.D("}2ZxxZec)R", 37)
+        return 32
     })
     lazy_old($, "xB", "pS", function () {
         return X.D("'%s.<Y.W9R", 36)
@@ -21647,5 +21665,5 @@ function main() {
 }
 
 main();
-logger.debug("反混淆", LangData.get_lang("EYAn"));
+logger.debug("反混淆", LangData.get_lang("JzmA"));
 // logger.debug("running main:", main()) // 执行main函数
