@@ -1,30 +1,25 @@
 'use strict';
 
-var _version_ = "0.1.0";
+const _version_ = "0.1.0";
 
 // let name_input = "!test!\n\natest\n\ntest2";
 // let name_input = "!test!\n\nthis_is_a";
 // let name_input = "!test!\n!\n\nthis_is_a";
-// let name_input = "this_is_a\nthis_is_b";
-let name_input = `
-'9tEUG@LuoTianyi
-t2W%(s@LuoTianyi
-mTWD1soR原创@LuoTianyi
+let name_input = "this_is_a\nthis_is_b";
+// let name_input = `
+// '9tEUG@LuoTianyi
+// t2W%(s@LuoTianyi
+// mTWD1soR原创@LuoTianyi
 
-天依 VEfVDZVpD@candle
-凶镬9aY5DnWAq@candle
-Raven qPu%yV$O@candle
+// 天依 VEfVDZVpD@candle
+// 凶镬9aY5DnWAq@candle
+// Raven qPu%yV$O@candle
 
-seed:自生自灭 #1@!`;
+// seed:自生自灭 #1@!`;
 
 let assets_data = {
     lang: null,
-    gAd: null,
-    bencher: {
-        "1x": [],
-        "2x": [],
-        "3x": [],
-    }
+    gAd: null
 };
 
 let run_env = {
@@ -34,40 +29,37 @@ let run_env = {
     cli_args: [],
 };
 
-console.log("run_env", run_env);
-
 /**
  * 为啥我写 JavaScript 也开始写上 logger 了 (恼)
  */
-let logger = {
+const logger = {
     // 是否启用 logger
     enable: true,
     // 显示等级
     //
-    level: 0,
+    level: 30,
     // 是否显示 trace 信息
     show_trace: function () {
-        return this.level >= 10;
+        return this.level <= 10 && this.enable;
     },
     // 是否显示 debug 信息
     show_debug: function () {
-        return this.level >= 20;
+        return this.level <= 20 && this.enable;
     },
     // 是否显示 info 信息
     show_info: function () {
-        return this.level >= 30;
+        return this.level <= 30 && this.enable;
     },
     // 是否显示 warn 信息
     show_warn: function () {
-        return this.level >= 40;
+        return this.level <= 40 && this.enable;
     },
-
     /**
      * 在控制台输出一条 trace 信息
      * @param  {...any} msg 
      */
     trace: function (...msg) {
-        if (this.show_trace && this.enable) {
+        if (this.show_trace()) {
             // 上个色
             console.log("\x1b[35m", ...msg, "\x1b[0m")
         }
@@ -77,7 +69,7 @@ let logger = {
      * @param  {...any} msg 
      */
     debug: function (...msg) {
-        if (this.show_debug && this.enable) {
+        if (this.show_debug()) {
             // 上个色
             console.log("\x1b[32m", ...msg, "\x1b[0m")
         }
@@ -87,7 +79,7 @@ let logger = {
      * @param  {...any} msg 
      */
     info: function (...msg) {
-        if (this.show_info && this.enable) {
+        if (this.show_info()) {
             console.log(...msg)
         }
     },
@@ -96,9 +88,9 @@ let logger = {
      * @param  {...any} msg 
      */
     warn: function (...msg) {
-        if (this.show_warn && this.enable) {
+        if (this.show_warn()) {
             // 上个色
-            console.warn("\x1b[31mwarn: ", ...msg, "\x1b[0m")
+            console.log("\x1b[31mwarn: ", ...msg, "\x1b[0m")
         }
     },
 }
@@ -131,12 +123,21 @@ function fmt_RunUpdate(update) {
         source_plr: source_plr,
         target_plr: target_plr,
         affect: affect,
-        // raw: update,
     }
 }
 
 if (run_env.from_code) {
-    console.log("Running from code");
+    console.log("正在运行 md5.js 作为单独的脚本");
+    console.log("版本号: " + _version_);
+
+    let fs = require("fs");
+    let path = require("path");
+    let EventEmitter = require("events");
+    let finish_trigger = new EventEmitter();
+    global.finish_trigger = finish_trigger;
+
+    // 把 cli 参数传进来
+    run_env.cli_args = process.argv;
 
     // 整一套虚拟的window和document
     // 但说实话十分生草
@@ -162,7 +163,7 @@ if (run_env.from_code) {
         item(index) {
             if (index >= this.datas.length) {
                 let stack = new Error().stack;
-                logger.info("fake_class_list.item", stack);
+                logger.warn("fake_class_list.item", stack);
                 return null
             }
             return this.datas[index]
@@ -231,52 +232,21 @@ if (run_env.from_code) {
     global.self = global.window;
 
     // 读取文件
-    let fs = require("fs");
-    let path = require("path");
     let assets_path = path.join(__dirname, "assets");
 
     // 加载 zh.json
     let lang_path = path.join(assets_path, "zh.json");
     let lang_data = fs.readFileSync(lang_path, "utf-8");
+    assets_data.lang = lang_data;
 
     // 加载 gAd.md
     let gAd_path = path.join(assets_path, "gAd.md");
     let gAd_data = fs.readFileSync(gAd_path, "utf-8");
-
-    // 加载 bencher
-    // 路径 assets/1x.txt/2x.txt/3x.txt
-    let bencher_path = path.join(assets_path, "1x.txt");
-    let bencher_data = fs.readFileSync(bencher_path, "utf-8");
-    // 提前处理一下, 去掉 # 开头的行
-    bencher_data = bencher_data.split("\n").filter((line) => {
-        return line.startsWith("# ") == false;
-    });
-    assets_data.bencher["1x"] = bencher_data;
-
-    bencher_path = path.join(assets_path, "2x.txt");
-    bencher_data = fs.readFileSync(bencher_path, "utf-8");
-    bencher_data = bencher_data.split("\n").filter((line) => {
-        return line.startsWith("# ") == false;
-    });
-    // 双人和三人组需要再把每一行的 + 替换成 \n
-    bencher_data = bencher_data.map((line) => {
-        return line.replace("+", "\n");
-    });
-    assets_data.bencher["2x"] = bencher_data;
-
-    bencher_path = path.join(assets_path, "3x.txt");
-    bencher_data = fs.readFileSync(bencher_path, "utf-8");
-    bencher_data = bencher_data.split("\n").filter((line) => {
-        return line.startsWith("# ") == false;
-    });
-    bencher_data = bencher_data.map((line) => {
-        return line.replace("+", "\n");
-    });
-    assets_data.bencher["3x"] = bencher_data;
-
-    assets_data.lang = lang_data;
     assets_data.gAd = gAd_data;
+
 }
+
+console.log("run_env", run_env);
 
 let why_ns = 0;
 
@@ -12565,7 +12535,6 @@ L.ProfileWinChance.prototype = {
         }
     },
     O() {
-        // 胜率评分
         logger.debug("胜率输出 main")
         var async_goto = 0,
             async_completer = P._makeAsyncAwaitCompleter(t.d),
@@ -12629,13 +12598,14 @@ L.ProfileWinChance.prototype = {
                     l = H.b([], m)
                     // 实力评估中...[2]%
                     // benchmarking
+                    finish_trigger.emit("win_rate", this_.y, this_.z)
                     n.push(T.RunUpdate_init(LangData.get_lang("pkGN"), null, null, C.JsInt.ag(this_.z, 100), null, 0, 0, 0))
                     if (this_.z >= this_.c) {
                         o = H.b([], o)
                         m = H.b([], m)
                         // 》 胜率: [2]%
                         // benchmarkRatio
-                        logger.info("胜率: " + (this_.y * 100 / this_.c) + "%")
+                        // logger.info("胜率: " + (this_.y * 100 / this_.c) + "%")
                         o.push(T.RunUpdate_init(LangData.get_lang("Pnrn"), null, null, this_.y * 100 / this_.c, null, 0, 1000, 100))
                         d.push(new T.aq(o, m))
                         this_.c *= 10
@@ -13511,8 +13481,8 @@ HtmlRenderer.inner_render.prototype = {
         let d = this_.b,
             document_ = document
         if (run_env.from_code) {
-            logger.debug("到达代码最高层! fQ!")
-            logger.info(fmt_RunUpdate(this_.cx))
+            // logger.info(fmt_RunUpdate(this_.cx))
+            finish_trigger.emit("done_fight", this_.cx)
             return
         }
 
@@ -13599,7 +13569,6 @@ HtmlRenderer.inner_render.prototype = {
         }
 
         // 显示 done_target
-        logger.debug("done_target")
         window.parent.postMessage("done_fight", "*")
     }
 }
@@ -16928,7 +16897,7 @@ T.Engine.prototype = {
                         }
                     } catch (e) {
                         // 报出错误
-                        logger.warn("来自 round() 的报错, 在意料之内, 可以忽略\n", e)
+                        logger.debug("来自 round() 的报错, 在意料之内, 可以忽略\n", e)
                         // m = H.unwrap_Exception(e)
                         // l = H.getTraceFromException(e)
                     }
@@ -17081,9 +17050,6 @@ T.Grp.prototype = {
             else s.push(a)
             if (p.db > -1) p.cq(a, q)
         }
-        // if (!C.Array.w(q.e, a)) C.Array.j(q.e, a)
-        // if (!C.Array.w(q.d, a)) C.Array.j(q.d, a)
-        // if (!C.Array.w(q.f, a)) C.Array.j(q.f, a)
         if (!q.e.includes(a)) q.e.push(a)
         if (!q.d.includes(a)) q.d.push(a)
         if (!q.f.includes(a)) q.f.push(a)
@@ -21642,7 +21608,7 @@ Function.prototype.$6 = function (a, b, c, d, e, f) {
     return this(a, b, c, d, e, f)
 };
 
-function main() {
+function main(input_name) {
     var async_goto = 0,
         async_completer = P._makeAsyncAwaitCompleter(t.z),
         q, switch_to = 2,
@@ -21684,8 +21650,8 @@ function main() {
                 switch_to = 5
 
                 if (run_env.from_code) {
-                    raw_names = name_input
-                    console.log("node input\n----------\n" + raw_names, "\n----------")
+                    raw_names = input_name
+                    console.log("----------\n" + raw_names, "\n----------")
                 } else {
 
                     m = window.sessionStorage.getItem(LangData.eQ("k"))
@@ -21707,7 +21673,6 @@ function main() {
 
                 // if (J.Y(J.J(J.J(h, 0)[0], 0), $.qc())) {
                 if ($.qc() === h[0][0][0]) {
-                    logger.debug("进入测号 init")
                     $.vr = 6
                     // if (J.aw(h) === 2)
                     if (h.length === 2) {
@@ -21773,6 +21738,7 @@ function main() {
                         break
                     }
                 }
+                logger.info("对战")
                 async_goto = 8
                 return P._asyncAwait(T.start_main(h), $async$iE)
             case 8:
@@ -21800,6 +21766,31 @@ function main() {
     return P._asyncStartSync($async$iE, async_completer)
 }
 
-main();
+if (run_env.from_code) {
+    let win_data = [];
+    finish_trigger.once("done_fight", (data) => {
+        logger.info(fmt_RunUpdate(data))
+    });
+    finish_trigger.on("win_rate", (...data) => {
+        logger.info(...data)
+    });
+    main(name_input);
+} else {
+    main(name_input);
+}
 // logger.info("反混淆", LangData.j("HOa,^Auk1x84LRKOnLivoA,^CvRYpI$Y&JxtF7P", 33));
-// logger.debug("running main:", main()) // 执行main函数
+
+/**
+ * 主接口
+ */
+let runner = {
+    fight: async function (names) {
+        await new Promise((resolve, reject) => {  // 使用 await 关键字等待 Promise
+            finish_trigger.once("done_fight", (data) => {
+                resolve(fmt_RunUpdate(data));  // 解析Promise
+            });
+        });
+    }
+};
+
+export default runner;
