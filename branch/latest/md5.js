@@ -20,12 +20,18 @@ seed:自生自灭 #1@!`;
 let assets_data = {
     lang: null,
     gAd: null,
+    bencher: {
+        "1x": [],
+        "2x": [],
+        "3x": [],
+    }
 };
 
 let run_env = {
     from_code: (typeof window == "undefined"),
     is_node: (typeof Bun == "undefined"),
     is_bun: (typeof Bun != "undefined"),
+    cli_args: [],
 };
 
 console.log("run_env", run_env);
@@ -186,8 +192,8 @@ if (run_env.from_code) {
         }],
     };
 
-    let fake_plist = document.createElement(".plist");
-    let fake_pbody = document.createElement(".pbody");
+    document.createElement(".plist");
+    document.createElement(".pbody");
     // logger.debug(stored_elements)
 
     global.self = global.window;
@@ -204,6 +210,37 @@ if (run_env.from_code) {
     // 加载 gAd.md
     let gAd_path = path.join(assets_path, "gAd.md");
     let gAd_data = fs.readFileSync(gAd_path, "utf-8");
+
+    // 加载 bencher
+    // 路径 assets/1x.txt/2x.txt/3x.txt
+    let bencher_path = path.join(assets_path, "1x.txt");
+    let bencher_data = fs.readFileSync(bencher_path, "utf-8");
+    // 提前处理一下, 去掉 # 开头的行
+    bencher_data = bencher_data.split("\n").filter((line) => {
+        return line.startsWith("# ") == false;
+    });
+    assets_data.bencher["1x"] = bencher_data;
+
+    bencher_path = path.join(assets_path, "2x.txt");
+    bencher_data = fs.readFileSync(bencher_path, "utf-8");
+    bencher_data = bencher_data.split("\n").filter((line) => {
+        return line.startsWith("# ") == false;
+    });
+    // 双人和三人组需要再把每一行的 + 替换成 \n
+    bencher_data = bencher_data.map((line) => {
+        return line.replace("+", "\n");
+    });
+    assets_data.bencher["2x"] = bencher_data;
+
+    bencher_path = path.join(assets_path, "3x.txt");
+    bencher_data = fs.readFileSync(bencher_path, "utf-8");
+    bencher_data = bencher_data.split("\n").filter((line) => {
+        return line.startsWith("# ") == false;
+    });
+    bencher_data = bencher_data.map((line) => {
+        return line.replace("+", "\n");
+    });
+    assets_data.bencher["3x"] = bencher_data;
 
     assets_data.lang = lang_data;
     assets_data.gAd = gAd_data;
