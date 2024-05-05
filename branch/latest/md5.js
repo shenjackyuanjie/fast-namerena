@@ -36,6 +36,9 @@ let run_env = {
 
 console.log("run_env", run_env);
 
+/**
+ * 为啥我写 JavaScript 也开始写上 logger 了 (恼)
+ */
 let logger = {
     // 是否启用 logger
     enable: true,
@@ -43,31 +46,55 @@ let logger = {
     //
     level: 0,
     // 是否显示 trace 信息
-    show_trace: true,
+    show_trace: function () {
+        return this.level >= 10;
+    },
     // 是否显示 debug 信息
-    show_debug: true,
+    show_debug: function () {
+        return this.level >= 20;
+    },
     // 是否显示 info 信息
-    show_info: true,
+    show_info: function () {
+        return this.level >= 30;
+    },
     // 是否显示 warn 信息
-    show_warn: true,
+    show_warn: function () {
+        return this.level >= 40;
+    },
 
+    /**
+     * 在控制台输出一条 trace 信息
+     * @param  {...any} msg 
+     */
     trace: function (...msg) {
         if (this.show_trace && this.enable) {
             // 上个色
             console.log("\x1b[35m", ...msg, "\x1b[0m")
         }
     },
+    /**
+     * 在控制台输出一条 debug 信息
+     * @param  {...any} msg 
+     */
     debug: function (...msg) {
         if (this.show_debug && this.enable) {
             // 上个色
             console.log("\x1b[32m", ...msg, "\x1b[0m")
         }
     },
+    /**
+     * 在控制台输出一条 info 信息
+     * @param  {...any} msg 
+     */
     info: function (...msg) {
         if (this.show_info && this.enable) {
             console.log(...msg)
         }
     },
+    /**
+     * 在控制台输出一条 warn 信息
+     * @param  {...any} msg 
+     */
     warn: function (...msg) {
         if (this.show_warn && this.enable) {
             // 上个色
@@ -76,6 +103,11 @@ let logger = {
     },
 }
 
+/**
+ * 
+ * @param {T.RunUpdate} update 
+ * @returns {message: string, source_plr: string, target_plr: string, affect: string}
+ */
 function fmt_RunUpdate(update) {
     let message = update.d;
     let source_plr = "none"
