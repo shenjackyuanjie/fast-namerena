@@ -1,19 +1,22 @@
 'use strict';
 
+var _version_ = "0.1.0";
+
 // let name_input = "!test!\n\natest\n\ntest2";
 // let name_input = "!test!\n\nthis_is_a";
-let name_input = "!test!\n!\n\nthis_is_a";
+// let name_input = "!test!\n!\n\nthis_is_a";
 // let name_input = "this_is_a\nthis_is_b";
-// let name_input = `
-// '9tEUG@LuoTianyi
-// t2W%(s@LuoTianyi
-// mTWD1soR原创@LuoTianyi
+let name_input = `
+'9tEUG@LuoTianyi
+t2W%(s@LuoTianyi
+mTWD1soR原创@LuoTianyi
 
-// 天依 VEfVDZVpD@candle
-// 凶镬9aY5DnWAq@candle
-// Raven qPu%yV$O@candle
+天依 VEfVDZVpD@candle
+凶镬9aY5DnWAq@candle
+Raven qPu%yV$O@candle
 
-// seed:自生自灭 #1@!`;
+seed:自生自灭 #1@!`;
+
 let assets_data = {
     lang: null,
     gAd: null,
@@ -27,25 +30,44 @@ let run_env = {
 
 console.log("run_env", run_env);
 
-// let is_debug = true;
-let is_debug = false;
-
-// let output_on_console = false;
-let output_on_console = true;
-
 let logger = {
-    // debug: 只在 from_code 时输出
-    debug: function (...msg) {
-        if (run_env.from_code && is_debug) {
+    // 是否启用 logger
+    enable: true,
+    // 显示等级
+    //
+    level: 0,
+    // 是否显示 trace 信息
+    show_trace: true,
+    // 是否显示 debug 信息
+    show_debug: true,
+    // 是否显示 info 信息
+    show_info: true,
+    // 是否显示 warn 信息
+    show_warn: true,
+
+    trace: function (...msg) {
+        if (this.show_trace && this.enable) {
             // 上个色
-            console.log("\x1b[32mlogger:", ...msg, "\x1b[0m")
+            console.log("\x1b[35m", ...msg, "\x1b[0m")
+        }
+    },
+    debug: function (...msg) {
+        if (this.show_debug && this.enable) {
+            // 上个色
+            console.log("\x1b[32m", ...msg, "\x1b[0m")
         }
     },
     info: function (...msg) {
-        if (output_on_console) {
-            console.log("logger: ", msg)
+        if (this.show_info && this.enable) {
+            console.log(...msg)
         }
-    }
+    },
+    warn: function (...msg) {
+        if (this.show_warn && this.enable) {
+            // 上个色
+            console.warn("\x1b[31mwarn: ", ...msg, "\x1b[0m")
+        }
+    },
 }
 
 function fmt_RunUpdate(update) {
@@ -3522,7 +3544,7 @@ var H = {
         j(a, b) {
             // let result = C.e.bt(0, X.f4(a, b))
             let result = C.T_kk.ab(X.f4(a, b))
-            logger.info("O.j", a, b, result)
+            logger.debug("O.j", a, b, result)
             return result
         },
         get_lang(a) {
@@ -12792,7 +12814,7 @@ V.ProfileMain.prototype = {
                         outer_display.push(T.RunUpdate_init(benchmarking, null, null, C.JsInt.ag(this_.ch, 100), null, 0, 0, 0))
                         if (this_.ch >= this_.d) {
                             // 阶段目标场数达到
-                            logger.info("胜率: " + (this_.Q * 100 / this_.ch) + "%")
+                            logger.info("分数: " + (this_.Q * 10000 / this_.ch))
                             this_.eS()
                         }
                         result = new T.aq(outer_display, update_list)
@@ -13134,9 +13156,7 @@ HtmlRenderer.inner_render.prototype = {
 
         // this.gfd -> this.fe
         if (run_env.from_code) {
-            logger.info("before main")
             this_.b4()
-            logger.info("after main")
             return
         } else {
             A.vo(this_.gfd())
@@ -16839,7 +16859,7 @@ T.Engine.prototype = {
                         }
                     } catch (e) {
                         // 报出错误
-                        logger.debug("来自 round() 的报错, 在意料之内, 可以忽略\n", e)
+                        logger.warn("来自 round() 的报错, 在意料之内, 可以忽略\n", e)
                         // m = H.unwrap_Exception(e)
                         // l = H.getTraceFromException(e)
                     }
@@ -21576,7 +21596,6 @@ function main() {
                 $.tb = team_1[$.a4()]
 
                 if (run_env.from_code) {
-                    console.log("initing from node")
                     $.ox = assets_data.gAd
                 } else {
                     // a2 = window.localStorage.getItem(LanData.j("T|a`4tFX30f3:o_Vx]na4ki/|ye&j=D", 15))
