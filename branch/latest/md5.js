@@ -17,6 +17,9 @@ let name_input = "this_is_a\nthis_is_b";
 
 // seed:自生自灭 #1@!`;
 
+let finish_trigger = null;
+let stop_bomb = false;
+
 let assets_data = {
     lang: null,
     gAd: null
@@ -133,8 +136,7 @@ if (run_env.from_code) {
     let fs = require("fs");
     let path = require("path");
     let EventEmitter = require("events");
-    let finish_trigger = new EventEmitter();
-    global.finish_trigger = finish_trigger;
+    finish_trigger = new EventEmitter();
 
     // 把 cli 参数传进来
     run_env.cli_args = process.argv;
@@ -12598,7 +12600,14 @@ L.ProfileWinChance.prototype = {
                     l = H.b([], m)
                     // 实力评估中...[2]%
                     // benchmarking
-                    finish_trigger.emit("win_rate", this_.y, this_.z)
+                    if (run_env.from_code) {
+                        finish_trigger.emit("win_rate", this_.z, this_.y)
+                        if (stop_bomb) {
+                            stop_bomb = false
+                            async_goto = 1;
+                            break;
+                        }
+                    }
                     n.push(T.RunUpdate_init(LangData.get_lang("pkGN"), null, null, C.JsInt.ag(this_.z, 100), null, 0, 0, 0))
                     if (this_.z >= this_.c) {
                         o = H.b([], o)
@@ -21651,7 +21660,7 @@ function main(input_name) {
 
                 if (run_env.from_code) {
                     raw_names = input_name
-                    console.log("----------\n" + raw_names, "\n----------")
+                    logger.debug("----------\n" + raw_names, "\n----------")
                 } else {
 
                     m = window.sessionStorage.getItem(LangData.eQ("k"))
@@ -21679,7 +21688,7 @@ function main(input_name) {
                         // if (J.J(h, 1).length > 10 || J.lW(J.J(J.J(h, 1)[0], 0), O.j("S,AF", 5))) {
                         // LangData.j("S,AF", 5) -> ???
                         if (h[1].length > 10 || J.lW(h[1][0][0], LangData.j("S,AF", 5))) {
-                            logger.info("官方搜号")
+                            logger.debug("官方搜号")
                             team_1 = h[1]
                             team_2 = H.b([], t.t)
 
@@ -21692,7 +21701,7 @@ function main(input_name) {
                             async_goto = 1
                             break
                         } else {
-                            logger.info("官方测号-评分")
+                            logger.debug("官方测号-评分")
 
                             e = $.nk()
                             // if (J.J(h, 0).length === 2 && J.Y(J.J(J.J(h, 0)[1], 0), $.cl())) {
@@ -21717,7 +21726,7 @@ function main(input_name) {
                             break
                         }
                     } else if (h.length === 3) {
-                        logger.info("官方测号-胜率")
+                        logger.debug("官方测号-胜率")
 
                         team_1 = h[1]
                         team_2 = h[2]
@@ -21738,7 +21747,7 @@ function main(input_name) {
                         break
                     }
                 }
-                logger.info("对战")
+                logger.debug("对战")
                 async_goto = 8
                 return P._asyncAwait(T.start_main(h), $async$iE)
             case 8:
@@ -21766,31 +21775,52 @@ function main(input_name) {
     return P._asyncStartSync($async$iE, async_completer)
 }
 
-if (run_env.from_code) {
-    let win_data = [];
-    finish_trigger.once("done_fight", (data) => {
-        logger.info(fmt_RunUpdate(data))
-    });
-    finish_trigger.on("win_rate", (...data) => {
-        logger.info(...data)
-    });
-    main(name_input);
-} else {
-    main(name_input);
-}
+// if (run_env.from_code) {
+//     let win_data = [];
+//     finish_trigger.once("done_fight", (data) => {
+//         logger.info(fmt_RunUpdate(data))
+//     });
+//     finish_trigger.on("win_rate", (...data) => {
+//         logger.info(...data)
+//     });
+// } else {
+//     main(name_input);
+// }
+
 // logger.info("反混淆", LangData.j("HOa,^Auk1x84LRKOnLivoA,^CvRYpI$Y&JxtF7P", 33));
 
 /**
  * 主接口
  */
 let runner = {
-    fight: async function (names) {
-        await new Promise((resolve, reject) => {  // 使用 await 关键字等待 Promise
+    fight: (names) => {
+        return new Promise((resolve, reject) => {
             finish_trigger.once("done_fight", (data) => {
                 resolve(fmt_RunUpdate(data));  // 解析Promise
             });
+            main(names);
+        })
+    },
+    win_rate: (names, target_round) => {
+        let win_datas = [];
+        return new Promise((resolve, reject) => {
+            finish_trigger.on("win_rate", (run_round, win_count) => {
+                // 先把数据存起来
+                win_datas.push({round: run_round, win_count: win_count});
+                // 如果数据长度等于 round，说明数据已经全部返回
+                if (run_round >= target_round) {
+                    stop_bomb = true;
+                    resolve(win_datas);
+                }           
+            });
+            main(names);
         });
-    }
+
+    },
 };
 
-export default runner;
+if (run_env.from_code) {
+    module.exports = runner;
+} else {
+    main();
+}
