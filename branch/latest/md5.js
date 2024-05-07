@@ -12858,6 +12858,14 @@ V.ProfileMain.prototype = {
                         // 实力评估中...[2]% + this.Q
                         // benchmarking = benchmarking + "胜场: " + this_.Q + "胜率: " + (this_.Q / this_.ch)
                         // debug 用, 输出csv格式
+                        if (run_env.from_code) {
+                            finish_trigger.emit("score_report", this_.ch, this_.Q);
+                            if (stop_bomb) {
+                                stop_bomb = false
+                                async_goto = 1;
+                                break;
+                            }
+                        }
                         // benchmarking = this_.Q + "," + this_.ch + "," + (this_.Q / this_.ch)
                         outer_display.push(T.RunUpdate_init(benchmarking, null, null, C.JsInt.ag(this_.ch, 100), null, 0, 0, 0))
                         if (this_.ch >= this_.d) {
@@ -13122,9 +13130,6 @@ X.ProfileFind.prototype = {
                     o = H.b([], t.Y)
                     e.push($.K())
                     // 评分输出
-                    if (run_env.from_code) {
-                        console.log("outputing score")
-                    }
                     if (this_.b >= d.length) {
                         e.push(T.RunUpdate_init(LangData.get_lang("tdaa"), null, null, null, null, 0, 1000, 100))
                         if (this_.e === 0) {
@@ -21802,20 +21807,35 @@ let runner = {
         })
     },
     win_rate: (names, target_round) => {
-        let win_datas = [];
         return new Promise((resolve, reject) => {
+            let win_datas = [];
             finish_trigger.on("win_rate", (run_round, win_count) => {
                 // 先把数据存起来
                 win_datas.push({round: run_round, win_count: win_count});
                 // 如果数据长度等于 round，说明数据已经全部返回
                 if (run_round >= target_round) {
                     stop_bomb = true;
-                    resolve(win_datas);
+                    resolve(win_count, win_datas);
                 }           
             });
             main(names);
         });
 
+    },
+    score: (names, target_round) => {
+        return new Promise((resolve, reject) => {
+            let score_datas = [];
+            finish_trigger.on("score_report", (run_round, score) => {
+                // 先把数据存起来
+                score_datas.push({round: run_round, score: score});
+                // 如果数据长度等于 round，说明数据已经全部返回
+                if (run_round >= target_round) {
+                    stop_bomb = true;
+                    resolve(score, score_datas);
+                };
+            });
+            main(names);
+        });
     },
 };
 

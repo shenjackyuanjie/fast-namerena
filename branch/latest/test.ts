@@ -9,6 +9,10 @@ async function main() {
     let win_rate = await md5_module.win_rate("!test!\n\naaaaaa\n\nbbbbb", 1000);
 
     console.log("胜率: ", win_rate);
+
+    let score = await md5_module.score("!test!\n\naaaaaabbbb", 1000);
+
+    console.log("分数: ", score);
 };
 
 main();
