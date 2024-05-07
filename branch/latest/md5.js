@@ -21780,24 +21780,12 @@ function main(input_name) {
     return P._asyncStartSync($async$iE, async_completer)
 }
 
-// if (run_env.from_code) {
-//     let win_data = [];
-//     finish_trigger.once("done_fight", (data) => {
-//         logger.info(fmt_RunUpdate(data))
-//     });
-//     finish_trigger.on("win_rate", (...data) => {
-//         logger.info(...data)
-//     });
-// } else {
-//     main(name_input);
-// }
-
 // logger.info("反混淆", LangData.j("HOa,^Auk1x84LRKOnLivoA,^CvRYpI$Y&JxtF7P", 33));
 
 /**
  * 主接口
  */
-let runner = {
+const runner = {
     fight: (names) => {
         return new Promise((resolve, reject) => {
             finish_trigger.once("done_fight", (data) => {
@@ -21815,7 +21803,7 @@ let runner = {
                 // 如果数据长度等于 round，说明数据已经全部返回
                 if (run_round >= target_round) {
                     stop_bomb = true;
-                    resolve(win_count, win_datas);
+                    resolve({score: win_count, raw_data: win_datas});
                 }           
             });
             main(names);
@@ -21831,7 +21819,7 @@ let runner = {
                 // 如果数据长度等于 round，说明数据已经全部返回
                 if (run_round >= target_round) {
                     stop_bomb = true;
-                    resolve(score, score_datas);
+                    resolve({score: score, raw_data: score_datas});
                 };
             });
             main(names);
