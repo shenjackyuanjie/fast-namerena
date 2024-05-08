@@ -21798,31 +21798,58 @@ const runner = {
         return new Promise((resolve, reject) => {
             let win_datas = [];
             finish_trigger.on("win_rate", (run_round, win_count) => {
-                // 先把数据存起来
-                win_datas.push({round: run_round, win_count: win_count});
+                win_datas.push({ round: run_round, win_count: win_count });
                 // 如果数据长度等于 round，说明数据已经全部返回
                 if (run_round >= target_round) {
                     stop_bomb = true;
-                    resolve({score: win_count, raw_data: win_datas});
-                }           
+                    resolve({ score: win_count, raw_data: win_datas });
+                }
             });
             main(names);
         });
 
     },
+    win_rate_callback: (names, callback) => {
+        return new Promise((resolve, reject) => {
+            let win_datas = [];
+            finish_trigger.on("win_rate", (run_round, win_count) => {
+                win_datas.push({ round: run_round, win_count: win_count });
+                // 调用 callback
+                let result = callback(run_round, win_count);
+                if (!result) {
+                    stop_bomb = true;
+                    resolve({ score: win_count, raw_data: win_datas });
+                }
+            });
+            main(names);
+        });
+    },
     score: (names, target_round) => {
         return new Promise((resolve, reject) => {
             let score_datas = [];
             finish_trigger.on("score_report", (run_round, score) => {
-                // 先把数据存起来
-                score_datas.push({round: run_round, score: score});
+                score_datas.push({ round: run_round, score: score });
                 // 如果数据长度等于 round，说明数据已经全部返回
                 if (run_round >= target_round) {
                     stop_bomb = true;
-                    resolve({score: score, raw_data: score_datas});
+                    resolve({ score: score, raw_data: score_datas });
                 };
             });
             main(names);
+        });
+    },
+    score_callback: (names, callback) => {
+        return new Promise((resolve, reject) => {
+            let score_datas = [];
+            finish_trigger.on("score_report", (run_round, score) => {
+                score_datas.push({ round: run_round, score: score });
+                // 调用 callback
+                let result = callback(run_round, score);
+                if (!result) {
+                    stop_bomb = true;
+                    resolve({ score: score, raw_data: score_datas });
+                }
+            });
         });
     },
 };
