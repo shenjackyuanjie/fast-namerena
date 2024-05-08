@@ -1,11 +1,11 @@
 'use strict';
 
-const _version_ = "0.1.0";
+const _version_ = "0.2.0";
 
 // let name_input = "!test!\n\natest\n\ntest2";
 // let name_input = "!test!\n\nthis_is_a";
 // let name_input = "!test!\n!\n\nthis_is_a";
-let name_input = "this_is_a\nthis_is_b";
+// let name_input = "this_is_a\nthis_is_b";
 // let name_input = `
 // '9tEUG@LuoTianyi
 // t2W%(s@LuoTianyi
