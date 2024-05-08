@@ -92,7 +92,7 @@ async function win_rate(names: string, round: number): Promise<WinRateResult> {
 		throw new Error("round 必须大于 0");
 	}
 	if (!test_check(names)) {
-		throw new Error("你怎么在胜率输入里加 !test!(恼)\n${names}");
+		throw new Error("你怎么在胜率输入里丢了 !test!(恼)\n${names}");
 	}
 	return await md5_module.win_rate(names, round);
 }
@@ -108,7 +108,7 @@ async function win_rate_callback(
 	callback: WinRateCallback,
 ): Promise<WinRateResult> {
 	if (!test_check(names)) {
-		throw new Error("你怎么在胜率输入里加 !test!(恼)\n${names}");
+		throw new Error("你怎么在胜率输入里丢了 !test!(恼)\n${names}");
 	}
 	return await md5_module.win_rate_callback(names, callback);
 }
@@ -119,7 +119,7 @@ async function score(names: string, round: number): Promise<ScoreResult> {
 		throw new Error("round 必须大于 0");
 	}
 	if (!test_check(names)) {
-		throw new Error("你怎么在分数输入里加 !test!(恼)\n${names}");
+		throw new Error("你怎么在分数输入里丢了 !test!(恼)\n${names}");
 	}
 	return await md5_module.score(names, round);
 }
