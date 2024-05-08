@@ -29,7 +29,7 @@ let run_env = {
     from_code: (typeof window == "undefined"),
     is_node: (typeof Bun == "undefined"),
     is_bun: (typeof Bun != "undefined"),
-    cli_args: [],
+    version: _version_,
 };
 
 /**
@@ -130,19 +130,12 @@ function fmt_RunUpdate(update) {
 }
 
 if (run_env.from_code) {
-    console.log("正在运行 md5.js 作为单独的脚本");
-    console.log("版本号: " + _version_);
-
     let fs = require("fs");
     let path = require("path");
     let EventEmitter = require("events");
     finish_trigger = new EventEmitter();
 
-    // 把 cli 参数传进来
-    run_env.cli_args = process.argv;
-
     // 整一套虚拟的window和document
-    // 但说实话十分生草
 
     // list of elements
     let stored_elements = [];
