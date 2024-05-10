@@ -45,7 +45,7 @@ type Score = {
  * 分数的数据结构
  */
 type ScoreResult = {
-	source: number;
+	score: number;
 	raw_data: Score[];
 };
 
