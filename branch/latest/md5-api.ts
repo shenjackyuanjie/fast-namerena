@@ -138,6 +138,54 @@ async function run_any(names: string, round: number): Promise<FightResult | WinR
 	return await md5_module.run_any(names, round);
 }
 
+const out_limit: number = 1000;
+
+async function wrap_any(names: string, round: number): Promise<string> {
+	const result = await run_any(names, round);
+	if ('message' in result) {
+		// 对战结果
+		return `赢家:|${result.source_plr}|`;
+	} else if ('win_count' in result) {
+		// 胜率结果
+		const win_rate = result.win_count * 100 / round;
+		let win_rate_str = win_rate.toFixed(4);
+		let output_str = `最终胜率:|${win_rate_str}%|(${round}轮)`;
+		// 每 500 轮, 输出一次
+		if (round > out_limit) {
+			// 把所有要找的数据拿出来
+			let output_datas: WinRate[] = [];
+			result.raw_data.forEach((data, index) => {
+				if (data.round % out_limit === 0) {
+					output_datas.push(data);
+				}
+			});
+			output_datas.forEach((data, index) => {
+				const win_rate = data.win_count * 100 / data.round;
+				output_str += `\n${win_rate.toFixed(2)}%(${data.round})`;
+			});
+		}
+		return output_str;
+	// } else if ('score' in result) {
+	} else {
+		// 分数结果其实还是个胜率, 不过需要 * 100
+		const win_rate = (result.score * 10000 / round).toFixed(2);
+		let output_str = `分数:|${win_rate}|(${round}轮)`;
+		if (round > out_limit) {
+			// 把所有要找的数据拿出来
+			let output_datas: Score[] = [];
+			result.raw_data.forEach((data, index) => {
+				if (data.round % out_limit === 0) {
+					output_datas.push(data);
+				}
+			});
+			output_datas.forEach((data, index) => {
+				const win_rate = (data.score / data.round * 10000).toFixed(2);
+				output_str += `\n${win_rate}(${data.round})`;
+			});
+		}
+		return output_str;
+	}
+}
 
 export {
 	FightResult,
@@ -153,4 +201,5 @@ export {
 	score,
 	score_callback,
 	run_any,
+	wrap_any,
 };
