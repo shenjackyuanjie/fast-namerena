@@ -1,6 +1,6 @@
 'use strict';
 
-const _version_ = "0.2.0";
+const _version_ = "0.3.0";
 
 // let name_input = "!test!\n\natest\n\ntest2";
 // let name_input = "!test!\n\nthis_is_a";
