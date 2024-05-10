@@ -23,7 +23,7 @@ type WinRate = {
  * 胜率的数据结构
  */
 type WinRateResult = {
-	souce: number;
+	win_count: number;
 	raw_data: WinRate[];
 };
 
@@ -63,7 +63,7 @@ type ScoreCallback = (run_round: number, score: number) => boolean;
 async function fight(names: string): Promise<FightResult> {
 	// 检查一下输入是否合法
 	// 比如里面有没有 !test!
-	if (names.startsWith("!test!")) {
+	if (names.indexOf("!test!") !== -1) {
 		throw new Error("你怎么在对战输入里加 !test!(恼)\n${names}");
 	}
 	return await md5_module.fight(names);
@@ -75,7 +75,7 @@ async function fight(names: string): Promise<FightResult> {
  * @returns
  */
 function test_check(names: string): boolean {
-	const have_test = names.startsWith("!test!");
+	const have_test = names.trim().startsWith("!test!");
 
 	return have_test;
 }
@@ -134,6 +134,11 @@ async function score_callback(
 	return await md5_module.score_callback(names, callback);
 }
 
+async function run_any(names: string, round: number): Promise<FightResult | WinRateResult | ScoreResult> {
+	return await md5_module.run_any(names, round);
+}
+
+
 export {
 	FightResult,
 	WinRate,
@@ -147,4 +152,5 @@ export {
 	win_rate_callback,
 	score,
 	score_callback,
+	run_any,
 };
