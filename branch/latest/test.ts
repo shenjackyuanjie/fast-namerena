@@ -6,58 +6,12 @@ const test_profiles = {
 	fight: [
 		{
 			test: `vy5we
-w
- ryyb
-b
-rv
-v
-etet4y 54 w
-e rg
-we by
-rw 
-te
-w 
-nbyrb
- ew
-yn re
-ryb
-ey w
-neb r
-bwe
-n yrbq34nb
-et
-ab
-qbetq
-45ywy54
-y45
-45
-wv54
-yw
-vy
-5y
-vyev
-yeevy
-vey
-e
-rye
-yn
-43n
-63
-ub63 u
-b6r
-un
-3br
-ue
-rnbt
-4n
-5b
-wu
-4bw
-4nw
-4u 
-n6w
-r`, winner: "rye"
+w\n ryyb\nb\nrv\nv\netet4y 54 w\ne rg\nwe by\nrw \nte\nw \nnbyrb\n ew\nyn re\nryb\ney w\nneb r\nbwe\nn yrbq34nb\net\nab\nqbetq\n45ywy54\ny45\n45\nwv54\nyw\nvy\n5y\nvyev\nyeevy\nvey\ne\nrye\nyn\n43n\n63\nub63 u\nb6r\nun\n3br\nue\nrnbt\n4n\n5b\nwu\n4bw\n4nw\n4u \nn6w\nr`, winner: "rye"
 		},
+        {
+            test: 'm@fAIgFUL\n1 1 @Ehlt s',
+            winner: "m@fAIgFUL"
+        },
 	],
 	win_chance: [
 		{
