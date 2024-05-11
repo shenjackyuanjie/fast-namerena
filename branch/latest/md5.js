@@ -21843,6 +21843,7 @@ const runner = {
                     resolve({ score: score, raw_data: score_datas });
                 }
             });
+            main(names);
         });
     },
     run_any: (names, round) => {
