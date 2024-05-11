@@ -216,7 +216,7 @@ if (run_env.from_code) {
         },
         body: new fake_element("body"),
         styleSheets: [{
-            "some": "thing"
+            some: "thing"
         }],
     };
 
@@ -13455,7 +13455,7 @@ HtmlRenderer.inner_render.prototype = {
         if (this_.cx instanceof T.RunUpdateWin) {
             this_.fQ()
         } else if (run_env.from_code) {
-            logger.debug(fmt_RunUpdate(this_.cx))
+            // logger.debug(fmt_RunUpdate(this_.cx))
             this_.b4()
             return
         } else {
@@ -14485,43 +14485,43 @@ T.SklClone.prototype = {
         return H.b([], t.F)
     },
     v(a, b, c, d) {
-        var s, r, q, p, o, n, m, l, k = this,
+        var s, r, q, p, o, n, m, l, this_ = this,
             j = null
-        k.f = C.d.R(k.f * ((c.n() & 63) + $.au()) / $.cj())
-        if (!k.r.r2.J(0, $.a7())) {
-            s = k.r.q
+        this_.f = C.d.R(this_.f * ((c.n() & 63) + $.au()) / $.cj())
+        if (!this_.r.r2.J(0, $.a7())) {
+            s = this_.r.q
             for (r = 0; q = $.ap(), r < q; ++r) s[r] = C.d.R(s[r] * $.p1())
             s[q] = C.d.R(s[q] * $.b0())
-            q = k.r
+            q = this_.r
             q.fx = C.d.R(q.fx * $.b0())
-            k.r.ci()
-            k.r.F()
+            this_.r.ci()
+            this_.r.F()
         }
-        p = T.init_PlrClone(k.r)
-        p.y = k.r.y
+        p = T.init_PlrClone(this_.r)
+        p.y = this_.r.y
         p.az()
         p.l = c.n() * $.C() + $.eX()
-        q = k.r
+        q = this_.r
         p.fx = q.fx
         if (q.fx + q.dx < c.n()) {
-            q = k.f
+            q = this_.f
             o = 1
-            k.f = C.JsInt.am(q, o) + o
+            this_.f = C.JsInt.am(q, o) + o
         }
         q = C.Array.dl(p.k1, new T.SklCloneCallback())
-        if (q != null) q.f = C.d.R(Math.sqrt(H.ar(k.f)))
+        if (q != null) q.f = C.d.R(Math.sqrt(H.ar(this_.f)))
         // sklClone
         // [0]使用[分身]
         q = LangData.get_lang("yWWn")
         o = new T.MPlr()
-        o.cO(k.r)
+        o.cO(this_.r)
         n = d.a
-        n.push(T.RunUpdate_init(q, o, k.r, j, j, $.a6(), 1000, 100))
-        k.r.y.aZ(p)
+        n.push(T.RunUpdate_init(q, o, this_.r, j, j, $.a6(), 1000, 100))
+        this_.r.y.aZ(p)
         // sklCloned
         // 出现一个新的[1]
         o = LangData.get_lang("pKQn")
-        q = k.r
+        q = this_.r
         m = p.fx
         l = new T.HPlr(m)
         l.a = p.e
@@ -15773,7 +15773,8 @@ T.PlrEx.prototype = {
     },
     cA(a) { },
     bf() {
-        this.x = $.ao()
+        // this.x = $.ao()
+        this.x = 0
     }
 }
 T.PlrBoss.prototype = {
@@ -16876,7 +16877,6 @@ T.Engine.prototype = {
                     // win
                     // [2]获得胜利
                     j = LangData.get_lang("eTpN")
-                    logger.debug("getting win from T.fo.O")
                     i = 0
                     h = $.lJ()
                     g = new T.RunUpdateWin(i, h, 100, j, k, null, null, null)
@@ -17150,21 +17150,21 @@ T.RunUpdate.prototype = {
     },
     // to string
     k(a) {
-        var _this = this,
-            r = _this.d,
-            q = _this.e
+        var this_ = this,
+            r = this_.d,
+            q = this_.e
         if (q != null) {
             q = q.k(0)
             if (typeof q != "string") H.throw_expression(H.R(q))
             r = H.mF(r, "[Dn.n0]", q)
         }
-        q = _this.f
+        q = this_.f
         if (q != null) {
             q = q.k(0)
             if (typeof q != "string") H.throw_expression(H.R(q))
             r = H.mF(r, "[Dn.n1]", q)
         }
-        q = _this.x
+        q = this_.x
         if (q != null) {
             q = J.b4(q)
             if (typeof q != "string") H.throw_expression(H.R(q))
@@ -17197,14 +17197,14 @@ T.lD.prototype = {
 }
 T.Minion.prototype = {
     b1(a, b, c, d) {
-        var s = this,
-            r = s.fx,
+        var this_ = this,
+            r = this_.fx,
             q = 0
         if (r > q) {
-            s.fx = q
-            s.bm(r, null, c, d)
+            this_.fx = q
+            this_.bm(r, null, c, d)
         }
-        s.a6.D()
+        this_.a6.D()
         return false
     },
     cD() {
@@ -17213,7 +17213,8 @@ T.Minion.prototype = {
         return LangData.get_lang("Kcon")
     },
     bf() {
-        this.x = $.ao()
+        // this.x = $.ao()
+        this.x = 0
     },
     $ibC: 1
 }
@@ -17321,7 +17322,7 @@ T.Plr.prototype = {
         // rc4.next
     },
     bf() {
-        // 检查名字长度
+        // MARK: 名字长度系数计算
         var s, this_ = this,
             q = this_.a, // name
             p = q.length // name.length
@@ -17334,11 +17335,15 @@ T.Plr.prototype = {
         p = T.lC(this_.b) // team
         s = $.a4() // 6
         this_.x = Math.max(H.ar(q), p - s)
-        logger.debug("name", this.a, "team", this.b, "x(final)", this_.x, "p(team)", p, "q(name)", q)
+        // logger.debug("name", this.a, "team", this.b, "x(final)", this_.x, "p(team)", p, "q(name)", q)
     },
     b0(a, b) {
         // 这又是啥
-        return C.d.aI(a * ($.T() - this.x / b))
+        const result = Math.round(a * (1 - this.x / b))
+        // if (a !== result) {
+        //     logger.info("getting a", a, "b", b, "this.x", this.x, "result", result, "Δ=", result - a, this.a)
+        // }
+        return result
     },
     cA(a) {
         //upgrade
@@ -17346,13 +17351,11 @@ T.Plr.prototype = {
         var s, this_ = this
         if (a.length === this_.t.length) {
             for (s = $.ap(); s < this_.t.length; ++s)
-                // if (J.Y(a[s - 1], r.E[s]) && a[s] > r.t[s]) {
                 if ((a[s - 1] === this_.E[s]) && a[s] > this_.t[s]) {
                     this_.t[s] = a[s]
                 }
             if (this_.a == this_.b)
                 for (s = $.X(); s < this_.t.length; ++s)
-                    // if (J.Y(a[s - $.t()], r.E[s]) && a[s] > r.t[s]) {
                     if ((a[s - $.t()] === this_.E[s]) && a[s] > this_.t[s]) {
                         this_.t[s] = a[s]
                     }
@@ -17569,7 +17572,7 @@ T.Plr.prototype = {
             if (!(n < $.aR() && n < this_.k2.length)) break
             skill = this_.k2[n]
             sortedSkills = C.Array.al(list, m, m + $.C())
-            if (!!sortedSkills.immutable$list) H.throw_expression(P.UnsupportError("sort"))
+            // if (sortedSkills.immutable$list) H.throw_expression(P.UnsupportError("sort"))
             q = sortedSkills.length - 1
             if (q - 0 <= 32) H.ej(sortedSkills, 0, q, J.bO())
             else H.ei(sortedSkills, 0, q, J.bO())
@@ -17578,7 +17581,7 @@ T.Plr.prototype = {
             sortedSkills = 0
             if (p > sortedSkills) {
                 sortedSkills = C.Array.al(original, m, m + $.C())
-                if (!!sortedSkills.immutable$list) H.throw_expression(P.UnsupportError("sort"))
+                // if (sortedSkills.immutable$list) H.throw_expression(P.UnsupportError("sort"))
                 q = sortedSkills.length - 1
                 if (q - 0 <= 32) H.ej(sortedSkills, 0, q, J.bO())
                 else H.ei(sortedSkills, 0, q, J.bO())
@@ -17625,10 +17628,10 @@ T.Plr.prototype = {
         }
     },
     cn() { // initValues
-        var s = this
-        s.F()
-        s.fx = s.fy
-        s.go = C.JsInt.P(s.fr, $.t())
+        var this_ = this
+        this_.F()
+        this_.fx = this_.fy
+        this_.go = C.JsInt.P(this_.fr, $.t())
     },
     F() {
         /*  void updateStates() {
@@ -17673,9 +17676,8 @@ T.Plr.prototype = {
     },
     ci() {
         // calcAttrSum
-        var attr_sum, r, q, p, o, n, m, l, k, j, i = this,
-            this_ = this,
-            h = i.M = 0
+        var attr_sum, r, q, p, o, n, m, l, k, j, this_ = this,
+            h = this_.M = 0
         for (attr_sum = h; h < 7; ++h) {
             attr_sum += this_.q[h]
             this_.M = attr_sum
@@ -17688,9 +17690,9 @@ T.Plr.prototype = {
         l = q[$.C()]
         k = q[$.X()]
         j = $.B()
-        i.N = (p - o + m + l - k) * n + q[j] + q[$.a4()]
-        i.Y = attr_sum * j + q[r]
-        i.H = $.W()
+        this_.N = (p - o + m + l - k) * n + q[j] + q[$.a4()]
+        this_.Y = attr_sum * j + q[r]
+        this_.H = $.W()
     },
     dN(a, b, c) {
         // void step(R r, RunUpdates updates) {
@@ -20513,10 +20515,12 @@ var t = (function rtii() {
         return 64
     })
     lazy_old($, "w1", "cj", function () {
-        return X.D("`H)#qK]@HN", 15)
+        // return X.D("`H)#qK]@HN", 15)
+        return 128
     })
     lazy_old($, "xG", "ap", function () {
-        return X.k("j1 6(jNX~I", 52)
+        // return X.k("j1 6(jNX~I", 52)
+        return 7
     })
     lazy_old($, "vO", "p1", function () {
         // return X.D("%>;B.O6'DA", 63)
@@ -20860,7 +20864,8 @@ var t = (function rtii() {
         return 32768
     })
     lazy_old($, "xO", "n1", function () {
-        return X.D("Jn|940%'0C", 76)
+        // return X.D("Jn|940%'0C", 76)
+        return 80
     })
     lazy_old($, "x3", "pD", function () {
         return X.k("AQI,4l~@gF", 31)
