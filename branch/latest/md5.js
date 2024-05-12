@@ -4966,10 +4966,10 @@ var T = {
     },
     choose_boss(name, clan_name, fgt, weapon_name) {
         // MARK: WTF 什么鬼这么长
-        var team_name, r, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, a3 = null
+        var team_name, fgt, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, a3 = null
         if (clan_name == $.nk()) {
             team_name = 0
-            r = $.T()
+            fgt = $.T()
             q = H.b([], t.q)
             p = H.b([], t.H)
             o = P.create_meta_map(t.X, t.W)
@@ -5006,7 +5006,7 @@ var T = {
             b = H.b([], e)
             e = H.b([], e)
             a = 0
-            a = new T.PlrBossTest(name, clan_name, name, a3, team_name, r, q, p, o, n, m, l, k, j, i, h, g, f, d, c, b, e, a, a, a, $.W(), a)
+            a = new T.PlrBossTest(name, clan_name, name, a3, team_name, fgt, q, p, o, n, m, l, k, j, i, h, g, f, d, c, b, e, a, a, a, $.W(), a)
             a.a1(name, clan_name, name, a3)
             a.e4(name, clan_name, fgt)
             return a
@@ -5015,7 +5015,7 @@ var T = {
         // \u0003
         if (clan_name == $.qR()) {
             team_name = 0
-            r = $.T()
+            fgt = $.T()
             q = H.b([], t.q)
             p = H.b([], t.H)
             o = P.create_meta_map(t.X, t.W)
@@ -5052,7 +5052,7 @@ var T = {
             b = H.b([], e)
             e = H.b([], e)
             a = 0
-            a = new T.PlrBossTest2(name, clan_name, name, a3, team_name, r, q, p, o, n, m, l, k, j, i, h, g, f, d, c, b, e, a, a, a, $.W(), a)
+            a = new T.PlrBossTest2(name, clan_name, name, a3, team_name, fgt, q, p, o, n, m, l, k, j, i, h, g, f, d, c, b, e, a, a, a, $.W(), a)
             a.a1(name, clan_name, name, a3)
             a.e5(name, clan_name)
             return a
@@ -5062,7 +5062,7 @@ var T = {
         team_name = $.cl()
         if (clan_name == team_name) {
             if (name == $.lQ()) {
-                r = 0
+                fgt = 0
                 q = H.as_string(name) + H.as_string($.aD())
                 p = 0
                 o = $.T()
@@ -5102,13 +5102,13 @@ var T = {
                 a1 = H.b([], b)
                 b = H.b([], b)
                 a2 = 0
-                a2 = new T.PlrBossMario(r, name, team_name, q, a3, p, o, n, m, l, k, j, i, h, g, f, e, d, c, a, a0, a1, b, a2, a2, a2, $.W(), a2)
+                a2 = new T.PlrBossMario(fgt, name, team_name, q, a3, p, o, n, m, l, k, j, i, h, g, f, e, d, c, a, a0, a1, b, a2, a2, a2, $.W(), a2)
                 a2.a1(name, team_name, q, a3)
                 a2.av(name, team_name)
                 return a2
             }
             if (name == $.qP()) {
-                r = H.as_string(name) + H.as_string($.aD())
+                fgt = H.as_string(name) + H.as_string($.aD())
                 q = 0
                 p = $.T()
                 o = H.b([], t.q)
@@ -5147,13 +5147,13 @@ var T = {
                 a0 = H.b([], c)
                 c = H.b([], c)
                 a1 = 0
-                a1 = new T.PlrBossSonic(name, team_name, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
-                a1.a1(name, team_name, r, a3)
+                a1 = new T.PlrBossSonic(name, team_name, fgt, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                a1.a1(name, team_name, fgt, a3)
                 a1.av(name, team_name)
                 return a1
             }
             if (name == $.qo()) {
-                r = H.as_string(name) + H.as_string($.aD())
+                fgt = H.as_string(name) + H.as_string($.aD())
                 q = 0
                 p = $.T()
                 o = H.b([], t.q)
@@ -5192,13 +5192,13 @@ var T = {
                 a0 = H.b([], c)
                 c = H.b([], c)
                 a1 = 0
-                a1 = new T.PlrBossMosquito(name, team_name, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
-                a1.a1(name, team_name, r, a3)
+                a1 = new T.PlrBossMosquito(name, team_name, fgt, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                a1.a1(name, team_name, fgt, a3)
                 a1.av(name, team_name)
                 return a1
             }
             if (name == $.qY()) {
-                r = H.as_string(name) + H.as_string($.aD())
+                fgt = H.as_string(name) + H.as_string($.aD())
                 q = 0
                 p = $.T()
                 o = H.b([], t.q)
@@ -5237,15 +5237,15 @@ var T = {
                 a0 = H.b([], c)
                 c = H.b([], c)
                 a1 = 0
-                a1 = new T.PlrBossYuri(name, team_name, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
-                a1.a1(name, team_name, r, a3)
+                a1 = new T.PlrBossYuri(name, team_name, fgt, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                a1.a1(name, team_name, fgt, a3)
                 a1.av(name, team_name)
                 return a1
             }
             // slime
             if (name == $.qO()) return T.init_BossSlime(name, team_name)
             if (name == $.qh()) {
-                r = H.as_string(name) + H.as_string($.aD())
+                fgt = H.as_string(name) + H.as_string($.aD())
                 q = 0
                 p = $.T()
                 o = H.b([], t.q)
@@ -5284,13 +5284,13 @@ var T = {
                 a0 = H.b([], c)
                 c = H.b([], c)
                 a1 = 0
-                a1 = new T.PlrBossIkaruga(name, team_name, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
-                a1.a1(name, team_name, r, a3)
+                a1 = new T.PlrBossIkaruga(name, team_name, fgt, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                a1.a1(name, team_name, fgt, a3)
                 a1.av(name, team_name)
                 return a1
             }
             if (name == $.qb()) {
-                r = H.as_string(name) + H.as_string($.aD())
+                fgt = H.as_string(name) + H.as_string($.aD())
                 q = 0
                 p = $.T()
                 o = H.b([], t.q)
@@ -5329,13 +5329,13 @@ var T = {
                 a0 = H.b([], c)
                 c = H.b([], c)
                 a1 = 0
-                a1 = new T.PlrBossConan(name, team_name, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
-                a1.a1(name, team_name, r, a3)
+                a1 = new T.PlrBossConan(name, team_name, fgt, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                a1.a1(name, team_name, fgt, a3)
                 a1.av(name, team_name)
                 return a1
             }
             if (name == $.q9()) {
-                r = H.as_string(name) + H.as_string($.aD())
+                fgt = H.as_string(name) + H.as_string($.aD())
                 q = 0
                 p = $.T()
                 o = H.b([], t.q)
@@ -5374,13 +5374,13 @@ var T = {
                 a0 = H.b([], c)
                 c = H.b([], c)
                 a1 = 0
-                a1 = new T.PlrBossAokiji(name, team_name, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
-                a1.a1(name, team_name, r, a3)
+                a1 = new T.PlrBossAokiji(name, team_name, fgt, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                a1.a1(name, team_name, fgt, a3)
                 a1.av(name, team_name)
                 return a1
             }
             if (name == $.d5()) {
-                r = H.as_string(name) + H.as_string($.aD())
+                fgt = H.as_string(name) + H.as_string($.aD())
                 q = 0
                 p = $.T()
                 o = H.b([], t.q)
@@ -5419,14 +5419,14 @@ var T = {
                 a0 = H.b([], c)
                 c = H.b([], c)
                 a1 = 0
-                a1 = new T.PlrBossLazy(name, team_name, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
-                a1.a1(name, team_name, r, a3)
+                a1 = new T.PlrBossLazy(name, team_name, fgt, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                a1.a1(name, team_name, fgt, a3)
                 a1.av(name, team_name)
                 return a1
             }
             // covid
             if (name == $.ck()) {
-                r = H.as_string(name) + H.as_string($.aD())
+                fgt = H.as_string(name) + H.as_string($.aD())
                 q = 0
                 p = $.T()
                 o = H.b([], t.q)
@@ -5465,13 +5465,13 @@ var T = {
                 a0 = H.b([], c)
                 c = H.b([], c)
                 a1 = 0
-                a1 = new T.PlrBossCovid(name, team_name, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
-                a1.a1(name, team_name, r, a3)
+                a1 = new T.PlrBossCovid(name, team_name, fgt, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                a1.a1(name, team_name, fgt, a3)
                 a1.av(name, team_name)
                 return a1
             }
             if (name == $.qL()) {
-                r = H.as_string(name) + H.as_string($.aD())
+                fgt = H.as_string(name) + H.as_string($.aD())
                 q = 0
                 p = $.T()
                 o = H.b([], t.q)
@@ -5510,16 +5510,17 @@ var T = {
                 a0 = H.b([], c)
                 c = H.b([], c)
                 a1 = 0
-                a1 = new T.PlrBossSaitama(name, team_name, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
-                a1.a1(name, team_name, r, a3)
+                a1 = new T.PlrBossSaitama(name, team_name, fgt, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                a1.a1(name, team_name, fgt, a3)
                 a1.av(name, team_name)
                 return a1
             }
-            r = $.ni()
+            fgt = $.ni()
             // seed:
-            if (J.m1(name, r)) {
+            if (J.m1(name, fgt)) {
                 // startwith seed:
-                r = H.as_string(r) + H.as_string($.aD())
+                // $.aD = @!
+                fgt = H.as_string(fgt) + H.as_string($.aD())
                 q = 0
                 p = $.T()
                 o = H.b([], t.q)
@@ -5557,18 +5558,17 @@ var T = {
                 a = H.b([], c)
                 a0 = H.b([], c)
                 c = H.b([], c)
-                a1 = 0
-                a1 = new T.PlrSeed(name, team_name, r, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
-                a1.a1(name, team_name, r, a3)
-                r = a1.r = C.String.ay(name, $.X())
+                a1 = new T.PlrSeed(name, team_name, fgt, a3, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, 0, 0, 0, $.W(), 0)
+                a1.a1(name, team_name, fgt, a3)
+                fgt = a1.r = C.String.ay(name, $.X())
                 team_name = $.C()
-                $.vq = r.length > team_name && C.String.a8(r, team_name) === $.q0() ? $.pE() : $.mS()
+                $.vq = fgt.length > team_name && C.String.a8(fgt, team_name) === $.q0() ? $.pE() : $.mS()
                 return a1
             }
             // boosted
             if ($.nr().J(0, name)) {
                 team_name = $.cl()
-                r = $.nr().h(0, name)
+                fgt = $.nr().h(0, name)
                 q = 0
                 p = $.T()
                 o = H.b([], t.q)
@@ -5607,13 +5607,13 @@ var T = {
                 a0 = H.b([], c)
                 c = H.b([], c)
                 a1 = 0
-                a1 = new T.PlrBoost(r, name, team_name, name, weapon_name, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
+                a1 = new T.PlrBoost(fgt, name, team_name, name, weapon_name, q, p, o, n, m, l, k, j, i, h, g, f, e, d, b, a, a0, c, a1, a1, a1, $.W(), a1)
                 a1.a1(name, team_name, name, weapon_name)
-                a1.e1(name, team_name, r, weapon_name)
+                a1.e1(name, team_name, fgt, weapon_name)
                 return a1
             }
             team_name = $.cl()
-            r = 0
+            fgt = 0
             q = $.T()
             p = H.b([], t.q)
             o = H.b([], t.H)
@@ -5651,7 +5651,7 @@ var T = {
             a = H.b([], d)
             d = H.b([], d)
             a0 = 0
-            a0 = new T.PlrEx(name, team_name, name, weapon_name, r, q, p, o, n, m, l, k, j, i, h, g, f, e, c, b, a, d, a0, a0, a0, $.W(), a0)
+            a0 = new T.PlrEx(name, team_name, name, weapon_name, fgt, q, p, o, n, m, l, k, j, i, h, g, f, e, c, b, a, d, a0, a0, a0, $.W(), a0)
             a0.a1(name, team_name, name, weapon_name)
             a0.e2(name, team_name, name, weapon_name)
             return a0
@@ -7128,12 +7128,12 @@ var T = {
         _.c = _.b = _.a = _.r = null
     },
     PlrSeed_: function PlrSeed_() { },
-    PlrSeed: function PlrSeed(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
+    PlrSeed: function PlrSeed(name, clan_name, fgt, weapon, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, a0, a1, a2, a3, a4, a5, a6, a7) {
         var _ = this
-        _.a = a
-        _.b = b
-        _.c = c
-        _.d = d
+        _.a = name
+        _.b = clan_name
+        _.c = fgt
+        _.d = weapon
         _.z = _.y = _.x = _.r = _.f = _.e = null
         _.Q = e
         _.go = _.fy = _.fx = _.fr = _.dy = _.dx = _.db = _.cy = _.cx = _.ch = null
