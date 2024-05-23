@@ -17066,7 +17066,10 @@ T.Plr.prototype = {
             try {
                 var tmparr = diy.split("]");
                 var attrs = JSON.parse(tmparr[0] + "]");
-                if (tmparr[1].startsWith("{")) var diyskills = JSON.parse(tmparr[1]);
+                if (tmparr[1].startsWith("{")){
+                    var diyskills = JSON.parse(tmparr[1]);
+                    this.isDiySkill=1;
+                }
                 if (attrs.length != 8) throw new Error('八围要有八个元素')
             } catch (error) {
                 console.error(error)
@@ -17263,7 +17266,7 @@ T.Plr.prototype = {
             skl = sortedSkills[s]
             if (skl.f > 0 && skl instanceof T.ActionSkill) actions.push(skl)
         }
-        if (this.diy == undefined) {
+        if (!this.isDiySkill) {
             if (actions.length > 0)
                 for (s = actions.length - 1; s >= 0; --s) {
                     act = actions[s]
