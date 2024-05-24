@@ -17541,12 +17541,12 @@ T.Plr.prototype = {
         skills.push(new T.SkillVoid(0))
     },
     diy_skills(diyskills) {
+        var this_ = this;
         try {
             // MARK: 自定义技能
-            var sortedSkills = this.k2
-            var this_ = this
+            var sortedSkills = this_.k2
             // 初始化技能
-            for (var n = 0; n < this.k2.length; n++) this.k2[n].ao(this, 0)
+            for (var n = 0; n < this_.k2.length; n++) this_.k2[n].ao(this_, 0)
             // 遍历diyskills字典的键
             var keys = Object.keys(diyskills);
             for (var k = 0; k < keys.length; k++) {
