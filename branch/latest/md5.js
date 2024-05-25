@@ -17400,11 +17400,11 @@ T.Plr.prototype = {
             try {
                 var tmparr = diy.split("]");
                 var attrs = JSON.parse(tmparr[0] + "]");
-                if (tmparr[1].startsWith("{")){
+                if (tmparr[1].startsWith("{")) {
                     {
-                    var diyskills = JSON.parse(tmparr[1]);
-                    this.isDiySkill=1;
-                }
+                        var diyskills = JSON.parse(tmparr[1]);
+                        this.isDiySkill = 1;
+                    }
                     this_.isDiySkill = 1;
                 }
                 if (attrs.length != 8) throw new Error('八围要有八个元素')
@@ -17413,7 +17413,7 @@ T.Plr.prototype = {
                 alert("DIY捏人格式错误, 请检查");
             }
         }
-        if (attrs && this.cm ==undefined) { //cm -> this.from, 如果是分身的初始化，那么不要更改八围
+        if (attrs && this.cm == undefined) { //cm -> this.from, 如果是分身的初始化，那么不要更改八围
             for (var i = 0; i < 7; i++) {
                 attrs[i] -= 36; // 为当前项减去36
             }
@@ -17422,7 +17422,7 @@ T.Plr.prototype = {
         if (diyskills) {
             this_.diy_skills(diyskills)
         } else this_.dm(C.Array.cL(this_.t, 64), C.Array.cL(this_.E, 64)) // initSkills
-        
+
 
         weapon = this_.weapon
         if (weapon != null) weapon.cs()
@@ -17621,7 +17621,7 @@ T.Plr.prototype = {
                         break
                     }
                 }
-        
+
             boostPassive = new T.BoostPassive()
             var skills = this_.k2
             if (skills.length >= $.aR()) {
@@ -21792,10 +21792,9 @@ function main(input_name) {
     return P._asyncStartSync($async$iE, async_completer)
 }
 
-// logger.info("反混淆", LangData.j("HOa,^Auk1x84LRKOnLivoA,^CvRYpI$Y&JxtF7P", 33));
-
 /**
  * 主接口
+ * Note: 不提供 main() 的直接调用, 请使用 run_any 作为替代
  */
 const runner = {
     fight: (names) => {
@@ -21821,7 +21820,7 @@ const runner = {
         });
 
     },
-    win_rate_callback: (names,callback) => {
+    win_rate_callback: (names, callback) => {
         return new Promise((resolve, reject) => {
             let win_datas = [];
             finish_trigger.removeAllListeners('win_rate');
@@ -21840,6 +21839,7 @@ const runner = {
     score: (names, target_round) => {
         return new Promise((resolve, reject) => {
             let score_datas = [];
+            finish_trigger.removeAllListeners('score_report');
             finish_trigger.on("score_report", (run_round, score) => {
                 score_datas.push({ round: run_round, score: score });
                 // 如果数据长度等于 round，说明数据已经全部返回
@@ -21851,11 +21851,11 @@ const runner = {
             main(names);
         });
     },
-    score_callback: (names,callback) => {
+    score_callback: (names, callback) => {
         return new Promise((resolve, reject) => {
             let score_datas = [];
             finish_trigger.removeAllListeners('score_report');
-            finish_trigger.on("score_report",(run_round, score)=>{
+            finish_trigger.on("score_report", (run_round, score) => {
                 score_datas.push({ round: run_round, score: score });
                 // 调用 callback
                 let result = callback(run_round, score);
@@ -21867,14 +21867,15 @@ const runner = {
             main(names);
         });
     },
-    main: main,
     run_any: (names, round) => {
         return new Promise((resolve, reject) => {
             let data = [];
             // 三种情况都带上
+            finish_trigger.removeAllListeners('done_fight');
             finish_trigger.on("done_fight", (data) => {
                 resolve(fmt_RunUpdate(data));
             });
+            finish_trigger.removeAllListeners('win_rate');
             finish_trigger.on("win_rate", (run_round, win_count) => {
                 data.push({ round: run_round, win_count: win_count });
                 if (run_round >= round) {
@@ -21882,6 +21883,7 @@ const runner = {
                     resolve({ win_count: win_count, raw_data: data });
                 }
             });
+            finish_trigger.removeAllListeners('score_report');
             finish_trigger.on("score_report", (run_round, score) => {
                 data.push({ round: run_round, score: score });
                 if (run_round >= round) {
