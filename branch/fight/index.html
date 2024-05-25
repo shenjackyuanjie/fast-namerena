@@ -560,12 +560,22 @@
             0%,
             80%,
             100% {
-                transform: scale(0);
+                transform: scale(0)
             }
 
             40% {
-                transform: scale(1);
+                transform: scale(1)
             }
+        }
+
+        #version-marker {
+            background-color: white;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            border-radius: 5px;
+            /* border: 2px solid marker_color */
+            padding: 10px;
         }
     </style>
     <style id="pstyle">
@@ -618,6 +628,8 @@
 <body>
     <div id="done_target" class="done_target" style="display: none;"></div>
     <!-- 用于标记是否完事 默认隐藏-->
+    <div id="version-marker" style="display: none;"></div>
+    <!-- 左上角一个用于标记版本号的 div, 默认状况下不显示, 部署时使用脚本替换内容, 颜色同理 -->
     <img src="thumb.jpg" width="0" height="0" />
     <div class='ad_h'></div>
     <div class='ad_v'></div>

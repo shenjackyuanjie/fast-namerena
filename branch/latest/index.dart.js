@@ -708,6 +708,7 @@
                         window.localStorage.setItem(s, new H.c3(H.setRuntimeTypeInfo($.i7.d.split(""), t.s), t.H).cZ(0))
                     }
                     // $.ht = J.iH($.id.d, "[1,3,0,9]", J.aD($.hA))
+                    // MARK: 替换 md5.js
                     $.ht = J.iH($.id.d, "[1, 3, 0, 9]", J.aD($.hA))
                     r = (self.URL || self.webkitURL).createObjectURL(W.iK([$.i8.d], "text/css"))
                     q = (self.URL || self.webkitURL).createObjectURL(W.iK([J.iH($.ib.d, "md5.css", r)], "text/html"))
@@ -7021,6 +7022,7 @@
         aN(a, b) {
             var s
             if (b == null) b = P.hH(a)
+            console.error(a, b)
             s = this.a
             if (this.b) s.af(a, b)
             else s.b4(a, b)
