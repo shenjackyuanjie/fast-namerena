@@ -17075,18 +17075,17 @@ T.Plr.prototype = {
                 console.error(error)
                 alert("DIY捏人格式错误，请检查");
             }
-            if (attrs) {
-                for (var i = 0; i < 7; i++) {
-                    attrs[i] -= 36; // 为当前项减去36
-                }
-                this.q = attrs
-            }
-            if (diyskills) {
-                this.diy_skills(diyskills)
-            } else this_.dm(C.Array.cL(this_.t, $.au()), C.Array.cL(this_.E, $.au())) // initSkills
-        } else {
-            this_.dm(C.Array.cL(this_.t, $.au()), C.Array.cL(this_.E, $.au())) // initSkills
         }
+        if (attrs && this.cm ==undefined) { //cm -> this.from, 如果是分身的初始化，那么不要更改八围
+            for (var i = 0; i < 7; i++) {
+                attrs[i] -= 36; // 为当前项减去36
+            }
+            this.q = attrs
+        }
+        if (diyskills) {
+            this.diy_skills(diyskills)
+        } else this_.dm(C.Array.cL(this_.t, $.au()), C.Array.cL(this_.E, $.au())) // initSkills
+        
 
         weapon = this_.weapon
         if (weapon != null) weapon.cs()
