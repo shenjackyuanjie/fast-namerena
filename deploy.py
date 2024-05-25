@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# 只是一个 dummy file
-=======
 import os
 import random
 
@@ -125,4 +122,3 @@ if __name__ == "__main__":
         except Exception as e:
             print(f"Error writing file: {e}")
             continue
->>>>>>> main
