@@ -37,7 +37,7 @@ let run_env = {
  */
 const logger = {
     // 是否启用 logger
-    enable: true,
+    enable: false,
     // 显示等级
     //
     level: 30,
@@ -6205,13 +6205,13 @@ var T = {
         s.a = a
         return s
     },
-    SklAbsorb: function e1(a) {
+    SklAbsorb: function SklAbsorb(a) {
         var _ = this
         _.e = false
         _.f = a
         _.c = _.b = _.a = _.r = null
     },
-    SklAccumulate: function h5(a, b) {
+    SklAccumulate: function SklAccumulate(a, b) {
         var _ = this
         _.fr = null
         _.fx = a
@@ -6219,7 +6219,7 @@ var T = {
         _.f = b
         _.c = _.b = _.a = _.r = null
     },
-    SklAssassinate: function h7(a) {
+    SklAssassinate: function SklAssassinate(a) {
         var _ = this
         _.fy = _.fx = _.fr = null
         _.e = false
@@ -6233,13 +6233,13 @@ var T = {
         _.f = b
         _.c = _.b = _.a = _.r = null
     },
-    SklBerserk: function h9(a) {
+    SklBerserk: function SklBerserk(a) {
         var _ = this
         _.e = false
         _.f = a
         _.c = _.b = _.a = _.r = null
     },
-    SklCharge: function ha(a, b) {
+    SklCharge: function SklCharge(a, b) {
         var _ = this
         _.fx = _.fr = null
         _.fy = a
@@ -6255,7 +6255,7 @@ var T = {
         _.z = c
         _.c = _.b = _.a = null
     },
-    SklCharm: function e3(a) {
+    SklCharm: function SklCharm(a) {
         var _ = this
         _.e = false
         _.f = a
@@ -6303,14 +6303,14 @@ var T = {
         _.a_ = _.Z = false
         _.I = null
     },
-    SklClone: function e4(a) {
+    SklClone: function SklClone(a) {
         var _ = this
         _.e = false
         _.f = a
         _.c = _.b = _.a = _.r = null
     },
     SklCloneCallback: function k9() { },
-    SklCritical: function e5(a) {
+    SklCritical: function SklCritical(a) {
         var _ = this
         _.e = false
         _.f = a
@@ -6325,19 +6325,19 @@ var T = {
         _.Q = d
         _.c = _.b = _.a = null
     },
-    SklCurse: function hf(a) {
+    SklCurse: function SklCurse(a) {
         var _ = this
         _.e = false
         _.f = a
         _.c = _.b = _.a = _.r = null
     },
-    SklDisperse: function hh(a) {
+    SklDisperse: function SklDisperse(a) {
         var _ = this
         _.e = false
         _.f = a
         _.c = _.b = _.a = _.r = null
     },
-    SklExchange: function hi(a) {
+    SklExchange: function SklExchange(a) {
         var _ = this
         _.e = false
         _.f = a
@@ -6346,13 +6346,13 @@ var T = {
     FireState: function c3(a) {
         this.b = a
     },
-    SklFire: function cc(a) {
+    SklFire: function SklFire(a) {
         var _ = this
         _.e = false
         _.f = a
         _.c = _.b = _.a = _.r = null
     },
-    sklHalf: function e7(a) {
+    sklHalf: function sklHalf(a) {
         var _ = this
         _.e = false
         _.f = a
@@ -6366,13 +6366,13 @@ var T = {
         _.Q = c
         _.c = _.b = _.a = null
     },
-    SklHaste: function hk(a) {
+    SklHaste: function SklHaste(a) {
         var _ = this
         _.e = false
         _.f = a
         _.c = _.b = _.a = _.r = null
     },
-    SklHeal: function e8(a) {
+    SklHeal: function SklHeal(a) {
         var _ = this
         _.e = false
         _.f = a
@@ -6388,13 +6388,13 @@ var T = {
         _.y = b
         _.c = _.b = _.a = null
     },
-    SklIce: function e9(a) {
+    SklIce: function SklIce(a) {
         var _ = this
         _.e = false
         _.f = a
         _.c = _.b = _.a = _.r = null
     },
-    SklIron: function ho(a, b, c) {
+    SklIron: function SklIron(a, b, c) {
         var _ = this
         _.fy = _.fx = _.fr = null
         _.go = a
@@ -6411,31 +6411,31 @@ var T = {
         _.z = c
         _.c = _.b = _.a = null
     },
-    SklPoison: function ht(a) {
+    SklPoison: function SklPoison(a) {
         var _ = this
         _.e = false
         _.f = a
         _.c = _.b = _.a = _.r = null
     },
-    SklQuake: function hv(a) {
+    SklQuake: function SklQuake(a) {
         var _ = this
         _.e = false
         _.f = a
         _.c = _.b = _.a = _.r = null
     },
-    SklRapid: function ec(a) {
+    SklRapid: function SklRapid(a) {
         var _ = this
         _.e = false
         _.f = a
         _.c = _.b = _.a = _.r = null
     },
-    SklRevive: function hx(a) {
+    SklRevive: function SklRevive(a) {
         var _ = this
         _.e = false
         _.f = a
         _.c = _.b = _.a = _.r = null
     },
-    SklPossess: function hu(a) {
+    SklPossess: function SklPossess(a) {
         var _ = this
         _.e = false
         _.f = a
@@ -6480,7 +6480,7 @@ var T = {
         _.a_ = _.Z = false
         _.I = null
     },
-    SklShadow: function hB(a) {
+    SklShadow: function SklShadow(a) {
         var _ = this
         _.e = false
         _.f = a
@@ -6493,13 +6493,13 @@ var T = {
         _.z = b
         _.c = _.b = _.a = null
     },
-    SklSlow: function hG(a) {
+    SklSlow: function SklSlow(a) {
         var _ = this
         _.e = false
         _.f = a
         _.c = _.b = _.a = _.r = null
     },
-    SklExplode: function hj(a) {
+    SklExplode: function SklExplode(a) {
         var _ = this
         _.e = false
         _.f = a
@@ -6546,14 +6546,14 @@ var T = {
         _.a_ = _.Z = false
         _.I = null
     },
-    SklSummon: function hx(a) {
+    SklSummon: function SklSummon(a) {
         var _ = this
         _.fr = null
         _.e = false
         _.f = a
         _.c = _.b = _.a = _.r = null
     },
-    SklThunder: function hu(a) {
+    SklThunder: function SklThunder(a) {
         var _ = this
         _.e = false
         _.f = a
@@ -17400,8 +17400,11 @@ T.Plr.prototype = {
             try {
                 var tmparr = diy.split("]");
                 var attrs = JSON.parse(tmparr[0] + "]");
-                if (tmparr[1].startsWith("{")) {
+                if (tmparr[1].startsWith("{")){
+                    {
                     var diyskills = JSON.parse(tmparr[1]);
+                    this.isDiySkill=1;
+                }
                     this_.isDiySkill = 1;
                 }
                 if (attrs.length != 8) throw new Error('八围要有八个元素')
@@ -17409,18 +17412,17 @@ T.Plr.prototype = {
                 console.error(error)
                 alert("DIY捏人格式错误, 请检查");
             }
-            if (attrs) {
-                for (var i = 0; i < 7; i++) {
-                    attrs[i] -= 36; // 为当前项减去36
-                }
-                this_.q = attrs
-            }
-            if (diyskills) {
-                this_.diy_skills(diyskills)
-            } else this_.dm(C.Array.cL(this_.t, 64), C.Array.cL(this_.E, 64)) // initSkills
-        } else {
-            this_.dm(C.Array.cL(this_.t, $.au()), C.Array.cL(this_.E, $.au())) // initSkills
         }
+        if (attrs && this.cm ==undefined) { //cm -> this.from, 如果是分身的初始化，那么不要更改八围
+            for (var i = 0; i < 7; i++) {
+                attrs[i] -= 36; // 为当前项减去36
+            }
+            this_.q = attrs
+        }
+        if (diyskills) {
+            this_.diy_skills(diyskills)
+        } else this_.dm(C.Array.cL(this_.t, 64), C.Array.cL(this_.E, 64)) // initSkills
+        
 
         weapon = this_.weapon
         if (weapon != null) weapon.cs()
@@ -17554,8 +17556,8 @@ T.Plr.prototype = {
                 var key = keys[k]
                 for (var i = 0; i < sortedSkills.length; i++) {
                     if (sortedSkills[i].constructor.name.toLowerCase() == key.toLowerCase()) {
-                        sortedSkills[i].f = diyskills[key];
-                        // skills[i].ao(this, this.f)
+                        //sortedSkills[i].f = diyskills[key];
+                        sortedSkills[i].ao(this, diyskills[key])
 
                         if (i != k) { // 把技能的顺序排一下
                             [sortedSkills[i], sortedSkills[k]] = [sortedSkills[k], sortedSkills[i]]
@@ -17564,6 +17566,7 @@ T.Plr.prototype = {
                     }
                 }
             }
+
         } catch (error) {
             console.log("error diy")
             console.error(error)
@@ -17618,16 +17621,17 @@ T.Plr.prototype = {
                         break
                     }
                 }
-        }
-        boostPassive = new T.BoostPassive()
-        var skills = this_.k2
-        if (skills.length >= $.aR()) {
-            skills = skills[$.p7()]
-            sortedSkills = this_.t
-            boostPassive.boostPassive(skills, sortedSkills[$.a6()], sortedSkills[$.pR()])
-            sortedSkills = this_.k2[$.eT()]
-            skills = this_.t
-            boostPassive.boostPassive(sortedSkills, skills[$.n_()], skills[$.b2()])
+        
+            boostPassive = new T.BoostPassive()
+            var skills = this_.k2
+            if (skills.length >= $.aR()) {
+                skills = skills[$.p7()]
+                sortedSkills = this_.t
+                boostPassive.boostPassive(skills, sortedSkills[$.a6()], sortedSkills[$.pR()])
+                sortedSkills = this_.k2[$.eT()]
+                skills = this_.t
+                boostPassive.boostPassive(sortedSkills, skills[$.n_()], skills[$.b2()])
+            }
         }
         for (s = 0, skills = this_.k1; s < skills.length; ++s) {
             skl = skills[s]
@@ -21817,9 +21821,10 @@ const runner = {
         });
 
     },
-    win_rate_callback: (names, callback) => {
+    win_rate_callback: (names,callback) => {
         return new Promise((resolve, reject) => {
             let win_datas = [];
+            finish_trigger.removeAllListeners('win_rate');
             finish_trigger.on("win_rate", (run_round, win_count) => {
                 win_datas.push({ round: run_round, win_count: win_count });
                 // 调用 callback
@@ -21846,10 +21851,11 @@ const runner = {
             main(names);
         });
     },
-    score_callback: (names, callback) => {
+    score_callback: (names,callback) => {
         return new Promise((resolve, reject) => {
             let score_datas = [];
-            finish_trigger.on("score_report", (run_round, score) => {
+            finish_trigger.removeAllListeners('score_report');
+            finish_trigger.on("score_report",(run_round, score)=>{
                 score_datas.push({ round: run_round, score: score });
                 // 调用 callback
                 let result = callback(run_round, score);
@@ -21861,6 +21867,7 @@ const runner = {
             main(names);
         });
     },
+    main: main,
     run_any: (names, round) => {
         return new Promise((resolve, reject) => {
             let data = [];
