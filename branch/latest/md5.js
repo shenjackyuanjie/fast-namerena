@@ -17621,16 +17621,17 @@ T.Plr.prototype = {
                         break
                     }
                 }
-        }
-        boostPassive = new T.BoostPassive()
-        var skills = this_.k2
-        if (skills.length >= $.aR()) {
-            skills = skills[$.p7()]
-            sortedSkills = this_.t
-            boostPassive.boostPassive(skills, sortedSkills[$.a6()], sortedSkills[$.pR()])
-            sortedSkills = this_.k2[$.eT()]
-            skills = this_.t
-            boostPassive.boostPassive(sortedSkills, skills[$.n_()], skills[$.b2()])
+        
+            boostPassive = new T.BoostPassive()
+            var skills = this_.k2
+            if (skills.length >= $.aR()) {
+                skills = skills[$.p7()]
+                sortedSkills = this_.t
+                boostPassive.boostPassive(skills, sortedSkills[$.a6()], sortedSkills[$.pR()])
+                sortedSkills = this_.k2[$.eT()]
+                skills = this_.t
+                boostPassive.boostPassive(sortedSkills, skills[$.n_()], skills[$.b2()])
+            }
         }
         for (s = 0, skills = this_.k1; s < skills.length; ++s) {
             skl = skills[s]
@@ -21820,9 +21821,10 @@ const runner = {
         });
 
     },
-    win_rate_callback: (names, callback) => {
+    win_rate_callback: (names,callback) => {
         return new Promise((resolve, reject) => {
             let win_datas = [];
+            finish_trigger.removeAllListeners('win_rate');
             finish_trigger.on("win_rate", (run_round, win_count) => {
                 win_datas.push({ round: run_round, win_count: win_count });
                 // 调用 callback
@@ -21849,10 +21851,11 @@ const runner = {
             main(names);
         });
     },
-    score_callback: (names, callback) => {
+    score_callback: (names,callback) => {
         return new Promise((resolve, reject) => {
             let score_datas = [];
-            finish_trigger.on("score_report", (run_round, score) => {
+            finish_trigger.removeAllListeners('score_report');
+            finish_trigger.on("score_report",(run_round, score)=>{
                 score_datas.push({ round: run_round, score: score });
                 // 调用 callback
                 let result = callback(run_round, score);
@@ -21864,6 +21867,7 @@ const runner = {
             main(names);
         });
     },
+    main: main,
     run_any: (names, round) => {
         return new Promise((resolve, reject) => {
             let data = [];
