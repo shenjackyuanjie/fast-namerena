@@ -15514,6 +15514,7 @@ T.SklSummon.prototype = {
         s = this_.fr
         if (s == null) {
             s = H.as_string(this_.r.a) + "?" + H.as_string($.qQ())
+            // name + ? + summon
             r = this_.r
             q = r.b
             r = r.c
@@ -18610,6 +18611,7 @@ T.SklZombie.prototype = {
         if (!(a6 instanceof T.Minion) && (a7.n() & 63) < this_.f && this_.r.bw(a7)) {
             a6.r2.m(0, $.iJ(), new T.ZombieState())
             s = H.as_string(this_.r.a) + "?" + H.as_string($.qZ())
+            // name + ? + zombie
             r = this_.r
             q = r.b
             r = r.c
@@ -20168,14 +20170,16 @@ var t = (function rtii() {
         return LangData.j("e'teI>NNCU", 17)
     })
     lazy_old($, "zA", "qZ", function () {
-        return LangData.j("CXmc>1nB", 39)
+        // return LangData.j("CXmc>1nB", 39)
+        return "zombie"
     })
     lazy_old($, "ze", "qM", function () {
         // return LangData.j("qnQymy)B", 38)
         return "shadow"
     })
     lazy_old($, "zl", "qQ", function () {
-        return LangData.j("WG/z.8^B", 55)
+        // return LangData.j("WG/z.8^B", 55)
+        return "summon"
     })
     lazy_old($, "yE", "na", function () {
         // return LangData.j("EMzI&'T=]Q:wUF", 13)
