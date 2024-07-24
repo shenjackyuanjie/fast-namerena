@@ -5907,7 +5907,8 @@ var T = {
                     l = 0
                     h[l] = J.nB(h[l], 1)
                 }
-                if (!J.Y(h[1], "")) {
+                // if (!J.Y(h[1], "")) {
+                if (h[1] === "") {
                     l = h[1]
                     i = $.n5()
                     l.toString
