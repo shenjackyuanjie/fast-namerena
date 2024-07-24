@@ -5892,14 +5892,15 @@ var T = {
                 // j = C.String.dF(C.String.ay(m, k + 1))
                 j = C.String.trim_name(C.String.ay(m, k + 1))
                 l = C.String.af(m, 0, k)
+                // nq = P.RegExp_RegExp("\\s+$")
                 i = $.nq()
                 m = H.iG(l, i, "", 0)
             } else {
                 j = e
             }
             // console.log("weapon: " + j)
-            l = $.n3()
-            if (l == null) H.throw_expression(H.R(l))
+            l = $.n3() // @
+            // if (l == null) H.throw_expression(H.R(l))
             if (H.iF(m, l, 0)) {
                 h = C.String.cK(m, $.n3())
                 if (J.m1(h[0], " ")) {
@@ -5910,20 +5911,20 @@ var T = {
                     l = h[1]
                     i = $.n5()
                     l.toString
-                    if (i == null) H.throw_expression(H.R(i))
+                    // if (i == null) H.throw_expression(H.R(i))
                     g = J.a3(l)
                     f = g.gp(l)
                     if (0 > f) H.throw_expression(P.a8(0, 0, g.gp(l), e, e))
                     l = H.iF(l, i, 0)
-                } else l = true
-                if (l) o.push(H.b([h[0], null, j], r))
-                else o.push(H.b([h[0], h[1], j], r))
-            } else if (C.String.bA(m, " ")) {
+                } else { l = true }
+                if (l) { o.push(H.b([h[0], null, j], r)) }
+                else { o.push(H.b([h[0], h[1], j], r)) }
+            } else if (C.String.bA(m, " ")) { // m.startwith(" ")
                 o.push(H.b([C.String.ay(m, 1), n, j], r))
             } else {
                 if (s + 1 < b.length) {
                     l = $.n5()
-                    if (l == null) H.throw_expression(H.R(l))
+                    // if (l == null) H.throw_expression(H.R(l))
                     l = !H.iF(m, l, 0) && J.m1(b[s + 1], " ")
                 } else l = false
                 if (l) n = m
