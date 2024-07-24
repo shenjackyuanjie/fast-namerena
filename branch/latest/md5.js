@@ -5851,7 +5851,7 @@ var T = {
     parse_names(a) {
         var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e = null,
             d = t.E,
-            c = H.b([], d),
+            result_team = H.b([], d),
             b = C.String.cK(a, $.r_())
         for (s = 0; s < b.length; ++s) {
             r = b[s]
@@ -5866,19 +5866,19 @@ var T = {
             b.pop()
             if (b.length === 0) return H.b([], d)
         }
-        p = C.Array.w(b, "") && true
+        p = C.Array.w(b, "") && true // b contains ""
         d = t.t
         o = H.b([], d)
         for (s = 0, r = t.V, q = !p, n = e; s < b.length; ++s) {
             m = b[s]
             if (m === "") {
-                if (o.length !== 0) c.push(o)
+                if (o.length !== 0) result_team.push(o)
                 o = H.b([], d)
                 n = e
                 continue
             }
             if (q) {
-                if (o.length !== 0) c.push(o)
+                if (o.length !== 0) result_team.push(o)
                 o = H.b([], d)
             }
             // if includes "+"
@@ -5934,8 +5934,8 @@ var T = {
                 }
             }
         }
-        if (o.length !== 0) c.push(o)
-        return c
+        if (o.length !== 0) result_team.push(o)
+        return result_team
     },
     // Engine start!
     start_main(target) {
@@ -8751,6 +8751,7 @@ J.JsArray.prototype = {
         return -1
     },
     w(a, b) {
+        // a contains b
         var s
         for (s = 0; s < a.length; ++s)
             // if (J.Y(a[s], b)) return true
