@@ -589,11 +589,6 @@
         if (customlanpos > 0) {
             lanfile = decodeURIComponent(window.location.search.substring(customlanpos + 2));
         }
-        // for (let key in ls) {
-        //     if (key.indexOf('e_e') === 6 && ls[key].length % 100 === 0) {
-        //         adfile = '.' + adfile;
-        //     }
-        // }
         reqO = new XMLHttpRequest();
         reqO.open("GET", adfile);
         reqO.send();
@@ -632,7 +627,6 @@
     <!-- 左上角一个用于标记版本号的 div, 默认状况下不显示, 部署时使用脚本替换内容, 颜色同理 -->
     <img src="thumb.jpg" width="0" height="0" />
     <div class='ad_h'></div>
-    <div class='ad_v'></div>
     <div class='body'>
         <iframe src='md5.html' class='mdframe'></iframe>
         <div class="panels">

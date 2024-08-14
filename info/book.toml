@@ -1,0 +1,6 @@
+[book]
+authors = ["shenjack"]
+language = "zh"
+multilingual = false
+src = "src"
+title = "namerena"

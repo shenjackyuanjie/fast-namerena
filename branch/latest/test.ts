@@ -43,7 +43,7 @@ async function test() {
         if (result.source_plr === profile.winner) {
             console.log("pass");
         } else {
-            throw new Error("fail" + result.source_plr + " " + profile.winner + " " + profile.test);
+            throw new Error(`fail${result.source_plr} ${profile.winner} ${profile.test}`);
         }
 	}
 	for (const profile of test_profiles.win_chance) {
@@ -56,14 +56,14 @@ async function test() {
                 if (rate === profile.round_10) {
                     console.log("pass");
                 } else {
-                    throw new Error("fail" + rate + " " + profile.round_10);
+                    throw new Error(`fail${rate} ${profile.round_10}`);
                 }
             } else if (data.round === 100 * 100) {
                 const rate = data.win_count / data.round;
                 if (rate === profile.round_100) {
                     console.log("pass");
                 } else {
-                    throw new Error("fail" + rate + " " + profile.round_100);
+                    throw new Error(`fail${rate} ${profile.round_100}`);
                 }
             }
         }
@@ -77,13 +77,13 @@ async function test() {
                 if (data.score * 10 === profile.round_10) {
                     console.log("pass");
                 } else {
-                    throw new Error("fail" + data.score + " " + profile.round_10);
+                    throw new Error(`fail${data.score} ${profile.round_10}`);
                 }
             } else if (data.round === 100 * 100) {
                 if (data.score === profile.round_100) {
                     console.log("pass");
                 } else {
-                    throw new Error("fail" + data.score + " " + profile.round_100);
+                    throw new Error(`fail${data.score} ${profile.round_100}`);
                 }
             }
         }

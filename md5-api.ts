@@ -169,6 +169,7 @@ async function wrap_any(names: string, round: number): Promise<string> {
 			});
 		}
 		return output_str;
+		// } else if ('score' in result) {
 	}
 	// 分数结果其实还是个胜率, 不过需要 * 100
 	const win_rate = ((result.score * 10000) / round).toFixed(2);
