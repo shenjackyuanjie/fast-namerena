@@ -1,0 +1,6 @@
+// 请使用 bun 运行|2384.00
+import { fight, score, win_rate } from "./md5-api";|3626.00
+const test_profiles = {|2435.00
+	fight: [|4271.00
+		{|3196.00
+			test: `vy5we|1494.00

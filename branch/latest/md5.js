@@ -1,6 +1,6 @@
 'use strict';
 
-const _version_ = "0.4.0";
+const _version_ = "0.4.1";
 
 // let name_input = "!test!\n\natest\n\ntest2";
 // let name_input = "!test!\n\nthis_is_a";
@@ -21901,6 +21901,7 @@ const runner = {
             main(names);
         })
     },
+    run_env: run_env
 };
 
 if (run_env.from_code) {
