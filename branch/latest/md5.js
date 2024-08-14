@@ -37,7 +37,7 @@ let run_env = {
  */
 const logger = {
     // 是否启用 logger
-    enable: true,
+    enable: false,
     // 显示等级
     //
     level: 30,
@@ -16666,7 +16666,7 @@ T.Engine.prototype = {
         var async_goto = 0,
             async_completer = P._makeAsyncAwaitCompleter(t.z),
             q, this_ = this,
-            o, n, m, name2p, k, j, i, h, g_list, group, runner, d, obj, b, is_boss, a0, weapon_name, player, a3, a4, a5, a6, sorted_names, sorted_hash_names, sorted_hash, b0, b1, b2, seed_names
+            o, n, m, name2p, k, j, i, h, g_list, group, runner, d, obj, b, is_boss, a0, weapon_name, player, len, a4, a5, plr_q, sorted_names, sorted_hash_names, sorted_hash, b0, b1, b2, seed_names
         var $async$bD = P._wrapJsFunctionForAsync(function (async_error_code, async_result) {
             if (async_error_code === 1) return P.async_rethrow(async_result, async_completer)
             while (true) switch (async_goto) {
@@ -16680,8 +16680,8 @@ T.Engine.prototype = {
                             obj = d.gC()
                             if (!(obj instanceof T.Plr) && m.b(obj) && J.aw(obj) >= $.t()) {
                                 b = J.a3(obj)
-                                b.h(obj, 0)
-                                b.h(obj, 1)
+                                // b.h(obj, 0)
+                                // b.h(obj, 1)
                                 is_boss = b.gp(obj)
                                 a0 = $.t()
                                 weapon_name = is_boss > a0 ? b.h(obj, a0) : null
@@ -16716,19 +16716,20 @@ T.Engine.prototype = {
                         // group.initPlayers.length != 0
                         if (group.length !== 0) {
                             i.push(runner)
-                            a3 = group.length
-                            for (a4 = 0; a4 < a3; ++a4) {
+                            len = group.length
+                            for (a4 = 0; a4 < len; ++a4) {
                                 player = group[a4]
-                                for (a5 = a4 + 1; a5 < a3; ++a5) {
-                                    a6 = group[a5]
-                                    if (player.b == a6.b) {
-                                        player.cA(a6.E)
-                                        a6.cA(player.E)
+                                for (a5 = a4 + 1; a5 < len; ++a5) {
+                                    plr_q = group[a5]
+                                    if (player.b == plr_q.b) {
+                                        player.cA(plr_q.E)
+                                        plr_q.cA(player.E)
                                     }
                                 }
                             }
                         }
                     }
+                    // aliveGCount
                     this_.Q = i.length
                     if (C.JsInt.am(name2p.gp(name2p), $.Z()) > 0) {
                         // errorMaxPlayer
@@ -16746,7 +16747,6 @@ T.Engine.prototype = {
                     }
 
                     o = name2p.gad(name2p)
-                    console.log(o)
                     sorted_names = P.List_List_of(o, true, H._instanceType(o).i("L.E"))
                     C.Array.aJ(sorted_names)
                     // sort_names = name2p.keys.toList()
@@ -16765,7 +16765,6 @@ T.Engine.prototype = {
 
                     o = C.Array.aV(sorted_hash_names, "\n")
                     sorted_hash = C.e.gaB().ab(o)
-
                     this_.b = new LangData.SuperRC4()
                     this_.b.bd(sorted_hash, 1) // init 1
                     this_.b.bO(sorted_hash) // xor bytes once
