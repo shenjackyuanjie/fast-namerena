@@ -37,7 +37,7 @@ let run_env = {
  */
 const logger = {
     // 是否启用 logger
-    enable: false,
+    enable: true,
     // 显示等级
     //
     level: 30,
@@ -654,8 +654,12 @@ var H = {
         H.hL(a, 0, a.length - 1, b)
     },
     hL(a, b, c, d) {
-        if (c - b <= 32) H.ej(a, b, c, d)
-        else H.ei(a, b, c, d)
+        // 插入/快排
+        if (c - b <= 32) {
+            H.ej(a, b, c, d) // 插入排序
+        } else {
+            H.ei(a, b, c, d) // 快速排序
+        }
     },
     ej(a, b, c, d) {
         var s, r, q, p, o
@@ -8738,7 +8742,7 @@ J.JsArray.prototype = {
         return false
     },
     bb(a, b) {
-        if (!!a.immutable$list) H.throw_expression(P.UnsupportError("sort"))
+        // if (a.immutable$list) H.throw_expression(P.UnsupportError("sort"))
         H.tJ(a, b == null ? J.bO() : b)
     },
     aJ(a) {
@@ -16662,62 +16666,61 @@ T.Engine.prototype = {
         var async_goto = 0,
             async_completer = P._makeAsyncAwaitCompleter(t.z),
             q, this_ = this,
-            o, n, m, name2p, k, j, i, h, g, f, runner, d, c, b, is_boss, a0, weapon_name, player, a3, a4, a5, a6, sorted_names, sorted_hash_names, sorted_hash, b0, b1, b2, seed_names
+            o, n, m, name2p, k, j, i, h, g_list, group, runner, d, obj, b, is_boss, a0, weapon_name, player, a3, a4, a5, a6, sorted_names, sorted_hash_names, sorted_hash, b0, b1, b2, seed_names
         var $async$bD = P._wrapJsFunctionForAsync(function (async_error_code, async_result) {
             if (async_error_code === 1) return P.async_rethrow(async_result, async_completer)
             while (true) switch (async_goto) {
                 case 0:
                     seed_names = H.b([], t.V)
                     for (o = this_.x, n = o.length, m = t.eG, name2p = this_.r, k = this_.z, j = t.L, i = this_.a, h = 0; h < o.length; o.length === n || (0, H.F)(o), ++h) {
-                        g = o[h]
-                        f = H.b([], j)
-                        runner = new T.Grp(this_, f, H.b([], j), H.b([], j), H.b([], j))
-                        for (d = (g && C.Array).ga0(g); d.u();) {
-                            c = d.gC()
-                            if (!(c instanceof T.Plr))
-                                if (m.b(c) && J.aw(c) >= $.t()) {
-                                    b = J.a3(c)
-                                    b.h(c, 0)
-                                    b.h(c, 1)
-                                    is_boss = b.gp(c)
-                                    a0 = $.t()
-                                    weapon_name = is_boss > a0 ? b.h(c, a0) : null
-                                    if (typeof b.h(c, 1) == "string") {
-                                        is_boss = J.aw(b.h(c, 1))
-                                        a0 = 1
-                                        is_boss = is_boss === a0 && J.ny(b.h(c, a0), 0) < $.pC()
-                                    } else
-                                        is_boss = false
-                                    if (is_boss) {
-                                        player = T.choose_boss(b.h(c, 0), b.h(c, 1), this_, weapon_name)
-                                    } else {
-                                        player = T.init_plr(b.h(c, 0), b.h(c, 1), runner.b, weapon_name)
-                                    }
-                                    // a2 = a ? T.init_boss(b.h(c, 0), b.h(c, 1), this_, a1) : T.init_plr(b.h(c, 0), b.h(c, 1), e.b, a1)
-                                    if (player instanceof T.PlrSeed_) { // PlrSeed
-                                        seed_names.push(player.e)
-                                        k.push(player)
-                                        continue
-                                    }
-                                    if (name2p.J(0, player.e)) {
-                                        // if name2p.containsKey(p.idName)
-                                        continue
-                                    }
-                                    if (runner.b == null)
-                                        runner.b = player.c
-                                    player.y = runner
-                                    f.push(player)
-                                    name2p.m(0, player.e, player)
+                        g_list = o[h]
+                        group = H.b([], j)
+                        runner = new T.Grp(this_, group, H.b([], j), H.b([], j), H.b([], j))
+                        for (d = (g_list && C.Array).ga0(g_list); d.u();) {
+                            obj = d.gC()
+                            if (!(obj instanceof T.Plr) && m.b(obj) && J.aw(obj) >= $.t()) {
+                                b = J.a3(obj)
+                                b.h(obj, 0)
+                                b.h(obj, 1)
+                                is_boss = b.gp(obj)
+                                a0 = $.t()
+                                weapon_name = is_boss > a0 ? b.h(obj, a0) : null
+                                if (typeof b.h(obj, 1) == "string") {
+                                    is_boss = J.aw(b.h(obj, 1))
+                                    a0 = 1
+                                    is_boss = is_boss === a0 && J.ny(b.h(obj, a0), 0) < $.pC()
+                                } else
+                                    is_boss = false
+                                if (is_boss) {
+                                    player = T.choose_boss(b.h(obj, 0), b.h(obj, 1), this_, weapon_name)
+                                } else {
+                                    player = T.init_plr(b.h(obj, 0), b.h(obj, 1), runner.b, weapon_name)
                                 }
+                                // a2 = a ? T.init_boss(b.h(c, 0), b.h(c, 1), this_, a1) : T.init_plr(b.h(c, 0), b.h(c, 1), e.b, a1)
+                                if (player instanceof T.PlrSeed_) { // PlrSeed
+                                    seed_names.push(player.e)
+                                    k.push(player)
+                                    continue
+                                }
+                                if (name2p.J(0, player.e)) {
+                                    // if name2p.containsKey(p.idName)
+                                    continue
+                                }
+                                if (runner.b == null)
+                                    runner.b = player.c
+                                player.y = runner
+                                group.push(player)
+                                name2p.m(0, player.e, player)
+                            }
                         }
                         // group.initPlayers.length != 0
-                        if (f.length !== 0) {
+                        if (group.length !== 0) {
                             i.push(runner)
-                            a3 = f.length
+                            a3 = group.length
                             for (a4 = 0; a4 < a3; ++a4) {
-                                player = f[a4]
+                                player = group[a4]
                                 for (a5 = a4 + 1; a5 < a3; ++a5) {
-                                    a6 = f[a5]
+                                    a6 = group[a5]
                                     if (player.b == a6.b) {
                                         player.cA(a6.E)
                                         a6.cA(player.E)
@@ -16743,6 +16746,7 @@ T.Engine.prototype = {
                     }
 
                     o = name2p.gad(name2p)
+                    console.log(o)
                     sorted_names = P.List_List_of(o, true, H._instanceType(o).i("L.E"))
                     C.Array.aJ(sorted_names)
                     // sort_names = name2p.keys.toList()
@@ -16759,7 +16763,7 @@ T.Engine.prototype = {
                         sorted_hash_names = sorted_names
                     }
 
-                    o = C.Array.aV(sorted_hash_names, "\r")
+                    o = C.Array.aV(sorted_hash_names, "\n")
                     sorted_hash = C.e.gaB().ab(o)
 
                     this_.b = new LangData.SuperRC4()
@@ -16826,8 +16830,8 @@ T.Engine.prototype = {
                         for (k = b1.f, j = k.length, b2 = 0; b2 < k.length; k.length === j || (0, H.F)(k), ++b2) {
                             player = k[b2]
                             i = this_.b
-                            f = player.e
-                            i.bO(C.e.gaB().ab(f))
+                            group = player.e
+                            i.bO(C.e.gaB().ab(group))
                         }
                         this_.b.bO(H.b([0], m))
                         C.Array.a5(name2p, b1.f)
@@ -21906,6 +21910,7 @@ const runner = {
 
 if (run_env.from_code) {
     module.exports = runner;
+    main("aaa\nbbb\nseed: aaaa@!")
 } else {
     main();
 }
