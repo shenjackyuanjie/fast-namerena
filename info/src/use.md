@@ -18,7 +18,7 @@
 1. 打开终端
 2. 进入到这个仓库的根目录
 3. 安装 `ts-node` (如果你用的是 nodejs)
-   1. `pnpm install --global ts-node`
+   1. `npm install --global ts-node typescript`
 
 根据你的需求, 你可以:
 
