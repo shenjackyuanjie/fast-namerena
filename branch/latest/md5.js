@@ -17375,7 +17375,7 @@ T.Plr.prototype = {
         this_.E = name
         this_.ac() // createSkills, 对this.k1直接操作，顺序固定
         this_.k2 = this_.X.dH(this_.k1, t.c5)
-        // rc4.next
+        // rc4.sort
     },
     bf() {
         // MARK: 名字长度系数计算
@@ -17389,8 +17389,9 @@ T.Plr.prototype = {
         if (p > $.au()) throw H.wrap_expression(p)
         q = T.lC(q) // name
         p = T.lC(this_.b) // team
-        s = $.a4() // 6
-        this_.x = Math.max(H.ar(q), p - s)
+        // s = $.a4() // 6
+        // this_.x = Math.max(H.ar(q), p - s)
+        this_.x = Math.max(H.ar(q), p - 6)
         // logger.info("name", this.a, "team", this.b, "x(final)", this_.x, "p(team)", p, "q(name)", q)
     },
     b0(a, b) {
@@ -17406,15 +17407,18 @@ T.Plr.prototype = {
         /// upgrade leader from team member
         var s, this_ = this
         if (a.length === this_.t.length) {
-            for (s = $.ap(); s < this_.t.length; ++s)
+            for (s = $.ap(); s < this_.t.length; ++s) {
                 if ((a[s - 1] === this_.E[s]) && a[s] > this_.t[s]) {
                     this_.t[s] = a[s]
                 }
-            if (this_.a == this_.b)
-                for (s = $.X(); s < this_.t.length; ++s)
+            }
+            if (this_.a == this_.b) {
+                for (s = $.X(); s < this_.t.length; ++s) {
                     if ((a[s - $.t()] === this_.E[s]) && a[s] > this_.t[s]) {
                         this_.t[s] = a[s]
                     }
+                }
+            }
         }
     },
     cg() {
@@ -17484,14 +17488,16 @@ T.Plr.prototype = {
     aU() {
         // initRawAttr
         var s, r, q, p, this_ = this
-        for (s = $.Z(); s < 31; s += $.B()) {
+        // for (s = $.Z(); s < 31; s += $.B()) {
+        for (s = 10; s < 31; s += $.B()) {
             r = this_.q
             q = C.Array.al(this_.t, s, s + $.B())
-            if (!!q.immutable$list) H.throw_expression(P.UnsupportError("sort"))
+            // if (!!q.immutable$list) H.throw_expression(P.UnsupportError("sort"))
             p = q.length - 1
+            // sort
             if (p - 0 <= 32) H.ej(q, 0, p, J.bO())
             else H.ei(q, 0, p, J.bO())
-            C.Array.j(r, q[1])
+            C.Array.j(r, q[1]) // push
         }
         r = this_.q
 
@@ -17618,7 +17624,6 @@ T.Plr.prototype = {
                     }
                 }
             }
-
         } catch (error) {
             console.log("error diy")
             console.error(error)
@@ -19174,16 +19179,16 @@ T.Weapon.prototype = {
     },
     bn() {
         // preUpgrade
-        var s, r, q, p = this,
+        var s, r, q, this_ = this,
             o = 0
-        for (s = $.Z(), r = p.c; s < $.d1(); s += $.B()) {
-            o += p.cB(r.E, r.t, p.d, s)
+        for (s = $.Z(), r = this_.c; s < $.d1(); s += $.B()) {
+            o += this_.cB(r.E, r.t, this_.d, s)
         }
         r = C.JsInt.P($.mY() - o, $.a4())
-        p.f = r
+        this_.f = r
         q = 0
         if (r < q) {
-            p.f = q
+            this_.f = q
         }
     },
     cs() {
@@ -20554,7 +20559,8 @@ var t = (function rtii() {
         return X.k("uo2[vY3QwA", 3)
     })
     lazy_old($, "wQ", "B", function () {
-        return X.k("Cv.c@Ovh.D", 22)
+        // return X.k("Cv.c@Ovh.D", 22)
+        return 3
     })
     lazy_old($, "wa", "p8", function () {
         return X.k("o8#!>[]y<J", 57)
