@@ -3595,7 +3595,9 @@ var J = {
             J.lY(a, new LangData.lA())
         },
         lA: function lA() { },
-        fZ(a) {
+        fZ(a) { 
+            // encode to utf8
+            // 但是在前面加个 0
             var s = H.b([0], t.i)
             C.Array.a5(s, C.e.gaB().ab(a))
             return s
@@ -17249,7 +17251,8 @@ T.Plr.prototype = {
         // Plr 构造函数
         // 名字字符输入的处理在此
         var name, team, q, p, o, n, m, l, k, j, i, this_ = this
-
+        // this.c -> sglname
+        // this.d -> weapon
         this_.I = this_.gfJ()
         name = this_.r = this_.a // 名字第一部分
         team = this_.b // @ 号以后的东西
@@ -17294,15 +17297,14 @@ T.Plr.prototype = {
         }
 
         if (J.lW(name, " ")) {
-            this_.r = name.split(" ")[0]
+            this_.r = name.split(" ")[0] // display name = 第一部分
         }
         if (this_.c == null) {
             this_.c = this_.b
         }
-        team = new LangData.SuperRC4()
-
-        team.bd(LangData.fZ(this_.b), 1)
-        this_.X = team
+        let rc4 = new LangData.SuperRC4()
+        rc4.bd(LangData.fZ(this_.b), 1)
+        this_.X = rc4
         // q = $.ns()
         // $.mc = q + 1
         q = why_ns
@@ -17311,19 +17313,19 @@ T.Plr.prototype = {
         q = C.JsInt.P(Math.abs(q), $.bx())
         n = 0
         if (q > n) {
-            q = team.c
+            q = rc4.c
             m = q[n]
             l = 1
             q[n] = q[l]
             q[l] = m
         }
-        team.dB(0, LangData.fZ(name), $.t())
-        for (name = this_.X.c, name.length, team = this_.a2, k = 0; k < 256; ++k) {
+        rc4.dB(0, LangData.fZ(name), $.t())
+        for (name = this_.X.c, name.length, rc4 = this_.a2, k = 0; k < 256; ++k) {
             j = name[k]
             i = (j * $.nW + $.nV & $.mP()) >>> 0
             if (i >= $.mb && i < $.r2()) {
                 C.Array.j(this_.t, (i + $.r3() * $.r4().ax($.eX()) & $.b2()) >>> 0)
-            } else team.push(j)
+            } else rc4.push(j)
         }
         name = this_.t
         name = H.b(name.slice(0), H._arrayInstanceType(name))
@@ -21909,7 +21911,6 @@ const runner = {
 
 if (run_env.from_code) {
     module.exports = runner;
-    main("aaa\nbbb\nseed: aaaa@!")
 } else {
     main();
 }
