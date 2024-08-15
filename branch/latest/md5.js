@@ -3595,7 +3595,7 @@ var J = {
             J.lY(a, new LangData.lA())
         },
         lA: function lA() { },
-        fZ(a) { 
+        fZ(a) {
             // encode to utf8
             // 但是在前面加个 0
             var s = H.b([0], t.i)
@@ -4721,6 +4721,7 @@ var P = {
         this.a = a
     },
     o_() {
+        // math.random
         return C.F
     },
     kT: function kT() { },
@@ -8641,7 +8642,7 @@ J.JavaScriptFunction.prototype = {
 }
 J.JsArray.prototype = {
     j(a, b) {
-        if (!!a.fixed$length) H.throw_expression(P.UnsupportError("add"))
+        // if (!!a.fixed$length) H.throw_expression(P.UnsupportError("add"))
         a.push(b)
     },
     cu(a, b) {
@@ -8894,21 +8895,45 @@ J.JsNumber.prototype = {
         if (b < 0) return s - b
         else return s + b
     },
+    /**
+     * 处理除法运算的方法。
+     * 
+     * @param {number} a - 被除数
+     * @param {number} b - 除数
+     * @returns {number} - 除法结果
+     * @throws {Error} - 如果 b 不是数字
+     */
     P(a, b) {
         if (typeof b != "number") throw H.wrap_expression(H.R(b))
-        if ((a | 0) === a)
+        if ((a | 0) === a) {
             if (b >= 1 || b < -1) return a / b | 0
+        }
         return this.d6(a, b)
     },
+    /**
+     * 处理除法运算的方法。
+     * 
+     * @param {number} a - 被除数
+     * @param {number} b - 除数
+     * @returns {number} - 除法结果
+     */
     ag(a, b) {
         return (a | 0) === a ? a / b | 0 : this.d6(a, b)
     },
+    /**
+     * 处理除法运算的备用方法。
+     * 
+     * @param {number} a - 被除数
+     * @param {number} b - 除数
+     * @returns {number} - 除法结果
+     * @throws {Error} - 如果结果超出范围或为无穷大
+     */
     d6(a, b) {
         var s = a / b
         if (s >= -2147483648 && s <= 2147483647) return s | 0
         if (s > 0) {
-            if (s !== 1 / 0) return Math.floor(s)
-        } else if (s > -1 / 0) return Math.ceil(s)
+            if (s !== Infinity) return Math.floor(s)
+        } else if (s > Infinity) return Math.ceil(s)
         throw H.wrap_expression(P.UnsupportError("Result of truncating division is " + H.as_string(s) + ": " + H.as_string(a) + " ~/ " + b))
     },
     bX(a, b) {
@@ -12480,6 +12505,7 @@ P.lF.prototype = {
 }
 P.kT.prototype = {
     ax(a) {
+        // math.random * a
         if (a <= 0 || a > 4294967296) throw H.wrap_expression(P.tn("max must be in range 0 < max \u2264 2^32, was " + H.as_string(a)))
         return Math.random() * a >>> 0
     }
@@ -16712,6 +16738,7 @@ T.Engine.prototype = {
                                     runner.b = player.c
                                 player.y = runner
                                 group.push(player)
+                                console.log("player.e (idName) = " + player.e)
                                 name2p.m(0, player.e, player)
                             }
                         }
@@ -17310,22 +17337,37 @@ T.Plr.prototype = {
         q = why_ns
         why_ns += 1
 
-        q = C.JsInt.P(Math.abs(q), $.bx())
+        // q = C.JsInt.P(Math.abs(q), $.bx())
+        q = C.JsInt.P(Math.abs(q), 2048)
+        q = Math.abs(q) / 2048
         n = 0
-        if (q > n) {
+        // if (q > n) {
+        if (q > 0) {
             q = rc4.c
             m = q[n]
             l = 1
             q[n] = q[l]
             q[l] = m
         }
-        rc4.dB(0, LangData.fZ(name), $.t())
-        for (name = this_.X.c, name.length, rc4 = this_.a2, k = 0; k < 256; ++k) {
+        // console.log("name and this_.b", name, this_.b, why_ns)
+        // console.log("$.nW, .nV, .mP .mb, .r2, .r3, .r4, .eX .b2", $.nW, $.nV, $.mP(), $.mb, $.r2(), $.r3(), $.r4(), $.eX(), $.b2())
+        // 181 160 255 89 217 0 math.random 256 63
+        // rc4.dB(0, LangData.fZ(name), $.t())
+        rc4.dB(0, LangData.fZ(name), 2)
+        for (name = this_.X.c, name.length, k = 0; k < 256; ++k) {
             j = name[k]
-            i = (j * $.nW + $.nV & $.mP()) >>> 0
-            if (i >= $.mb && i < $.r2()) {
-                C.Array.j(this_.t, (i + $.r3() * $.r4().ax($.eX()) & $.b2()) >>> 0)
-            } else rc4.push(j)
+            // i = (j * $.nW + $.nV & $.mP()) >>> 0
+            // if (i >= $.mb && i < $.r2()) {
+            //     C.Array.j(this_.t, (i + $.r3() * $.r4().ax($.eX()) & $.b2()) >>> 0)
+            // } else rc4.push(j)
+            i = (j * 181 + 160 & 255) >>> 0
+            if (i >= 89 && i < 217) {
+                // C.Array.j(this_.t, (i + 0 * (Math.random() * 256) & 63) >>> 0)
+                this_.t.push((i + 0 * (Math.random() * 256) & 63) >>> 0)
+            } else {
+                // rc4.push(j)
+                this_.a2.push(j)
+            }
         }
         name = this_.t
         name = H.b(name.slice(0), H._arrayInstanceType(name))
@@ -20947,6 +20989,7 @@ var t = (function rtii() {
         return X.k("}-?M/~zGrI", 98)
     })
     lazy_old($, "zO", "r4", function () {
+        // math.random
         return P.o_()
     })
     // lazy_old($, "mc", "ns", function () {

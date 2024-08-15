@@ -3,7 +3,7 @@
 
 'use strict';
 
-let name_input = "!test!\n\natest\n\ntest2";
+let name_input = "abc@aaa\nbcbb+111\n\natest\n\ntest2";
 let assets_data = {
     lang: null,
     gAd: null,
@@ -16946,7 +16946,7 @@ T.Plr.prototype = {
 
                 // 武器列表
                 r = $.rj()
-                console.log("$.rj()", $.rj())
+                // console.log("$.rj()", $.rj())
                 if (r.J(0, q)) {
                     p = r.h(0, q).$2(q, this_)
                 } else if (J.nz(q, $.cl())) {
@@ -21341,6 +21341,6 @@ function main() {
     return P._asyncStartSync($async$iE, async_completer)
 }
 
-logger.debug("反混淆", LangData.j("6ct2H)A", 11))
+// logger.debug("反混淆", LangData.j("6ct2H)A", 11))
 main();
 // logger.debug("running main:", main()) // 执行main函数
