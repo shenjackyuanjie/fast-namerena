@@ -17277,7 +17277,7 @@ T.Plr.prototype = {
 
                 // 武器列表
                 team = $.rj()
-                console.log("$.rj()", $.rj())
+                // console.log("$.rj()", $.rj())
                 if (team.J(0, q)) {
                     p = team.h(0, q).$2(q, this_)
                 } else if (J.nz(q, $.cl())) {
