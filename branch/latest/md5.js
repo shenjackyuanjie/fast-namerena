@@ -17364,10 +17364,11 @@ T.Plr.prototype = {
             if (i >= 89 && i < 217) {
                 // C.Array.j(this_.t, (i + 0 * (Math.random() * 256) & 63) >>> 0)
                 this_.t.push((i & 63) >>> 0)
-            } else {
-                // rc4.push(j)
-                this_.a2.push(j)
             }
+            // } else {
+            //     // rc4.push(j)
+            //     this_.a2.push(j)
+            // }
         }
         name = this_.t
         name = H.b(name.slice(0), H._arrayInstanceType(name))
