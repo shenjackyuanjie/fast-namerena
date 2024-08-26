@@ -10,6 +10,8 @@ shenjack 的 namerena 镜像项目
 
 你也可以在 [fight 分支](./branch/fight/) 看到纯战斗特化的分支
 
+你可以在 [news](./news.md) 看到更新日志
+
 ## 项目目标
 
 完全了解清楚 namerena 的运行机制

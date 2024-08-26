@@ -1,6 +1,6 @@
 'use strict';
 
-const _version_ = "0.4.2";
+const _version_ = "0.4.3";
 
 let finish_trigger = null;
 let stop_bomb = false;
@@ -5894,7 +5894,7 @@ var T = {
                     h[l] = J.nB(h[l], 1)
                 }
                 // if (!J.Y(h[1], "")) {
-                if (h[1] === "") {
+                if (h[1] !== "") {
                     l = h[1]
                     i = $.n5()
                     l.toString
@@ -16750,7 +16750,7 @@ T.Engine.prototype = {
                         sorted_hash_names = sorted_names
                     }
 
-                    o = C.Array.aV(sorted_hash_names, "\n")
+                    o = C.Array.aV(sorted_hash_names, "\r")
                     sorted_hash = C.e.gaB().ab(o)
                     this_.b = new LangData.SuperRC4()
                     this_.b.bd(sorted_hash, 1) // init 1
