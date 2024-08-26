@@ -34,6 +34,16 @@ w\n ryyb\nb\nrv\nv\netet4y 54 w\ne rg\nwe by\nrw \nte\nw \nnbyrb\n ew\nyn re\nry
 			round_10: 1480,
 			round_100: 1903, // todo
 		},
+        {
+            test: `
+            !test!
+!
+
+鹿目圆EKSR"I]jIG@TLEWA
+Niss7rclxb1]K@TLEWA`,
+            round_10: 6410,
+            round_100: 6410,
+        }
 	],
 };
 
