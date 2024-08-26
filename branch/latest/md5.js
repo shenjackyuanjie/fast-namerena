@@ -17489,9 +17489,10 @@ T.Plr.prototype = {
         // initRawAttr
         var s, r, q, p, this_ = this
         // for (s = $.Z(); s < 31; s += $.B()) {
-        for (s = 10; s < 31; s += $.B()) {
+        for (s = 10; s < 31; s += 3) {
             r = this_.q
-            q = C.Array.al(this_.t, s, s + $.B())
+            // q = C.Array.al(this_.t, s, s + $.B())
+            q = C.Array.al(this_.t, s, s + 3)
             // if (!!q.immutable$list) H.throw_expression(P.UnsupportError("sort"))
             p = q.length - 1
             // sort
