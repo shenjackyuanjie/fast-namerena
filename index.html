@@ -404,8 +404,6 @@
             }
         }
 
-
-
         .menu>* {
             border-radius: 12px;
             cursor: pointer;
@@ -524,7 +522,7 @@
         if (customlanpos > 0) {
             lanfile = decodeURIComponent(window.location.search.substring(customlanpos + 2));
         }
-        
+
         reqO = new XMLHttpRequest();
         reqO.open("GET", adfile);
         reqO.send();
@@ -634,6 +632,13 @@
             <button id='refreshBtn' class='micon'>
                 <div class="svgicon refresh"></div>
             </button>
+        </div>
+        <div class='loaderbg'>
+            <div class='loader'>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
         </div>
     </div>
 
