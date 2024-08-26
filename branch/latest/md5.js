@@ -1,21 +1,6 @@
 'use strict';
 
-const _version_ = "0.4.1";
-
-// let name_input = "!test!\n\natest\n\ntest2";
-// let name_input = "!test!\n\nthis_is_a";
-// let name_input = "!test!\n!\n\nthis_is_a";
-// let name_input = "this_is_a\nthis_is_b";
-// let name_input = `
-// '9tEUG@LuoTianyi
-// t2W%(s@LuoTianyi
-// mTWD1soR原创@LuoTianyi
-
-// 天依 VEfVDZVpD@candle
-// 凶镬9aY5DnWAq@candle
-// Raven qPu%yV$O@candle
-
-// seed:自生自灭 #1@!`;
+const _version_ = "0.4.2";
 
 let finish_trigger = null;
 let stop_bomb = false;
@@ -2269,9 +2254,7 @@ var H = {
         if (a == null) return a
         // set run time info
         else if (s.b(a)) return a
-        // console.log("faild nullable as check", a, s)
         let stack = new Error().stack
-        // console.log(stack)
         H._failedAsCheck(a, s)
     },
     _failedAsCheck(a, b) {
@@ -3176,20 +3159,20 @@ var H = {
         this.a = a
     },
     ve(a) {
-        if (typeof dartPrint == "function") {
-            dartPrint(a)
-            return
-        }
-        if (typeof console == "object" && typeof console.log != "undefined") {
-            console.log(a)
-            return
-        }
-        if (typeof window == "object") return
-        if (typeof print == "function") {
-            print(a)
-            return
-        }
-        throw "Unable to print message: " + String(a)
+        // if (typeof dartPrint == "function") {
+        //     dartPrint(a)
+        //     return
+        // }
+        // if (typeof console == "object" && typeof console.log != "undefined") {
+        console.log(a)
+        //     return
+        // }
+        // if (typeof window == "object") return
+        // if (typeof print == "function") {
+        //     print(a)
+        //     return
+        // }
+        // throw "Unable to print message: " + String(a)
     },
     throwLateInitializationError(a) {
         return H.throw_expression(new H.fz("Field '" + H.as_string(a) + "' has been assigned during initialization."))
@@ -3701,9 +3684,6 @@ var P = {
         var protected_func = function (fn, error_) {
             return function (error_code, async_result) {
                 while (true) try {
-                    if (run_env.from_code) {
-                        // console.log("O._wrapJsFunctionForAsync", error_code, async_result)
-                    }
                     fn(error_code, async_result)
                     break
                 } catch (error) {
@@ -5905,7 +5885,6 @@ var T = {
             } else {
                 j = e
             }
-            // console.log("weapon: " + j)
             l = $.n3() // @
             // if (l == null) H.throw_expression(H.R(l))
             if (H.iF(m, l, 0)) {
@@ -11177,7 +11156,6 @@ P.lb.prototype = {
         this_.c = i
         s = str_holder.a
         // return s.charCodeAt(0) == 0 ? s : s
-        // console.log("P.lb" + s)
         return s
     }
 }
@@ -11723,12 +11701,7 @@ W.fn.prototype = {
         }
     },
     add_event_listener(receiver, type, listener, options) {
-        // console.log("md5.js add event listener type:", type, "receiver:", receiver, "listener:", listener, options)
-        // console.log("receiver == window", receiver == window)
-        // var stack = new Error().stack
-        // console.log(stack)
         receiver.addEventListener(type, H.convert_dart_closure_to_js_md5(listener, 1), false)
-        // return receiver.addEventListener(type, listener, false)
     }
 }
 W.File.prototype = {
@@ -12658,8 +12631,6 @@ L.ProfileWinChance.prototype = {
                     return P._asyncReturn(some_q, async_completer)
             }
         })
-        // let stack = new Error().stack
-        // console.log("L.iR.O", stack)
 
         return P._asyncStartSync($async$O, async_completer)
     },
@@ -12709,7 +12680,6 @@ L.ProfileWinChance.prototype = {
                     o = new H.y(o, new L.iS(), H._arrayInstanceType(o).i("y<1,@>")).aV(0, "\r") + "\n" + new H.y(n, new L.iT(), H._arrayInstanceType(n).i("y<1,@>")).aV(0, "\r") + "\n"
                     o = C.e.gaB().ab(o)
                     // MARK: bun/nodejs 运行时报错
-                    // console.log(o)
                     n = H.instanceType(o).i("a9<z.E>")
                     l = n.i("y<M.E,l*>")
                     l = P.List_List_of(new H.y(new H.a9(o, n), new L.iU(this_), l), true, l.i("M.E"))
@@ -12795,7 +12765,6 @@ V.ProfileMain.prototype = {
         var $async$O = P._wrapJsFunctionForAsync(function (async_error_code, async_result) {
             if (async_error_code === 1) return P.async_rethrow(async_result, async_completer)
             while (true) {
-                // console.log("running case", async_goto)
                 switch (async_goto) {
                     case 0:
                         outer_display = this_.y
@@ -12865,13 +12834,10 @@ V.ProfileMain.prototype = {
                             }
                         }
                     case 7:
-                        // console.log("start case 7")
                         some_d = result_getter
                         async_goto = 6
                         break
                     case 8:
-                        // console.log("start case 8")
-                        // console.log(outer_display, "\n", update_list, "\n", some_d)
                         if (outer_display.includes(update_list.a(some_d.a[0]).e.gb2())) {
                             // 胜利场
                             ++this_.Q
@@ -12930,10 +12896,8 @@ V.ProfileMain.prototype = {
             s.a = this.f[0].e
             this_.z.aw(0, new V.j_(this_, s))
         }
-        // console.log("iV.e5 this.d", this.d)
         // this.d => 下一个目标
         this_.d *= 10
-        // console.log("iV.e5 this.d", this.d)
     },
     ae(a, b) {
         return this.dK(0, b)
@@ -12999,9 +12963,6 @@ V.j_.prototype = {
             // benchmarkSkill
             s.push(T.RunUpdate_init(LangData.get_lang("GJgn"), p, o, b * 100 / n.d, o, 0, 1000, 100))
             n.y.push(new T.aq(s, r))
-            // console.log("benchmark", a, b, n.d, s)
-            let stack = new Error().stack
-            // console.log(stack)
         }
     },
     $S: 29
@@ -13175,7 +13136,6 @@ X.ProfileFind.prototype = {
                     return P._asyncReturn(q, async_completer)
             }
         })
-        console.log("X.iW.O")
         return P._asyncStartSync($async$O, async_completer)
     },
     ae(a, b) {
@@ -15320,7 +15280,6 @@ T.SklShadow.prototype = {
         s.push(T.RunUpdate_init(LangData.get_lang("USvA"), this_.r, a6, a6, a6, $.a6(), 1000, 100))
         shadow_name = H.as_string(this_.r.a) + "?" + H.as_string($.qM())
         // r = name + "?" + "shadow"
-        // console.log("T.hB.v", shadow_name, a5.r.a, H.e($.qM()))
         q = this_.r
         p = q.b
         q = q.c
@@ -16738,7 +16697,6 @@ T.Engine.prototype = {
                                     runner.b = player.c
                                 player.y = runner
                                 group.push(player)
-                                console.log("player.e (idName) = " + player.e)
                                 name2p.m(0, player.e, player)
                             }
                         }
@@ -17218,7 +17176,6 @@ T.RunUpdateWin.prototype = {}
 T.aq.prototype = {
     k(a) {
         // return H.e(this.a)
-        // console.log(a, this.a, H.e(this.a))
         return H.as_string(this.a)
     }
 }
@@ -17304,7 +17261,6 @@ T.Plr.prototype = {
 
                 // 武器列表
                 team = $.rj()
-                // console.log("$.rj()", $.rj())
                 if (team.J(0, q)) {
                     p = team.h(0, q).$2(q, this_)
                 } else if (J.nz(q, $.cl())) {
@@ -17349,8 +17305,6 @@ T.Plr.prototype = {
             q[n] = q[l]
             q[l] = m
         }
-        // console.log("name and this_.b", name, this_.b, why_ns)
-        // console.log("$.nW, .nV, .mP .mb, .r2, .r3, .r4, .eX .b2", $.nW, $.nV, $.mP(), $.mb, $.r2(), $.r3(), $.r4(), $.eX(), $.b2())
         // 181 160 255 89 217 0 math.random 256 63
         // rc4.dB(0, LangData.fZ(name), $.t())
         rc4.dB(0, LangData.fZ(name), 2)
@@ -17658,7 +17612,6 @@ T.Plr.prototype = {
             } ++n
             m += $.C() // 4
         }
-        // console.log("this_.k2:",this_.k2)
         for (; sortedSkills = this_.k2, n < sortedSkills.length; ++n) sortedSkills[n].ao(this_, 0)
         // sorted skills是this.k2, 
     },
@@ -21724,7 +21677,6 @@ function main(input_name) {
                 } else {
                     // a2 = window.localStorage.getItem(LanData.j("T|a`4tFX30f3:o_Vx]na4ki/|ye&j=D", 15))
                     a2 = window.localStorage.getItem("go​ogle_experiment_mod1")
-                    // console.log("a2", a2)
                     if (a2 != null) {
                         $.ox = new H.a9(H.b(a2.split(""), t.s), t.bJ).f3(0)
                     }
