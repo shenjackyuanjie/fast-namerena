@@ -16905,7 +16905,8 @@ T.Engine.prototype = {
                         }
                     } catch (e) {
                         // 报出错误
-                        logger.debug("来自 round() 的报错, 在意料之内, 可以忽略\n", e)
+                        // 不调用了, 直接忽略, 毕竟没必要
+                        // logger.debug("来自 round() 的报错, 在意料之内, 可以忽略\n", e)
                         // m = H.unwrap_Exception(e)
                         // l = H.getTraceFromException(e)
                     }
