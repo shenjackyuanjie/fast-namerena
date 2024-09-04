@@ -4774,7 +4774,7 @@ var T = {
             d = owner.c,
             c = owner.d,
             b = 0,
-            a = $.T(),
+            a = 1,
             a0 = H.b([], t.q),
             a1 = H.b([], t.H),
             a2 = P.create_meta_map(t.X, t.W),
@@ -4872,7 +4872,7 @@ var T = {
             r = b.r2
             s = t.a.a(r.h(0, $.eY()))
             if (s == null) {
-                s = new T.FireState($.ao())
+                s = new T.FireState(0)
                 r.m(0, $.eY(), s)
             }
             s.b = s.b + $.b0()
@@ -4956,7 +4956,7 @@ var T = {
         var team_name, fgt, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, a3 = null
         if (clan_name == $.nk()) {
             team_name = 0
-            fgt = $.T()
+            fgt = 1
             q = H.b([], t.q)
             p = H.b([], t.H)
             o = P.create_meta_map(t.X, t.W)
@@ -5002,7 +5002,7 @@ var T = {
         // \u0003
         if (clan_name == $.qR()) {
             team_name = 0
-            fgt = $.T()
+            fgt = 1
             q = H.b([], t.q)
             p = H.b([], t.H)
             o = P.create_meta_map(t.X, t.W)
@@ -5052,7 +5052,7 @@ var T = {
                 fgt = 0
                 q = H.as_string(name) + H.as_string($.aD())
                 p = 0
-                o = $.T()
+                o = 1
                 n = H.b([], t.q)
                 m = H.b([], t.H)
                 l = P.create_meta_map(t.X, t.W)
@@ -5097,7 +5097,7 @@ var T = {
             if (name == $.qP()) {
                 fgt = H.as_string(name) + H.as_string($.aD())
                 q = 0
-                p = $.T()
+                p = 1
                 o = H.b([], t.q)
                 n = H.b([], t.H)
                 m = P.create_meta_map(t.X, t.W)
@@ -5142,7 +5142,7 @@ var T = {
             if (name == $.qo()) {
                 fgt = H.as_string(name) + H.as_string($.aD())
                 q = 0
-                p = $.T()
+                p = 1
                 o = H.b([], t.q)
                 n = H.b([], t.H)
                 m = P.create_meta_map(t.X, t.W)
@@ -5187,7 +5187,7 @@ var T = {
             if (name == $.qY()) {
                 fgt = H.as_string(name) + H.as_string($.aD())
                 q = 0
-                p = $.T()
+                p = 1
                 o = H.b([], t.q)
                 n = H.b([], t.H)
                 m = P.create_meta_map(t.X, t.W)
@@ -5234,7 +5234,7 @@ var T = {
             if (name == $.qh()) {
                 fgt = H.as_string(name) + H.as_string($.aD())
                 q = 0
-                p = $.T()
+                p = 1
                 o = H.b([], t.q)
                 n = H.b([], t.H)
                 m = P.create_meta_map(t.X, t.W)
@@ -5279,7 +5279,7 @@ var T = {
             if (name == $.qb()) {
                 fgt = H.as_string(name) + H.as_string($.aD())
                 q = 0
-                p = $.T()
+                p = 1
                 o = H.b([], t.q)
                 n = H.b([], t.H)
                 m = P.create_meta_map(t.X, t.W)
@@ -5324,7 +5324,7 @@ var T = {
             if (name == $.q9()) {
                 fgt = H.as_string(name) + H.as_string($.aD())
                 q = 0
-                p = $.T()
+                p = 1
                 o = H.b([], t.q)
                 n = H.b([], t.H)
                 m = P.create_meta_map(t.X, t.W)
@@ -5369,7 +5369,7 @@ var T = {
             if (name == $.d5()) {
                 fgt = H.as_string(name) + H.as_string($.aD())
                 q = 0
-                p = $.T()
+                p = 1
                 o = H.b([], t.q)
                 n = H.b([], t.H)
                 m = P.create_meta_map(t.X, t.W)
@@ -5415,7 +5415,7 @@ var T = {
             if (name == $.ck()) {
                 fgt = H.as_string(name) + H.as_string($.aD())
                 q = 0
-                p = $.T()
+                p = 1
                 o = H.b([], t.q)
                 n = H.b([], t.H)
                 m = P.create_meta_map(t.X, t.W)
@@ -5460,7 +5460,7 @@ var T = {
             if (name == $.qL()) {
                 fgt = H.as_string(name) + H.as_string($.aD())
                 q = 0
-                p = $.T()
+                p = 1
                 o = H.b([], t.q)
                 n = H.b([], t.H)
                 m = P.create_meta_map(t.X, t.W)
@@ -5509,7 +5509,7 @@ var T = {
                 // $.aD = @!
                 fgt = H.as_string(fgt) + H.as_string($.aD())
                 q = 0
-                p = $.T()
+                p = 1
                 o = H.b([], t.q)
                 n = H.b([], t.H)
                 m = P.create_meta_map(t.X, t.W)
@@ -5557,7 +5557,7 @@ var T = {
                 team_name = $.cl()
                 fgt = $.nr().h(0, name)
                 q = 0
-                p = $.T()
+                p = 1
                 o = H.b([], t.q)
                 n = H.b([], t.H)
                 m = P.create_meta_map(t.X, t.W)
@@ -5601,7 +5601,7 @@ var T = {
             }
             team_name = $.cl()
             fgt = 0
-            q = $.T()
+            q = 1
             p = H.b([], t.q)
             o = H.b([], t.H)
             n = P.create_meta_map(t.X, t.W)
@@ -5745,7 +5745,7 @@ var T = {
         var s, r, q, p, o, n, m, l, k, j, i, h, g, f = 0,
             e = H.as_string(a2) + H.as_string($.aD()),
             d = 0,
-            c = $.T(),
+            c = 1,
             b = H.b([], t.q),
             a = H.b([], t.H),
             a0 = P.create_meta_map(t.X, t.W),
@@ -5791,7 +5791,7 @@ var T = {
         var s, r, q, p, o, n, m, l, k, j, i, h, g, f = 0,
             e = H.as_string(a3) + H.as_string($.aD()),
             d = 0,
-            c = $.T(),
+            c = 1,
             b = H.b([], t.q),
             a = H.b([], t.H),
             a0 = P.create_meta_map(t.X, t.W),
@@ -6119,7 +6119,7 @@ var T = {
             d = $.rq()
             if (g < -d) return (g + d) / ($.pD() + d - T.mw().a)
         }
-        return $.ao() // 0
+        return 0
     },
     DummyRunUpdates(a, b) {
         var s = a.Q - b.Q
@@ -6128,7 +6128,7 @@ var T = {
     },
     init_plr(name, clan_name, fgt, weapon) {
         var s, r, q, p, o, n, m, l, k, j, i, h, f = 0,
-            e = $.T(),
+            e = 1,
             d = H.b([], t.q),
             c = H.b([], t.H),
             b = P.create_meta_map(t.X, t.W),
@@ -14694,7 +14694,9 @@ T.SklFire.prototype = {
     v(a, b, c, d) {
         var s, r, q, p = a[0].a,
             o = t.a.a(p.r2.h(0, $.eY()))
-        if (o == null) o = new T.FireState($.ao())
+        if (o == null) {
+            o = new T.FireState(0)
+        }
         s = T.getAt(this.r, true, c)
         r = $.mM()
         q = o.b
@@ -15125,7 +15127,9 @@ T.SklRapid.prototype = {
             c = a.length,
             b = $.B()
         if (c > b) a = (a && C.Array).al(a, 0, b)
-        for (c = a.length, s = 0; s < c; ++s) a[s].b = $.ao()
+        for (c = a.length, s = 0; s < c; ++s) {
+            a[s].b = 0
+        }
         r = 0
         for (c = a2.a, q = r; q < d; ++q) {
             b = g.r
@@ -15284,7 +15288,7 @@ T.SklShadow.prototype = {
         p = q.b
         q = q.c
         o = 0
-        n = $.T()
+        n = 1
         m = H.b([], t.q)
         l = H.b([], t.H)
         k = P.create_meta_map(t.X, t.W)
@@ -15423,7 +15427,9 @@ T.SklExplode.prototype = {
         var s, r, q, p, o, n = this,
             m = a[0].a,
             l = t.a.a(m.r2.h(0, $.eY()))
-        if (l == null) l = new T.FireState($.ao())
+        if (l == null) {
+            l = new T.FireState(0)
+        }
         s = T.getAt(n.r, true, c)
         r = $.mZ()
         q = l.b
@@ -15513,7 +15519,7 @@ T.SklSummon.prototype = {
             q = r.b
             r = r.c
             p = 0
-            o = $.T()
+            o = 1
             n = H.b([], t.q)
             m = H.b([], t.H)
             l = P.create_meta_map(t.X, t.W)
@@ -15734,7 +15740,6 @@ T.PlrBossTest.prototype = {
         }
     },
     bf() {
-        // this.x = $.ao()
         this.x = 0
     }
 }
@@ -15748,7 +15753,6 @@ T.PlrBossTest2.prototype = {
         }
     },
     bf() {
-        // this.x = $.ao()
         this.x = 0
     }
 }
@@ -15772,7 +15776,6 @@ T.PlrEx.prototype = {
     },
     cA(a) { },
     bf() {
-        // this.x = $.ao()
         this.x = 0
     }
 }
@@ -16151,7 +16154,7 @@ T.PlrBossLazy.prototype = {
         return H.b([$.d2(), $.eZ(), $.bh(), $.d3()], t.V)
     },
     ac() {
-        var s = $.T(),
+        var s = 1,
             r = 0
         this.k3 = new T.SklLazyAttack(this, s, r)
         this.k1.push(new T.SklLazyDefend(r))
@@ -16236,7 +16239,7 @@ T.SklLazyAttack.prototype = {
         // sklAttack
         // [0]发起攻击
         d.a.push(T.RunUpdate_init(LangData.get_lang("EYAn"), s, o, null, null, 0, 1000, 100))
-        if (o.a3(r * q, false, s, T.va(), c, d) > 0) p.fx = $.T()
+        if (o.a3(r * q, false, s, T.va(), c, d) > 0) p.fx = 1
     },
     gap() {
         return this.fr
@@ -16518,7 +16521,7 @@ T.SklSlimeSpawnState.prototype = {
 }
 T.SklSlimeSpawn.prototype = {
     ga4() {
-        return $.ao() // return 0
+        return 0
     },
     b1(a, b, c, d) {
         var s, r, q, p, o, n, m, this_ = this,
@@ -17210,7 +17213,6 @@ T.Minion.prototype = {
         return LangData.get_lang("Kcon")
     },
     bf() {
-        // this.x = $.ao()
         this.x = 0
     },
     $ibC: 1
@@ -17692,7 +17694,7 @@ T.Plr.prototype = {
 
         this_.ci()
         this_.z = this_.y
-        this_.id = $.T()
+        this_.id = 1
         this_.A = false
         for (s = this_.rx, s = new Sgls.a_(s, s.b, s.$ti.i("a_<1*>")); s.u();) {
             s.b.ar(this_)
@@ -17792,11 +17794,10 @@ T.Plr.prototype = {
         this.a_ = false
     },
     du(a, b, c, d, e, f) {
-        var s, r
+        var s
         for (s = this.y1, s = new Sgls.a_(s, s.b, s.$ti.i("a_<1*>")); s.u();) {
             a = s.b.dv(a, b, c, this, d, e, f)
-            r = $.ao()
-            if (a == r) return r
+            if (a == 0) return 0
         }
         return a
     },
@@ -17808,7 +17809,7 @@ T.Plr.prototype = {
     a3(a, b, c, d, e, f) {
         var s, r, q, p = this
         a = p.du(a, b, c, d, e, f)
-        if (a == $.ao()) return 0
+        if (a == 0) return 0
         s = p.db
         if (b) {
             r = p.dy + s
@@ -18353,11 +18354,11 @@ T.ProtectStat.prototype = {
             // [0][守护][1]
             g.a.push(T.RunUpdate_init(LangData.get_lang("JzmA"), s, d, null, null, $.bg(), 1000, 100))
             a = s.du(a, b, c, e, f, g)
-            r = $.ao()
-            if (a == r) return r
+            r = 0
+            if (a == 0) return 0
             q = T.d9(s, b, f)
             s.aF(s.aq(C.d.eW(a * $.b0() / q), c, e, f, g), c, e, f, g)
-            return $.ao()
+            return 0
         }
         return a
     }
@@ -18422,7 +18423,7 @@ T.SklReflect.prototype = {
             c.a3(s, true, q.r, e, f, g)
             r = q.r
             r.l = r.l - $.mY()
-            return $.ao()
+            return 0
         }
         return a
     },
@@ -18626,7 +18627,7 @@ T.SklZombie.prototype = {
             q = r.b
             r = r.c
             p = 0
-            o = $.T()
+            o = 1
             n = H.b([], t.q)
             m = H.b([], t.H)
             l = P.create_meta_map(t.X, t.W)
@@ -18875,7 +18876,7 @@ T.k3.prototype = {
 }
 T.RinickModifierPreAction.prototype = {
     ga4() {
-        return $.ao()
+        return 0
     },
     aN(a, b, c, d) {
         var s, r, q, p, o = {}
@@ -18914,7 +18915,7 @@ T.k2.prototype = {
 }
 T.RinickModifierUpdateState.prototype = {
     ga4() {
-        return $.ao()
+        return 0
     },
     ar(a) {
         var s = a.q,
@@ -20585,10 +20586,6 @@ var t = (function rtii() {
     lazy_old($, "wN", "pw", function () {
         return X.D("4S|&JW$AZI", 32)
     })
-    lazy_old($, "vG", "ao", function () {
-        // return X.D("G*Oej(8SJR", 99)
-        return 0
-    })
     lazy_old($, "wo", "mM", function () {
         return X.D("15uE1}!JpC", 7)
     })
@@ -20774,10 +20771,6 @@ var t = (function rtii() {
     })
     lazy_old($, "wB", "pp", function () {
         return X.k("sy_Q{nF(@P", 92)
-    })
-    lazy_old($, "wi", "T", function () {
-        // return X.D("xPJ>uk!c<B", 53)
-        return 1
     })
     lazy_old($, "xa", "lL", function () {
         return X.k("F(#M*C?F`C", 34)
