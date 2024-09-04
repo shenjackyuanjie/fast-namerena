@@ -13440,7 +13440,8 @@ HtmlRenderer.inner_render.prototype = {
         } else {
             // this_.d = P.Timer_Timer(P.duration_milsec_sec(C.JsInt.P(s, C.d.aI(Math.sqrt(q / 2))), 0), this_.gel())
             // this.gel -> this.c5, em?
-            this_.d = P.Timer_Timer(P.duration_milsec_sec(0, 0), this_.gel())
+            // this_.d = P.Timer_Timer(P.duration_milsec_sec(0, 0), this_.gel())
+            this_.c5(this_.em)
         }
     },
     c5(a) {
