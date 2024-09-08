@@ -1,6 +1,6 @@
 'use strict';
 
-const _version_ = "0.4.3";
+const _version_ = "0.4.4";
 
 let finish_trigger = null;
 let stop_bomb = false;
@@ -111,6 +111,28 @@ function fmt_RunUpdate(update) {
         source_plr: source_plr,
         target_plr: target_plr,
         affect: affect,
+    }
+}
+
+/**
+ * 用来兼容 nodejs 和浏览器
+ */
+function callback_func_1(callback) {
+    if (run_env.from_code) {
+        callback.$0()
+    } else {
+        setTimeout(() => (callback.$0()), 0)
+    }
+}
+
+/**
+ * 用来兼容 nodejs 和浏览器
+ */
+function callback_func_2(what_ever_it_is, callback) {
+    if (run_env.from_code) {
+        callback.$0()
+    } else {
+        setTimeout(() => (callback.$0()), 0)
     }
 }
 
@@ -1269,7 +1291,6 @@ var H = {
         var func
         if (closure == null) return null
         func = closure.$identity
-        // if (!!s) return s
         if (func) return func
         func = function (closure_, arity_, invoker) {
             return function (arg1, arg2, arg3, arg4) {
@@ -3608,45 +3629,6 @@ var J = {
         }
     }
 var P = {
-    _AsyncRun__initializeScheduleImmediate() {
-        var s, r, q = {}
-        if (self.scheduleImmediate != null) {
-            return P.uK()
-        }
-        if (self.MutationObserver != null && self.document != null) {
-            s = self.document.createElement("div")
-            r = self.document.createElement("span")
-            q.a = null
-            new self.MutationObserver(H.convert_dart_closure_to_js_md5(new P.kB(q), 1)).observe(s, {
-                childList: true
-            })
-            return new P._AsyncRun__initializeScheduleImmediate_closure(q, s, r)
-        } else if (self.setImmediate != null) {
-            // _AsyncRun__scheduleImmediateWithSetImmediate
-            return P.uL()
-        }
-        // _AsyncRun__scheduleImmediateWithTimer
-        return P.uM()
-
-    },
-    _AsyncRun__scheduleImmediateJsOverride(a) {
-        self.scheduleImmediate(H.convert_dart_closure_to_js_md5(new P.kC(a), 0))
-    },
-    _AsyncRun__scheduleImmediateWithSetImmediate(a) {
-        self.setImmediate(H.convert_dart_closure_to_js_md5(new P.kD(a), 0))
-    },
-    _AsyncRun__scheduleImmediateWithTimer(a) {
-        P.Timer__createTimer(C.I, a)
-    },
-    Timer__createTimer(a, b) {
-        var s = C.JsInt.ag(a.a, 1000)
-        return P.Timerimpl(s < 0 ? 0 : s, b)
-    },
-    Timerimpl(a, b) {
-        var s = new P._TimerImpl()
-        s.e8(a, b)
-        return s
-    },
     _makeAsyncAwaitCompleter(a) {
         return new P.i_(new P._Future($.P, a.i("U<0>")), a.i("i_<0>"))
     },
@@ -3666,17 +3648,17 @@ var P = {
         b.cj(H.unwrap_Exception(a), H.getTraceFromException(a))
     },
     _awaitOnObject(object, body_function) {
-        var s, future, q = new P._awaitOnObject_closure(body_function),
-            p = new P._awaitOnObject_closure0(body_function)
-        if (object instanceof P._Future) object.d7(q, p, t.z)
+        var s, future, then_callback = new P._awaitOnObject_closure(body_function),
+            error_callback = new P._awaitOnObject_closure0(body_function)
+        if (object instanceof P._Future) object.d7(then_callback, error_callback, t.z)
         else {
             s = t.z
-            if (t.h.b(object)) object.cz(q, p, s)
+            if (t.h.b(object)) object.cz(then_callback, error_callback, s)
             else {
                 future = new P._Future($.P, t.eI)
                 future.a = 8
                 future.c = object
-                future.d7(q, p, s)
+                future.d7(then_callback, error_callback, s)
             }
         }
     },
@@ -3709,7 +3691,7 @@ var P = {
     },
     future_future_delayed(a, b) {
         var s = new P._Future($.P, b.i("U<0>"))
-        P.Timer_Timer(a, new P.jp(null, s, b))
+        callback_func_1(new P.Future_Future_delayed_closure(null, s, b))
         return s
     },
     rM(a) {
@@ -3823,13 +3805,13 @@ var P = {
         throw H.wrap_expression(P.da(a, "onError", u.c))
     },
     _microtaskLoop() {
-        var s, r
-        for (s = $.cR; s != null; s = $.cR) {
+        var entry, next
+        for (entry = $.cR; entry != null; entry = $.cR) {
             $.eO = null
-            r = s.b
-            $.cR = r
-            if (r == null) $.eN = null
-            s.a.$0()
+            next = entry.b
+            $.cR = next
+            if (next == null) $.eN = null
+            entry.a.$0()
         }
     },
     _startMicrotaskLoop() {
@@ -3839,36 +3821,38 @@ var P = {
         } finally {
             $.eO = null
             $.ms = false
-            if ($.cR != null) $.nw().$1(P.ow())
+            if ($.cR != null) {
+                callback_func_1(P._startMicrotaskLoop)
+            }
         }
     },
     _scheduleAsyncCallback(a) {
-        var s = new P.i0(a),
-            r = $.eN
-        if (r == null) {
-            $.cR = $.eN = s
+        var new_entry = new P.i0(a),
+            last_call_back = $.eN
+        if (last_call_back == null) {
+            $.cR = $.eN = new_entry
             if (!$.ms) {
-                $.nw().$1(P.ow())
+                callback_func_1(P._startMicrotaskLoop)
             }
-        } else $.eN = r.b = s
+        } else $.eN = last_call_back.b = new_entry
     },
     _schedulePriorityAsyncCallback(a) {
-        var s, r, q, p = $.cR
-        if (p == null) {
+        var entry, last_priority_callback, next, t1 = $.cR
+        if (t1 == null) {
             P._scheduleAsyncCallback(a)
             $.eO = $.eN
             return
         }
-        s = new P.i0(a)
-        r = $.eO
-        if (r == null) {
-            s.b = p
-            $.cR = $.eO = s
+        entry = new P.i0(a)
+        last_priority_callback = $.eO
+        if (last_priority_callback == null) {
+            entry.b = t1
+            $.cR = $.eO = entry
         } else {
-            q = r.b
-            s.b = q
-            $.eO = r.b = s
-            if (q == null) $.eN = s
+            next = last_priority_callback.b
+            entry.b = next
+            $.eO = last_priority_callback.b = entry
+            if (next == null) $.eN = entry
         }
     },
     scheduleMicrotask(a) {
@@ -3896,11 +3880,6 @@ var P = {
     },
     ux(a, b) {
         P._rootHandleUncaughtError(a, b)
-    },
-    Timer_Timer(a, b) {
-        var s = $.P
-        if (s === C.f) return P.Timer__createTimer(a, b)
-        return P.Timer__createTimer(a, s.cf(b))
     },
     _rootHandleUncaughtError(a, b) {
         P._schedulePriorityAsyncCallback(new P.lo(a, b))
@@ -3948,21 +3927,11 @@ var P = {
     kB: function kB(a) {
         this.a = a
     },
-    _AsyncRun__initializeScheduleImmediate_closure: function kA(a, b, c) {
-        this.a = a
-        this.b = b
-        this.c = c
-    },
     kC: function kC(a) {
         this.a = a
     },
     kD: function kD(a) {
         this.a = a
-    },
-    _TimerImpl: function l8() { },
-    _TimerImpl_internalCallback: function l9(a, b) {
-        this.a = a
-        this.b = b
     },
     i_: function i_(a, b) {
         this.a = a
@@ -3982,7 +3951,7 @@ var P = {
         this.a = a
         this.b = b
     },
-    jp: function jp(a, b, c) {
+    Future_Future_delayed_closure: function jp(a, b, c) {
         this.a = a
         this.b = b
         this.c = c
@@ -9882,16 +9851,6 @@ P.kB.prototype = {
     },
     $S: 22
 }
-P._AsyncRun__initializeScheduleImmediate_closure.prototype = {
-    $1(callback) {
-        var t1, t2
-        this.a.a = callback
-        t1 = this.b
-        t2 = this.c
-        t1.firstChild ? t1.removeChild(t2) : t1.appendChild(t2)
-    },
-    $S: 27
-}
 P.kC.prototype = {
     $0() {
         this.a.$0()
@@ -9903,28 +9862,6 @@ P.kD.prototype = {
         this.a.$0()
     },
     $S: 18
-}
-P._TimerImpl.prototype = {
-    e8(a, b) {
-        if (run_env.from_code) {
-            b.$0()
-            // setTimeout(H.convert_dart_closure_to_js_md5(new P.kC(b), 0), 0)
-            // setTimeout
-        } else {
-            if (self.setTimeout != null) {
-                self.setTimeout(H.convert_dart_closure_to_js_md5(new P._TimerImpl_internalCallback(this, b), 0), 0)
-                // b.$0() // 草,这下…… 6
-            } else {
-                throw H.wrap_expression(P.UnsupportError("`setTimeout()` not found."))
-            }
-        }
-    }
-}
-P._TimerImpl_internalCallback.prototype = {
-    $0() {
-        this.b.$0()
-    },
-    $S: 0
 }
 P.i_.prototype = {
     bM(a, b) {
@@ -9971,7 +9908,7 @@ P.f3.prototype = {
         return this.b
     }
 }
-P.jp.prototype = {
+P.Future_Future_delayed_closure.prototype = {
     $0() {
         this.b.cY(null)
     },
@@ -13099,8 +13036,6 @@ X.ProfileFind.prototype = {
                 case 16:
                     ++this_.e
                     async_goto = 18
-                    // return P._asyncAwait(P.future_future_delayed(new P.Duration(1), t.z), $async$O)
-                    // return P._asyncAwait(P.future_future_delayed(new P.Duration(1e6), t.z), $async$O)
                     break
                 case 18:
                     e = this_.r
@@ -13207,8 +13142,8 @@ HtmlRenderer.inner_render.prototype = {
             A.vo(this_.gfd())
         }
         // this.gbc -> this.dI
-        // this_.d = P.Timer_Timer(P.duration_milsec_sec(10, 0), this_.gbc(this_))
-        this_.d = P.Timer_Timer(P.duration_milsec_sec(0, 0), this.gbc(this_))
+        // this_.d = P.Timer _Timer(P.duration_milsec_sec(0, 0), this.gbc(this_))
+        callback_func_1(this.gbc(this_))
 
         if (!run_env.from_code) {
             // this.gff -> this.ds
@@ -13394,9 +13329,8 @@ HtmlRenderer.inner_render.prototype = {
                     // 我们仍然不知道他为啥要在这里 delay 1ms
                     // 我们现在知道了, 为了让分身可用
                     // 其实就是等一个循环
-                    // return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec(1, 0), t.z), $async$b4)
                     return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec(0, 0), t.z), $async$b4)
-                // break
+                    // break
                 case 6:
                     this_.db = null
                     this_.dx = true
@@ -13438,9 +13372,6 @@ HtmlRenderer.inner_render.prototype = {
             this_.c5(this_.cy)
             this_.cy = false
         } else {
-            // this_.d = P.Timer_Timer(P.duration_milsec_sec(C.JsInt.P(s, C.d.aI(Math.sqrt(q / 2))), 0), this_.gel())
-            // this.gel -> this.c5, em?
-            // this_.d = P.Timer_Timer(P.duration_milsec_sec(0, 0), this_.gel())
             this_.c5(this_.em)
         }
     },
@@ -13668,7 +13599,6 @@ HtmlRenderer.send_win_data.prototype = {
                 case 0:
                     n = t.z
                     s = 2
-                    // return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec(1, 0), n), $async$$0)
                     return P._asyncAwait(P.future_future_delayed(P.duration_milsec_sec(0, 0), n), $async$$0)
                 // break
                 case 2:
@@ -13684,9 +13614,6 @@ HtmlRenderer.send_win_data.prototype = {
                     ], n, n)
                     // send win_data to parent
                     J.m0(W.ll(window.parent), win_data, "*")
-                    // if (from_node) {
-                    //     // 怎么着输出一下 win_data
-                    // }
                     return P._asyncReturn(null, r)
             }
         })
@@ -19416,10 +19343,6 @@ LangData.k_.prototype = {
     static_2(J, "bO", "t1", 59)
     static_1(H, "uv", "mv", 10)
 
-    static_1(P, "uK", "_AsyncRun__scheduleImmediateJsOverride", 4)
-    static_1(P, "uL", "_AsyncRun__scheduleImmediateWithSetImmediate", 4)
-    static_1(P, "uM", "_AsyncRun__scheduleImmediateWithTimer", 4)
-    static_0(P, "ow", "_startMicrotaskLoop", 0)
     static_2(P, "uN", "ux", 9)
     instance_2u(P._Future.prototype, "geg", "be", 9)
 
@@ -19462,8 +19385,7 @@ LangData.k_.prototype = {
     inherit(P.Object, null)
     inherit_many(P.Object,
         [H.m8, J.Interceptor, J.db, P.O, P.ev, P.L, H.cv, P.fv, H.du, H.hV, H.kh, H.NullThrownFromJavaScriptException, H.ExceptionAndStackTrace, H.eE, H.c_, P.aU, H.jK, H.fA,
-        H.JSSyntaxRegExp, H.ew, H.kz, H.bK, H.l3, H.Rti, H.ib, H.iu,
-        P._TimerImpl, P.i_, P.f3, P.i4, P._FutureListener,
+        H.JSSyntaxRegExp, H.ew, H.kz, H.bK, H.l3, H.Rti, H.ib, H.iu, P.i_, P.f3, P.i4, P._FutureListener,
         P._Future, P.i0, P.em, P.hO, P.hP, P.im, P.i1, P.i3, P.i7, P.ii, P.io, P.lf, P.eM, P.kV, P.ie, P.z, P.dY, P.fg, P.js, P.lc, P.lb, P.dq,
         P.Duration, P.fM, P.el, P.kG, P.jm, P.N, P.iq, P.cH,
         W.j8, W.m5, W.cP, W.cr, W.dN, W.eD, W.is, W.dv, W.kE, W.l_, W.ix,
@@ -19489,7 +19411,7 @@ LangData.k_.prototype = {
     inherit(H.NullError, P.bc)
     inherit_many(H.c_,
         [H.j5, H.j6, H.TearOffClosure, H.JsLinkedHashMap_values_closure, H.lv, H.lx,
-        P.kB, P._AsyncRun__initializeScheduleImmediate_closure, P._awaitOnObject_closure, P.kK, P._Future__propagateToListeners_handleWhenCompleteCallback_closure, P.ke, P._RootZone_bindCallback_closure, P.Duration_toString_sixDigits, P.Duration_toString_twoDigits,
+        P.kB, P._awaitOnObject_closure, P.kK, P._Future__propagateToListeners_handleWhenCompleteCallback_closure, P.ke, P._RootZone_bindCallback_closure, P.Duration_toString_sixDigits, P.Duration_toString_twoDigits,
         W.jf, W.kF, W.jP, W.jO, W.l0, W.l1, W.l7,
         P.lE, P.lF,
         L.iS, L.iT, L.iU,
@@ -19520,7 +19442,7 @@ LangData.k_.prototype = {
     inherit(H.NativeTypedArrayOfInt, H._NativeTypedArrayOfInt_NativeTypedArray_ListMixin_FixedLengthListMixin)
     inherit_many(H.NativeTypedArrayOfInt, [H.fE, H.fF, H.fG, H.fH, H.fI, H.dL, H.cx])
     inherit(H.eI, H.i9)
-    inherit_many(H.j5, [P.kC, P.kD, P._TimerImpl_internalCallback, P.jp, P.kH, P.kO, P.kM, P.kJ, P.kN, P.kI, P._Future__propagateToListeners_handleWhenCompleteCallback, P._Future__propagateToListeners_handleValueCallback, P._Future__propagateToListeners_handleError, P.kf, P.l2, P.kW, P.lo, P.kY, P.km, P.kl, X.je, X.j9, HtmlRenderer.send_win_data, Sgls.k4])
+    inherit_many(H.j5, [P.kC, P.kD, P.Future_Future_delayed_closure, P.kH, P.kO, P.kM, P.kJ, P.kN, P.kI, P._Future__propagateToListeners_handleWhenCompleteCallback, P._Future__propagateToListeners_handleValueCallback, P._Future__propagateToListeners_handleError, P.kf, P.l2, P.kW, P.lo, P.kY, P.km, P.kl, X.je, X.j9, HtmlRenderer.send_win_data, Sgls.k4])
     inherit(P.cg, P.i4)
     inherit(P.cK, P.im)
     inherit(P.eF, P.em)
@@ -19998,9 +19920,6 @@ var t = (function rtii() {
                 return q.message
             }
         }())
-    })
-    lazy_final($, "Ae", "nw", function () {
-        return P._AsyncRun__initializeScheduleImmediate()
     })
     lazy_final($, "Aa", "rh", function () {
         return new P.km().$0()
