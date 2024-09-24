@@ -145,12 +145,12 @@ async function wrap_any(names: string, round: number): Promise<string> {
 		if (round > out_limit) {
 			// 把所有要找的数据拿出来
 			const output_datas: WinRate[] = [];
-			result.raw_data.forEach((data, index) => {
+			result.raw_data.forEach((data) => {
 				if (data.round % out_limit === 0) {
 					output_datas.push(data);
 				}
 			});
-			output_datas.forEach((data, index) => {
+			output_datas.forEach((data) => {
 				const win_rate = (data.win_count * 100) / data.round;
 				output_str += `\n${win_rate.toFixed(2)}%(${data.round})`;
 			});
@@ -163,12 +163,12 @@ async function wrap_any(names: string, round: number): Promise<string> {
 	if (round > out_limit) {
 		// 把所有要找的数据拿出来
 		const output_datas: Score[] = [];
-		result.raw_data.forEach((data, index) => {
+		result.raw_data.forEach((data) => {
 			if (data.round % out_limit === 0) {
 				output_datas.push(data);
 			}
 		});
-		output_datas.forEach((data, index) => {
+		output_datas.forEach((data) => {
 			const win_rate = ((data.score / data.round) * 10000).toFixed(2);
 			output_str += `\n${win_rate}(${data.round})`;
 		});
@@ -178,7 +178,6 @@ async function wrap_any(names: string, round: number): Promise<string> {
 
 import * as process from "process";
 import * as fs from "fs";
-import * as path from "path";
 async function cli() {
 	// 直接跑他
 	// 先获取命令行输入

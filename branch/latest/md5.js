@@ -1,8 +1,14 @@
 'use strict';
 
-const _version_ = "0.4.4";
+const _version_ = "0.4.5";
 
+/**
+ * 用于在 api 模式下触发轮询
+ */
 let finish_trigger = null;
+/**
+ * 用于在 api 模式下停止轮询
+ */
 let stop_bomb = false;
 
 let assets_data = {
@@ -11,10 +17,26 @@ let assets_data = {
 };
 
 let run_env = {
+    /**
+     * 是否是在node/bun环境下运行
+     */
     from_code: (typeof window === "undefined"),
+    /**
+     * 是否在 node 中运行
+     */
     is_node: (typeof Bun === "undefined"),
+    /**
+     * 是否是在 Bun 中运行
+     */
     is_bun: (typeof Bun !== "undefined"),
+    /**
+     * 版本号
+     */
     version: _version_,
+    /**
+     * 是否开启仅对战
+     */
+    fight_only: false,
 };
 
 /**
@@ -248,7 +270,7 @@ if (run_env.from_code) {
 
 }
 
-console.log("run_env", run_env);
+// console.log("run_env", run_env);
 
 let why_ns = 0;
 
@@ -8122,7 +8144,7 @@ var Y = {
 Y.RC4.prototype = {
     bd(a, b) {
         // init
-        var s, r, q, p, o, n, m, l = new Array(256)
+        var s, r, q, p, o, n, m, l = Array.from({ length: 256 })
         l.fixed$length = Array
         l = this.c = H.b(l, t.i)
         for (s = 0; s < 256; ++s) l[s] = s
@@ -8590,24 +8612,24 @@ J.JavaScriptFunction.prototype = {
 }
 J.JsArray.prototype = {
     j(a, b) {
-        // if (!!a.fixed$length) H.throw_expression(P.UnsupportError("add"))
+        // if a.fixed$length) H.throw_expression(P.UnsupportError("add"))
         a.push(b)
     },
     cu(a, b) {
         var s
-        if (!!a.fixed$length) H.throw_expression(P.UnsupportError("removeAt"))
+        if (a.fixed$length) H.throw_expression(P.UnsupportError("removeAt"))
         s = a.length
         if (b >= s) throw H.wrap_expression(P.k0(b, null))
         return a.splice(b, 1)[0]
     },
     co(a, b, c) {
-        if (!!a.fixed$length) H.throw_expression(P.UnsupportError("insert"))
+        if (a.fixed$length) H.throw_expression(P.UnsupportError("insert"))
         if (b < 0 || b > a.length) throw H.wrap_expression(P.k0(b, null))
         a.splice(b, 0, c)
     },
     U(a, b) {
         var s
-        if (!!a.fixed$length) H.throw_expression(P.UnsupportError("remove"))
+        if (a.fixed$length) H.throw_expression(P.UnsupportError("remove"))
         for (s = 0; s < a.length; ++s)
             if (J.Y(a[s], b)) {
                 a.splice(s, 1)
@@ -17378,7 +17400,7 @@ T.Plr.prototype = {
             r = this_.q
             // q = C.Array.al(this_.t, s, s + $.B())
             q = C.Array.al(this_.t, s, s + 3)
-            // if (!!q.immutable$list) H.throw_expression(P.UnsupportError("sort"))
+            // if (q.immutable$list) H.throw_expression(P.UnsupportError("sort"))
             p = q.length - 1
             // sort
             if (p - 0 <= 32) H.ej(q, 0, p, J.bO())
@@ -17853,7 +17875,7 @@ T.Plr.prototype = {
             s = H.b([], t.i)
             for (r = 10; r < $.d1(); r += $.B()) {
                 q = C.Array.al(o.E, r, r + $.B())
-                if (!!q.immutable$list) H.throw_expression(P.UnsupportError("sort"))
+                // if (q.immutable$list) H.throw_expression(P.UnsupportError("sort"))
                 p = q.length - 1
                 if (p - 0 <= 32) H.ej(q, 0, p, J.bO())
                 else H.ei(q, 0, p, J.bO())
@@ -21163,78 +21185,6 @@ var t = (function rtii() {
         NamedNodeMap: W.ex,
         MozNamedAttrMap: W.ex,
         StyleSheetList: W.eH,
-        SVGScriptElement: P.cF,
-        SVGAElement: P.p,
-        SVGAnimateElement: P.p,
-        SVGAnimateMotionElement: P.p,
-        SVGAnimateTransformElement: P.p,
-        SVGAnimationElement: P.p,
-        SVGCircleElement: P.p,
-        SVGClipPathElement: P.p,
-        SVGDefsElement: P.p,
-        SVGDescElement: P.p,
-        SVGDiscardElement: P.p,
-        SVGEllipseElement: P.p,
-        SVGFEBlendElement: P.p,
-        SVGFEColorMatrixElement: P.p,
-        SVGFEComponentTransferElement: P.p,
-        SVGFECompositeElement: P.p,
-        SVGFEConvolveMatrixElement: P.p,
-        SVGFEDiffuseLightingElement: P.p,
-        SVGFEDisplacementMapElement: P.p,
-        SVGFEDistantLightElement: P.p,
-        SVGFEFloodElement: P.p,
-        SVGFEFuncAElement: P.p,
-        SVGFEFuncBElement: P.p,
-        SVGFEFuncGElement: P.p,
-        SVGFEFuncRElement: P.p,
-        SVGFEGaussianBlurElement: P.p,
-        SVGFEImageElement: P.p,
-        SVGFEMergeElement: P.p,
-        SVGFEMergeNodeElement: P.p,
-        SVGFEMorphologyElement: P.p,
-        SVGFEOffsetElement: P.p,
-        SVGFEPointLightElement: P.p,
-        SVGFESpecularLightingElement: P.p,
-        SVGFESpotLightElement: P.p,
-        SVGFETileElement: P.p,
-        SVGFETurbulenceElement: P.p,
-        SVGFilterElement: P.p,
-        SVGForeignObjectElement: P.p,
-        SVGGElement: P.p,
-        SVGGeometryElement: P.p,
-        SVGGraphicsElement: P.p,
-        SVGImageElement: P.p,
-        SVGLineElement: P.p,
-        SVGLinearGradientElement: P.p,
-        SVGMarkerElement: P.p,
-        SVGMaskElement: P.p,
-        SVGMetadataElement: P.p,
-        SVGPathElement: P.p,
-        SVGPatternElement: P.p,
-        SVGPolygonElement: P.p,
-        SVGPolylineElement: P.p,
-        SVGRadialGradientElement: P.p,
-        SVGRectElement: P.p,
-        SVGSetElement: P.p,
-        SVGStopElement: P.p,
-        SVGStyleElement: P.p,
-        SVGSVGElement: P.p,
-        SVGSwitchElement: P.p,
-        SVGSymbolElement: P.p,
-        SVGTSpanElement: P.p,
-        SVGTextContentElement: P.p,
-        SVGTextElement: P.p,
-        SVGTextPathElement: P.p,
-        SVGTextPositioningElement: P.p,
-        SVGTitleElement: P.p,
-        SVGUseElement: P.p,
-        SVGViewElement: P.p,
-        SVGGradientElement: P.p,
-        SVGComponentTransferFunctionElement: P.p,
-        SVGFEDropShadowElement: P.p,
-        SVGMPathElement: P.p,
-        SVGElement: P.p
     })
     hunkHelpers.setOrUpdateLeafTags({
         DOMError: true,
@@ -21455,78 +21405,6 @@ var t = (function rtii() {
         NamedNodeMap: true,
         MozNamedAttrMap: true,
         StyleSheetList: true,
-        SVGScriptElement: true,
-        SVGAElement: true,
-        SVGAnimateElement: true,
-        SVGAnimateMotionElement: true,
-        SVGAnimateTransformElement: true,
-        SVGAnimationElement: true,
-        SVGCircleElement: true,
-        SVGClipPathElement: true,
-        SVGDefsElement: true,
-        SVGDescElement: true,
-        SVGDiscardElement: true,
-        SVGEllipseElement: true,
-        SVGFEBlendElement: true,
-        SVGFEColorMatrixElement: true,
-        SVGFEComponentTransferElement: true,
-        SVGFECompositeElement: true,
-        SVGFEConvolveMatrixElement: true,
-        SVGFEDiffuseLightingElement: true,
-        SVGFEDisplacementMapElement: true,
-        SVGFEDistantLightElement: true,
-        SVGFEFloodElement: true,
-        SVGFEFuncAElement: true,
-        SVGFEFuncBElement: true,
-        SVGFEFuncGElement: true,
-        SVGFEFuncRElement: true,
-        SVGFEGaussianBlurElement: true,
-        SVGFEImageElement: true,
-        SVGFEMergeElement: true,
-        SVGFEMergeNodeElement: true,
-        SVGFEMorphologyElement: true,
-        SVGFEOffsetElement: true,
-        SVGFEPointLightElement: true,
-        SVGFESpecularLightingElement: true,
-        SVGFESpotLightElement: true,
-        SVGFETileElement: true,
-        SVGFETurbulenceElement: true,
-        SVGFilterElement: true,
-        SVGForeignObjectElement: true,
-        SVGGElement: true,
-        SVGGeometryElement: true,
-        SVGGraphicsElement: true,
-        SVGImageElement: true,
-        SVGLineElement: true,
-        SVGLinearGradientElement: true,
-        SVGMarkerElement: true,
-        SVGMaskElement: true,
-        SVGMetadataElement: true,
-        SVGPathElement: true,
-        SVGPatternElement: true,
-        SVGPolygonElement: true,
-        SVGPolylineElement: true,
-        SVGRadialGradientElement: true,
-        SVGRectElement: true,
-        SVGSetElement: true,
-        SVGStopElement: true,
-        SVGStyleElement: true,
-        SVGSVGElement: true,
-        SVGSwitchElement: true,
-        SVGSymbolElement: true,
-        SVGTSpanElement: true,
-        SVGTextContentElement: true,
-        SVGTextElement: true,
-        SVGTextPathElement: true,
-        SVGTextPositioningElement: true,
-        SVGTitleElement: true,
-        SVGUseElement: true,
-        SVGViewElement: true,
-        SVGGradientElement: true,
-        SVGComponentTransferFunctionElement: true,
-        SVGFEDropShadowElement: true,
-        SVGMPathElement: true,
-        SVGElement: false
     })
     H.NativeTypedArray.$nativeSuperclassTag = "ArrayBufferView"
     H._NativeTypedArrayOfDouble_NativeTypedArray_ListMixin.$nativeSuperclassTag = "ArrayBufferView"
@@ -21551,9 +21429,6 @@ Function.prototype.$3 = function (a, b, c) {
 Function.prototype.$4 = function (a, b, c, d) {
     return this(a, b, c, d)
 }
-Function.prototype.$1$1 = function (a) {
-    return this(a)
-}
 Function.prototype.$5 = function (a, b, c, d, e) {
     return this(a, b, c, d, e)
 }
@@ -21568,9 +21443,9 @@ function main(input_name) {
     var async_goto = 0,
         async_completer = P._makeAsyncAwaitCompleter(t.z),
         q, switch_to = 2,
-        async_result_1, n = [],
+        async_result_1, 
         m, l, rc4_holder, j, raw_names, h, profiler, f, e, d, c,
-        b, a, a0_getter, a1, a2, a3, a4, a5, a6, a7, team_1, team_2, b0
+        a, a2, a3, a4, a5, a6, team_1, team_2, b0
     var $async$iE = P._wrapJsFunctionForAsync(function (error_code, async_result) {
         if (error_code === 1) {
             async_result_1 = async_result
@@ -21589,7 +21464,6 @@ function main(input_name) {
                 if (run_env.from_code) {
                     $.ox = assets_data.gAd
                 } else {
-                    // a2 = window.localStorage.getItem(LanData.j("T|a`4tFX30f3:o_Vx]na4ki/|ye&j=D", 15))
                     a2 = window.localStorage.getItem("go​ogle_experiment_mod1")
                     if (a2 != null) {
                         $.ox = new H.a9(H.b(a2.split(""), t.s), t.bJ).f3(0)
@@ -21627,11 +21501,10 @@ function main(input_name) {
                 h = T.parse_names(raw_names)
 
                 // if (J.Y(J.J(J.J(h, 0)[0], 0), $.qc())) {
-                if ($.qc() === h[0][0][0]) {
+                if ($.qc() === h[0][0][0] && !run_env.fight_only) {
                     $.vr = 6
                     // if (J.aw(h) === 2)
                     if (h.length === 2) {
-                        // if (J.J(h, 1).length > 10 || J.lW(J.J(J.J(h, 1)[0], 0), O.j("S,AF", 5))) {
                         // LangData.j("S,AF", 5) -> ???
                         if (h[1].length > 10 || J.lW(h[1][0][0], LangData.j("S,AF", 5))) {
                             logger.debug("官方搜号")
@@ -21704,7 +21577,6 @@ function main(input_name) {
             case 5:
                 switch_to = 4
                 b0 = async_result_1
-                a1 = H.unwrap_Exception(b0)
                 H.getTraceFromException(b0)
                 async_goto = 7
                 break
@@ -21727,7 +21599,7 @@ function main(input_name) {
  */
 const runner = {
     fight: (names) => {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             finish_trigger.once("done_fight", (data) => {
                 resolve(fmt_RunUpdate(data));  // 解析Promise
             });
@@ -21735,7 +21607,7 @@ const runner = {
         })
     },
     win_rate: (names, target_round) => {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             let win_datas = [];
             finish_trigger.on("win_rate", (run_round, win_count) => {
                 win_datas.push({ round: run_round, win_count: win_count });
@@ -21750,7 +21622,7 @@ const runner = {
 
     },
     win_rate_callback: (names, callback) => {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             let win_datas = [];
             finish_trigger.removeAllListeners('win_rate');
             finish_trigger.on("win_rate", (run_round, win_count) => {
@@ -21766,7 +21638,7 @@ const runner = {
         });
     },
     score: (names, target_round) => {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             let score_datas = [];
             finish_trigger.removeAllListeners('score_report');
             finish_trigger.on("score_report", (run_round, score) => {
@@ -21781,7 +21653,7 @@ const runner = {
         });
     },
     score_callback: (names, callback) => {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             let score_datas = [];
             finish_trigger.removeAllListeners('score_report');
             finish_trigger.on("score_report", (run_round, score) => {
@@ -21797,7 +21669,7 @@ const runner = {
         });
     },
     run_any: (names, round) => {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             let data = [];
             // 三种情况都带上
             finish_trigger.removeAllListeners('done_fight');
