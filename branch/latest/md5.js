@@ -5975,7 +5975,7 @@ var T = {
             s = -1
             for (r = 0; q = $.ox, p = q.length, r < p; ++r) {
                 s += C.String.a8(q, r) - $.b2()
-                $.lj.j(0, C.JsInt.V(s * $.pF(), $.pn()) + $.p9() + p)
+                $.lj.j(0, C.JsInt.V(s * $.pF(), $.pn()) + $.p9() + p) // 3517 20897 16468
             }
         }
         return $.lj
@@ -6002,13 +6002,22 @@ var T = {
                     ++b
                     continue
                 }
-                if (q !== $.mW()) p = q >= $.aI() && q <= $.pO()
-                else p = true
+                if (q !== $.mW()) // 45
+                  // {p = q >= $.aI() && q <= $.pO()}
+                  {
+                    p = q >= 48 && q <= 57
+                  }
+                else {p = true}
                 if (p) {s.$1(0)}
-                else if (q >= $.q6() && q <= $.p5()) {
-                  s.$1(1)}
-                else if (q >= $.pT() && q <= $.q3()) {s.$1($.t())}
-                else s.$1($.B())
+                else if (q >= $.q6() && q <= $.p5()) { // 97 122
+                  s.$1(1)
+                }
+                else if (q >= $.pT() && q <= $.q3()) { // 65 90
+                  // s.$1($.t()) // 2
+                  s.$1(2)
+                }
+                // else s.$1($.B())
+                else s.$1(3)
             } else if (T.mw().w(0, q)) {
               s.$1($.C())}
             else {
@@ -8859,6 +8868,8 @@ J.JsNumber.prototype = {
         p = s < 1 ? s / q : q / s
         return ((p * 9007199254740992 | 0) + (p * 3542243181176521 | 0)) * 599197 + r * 1259 & 536870911
     },
+    /* 计算 a 除以 b 的模数（取余数），并确保结果为正数或零
+    */
     V(a, b) {
         var s
         if (typeof b != "number") throw H.wrap_expression(H.R(b))
@@ -20702,7 +20713,8 @@ var t = (function rtii() {
         return X.k("75%]B3 4yP", 90)
     })
     lazy_old($, "xi", "mW", function () {
-        return X.k("?B72]Go)^E", 57)
+        // return X.k("?B72]Go)^E", 57)
+        return 45
     })
     lazy_old($, "wf", "mL", function () {
         return X.k("'o:uEW5R/I", 51)
@@ -20804,13 +20816,16 @@ var t = (function rtii() {
         return 97
     })
     lazy_old($, "w_", "p5", function () {
-        return X.k("ssdUZ-o{jB", 16)
+        // return X.k("ssdUZ-o{jB", 16)
+        return 122
     })
     lazy_old($, "xC", "pT", function () {
-        return X.k("3=FRq0=+WC", 13)
+        // return X.k("3=FRq0=+WC", 13)
+        return 65
     })
     lazy_old($, "xT", "q3", function () {
-        return X.k(">(E4.I@i=O", 86)
+        // return X.k(">(E4.I@i=O", 86)
+        return 90
     })
     lazy_old($, "wc", "pa", function () {
         return X.D("q;}N|c|3wS", 42)
