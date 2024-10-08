@@ -66,7 +66,7 @@ const logger = {
     },
     /**
      * 在控制台输出一条 trace 信息
-     * @param  {...any} msg 
+     * @param  {...any} msg
      */
     trace: function (...msg) {
         if (this.show_trace()) {
@@ -76,7 +76,7 @@ const logger = {
     },
     /**
      * 在控制台输出一条 debug 信息
-     * @param  {...any} msg 
+     * @param  {...any} msg
      */
     debug: function (...msg) {
         if (this.show_debug()) {
@@ -86,7 +86,7 @@ const logger = {
     },
     /**
      * 在控制台输出一条 info 信息
-     * @param  {...any} msg 
+     * @param  {...any} msg
      */
     info: function (...msg) {
         if (this.show_info()) {
@@ -95,7 +95,7 @@ const logger = {
     },
     /**
      * 在控制台输出一条 warn 信息
-     * @param  {...any} msg 
+     * @param  {...any} msg
      */
     warn: function (...msg) {
         if (this.show_warn()) {
@@ -106,8 +106,8 @@ const logger = {
 }
 
 /**
- * 
- * @param {T.RunUpdate} update 
+ *
+ * @param {T.RunUpdate} update
  * @returns {message: string, source_plr: string, target_plr: string, affect: string}
  */
 function fmt_RunUpdate(update) {
@@ -5997,26 +5997,29 @@ var T = {
         s = new T.lD(e, c)
         for (d = a.length, r = b; r < d; ++r) {
             q = C.String.a8(a, r)
-            if (q < $.d_()) {
+            if (q < $.d_()) { // 128
                 if (q === $.at()) { // 32
                     ++b
                     continue
                 }
                 if (q !== $.mW()) p = q >= $.aI() && q <= $.pO()
                 else p = true
-                if (p) s.$1(0)
-                else if (q >= $.q6() && q <= $.p5()) s.$1(1)
-                else if (q >= $.pT() && q <= $.q3()) s.$1($.t())
+                if (p) {s.$1(0)}
+                else if (q >= $.q6() && q <= $.p5()) {
+                  s.$1(1)}
+                else if (q >= $.pT() && q <= $.q3()) {s.$1($.t())}
                 else s.$1($.B())
-            } else if (T.mw().w(0, q)) s.$1($.C())
+            } else if (T.mw().w(0, q)) {
+              s.$1($.C())}
             else {
-                p = $.X()
+                p = $.X() // 5
                 o = c[p]
                 if (o > 0) c[p] = o + 1
                 s.$1(p)
             }
         }
-        d = $.t()
+        // d = $.t()
+        d = 2
         if (b > d) {
             p = 0
             c[p] = c[p] + b
@@ -7421,7 +7424,7 @@ var T = {
         Plr的属性
         this.k1 -> skills 打乱前的技能，固定顺序，是createSkills操作的属性
         this.k2 -> sortedSkills 打乱后的技能，顺序不固定，initSkills操作的属性
-        this.k4 -> 主动技能actions 
+        this.k4 -> 主动技能actions
         this.q -> 八围，前七围要+36才是显示的数字
 
         k1,k2,k4数组应该是引用技能对象（地址）的，所以更改一个后，在其他会随时同步
@@ -8867,7 +8870,7 @@ J.JsNumber.prototype = {
     },
     /**
      * 处理除法运算的方法。
-     * 
+     *
      * @param {number} a - 被除数
      * @param {number} b - 除数
      * @returns {number} - 除法结果
@@ -8882,7 +8885,7 @@ J.JsNumber.prototype = {
     },
     /**
      * 处理除法运算的方法。
-     * 
+     *
      * @param {number} a - 被除数
      * @param {number} b - 除数
      * @returns {number} - 除法结果
@@ -8892,7 +8895,7 @@ J.JsNumber.prototype = {
     },
     /**
      * 处理除法运算的备用方法。
-     * 
+     *
      * @param {number} a - 被除数
      * @param {number} b - 除数
      * @returns {number} - 除法结果
@@ -8938,6 +8941,8 @@ J.JsString.prototype = {
         if (b >= a.length) H.throw_expression(H.bQ(a, b))
         return a.charCodeAt(b)
     },
+    /* str.charCodeAt(index)
+    */
     a8(a, b) {
         if (b >= a.length) throw H.wrap_expression(H.bQ(a, b))
         return a.charCodeAt(b)
@@ -12715,7 +12720,7 @@ V.ProfileMain.prototype = {
     },
     O() {
         // 实力评分 main
-        // 普评? + 
+        // 普评? +
         logger.debug("评分 输出")
         var async_goto = 0,
             async_completer = P._makeAsyncAwaitCompleter(t.d),
@@ -13328,7 +13333,7 @@ HtmlRenderer.inner_render.prototype = {
     },
     b4() {
         // nextUpdate()
-        // MARK: 渲染器主"循环" 
+        // MARK: 渲染器主"循环"
         var async_goto = 0,
             async_complete = P._makeAsyncAwaitCompleter(t.z),
             q, this_ = this,
@@ -17566,7 +17571,7 @@ T.Plr.prototype = {
             m += $.C() // 4
         }
         for (; sortedSkills = this_.k2, n < sortedSkills.length; ++n) sortedSkills[n].ao(this_, 0)
-        // sorted skills是this.k2, 
+        // sorted skills是this.k2,
     },
     bs() {
         // addSkillsToProc
@@ -20587,7 +20592,8 @@ var t = (function rtii() {
         return X.D("+9[Q]5LgfG", 25)
     })
     lazy_old($, "xo", "X", function () {
-        return X.k("BW1,-W.WUG", 36)
+        // return X.k("BW1,-W.WUG", 36)
+        return 5
     })
     lazy_old($, "wO", "px", function () {
         return X.D("6+S>Rm<-VA", 65)
@@ -20617,7 +20623,8 @@ var t = (function rtii() {
         return X.k("(R5/YDj;mC", 28)
     })
     lazy_old($, "xl", "aI", function () {
-        return X.k(")>]w@n)xzB", 9)
+        // return X.k(")>]w@n)xzB", 9)
+        return 48
     })
     lazy_old($, "wV", "pz", function () {
         return X.D("hgirj(8S{F", 99)
@@ -20852,7 +20859,8 @@ var t = (function rtii() {
         return 61
     })
     lazy_old($, "wF", "pr", function () {
-        return X.k("OsofdmW-bN", 77)
+        // return X.k("OsofdmW-bN", 77)
+        return 250
     })
     lazy_old($, "w6", "d0", function () {
         return X.k("_lv_}:$R/I", 51)
@@ -21443,7 +21451,7 @@ function main(input_name) {
     var async_goto = 0,
         async_completer = P._makeAsyncAwaitCompleter(t.z),
         q, switch_to = 2,
-        async_result_1, 
+        async_result_1,
         m, l, rc4_holder, j, raw_names, h, profiler, f, e, d, c,
         a, a2, a3, a4, a5, a6, team_1, team_2, b0
     var $async$iE = P._wrapJsFunctionForAsync(function (error_code, async_result) {
