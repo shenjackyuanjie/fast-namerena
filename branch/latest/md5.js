@@ -4919,10 +4919,6 @@ var P = {
     lF: function lF(a) {
         this.a = a
     },
-    o_() {
-        // math.random
-        return C.F
-    },
     kT: function kT() { },
     cF: function cF() { },
     p: function p() { }
@@ -8506,7 +8502,7 @@ var HtmlRenderer = {
         let plist = s.querySelector(".plist")
         let pbody = s.querySelector(".pbody")
 
-        s = new HtmlRenderer.inner_render(plist, pbody, engine, $.ro().ax(256))
+        s = new HtmlRenderer.inner_render(plist, pbody, engine, (Math.random() * 256) >>> 0)
         s.e0(engine)
         logger.debug("finish html.outer_main")
         return s
@@ -12678,13 +12674,6 @@ P.lF.prototype = {
         return this.a.dg(a)
     },
     $S: 5
-}
-P.kT.prototype = {
-    ax(a) {
-        // math.random * a
-        if (a <= 0 || a > 4294967296) throw H.wrap_expression(P.tn("max must be in range 0 < max \u2264 2^32, was " + H.as_string(a)))
-        return Math.random() * a >>> 0
-    }
 }
 P.cF.prototype = {
     $icF: 1
@@ -17530,14 +17519,14 @@ T.Plr.prototype = {
     },
     bf() {
         // MARK: 名字长度系数计算
-        var s, this_ = this,
+        var this_ = this,
             q = this_.a, // name
             p = q.length // name.length
         // > 80
-        if (p > 80) throw H.wrap_expression(p)
+        // if (p > 80) throw H.wrap_expression(p)
         p = this_.b.length
         // > 64
-        if (p > $.au()) throw H.wrap_expression(p)
+        // if (p > $.au()) throw H.wrap_expression(p)
         q = T.lC(q) // name
         p = T.lC(this_.b) // team
         // s = $.a4() // 6
@@ -19598,7 +19587,6 @@ LangData.k_.prototype = {
     // MARK: 静态实例
     var static_2 = hunkHelpers._static_2,
         static_1 = hunkHelpers._static_1,
-        static_0 = hunkHelpers._static_0,
         instance_2u = hunkHelpers._instance_2u,
         install_static_tearoff = hunkHelpers.installStaticTearOff,
         instance_1i = hunkHelpers._instance_1i,
@@ -19655,7 +19643,7 @@ LangData.k_.prototype = {
         P._Future, P.i0, P.em, P.hO, P.hP, P.im, P.i1, P.i3, P.i7, P.ii, P.io, P.lf, P.eM, P.kV, P.ie, P.z, P.dY, P.fg, P.js, P.lc, P.lb, P.dq,
         P.Duration, P.fM, P.el, P.kG, P.jm, P.N, P.iq, P.cH,
         W.j8, W.m5, W.cP, W.cr, W.dN, W.eD, W.is, W.dv, W.kE, W.l_, W.ix,
-        P._StructuredClone, P.kw, P.eJ, P.jQ, P.kT, Y.RC4, L.ProfileWinChance, V.ProfileMain, X.ProfileFind,
+        P._StructuredClone, P.kw, P.eJ, P.jQ, Y.RC4, L.ProfileWinChance, V.ProfileMain, X.ProfileFind,
         S.fK,
         HtmlRenderer.inner_render, HtmlRenderer.PlrGroup, HtmlRenderer.PlrView,
         Sgls.a_, Sgls.MEntry,
@@ -20036,7 +20024,6 @@ var t = (function rtii() {
     C.D = new P.fM()
     C.e = new P.kj()
     C.E = new P.kn()
-    C.F = new P.kT()
     C.f = new P._RootZone()
     C.G = new P.iq()
     C.I = new P.Duration(0)
@@ -20260,9 +20247,6 @@ var t = (function rtii() {
         var q = $.lS()
         q = (q && C.H).geJ(q)
         return (q && C.k).eN(q, 16, 16)
-    })
-    lazy_old($, "Az", "ro", function () {
-        return P.o_()
     })
     // MARK: 字符串反混淆
     lazy_old($, "yg", "cl", function () {
@@ -21081,10 +21065,6 @@ var t = (function rtii() {
     })
     lazy_old($, "xY", "q8", function () {
         return X.k("}-?M/~zGrI", 98)
-    })
-    lazy_old($, "zO", "r4", function () {
-        // math.random
-        return P.o_()
     })
     // lazy_old($, "mc", "ns", function () {
     //     // return 0
