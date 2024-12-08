@@ -1287,14 +1287,14 @@ var H = {
         return r
     },
     char_code_to_char(a) {
-        // unicodeToChar
-        var s
-        if (a <= 65535) return String.fromCharCode(a)
-        if (a <= 1114111) {
-            s = a - 65536
-            return String.fromCharCode((C.JsInt.am(s, 10) | 55296) >>> 0, s & 1023 | 56320)
+        if (a < 0 || a > 1114111) {
+            throw new RangeError('Invalid Unicode code point');
         }
-        throw H.wrap_expression(P.a8(a, 0, 1114111, null, null))
+        if (a <= 65535) {
+            return String.fromCharCode(a);
+        }
+        a -= 65536;
+        return String.fromCharCode((a >> 10) + 0xD800, (a & 0x3FF) + 0xDC00);
     },
     aG(a) {
         if (a.date === void 0) a.date = new Date(a.a)
@@ -8872,7 +8872,12 @@ J.JsArray.prototype = {
                 return true
             } return false
     },
-    // push all elements of b to a
+    /**
+     * @description 把b中的元素添加到a中
+     * @param {Array} a source array
+     * @param {Array} b target array
+     * @returns 
+     */
     a5(a, b) {
         var s, r
         if (a.fixed$length) H.throw_expression(P.UnsupportError("addAll"))
@@ -8882,7 +8887,12 @@ J.JsArray.prototype = {
         }
         for (s = b.length, r = 0; r < b.length; b.length === s || (0, H.F)(b), ++r) a.push(b[r])
     },
-    // push all elements of b to a
+    /**
+     * @description 把b中的元素添加到a中，但b是数组
+     * @param {Array} a source array
+     * @param {Array} b target array
+     * @returns 
+     */
     ea(a, b) {
         var s, r = b.length
         if (r === 0) return
@@ -8916,6 +8926,12 @@ J.JsArray.prototype = {
         }
         throw H.wrap_expression(H.fu())
     },
+    /**
+     * 取得数组中指定位置的元素
+     * @param {Array} a source array
+     * @param {index} b index
+     * @returns 
+     */
     ai(a, b) {
         return a[b]
     },
@@ -20011,7 +20027,6 @@ var t = (function rtii() {
         function discriminator(tag) {
             return null;
         }
-        var isBrowser = typeof navigator == "object";
         return {
             getTag: getTag,
             getUnknownTag: getUnknownTag,
