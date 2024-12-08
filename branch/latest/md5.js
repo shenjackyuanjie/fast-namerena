@@ -923,211 +923,238 @@ var H = {
         // H.hL(a, 0, J.aw(a) - 1, b)
         H.hL(a, 0, a.length - 1, b)
     },
+    /**
+     * 
+     * @param {Array} a 
+     * @param {number} b 
+     * @param {number} c 
+     * @param {Object} d - 比较函数对象，包含一个方法 $2
+     * @param {function(*, *): number} d.$2 - 比较函数，接受两个参数并返回一个数值
+     */
     hL(a, b, c, d) {
-        // 插入/快排
-        if (c - b <= 32) {
-            H.ej(a, b, c, d) // 插入排序
+        // 如果需要对整个数组进行排序，可以直接使用 Array.prototype.sort
+        if (b === 0 && c === a.length - 1) {
+            a.sort((x, y) => d.$2(x, y));
         } else {
-            H.ei(a, b, c, d) // 快速排序
+            // 提取要排序的部分
+            let subArray = a.slice(b, c + 1);
+
+            // 使用 Array.prototype.sort 进行排序
+            subArray.sort((x, y) => d.$2(x, y));
+
+            // 将排序结果放回原数组
+            for (let i = 0; i < subArray.length; i++) {
+                a[b + i] = subArray[i];
+            }
         }
+        // // 插入/快排
+        // if (c - b <= 32) {
+        //     H.ej(a, b, c, d) // 插入排序
+        // } else {
+        //     H.ei(a, b, c, d) // 快速排序
+        // }
     },
     ej(a, b, c, d) {
-        var s, r, q, p, o
-        for (s = b + 1, r = J.a3(a); s <= c; ++s) {
-            q = r.h(a, s)
-            p = s
-            while (true) {
-                if (!(p > b && d.$2(r.h(a, p - 1), q) > 0)) break
-                o = p - 1
-                r.m(a, p, r.h(a, o))
-                p = o
-            }
-            r.m(a, p, q)
-        }
+        // 替换成 Array.prototype.sort
+        H.hL(a, b, c, d)
+        // var s, r, q, p, o
+        // for (s = b + 1, r = J.a3(a); s <= c; ++s) {
+        //     q = r.h(a, s)
+        //     p = s
+        //     while (true) {
+        //         if (!(p > b && d.$2(r.h(a, p - 1), q) > 0)) break
+        //         o = p - 1
+        //         r.m(a, p, r.h(a, o))
+        //         p = o
+        //     }
+        //     r.m(a, p, q)
+        // }
     },
     ei(a3, a4, a5, a6) {
-        var s, r, q, p, o, n, m, l, k, j, i = C.JsInt.ag(a5 - a4 + 1, 6),
-            h = a4 + i,
-            g = a5 - i,
-            f = C.JsInt.ag(a4 + a5, 2),
-            e = f - i,
-            d = f + i,
-            c = J.a3(a3),
-            b = c.h(a3, h),
-            a = c.h(a3, e),
-            a0 = c.h(a3, f),
-            a1 = c.h(a3, d),
-            a2 = c.h(a3, g)
-        if (a6.$2(b, a) > 0) {
-            s = a
-            a = b
-            b = s
-        }
-        if (a6.$2(a1, a2) > 0) {
-            s = a2
-            a2 = a1
-            a1 = s
-        }
-        if (a6.$2(b, a0) > 0) {
-            s = a0
-            a0 = b
-            b = s
-        }
-        if (a6.$2(a, a0) > 0) {
-            s = a0
-            a0 = a
-            a = s
-        }
-        if (a6.$2(b, a1) > 0) {
-            s = a1
-            a1 = b
-            b = s
-        }
-        if (a6.$2(a0, a1) > 0) {
-            s = a1
-            a1 = a0
-            a0 = s
-        }
-        if (a6.$2(a, a2) > 0) {
-            s = a2
-            a2 = a
-            a = s
-        }
-        if (a6.$2(a, a0) > 0) {
-            s = a0
-            a0 = a
-            a = s
-        }
-        if (a6.$2(a1, a2) > 0) {
-            s = a2
-            a2 = a1
-            a1 = s
-        }
-        c.m(a3, h, b)
-        c.m(a3, f, a0)
-        c.m(a3, g, a2)
-        c.m(a3, e, c.h(a3, a4))
-        c.m(a3, d, c.h(a3, a5))
-        r = a4 + 1
-        q = a5 - 1
-        // if (J.Y(a6.$2(a, a1), 0)) {
-        if (a6.$2(a, a1) === 0) {
-            for (p = r; p <= q; ++p) {
-                o = c.h(a3, p)
-                n = a6.$2(o, a)
-                if (n === 0) continue
-                if (n < 0) {
-                    if (p !== r) {
-                        c.m(a3, p, c.h(a3, r))
-                        c.m(a3, r, o)
-                    } ++r
-                } else
-                    for (; true;) {
-                        n = a6.$2(c.h(a3, q), a)
-                        if (n > 0) {
-                            --q
-                            continue
-                        } else {
-                            m = q - 1
-                            if (n < 0) {
-                                c.m(a3, p, c.h(a3, r))
-                                l = r + 1
-                                c.m(a3, r, c.h(a3, q))
-                                c.m(a3, q, o)
-                                q = m
-                                r = l
-                                break
-                            } else {
-                                c.m(a3, p, c.h(a3, q))
-                                c.m(a3, q, o)
-                                q = m
-                                break
-                            }
-                        }
-                    }
-            }
-            k = true
-        } else {
-            for (p = r; p <= q; ++p) {
-                o = c.h(a3, p)
-                if (a6.$2(o, a) < 0) {
-                    if (p !== r) {
-                        c.m(a3, p, c.h(a3, r))
-                        c.m(a3, r, o)
-                    } ++r
-                } else if (a6.$2(o, a1) > 0)
-                    for (; true;)
-                        if (a6.$2(c.h(a3, q), a1) > 0) {
-                            --q
-                            if (q < p) break
-                            continue
-                        } else {
-                            m = q - 1
-                            if (a6.$2(c.h(a3, q), a) < 0) {
-                                c.m(a3, p, c.h(a3, r))
-                                l = r + 1
-                                c.m(a3, r, c.h(a3, q))
-                                c.m(a3, q, o)
-                                r = l
-                            } else {
-                                c.m(a3, p, c.h(a3, q))
-                                c.m(a3, q, o)
-                            }
-                            q = m
-                            break
-                        }
-            }
-            k = false
-        }
-        j = r - 1
-        c.m(a3, a4, c.h(a3, j))
-        c.m(a3, j, a)
-        j = q + 1
-        c.m(a3, a5, c.h(a3, j))
-        c.m(a3, j, a1)
-        H.hL(a3, a4, r - 2, a6)
-        H.hL(a3, q + 2, a5, a6)
-        if (k) return
-        if (r < h && q > g) {
-            // for (; J.Y(a6.$2(c.h(a3, r), a), 0);) {
-            for (; a6.$2(c.h(a3, r), a) === 0;) {
-                ++r
-            }
-            // for (; J.Y(a6.$2(c.h(a3, q), a1), 0);) {
-            for (; a6.$2(c.h(a3, q), a1) === 0;) {
-                --q
-            }
-            for (p = r; p <= q; ++p) {
-                o = c.h(a3, p)
-                if (a6.$2(o, a) === 0) {
-                    if (p !== r) {
-                        c.m(a3, p, c.h(a3, r))
-                        c.m(a3, r, o)
-                    } ++r
-                } else if (a6.$2(o, a1) === 0)
-                    for (; true;)
-                        if (a6.$2(c.h(a3, q), a1) === 0) {
-                            --q
-                            if (q < p) break
-                            continue
-                        } else {
-                            m = q - 1
-                            if (a6.$2(c.h(a3, q), a) < 0) {
-                                c.m(a3, p, c.h(a3, r))
-                                l = r + 1
-                                c.m(a3, r, c.h(a3, q))
-                                c.m(a3, q, o)
-                                r = l
-                            } else {
-                                c.m(a3, p, c.h(a3, q))
-                                c.m(a3, q, o)
-                            }
-                            q = m
-                            break
-                        }
-            }
-            H.hL(a3, r, q, a6)
-        } else H.hL(a3, r, q, a6)
+        // 替换成 Array.prototype.sort
+        H.hL(a3, a4, a5, a6)
+        // var s, r, q, p, o, n, m, l, k, j, i = C.JsInt.ag(a5 - a4 + 1, 6),
+        //     h = a4 + i,
+        //     g = a5 - i,
+        //     f = C.JsInt.ag(a4 + a5, 2),
+        //     e = f - i,
+        //     d = f + i,
+        //     c = J.a3(a3),
+        //     b = c.h(a3, h),
+        //     a = c.h(a3, e),
+        //     a0 = c.h(a3, f),
+        //     a1 = c.h(a3, d),
+        //     a2 = c.h(a3, g)
+        // if (a6.$2(b, a) > 0) {
+        //     s = a
+        //     a = b
+        //     b = s
+        // }
+        // if (a6.$2(a1, a2) > 0) {
+        //     s = a2
+        //     a2 = a1
+        //     a1 = s
+        // }
+        // if (a6.$2(b, a0) > 0) {
+        //     s = a0
+        //     a0 = b
+        //     b = s
+        // }
+        // if (a6.$2(a, a0) > 0) {
+        //     s = a0
+        //     a0 = a
+        //     a = s
+        // }
+        // if (a6.$2(b, a1) > 0) {
+        //     s = a1
+        //     a1 = b
+        //     b = s
+        // }
+        // if (a6.$2(a0, a1) > 0) {
+        //     s = a1
+        //     a1 = a0
+        //     a0 = s
+        // }
+        // if (a6.$2(a, a2) > 0) {
+        //     s = a2
+        //     a2 = a
+        //     a = s
+        // }
+        // if (a6.$2(a, a0) > 0) {
+        //     s = a0
+        //     a0 = a
+        //     a = s
+        // }
+        // if (a6.$2(a1, a2) > 0) {
+        //     s = a2
+        //     a2 = a1
+        //     a1 = s
+        // }
+        // c.m(a3, h, b)
+        // c.m(a3, f, a0)
+        // c.m(a3, g, a2)
+        // c.m(a3, e, c.h(a3, a4))
+        // c.m(a3, d, c.h(a3, a5))
+        // r = a4 + 1
+        // q = a5 - 1
+        // // if (J.Y(a6.$2(a, a1), 0)) {
+        // if (a6.$2(a, a1) === 0) {
+        //     for (p = r; p <= q; ++p) {
+        //         o = c.h(a3, p)
+        //         n = a6.$2(o, a)
+        //         if (n === 0) continue
+        //         if (n < 0) {
+        //             if (p !== r) {
+        //                 c.m(a3, p, c.h(a3, r))
+        //                 c.m(a3, r, o)
+        //             } ++r
+        //         } else
+        //             for (; true;) {
+        //                 n = a6.$2(c.h(a3, q), a)
+        //                 if (n > 0) {
+        //                     --q
+        //                     continue
+        //                 } else {
+        //                     m = q - 1
+        //                     if (n < 0) {
+        //                         c.m(a3, p, c.h(a3, r))
+        //                         l = r + 1
+        //                         c.m(a3, r, c.h(a3, q))
+        //                         c.m(a3, q, o)
+        //                         q = m
+        //                         r = l
+        //                         break
+        //                     } else {
+        //                         c.m(a3, p, c.h(a3, q))
+        //                         c.m(a3, q, o)
+        //                         q = m
+        //                         break
+        //                     }
+        //                 }
+        //             }
+        //     }
+        //     k = true
+        // } else {
+        //     for (p = r; p <= q; ++p) {
+        //         o = c.h(a3, p)
+        //         if (a6.$2(o, a) < 0) {
+        //             if (p !== r) {
+        //                 c.m(a3, p, c.h(a3, r))
+        //                 c.m(a3, r, o)
+        //             } ++r
+        //         } else if (a6.$2(o, a1) > 0)
+        //             for (; true;)
+        //                 if (a6.$2(c.h(a3, q), a1) > 0) {
+        //                     --q
+        //                     if (q < p) break
+        //                     continue
+        //                 } else {
+        //                     m = q - 1
+        //                     if (a6.$2(c.h(a3, q), a) < 0) {
+        //                         c.m(a3, p, c.h(a3, r))
+        //                         l = r + 1
+        //                         c.m(a3, r, c.h(a3, q))
+        //                         c.m(a3, q, o)
+        //                         r = l
+        //                     } else {
+        //                         c.m(a3, p, c.h(a3, q))
+        //                         c.m(a3, q, o)
+        //                     }
+        //                     q = m
+        //                     break
+        //                 }
+        //     }
+        //     k = false
+        // }
+        // j = r - 1
+        // c.m(a3, a4, c.h(a3, j))
+        // c.m(a3, j, a)
+        // j = q + 1
+        // c.m(a3, a5, c.h(a3, j))
+        // c.m(a3, j, a1)
+        // H.hL(a3, a4, r - 2, a6)
+        // H.hL(a3, q + 2, a5, a6)
+        // if (k) return
+        // if (r < h && q > g) {
+        //     // for (; J.Y(a6.$2(c.h(a3, r), a), 0);) {
+        //     for (; a6.$2(c.h(a3, r), a) === 0;) {
+        //         ++r
+        //     }
+        //     // for (; J.Y(a6.$2(c.h(a3, q), a1), 0);) {
+        //     for (; a6.$2(c.h(a3, q), a1) === 0;) {
+        //         --q
+        //     }
+        //     for (p = r; p <= q; ++p) {
+        //         o = c.h(a3, p)
+        //         if (a6.$2(o, a) === 0) {
+        //             if (p !== r) {
+        //                 c.m(a3, p, c.h(a3, r))
+        //                 c.m(a3, r, o)
+        //             } ++r
+        //         } else if (a6.$2(o, a1) === 0)
+        //             for (; true;)
+        //                 if (a6.$2(c.h(a3, q), a1) === 0) {
+        //                     --q
+        //                     if (q < p) break
+        //                     continue
+        //                 } else {
+        //                     m = q - 1
+        //                     if (a6.$2(c.h(a3, q), a) < 0) {
+        //                         c.m(a3, p, c.h(a3, r))
+        //                         l = r + 1
+        //                         c.m(a3, r, c.h(a3, q))
+        //                         c.m(a3, q, o)
+        //                         r = l
+        //                     } else {
+        //                         c.m(a3, p, c.h(a3, q))
+        //                         c.m(a3, q, o)
+        //                     }
+        //                     q = m
+        //                     break
+        //                 }
+        //     }
+        //     H.hL(a3, r, q, a6)
+        // } else H.hL(a3, r, q, a6)
     },
     fz: function fz(a) {
         this.a = a
@@ -13062,6 +13089,9 @@ V.ProfileMain.prototype = {
                         ++round_count;
                         ++this_.ch
                         // this.ch -> 运行场数
+                        if (run_env.from_code && this_.ch % 100 == 0) {
+                            logger.info("分数: " + (this_.Q * 10000 / this_.ch) + "@" + this_.ch + "场")
+                        }
                         async_goto = 3
                         break
                     case 4:
@@ -13085,8 +13115,10 @@ V.ProfileMain.prototype = {
                         outer_display.push(T.RunUpdate_init(benchmarking, null, null, C.JsInt.ag(this_.ch, 100), null, 0, 0, 0))
                         if (this_.ch >= this_.d) {
                             // 阶段目标场数达到
-                            logger.debug("分数: " + (this_.Q * 10000 / this_.ch))
                             this_.eS()
+                            if (run_env.from_code) {
+                                logger.info("分数: " + (this_.Q * 10000 / this_.ch) + "@" + this_.ch + "场")
+                            }
                         }
                         result = new T.aq(outer_display, update_list)
                         async_goto = 1
