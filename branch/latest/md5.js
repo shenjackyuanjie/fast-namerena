@@ -1962,10 +1962,6 @@ var H = {
         $.ov = new H.lw(o)
         $.oL = new H.lx(n)
     },
-    // 笑死了, 我把所有调用删掉了(在之前的commit)
-    // applyHooksTransformer(transformer, hooks) {
-    //     return transformer(hooks) || hooks
-    // },
     JSSyntaxRegExp_makeNative(source, multiline, case_sensitive, unicode, dot_all, global) {
         var s = multiline ? "m" : "",
             r = case_sensitive ? "" : "i",
@@ -21897,7 +21893,6 @@ const runner = {
 
 if (run_env.from_code) {
     module.exports = runner;
-    runner.fight("aaaaaa\nbbbbb");
 } else {
     main();
 }
