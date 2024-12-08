@@ -12925,7 +12925,7 @@ V.ProfileMain.prototype = {
                         ++this_.ch
                         // this.ch -> 运行场数
                         if (run_env.from_code && this_.ch % 100 == 0) {
-                            logger.info("分数: " + (this_.Q * 10000 / this_.ch) + "@" + this_.ch + "场")
+                            // logger.info("分数: " + (this_.Q * 10000 / this_.ch) + "@" + this_.ch + "场")
                         }
                         async_goto = 3
                         break
@@ -19343,7 +19343,7 @@ LangData.SuperRC4.prototype = {
         var s, r, q, p, o, n, m = b.length
         for (s = this.c, r = 0; r < c; ++r)
             for (q = 0, p = 0; p < 256; ++p) {
-                o = b[C.JsInt.V(p, m)]
+                o = b[p % m]
                 n = s[p]
                 q = q + n + o & 255
                 s[p] = s[q]
