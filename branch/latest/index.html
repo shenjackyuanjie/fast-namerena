@@ -513,16 +513,12 @@
     </style>
     <script>
         var lanfile = "./assets/zh.json";
-        var adfile = "./assets/gAd.md";
         var ls = window.localStorage;
 
         var customlanpos = window.location.search.lastIndexOf("l=");
         if (customlanpos > 0) {
             lanfile = decodeURIComponent(window.location.search.substring(customlanpos + 2));
         }
-        reqO = new XMLHttpRequest();
-        reqO.open("GET", adfile);
-        reqO.send();
 
         req0 = new XMLHttpRequest();
         req0.open("GET", lanfile);
