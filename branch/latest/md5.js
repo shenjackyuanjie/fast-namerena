@@ -5084,7 +5084,7 @@ var T = {
                 if (o.gT() > 0) o.K(a, e)
             }
             s = b.go
-            r = $.au()
+            r = 64
             if (s > r) b.go = s - r
             else {
                 r = $.at()
@@ -5151,26 +5151,26 @@ var T = {
     getAt(a, b, c) {
         var s, r, q, p, o = b ? a.dx : a.ch,
             n = t.i,
-            m = H.b([c.n() & 127, c.n() & 127, c.n() & 127, o + $.au(), o], n)
+            m = H.b([c.n() & 127, c.n() & 127, c.n() & 127, o + 64, o], n)
         C.Array.aJ(m)
         s = m[2]
         m = c.n()
-        r = $.au()
+        r = 64
         q = c.n()
-        p = $.au()
+        p = 64
         n = H.b([(m & 63) + r, (q & 63) + p, o + p], n)
         C.Array.aJ(n)
         return s * n[1] * a.id
     },
     d9(a, b, c) {
-        if (b) return a.dy + $.au()
-        return a.cx + $.au()
+        if (b) return a.dy + 64
+        return a.cx + 64
     },
     bW(a, b, c) {
         var s = $.eW() + b - a,
             r = $.ap()
         if (s < r) s = r
-        if (s > $.au()) s = C.JsInt.P(s, 4) + $.aI()
+        if (s > 64) s = C.JsInt.P(s, 4) + $.aI()
         return c.n() <= s
     },
     rateHiHp(a) {
@@ -14698,7 +14698,7 @@ T.SklClone.prototype = {
     v(a, b, c, d) {
         var s, r, q, p, o, n, m, l, this_ = this,
             j = null
-        this_.f = C.d.R(this_.f * ((c.n() & 63) + $.au()) / 128)
+        this_.f = C.d.R(this_.f * ((c.n() & 63) + 64) / 128)
         if (!this_.r.r2.J(0, $.a7())) {
             s = this_.r.q
             for (r = 0; q = $.ap(), r < q; ++r) s[r] = C.d.R(s[r] * $.p1())
@@ -15097,7 +15097,7 @@ T.SklHealCallback.prototype = {
         var s
         if (b.gT() < 0) {
             s = this.a
-            s.a = s.a + $.au()
+            s.a = s.a + 64
         }
     },
     $S: 16
@@ -15257,7 +15257,7 @@ T.PoisonState.prototype = {
             q = n.z
             p = s * (r + (q - r) * $.oX()) / q
             n.y = s - p
-            o = C.d.R(p / (m.dx + $.au()))
+            o = C.d.R(p / (m.dx + 64))
             // sklPoisonDamage
             // [1][毒性发作]
             b.a.push(T.RunUpdate_init(LangData.get_lang("nEWa"), n.r, m, null, null, 0, 1000, 100))
@@ -15619,7 +15619,7 @@ T.SklSlow.prototype = {
             n.push(T.RunUpdate_init(LangData.get_lang("BtqN"), o, q.r, p, p, $.as(), 1000, 100))
             return
         }
-        o.l = o.l - (o.cy + $.au())
+        o.l = o.l - (o.cy + 64)
         s = o.r2
         r = t.S.a(s.h(0, $.bi()))
         if (r == null) {
@@ -15931,7 +15931,7 @@ T.PlrBoost.prototype = {
             q = this_.t
             q[s] = q[s] + r
         }
-        for (s = $.au(); s < 128; ++s) {
+        for (s = 64; s < 128; ++s) {
             q = this_.t
             p = (q[s] | $.aR()) >>> 0
             q[s] = p
@@ -17555,7 +17555,7 @@ T.Plr.prototype = {
         // if (p > 80) throw H.wrap_expression(p)
         p = this_.b.length
         // > 64
-        // if (p > $.au()) throw H.wrap_expression(p)
+        // if (p > 64) throw H.wrap_expression(p)
         q = T.lC(q) // name
         p = T.lC(this_.b) // team
         // s = $.a4() // 6
@@ -17974,7 +17974,7 @@ T.Plr.prototype = {
         if (s == null) s = this_.k3
         // skl.act(targets, smart, r, updates);
         s.v(o == null ? s.aa(0, smart, b) : o, smart, b, c)
-        if ((b.n() & 127) < this_.fr + $.au()) this_.go = this_.go + $.aR()
+        if ((b.n() & 127) < this_.fr + 64) this_.go = this_.go + $.aR()
         this_.at(b, c)
         if (this_.Z) this_.bL(k, c)
     },
@@ -20735,10 +20735,6 @@ var t = (function rtii() {
     lazy_old($, "xt", "a4", function () {
         // return X.k("`8fQ/CxFQA", 2)
         return 6
-    })
-    lazy_old($, "xA", "au", function () {
-        // return X.k("[kT:g-|3XH", 42)
-        return 64
     })
     lazy_old($, "w1", "cj", function () {
         // return X.D("`H)#qK]@HN", 15)
