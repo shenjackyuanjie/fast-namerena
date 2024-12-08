@@ -18,7 +18,8 @@ let stop_bomb = false;
 
 let assets_data = {
     lang: null,
-    gAd: null
+    gAd: null,
+    parsed_gAd: null,
 };
 
 let run_env = {
@@ -6206,16 +6207,16 @@ var T = {
     },
     mw() {
         var s, r, q, p
-        if ($.lj == null) {
-            $.lj = P.c5(t.B)
+        if (assets_data.parsed_gAd == null) {
+            assets_data.parsed_gAd = P.c5(t.B)
             s = -1
             for (r = 0; q = assets_data.gAd, p = q.length, r < p; ++r) {
                 s += C.String.a8(q, r) - 63 // 63
-                // $.lj.j(0, C.JsInt.V(s * $.pF(), $.pn()) + $.p9() + p) // 3517 20897 16468
-                $.lj.j(0, C.JsInt.V(s * 3517, 20897) + 16468 + p) // 3517 20897 16468
+                // assets_data.parsed_gAd.j(0, C.JsInt.V(s * $.pF(), $.pn()) + $.p9() + p) // 3517 20897 16468
+                assets_data.parsed_gAd.j(0, C.JsInt.V(s * 3517, 20897) + 16468 + p) // 3517 20897 16468
             }
         }
-        return $.lj
+        return assets_data.parsed_gAd
     },
     lC(a) {
         var s, r, q, p, o, n, m, l, k, j, i, h, g, f,
@@ -20124,7 +20125,6 @@ var t = (function rtii() {
         var s = t.X
         return P.cu(s, s)
     }()
-    $.lj = null
     $.mb = 0
     $.nV = 0
     $.nW = 0
