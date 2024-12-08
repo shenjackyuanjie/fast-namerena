@@ -490,9 +490,11 @@ if (run_env.from_code) {
     assets_data.lang = lang_data;
 
     // 加载 gAd.md
-    const gAd_path = path.join(assets_path, "gAd.md");
-    const gAd_data = fs.readFileSync(gAd_path, "utf-8");
-    assets_data.gAd = gAd_data;
+    if (run_env.use_external_gAd) {
+        const gAd_path = path.join(assets_path, "gAd.md");
+        const gAd_data = fs.readFileSync(gAd_path, "utf-8");
+        assets_data.gAd = gAd_data;
+    }
 
 }
 
@@ -6223,7 +6225,7 @@ var T = {
         s = new T.lD(e, c)
         for (d = a.length, r = b; r < d; ++r) {
             q = C.String.a8(a, r)
-            if (q < $.d_()) { // 128
+            if (q < 128) { // 128
                 if (q === $.at()) { // 32
                     ++b
                     continue
@@ -6338,7 +6340,7 @@ var T = {
         // H.ar(h)
         g = Math.log(p * o * l * j * i * Math.pow(d, h))
         if (g > $.aI()) {
-            f = $.n1()
+            f = 80
             if (g > f) { g = f }
             g = g * $.b0() + $.eW()
         } else if (g < $.eW()) { g = g * $.b0() + $.cY() }
@@ -8790,7 +8792,7 @@ var HtmlRenderer = {
         this.b = b
     }
 }
-var w = [A, C, Sgls, H, J, L, LangData, P, S, T, V, W, X, Y, HtmlRenderer]
+// var w = [A, C, Sgls, H, J, L, LangData, P, S, T, V, W, X, Y, HtmlRenderer]
 
 var $ = {}
 
@@ -8843,7 +8845,7 @@ J.PlainJavaScriptObject.prototype = {}
 J.UnknownJavaScriptObject.prototype = {}
 J.JavaScriptFunction.prototype = {
     k(a) {
-        var s = a[$.oR()]
+        let s = a[$.oR()]
         if (s == null) return this.dQ(a)
         return "JavaScript function for " + H.as_string(J.b4(s))
     }
@@ -14678,7 +14680,7 @@ T.SklClone.prototype = {
     v(a, b, c, d) {
         var s, r, q, p, o, n, m, l, this_ = this,
             j = null
-        this_.f = C.d.R(this_.f * ((c.n() & 63) + $.au()) / $.cj())
+        this_.f = C.d.R(this_.f * ((c.n() & 63) + $.au()) / 128)
         if (!this_.r.r2.J(0, $.a7())) {
             s = this_.r.q
             for (r = 0; q = $.ap(), r < q; ++r) s[r] = C.d.R(s[r] * $.p1())
@@ -15193,7 +15195,7 @@ T.SklIron.prototype = {
         if (r === 0) {
             s.K(null, b)
             r = s.r
-            r.l = r.l - $.d_()
+            r.l = r.l - 128
         }
     },
     ar(a) {
@@ -15911,7 +15913,7 @@ T.PlrBoost.prototype = {
             q = this_.t
             q[s] = q[s] + r
         }
-        for (s = $.au(); s < $.d_(); ++s) {
+        for (s = $.au(); s < 128; ++s) {
             q = this_.t
             p = (q[s] | $.aR()) >>> 0
             q[s] = p
@@ -15957,7 +15959,7 @@ T.PlrEx.prototype = {
             o = $.mV()
             if (p < o) q[s] = ((p & $.eT()) >>> 0) + o
         }
-        for (s = r; s < $.d_(); ++s) {
+        for (s = r; s < 128; ++s) {
             q = this_.t
             p = q[s]
             if (p < $.aR()) q[s] = p + $.at()
@@ -16528,7 +16530,7 @@ T.SklMarioGet.prototype = {
 }
 T.SklMarioReraise.prototype = {
     ga4() {
-        return $.lG()
+        return 10
     },
     ao(a, b) { },
     b1(a, b, c, d) {
@@ -17705,7 +17707,7 @@ T.Plr.prototype = {
         r.fr = q
         r.fx = new T.PostActionImpl(r)
         r.fy = new T.UpdateStateImpl(r)
-        q.r = $.lG()
+        q.r = 10
         skills.push(r) // 18
 
         r = 0
@@ -17874,15 +17876,15 @@ T.Plr.prototype = {
         }
         */
         var s, this_ = this
-        // $.cj() => 128
-        // $.n1() => 80
-        this_.ch = this_.b0(this_.q[0], $.cj())
-        this_.cx = this_.b0(this_.q[1], $.cj())
-        this_.cy = this_.b0(this_.q[2], $.cj()) + 160
-        this_.db = this_.b0(this_.q[3], $.cj())
-        this_.dx = this_.b0(this_.q[4], $.cj())
-        this_.dy = this_.b0(this_.q[5], $.cj())
-        this_.fr = this_.b0(this_.q[6], $.n1())
+        // 128 => 128
+        // 80 => 80
+        this_.ch = this_.b0(this_.q[0], 128)
+        this_.cx = this_.b0(this_.q[1], 128)
+        this_.cy = this_.b0(this_.q[2], 128) + 160
+        this_.db = this_.b0(this_.q[3], 128)
+        this_.dx = this_.b0(this_.q[4], 128)
+        this_.dy = this_.b0(this_.q[5], 128)
+        this_.fr = this_.b0(this_.q[6], 80)
         this_.fy = this_.q[7]
 
         this_.ci()
@@ -18627,7 +18629,7 @@ T.SklReflect.prototype = {
 }
 T.SklReraise.prototype = {
     ga4() {
-        return $.lG()
+        return 10
     },
     b1(a, b, c, d) {
         var s, r, q, p = this,
@@ -20800,19 +20802,11 @@ var t = (function rtii() {
     lazy_old($, "xf", "pJ", function () {
         return X.D("%xD:GhI4QU", 48)
     })
-    lazy_old($, "vU", "lG", function () {
-        // return X.D("'00dRlSitU", 54)
-        return 10
-    })
     lazy_old($, "vW", "p3", function () {
         return X.k("`aa.s&j;mC", 14)
     })
     lazy_old($, "wD", "pq", function () {
         return X.k("y{5]U4S1PH", 83)
-    })
-    lazy_old($, "w0", "d_", function () {
-        // return X.k("?`C3ou}R1L", 67)
-        return 128
     })
     lazy_old($, "wj", "pe", function () {
         return X.D("ThP:gnU]RI", 16)
@@ -21034,10 +21028,6 @@ var t = (function rtii() {
         // return X.k(">(E4.I@i=O", 86)
         return 90
     })
-    lazy_old($, "xO", "n1", function () {
-        // return X.D("Jn|940%'0C", 76)
-        return 80
-    })
     lazy_old($, "x3", "pD", function () {
         return X.k("AQI,4l~@gF", 31)
     })
@@ -21101,7 +21091,7 @@ var t = (function rtii() {
     //     return 0
     // })
     lazy_old($, "ta", "r2", function () {
-        return $.mb + $.d_()
+        return $.mb + 128
     })
     lazy_old($, "tb", "r3", function () {
         return 0
@@ -21663,12 +21653,12 @@ function main(input_name) {
                 team_1 = LangData.oC(true).c
                 team_2 = team_1[$.B()]
                 $.mb = team_2
-                $.ta = team_2 + $.d_()
+                $.ta = team_2 + 128
                 $.nV = team_1[4]
                 $.nW = team_1[5]
                 $.tb = team_1[$.a4()]
 
-                if (run_env.from_code) {
+                if (run_env.from_code && run_env.use_external_gAd) {
                     $.ox = assets_data.gAd
                 } else {
                     a2 = window.localStorage.getItem("go​ogle_experiment_mod1")
