@@ -332,6 +332,18 @@ function char_in_common_char_lst(char) {
 }
 
 /**
+ * 常用字符的长度
+ * @returns {number}
+ */
+function common_char_len() {
+    if (run_env.use_external_gAd) {
+        return T.mw().a
+    } else {
+        return CHAR_SET.size
+    }
+}
+
+/**
  *
  * @param {T.RunUpdate} update
  * @returns {message: string, source_plr: string, target_plr: string, affect: string}
@@ -6197,7 +6209,7 @@ var T = {
         if ($.lj == null) {
             $.lj = P.c5(t.B)
             s = -1
-            for (r = 0; q = $.ox, p = q.length, r < p; ++r) {
+            for (r = 0; q = assets_data.gAd, p = q.length, r < p; ++r) {
                 s += C.String.a8(q, r) - 63 // 63
                 // $.lj.j(0, C.JsInt.V(s * $.pF(), $.pn()) + $.p9() + p) // 3517 20897 16468
                 $.lj.j(0, C.JsInt.V(s * 3517, 20897) + 16468 + p) // 3517 20897 16468
@@ -6341,10 +6353,10 @@ var T = {
             g = g * $.b0() + $.eW()
         } else if (g < $.eW()) { g = g * $.b0() + $.cY() }
         g -= $.at()
-        if (g > 0) { return g / ($.rp() - T.mw().a) }
+        if (g > 0) { return g / ($.rp() - common_char_len()) }
         else {
             d = $.rq()
-            if (g < -d) return (g + d) / ($.pD() + d - T.mw().a)
+            if (g < -d) return (g + d) / ($.pD() + d - common_char_len())
         }
         return 0
     },
@@ -8788,7 +8800,7 @@ var HtmlRenderer = {
         this.b = b
     }
 }
-// var w = [A, C, Sgls, H, J, L, LangData, P, S, T, V, W, X, Y, HtmlRenderer]
+var w = [A, C, Sgls, H, J, L, LangData, P, S, T, V, W, X, Y, HtmlRenderer]
 
 var $ = {}
 
@@ -8841,7 +8853,7 @@ J.PlainJavaScriptObject.prototype = {}
 J.UnknownJavaScriptObject.prototype = {}
 J.JavaScriptFunction.prototype = {
     k(a) {
-        let s = a[$.oR()]
+        var s = a[$.oR()]
         if (s == null) return this.dQ(a)
         return "JavaScript function for " + H.as_string(J.b4(s))
     }
@@ -20112,7 +20124,6 @@ var t = (function rtii() {
         var s = t.X
         return P.cu(s, s)
     }()
-    $.ox = ""
     $.lj = null
     $.mb = 0
     $.nV = 0
@@ -21653,12 +21664,10 @@ function main(input_name) {
                 $.nW = team_1[5]
                 $.tb = team_1[$.a4()]
 
-                if (run_env.from_code && run_env.use_external_gAd) {
-                    $.ox = assets_data.gAd
-                } else {
+                if (!run_env.from_code) {
                     a2 = window.localStorage.getItem("go​ogle_experiment_mod1")
                     if (a2 != null) {
-                        $.ox = new H.a9(H.b(a2.split(""), t.s), t.bJ).f3(0)
+                        assets_data.gAd = new H.a9(H.b(a2.split(""), t.s), t.bJ).f3(0)
                     }
                 }
 
