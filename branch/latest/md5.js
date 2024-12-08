@@ -8467,15 +8467,24 @@ Y.RC4.prototype = {
     n() {
         // nextByte
         // next byte from ShadowR
-        var _this = this,
-            r = _this.a = _this.a + 1 & 255,
-            q = _this.b,
-            p = _this.c,
-            o = p[r]
-        q = _this.b = q + o & 255
-        p[r] = p[q]
-        p[q] = o
-        return p[p[r] + p[q] & 255]
+        // var _this = this,
+        //     r = _this.a = _this.a + 1 & 255,
+        //     q = _this.b,
+        //     p = _this.c,
+        //     o = p[r]
+        // q = _this.b = q + o & 255
+        // p[r] = p[q]
+        // p[q] = o
+        // return p[p[r] + p[q] & 255]
+
+        const r = this.a = (this.a + 1) & 255;
+        let q = this.b;
+        const p = this.c;
+        const o = p[r];
+        q = this.b = (q + o) & 255;
+        p[r] = p[q];
+        p[q] = o;
+        return p[(p[r] + p[q]) & 255];
     }
 }
 var HtmlRenderer = {
