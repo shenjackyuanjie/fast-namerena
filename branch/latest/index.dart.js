@@ -563,7 +563,8 @@ var B = {
                     case 0:
                         $.hA = H.setRuntimeTypeInfo([], t.i)
                         for (q = 0; q < 8; ++q) $.hA.push($.kD().a3(256))
-                        $.i7 = G.cZ(O.w("D1Oce", 54), G.hv())
+                        // gAd
+                        // $.i7 = G.cZ(O.w("D1Oce", 54), G.hv())
                         $.ie = G.cZ(O.w("pT#tU", 98), G.nq())
                         $.id = G.cZ(O.w("vJf:N", 6), G.hv())
                         $.i8 = G.cZ(O.w("K_sGC", 58), G.hv())
@@ -703,9 +704,10 @@ var B = {
             if (p != null && $.id.d != null && $.i8.d != null && p.d != null) {
                 // s = O.w("k4w`nL1(zURGrm{kMa@1C`J^+LT,ubF", 27)
                 s = "go​ogle_experiment_mod1";
-                if ((window.localStorage.getItem(s) == null || C.a.n(window.localStorage.getItem(s).length, 100) !== 0) && $.i7.d != null) {
-                    window.localStorage.setItem(s, new H.c3(H.setRuntimeTypeInfo($.i7.d.split(""), t.s), t.H).cZ(0))
-                }
+                // 这里是 gAd 的请求, 去掉
+                // if ((window.localStorage.getItem(s) == null || C.a.n(window.localStorage.getItem(s).length, 100) !== 0) && $.i7.d != null) {
+                //     window.localStorage.setItem(s, new H.c3(H.setRuntimeTypeInfo($.i7.d.split(""), t.s), t.H).cZ(0))
+                // }
                 // $.ht = J.iH($.id.d, "[1,3,0,9]", J.aD($.hA))
                 // MARK: 替换 md5.js
                 $.ht = J.iH($.id.d, "[1, 3, 0, 9]", J.aD($.hA))
@@ -11273,7 +11275,8 @@ var t = (function rtii() {
     $.ii = null
     $.hA = null
     $.jU = null
-    $.i7 = null
+    // gAd
+    // $.i7 = null
     $.ie = null
     $.id = null
     $.i8 = null
