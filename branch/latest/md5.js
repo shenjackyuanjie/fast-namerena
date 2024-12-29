@@ -325,7 +325,7 @@ const CHAR_SET = new Set([
  * 搜索某个字符是不是在上面的这个列表里
  * 用于优化掉 gAd
  * @param {number} char 
- * @returns {boolean}
+ * @returns {boolean} 是不是在列表里
  */
 function char_in_common_char_lst(char) {
     if (run_env.use_external_gAd) {
@@ -337,7 +337,7 @@ function char_in_common_char_lst(char) {
 
 /**
  * 常用字符的长度
- * @returns {number}
+ * @returns {number} len
  */
 function common_char_len() {
     if (run_env.use_external_gAd) {
@@ -349,8 +349,8 @@ function common_char_len() {
 
 /**
  * 比较 (J.bO())
- * @param {*} a 
- * @param {*} b 
+ * @param {number} a 
+ * @param {number} b 
  * @returns 
  */
 function compare_bO(a, b) {
@@ -371,7 +371,7 @@ function compare_bO(a, b) {
 /**
  *
  * @param {T.RunUpdate} update
- * @returns {message: string, source_plr: string, target_plr: string, affect: string}
+ * @returns {message: string, source_plr: string, target_plr: string, affect: string} msg
  */
 function fmt_RunUpdate(update) {
     let message = update.d;
@@ -8838,7 +8838,6 @@ J.JsArray.prototype = {
         return false
     },
     bb(a, b) {
-        // if (a.immutable$list) H.throw_expression(P.UnsupportError("sort"))
         H.tJ(a, b == null ? J.bO() : b)
     },
     aJ(a) {
@@ -16867,8 +16866,6 @@ T.Engine.prototype = {
                         k = H.b(n.slice(0), m)
                         runner.d = k
                         n = H.b(n.slice(0), m)
-                        // if (n.immutable$list)
-                        //     H.throw_expression(P.UnsupportError("sort"))
                         m = n.length - 1
                         H.hL(n, 0, m, T.mD())
                         // if (m - 0 <= 32) H.ej(n, 0, m, T.mD())
@@ -16901,7 +16898,9 @@ T.Engine.prototype = {
                         this_.b.bO(H.b([0], m))
                         C.Array.a5(name2p, b1.f)
                     }
+                    // p.spsum = rander.r255;=
                     for (o = this_.c, n = o.length, h = 0; h < o.length; o.length === n || (0, H.F)(o), ++h) o[h].l = this_.b.n()
+                // for each
                 case 1:
                     return P._asyncReturn(q, async_completer)
             }
@@ -16915,9 +16914,8 @@ T.Engine.prototype = {
         // void round(RunUpdates updates) {
         var s, this_ = this,
             q = this_.ch,
-            p = 1,
             players = this_.c
-        p = C.JsInt.V(q + p, players.length)
+        let p = C.JsInt.V(q + 1, players.length)
         this_.ch = p
 
         // players[roundPos].step(r, updates);
@@ -17512,7 +17510,10 @@ T.Plr.prototype = {
         }
         if (diyskills) {
             this_.diy_skills(diyskills)
-        } else this_.dm(C.Array.cL(this_.t, 64), C.Array.cL(this_.E, 64)) // initSkills
+        } else {
+            // initSkills
+            this_.dm(C.Array.cL(this_.t, 64), C.Array.cL(this_.E, 64))
+        } 
 
 
         weapon = this_.weapon
@@ -17526,9 +17527,7 @@ T.Plr.prototype = {
         // for (s = 10; s < 31; s += $.B()) {
         for (s = 10; s < 31; s += 3) {
             r = this_.q
-            // q = C.Array.al(this_.t, s, s + $.B())
             q = C.Array.al(this_.t, s, s + 3)
-            // if (q.immutable$list) H.throw_expression(P.UnsupportError("sort"))
             p = q.length - 1
             // sort
             H.hL(q, 0, p, J.bO())
@@ -17676,21 +17675,15 @@ T.Plr.prototype = {
             if (!(n < $.aR() && n < this_.k2.length)) break
             skill = this_.k2[n]
             sortedSkills = C.Array.al(list, m, m + 4)
-            // if (sortedSkills.immutable$list) H.throw_expression(P.UnsupportError("sort"))
             q = sortedSkills.length - 1
             H.hL(sortedSkills, 0, q, J.bO())
-            // if (q - 0 <= 32) H.ej(sortedSkills, 0, q, J.bO())
-            // else H.ei(sortedSkills, 0, q, J.bO())
             p = sortedSkills[0] - 10
             skill.ao(this_, p)
             sortedSkills = 0
             if (p > sortedSkills) {
                 sortedSkills = C.Array.al(original, m, m + 4)
-                // if (sortedSkills.immutable$list) H.throw_expression(P.UnsupportError("sort"))
                 q = sortedSkills.length - 1
                 H.hL(sortedSkills, 0, q, J.bO())
-                // if (q - 0 <= 32) H.ej(sortedSkills, 0, q, J.bO())
-                // else H.ei(sortedSkills, 0, q, J.bO())
                 q = 0
                 if (sortedSkills[q] - 10 <= q) skill.e = true
             } ++n
@@ -17805,7 +17798,9 @@ T.Plr.prototype = {
     dN(a, b, c) {
         // void step(R r, RunUpdates updates) {
         var s, r, q, this_ = this
+        // hp <= 0
         if (this_.fx <= 0) return
+
         s = this_.cy * (b.n() & 3)
         r = this_.ry
         if (!r.gbv(r))
@@ -17825,6 +17820,7 @@ T.Plr.prototype = {
         0
         // preAction
         s = this_.fn(smart, b, c)
+        // frozen
         if (this_.A) return
         if (s == null) {
             r = (b.n() & 15) + $.av()
@@ -18006,7 +18002,6 @@ T.Plr.prototype = {
             s = H.b([], t.i)
             for (r = 10; r < $.d1(); r += $.B()) {
                 q = C.Array.al(o.E, r, r + $.B())
-                // if (q.immutable$list) H.throw_expression(P.UnsupportError("sort"))
                 p = q.length - 1
                 H.hL(q, 0, p, J.bO())
                 // if (p - 0 <= 32) H.ej(q, 0, p, J.bO())
