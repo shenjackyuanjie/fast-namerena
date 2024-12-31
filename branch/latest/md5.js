@@ -8806,6 +8806,13 @@ J.JsArray.prototype = {
     ai(a, b) {
         return a[b]
     },
+    /**
+     * a[b:c]
+     * @param {Array} a source array 
+     * @param {number} b start index
+     * @param {number} c end index
+     * @returns 
+     */
     al(a, b, c) {
         var s
         if (b == null) H.throw_expression(H.R(b))
@@ -17428,9 +17435,6 @@ T.Plr.prototype = {
     b0(a, b) {
         // 这又是啥
         const result = Math.round(a * (1 - this.x / b))
-        // if (a !== result) {
-        //     logger.info("getting a", a + 36, "b", b, "this.x", this.x, "result", result + 36, "Δ=", result - a, this.a)
-        // }
         return result
     },
     cA(a) {
@@ -17512,6 +17516,8 @@ T.Plr.prototype = {
             this_.diy_skills(diyskills)
         } else {
             // initSkills
+            // this.t -> 增益过的 name_base
+            // this.E -> 原始 name_base
             this_.dm(C.Array.cL(this_.t, 64), C.Array.cL(this_.E, 64))
         } 
 
@@ -17672,22 +17678,25 @@ T.Plr.prototype = {
             m = 0
         // src中被移除的计算技能部分
         while (true) {
-            if (!(n < $.aR() && n < this_.k2.length)) break
+            if (!(n < 16 && n < this_.k2.length)) break
             skill = this_.k2[n]
+            // list[m:m+4]
             sortedSkills = C.Array.al(list, m, m + 4)
             q = sortedSkills.length - 1
+            // sort
             H.hL(sortedSkills, 0, q, J.bO())
             p = sortedSkills[0] - 10
+            // skill.init
             skill.ao(this_, p)
-            sortedSkills = 0
-            if (p > sortedSkills) {
+            if (p > 0) {
                 sortedSkills = C.Array.al(original, m, m + 4)
                 q = sortedSkills.length - 1
+                // sort
                 H.hL(sortedSkills, 0, q, J.bO())
-                q = 0
-                if (sortedSkills[q] - 10 <= q) skill.e = true
-            } ++n
-            m += 4 // 4
+                if (sortedSkills[q] - 10 <= 0) skill.e = true
+            }
+            n += 1;
+            m += 4;
         }
         for (; sortedSkills = this_.k2, n < sortedSkills.length; ++n) sortedSkills[n].ao(this_, 0)
         // sorted skills是this.k2,
@@ -20773,7 +20782,8 @@ var t = (function rtii() {
         return 18
     })
     lazy_old($, "x1", "mT", function () {
-        return X.k("'Y_#*mIydE", 25)
+        // return X.k("'Y_#*mIydE", 25)
+        return 16
     })
     lazy_old($, "wA", "po", function () {
         return X.k("Vi~q&TZ3'B", 10)
