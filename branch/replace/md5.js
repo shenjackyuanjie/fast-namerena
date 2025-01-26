@@ -17693,7 +17693,7 @@ T.Plr.prototype = {
                 q = sortedSkills.length - 1
                 // sort
                 H.hL(sortedSkills, 0, q, J.bO())
-                if (sortedSkills[q] - 10 <= 0) skill.e = true
+                if (sortedSkills[0] - 10 <= 0) skill.e = true
             }
             n += 1;
             m += 4;
