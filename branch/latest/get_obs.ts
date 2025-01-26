@@ -1,4 +1,5 @@
-async function main() {// require: bun
+// require: bun
+async function main() {
     const have_bun = Bun === undefined ? false : true;
 
     if (!have_bun) {
