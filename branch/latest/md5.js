@@ -2,13 +2,14 @@
 
 /**
  * 更新日志记录(确信)
+ * 0.5.1: 使用 get_obs.ts 把所有的 $.xx 的混淆后常量替换成字面量了
  * 0.5.0: 添加了 external_gAd, 用于外部传入 gAd
  * 毕竟 gAd 这东西感觉还不如直接存一个巨大的列表
  * 以及, 喜报, 0.4.5 到 0.5.0 (的最后几个 commit ) 实现了 7.85907859% 的优化
  * 369s -> 340s
  * 测试样例: bencharms/045-050.md
  */
-const _version_ = "0.5.0";
+const _version_ = "0.5.1";
 
 /**
  * 用于在 api 模式下触发轮询
@@ -20218,38 +20219,48 @@ var t = (function rtii() {
         return "piston"
     })
     lazy_old($, "y5", "aJ", function () {
-        return LangData.j("xQrBQ}JLA", 99)
+        // return LangData.j("xQrBQ}JLA", 99)
+        return "berserk"
     })
     lazy_old($, "y8", "aE", function () {
-        return LangData.j("h)T*jpA", 81)
+        // return LangData.j("h)T*jpA", 81)
+        return "charm"
     })
     lazy_old($, "ye", "bh", function () {
-        return LangData.j("ayfH8tA", 39)
+        // return LangData.j("ayfH8tA", 39)
+        return "curse"
     })
     lazy_old($, "yt", "n7", function () {
-        return LangData.j("c6sZK", 71)
+        // return LangData.j("c6sZK", 71)
+        return "iron"
     })
     lazy_old($, "zj", "bi", function () {
-        return LangData.j("EaS1c", 5)
+        // return LangData.j("EaS1c", 5)
+        return "slow"
     })
     lazy_old($, "yo", "d4", function () {
-        return LangData.j("9s|Y@jA", 81)
+        // return LangData.j("9s|Y@jA", 81)
+        return "haste"
     })
     lazy_old($, "yc", "iJ", function () {
-        return LangData.j("V_%Fz%}cF", 48)
+        // return LangData.j("V_%Fz%}cF", 48)
+        return "corpose"
     })
     lazy_old($, "zg", "lR", function () {
         // return LangData.j("LGI)Za A", 74)
         return "shield"
     })
     lazy_old($, "yL", "d6", function () {
-        return LangData.j("r9sG{s5|C", 36)
+        // return LangData.j("r9sG{s5|C", 36)
+        return "protect"
     })
     lazy_old($, "zo", "nl", function () {
-        return LangData.j("Z430:)1HG", 4)
+        // return LangData.j("Z430:)1HG", 4)
+        return "upgrade"
     })
     lazy_old($, "yf", "lP", function () {
-        return LangData.j("e'teI>NNCU", 17)
+        // return LangData.j("e'teI>NNCU", 17)
+        return "disperse"
     })
     lazy_old($, "zA", "qZ", function () {
         // return LangData.j("CXmc>1nB", 39)
@@ -20320,88 +20331,116 @@ var t = (function rtii() {
         return "Rinick"
     })
     lazy_old($, "yw", "n8", function () {
-        return LangData.j("<2g5xSgD", 9)
+        // return LangData.j("<2g5xSgD", 9)
+        return "库瓒"
     })
     lazy_old($, "yx", "qk", function () {
-        return LangData.j("&N8l5JCD", 30)
+        // return LangData.j("&N8l5JCD", 30)
+        return "庫瓒"
     })
     lazy_old($, "yn", "n6", function () {
-        return LangData.j("xKHh?e,D", 53)
+        // return LangData.j("xKHh?e,D", 53)
+        return "涵虚"
     })
     lazy_old($, "yA", "n9", function () {
-        return LangData.j("]Kp3u~>B", 31)
+        // return LangData.j("]Kp3u~>B", 31)
+        return "霛雲"
     })
     lazy_old($, "zx", "no", function () {
-        return LangData.j(")a/8n!RE", 83)
+        // return LangData.j(")a/8n!RE", 83)
+        return "云剑"
     })
     lazy_old($, "zs", "nm", function () {
-        return LangData.j("{MxpF,@rO?LB", 82)
+        // return LangData.j("{MxpF,@rO?LB", 82)
+        return "新纪元"
     })
     lazy_old($, "yM", "nb", function () {
-        return LangData.j("nS)Vs$[ M^3", 86)
+        // return LangData.j("nS)Vs$[ M^3", 86)
+        return "琪拉拉"
     })
     lazy_old($, "y9", "qa", function () {
-        return LangData.j("lbb@`TID", 19)
+        // return LangData.j("lbb@`TID", 19)
+        return "纯菜"
     })
     lazy_old($, "zu", "nn", function () {
-        return LangData.j("`:W7Ze/ON.S+HIW", 22)
+        // return LangData.j("`:W7Ze/ON.S+HIW", 22)
+        return "学车中学"
     })
     lazy_old($, "zv", "qW", function () {
-        return LangData.j("&%v5AaC/]<&>Z^X0#B", 58)
+        // return LangData.j("&%v5AaC/]<&>Z^X0#B", 58)
+        return "学🚗🀄学"
     })
     lazy_old($, "zy", "np", function () {
-        return LangData.j("_?d>JT-C", 37)
+        // return LangData.j("_?d>JT-C", 37)
+        return "昀澤"
     })
     lazy_old($, "yu", "qi", function () {
-        return LangData.j("udp%0&+$r>dB", 94)
+        // return LangData.j("udp%0&+$r>dB", 94)
+        return "锦依卫"
     })
     lazy_old($, "zh", "nj", function () {
-        return LangData.j("vx;rs", 50)
+        // return LangData.j("vx;rs", 50)
+        return "Σσ"
     })
     lazy_old($, "yI", "qr", function () {
-        return LangData.j("7YF", 48)
+        // return LangData.j("7YF", 48)
+        return "Ø"
     })
     lazy_old($, "yJ", "qs", function () {
-        return LangData.j("KYXO", 32)
+        // return LangData.j("KYXO", 32)
+        return "∅"
     })
     lazy_old($, "zr", "qU", function () {
-        return LangData.j("2V~6yfHkOb>", 49)
+        // return LangData.j("2V~6yfHkOb>", 49)
+        return "斜眼笑"
     })
     lazy_old($, "yq", "qg", function () {
-        return LangData.j("oz%!U'YF", 73)
+        // return LangData.j("oz%!U'YF", 73)
+        return "滑稽"
     })
     lazy_old($, "yv", "qj", function () {
-        return LangData.j("b@U>k|&P@hk", 0)
+        // return LangData.j("b@U>k|&P@hk", 0)
+        return "坤灵剑"
     })
     lazy_old($, "yO", "qt", function () {
-        return LangData.j("ihMZ}G'RC", 77)
+        // return LangData.j("ihMZ}G'RC", 77)
+        return "RailGun"
     })
     lazy_old($, "zw", "qX", function () {
-        return LangData.j("[w9L]M/>Ge/", 38)
+        // return LangData.j("[w9L]M/>Ge/", 38)
+        return "巡洋舰"
     })
     lazy_old($, "yp", "qf", function () {
-        return LangData.j("@9Y.X", 51)
+        // return LangData.j("@9Y.X", 51)
+        return "Hell"
     })
     lazy_old($, "zf", "qN", function () {
-        return LangData.j("?%#<WpDE", 10)
+        // return LangData.j("?%#<WpDE", 10)
+        return "佘山"
     })
     lazy_old($, "yj", "qd", function () {
-        return LangData.j(",VV7pFUD", 15)
+        // return LangData.j(",VV7pFUD", 15)
+        return "房刚"
     })
     lazy_old($, "zq", "qT", function () {
-        return LangData.j("lzG^ex`E", 72)
+        // return LangData.j("lzG^ex`E", 72)
+        return "五班"
     })
     lazy_old($, "zt", "qV", function () {
-        return LangData.j("*s]_EKXQ}W", 26)
+        // return LangData.j("*s]_EKXQ}W", 26)
+        return "XJ联队"
     })
     lazy_old($, "yz", "ql", function () {
-        return LangData.j("<'L]+.]lLrYB", 65)
+        // return LangData.j("<'L]+.]lLrYB", 65)
+        return "乐正绫"
     })
     lazy_old($, "zp", "qS", function () {
-        return LangData.j("U`-Rl!IF", 73)
+        // return LangData.j("U`-Rl!IF", 73)
+        return "文哥"
     })
     lazy_old($, "yl", "qe", function () {
-        return LangData.j("?hEGt00!>5nL[OI", 41)
+        // return LangData.j("?hEGt00!>5nL[OI", 41)
+        return "geometrydash"
     })
     lazy_old($, "zd", "ni", function () {
         // return LangData.j("tU`0/mA", 2)
@@ -20412,7 +20451,8 @@ var t = (function rtii() {
         return "dio"
     })
     lazy_old($, "yD", "qn", function () {
-        return LangData.j("Ox2j(}6B", 62)
+        // return LangData.j("Ox2j(}6B", 62)
+        return "口罩"
     })
     lazy_old($, "zb", "nh", function () {
         // return LangData.j("[uA.6OlzvO7Io;KYC<#H!O04nL9lDiKDyXAl?D", 53)
@@ -20563,48 +20603,60 @@ var t = (function rtii() {
         return 2
     })
     lazy_old($, "wn", "ph", function () {
-        return X.D("od`D$R=0SJ", 85)
+        // return X.D("od`D$R=0SJ", 85)
+        return 1.2999999523162842
     })
     lazy_old($, "vY", "cZ", function () {
-        return X.k("5>pu'qyiIM", 70)
+        // return X.k("5>pu'qyiIM", 70)
+        return 120
     })
     lazy_old($, "xq", "pM", function () {
-        return X.k("_a3=L4dckG", 37)
+        // return X.k("_a3=L4dckG", 37)
+        return 500
     })
     lazy_old($, "xe", "lM", function () {
-        return X.k("p,,c!10-FQ", 93)
+        // return X.k("p,,c!10-FQ", 93)
+        return 400
     })
     lazy_old($, "wq", "pj", function () {
         // return X.D("qCDXr5,MXA", 61)
         return 1.7000000476837158
     })
     lazy_old($, "wp", "pi", function () {
-        return X.D("Lo=*]5Lg#G", 25)
+        // return X.D("Lo=*]5Lg#G", 25)
+        return 1.600000023841858
     })
     lazy_old($, "w9", "eU", function () {
-        return X.k("uo2[vY3QwA", 3)
+        // return X.k("uo2[vY3QwA", 3)
+        return 160
     })
     lazy_old($, "wQ", "B", function () {
         // return X.k("Cv.c@Ovh.D", 22)
         return 3
     })
     lazy_old($, "wa", "p8", function () {
-        return X.k("o8#!>[]y<J", 57)
+        // return X.k("o8#!>[]y<J", 57)
+        return 1600
     })
     lazy_old($, "xn", "mZ", function () {
-        return X.D(" 2[vLvtX:A", 68)
+        // return X.D(" 2[vLvtX:A", 68)
+        return 4
     })
     lazy_old($, "wl", "eV", function () {
-        return X.D("6Ce~JmtqSF", 71)
+        // return X.D("6Ce~JmtqSF", 71)
+        return 1.2000000476837158
     })
     lazy_old($, "xu", "a6", function () {
-        return X.k("&xM6z,hd#O", 85)
+        // return X.k("&xM6z,hd#O", 85)
+        return 60
     })
     lazy_old($, "vR", "ci", function () {
-        return X.k("WxPb+b%'LN", 76)
+        // return X.k("WxPb+b%'LN", 76)
+        return 100
     })
     lazy_old($, "ws", "as", function () {
-        return X.k("*:%S'eXt!J", 56)
+        // return X.k("*:%S'eXt!J", 56)
+        return 20
     })
     lazy_old($, "xt", "a4", function () {
         // return X.k("`8fQ/CxFQA", 2)
@@ -20623,7 +20675,8 @@ var t = (function rtii() {
         return 0.7799999713897705
     })
     lazy_old($, "vK", "b0", function () {
-        return X.D("KvLG}E$m7J", 7)
+        // return X.D("KvLG}E$m7J", 7)
+        return 0.5
     })
     lazy_old($, "xc", "C", function () {
         // return X.k("T,tQQy%'LN", 76)
@@ -20634,148 +20687,188 @@ var t = (function rtii() {
         return 256
     })
     lazy_old($, "wk", "pf", function () {
-        return X.D("NS 98:}]PR", 92)
+        // return X.D("NS 98:}]PR", 92)
+        return 1.149999976158142
     })
     lazy_old($, "wm", "pg", function () {
-        return X.D("pa+s[!w!iR", 91)
+        // return X.D("pa+s[!w!iR", 91)
+        return 1.25
     })
     lazy_old($, "xh", "pK", function () {
-        return X.k("KW3YIK.WUG", 36)
+        // return X.k("KW3YIK.WUG", 36)
+        return 42
     })
     lazy_old($, "wN", "pw", function () {
-        return X.D("4S|&JW$AZI", 32)
+        // return X.D("4S|&JW$AZI", 32)
+        return 2
     })
     lazy_old($, "wo", "mM", function () {
-        return X.D("15uE1}!JpC", 7)
+        // return X.D("15uE1}!JpC", 7)
+        return 1.5
     })
     lazy_old($, "x8", "pG", function () {
-        return X.k(",c 1O:RhDB", 6)
+        // return X.k(",c 1O:RhDB", 6)
+        return 360
     })
     lazy_old($, "xk", "pL", function () {
-        return X.k("O[u;0UIM7I", 50)
+        // return X.k("O[u;0UIM7I", 50)
+        return 47
     })
     lazy_old($, "xp", "b1", function () {
-        return X.k("wuf,zOjn(G", 39)
+        // return X.k("wuf,zOjn(G", 39)
+        return 50
     })
     lazy_old($, "xX", "q7", function () {
-        return X.k("F lu;X_QaD", 38)
+        // return X.k("F lu;X_QaD", 38)
+        return 99
     })
     lazy_old($, "xM", "av", function () {
-        return X.k("3u,161Bd^L", 69)
+        // return X.k("3u,161Bd^L", 69)
+        return 8
     })
     lazy_old($, "xw", "pQ", function () {
-        return X.D("v_v-8FUs/M", 8)
+        // return X.D("v_v-8FUs/M", 8)
+        return 60
     })
     lazy_old($, "vT", "cX", function () {
-        return X.k("@Ii!xsrBxF", 64)
+        // return X.k("@Ii!xsrBxF", 64)
+        return 1024
     })
     lazy_old($, "ww", "bx", function () {
         // return X.k("27>.]$_<VQ", 94)
         return 2048
     })
     lazy_old($, "xd", "bg", function () {
-        return X.k("5+yzR?1-FQ", 93)
+        // return X.k("5+yzR?1-FQ", 93)
+        return 40
     })
     lazy_old($, "vM", "p0", function () {
-        return X.D("u<0ts= S_V", 64)
+        // return X.D("u<0ts= S_V", 64)
+        return 0.699999988079071
     })
     lazy_old($, "xf", "pJ", function () {
-        return X.D("%xD:GhI4QU", 48)
+        // return X.D("%xD:GhI4QU", 48)
+        return 4000
     })
     lazy_old($, "vW", "p3", function () {
-        return X.k("`aa.s&j;mC", 14)
+        // return X.k("`aa.s&j;mC", 14)
+        return 110
     })
     lazy_old($, "wD", "pq", function () {
-        return X.k("y{5]U4S1PH", 83)
+        // return X.k("y{5]U4S1PH", 83)
+        return 240
     })
     lazy_old($, "wj", "pe", function () {
-        return X.D("ThP:gnU]RI", 16)
+        // return X.D("ThP:gnU]RI", 16)
+        return 1.1200000047683716
     })
     lazy_old($, "vH", "oX", function () {
-        return X.D("+9[Q]5LgfG", 25)
+        // return X.D("+9[Q]5LgfG", 25)
+        return 0.10000000149011612
     })
     lazy_old($, "xo", "X", function () {
         // return X.k("BW1,-W.WUG", 36)
         return 5
     })
     lazy_old($, "wO", "px", function () {
-        return X.D("6+S>Rm<-VA", 65)
+        // return X.D("6+S>Rm<-VA", 65)
+        return 2.440000057220459
     })
     lazy_old($, "vL", "p_", function () {
-        return X.D("Y?&-AHv0II", 16)
+        // return X.D("Y?&-AHv0II", 16)
+        return 0.6000000238418579
     })
     lazy_old($, "vN", "mI", function () {
-        return X.D("dV~?xZecyE", 37)
+        // return X.D("dV~?xZecyE", 37)
+        return 0.75
     })
     lazy_old($, "vI", "oY", function () {
-        return X.D("R<[dAHv0^H", 16)
+        // return X.D("R<[dAHv0^H", 16)
+        return 0.15000000596046448
     })
     lazy_old($, "xK", "pZ", function () {
-        return X.D("Pb8apiJXjT", 50)
+        // return X.D("Pb8apiJXjT", 50)
+        return 75
     })
     lazy_old($, "x7", "mU", function () {
-        return X.k("+O2YYGy,+H", 45)
+        // return X.k("+O2YYGy,+H", 45)
+        return 36
     })
     lazy_old($, "vJ", "oZ", function () {
-        return X.D("xF s,sTeiD", 45)
+        // return X.D("xF s,sTeiD", 45)
+        return 0.36000001430511475
     })
     lazy_old($, "wS", "mR", function () {
-        return X.k("<1<l6S%nuJ", 55)
+        // return X.k("<1<l6S%nuJ", 55)
+        return 300
     })
     lazy_old($, "wC", "eW", function () {
-        return X.k("(R5/YDj;mC", 28)
+        // return X.k("(R5/YDj;mC", 28)
+        return 24
     })
     lazy_old($, "xl", "aI", function () {
         // return X.k(")>]w@n)xzB", 9)
         return 48
     })
     lazy_old($, "wV", "pz", function () {
-        return X.D("hgirj(8S{F", 99)
+        // return X.D("hgirj(8S{F", 99)
+        return 30
     })
     lazy_old($, "wU", "py", function () {
-        return X.D("Bg(8GhGi[T", 48)
+        // return X.D("Bg(8GhGi[T", 48)
+        return 300
     })
     lazy_old($, "wR", "lI", function () {
-        return X.k("uEp>@P0sNE", 48)
+        // return X.k("uEp>@P0sNE", 48)
+        return 30
     })
     lazy_old($, "x4", "lK", function () {
         // return X.k("BcQuPEPOSD", 37)
         return 35
     })
     lazy_old($, "xV", "q5", function () {
-        return X.k("_qlY:A@~RE", 97)
+        // return X.k("_qlY:A@~RE", 97)
+        return 96
     })
     lazy_old($, "xH", "pW", function () {
-        return X.k("U>JaC))L?F", 34)
+        // return X.k("U>JaC))L?F", 34)
+        return 70
     })
     lazy_old($, "wP", "mQ", function () {
-        return X.D("a(vr5Q0sQP", 24)
+        // return X.D("a(vr5Q0sQP", 24)
+        return 2.5
     })
     lazy_old($, "w2", "p6", function () {
-        return X.k("j-Da]5rziP", 89)
+        // return X.k("j-Da]5rziP", 89)
+        return 13
     })
     lazy_old($, "w8", "aR", function () {
-        return X.k("o.qW!KX[gF", 31)
+        // return X.k("o.qW!KX[gF", 31)
+        return 16
     })
     lazy_old($, "wE", "mO", function () {
         // return X.k("#U<=KBe&GC", 24)
         return 25
     })
     lazy_old($, "wL", "iI", function () {
-        return X.k("s4Ff$Io{jB", 16)
+        // return X.k("s4Ff$Io{jB", 16)
+        return 28
     })
     lazy_old($, "vX", "cY", function () {
-        return X.k("l@(lK%,MPO", 82)
+        // return X.k("l@(lK%,MPO", 82)
+        return 12
     })
     lazy_old($, "xz", "b2", function () {
         // return X.k("Q9p3NSeckG", 37)
         return 63
     })
     lazy_old($, "xg", "mV", function () {
-        return X.k("cP|R0-|R1L", 67)
+        // return X.k("cP|R0-|R1L", 67)
+        return 41
     })
     lazy_old($, "w4", "eT", function () {
-        return X.k("ji|Q32jBxF", 64)
+        // return X.k("ji|Q32jBxF", 64)
+        return 15
     })
     lazy_old($, "we", "iH", function () {
         // return X.k("6GYapjUG%F", 33)
@@ -20786,108 +20879,140 @@ var t = (function rtii() {
         return 16
     })
     lazy_old($, "wA", "po", function () {
-        return X.k("Vi~q&TZ3'B", 10)
+        // return X.k("Vi~q&TZ3'B", 10)
+        return 22
     })
     lazy_old($, "vS", "eS", function () {
-        return X.k("L@p[XtryHH", 41)
+        // return X.k("L@p[XtryHH", 41)
+        return 1000
     })
     lazy_old($, "wt", "lH", function () {
-        return X.k("EyW}d_Bc6D", 42)
+        // return X.k("EyW}d_Bc6D", 42)
+        return 2000
     })
     lazy_old($, "wT", "lJ", function () {
-        return X.k("9 bo->vyHH", 82)
+        // return X.k("9 bo->vyHH", 82)
+        return 3000
     })
     lazy_old($, "xS", "n2", function () {
-        return X.k("CYe ;WIfsG", 75)
+        // return X.k("CYe ;WIfsG", 75)
+        return 9
     })
     lazy_old($, "wh", "pd", function () {
-        return X.k("pPr4b;M|NE", 48)
+        // return X.k("pPr4b;M|NE", 48)
+        return 192
     })
     lazy_old($, "wz", "mN", function () {
-        return X.k("75%]B3 4yP", 90)
+        // return X.k("75%]B3 4yP", 90)
+        return 21
     })
     lazy_old($, "xi", "mW", function () {
         // return X.k("?B72]Go)^E", 57)
         return 45
     })
     lazy_old($, "wf", "mL", function () {
-        return X.k("'o:uEW5R/I", 51)
+        // return X.k("'o:uEW5R/I", 51)
+        return 19
     })
     lazy_old($, "w5", "mJ", function () {
-        return X.k(")J](DyK=VQ", 94)
+        // return X.k(")J](DyK=VQ", 94)
+        return 150
     })
     lazy_old($, "wu", "pk", function () {
-        return X.D("i]3&hT~B-H", 28)
+        // return X.D("i]3&hT~B-H", 28)
+        return 20000
     })
     lazy_old($, "xR", "q2", function () {
-        return X.k("x7KOo1~b6D", 21)
+        // return X.k("x7KOo1~b6D", 21)
+        return 88
     })
     lazy_old($, "wg", "pc", function () {
-        return X.k(",7Wg$o8b>A", 5)
+        // return X.k(",7Wg$o8b>A", 5)
+        return 190
     })
     lazy_old($, "wB", "pp", function () {
-        return X.k("sy_Q{nF(@P", 92)
+        // return X.k("sy_Q{nF(@P", 92)
+        return 230
     })
     lazy_old($, "xa", "lL", function () {
-        return X.k("F(#M*C?F`C", 34)
+        // return X.k("F(#M*C?F`C", 34)
+        return 38
     })
     lazy_old($, "wW", "d1", function () {
-        return X.k("p&kJ 5Q!{M", 75)
+        // return X.k("p&kJ 5Q!{M", 75)
+        return 31
     })
     lazy_old($, "xj", "mX", function () {
-        return X.k("^M0K:>w!&P", 91)
+        // return X.k("^M0K:>w!&P", 91)
+        return 46
     })
     lazy_old($, "xF", "n0", function () {
-        return X.k("ISp/mK84,M", 74)
+        // return X.k("ISp/mK84,M", 74)
+        return 69
     })
     lazy_old($, "wM", "pv", function () {
-        return X.k("GiA5WP.8[B", 11)
+        // return X.k("GiA5WP.8[B", 11)
+        return 29
     })
     lazy_old($, "xJ", "pY", function () {
-        return X.k("EK3xBLQz4M", 73)
+        // return X.k("EK3xBLQz4M", 73)
+        return 729
     })
     lazy_old($, "xI", "pX", function () {
-        return X.k("Eh~/5KGoYM", 71)
+        // return X.k("Eh~/5KGoYM", 71)
+        return 72
     })
     lazy_old($, "xb", "pI", function () {
-        return X.k("sL|G/'Bd^L", 69)
+        // return X.k("sL|G/'Bd^L", 69)
+        return 39
     })
     lazy_old($, "xL", "q_", function () {
-        return X.k(">uy0Rt=+WC", 13)
+        // return X.k(">uy0Rt=+WC", 13)
+        return 76
     })
     lazy_old($, "xE", "pV", function () {
-        return X.k("y&D50SrziP", 89)
+        // return X.k("y&D50SrziP", 89)
+        return 67
     })
     lazy_old($, "xD", "pU", function () {
-        return X.k("3M:L}N@i=O", 86)
+        // return X.k("3M:L}N@i=O", 86)
+        return 66
     })
     lazy_old($, "xQ", "q1", function () {
-        return X.k("~bL%3?)L?F", 34)
+        // return X.k("~bL%3?)L?F", 34)
+        return 84
     })
     lazy_old($, "wG", "mP", function () {
-        return X.k("[V-z)3H<`H", 46)
+        // return X.k("[V-z)3H<`H", 46)
+        return 255
     })
     lazy_old($, "wd", "pb", function () {
-        return X.k(",r=TU*tMlL", 66)
+        // return X.k(",r=TU*tMlL", 66)
+        return 1700
     })
     lazy_old($, "xP", "q0", function () {
-        return X.k("0X)=.x6uSP", 88)
+        // return X.k("0X)=.x6uSP", 88)
+        return 8208
     })
     lazy_old($, "x5", "pE", function () {
-        return X.k("w~Ou?!0.eC", 27)
+        // return X.k("w~Ou?!0.eC", 27)
+        return 3501
     })
     lazy_old($, "wZ", "mS", function () {
         // return X.k("dG|*}T{.AF", 29)
         return 32768
     })
     lazy_old($, "xy", "n_", function () {
-        return X.k("*,uU([GoYM", 71)
+        // return X.k("*,uU([GoYM", 71)
+        return 62
     })
     lazy_old($, "wJ", "pt", function () {
-        return X.k(")~>SOZS1PH", 83)
+        // return X.k(")~>SOZS1PH", 83)
+        return 26
     })
     lazy_old($, "x2", "pC", function () {
-        return X.k(">Lk@cu3H*Q", 97)
+        // return X.k(">Lk@cu3H*Q", 97)
+        return 34
     })
     lazy_old($, "xs", "pO", function () {
         // return X.k("rO!p(83H*Q", 97)
@@ -20910,19 +21035,24 @@ var t = (function rtii() {
         return 90
     })
     lazy_old($, "x3", "pD", function () {
-        return X.k("AQI,4l~@gF", 31)
+        // return X.k("AQI,4l~@gF", 31)
+        return 3497
     })
     lazy_old($, "w7", "mK", function () {
-        return X.k(")pwk@R3QwA", 3)
+        // return X.k(")pwk@R3QwA", 3)
+        return 154
     })
     lazy_old($, "vV", "p2", function () {
-        return X.k("<hZu12tX)L", 68)
+        // return X.k("<hZu12tX)L", 68)
+        return 11
     })
     lazy_old($, "w3", "p7", function () {
-        return X.k("jZ>0V$cSfO", 83)
+        // return X.k("jZ>0V$cSfO", 83)
+        return 14
     })
     lazy_old($, "wK", "pu", function () {
-        return X.k("C<7,}Y`[?K", 63)
+        // return X.k("C<7,}Y`[?K", 63)
+        return 27
     })
     lazy_old($, "xx", "pR", function () {
         // return X.k("=mymvqAAAA", 0)
@@ -20933,35 +21063,44 @@ var t = (function rtii() {
         return 250
     })
     lazy_old($, "w6", "d0", function () {
-        return X.k("_lv_}:$R/I", 51)
+        // return X.k("_lv_}:$R/I", 51)
+        return 1500
     })
     lazy_old($, "vZ", "p4", function () {
-        return X.k("@:On3OXckG", 37)
+        // return X.k("@:On3OXckG", 37)
+        return 1200
     })
     lazy_old($, "xU", "q4", function () {
-        return X.k("0iPS=<oyHH", 41)
+        // return X.k("0iPS=<oyHH", 41)
+        return 91
     })
     lazy_old($, "wv", "pl", function () {
-        return X.D("WT)~pf:~hB", 91)
+        // return X.D("WT)~pf:~hB", 91)
+        return 2000
     })
     lazy_old($, "xm", "mY", function () {
         // return X.k("T)Ok_x`s]G", 40)
         return 480
     })
     lazy_old($, "xv", "pP", function () {
-        return X.D("wrWW R:IqQ", 26)
+        // return X.D("wrWW R:IqQ", 26)
+        return 6000
     })
     lazy_old($, "wY", "pA", function () {
-        return X.k("]F8Q`2,8[B", 11)
+        // return X.k("]F8Q`2,8[B", 11)
+        return 324
     })
     lazy_old($, "x9", "pH", function () {
-        return X.k("^@!Hqw8SJR", 99)
+        // return X.k("^@!Hqw8SJR", 99)
+        return 37
     })
     lazy_old($, "xr", "pN", function () {
-        return X.k("09zY7g53tE", 26)
+        // return X.k("09zY7g53tE", 26)
+        return 53
     })
     lazy_old($, "xY", "q8", function () {
-        return X.k("}-?M/~zGrI", 98)
+        // return X.k("}-?M/~zGrI", 98)
+        return 999
     })
     // lazy_old($, "mc", "ns", function () {
     //     // return 0
@@ -21767,7 +21906,8 @@ const runner = {
             main(names);
         })
     },
-    run_env: run_env
+    run_env: run_env,
+    version: _version_,
 };
 
 if (run_env.from_code) {
