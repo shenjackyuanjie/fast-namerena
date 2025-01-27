@@ -325,7 +325,7 @@ const CHAR_SET = new Set([
 /**
  * 搜索某个字符是不是在上面的这个列表里
  * 用于优化掉 gAd
- * @param {number} char 
+ * @param {number} char
  * @returns {boolean} 是不是在列表里
  */
 function char_in_common_char_lst(char) {
@@ -350,9 +350,9 @@ function common_char_len() {
 
 /**
  * 比较 (J.bO())
- * @param {number} a 
- * @param {number} b 
- * @returns 
+ * @param {number} a
+ * @param {number} b
+ * @returns
  */
 function compare_bO(a, b) {
     if (a < b) return -1;
@@ -951,9 +951,9 @@ var H = {
     /**
      * 排序 a, 使用内置 sort 和 手动写的 compare_bO 结合
      * 烫知识, 单独就这一个函数的优化就从 85s 优化到了 80s (高达 5.88235294% 的优化)
-     * @param {Array} a 
-     * @param {number} b 
-     * @param {number} c 
+     * @param {Array} a
+     * @param {number} b
+     * @param {number} c
      * @param {Object} d - 比较函数对象，包含一个方法 $2
      */
     hL(a, b, c, d) {
@@ -8276,18 +8276,18 @@ Y.RC4.prototype = {
     },
     di(a) {
         // decryptBytes
-        var s, r, q, p, o, n, this_ = this,
+        var s, r, q, val, o, n, this_ = this,
             l = a.length
         for (s = 0; s < l; ++s) {
             r = this_.a = this_.a + 1 & 255
             q = this_.b
-            p = this_.c
-            o = p[r]
+            val = this_.c
+            o = val[r]
             q = this_.b = q + o & 255
-            p[r] = p[q]
-            p[q] = o
+            val[r] = val[q]
+            val[q] = o
             n = a[s]
-            a[s] = (n ^ p[p[r] + p[q] & 255]) >>> 0
+            a[s] = (n ^ val[val[r] + val[q] & 255]) >>> 0
             this_.b = q + n & 255
         }
     },
@@ -8748,7 +8748,7 @@ J.JsArray.prototype = {
      * @description 把b中的元素添加到a中
      * @param {Array} a source array
      * @param {Array} b target array
-     * @returns 
+     * @returns
      */
     a5(a, b) {
         var s, r
@@ -8763,7 +8763,7 @@ J.JsArray.prototype = {
      * @description 把b中的元素添加到a中，但b是数组
      * @param {Array} a source array
      * @param {Array} b target array
-     * @returns 
+     * @returns
      */
     ea(a, b) {
         var s, r = b.length
@@ -8802,17 +8802,17 @@ J.JsArray.prototype = {
      * 取得数组中指定位置的元素
      * @param {Array} a source array
      * @param {index} b index
-     * @returns 
+     * @returns
      */
     ai(a, b) {
         return a[b]
     },
     /**
      * a[b:c]
-     * @param {Array} a source array 
+     * @param {Array} a source array
      * @param {number} b start index
      * @param {number} c end index
-     * @returns 
+     * @returns
      */
     al(a, b, c) {
         var s
