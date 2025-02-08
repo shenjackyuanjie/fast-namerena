@@ -17740,7 +17740,7 @@ T.Plr.prototype = {
         var this_ = this
         this_.F()
         this_.fx = this_.fy
-        this_.go = Math.round(this_.fr / 2)
+        this_.go = C.JsInt.P(this_.fr, 2)
     },
     F() {
         /*  void updateStates() {
