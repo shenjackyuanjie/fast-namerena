@@ -538,6 +538,54 @@ if (run_env.from_code) {
 
 // console.log("run_env", run_env);
 
+/**
+ * 用于替换 LangData.SuperRC4
+ * @constructor
+ * @param {number} _
+ * @param {number[]} val
+ * @param {number} round
+ */
+class NewRc4 {
+    // bd(a, b)
+    constructor(input_val, round) {
+        this.i = 0;
+        this.j = 0;
+        this.val = new Array(256);
+        for (let i = 0; i < 256; i++) {
+            this.val[i] = i;
+        };
+        const val_len = input_val.length;
+        for (let r = 0; r < round; r++) {
+            for (let p = 0, o = 0; o < 256; o++) {
+                const n = o % val_len;
+                const m = this.val[o];
+                p = (this.val[o] + input_val[n] + p) % 256;
+                // swap
+                this.val[o] = this.val[p];
+                this.val[p] = m;
+            }
+        }
+    }
+
+    /**
+     * xorBytes bO(a)
+     * @param {number[]} bytes 
+     */
+    xor_bytes(bytes) {
+        const bytes_len = bytes.length;
+        for (let i = 0; i < bytes_len; i++) {
+            this.i = (this.i + 1) % 256;
+            const o = this.val[this.i];
+            this.j = (this.j + o) % 256;
+            // swap
+            this.val[this.i] = this.val[this.j];
+            this.val[this.j] = o;
+            bytes[i] ^= this.val[(this.val[this.i] + this.val[this.j]) % 256];
+            this.j = (this.j + bytes[i]) % 256;
+        }
+    }
+};
+
 let why_ns = 0;
 
 function copyProperties(a, b) {
