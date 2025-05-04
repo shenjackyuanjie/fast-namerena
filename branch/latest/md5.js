@@ -5060,7 +5060,7 @@ var T = {
         C.Array.aJ(n)
         return s * n[1] * a.id
     },
-    d9(a, b, c) {
+    getDf(a, b, c) {
         if (b) return a.dy + 64
         return a.cx + 64
     },
@@ -15760,7 +15760,7 @@ T.SklThunder.prototype = {
                 n = $.oZ()
                 l = updates.length
                 m = k.r
-                m = h.aF(h.aq(C.d.R(p * n / T.d9(h, true, c)), m, T.ad(), c, d), m, T.ad(), c, d)
+                m = h.aF(h.aq(C.d.R(p * n / T.getDf(h, true, c)), m, T.ad(), c, d), m, T.ad(), c, d)
                 n = 0
                 if (m > n) o = true
                 updates[l].b = $.mR()
@@ -16077,7 +16077,7 @@ T.CovidState.prototype = {
         var s, r, q, p, o, n, m, l = this,
             k = l.fx
         if (k.fx > 0 && l.fy > 1) {
-            s = C.d.R((T.getAt(k, true, a) + l.go * 80) / T.d9(k, true, a))
+            s = C.d.R((T.getAt(k, true, a) + l.go * 80) / T.getDf(k, true, a))
             r = l.fr
             q = b.a
             // sklCovidDamage
@@ -16270,7 +16270,7 @@ T.SklIkarugaAttack.prototype = {
             if (n.fx > 0) {
                 p.push($.K())
                 m = this.r
-                n.aF(n.aq(C.d.R(o / T.d9(n, true, c)), m, T.ad(), c, d), m, T.ad(), c, d)
+                n.aF(n.aq(C.d.R(o / T.getDf(n, true, c)), m, T.ad(), c, d), m, T.ad(), c, d)
             }
         }
     }
@@ -16302,7 +16302,7 @@ T.LazyState.prototype = {
         var s, r, q = this.fx
         if (q.fx > 0) {
             s = this.fr
-            r = C.d.R(T.getAt(s, true, a) / T.d9(q, true, a))
+            r = C.d.R(T.getAt(s, true, a) / T.getDf(q, true, a))
             // sklLazyDamage
             // [1][懒癌]发作
             b.a.push(T.RunUpdate_init(LangData.get_lang("sPnN"), s, q, null, null, 0, 1000, 100))
@@ -17963,7 +17963,7 @@ T.Plr.prototype = {
         return p.bN(a, b, c, d, e, f)
     },
     bN(a, b, c, d, e, f) {
-        return this.aF(this.aq(C.d.R(a / T.d9(this, b, e)), c, d, e, f), c, d, e, f)
+        return this.aF(this.aq(C.d.R(a / T.getDf(this, b, e)), c, d, e, f), c, d, e, f)
     },
     aF(a, b, c, d, e) {
         var s, r, q, p, o, n = this
@@ -18492,7 +18492,7 @@ T.ProtectStat.prototype = {
             a = s.du(a, b, c, e, f, g)
             r = 0
             if (a == 0) return 0
-            q = T.d9(s, b, f)
+            q = T.getDf(s, b, f)
             s.aF(s.aq(C.d.eW(a * $.b0() / q), c, e, f, g), c, e, f, g)
             return 0
         }
