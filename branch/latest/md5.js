@@ -18495,6 +18495,7 @@ T.ProtectStat.prototype = {
         }
         return null
     },
+    // removeProtect(SklProtect skl)
     fs(a) {
         var s = this.x
         C.Array.U(s, a)
