@@ -5046,6 +5046,13 @@ var T = {
             e.a.push(T.RunUpdate_init(C.String.B(LangData.get_lang("Okln"), $.qH()), a, b, null, null, $.a6(), 1000, 100))
         }
     },
+    /**
+     * getAt
+     * @param {Plr} a 
+     * @param {boolean} b 
+     * @param {RC4} c 
+     * @returns f64
+     */
     getAt(a, b, c) {
         var s, r, q, p, o = b ? a.dx : a.ch,
             n = t.i,
@@ -5060,11 +5067,25 @@ var T = {
         C.Array.aJ(n)
         return s * n[1] * a.id
     },
+    /**
+     * getDf
+     * @param {Plr} a 
+     * @param {boolean} b 
+     * @param {RC4} c 
+     * @returns i32
+     */
     getDf(a, b, c) {
         if (b) return a.dy + 64
         return a.cx + 64
     },
-    bW(a, b, c) {
+    /**
+     * dodge
+     * @param {i32} a 
+     * @param {i32} b 
+     * @param {RC4} c 
+     * @returns boolean
+     */
+    dodge(a, b, c) {
         var s = $.eW() + b - a,
             r = $.ap()
         if (s < r) s = r
@@ -14550,7 +14571,7 @@ T.SklCharm.prototype = {
         // sklCharm
         // [0]使用[魅惑]
         n.push(T.RunUpdate_init(LangData.get_lang("UUan"), this_.r, o, p, p, 1, 1000, 100))
-        if (!o.a7($.aE(), c)) s = o.fx > 0 && !o.A && T.bW(this_.r.dx, o.db + o.dy, c)
+        if (!o.a7($.aE(), c)) s = o.fx > 0 && !o.A && T.dodge(this_.r.dx, o.db + o.dy, c)
         else s = true
         if (s) {
             // dodge (通用回避)
@@ -14782,7 +14803,7 @@ T.SklExchange.prototype = {
         s = a[0].a
         r = d.a
         r.push(T.RunUpdate_init(LangData.get_lang("fcfa"), l.r, s, k, k, 1, 1000, 100))
-        if (!s.a7($.d3(), c)) q = s.fx > 0 && !s.A && !l.r.r2.J(0, $.a7()) && T.bW(l.r.dx, s.dy + s.cx + s.db, c)
+        if (!s.a7($.d3(), c)) q = s.fx > 0 && !s.A && !l.r.r2.J(0, $.a7()) && T.dodge(l.r.dx, s.dy + s.cx + s.db, c)
         else q = true
         if (q) {
             // dodge (通用回避)
@@ -14858,7 +14879,7 @@ T.sklHalf.prototype = {
         s = i.r.fr + C.JsInt.P($.pG() - g.fx, $.B())
         r = 0
         if (s < r) s = r
-        if (!g.a7($.eZ(), c)) q = g.fx > 0 && !g.A && !i.r.r2.J(0, $.a7()) && T.bW(s, g.dy + g.db, c)
+        if (!g.a7($.eZ(), c)) q = g.fx > 0 && !g.A && !i.r.r2.J(0, $.a7()) && T.dodge(s, g.dy + g.db, c)
         else q = true
         if (q) {
             // dodge (通用回避)
@@ -15357,7 +15378,7 @@ T.SklPossess.prototype = {
         // sklPossess
         // [0]使用[附体]
         m.push(T.RunUpdate_init(LangData.get_lang("dxVA"), p.r, n, o, o, 0, 1000, 100))
-        if (!n.a7($.aJ(), c)) s = n.fx > 0 && !n.A && T.bW(p.r.dx, n.dy, c)
+        if (!n.a7($.aJ(), c)) s = n.fx > 0 && !n.A && T.dodge(p.r.dx, n.dy, c)
         else s = true
         if (s) {
             // dodge (通用回避)
@@ -15529,7 +15550,7 @@ T.SklSlow.prototype = {
             o = a[0].a,
             n = d.a
         n.push(T.RunUpdate_init(LangData.get_lang("hdla"), q.r, o, p, p, 1, 1000, 100))
-        if (!o.a7($.bi(), c)) s = o.fx > 0 && !o.A && T.bW(q.r.dx, o.dy, c)
+        if (!o.a7($.bi(), c)) s = o.fx > 0 && !o.A && T.dodge(q.r.dx, o.dy, c)
         else s = true
         if (s) {
             // dodge (通用回避)
@@ -15735,7 +15756,7 @@ T.SklThunder.prototype = {
             n = k.r
             if (n.fx > p && !n.A && h.fx > p) {
                 updates.push($.K())
-                if (h.fx > 0 && !h.A && T.bW(r, h.dy + h.db, c)) {
+                if (h.fx > 0 && !h.A && T.dodge(r, h.dy + h.db, c)) {
                     if (o) {
                         // sklThunderEnd
                         // [0][回避]了攻击(雷击)
@@ -17954,7 +17975,7 @@ T.Plr.prototype = {
             r = p.cx + s
             q = c.ch + c.db
         }
-        if (p.fx > 0 && !p.A && T.bW(q, r, e)) {
+        if (p.fx > 0 && !p.A && T.dodge(q, r, e)) {
             // dodge (通用回避)
             // [0][回避]了攻击
             f.a.push(T.RunUpdate_init(LangData.get_lang("BtqN"), p, c, null, null, $.as(), 1000, 100))
@@ -18898,7 +18919,7 @@ T.SklDeathNote.prototype = {
         var s
         if (a > 0) {
             s = this.r
-            s = b != s && T.bW(b.fr + b.dy, s.fr + s.dx, c)
+            s = b != s && T.dodge(b.fr + b.dy, s.fr + s.dx, c)
         } else s = false
         if (s) this.fx = b
     }
