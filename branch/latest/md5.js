@@ -17582,15 +17582,17 @@ T.Plr.prototype = {
             }
             this_.q = attrs
         }
-        if (diyskills) {
+
+        if (diyskills && this.cm == undefined) {
             this_.diy_skills(diyskills)
+
         } else {
+            this_.isDiySkill = 0;
             // initSkills
             // this.t -> 增益过的 name_base
             // this.E -> 原始 name_base
             this_.dm(C.Array.cL(this_.t, 64), C.Array.cL(this_.E, 64))
-        } 
-
+        }
 
         weapon = this_.weapon
         if (weapon != null) weapon.cs()
