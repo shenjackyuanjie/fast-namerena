@@ -2,6 +2,7 @@
 
 /**
  * 更新日志记录(确信)
+ * 0.5.2: 使用丝瓜给的方案修复(?)了 DIY 分身的问题
  * 0.5.1: 使用 get_obs.ts 把所有的 $.xx 的混淆后常量替换成字面量了
  * 0.5.0: 添加了 external_gAd, 用于外部传入 gAd
  * 毕竟 gAd 这东西感觉还不如直接存一个巨大的列表
@@ -9,7 +10,7 @@
  * 369s -> 340s
  * 测试样例: bencharms/045-050.md
  */
-const _version_ = "0.5.1";
+const _version_ = "0.5.2";
 
 /**
  * 用于在 api 模式下触发轮询
@@ -537,6 +538,54 @@ if (run_env.from_code) {
 }
 
 // console.log("run_env", run_env);
+
+/**
+ * 用于替换 LangData.SuperRC4
+ * @constructor
+ * @param {number} _
+ * @param {number[]} val
+ * @param {number} round
+ */
+class NewRc4 {
+    // bd(a, b)
+    constructor(input_val, round) {
+        this.i = 0;
+        this.j = 0;
+        this.val = new Array(256);
+        for (let i = 0; i < 256; i++) {
+            this.val[i] = i;
+        };
+        const val_len = input_val.length;
+        for (let r = 0; r < round; r++) {
+            for (let p = 0, o = 0; o < 256; o++) {
+                const n = o % val_len;
+                const m = this.val[o];
+                p = (this.val[o] + input_val[n] + p) % 256;
+                // swap
+                this.val[o] = this.val[p];
+                this.val[p] = m;
+            }
+        }
+    }
+
+    /**
+     * xorBytes bO(a)
+     * @param {number[]} bytes 
+     */
+    xor_bytes(bytes) {
+        const bytes_len = bytes.length;
+        for (let i = 0; i < bytes_len; i++) {
+            this.i = (this.i + 1) % 256;
+            const o = this.val[this.i];
+            this.j = (this.j + o) % 256;
+            // swap
+            this.val[this.i] = this.val[this.j];
+            this.val[this.j] = o;
+            bytes[i] ^= this.val[(this.val[this.i] + this.val[this.j]) % 256];
+            this.j = (this.j + bytes[i]) % 256;
+        }
+    }
+};
 
 let why_ns = 0;
 
@@ -4998,6 +5047,13 @@ var T = {
             e.a.push(T.RunUpdate_init(C.String.B(LangData.get_lang("Okln"), $.qH()), a, b, null, null, $.a6(), 1000, 100))
         }
     },
+    /**
+     * getAt
+     * @param {Plr} a 
+     * @param {boolean} b 
+     * @param {RC4} c 
+     * @returns f64
+     */
     getAt(a, b, c) {
         var s, r, q, p, o = b ? a.dx : a.ch,
             n = t.i,
@@ -5012,11 +5068,25 @@ var T = {
         C.Array.aJ(n)
         return s * n[1] * a.id
     },
-    d9(a, b, c) {
+    /**
+     * getDf
+     * @param {Plr} a 
+     * @param {boolean} b 
+     * @param {RC4} c 
+     * @returns i32
+     */
+    getDf(a, b, c) {
         if (b) return a.dy + 64
         return a.cx + 64
     },
-    bW(a, b, c) {
+    /**
+     * dodge
+     * @param {i32} a 
+     * @param {i32} b 
+     * @param {RC4} c 
+     * @returns boolean
+     */
+    dodge(a, b, c) {
         var s = $.eW() + b - a,
             r = $.ap()
         if (s < r) s = r
@@ -14502,7 +14572,7 @@ T.SklCharm.prototype = {
         // sklCharm
         // [0]使用[魅惑]
         n.push(T.RunUpdate_init(LangData.get_lang("UUan"), this_.r, o, p, p, 1, 1000, 100))
-        if (!o.a7($.aE(), c)) s = o.fx > 0 && !o.A && T.bW(this_.r.dx, o.db + o.dy, c)
+        if (!o.a7($.aE(), c)) s = o.fx > 0 && !o.A && T.dodge(this_.r.dx, o.db + o.dy, c)
         else s = true
         if (s) {
             // dodge (通用回避)
@@ -14734,7 +14804,7 @@ T.SklExchange.prototype = {
         s = a[0].a
         r = d.a
         r.push(T.RunUpdate_init(LangData.get_lang("fcfa"), l.r, s, k, k, 1, 1000, 100))
-        if (!s.a7($.d3(), c)) q = s.fx > 0 && !s.A && !l.r.r2.J(0, $.a7()) && T.bW(l.r.dx, s.dy + s.cx + s.db, c)
+        if (!s.a7($.d3(), c)) q = s.fx > 0 && !s.A && !l.r.r2.J(0, $.a7()) && T.dodge(l.r.dx, s.dy + s.cx + s.db, c)
         else q = true
         if (q) {
             // dodge (通用回避)
@@ -14810,7 +14880,7 @@ T.sklHalf.prototype = {
         s = i.r.fr + C.JsInt.P($.pG() - g.fx, $.B())
         r = 0
         if (s < r) s = r
-        if (!g.a7($.eZ(), c)) q = g.fx > 0 && !g.A && !i.r.r2.J(0, $.a7()) && T.bW(s, g.dy + g.db, c)
+        if (!g.a7($.eZ(), c)) q = g.fx > 0 && !g.A && !i.r.r2.J(0, $.a7()) && T.dodge(s, g.dy + g.db, c)
         else q = true
         if (q) {
             // dodge (通用回避)
@@ -15309,7 +15379,7 @@ T.SklPossess.prototype = {
         // sklPossess
         // [0]使用[附体]
         m.push(T.RunUpdate_init(LangData.get_lang("dxVA"), p.r, n, o, o, 0, 1000, 100))
-        if (!n.a7($.aJ(), c)) s = n.fx > 0 && !n.A && T.bW(p.r.dx, n.dy, c)
+        if (!n.a7($.aJ(), c)) s = n.fx > 0 && !n.A && T.dodge(p.r.dx, n.dy, c)
         else s = true
         if (s) {
             // dodge (通用回避)
@@ -15481,7 +15551,7 @@ T.SklSlow.prototype = {
             o = a[0].a,
             n = d.a
         n.push(T.RunUpdate_init(LangData.get_lang("hdla"), q.r, o, p, p, 1, 1000, 100))
-        if (!o.a7($.bi(), c)) s = o.fx > 0 && !o.A && T.bW(q.r.dx, o.dy, c)
+        if (!o.a7($.bi(), c)) s = o.fx > 0 && !o.A && T.dodge(q.r.dx, o.dy, c)
         else s = true
         if (s) {
             // dodge (通用回避)
@@ -15687,7 +15757,7 @@ T.SklThunder.prototype = {
             n = k.r
             if (n.fx > p && !n.A && h.fx > p) {
                 updates.push($.K())
-                if (h.fx > 0 && !h.A && T.bW(r, h.dy + h.db, c)) {
+                if (h.fx > 0 && !h.A && T.dodge(r, h.dy + h.db, c)) {
                     if (o) {
                         // sklThunderEnd
                         // [0][回避]了攻击(雷击)
@@ -15712,7 +15782,7 @@ T.SklThunder.prototype = {
                 n = $.oZ()
                 l = updates.length
                 m = k.r
-                m = h.aF(h.aq(C.d.R(p * n / T.d9(h, true, c)), m, T.ad(), c, d), m, T.ad(), c, d)
+                m = h.aF(h.aq(C.d.R(p * n / T.getDf(h, true, c)), m, T.ad(), c, d), m, T.ad(), c, d)
                 n = 0
                 if (m > n) o = true
                 updates[l].b = $.mR()
@@ -16029,7 +16099,7 @@ T.CovidState.prototype = {
         var s, r, q, p, o, n, m, l = this,
             k = l.fx
         if (k.fx > 0 && l.fy > 1) {
-            s = C.d.R((T.getAt(k, true, a) + l.go * 80) / T.d9(k, true, a))
+            s = C.d.R((T.getAt(k, true, a) + l.go * 80) / T.getDf(k, true, a))
             r = l.fr
             q = b.a
             // sklCovidDamage
@@ -16222,7 +16292,7 @@ T.SklIkarugaAttack.prototype = {
             if (n.fx > 0) {
                 p.push($.K())
                 m = this.r
-                n.aF(n.aq(C.d.R(o / T.d9(n, true, c)), m, T.ad(), c, d), m, T.ad(), c, d)
+                n.aF(n.aq(C.d.R(o / T.getDf(n, true, c)), m, T.ad(), c, d), m, T.ad(), c, d)
             }
         }
     }
@@ -16254,7 +16324,7 @@ T.LazyState.prototype = {
         var s, r, q = this.fx
         if (q.fx > 0) {
             s = this.fr
-            r = C.d.R(T.getAt(s, true, a) / T.d9(q, true, a))
+            r = C.d.R(T.getAt(s, true, a) / T.getDf(q, true, a))
             // sklLazyDamage
             // [1][懒癌]发作
             b.a.push(T.RunUpdate_init(LangData.get_lang("sPnN"), s, q, null, null, 0, 1000, 100))
@@ -17513,15 +17583,17 @@ T.Plr.prototype = {
             }
             this_.q = attrs
         }
-        if (diyskills) {
+
+        if (diyskills && this.cm == undefined) {
             this_.diy_skills(diyskills)
+
         } else {
+            this_.isDiySkill = 0;
             // initSkills
             // this.t -> 增益过的 name_base
             // this.E -> 原始 name_base
             this_.dm(C.Array.cL(this_.t, 64), C.Array.cL(this_.E, 64))
-        } 
-
+        }
 
         weapon = this_.weapon
         if (weapon != null) weapon.cs()
@@ -17906,7 +17978,7 @@ T.Plr.prototype = {
             r = p.cx + s
             q = c.ch + c.db
         }
-        if (p.fx > 0 && !p.A && T.bW(q, r, e)) {
+        if (p.fx > 0 && !p.A && T.dodge(q, r, e)) {
             // dodge (通用回避)
             // [0][回避]了攻击
             f.a.push(T.RunUpdate_init(LangData.get_lang("BtqN"), p, c, null, null, $.as(), 1000, 100))
@@ -17915,7 +17987,7 @@ T.Plr.prototype = {
         return p.bN(a, b, c, d, e, f)
     },
     bN(a, b, c, d, e, f) {
-        return this.aF(this.aq(C.d.R(a / T.d9(this, b, e)), c, d, e, f), c, d, e, f)
+        return this.aF(this.aq(C.d.R(a / T.getDf(this, b, e)), c, d, e, f), c, d, e, f)
     },
     aF(a, b, c, d, e) {
         var s, r, q, p, o, n = this
@@ -18426,6 +18498,7 @@ T.ProtectStat.prototype = {
         }
         return null
     },
+    // removeProtect(SklProtect skl)
     fs(a) {
         var s = this.x
         C.Array.U(s, a)
@@ -18444,7 +18517,7 @@ T.ProtectStat.prototype = {
             a = s.du(a, b, c, e, f, g)
             r = 0
             if (a == 0) return 0
-            q = T.d9(s, b, f)
+            q = T.getDf(s, b, f)
             s.aF(s.aq(C.d.eW(a * $.b0() / q), c, e, f, g), c, e, f, g)
             return 0
         }
@@ -18850,7 +18923,7 @@ T.SklDeathNote.prototype = {
         var s
         if (a > 0) {
             s = this.r
-            s = b != s && T.bW(b.fr + b.dy, s.fr + s.dx, c)
+            s = b != s && T.dodge(b.fr + b.dy, s.fr + s.dx, c)
         } else s = false
         if (s) this.fx = b
     }
