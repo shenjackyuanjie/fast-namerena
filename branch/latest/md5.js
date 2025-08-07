@@ -570,7 +570,7 @@ class NewRc4 {
 
     /**
      * xorBytes bO(a)
-     * @param {number[]} bytes 
+     * @param {number[]} bytes
      */
     xor_bytes(bytes) {
         const bytes_len = bytes.length;
@@ -993,6 +993,11 @@ var H = {
     rY() {
         return new P.bJ("Too many elements")
     },
+    /**
+     * sort
+     * @param {Array} a
+     * @param {*} b
+     */
     tJ(a, b) {
         // H.hL(a, 0, J.aw(a) - 1, b)
         H.hL(a, 0, a.length - 1, b)
@@ -5049,9 +5054,9 @@ var T = {
     },
     /**
      * getAt
-     * @param {Plr} a 
-     * @param {boolean} b 
-     * @param {RC4} c 
+     * @param {Plr} a
+     * @param {boolean} b
+     * @param {RC4} c
      * @returns f64
      */
     getAt(a, b, c) {
@@ -5070,9 +5075,9 @@ var T = {
     },
     /**
      * getDf
-     * @param {Plr} a 
-     * @param {boolean} b 
-     * @param {RC4} c 
+     * @param {Plr} a
+     * @param {boolean} b
+     * @param {RC4} c
      * @returns i32
      */
     getDf(a, b, c) {
@@ -5081,9 +5086,9 @@ var T = {
     },
     /**
      * dodge
-     * @param {i32} a 
-     * @param {i32} b 
-     * @param {RC4} c 
+     * @param {i32} a
+     * @param {i32} b
+     * @param {RC4} c
      * @returns boolean
      */
     dodge(a, b, c) {
@@ -8915,6 +8920,11 @@ J.JsArray.prototype = {
         }
         return false
     },
+    /**
+     * sort a
+     * @param {Array} a
+     * @param {*} b prototype
+     */
     bb(a, b) {
         H.tJ(a, b == null ? J.bO() : b)
     },
@@ -9558,20 +9568,46 @@ H.RuntimeError.prototype = {
     }
 }
 H.JsLinkedHashMap.prototype = {
+  /**
+   * 获取元素数量。
+   * @param {*} _ 未用
+   * @returns {number} 元素个数
+   */
     gp(a) {
         return this.a
     },
+    /**
+     * 判断是否为空。
+     * @param {*} _ 未用
+     * @returns {boolean} 是否为空
+     */
     gbv(a) {
         return this.a === 0
     },
+    /**
+     * 判断是否为空。
+     * @param {*} _ 未用
+     * @returns {boolean} 是否为空
+     */
     gad(a) {
         return new H.dC(this, H._instanceType(this).i("dC<1>"))
     },
+    /**
+     * 判断是否为空。
+     * @param {*} _ 未用
+     * @returns {boolean} 是否为空
+     */
     gfP(a) {
         var s = this,
             r = H._instanceType(s)
         return H.t5(s.gad(s), new H.JsLinkedHashMap_values_closure(s), r.c, r.Q[1])
     },
+    /**
+     * 判断是否包含指定键。
+     * @param {*} _ 未用
+     * @param {string|number|any} key 键
+     * @returns {boolean} 是否包含
+     */
     J(a, b) {
         var s, r
         if (typeof b == "string") {
@@ -9583,12 +9619,23 @@ H.JsLinkedHashMap.prototype = {
             return r
         }
     },
+    /**
+     * 判断是否包含指定对象键（非字符串/小整数）。
+     * @param {any} key 键
+     * @returns {boolean} 是否包含
+     */
     f_(a) {
         var s = this,
             r = s.d
         if (r == null) return false
         return s.bR(s.bG(r, s.bQ(a)), a) >= 0
     },
+    /**
+     * 根据键获取值（不存在返回 null）。
+     * @param {*} _ 未用
+     * @param {string|number|any} key 键
+     * @returns {any|null} 值或 null
+     */
     h(a, b) {
         var s, r, q, p, o = this,
             n = null
@@ -9606,6 +9653,11 @@ H.JsLinkedHashMap.prototype = {
             return q
         } else return o.f0(b)
     },
+    /**
+     * 获取对象键（非字符串/小整数）的值。
+     * @param {any} key 键
+     * @returns {any|null} 值或 null
+     */
     f0(a) {
         var s, r, q = this,
             p = q.d
@@ -9615,6 +9667,12 @@ H.JsLinkedHashMap.prototype = {
         if (r < 0) return null
         return s[r].b
     },
+    /**
+     * 设置键值对（插入或更新）。
+     * @param {*} _ 未用
+     * @param {string|number|any} key 键
+     * @param {any} value 值
+     */
     m(a, b, c) {
         var s, r, q = this
         if (typeof b == "string") {
@@ -9625,6 +9683,11 @@ H.JsLinkedHashMap.prototype = {
             q.cQ(r == null ? q.c = q._newHashTable() : r, b, c)
         } else q.f2(b, c)
     },
+    /**
+     * 设置对象键（非字符串/小整数）的值。
+     * @param {any} key 键
+     * @param {any} value 值
+     */
     f2(a, b) {
         var s, r, q, p = this,
             o = p.d
@@ -9638,6 +9701,12 @@ H.JsLinkedHashMap.prototype = {
             else r.push(p.c_(a, b))
         }
     },
+    /**
+     * 删除指定键并返回其值（不存在返回 null）。
+     * @param {*} _ 未用
+     * @param {string|number|any} key 键
+     * @returns {any|null} 被删除的值或 null
+     */
     U(a, b) {
         var s
         if (typeof b == "string") return this.eu(this.b, b)
@@ -9646,6 +9715,11 @@ H.JsLinkedHashMap.prototype = {
             return s
         }
     },
+    /**
+     * 删除对象键（非字符串/小整数）并返回其值。
+     * @param {any} key 键
+     * @returns {any|null} 被删除的值或 null
+     */
     f1(a) {
         var s, r, q, p, o = this,
             n = o.d
@@ -9659,6 +9733,10 @@ H.JsLinkedHashMap.prototype = {
         if (r.length === 0) o.c4(n, s)
         return p.b
     },
+    /**
+     * 清空所有条目。
+     * @param {*} _ 未用
+     */
     ah(a) {
         var s = this
         if (s.a > 0) {
@@ -9667,12 +9745,20 @@ H.JsLinkedHashMap.prototype = {
             s.c9()
         }
     },
+    /**
+     * 按插入顺序遍历当前映射的所有键值对，并对每个项调用回调。
+     *
+     * 迭代期间若映射被结构性修改（插入/删除/清空等），将抛出异常以防止并发修改导致的不一致。
+     *
+     * @param {*} _ignored 未使用的占位参数（编译产物保留）
+     * @param {{ $2: function(any, any): void }} callback 接收 (key, value) 的回调对象，调用形式为 callback.$2(key, value)
+     * @throws {Error} 当遍历过程中映射被修改时抛出
+     */
     aw(a, b) {
         var this_ = this,
             r = this_.e,
             q = this_.r
         for (; r != null;) {
-            // 频率输出 call
             b.$2(r.a, r.b)
             if (q !== this_.r) {
                 throw H.wrap_expression(P.aK(this_))
@@ -9680,11 +9766,23 @@ H.JsLinkedHashMap.prototype = {
             r = r.c
         }
     },
+    /**
+     * 在指定哈希表中设置键值（若存在则更新）。
+     * @param {Object} table 目标哈希表
+     * @param {string|number} key 键
+     * @param {any} value 值
+     */
     cQ(a, b, c) {
         var s = this.bp(a, b)
         if (s == null) this.cd(a, b, this.c_(b, c))
         else s.b = c
     },
+    /**
+     * 从字符串键哈希表删除并返回值。
+     * @param {Object|null} table 哈希表
+     * @param {string} key 键
+     * @returns {any|null} 被删除的值或 null
+     */
     eu(a, b) {
         var s
         if (a == null) return null
@@ -9694,9 +9792,18 @@ H.JsLinkedHashMap.prototype = {
         this.c4(a, b)
         return s.b
     },
+    /**
+     * 增加结构修改计数（modCount）。
+     */
     c9() {
         this.r = this.r + 1 & 67108863
     },
+    /**
+     * 创建新节点并链接到尾部（维护插入顺序）。
+     * @param {any} key 键
+     * @param {any} value 值
+     * @returns {Object} 新节点
+     */
     c_(a, b) {
         var s, r = this,
             q = new H.jK(a, b)
@@ -9710,6 +9817,10 @@ H.JsLinkedHashMap.prototype = {
         r.c9()
         return q
     },
+    /**
+     * 从双向链表中移除节点并更新计数。
+     * @param {Object} node 节点
+     */
     d9(a) {
         var s = this,
             r = a.d,
@@ -9721,9 +9832,20 @@ H.JsLinkedHashMap.prototype = {
         --s.a
         s.c9()
     },
+    /**
+     * 计算键的哈希（归一到 26 位）。
+     * @param {any} key 键
+     * @returns {number} 哈希
+     */
     bQ(a) {
         return J.lZ(a) & 0x3ffffff
     },
+    /**
+     * 在桶数组中查找与键相等的元素索引。
+     * @param {Array<Object>|null} bucket 桶数组
+     * @param {any} key 键
+     * @returns {number} 索引，未找到为 -1
+     */
     bR(a, b) {
         var s, r
         if (a == null) return -1
@@ -9732,24 +9854,62 @@ H.JsLinkedHashMap.prototype = {
             if (J.Y(a[r].a, b)) return r
         return -1
     },
+    /**
+     * 返回字符串化表示。
+     * @param {*} _ 未用
+     * @returns {string} 字符串
+     */
     k(a) {
         return P.nR(this)
     },
+    /**
+     * 从对象表读取条目。
+     * @param {Object} table 哈希表/对象
+     * @param {string|number} key 键
+     * @returns {any} 条目或值
+     */
     bp(a, b) {
         return a[b]
     },
+    /**
+     * 从通用表读取桶/数组。
+     * @param {Object} table 哈希表/对象
+     * @param {number} hash 哈希键
+     * @returns {any} 桶或条目
+     */
     bG(a, b) {
         return a[b]
     },
+    /**
+     * 向表中写入条目。
+     * @param {Object} table 表
+     * @param {string|number} key 键
+     * @param {any} value 值
+     */
     cd(a, b, c) {
         a[b] = c
     },
+    /**
+     * 从表中删除条目。
+     * @param {Object} table 表
+     * @param {string|number} key 键
+     */
     c4(a, b) {
         delete a[b]
     },
+    /**
+     * 判断表中是否存在键（仅字符串键路径）。
+     * @param {Object|null} table 表
+     * @param {string} key 键
+     * @returns {boolean} 是否存在
+     */
     ei(a, b) {
         return this.bp(a, b) != null
     },
+    /**
+     * 创建新的哈希表（带占位键以避免原型链干扰）。
+     * @returns {Object} 新表
+     */
     _newHashTable() {
         var s = "<non-identifier-key>",
             r = Object.create(null)
@@ -13652,11 +13812,15 @@ HtmlRenderer.inner_render.prototype = {
         s = this_.cx.e.gb2()
         r = $.ay.h(0, s).a
         q = t.ak
+        // p: 胜者
+        // (plr.a === r)
         p = H.b([], q)
+        // o: 败者
+        // (plr.a !== r)
         o = H.b([], q)
         n = []
         $.ay.aw(0, new HtmlRenderer.jA(r, p, n, o))
-        C.Array.bb(p, HtmlRenderer.oD())
+        C.Array.bb(p, HtmlRenderer.oD()) // sort
         C.Array.bb(o, HtmlRenderer.oD())
         m = document_.createElement("table")
         l = new HtmlRenderer.addPlrToTable(m)
