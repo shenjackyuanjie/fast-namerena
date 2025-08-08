@@ -8274,7 +8274,7 @@ var X = {
         // if (run_env.from_code) {
         //     console.log("X.k", a, b, result)
         // }
-        logger.info("X.k", a, b, result)
+        // logger.info("X.k", a, b, result)
         return result
     },
     D(a, b) {
@@ -13327,7 +13327,7 @@ X.ProfileFind.prototype = {
         }
     },
     O() {
-        logger.debug("搜索 主循环")
+        // logger.debug("搜索 主循环")
         var async_goto = 0,
             async_completer = P._makeAsyncAwaitCompleter(t.d),
             q, this_ = this,
