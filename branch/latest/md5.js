@@ -12857,8 +12857,11 @@ L.ProfileWinChance.prototype = {
             }
         }
     },
+    /**
+     * nextUpdates
+     */
     O() {
-        logger.debug("胜率输出 main")
+        // logger.debug("胜率输出 main")
         var async_goto = 0,
             async_completer = P._makeAsyncAwaitCompleter(t.d),
             some_q, this_ = this,
@@ -13070,10 +13073,12 @@ V.ProfileMain.prototype = {
             this_.x = q[0]
         }
     },
+    /**
+     * nextUpdates
+     */
     O() {
         // 实力评分 main
-        // 普评? +
-        logger.debug("评分 输出")
+        // logger.debug("评分 输出")
         var async_goto = 0,
             async_completer = P._makeAsyncAwaitCompleter(t.d),
             result, this_ = this,
@@ -13326,6 +13331,9 @@ X.ProfileFind.prototype = {
             } else r.push(p)
         }
     },
+    /**
+     * nextUpdates
+     */
     O() {
         // logger.debug("搜索 主循环")
         var async_goto = 0,
@@ -13688,6 +13696,51 @@ HtmlRenderer.inner_render.prototype = {
             }
         }
     },
+    /**
+async nextUpdate() {
+  // 渲染器主 "循环"：取出下一条更新并交给 ft 处理
+  this.d = null;
+
+  if (this.Q == null || this.Q.a.length === 0) {
+    // 从外部获取下一组更新（异步） (nextUpdates)
+    this.Q = await this.c.O();
+
+    // 让出一次事件循环（等同于原来的 future_delayed 0ms）
+    await new Promise(resolve => setTimeout(resolve, 0));
+
+    // 重置渲染相关状态
+    this.db = null;
+    this.dx = true;
+    this.ch = 1800;
+  }
+
+  if (this.Q == null) return;
+
+  // 从队列头取出一条更新并处理
+  const update = this.Q.a.shift();
+  this.ft(update);
+}
+
+  nextUpdate() async {
+    timer = null;
+    DivElement div;
+    if (_updates == null || _updates.updates.isEmpty) {
+      f -> final Engine f;
+      _updates = await f.nextUpdates();
+
+      await new Future.delayed(new Duration(milliseconds: 1));
+
+      _lastRow = null;
+      _newTurnRow = true;
+      _nextWait = 1800;
+    }
+    if (_updates == null) {
+      return;
+    }
+    renderUpdate(_updates.updates.removeAt(0));
+  }
+
+     */
     b4() {
         // nextUpdate()
         // MARK: 渲染器主"循环"
@@ -17168,6 +17221,9 @@ T.Engine.prototype = {
             for (players = p.length, s = 0; s < p.length; p.length === players || (0, H.F)(p), ++s) p[s].$2(this_.b, b)
         }
     },
+    /**
+     * nextUpdates
+     */
     O() {
         // 运行时?
         // logger.debug("运行 主循环")
