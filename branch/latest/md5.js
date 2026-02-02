@@ -3661,7 +3661,8 @@ var J = {
     },
     rz(a, b, c) {
         // call a.step()
-        return J.uS(a).dN(a, b, c)
+        // return J.uS(a).dN(a, b, c)
+        return J.dN(a, b, c)
     },
     nB(a, b) {
         return J.aQ(a).ay(a, b)
@@ -18160,6 +18161,24 @@ T.Plr.prototype = {
         this_.Y = attr_sum * j + q[r]
         this_.H = 32768
     },
+    /**
+  void step(R r, RunUpdates updates) {
+    if (hp <= 0) {
+      return;
+    }
+    int stp = spd * (r.r3);
+    if (presteps.isNotEmpty) {
+      for (PreStepEntry entry in presteps) {
+        stp = entry.preStep(stp, r, updates);
+      }
+    }
+    spsum += stp;
+    if (spsum > 2048) {
+      spsum -= 2048;
+      action(r, updates);
+    }
+  }
+     */
     dN(a, b, c) {
         // void step(R r, RunUpdates updates) {
         var s, r, q, this_ = this
@@ -18171,9 +18190,9 @@ T.Plr.prototype = {
         if (!r.gbv(r))
             for (r = new Sgls.a_(r, r.b, r.$ti.i("a_<1*>")); r.u();) s = r.b.x.fo(s, b, c)
         r = this_.l = this_.l + s
-        q = $.bx()
-        if (r > q) {
-            this_.l = r - q
+        // 2048
+        if (r > 2048) {
+            this_.l = r - 2048
             this_.eE(0, b, c)
         }
     },

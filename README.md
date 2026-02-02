@@ -12,6 +12,8 @@ shenjack 的 namerena 镜像项目
 
 你可以在 [news](./news.md) 看到更新日志
 
+src: https://github.com/namerena/src
+
 ## 项目目标
 
 完全了解清楚 namerena 的运行机制
