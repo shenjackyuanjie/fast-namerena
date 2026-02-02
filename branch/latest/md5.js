@@ -17205,44 +17205,107 @@ T.Engine.prototype = {
     bE() {
         why_ns = 0
     },
+    /**
+     * round
+     * @param {number} a ?
+     * @param {RunUpdates} b updates! 
+     */
     fz(a, b) {
-        // void round(RunUpdates updates) {
-        var s, this_ = this,
-            q = this_.ch,
-            players = this_.c
-        let p = C.JsInt.V(q + 1, players.length)
-        this_.ch = p
+        // 更具可读性的实现，保持原有逻辑不变
+        let this_ = this;
+        // 计算下一轮的玩家索引（循环取模）
+        // var nextIndex = C.JsInt.V(this_.ch + 1, this_.c.length);
+        let nextIndex = (this_.ch + 1) % this_.c.length;
+        this_.ch = nextIndex;
 
-        // players[roundPos].step(r, updates);
-        J.rz(players[p], this_.b, b)
+        // 执行该位置玩家的 step（原：J.rz(players[p], this_.b, b)）
+        J.rz(this_.c[nextIndex], this_.b, b);
 
-        for (q = t.Y; p = b.b, p.length !== 0;) {
-            b.b = H.b([], q)
-            for (players = p.length, s = 0; s < p.length; p.length === players || (0, H.F)(p), ++s) p[s].$2(this_.b, b)
+        // 处理 updates.b 中的回调，直到队列为空
+        var callbackType = t.Y;
+        while (true) {
+            var callbacks = b.b;
+            if (!callbacks || callbacks.length === 0) break;
+            // 重置 updates.b 为同类型的空数组（保持原行为：b.b = H.b([], q)）
+            b.b = H.b([], callbackType);
+            // 逐个执行之前收集的回调：每项调用 $2(this_.b, b)
+            var len = callbacks.length;
+            for (var i = 0; i < len; ++i) {
+                callbacks[i].$2(this_.b, b);
+            }
         }
     },
     /**
      * nextUpdates
+// O: nextUpdates
+async function O() {
+  // _end: 是否已结束 (ended flag)
+  if (_end) {
+    return null;
+  }
+
+  // updates: RunUpdates 实例 (updates container)
+  var updates = new RunUpdates();
+
+  // _winner: 胜利方 (winner group)
+  if (_winner != null) {
+    // outputwin: 输出胜利信息占位 (output winner placeholder)
+    var outputwin;
+    updates.add(new RunUpdateWin(_winner.initPlayers[0], outputwin));
+    _end = true;
+
+    // _checktime: (awaitable) 时间检查函数
+    await _checktime();
+    return updates;
+  }
+
+  try {
+    // 当没有 winner 时循环执行回合处理
+    while (_winner == null) {
+      // round: 执行一轮更新，传入 updates
+      round(updates);
+      // 如果有输出更新则返回
+      if (updates.updates && updates.updates.length !== 0) {
+        return updates;
+      }
+    }
+  } catch (err) {
+    // err: 捕获的异常 (error)
+    // 如果异常是 Grp 类型则忽略，否则打印错误和堆栈
+    if (err instanceof Grp) {
+      // ignore
+    } else {
+      debug(err);
+      debug(err && err.stack);
+    }
+  }
+
+  if (updates.updates && updates.updates.length !== 0) {
+    return updates;
+  }
+  return null;
+}
      */
     O() {
-        // 运行时?
-        // logger.debug("运行 主循环")
+        // engine main
         var async_goto = 0,
             async_completer = P._makeAsyncAwaitCompleter(t.d),
             result_, p = [],
             this_ = this,
-            rc4, m, l, k, j, i, h, g, f
+            updates, k, j, i, h, g
         var $async$O = P._wrapJsFunctionForAsync(function (a, b) {
             if (a === 1) return P.async_rethrow(b, async_completer)
             while (true) $async$outer: switch (async_goto) {
                 case 0:
-                    if (this_.cx) {
+                    if (this_.cx) { // end
                         result_ = null
                         async_goto = 1
                         break
                     }
-                    rc4 = new T.aq(H.b([], t.U), H.b([], t.Y))
+                    updates = new T.aq(H.b([], t.U), H.b([], t.Y)) // updates
                     k = this_.cy
+                    // if (winner != null) -> 3
+                    // else -> 4
                     async_goto = k != null ? 3 : 4
                     break
                 case 3:
@@ -17254,23 +17317,23 @@ T.Engine.prototype = {
                     h = $.lJ()
                     g = new T.RunUpdateWin(i, h, 100, j, k, null, null, null)
                     g.aK(j, k, null, null, null, i, h, 100)
-                    rc4.a.push(g)
+                    updates.a.push(g)
                     this_.cx = true
                     async_goto = 5
                     // return P._asyncAwait(this_.bE(), $async$O)
                     why_ns = 0
                 // $.mc = 0 // 来自bE()
                 case 5:
-                    result_ = rc4
+                    result_ = updates
                     async_goto = 1
                 // break
                 case 4:
                     try {
                         while (this_.cy == null) {
                             // round
-                            this_.fz(0, rc4)
-                            if (rc4.a.length !== 0) {
-                                result_ = rc4
+                            this_.fz(0, updates)
+                            if (updates.a.length !== 0) {
+                                result_ = updates
                                 async_goto = 1
                                 break $async$outer
                             }
@@ -17282,9 +17345,9 @@ T.Engine.prototype = {
                         // m = H.unwrap_Exception(e)
                         // l = H.getTraceFromException(e)
                     }
-                    if (rc4.a.length !== 0) {
+                    if (updates.a.length !== 0) {
                         // updates.updates.isNotEmpty
-                        result_ = rc4
+                        result_ = updates
                         async_goto = 1
                         // return updates
                         break
