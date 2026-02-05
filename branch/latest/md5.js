@@ -4953,6 +4953,9 @@ var T = {
         g.t = f
         return g
     },
+    /**
+     * onDamage SklCurse
+     */
     tC(a, b, c, d, e) {
         var s, r = 0
         if (c > r && !(b.fx <= r)) {
@@ -4974,28 +4977,52 @@ var T = {
                 s.z = s.z + 10
                 s.Q = s.Q + 1
             }
+            // [1]被[诅咒]了
             e.a.push(T.RunUpdate_init(C.String.B(LangData.get_lang("spfN"), $.qx()), a, b, null, null, $.a6(), 1000, 100))
         }
     },
+    /**
+     * onDamage SklDisperse (renamed parameters for clarity)
+     *
+     * 功能说明（中文）：
+     * 当技能 Disperse 触发造成伤害时调用。
+     * - 遍历目标的 metaMap（状态/效果集合），对每个满足条件的 meta 触发其 K 方法。
+     * - 最后根据目标的 go 值对其 MP/推进量进行调整（类似击退/耗能的逻辑）。
+     *
+     * 参数：
+     * caster: 造成伤害的角色（施法者）
+     * target: 受伤的目标（被施法者）
+     * dmg: 伤害值
+     * r: 随机/RC4 等（未在此函数内使用，但保留以匹配调用签名）
+     * updates: RunUpdates 数组/容器，用于记录运行时事件
+     */
     tD(a, b, c, d, e) {
-        var s, r, q, p, o
-        if (c > 0) {
-            s = b.r2
-            r = s.gad(s)
-            q = P.List_List_of(r, true, H._instanceType(r).i("L.E"))
-            C.Array.aJ(q)
-            for (r = q.length, p = 0; p < q.length; q.length === r || (0, H.F)(q), ++p) {
-                o = s.h(0, q[p])
-                if (o.gT() > 0) o.K(a, e)
-            }
-            s = b.go
-            r = 64
-            if (s > r) b.go = s - r
-            else {
-                r = $.at()
-                if (s > r) b.go = 0
-                else b.go = s - r
-            }
+        var metaMap, keys, originalLen, i, meta;
+        // dmg 小于等于 0 则不处理
+        if (c <= 0) return;
+
+        // 收集 target.r2（meta map）的键（状态 id 列表）
+        metaMap = b.r2;
+        keys = metaMap.gad(metaMap);
+        // 转换为列表并确保内部类型信息（与 Dart / 转译逻辑对应）
+        keys = P.List_List_of(keys, true, H._instanceType(keys).i("L.E"));
+        C.Array.aJ(keys);
+
+        // 以稳定的遍历顺序遍历键（保持原始迭代模式）
+        for (originalLen = keys.length, i = 0; i < keys.length; keys.length === originalLen || (0, H.F)(keys), ++i) {
+            meta = metaMap.h(0, keys[i]);
+            // meta.gT() 用于判断 meta 的某个计数/状态，>0 时触发其 K 方法
+            if (meta.gT() > 0) meta.K(a, e);
+        }
+
+        // 调整目标的 go 值（类似 MP/推进/击退的处理逻辑）
+        var mp = b.go;
+        var high = 64;
+        if (mp > high) b.go = mp - high;
+        else {
+            var mid = 32;
+            if (mp > mid) b.go = 0;
+            else b.go = mp - mid;
         }
     },
     tE(a, b, c, d, e) {
@@ -18196,8 +18223,14 @@ T.Plr.prototype = {
             this_.eE(0, b, c)
         }
     },
+    /**
+     * void action(R r, RunUpdates updates) {
+     * @param {number} a 
+     * @param {*} b 
+     * @param {*} c 
+     * @returns 
+     */
     eE(a, b, c) {
-        // void action(R r, RunUpdates updates) {
         var s, r, q, p, o, n, m, this_ = this,
             k = null,
             smart = (b.n() & 63) < this_.fr
@@ -18223,10 +18256,29 @@ T.Plr.prototype = {
         if (s == null) s = this_.k3
         // skl.act(targets, smart, r, updates);
         s.v(o == null ? s.aa(0, smart, b) : o, smart, b, c)
-        if ((b.n() & 127) < this_.fr + 64) this_.go = this_.go + $.aR()
+        if ((b.n() & 127) < this_.fr + 64) this_.go = this_.go + 16
+        // postAction
         this_.at(b, c)
         if (this_.Z) this_.bL(k, c)
     },
+    /**
+  void clearStates(Plr caster, RunUpdates updates) {
+    if (postAcioning) {
+      pendingClearStates = true;
+      return;
+    }
+    pendingClearStates = false;
+    for (String key in meta.keys.toList()..sort()) {
+      if (meta[key].metaType < 0) {
+        meta[key].destroy(caster, updates);
+        meta.remove(key);
+      }
+    }
+  }
+     * @param {*} a 
+     * @param {*} b 
+     * @returns 
+     */
     bL(a, b) {
         var s, r, q, p, o, this_ = this
         if (this_.a_) {
@@ -18248,6 +18300,18 @@ T.Plr.prototype = {
         for (s = this.x1, s = new Sgls.a_(s, s.b, s.$ti.i("a_<1*>")), skl = null; s.u();) { skl = s.b.aN(skl, smart, r, updates) }
         return skl
     },
+    /**
+  void postAction(R r, RunUpdates updates) {
+    postAcioning = true;
+    updates.add(RunUpdate.newline);
+    for (PostActionEntry entry in postactions) {
+      entry.postAction(r, updates);
+    }
+    postAcioning = false;
+  }
+     * @param {*} a 
+     * @param {*} b 
+     */
     at(a, b) {
         var s
         this.a_ = true
