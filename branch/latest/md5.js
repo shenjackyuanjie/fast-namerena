@@ -4982,7 +4982,7 @@ var T = {
         }
     },
     /**
-     * onDamage SklDisperse (renamed parameters for clarity)
+     * onDamage SklDisperse
      *
      * 功能说明（中文）：
      * 当技能 Disperse 触发造成伤害时调用。
@@ -15614,7 +15614,7 @@ T.SklRevive.prototype = {
 T.SklPossess.prototype = {
     ao(a, b) {
         this.r = a
-        this.f = C.JsInt.P(b, 2) + $.mU()
+        this.f = C.JsInt.P(b, 2) + 36
     },
     v(a, b, c, d) {
         var s, r, q, p = this,
@@ -17930,7 +17930,8 @@ T.Plr.prototype = {
         q = C.Array.al(this_.t, 0, 10)
         C.Array.aJ(q)
 
-        C.Array.j(r, C.Array.dz(C.Array.al(q, $.B(), $.ap()), new T.jX()) + $.mK())
+        // ap -> 7
+        C.Array.j(r, C.Array.dz(C.Array.al(q, $.B(), 7), new T.jX()) + 154)
         // 至此，属性初始化完毕，this_.q就是八围 但前7围要+36才是面板属性！！！
         // test
         //this_.q = [-36, 0, 0, 0, -36, 0, 0, 100]
@@ -18225,10 +18226,10 @@ T.Plr.prototype = {
     },
     /**
      * void action(R r, RunUpdates updates) {
-     * @param {number} a 
-     * @param {*} b 
-     * @param {*} c 
-     * @returns 
+     * @param {number} a
+     * @param {*} b
+     * @param {*} c
+     * @returns
      */
     eE(a, b, c) {
         var s, r, q, p, o, n, m, this_ = this,
@@ -18275,9 +18276,9 @@ T.Plr.prototype = {
       }
     }
   }
-     * @param {*} a 
-     * @param {*} b 
-     * @returns 
+     * @param {*} a
+     * @param {*} b
+     * @returns
      */
     bL(a, b) {
         var s, r, q, p, o, this_ = this
@@ -18309,8 +18310,8 @@ T.Plr.prototype = {
     }
     postAcioning = false;
   }
-     * @param {*} a 
-     * @param {*} b 
+     * @param {*} a
+     * @param {*} b
      */
     at(a, b) {
         var s
@@ -18463,10 +18464,13 @@ T.Plr.prototype = {
                 if (o.q[r] > s[r]) n.push(H.as_string($.lO()) + H.as_string(o.q[r] - s[r]))
                 else n.push("")
         }
-        return H.as_string(o.e) + "\t" + H.as_string(o.r) + "\t" + H.as_string(o.c) + "\t" + H.as_string(o.f) + "\t" + H.as_string(o.fy) + n[$.ap()] + "\t" + H.as_string(o.aY(o.q[0])) + n[0] + "\t" + H.as_string(o.aY(o.q[1])) + n[1] + "\t" + H.as_string(o.aY(o.q[2])) + n[2] + "\t" + H.as_string(o.aY(o.q[$.B()])) + n[$.B()] + "\t" + H.as_string(o.aY(o.q[4])) + n[4] + "\t" + H.as_string(o.aY(o.q[5])) + n[5] + "\t" + H.as_string(o.aY(o.q[$.a4()])) + n[$.a4()] + "\t" + H.as_string(o.cE())
+        let result = H.as_string(o.e) + "\t" + H.as_string(o.r) + "\t" + H.as_string(o.c) + "\t" + H.as_string(o.f) + "\t" + H.as_string(o.fy) + n[$.ap()] + "\t" + H.as_string(o.aY(o.q[0])) + n[0] + "\t" + H.as_string(o.aY(o.q[1])) + n[1] + "\t" + H.as_string(o.aY(o.q[2])) + n[2] + "\t" + H.as_string(o.aY(o.q[$.B()])) + n[$.B()] + "\t" + H.as_string(o.aY(o.q[4])) + n[4] + "\t" + H.as_string(o.aY(o.q[5])) + n[5] + "\t" + H.as_string(o.aY(o.q[$.a4()])) + n[$.a4()] + "\t" + H.as_string(o.cE());
+        // logger.info("角色信息", result)
+        return result
     },
     aY(a) {
-        var s = $.mU()
+        // var s = $.mU()
+        var s = 36
         if (a > $.q4()) {
             return $.iK() // ??
         }
