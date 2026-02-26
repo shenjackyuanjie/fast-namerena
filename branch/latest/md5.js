@@ -15313,7 +15313,7 @@ T.IceState.prototype = {
         var s, r
         this.D()
         s = this.r
-        s.r2.U(0, $.bS())
+        s.r2.U(0, "ice")
         this.x.D()
         s.F()
         if (s.fx > 0) {
@@ -15327,7 +15327,7 @@ T.IceState.prototype = {
 T.SklIce.prototype = {
     a9(a, b, c) {
         var s = this.bC(a, b, c)
-        return a.r2.h(0, $.bS()) != null ? s / 2 : s
+        return a.r2.h(0, "ice") != null ? s / 2 : s
     },
     v(a, b, c, d) {
         var s = a[0].a,
@@ -15364,7 +15364,7 @@ T.SklIron.prototype = {
         p = $.p3()
         q = s.r
         s.go = p + q.dx
-        if (q.r2.J(0, $.a7())) {
+        if (q.r2.J(0, "charge")) {
             q = s.id
             p = 4
             s.id = q + p
@@ -15454,7 +15454,7 @@ T.PoisonState.prototype = {
     },
     K(a, b) {
         var s, r = this.x
-        r.r2.U(0, $.bT())
+        r.r2.U(0, "piston")
         this.D()
         if (r.fx > 0) {
             s = b.a
@@ -15732,7 +15732,7 @@ T.SklShadow.prototype = {
         a4.y = q.y
         q.L.j(0, a4.a6)
         a4.az()
-        if (this_.r.r2.J(0, $.a7())) a4.l = $.bx()
+        if (this_.r.r2.J(0, "charge")) a4.l = $.bx()
         else a4.l = -$.bx()
         this_.r.y.aZ(a4)
         shadow_name = LangData.get_lang("wHun")
@@ -15815,7 +15815,7 @@ T.SklSlow.prototype = {
             o.x2.j(0, r.y)
             o.F()
         } else r.z = r.z + 2
-        if (q.r.r2.J(0, $.a7())) r.z = r.z + 4
+        if (q.r.r2.J(0, "charge")) r.z = r.z + 4
         n.push(T.RunUpdate_init(C.String.B(LangData.get_lang("YNva"), $.qJ()), q.r, o, p, p, $.a6(), 1000, 100))
     }
 }
@@ -15823,7 +15823,7 @@ T.SklExplode.prototype = {
     v(a, b, c, d) {
         var s, r, q, p, o, n = this,
             m = a[0].a,
-            l = t.a.a(m.r2.h(0, $.eY()))
+            l = t.a.a(m.r2.h(0, "fire"))
         if (l == null) {
             l = new T.FireState(0)
         }
@@ -15972,7 +15972,7 @@ T.SklSummon.prototype = {
         this_.r.L.j(0, this_.fr.a6)
         // this_.fr.l = a8.n() * 4
         this_.fr.l = a8.n() * 4
-        if (this_.r.r2.J(0, $.a7())) {
+        if (this_.r.r2.J(0, "charge")) {
             this_.fr.bi.D()
             this_.fr.l = $.bx()
         }
@@ -16207,7 +16207,7 @@ T.PlrBoss.prototype = {
     },
     cE() {
         // getScoreStr()
-        // return $.iK()
+        // return "??"
         return "??"
     },
     gaS() {
@@ -16216,7 +16216,7 @@ T.PlrBoss.prototype = {
     },
     gaG() {
         // List<String> get immuned => [Dt.assassinate, Dt.charm, Dt.berserk, Dt.half, Dt.curse,  Dt.exchange, Dt.slow, Dt.ice];
-        return H.b([$.d2(), $.aE(), $.aJ(), $.eZ(), $.bh(), $.d3(), $.bi(), $.bS()], t.V)
+        return H.b(["assassinate", $.aE(), $.aJ(), "half", $.bh(), "exchange", $.bi(), "ice"], t.V)
     },
     a7(a, b) {
         // bool immune(String key, R r) {
@@ -16324,7 +16324,7 @@ T.PlrBossCovid.prototype = {
         return H.b([s, r, q, p, q, p, q, $.a6()], t.i)
     },
     gaG() {
-        return H.b([$.aE(), $.aJ(), $.d3()], t.V)
+        return H.b([$.aE(), $.aJ(), "exchange"], t.V)
     },
     ac() {
         var s = 0
@@ -16474,7 +16474,7 @@ T.PlrBossIkaruga.prototype = {
         return H.b([$.aI(), $.iI(), $.mN(), $.mW(), 10, $.mL(), $.mT(), $.mJ()], t.i)
     },
     gaG() {
-        return H.b([$.d2(), $.eZ(), $.d3(), $.bT(), $.bi(), $.bS()], t.V)
+        return H.b(["assassinate", "half", "exchange", "piston", $.bi(), "ice"], t.V)
     },
     a7(a, b) {
         if (a == $.bh()) return false
@@ -16548,7 +16548,7 @@ T.PlrBossLazy.prototype = {
         return H.b([s, $.q2(), 10, -$.as(), s, $.b1(), s, $.cZ()], t.i)
     },
     gaG() {
-        return H.b([$.d2(), $.eZ(), $.bh(), $.d3()], t.V)
+        return H.b(["assassinate", "half", $.bh(), "exchange"], t.V)
     },
     ac() {
         var s = 1,
@@ -16655,7 +16655,7 @@ T.PlrBossMario.prototype = {
         return []
     },
     gaG() {
-        return H.b([$.d2()], t.V)
+        return H.b(["assassinate"], t.V)
     },
     a7(a, b) {
         if (a == $.lP()) return false
@@ -16775,7 +16775,7 @@ T.PlrBossMosquito.prototype = {
         return H.b([-$.B(), $.eW(), $.pv(), $.pY(), 5, $.ap(), $.cY(), -$.lK()], t.i)
     },
     gaS() {
-        return H.b([$.d2(), $.lP()], t.V)
+        return H.b(["assassinate", $.lP()], t.V)
     },
     gaG() {
         return H.b([$.aJ(), $.aE()], t.V)
@@ -16792,10 +16792,10 @@ T.PlrBossSaitama.prototype = {
         return H.b([$.pX(), $.pI(), $.n0(), $.q_(), $.pV(), $.pU(), 0, $.q1()], t.i)
     },
     gaS() {
-        return H.b([$.eZ(), $.d3()], t.V)
+        return H.b(["half", "exchange"], t.V)
     },
     gaG() {
-        return H.b([$.aJ(), $.bi(), $.bS()], t.V)
+        return H.b([$.aJ(), $.bi(), "ice"], t.V)
     },
     ac() {
         var s = 0,
@@ -16860,7 +16860,7 @@ T.PlrBossSlime.prototype = {
         return H.b([], t.V)
     },
     gaG() {
-        return H.b([$.bT()], t.V)
+        return H.b(["piston"], t.V)
     },
     ac() {
         this.k3 = T.SklSimpleAttack_init(this)
@@ -16973,7 +16973,7 @@ T.PlrBossSonic.prototype = {
         return H.b([], t.V)
     },
     gaG() {
-        return H.b([$.bT()], t.V)
+        return H.b(["piston"], t.V)
     },
     ac() {
         var s, r
@@ -17236,7 +17236,7 @@ T.Engine.prototype = {
     /**
      * round
      * @param {number} a ?
-     * @param {RunUpdates} b updates! 
+     * @param {RunUpdates} b updates!
      */
     fz(a, b) {
         // 更具可读性的实现，保持原有逻辑不变
@@ -17729,7 +17729,7 @@ T.Plr.prototype = {
                 team = $.rj()
                 if (team.J(0, q)) {
                     p = team.h(0, q).$2(q, this_)
-                } else if (J.nz(q, $.cl())) {
+                } else if (J.nz(q, "!")) {
                     p = new T.BossWeapon(q, this_, P.aL($.av(), 0, false, t.B))
                     p.a = q
                     p.a = C.String.af(q, 0, q.length - 1)
@@ -18461,7 +18461,7 @@ T.Plr.prototype = {
             C.Array.aJ(q)
             s.push(C.Array.dz(C.Array.al(q, $.B(), $.ap()), new T.jY()) + $.mK())
             for (r = 0; r < s.length; ++r)
-                if (o.q[r] > s[r]) n.push(H.as_string($.lO()) + H.as_string(o.q[r] - s[r]))
+                if (o.q[r] > s[r]) n.push(H.as_string("+") + H.as_string(o.q[r] - s[r]))
                 else n.push("")
         }
         let result = H.as_string(o.e) + "\t" + H.as_string(o.r) + "\t" + H.as_string(o.c) + "\t" + H.as_string(o.f) + "\t" + H.as_string(o.fy) + n[$.ap()] + "\t" + H.as_string(o.aY(o.q[0])) + n[0] + "\t" + H.as_string(o.aY(o.q[1])) + n[1] + "\t" + H.as_string(o.aY(o.q[2])) + n[2] + "\t" + H.as_string(o.aY(o.q[$.B()])) + n[$.B()] + "\t" + H.as_string(o.aY(o.q[4])) + n[4] + "\t" + H.as_string(o.aY(o.q[5])) + n[5] + "\t" + H.as_string(o.aY(o.q[$.a4()])) + n[$.a4()] + "\t" + H.as_string(o.cE());
@@ -18472,7 +18472,7 @@ T.Plr.prototype = {
         // var s = $.mU()
         var s = 36
         if (a > $.q4()) {
-            return $.iK() // ??
+            return "??" // ??
         }
         return C.JsInt.k(a + s)
     },
@@ -19321,7 +19321,7 @@ T.GuiYue.prototype = {
     b3(a) { },
     bn() { },
     b6() {
-        this.c.r2.m(0, $.a7(), new T.DummyChargeMeta())
+        this.c.r2.m(0, "charge", new T.DummyChargeMeta())
     }
 }
 T.NoWeapon.prototype = {
@@ -22154,8 +22154,8 @@ function main(input_name) {
                 // 或者直接在这里输入一个原始字符串
                 h = T.parse_names(raw_names)
 
-                // if (J.Y(J.J(J.J(h, 0)[0], 0), $.qc())) {
-                if ($.qc() === h[0][0][0] && !run_env.fight_only) {
+                // if (J.Y(J.J(J.J(h, 0)[0], 0), "!test!")) {
+                if ("!test!" === h[0][0][0] && !run_env.fight_only) {
                     $.vr = 6
                     // if (J.aw(h) === 2)
                     if (h.length === 2) {
@@ -22177,10 +22177,10 @@ function main(input_name) {
                             logger.debug("官方测号-评分")
 
                             e = $.nk()
-                            // if (J.J(h, 0).length === 2 && J.Y(J.J(J.J(h, 0)[1], 0), $.cl())) {
-                            if (h[0].length === 2 && h[0][1][0] === $.cl()) {
+                            // if (J.J(h, 0).length === 2 && J.Y(J.J(J.J(h, 0)[1], 0), "!")) {
+                            if (h[0].length === 2 && h[0][1][0] === "!") {
                                 team_1 = h[1]
-                                e = $.cl()
+                                e = "!"
                             }
                             team_1 = h[1]
                             team_2 = e
