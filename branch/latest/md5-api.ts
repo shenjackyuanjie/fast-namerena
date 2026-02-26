@@ -192,7 +192,7 @@ async function cli() {
 
 想使用的话, 请使用 
 ${runner} md5-api.ts <装着你名字的文件> <开箱类型>
-开箱类型可以是: pp, pd, qp, qd
+开箱类型可以是: pp, pd, qp, qd, fight
 开箱完会把结果输出到 <装着你名字的文件>-out.txt
 	`;
 	if (args.length < 2 || args.includes("--help") || args.includes("-h")) {
@@ -204,7 +204,7 @@ ${runner} md5-api.ts <装着你名字的文件> <开箱类型>
 	const open_type = args[1];
 
 	// 先校验一下 open_type
-	const open_types = ["pp", "pd", "qp", "qd"];
+	const open_types = ["pp", "pd", "qp", "qd", "fight"];
 	if (!open_types.includes(open_type)) {
 		console.log(`开箱类型不对, 只能是 ${open_types.join(", ")} 之一`);
 		process.exit(1);
@@ -228,6 +228,14 @@ ${runner} md5-api.ts <装着你名字的文件> <开箱类型>
 		process.exit(1);
 	}
 	let run_prefix: string;
+	if (open_type === "fight") {
+		console.log(`开始 fight (整文件): ${file_path}`);
+		const result = await fight(file_content);
+		console.log(`赢家: ${result.source_plr}`);
+		fs.appendFileSync(output_file_path, `${result.source_plr}\n`);
+		return;
+	}
+
 	if (open_type === "pp") {
 		run_prefix = "!test!\n\n{temp}";
 	} else if (open_type === "pd") {
