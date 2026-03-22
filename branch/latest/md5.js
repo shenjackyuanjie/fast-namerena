@@ -54,6 +54,10 @@ let run_env = {
      * 添加自: 0.5.0
      */
     use_external_gAd: false,
+    /**
+     * 是否抓取对战过程日志 (仅代码运行模式)
+     */
+    capture_fight_log: false,
 };
 
 /**
@@ -375,30 +379,105 @@ function compare_bO(a, b) {
  * @param {T.RunUpdate} update
  * @returns {message: string, source_plr: string, target_plr: string, affect: string} msg
  */
+function get_update_name(data, default_value = "none") {
+    if (data === null || data === undefined) {
+        return default_value
+    }
+    if (typeof data === "string" || typeof data === "number") {
+        return "" + data
+    }
+    if (data.a !== null && data.a !== undefined) {
+        return "" + data.a
+    }
+    if (data.e !== null && data.e !== undefined) {
+        return "" + data.e
+    }
+    return default_value
+}
+
+function get_update_affect(data, default_value = "none") {
+    if (data === null || data === undefined) {
+        return default_value
+    }
+    if (typeof data === "string" || typeof data === "number") {
+        return data
+    }
+    if (data.a !== null && data.a !== undefined) {
+        return data.a
+    }
+    return default_value
+}
+
 function fmt_RunUpdate(update) {
     let message = update.d;
-    let source_plr = "none"
-    if (update.e !== null && update.e.a !== null) {
-        source_plr = update.e.a
-    }
-    let target_plr = update.f;
-    if (target_plr !== null && target_plr.a !== null) {
-        target_plr = target_plr.a
-    } else {
-        target_plr = "none"
-    }
-    let affect = update.x;
-    if (affect !== null && affect.a !== null) {
-        affect = affect.a
-    } else {
-        affect = "none"
-    }
+    let source_plr = get_update_name(update.e, "none")
+    let target_plr = get_update_name(update.f, "none")
+    let affect = get_update_affect(update.x, "none")
     return {
         message: message,
         source_plr: source_plr,
         target_plr: target_plr,
         affect: affect,
     }
+}
+
+function fmt_RunUpdate_text(update) {
+    let message = update.d == null ? "" : "" + update.d
+
+    message = message.replace(/\[.*?\]/g, (token) => {
+        if (token === "[0]") {
+            return get_update_name(update.e, "")
+        }
+        if (token === "[1]") {
+            return get_update_name(update.f, "")
+        }
+        if (token === "[2]") {
+            return "" + get_update_affect(update.x, "")
+        }
+        return token.slice(1, token.length - 1)
+    })
+
+    message = message.replace(/<[^>]*>/g, "")
+    message = message.replace(/&nbsp;/g, " ")
+    message = message.replace(/\u2003/g, " ")
+    message = message.replace(/\u00A0/g, " ")
+    message = message.replace(/\((通用|雷击)\)/g, "")
+    message = message.replace(/[\u200B-\u200D\uFEFF]/g, "")
+    message = message.replace(/\r/g, "")
+    message = message.replace(/[ \t\u3000]+$/g, "")
+    return message
+}
+
+const FIGHT_LOG_TURN_SPLITTER = "__FIGHT_LOG_TURN_SPLITTER__"
+let fight_log_data = []
+
+function reset_fight_log_data() {
+    fight_log_data = []
+}
+
+function push_fight_log_data(update) {
+    let message = fmt_RunUpdate_text(update)
+    if (typeof message !== "string") {
+        return
+    }
+    message = message.replace(/[ \t\u3000]+$/g, "")
+    if (message.trim().length === 0) {
+        return
+    }
+    fight_log_data.push(message)
+}
+
+function push_fight_log_break() {
+    if (fight_log_data.length === 0) {
+        return
+    }
+    if (fight_log_data[fight_log_data.length - 1] !== FIGHT_LOG_TURN_SPLITTER) {
+        fight_log_data.push(FIGHT_LOG_TURN_SPLITTER)
+    }
+}
+
+function get_fight_log_data() {
+    return fight_log_data.slice()
 }
 
 /**
@@ -5099,6 +5178,7 @@ var T = {
         p = 64
         n = H.b([(m & 63) + r, (q & 63) + p, o + p], n)
         C.Array.aJ(n)
+        if (globalThis.__probe_getAt) console.log(`[getAt] plr=${a.e} isMag=${b} atk=${o} a=${s} b=${n[1]} atboost=${a.id} result=${s * n[1] * a.id} rc4=(${c.a},${c.b})`)
         return s * n[1] * a.id
     },
     /**
@@ -5120,6 +5200,10 @@ var T = {
      * @returns boolean
      */
     dodge(a, b, c) {
+        if (globalThis.__probe_dodge) {
+            var info = globalThis.__dodge_ctx || '';
+            console.log(`[dodge] ${info}accure=${a} dodgeval=${b} rc4=(${c.a},${c.b})`)
+        }
         var s = 24 + b - a,
             r = 7
         if (s < r) s = r
@@ -13818,6 +13902,9 @@ async nextUpdate() {
         // renderUpdate()
         var s, r, q, p, this_ = this
         if (a == $.K()) {
+            if (run_env.from_code && run_env.capture_fight_log) {
+                push_fight_log_break()
+            }
             this_.db = null
             this_.cy = true
             this_.b4()
@@ -13851,7 +13938,9 @@ async nextUpdate() {
         if (this_.cx instanceof T.RunUpdateWin) {
             this_.fQ()
         } else if (run_env.from_code) {
-            // logger.debug(fmt_RunUpdate(this_.cx))
+            if (run_env.capture_fight_log) {
+                push_fight_log_data(this_.cx)
+            }
             this_.b4()
             return
         } else {
@@ -15524,6 +15613,9 @@ T.SklRapid.prototype = {
             c = a.length,
             b = 3
         if (c > b) a = (a && C.Array).al(a, 0, b)
+        if (globalThis.__probe_rapid_target && g.r.e === globalThis.__probe_rapid_target) {
+            console.log("[rapid] caster=" + g.r.e + " targets=[" + a.map(function(x){return x.a.e}).join(",") + "] rc4=(" + a1.a + "," + a1.b + ")");
+        }
         for (c = a.length, s = 0; s < c; ++s) {
             a[s].b = 0
         }
@@ -15560,6 +15652,9 @@ T.SklRapid.prototype = {
                 c.push($.K())
             }
             r = C.JsInt.V(r + (a1.n() & 3), a.length)
+            if (globalThis.__probe_rapid_target && g.r.e === globalThis.__probe_rapid_target) {
+                console.log("[rapid_pos] new_pos=" + r + " rc4=(" + a1.a + "," + a1.b + ")");
+            }
         }
     }
 }
@@ -17152,9 +17247,23 @@ T.Engine.prototype = {
 
                     o = C.Array.aV(sorted_hash_names, "\r")
                     sorted_hash = C.e.gaB().ab(o)
+                    // __probe: init
+                    if (globalThis.__probe_init) {
+                        console.log("[init] sorted_hash_names:", JSON.stringify(sorted_hash_names));
+                        console.log("[init] join_str:", JSON.stringify(o));
+                        console.log("[init] sorted_hash bytes:", Array.from(sorted_hash).join(","));
+                    }
                     this_.b = new LangData.SuperRC4()
                     this_.b.bd(sorted_hash, 1) // init 1
+                    // __probe: after bd
+                    if (globalThis.__probe_init) {
+                        console.log("[init] after bd rc4=(" + this_.b.a + "," + this_.b.b + ")");
+                    }
                     this_.b.bO(sorted_hash) // xor bytes once
+                    // __probe: after bO
+                    if (globalThis.__probe_init) {
+                        console.log("[init] after bO rc4=(" + this_.b.a + "," + this_.b.b + ")");
+                    }
 
                     o = sorted_names.length
                     h = 0
@@ -17177,6 +17286,10 @@ T.Engine.prototype = {
                     m = this_.b // rc4_holder
                     // name2p[name].sortInt = r.rFFFFFF;
                     n.Q = (m.n() << 16 | m.n() << 8 | m.n()) >>> 0
+                    // __probe: sortInt
+                    if (globalThis.__probe_init) {
+                        console.log("[init] build+sortInt plr=" + b0 + " sortInt=" + n.Q + " rc4=(" + m.a + "," + m.b + ")");
+                    }
                 case 4:
                     sorted_names.length === o || (0, H.F)(sorted_names), ++h
                     async_goto = 3
@@ -17216,13 +17329,35 @@ T.Engine.prototype = {
                             player = k[b2]
                             i = this_.b
                             group = player.e
+                            // __probe: encrypt
+                            if (globalThis.__probe_init) {
+                                console.log("[init] encrypt plr=" + group + " rc4_before=(" + i.a + "," + i.b + ")");
+                            }
                             i.bO(C.e.gaB().ab(group))
+                            // __probe: after encrypt
+                            if (globalThis.__probe_init) {
+                                console.log("[init] after encrypt rc4=(" + i.a + "," + i.b + ")");
+                            }
                         }
                         this_.b.bO(H.b([0], m))
+                        // __probe: after group zero
+                        if (globalThis.__probe_init) {
+                            console.log("[init] after group_zero rc4=(" + this_.b.a + "," + this_.b.b + ")");
+                        }
                         C.Array.a5(name2p, b1.f)
                     }
                     // p.spsum = rander.r255;=
-                    for (o = this_.c, n = o.length, h = 0; h < o.length; o.length === n || (0, H.F)(o), ++h) o[h].l = this_.b.n()
+                    // __probe: before move_point
+                    if (globalThis.__probe_init) {
+                        console.log("[init] before move_point rc4=(" + this_.b.a + "," + this_.b.b + ") players=" + JSON.stringify(this_.c.map(p => p.e)));
+                    }
+                    for (o = this_.c, n = o.length, h = 0; h < o.length; o.length === n || (0, H.F)(o), ++h) {
+                        o[h].l = this_.b.n()
+                        // __probe: move_point
+                        if (globalThis.__probe_init) {
+                            console.log("[init] move_point plr=" + o[h].e + " mp=" + o[h].l + " rc4=(" + this_.b.a + "," + this_.b.b + ")");
+                        }
+                    }
                 // for each
                 case 1:
                     return P._asyncReturn(q, async_completer)
@@ -17246,6 +17381,9 @@ T.Engine.prototype = {
         let nextIndex = (this_.ch + 1) % this_.c.length;
         this_.ch = nextIndex;
 
+        // __probe: trace tick
+        var __rc4_before = globalThis.__probe_tick ? [this_.b.a, this_.b.b] : null;
+
         // 执行该位置玩家的 step（原：J.rz(players[p], this_.b, b)）
         J.rz(this_.c[nextIndex], this_.b, b);
 
@@ -17261,6 +17399,13 @@ T.Engine.prototype = {
             for (var i = 0; i < len; ++i) {
                 callbacks[i].$2(this_.b, b);
             }
+        }
+
+        // __probe: log tick
+        if (__rc4_before) {
+            var plr = this_.c[nextIndex];
+            var rc4_after = [this_.b.a, this_.b.b];
+            console.log(`[tick] idx=${nextIndex} plr=${plr.e} rc4=(${__rc4_before[0]},${__rc4_before[1]})->(${rc4_after[0]},${rc4_after[1]}) bytes=${(rc4_after[0]-__rc4_before[0]+256)%256}`);
         }
     },
     /**
@@ -17910,6 +18055,10 @@ T.Plr.prototype = {
         if (weapon != null) weapon.cs()
         this_.bs() // addSkillsToProc
         this_.cn() // initValues
+        // DEBUG PROBE: dump stats after build
+        if (typeof globalThis.__probe_dump === 'function') {
+            globalThis.__probe_dump(this_);
+        }
     },
     aU() {
         // initRawAttr
@@ -18233,20 +18382,32 @@ T.Plr.prototype = {
      */
     eE(a, b, c) {
         var s, r, q, p, o, n, m, this_ = this,
-            k = null,
-            smart = (b.n() & 63) < this_.fr
+            k = null, smart
+        // __probe: trace action
+        var __tracing = false
+        if (globalThis.__probe_eE) {
+            __tracing = true
+            console.log(`[eE] start actor=${this_.e} rc4=(${b.a},${b.b})`)
+        }
+        smart = (b.n() & 63) < this_.fr
+        if (__tracing) console.log(`[eE] after smart rc4=(${b.a},${b.b}) smart=${smart} wisdom=${this_.fr}`)
         0
         // preAction
         s = this_.fn(smart, b, c)
+        if (__tracing) console.log(`[eE] after preAction rc4=(${b.a},${b.b}) forced=${s!=null}`)
         // frozen
         if (this_.A) return
         if (s == null) {
             r = (b.n() & 15) + 8
+            if (__tracing) console.log(`[eE] req_mp=${r} mp=${this_.go} rc4=(${b.a},${b.b})`)
             if (this_.go >= r) {
                 for (q = this_.k4, p = q.length, o = k, n = 0; n < q.length; q.length === p || (0, H.F)(q), ++n) {
                     m = q[n]
+                    if (__tracing) console.log(`[eE] before prob skill_f=${m.f} rc4=(${b.a},${b.b})`)
                     if (!m.au(b, smart)) continue
+                    if (__tracing) console.log(`[eE] prob passed! rc4=(${b.a},${b.b})`)
                     o = m.aa(0, smart, b)
+                    if (__tracing) console.log(`[eE] after targets targets=${o?.length} rc4=(${b.a},${b.b})`)
                     if (o == null) continue
                     s = m
                     break
@@ -18255,12 +18416,17 @@ T.Plr.prototype = {
             } else o = k
         } else o = k
         if (s == null) s = this_.k3
+        if (__tracing) console.log(`[eE] before act isDefault=${s===this_.k3} hasTargets=${o!=null} rc4=(${b.a},${b.b})`)
         // skl.act(targets, smart, r, updates);
         s.v(o == null ? s.aa(0, smart, b) : o, smart, b, c)
+        if (__tracing) console.log(`[eE] after act rc4=(${b.a},${b.b})`)
         if ((b.n() & 127) < this_.fr + 64) this_.go = this_.go + 16
+        if (__tracing) console.log(`[eE] after recover rc4=(${b.a},${b.b})`)
         // postAction
         this_.at(b, c)
+        if (__tracing) console.log(`[eE] after postAction rc4=(${b.a},${b.b})`)
         if (this_.Z) this_.bL(k, c)
+        if (__tracing) console.log(`[eE] end action#${globalThis.__probe_eE_count} rc4=(${b.a},${b.b})`)
     },
     /**
   void clearStates(Plr caster, RunUpdates updates) {
@@ -18322,8 +18488,21 @@ T.Plr.prototype = {
     },
     du(a, b, c, d, e, f) {
         var s
+        if (globalThis.__probe_du && this.e === globalThis.__probe_du_target) {
+            console.log(`[du] target=${this.e} caster=${c.e} atp=${a} rc4=(${e.a},${e.b})`)
+            for (var _s2 = this.y1, _s2 = new Sgls.a_(_s2, _s2.b, _s2.$ti.i("a_<1*>")); _s2.u();) {
+                var _item = _s2.b
+                console.log(`[du] y1_item constructor=${_item.constructor.name || 'unknown'} level=${_item.f || 'N/A'}`)
+            }
+        }
         for (s = this.y1, s = new Sgls.a_(s, s.b, s.$ti.i("a_<1*>")); s.u();) {
+            if (globalThis.__probe_du && this.e === globalThis.__probe_du_target) {
+                console.log(`[du] before_dv item_type=${s.b.constructor.name || 'unknown'} rc4=(${e.a},${e.b})`)
+            }
             a = s.b.dv(a, b, c, this, d, e, f)
+            if (globalThis.__probe_du && this.e === globalThis.__probe_du_target) {
+                console.log(`[du] after_dv atp=${a} rc4=(${e.a},${e.b})`)
+            }
             if (a == 0) return 0
         }
         return a
@@ -18335,7 +18514,12 @@ T.Plr.prototype = {
     },
     a3(a, b, c, d, e, f) {
         var s, r, q, p = this
+        var __dt = globalThis.__probe_protect_target
+        if (__dt && p.e === __dt && c.e === globalThis.__probe_protect_caster) console.log(`[a3] start target=${p.e} caster=${c.e} is_mag=${b} atp=${a} rc4=(${e.a},${e.b})`)
+        if (globalThis.__probe_a3) console.log(`[a3] start target=${p.e} caster=${c.e} is_mag=${b} atp=${a} rc4=(${e.a},${e.b})`)
         a = p.du(a, b, c, d, e, f)
+        if (__dt && p.e === __dt && c.e === globalThis.__probe_protect_caster) console.log(`[a3] after_predefend target=${p.e} atp=${a} rc4=(${e.a},${e.b})`)
+        if (globalThis.__probe_a3) console.log(`[a3] after_predefend target=${p.e} caster=${c.e} atp=${a} rc4=(${e.a},${e.b})`)
         if (a == 0) return 0
         s = p.db
         if (b) {
@@ -18345,6 +18529,7 @@ T.Plr.prototype = {
             r = p.cx + s
             q = c.ch + c.db
         }
+        if (globalThis.__probe_dodge) globalThis.__dodge_ctx = `target=${p.e} caster=${c.e} is_mag=${b} `
         if (p.fx > 0 && !p.A && T.dodge(q, r, e)) {
             // dodge (通用回避)
             // [0][回避]了攻击
@@ -18645,6 +18830,7 @@ T.SklAttack.prototype = {
         var s, r, q, p, o = this,
             n = null,
             m = a[0].a
+        if (globalThis.__probe_eE_sklattack) console.log(`[sklattack_v] start plr=${o.r.e} target=${m.e} smart=${b} rc4=(${c.a},${c.b})`)
         if (b) {
             s = o.r
             s = s.dx > s.ch
@@ -18655,15 +18841,22 @@ T.SklAttack.prototype = {
             q = s.go
             if (q >= r) {
                 s.go = q - r
+                if (globalThis.__probe_eE_sklattack) console.log(`[sklattack_v] before getAt(mag) rc4=(${c.a},${c.b})`)
                 p = T.getAt(s, true, c)
+                if (globalThis.__probe_eE_sklattack) console.log(`[sklattack_v] after getAt(mag) atp=${p} rc4=(${c.a},${c.b})`)
                 // sklAttack
                 // [0]发起攻击
                 d.a.push(T.RunUpdate_init(LangData.get_lang("VQhA"), o.r, m, n, n, 0, 1000, 100))
+                if (globalThis.__probe_eE_sklattack) console.log(`[sklattack_v] before attacked(mag) rc4=(${c.a},${c.b})`)
                 m.a3(p, true, o.r, T.ad(), c, d)
+                if (globalThis.__probe_eE_sklattack) console.log(`[sklattack_v] after attacked(mag) rc4=(${c.a},${c.b})`)
                 return
             }
         }
+        if (globalThis.__probe_eE_sklattack) console.log(`[sklattack_v] before getAt(phys) rc4=(${c.a},${c.b})`)
         p = T.getAt(o.r, false, c)
+        if (globalThis.__probe_eE_sklattack) console.log(`[sklattack_v] after getAt(phys) atp=${p} rc4=(${c.a},${c.b})`)
+        // sklAttack
         // sklAttack
         // [0]发起攻击
         d.a.push(T.RunUpdate_init(LangData.get_lang("EYAn"), o.r, m, n, n, 0, 1000, 100))
@@ -18846,10 +19039,15 @@ T.ProtectStat.prototype = {
     },
     dG(a) {
         var s, r, q, p, o, n = this
+        var __dt = globalThis.__probe_protect_target
         for (s = n.x, r = n.r, q = r.r2; s.length !== 0;) {
+            if (__dt && r.e === __dt) console.log(`[dG] pick_from len=${s.length} rc4=(${a.a},${a.b})`)
             p = a.b5(s)
+            if (__dt && r.e === __dt) console.log(`[dG] picked=${p.r.e} lv=${p.f} rc4=(${a.a},${a.b})`)
             if (p.r.z == r.y && (a.n() & 127) < p.f && p.r.bw(a)) {
+                if (__dt && r.e === __dt) console.log(`[dG] trigger ok, before cI rc4=(${a.a},${a.b})`)
                 p.cI(a)
+                if (__dt && r.e === __dt) console.log(`[dG] after cI rc4=(${a.a},${a.b})`)
                 return p
             } else {
                 C.Array.U(s, p)
@@ -18878,25 +19076,36 @@ T.ProtectStat.prototype = {
         }
     },
     dv(a, b, c, d, e, f, g) {
-        var s, r, q, p = this.dG(f)
+        var s, r, q, p
+        var __dt = globalThis.__probe_protect_target
+        if (__dt && d.e === __dt) console.log(`[dv_protect] start owner=${d.e} caster=${c.e} atp=${a} rc4=(${f.a},${f.b})`)
+        p = this.dG(f)
         if (p != null) {
             s = p.r
             // sklProtect
             // [0][守护][1]
             g.a.push(T.RunUpdate_init(LangData.get_lang("JzmA"), s, d, null, null, 40, 1000, 100))
+            if (__dt && d.e === __dt) console.log(`[dv_protect] before protector_predefend protector=${s.e} rc4=(${f.a},${f.b})`)
             a = s.du(a, b, c, e, f, g)
+            if (__dt && d.e === __dt) console.log(`[dv_protect] after protector_predefend atp=${a} rc4=(${f.a},${f.b})`)
             r = 0
             if (a == 0) return 0
             q = T.getDf(s, b, f)
+            if (__dt && d.e === __dt) console.log(`[dv_protect] before damage dfp=${q} dmg=${C.d.eW(a * 0.5 / q)} rc4=(${f.a},${f.b})`)
             s.aF(s.aq(C.d.eW(a * 0.5 / q), c, e, f, g), c, e, f, g)
+            if (__dt && d.e === __dt) console.log(`[dv_protect] after damage rc4=(${f.a},${f.b})`)
             return 0
         }
+        if (__dt && d.e === __dt) console.log(`[dv_protect] no protector rc4=(${f.a},${f.b})`)
         return a
     }
 }
 T.SklProtect.prototype = {
     b9(a) {
         var s = this.r
+        if (globalThis.__probe_protect_candidates && s.e === globalThis.__probe_protect_candidates) {
+            console.log(`[protect_b9] candidates=[${s.z.f.map(p => p.e).join(',')}] owner_pos=${s.z.f.indexOf(s)} rc4=(${a.a},${a.b})`)
+        }
         return a.fk(s.z.f, s)
     },
     as(a, b) {
@@ -18917,6 +19126,9 @@ T.SklProtect.prototype = {
             p = q.aa(0, (a.n() & 127) < q.r.fr, a),
             o = p != null ? p[0].a : null,
             n = q.Q
+        if (globalThis.__probe_protect_all && q.r.e === globalThis.__probe_protect_all) {
+            console.log(`[protect_all] cI protector=${q.r.e} old=${n != null ? n.e : null} new=${o != null ? o.e : null} level=${q.f} rc4=(${a.a},${a.b})`)
+        }
         if (n == o) return
         if (n != null) {
             s = t.Q.a(n.r2.h(0, "protect"))
@@ -18930,6 +19142,9 @@ T.SklProtect.prototype = {
                 r = new T.ProtectStat(o, H.b([], t.gN))
                 n.m(0, "protect", r)
                 o.y1.j(0, r)
+                if (globalThis.__probe_protect_setup && o.e === globalThis.__probe_protect_setup) {
+                    console.log(`[protect_setup] NEW ProtectStat created on ${o.e} by protector=${q.r.e} rc4=(${a.a},${a.b})`)
+                }
             }
             r.x.push(q)
         }
@@ -19857,6 +20072,10 @@ LangData.SuperRC4.prototype = {
         if (a.length > skip_len) {
             q = C.Array.aT(a, first)
             n = this.ax(a.length - skip_len)
+            // DEBUG PROBE
+            if (typeof globalThis.__probe_fl === 'function') {
+                globalThis.__probe_fl(a, skip_len, q, n, this.a, this.b);
+            }
             return a[n >= q ? n + skip_len : n]
         }
         return null
@@ -22257,6 +22476,22 @@ const runner = {
             finish_trigger.once("done_fight", (data) => {
                 resolve(fmt_RunUpdate(data));  // 解析Promise
             });
+            main(names);
+        })
+    },
+    fight_log: (names) => {
+        return new Promise((resolve) => {
+            reset_fight_log_data()
+            run_env.capture_fight_log = true
+
+            finish_trigger.once("done_fight", (data) => {
+                run_env.capture_fight_log = false
+                resolve({
+                    winner: fmt_RunUpdate(data),
+                    updates: get_fight_log_data(),
+                });
+            });
+
             main(names);
         })
     },
