@@ -18719,14 +18719,18 @@ T.PostDefendImpl.prototype = {
         return this.r
     }
 }
+// PostDamageImpl - 包装器，用于将技能动态注册到 post_damage 列表
+// 关键：ga4() 返回 Infinity，意味着使用 MList.j() 插入时会被放到列表末尾
+// 这确保了动态添加的 post_damage hook（如 Assassinate 的潜行识破）在静态 hook 之后执行
 T.PostDamageImpl.prototype = {
     aD(a, b, c, d) {
-        return this.x.aD(a, b, c, d)
+        return this.x.aD(a, b, c, d)  // 委托给包装的技能
     },
     ga4() {
-        return 1 / 0
+        return 1 / 0  // Infinity - 排到最后执行
     }
 }
+// PreActionImpl - 同理，用于 pre_action 列表
 T.PreActionImpl.prototype = {
     aN(a, b, c, d) {
         return this.x.aN(a, b, c, d)
@@ -18735,6 +18739,7 @@ T.PreActionImpl.prototype = {
         return 1 / 0
     }
 }
+// PostActionImpl - 同理，用于 post_action 列表
 T.PostActionImpl.prototype = {
     at(a, b) {
         return this.x.at(a, b)
@@ -18923,43 +18928,58 @@ T.SklDefend.prototype = {
     },
     $iaB: 1
 }
+// SklHide - 隐匿技能
+// 隐匿是一个被动技能，当玩家受到伤害时有概率触发
+// 触发后会降低吸引度(attract)到10%，使敌人更难选中该玩家
+// 关键机制：
+// - W(): 初始化时注册到 r.G (post_damage hooks) 和 r.x1 (pre_action hooks)
+// - aD(): post_damage 回调，检查概率触发隐匿
+// - ar(): update_state 回调，应用隐匿效果（attract /= 10, 高等级加属性）
+// - aN(): pre_action 回调，清除隐匿状态
+// 注意：隐匿的 aD 使用默认 ga4()=10000，而 Assassinate 的 PostDamageImpl 使用 ga4()=Infinity
+// 这意味着隐匿的 post_damage 会先于 Assassinate 执行
 T.SklHide.prototype = {
     W() {
         var s = this
-        s.r.G.j(0, s)
-        s.r.x1.j(0, s.Q)
+        s.r.G.j(0, s)  // 注册到 post_damage hooks
+        s.r.x1.j(0, s.Q)  // 注册到 pre_action hooks
     },
+    // aD: post_damage 回调
+    // a: 伤害值, b: 攻击者, c: RC4, d: updates
     aD(a, b, c, d) {
         var s = this,
-            r = s.f,
+            r = s.f,  // 技能等级
             q = 0
-        if (r <= q || s.ch.a != null) return
+        if (r <= q || s.ch.a != null) return  // 等级0或已触发，跳过
         r = s.r
+        // 触发条件：存活(fx>0) + 非冰冻(!A) + 队友>1 + 概率检定
         if (r.fx > q && !r.A && r.z.f.length > 1 && (c.n() & 63) < s.f) {
-            s.r.rx.j(0, s.ch)
-            s.r.F()
-            r = LangData.get_lang("oIIa")
+            s.r.rx.j(0, s.ch)  // 注册到 update_state hooks
+            s.r.F()  // 调用 updateStates
+            r = LangData.get_lang("oIIa")  // "[0]发动[隐匿]"
             q = s.r
             d.a.push(T.RunUpdate_init(r, q, q, null, null, 10, 1000, 100))
         }
     },
+    // aN: pre_action 回调，清除隐匿状态
     aN(a, b, c, d) {
         var s = this.ch
         if (s.a != null) {
-            s.D()
-            this.r.F()
+            s.D()  // 移除 update_state hook
+            this.r.F()  // 重新计算状态
         }
     },
+    // ar: update_state 回调，应用隐匿效果
     ar(a) {
         var s, r, q, p = this.r
-        p.H = p.H / 10
+        p.H = p.H / 10  // attract 降到 10%
         s = this.f
         r = 63
-        if (s > r) {
+        if (s > r) {  // 高等级加属性
             q = s - r
-            p.db = p.db + q
-            p.cx = p.cx + q
-            p.dy = p.dy + q
+            p.db = p.db + q  // agility
+            p.cx = p.cx + q  // defense
+            p.dy = p.dy + q  // resistance
         }
     },
     $iah: 1
