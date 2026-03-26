@@ -14857,6 +14857,9 @@ T.CharmState.prototype = {
         return -1
     },
     ar(a) {
+        // 这里把被魅惑者的 allyGroup 直接替换成 charmState.r。
+        // r 保存的是“当前应继承的队伍对象”，所以链式魅惑会沿用已解析后的 effective team，
+        // 后续友军技能选目标时不能再回头按 charm source 玩家自己的原始队伍重算。
         this.x.z = this.r
     },
     at(a, b) {
@@ -14923,6 +14926,7 @@ T.SklCharm.prototype = {
             charm_state.aP(0)
         } else {
             s = this_.r.z
+            // 重新魅惑时覆盖的是目标要继承的队伍对象；只有 effective team 没变时才单纯叠层数。
             if (s != charm_state.r) charm_state.r = s
             else charm_state.z = charm_state.z + 1
         }
