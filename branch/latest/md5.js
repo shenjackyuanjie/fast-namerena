@@ -6325,6 +6325,9 @@ var T = {
         }
         if (n > m) {
             d = 3
+            // 这里故意给 OTHER(3) 临时 +1，再从高位往下找“最后一个非零类别”。
+            // 不能改成 UPPER(2) 或其它类别；像 tOeyDD 这类大小写混合 ASCII 名字，
+            // 最终 name_factor 是否落在约 -0.97 还是约 -3.74，就取决于这个哨兵落在哪一类。
             c[d] = c[d] + 1
             for (k = 5; k >= m; --k) {
                 d = c[k]
@@ -14995,6 +14998,8 @@ T.SklClone.prototype = {
         }
         q = C.Array.dl(p.k1, new T.SklCloneCallback())
         if (q != null) q.f = C.d.R(Math.sqrt(H.ar(this_.f)))
+        // 注意：这里只是改共享技能对象的 level，不会重新跑 addSkillsToProc。
+        // 所以如果 clone skill 在 p.az()/bs() 时还是 0，它不会事后补进 p.k4。
         // sklClone
         // [0]使用[分身]
         q = LangData.get_lang("yWWn")
