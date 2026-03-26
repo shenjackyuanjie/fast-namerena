@@ -19293,6 +19293,8 @@ T.SklUpgrade.prototype = {
         r = 63
         if (o > r) s += o - r
         o = q.r.fx
+        // Runtime ordering note: on the same owner, Hide.aD executes before Upgrade.aD.
+        // Upgrade consumes extra r63 rolls, so moving it ahead of Hide shifts Hide's RNG.
         if (o > n && o < s + (c.n() & 63) && (c.n() & 63) < q.f) {
             q.r.r2.m(0, "upgrade", q)
             q.r.rx.j(0, q.Q)
