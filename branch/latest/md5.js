@@ -5150,6 +5150,9 @@ var T = {
                 r = new T.PoisonState(a, b, 4)
                 r.y = T.getAt(a, true, d) * 1.2000000476837158
                 s.m(0, "piston", r)
+                // 注意：PoisonState 是直接挂进统一的 x2/postAction 链，
+                // 不是先走“状态阶段”再走“技能阶段”。所以它会和 Protect/Charge 共享同一条顺序，
+                // 排序结果要同时看 ga4() 和注册时机，排查 Rust 对齐问题时这里是关键入口。
                 b.x2.j(0, r)
             } else {
                 r.y = r.y + T.getAt(a, true, d) * 1.2000000476837158
@@ -6396,7 +6399,7 @@ var T = {
         g -= 32
         if (g > 0) { return g / ($.rp() - common_char_len()) }
         else {
-            d = 4
+            d = $.rq()
             if (g < -d) return (g + d) / ($.pD() + d - common_char_len())
         }
         return 0
@@ -14478,6 +14481,9 @@ Sgls.MList.prototype = {
     j(a, b) {
         var s, r, q, p = this
         if (b.a === p) return
+        // 关键：同一个 ga4() 的新 entry 不会插到旧 entry 前面。
+        // 这里会把它放到已有同优先级 entry 的后面，所以像 Protect / Poison 这类
+        // 共用默认 ga4()=10000 的 postAction hook，真实先后顺序取决于注册时机。
         if (b.ga4() === 1 / 0 || p.b === p) {
             p.bH(p.c, b)
             return
@@ -14820,6 +14826,8 @@ T.SklCharge.prototype = {
             q = s.r
         d.a.push(T.RunUpdate_init(r, q, q, null, null, 1, 1000, 100))
         s.fy = s.fy + 2
+        // Charge 注册的是 PostActionImpl(fx)，而 PostActionImpl.ga4()=Infinity，
+        // 所以会被追加到当前 x2 末尾，天然晚于默认 sortId 的 Poison/Protect。
         s.r.x2.j(0, s.fx)
         s.r.rx.j(0, s.fr)
         s.r.r2.m(0, "charge", s)
