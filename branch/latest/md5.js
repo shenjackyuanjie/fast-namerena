@@ -15974,6 +15974,9 @@ T.PlrSummon.prototype = {
     ac() {
         this.k3 = T.SklAttack_init(this)
         var s = this.k1
+        // PlrSummon 的固定技能槽位就是 k1[0..2] = [fire, fire, explode]。
+        // 后续 dm()/bs() 只会通过打乱后的 k2 改变“哪个对象拿到等级/先行动”，
+        // 但 merge 仍按 k1 的固定索引逐位吞技能，所以这里不能在构造期直接按 k2 顺序改槽位。
         s.push(new T.SklFire(0))
         s.push(new T.SklFire(0))
         s.push(new T.SklExplode(0))
@@ -17422,7 +17425,7 @@ T.Engine.prototype = {
         if (__rc4_before) {
             var plr = this_.c[nextIndex];
             var rc4_after = [this_.b.a, this_.b.b];
-            console.log(`[tick] idx=${nextIndex} plr=${plr.e} rc4=(${__rc4_before[0]},${__rc4_before[1]})->(${rc4_after[0]},${rc4_after[1]}) bytes=${(rc4_after[0]-__rc4_before[0]+256)%256}`);
+            console.log(`[tick] idx=${nextIndex} plr=${plr.e} mp=${plr.l} spd=${plr.cy} rc4=(${__rc4_before[0]},${__rc4_before[1]})->(${rc4_after[0]},${rc4_after[1]}) bytes=${(rc4_after[0]-__rc4_before[0]+256)%256}`);
         }
     },
     /**
@@ -17694,7 +17697,9 @@ T.Grp.prototype = {
         s = this.a
         r = s.e
         C.Array.U(r, a)
-        if (s.ch <= C.Array.aT(s.c, a)) --s.ch
+        var __idx = C.Array.aT(s.c, a)
+        if (globalThis.__probe_tick) console.log(`[dj] removing=${a.e} idx=${__idx} ch_before=${s.ch} ch_after=${s.ch <= __idx ? s.ch - 1 : s.ch} players_before=${s.c.map(p=>p.e).join(',')}`)
+        if (s.ch <= __idx) --s.ch
         C.Array.U(s.c, a)
         q = this.f.length
         p = 0
