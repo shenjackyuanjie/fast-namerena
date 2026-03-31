@@ -18517,6 +18517,10 @@ T.Plr.prototype = {
                 console.log(`[du] y1_item constructor=${_item.constructor.name || 'unknown'} level=${_item.f || 'N/A'}`)
             }
         }
+        // y1 是混合的 pre_defend 链：既有技能自己注册的 entry（如 Reflect），
+        // 也有战斗中动态插入的状态 entry（如 ProtectStat）。
+        // 这里直接按 y1 当前顺序执行，所以 ProtectStat/Reflect 的先后会改变 RC4 消耗；
+        // 对照 Rust 时不能把“技能 pre_defend”和“状态 pre_defend”拆成固定两段。
         for (s = this.y1, s = new Sgls.a_(s, s.b, s.$ti.i("a_<1*>")); s.u();) {
             if (globalThis.__probe_du && this.e === globalThis.__probe_du_target) {
                 console.log(`[du] before_dv item_type=${s.b.constructor.name || 'unknown'} rc4=(${e.a},${e.b})`)
@@ -18975,6 +18979,8 @@ T.SklHide.prototype = {
         if (r <= q || s.ch.a != null) return  // 等级0或已触发，跳过
         r = s.r
         // 触发条件：存活(fx>0) + 非冰冻(!A) + 队友>1 + 概率检定
+        // 这里的队友数读取的是当前 alive roster；如果同一 action 前半段刚用幻术 addNew 了 shadow，
+        // poison/post_damage 链来到这里时会立刻看到那只 shadow，因此会比延迟插入实现多推进 1 个 RC4 字节。
         if (r.fx > q && !r.A && r.z.f.length > 1 && (c.n() & 63) < s.f) {
             s.r.rx.j(0, s.ch)  // 注册到 update_state hooks
             s.r.F()  // 调用 updateStates
@@ -19196,6 +19202,10 @@ T.SklProtect.prototype = {
         return false
     },
     W() {
+        // Protect 自身就是统一 x2/postAction 队列里的 entry，不是单独的“状态阶段”。
+        // 因此它和 PoisonState 会直接竞争同一条队列的相对顺序：
+        // 如果战斗中途才把 Protect 注册进来（例如当前 actor 刚获得这项被动），
+        // 已经挂在 x2 里的 PoisonState 仍可能排在它前面，先结算毒再重选守护目标。
         this.r.x2.j(0, this)
     },
     $ibq: 1
@@ -19208,6 +19218,8 @@ T.SklReflect.prototype = {
             s = T.getAt(q.r, true, f) * 0.5
             if (s > a) s = a
             g.a.push(T.RunUpdate_init(C.String.B(LangData.get_lang("lnNA"), `<div class="smile s_reflect"></div>`), q.r, c, null, null, 20, $.d0(), 100))
+            // 这里必须先结算反伤造成的 a3/死亡链，再扣反弹者自己的 move point。
+            // 否则像 Merge 这种依赖当前 move point 比较的 post-kill 逻辑会拿到错误快照。
             c.a3(s, true, q.r, e, f, g)
             r = q.r
             r.l = r.l - $.mY()
