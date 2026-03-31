@@ -4928,6 +4928,8 @@ var T = {
         // SklAbsorb 的 onDamage (static)
         // static void onDamage(Plr caster, Plr target, int dmg, R r, RunUpdates updates) {
         var s, r, q, p = 0
+        // 这里看的是 caster 当前 hp（a.fx），而不是 alive flag。
+        // 所以被魅惑后打到自己时，如果这一击已经把自己打到 0，吸血不会把人再抬起来。
         if (c > p && !(a.fx <= p)) {
             s = C.JsInt.P(c + 1, 2)
             p = a.fy
@@ -4968,6 +4970,9 @@ var T = {
     },
     getMinionName(plr) {
         var s, r, q
+        // 这里的编号不看“当前活着多少只使魔”，而是挂在 root owner 的持久计数器上。
+        // 只有 PlrClone 会继续沿 gap() 回溯；shadow / summon / zombie 自己不会再开新 root。
+        // 所以 clone 继续造出来的 ?N 会和本体共用一条序号，而不是从 clone 自己重新从 0 开始。
         for (s = t.fM; s.b(plr);) plr = plr.gap()
         s = plr.r2
         r = t.f5.a(s.h(0, "minionCount"))
@@ -5026,6 +5031,8 @@ var T = {
         g = new T.PlrClone(f, e, d, c, b, a, a0, a1, a2, a3, s, r, q, p, o, n, m, l, j, i, h, k, g, g, g, 32768, g)
         g.a1(f, e, d, c)
         g.cm = owner
+        // clone 的 raw/internal name 继续保留 owner.a；这里只单独写 e 作为日志里的 owner?N。
+        // 也就是说 clone 的 a 和 e 故意不是同一个字段，后续对齐 Rust 时不能把 a 直接覆盖成 ?N。
         g.e = T.getMinionName(owner instanceof T.PlrClone ? g.a6 = owner.a6 : g.a6 = owner)
         f = owner.t
         f = H.b(f.slice(0), H._arrayInstanceType(f))
@@ -5127,6 +5134,9 @@ var T = {
                 ica_state = new T.IceState(b, 1024)
                 ica_state.x = new T.PreStepImpl(ica_state)
                 r.m(0, "ice", ica_state)
+                // 注意：IceState 本体留在 rx/update_state 链里，走默认 ga4()=10000；
+                // 真正的“回合开始扣冻结步数/到点解除”逻辑在 PreStepImpl 里，ga4()=Infinity，
+                // 所以它会追加到 pre_step 链尾。Rust 若把二者当成同一种优先级，很容易把解冻时机跑早。
                 b.rx.j(0, ica_state)
                 b.ry.j(0, ica_state.x)
                 b.F()
@@ -6485,6 +6495,8 @@ var T = {
     SklAccumulate: function SklAccumulate(a, b) {
         var _ = this
         _.fr = null
+        // fx 不是整局恒定：构造时传入的是首用倍率（当前产物这里是 1.7000000476837158），
+        // 但 K()/clear_positive_runtime 路径会把它重置成 1.600000023841858，后续再次聚气就按 1.6 走。
         _.fx = a
         _.e = false
         _.f = b
@@ -14672,6 +14684,7 @@ T.SklAccumulate.prototype = {
             s.push($.K())
             s.push(T.RunUpdateCancel_init(LangData.get_lang("xrNA"), a, r.r))
         }
+        // 注意：accumulate 首次创建时的 fx 可能更高，但每次被清除后都会回到 1.600000023841858。
         r.fx = 1.600000023841858
     },
     $ix: 1
@@ -15604,6 +15617,9 @@ T.SklQuake.prototype = {
         q.push(T.RunUpdate_init(s, r, null, null, m, 1, 1000, 100))
         for (k = 0; k < l.length; ++k) {
             m = T.getAt(this.r, true, c)
+            // Keep these float32-style literals exact when porting.
+            // This quake split sometimes lands on ceil() boundaries after reflect/defense,
+            // so rounding them to plain 2.44 / 0.6 can change the visible damage by 1.
             s = 2.440000057220459
             r = l.length
             p = 0.6000000238418579
@@ -15838,10 +15854,16 @@ T.SklShadow.prototype = {
         a4.a1(shadow_name, p, q, a6)
         a4.a6 = new T.cp(a4)
         a4.aj = this_
+        // shadow_name 写进 a：内部名仍是 owner.a + "?shadow"。
+        // e 才是战报/引用里使用的 owner?N，而 r 再额外覆盖成 UI 文案“幻影”。
         a4.e = T.getMinionName(this_.r)
         a4.r = LangData.get_lang("VdSN")
         q = this_.r
         a4.y = q.y
+        // addNew 立即把 shadow 插进 owner 当前队伍的 roster/alive。
+        // 如果 owner 在同一 action 后半段又因为 poison / postAction 死亡，
+        // cp.b1 仍会看到这只刚生成的 shadow，并在同一轮里把它移除；
+        // 这一步会额外推动 round cursor，是 Rust 对齐时必须保留的顺序语义。
         q.L.j(0, a4.a6)
         a4.az()
         if (this_.r.r2.J(0, "charge")) a4.l = 2048
@@ -16071,6 +16093,8 @@ T.SklSummon.prototype = {
             summoned_plr.a1(s, q, r, a4)
             summoned_plr.a6 = new T.cp(summoned_plr)
             summoned_plr.aj = this_
+            // summon 也分三层：a 保留 owner.a + "?summon"，e 变成 owner?N，r 才是“使魔”。
+            // 所以后续若只看到日志里的 ?N，不能反推出内部名字段已经被覆盖。
             summoned_plr.e = T.getMinionName(this_.r)
             this_.fr = summoned_plr
             // sklSummonName
@@ -18510,25 +18534,14 @@ T.Plr.prototype = {
     },
     du(a, b, c, d, e, f) {
         var s
-        if (globalThis.__probe_du && this.e === globalThis.__probe_du_target) {
-            console.log(`[du] target=${this.e} caster=${c.e} atp=${a} rc4=(${e.a},${e.b})`)
-            for (var _s2 = this.y1, _s2 = new Sgls.a_(_s2, _s2.b, _s2.$ti.i("a_<1*>")); _s2.u();) {
-                var _item = _s2.b
-                console.log(`[du] y1_item constructor=${_item.constructor.name || 'unknown'} level=${_item.f || 'N/A'}`)
-            }
-        }
         // y1 是混合的 pre_defend 链：既有技能自己注册的 entry（如 Reflect），
         // 也有战斗中动态插入的状态 entry（如 ProtectStat）。
         // 这里直接按 y1 当前顺序执行，所以 ProtectStat/Reflect 的先后会改变 RC4 消耗；
         // 对照 Rust 时不能把“技能 pre_defend”和“状态 pre_defend”拆成固定两段。
+        // 另外即使 a 一开始已经为 0，也还是会先跑当前顺序里的第一个 dv；
+        // 某些状态会在这里继续消耗 RC4，然后才返回 0 提前结束整条链。
         for (s = this.y1, s = new Sgls.a_(s, s.b, s.$ti.i("a_<1*>")); s.u();) {
-            if (globalThis.__probe_du && this.e === globalThis.__probe_du_target) {
-                console.log(`[du] before_dv item_type=${s.b.constructor.name || 'unknown'} rc4=(${e.a},${e.b})`)
-            }
             a = s.b.dv(a, b, c, this, d, e, f)
-            if (globalThis.__probe_du && this.e === globalThis.__probe_du_target) {
-                console.log(`[du] after_dv atp=${a} rc4=(${e.a},${e.b})`)
-            }
             if (a == 0) return 0
         }
         return a
@@ -18540,12 +18553,7 @@ T.Plr.prototype = {
     },
     a3(a, b, c, d, e, f) {
         var s, r, q, p = this
-        var __dt = globalThis.__probe_protect_target
-        if (__dt && p.e === __dt && c.e === globalThis.__probe_protect_caster) console.log(`[a3] start target=${p.e} caster=${c.e} is_mag=${b} atp=${a} rc4=(${e.a},${e.b})`)
-        if (globalThis.__probe_a3) console.log(`[a3] start target=${p.e} caster=${c.e} is_mag=${b} atp=${a} rc4=(${e.a},${e.b})`)
         a = p.du(a, b, c, d, e, f)
-        if (__dt && p.e === __dt && c.e === globalThis.__probe_protect_caster) console.log(`[a3] after_predefend target=${p.e} atp=${a} rc4=(${e.a},${e.b})`)
-        if (globalThis.__probe_a3) console.log(`[a3] after_predefend target=${p.e} caster=${c.e} atp=${a} rc4=(${e.a},${e.b})`)
         if (a == 0) return 0
         s = p.db
         if (b) {
@@ -18555,7 +18563,6 @@ T.Plr.prototype = {
             r = p.cx + s
             q = c.ch + c.db
         }
-        if (globalThis.__probe_dodge) globalThis.__dodge_ctx = `target=${p.e} caster=${c.e} is_mag=${b} `
         if (p.fx > 0 && !p.A && T.dodge(q, r, e)) {
             // dodge (通用回避)
             // [0][回避]了攻击
@@ -18794,6 +18801,9 @@ T.Skill.prototype = {
     },
     W() { },
     b9(a) {
+        // 默认选目标不是用“tick 开头拍下来的候选快照”，
+        // 而是每次直接回到当前的 gap().z live 视图里抽样。
+        // 所以同轮里 addNew / dj 造成的即时增删，会立刻改变 aa() 看到的 all_alive / ally_alive。
         var s = this.gap().z
         return a.fm(s.a.e, s.f)
     },
@@ -18861,7 +18871,6 @@ T.SklAttack.prototype = {
         var s, r, q, p, o = this,
             n = null,
             m = a[0].a
-        if (globalThis.__probe_eE_sklattack) console.log(`[sklattack_v] start plr=${o.r.e} target=${m.e} smart=${b} rc4=(${c.a},${c.b})`)
         if (b) {
             s = o.r
             s = s.dx > s.ch
@@ -18872,21 +18881,15 @@ T.SklAttack.prototype = {
             q = s.go
             if (q >= r) {
                 s.go = q - r
-                if (globalThis.__probe_eE_sklattack) console.log(`[sklattack_v] before getAt(mag) rc4=(${c.a},${c.b})`)
                 p = T.getAt(s, true, c)
-                if (globalThis.__probe_eE_sklattack) console.log(`[sklattack_v] after getAt(mag) atp=${p} rc4=(${c.a},${c.b})`)
                 // sklAttack
                 // [0]发起攻击
                 d.a.push(T.RunUpdate_init(LangData.get_lang("VQhA"), o.r, m, n, n, 0, 1000, 100))
-                if (globalThis.__probe_eE_sklattack) console.log(`[sklattack_v] before attacked(mag) rc4=(${c.a},${c.b})`)
                 m.a3(p, true, o.r, T.ad(), c, d)
-                if (globalThis.__probe_eE_sklattack) console.log(`[sklattack_v] after attacked(mag) rc4=(${c.a},${c.b})`)
                 return
             }
         }
-        if (globalThis.__probe_eE_sklattack) console.log(`[sklattack_v] before getAt(phys) rc4=(${c.a},${c.b})`)
         p = T.getAt(o.r, false, c)
-        if (globalThis.__probe_eE_sklattack) console.log(`[sklattack_v] after getAt(phys) atp=${p} rc4=(${c.a},${c.b})`)
         // sklAttack
         // sklAttack
         // [0]发起攻击
@@ -19470,6 +19473,8 @@ T.SklZombie.prototype = {
             a3.a1(s, q, r, a5)
             a3.a6 = new T.cp(a3)
             a3.aj = this_
+            // zombie 和 shadow/summon 一样：a 是 owner.a + "?zombie"，e 是 owner?N，r 才是“丧尸”。
+            // 行为对齐时要保留这三层分工，不能把内部名和日志名压成同一列。
             a3.e = T.getMinionName(this_.r)
             // sklZombieName
             // 丧尸
