@@ -14729,6 +14729,9 @@ T.SklAssassinate.prototype = {
                 if (q > r) r = q
                 q = T.getAt(p.r, true, c)
                 if (q > r) r = q
+                if (globalThis.__probe_action_skill_target != null && H.iF(p.r.e, globalThis.__probe_action_skill_target, 0)) {
+                    console.log(`[assassinate_js_atp] actor=${p.r.e} target=${n.e} atp=${r * 4} rc4=(${c.a},${c.b})`)
+                }
                 if (n.a7("assassinate", c)) {
                     // dodge (通用回避)
                     // [0][回避]了攻击
@@ -15332,6 +15335,8 @@ T.SklHaste.prototype = {
             o = null,
             n = a[0].a,
             m = d.a
+        var __probe_target = globalThis.__probe_action_skill_target
+        var __probe_hit = __probe_target != null && (H.iF(p.r.e, __probe_target, 0) || H.iF(n.e, __probe_target, 0))
         m.push(T.RunUpdate_init(LangData.get_lang("pHka"), p.r, n, o, o, 60, 1000, 100))
         s = p.r
         s.l = s.l + s.cy
@@ -15350,6 +15355,9 @@ T.SklHaste.prototype = {
             q = 2
             r.z = s + q
             r.Q = r.Q + q
+        }
+        if (__probe_hit) {
+            console.log(`[haste_js] owner=${p.r.e} target=${n.e} charge=${p.r.r2.J(0, "charge")} z=${r.z} Q=${r.Q} owner_mp=${p.r.l} target_spd=${n.cy}`)
         }
         m.push(T.RunUpdate_init(C.String.B(LangData.get_lang("DDWN"), `<div class="smile s_haste"></div>`), p.r, n, o, o, 0, 1000, 100))
     }
@@ -17723,6 +17731,9 @@ T.Grp.prototype = {
         C.Array.U(r, a)
         var __idx = C.Array.aT(s.c, a)
         if (globalThis.__probe_tick) console.log(`[dj] removing=${a.e} idx=${__idx} ch_before=${s.ch} ch_after=${s.ch <= __idx ? s.ch - 1 : s.ch} players_before=${s.c.map(p=>p.e).join(',')}`)
+        if (globalThis.__probe_action_skill_target != null && H.iF(a.e, globalThis.__probe_action_skill_target, 0)) {
+            console.log(`[dj_stack] removing=${a.e}\n${new Error().stack}`)
+        }
         if (s.ch <= __idx) --s.ch
         C.Array.U(s.c, a)
         q = this.f.length
@@ -18435,44 +18446,98 @@ T.Plr.prototype = {
             __tracing = true
             console.log(`[eE] start actor=${this_.e} rc4=(${b.a},${b.b})`)
         }
+        var __action_probe_target = globalThis.__probe_action_skill_target
+        var __action_probe = __action_probe_target != null && H.iF(this_.e, __action_probe_target, 0)
+        if (__action_probe) {
+            console.log(`[action_probe] start actor=${this_.e} rc4=(${b.a},${b.b}) mp=${this_.go} wisdom=${this_.fr} frozen=${this_.A}`)
+        }
         smart = (b.n() & 63) < this_.fr
         if (__tracing) console.log(`[eE] after smart rc4=(${b.a},${b.b}) smart=${smart} wisdom=${this_.fr}`)
+        if (__action_probe) {
+            console.log(`[action_probe] after smart actor=${this_.e} rc4=(${b.a},${b.b}) smart=${smart} wisdom=${this_.fr}`)
+        }
         0
         // preAction
         s = this_.fn(smart, b, c)
         if (__tracing) console.log(`[eE] after preAction rc4=(${b.a},${b.b}) forced=${s!=null}`)
+        if (__action_probe) {
+            console.log(`[action_probe] after preAction actor=${this_.e} rc4=(${b.a},${b.b}) forced=${s != null} forced_skill=${s == null ? "null" : s.constructor.name + ":" + s.f}`)
+        }
         // frozen
         if (this_.A) return
         if (s == null) {
             r = (b.n() & 15) + 8
             if (__tracing) console.log(`[eE] req_mp=${r} mp=${this_.go} rc4=(${b.a},${b.b})`)
+            if (__action_probe) {
+                console.log(`[action_probe] req_mp actor=${this_.e} req_mp=${r} mp_before=${this_.go} rc4=(${b.a},${b.b})`)
+            }
             if (this_.go >= r) {
                 for (q = this_.k4, p = q.length, o = k, n = 0; n < q.length; q.length === p || (0, H.F)(q), ++n) {
                     m = q[n]
                     if (__tracing) console.log(`[eE] before prob skill_f=${m.f} rc4=(${b.a},${b.b})`)
-                    if (!m.au(b, smart)) continue
+                    if (__action_probe) {
+                        console.log(`[action_probe] before prob actor=${this_.e} idx=${n} skill=${m.constructor.name} level=${m.f} rc4=(${b.a},${b.b})`)
+                    }
+                    if (!m.au(b, smart)) {
+                        if (__action_probe) {
+                            console.log(`[action_probe] prob failed actor=${this_.e} idx=${n} skill=${m.constructor.name} level=${m.f} rc4=(${b.a},${b.b})`)
+                        }
+                        continue
+                    }
                     if (__tracing) console.log(`[eE] prob passed! rc4=(${b.a},${b.b})`)
+                    if (__action_probe) {
+                        console.log(`[action_probe] prob passed actor=${this_.e} idx=${n} skill=${m.constructor.name} level=${m.f} rc4=(${b.a},${b.b})`)
+                    }
                     o = m.aa(0, smart, b)
                     if (__tracing) console.log(`[eE] after targets targets=${o?.length} rc4=(${b.a},${b.b})`)
+                    if (__action_probe) {
+                        console.log(`[action_probe] after targets actor=${this_.e} idx=${n} skill=${m.constructor.name} targets=${o == null ? "null" : "[" + o.map(function(x){return x.a.e}).join(",") + "]"} rc4=(${b.a},${b.b})`)
+                    }
                     if (o == null) continue
                     s = m
+                    if (__action_probe) {
+                        console.log(`[action_probe] selected skill actor=${this_.e} idx=${n} skill=${m.constructor.name} level=${m.f} rc4=(${b.a},${b.b})`)
+                    }
                     break
                 }
                 this_.go = this_.go - r
-            } else o = k
+                if (__action_probe) {
+                    console.log(`[action_probe] after mp pay actor=${this_.e} req_mp=${r} mp_after=${this_.go} rc4=(${b.a},${b.b})`)
+                }
+            } else {
+                if (__action_probe) {
+                    console.log(`[action_probe] insufficient mp actor=${this_.e} req_mp=${r} mp=${this_.go} rc4=(${b.a},${b.b})`)
+                }
+                o = k
+            }
         } else o = k
         if (s == null) s = this_.k3
         if (__tracing) console.log(`[eE] before act isDefault=${s===this_.k3} hasTargets=${o!=null} rc4=(${b.a},${b.b})`)
+        if (__action_probe) {
+            console.log(`[action_probe] before act actor=${this_.e} isDefault=${s === this_.k3} skill=${s.constructor.name} targets=${o == null ? "null" : "[" + o.map(function(x){return x.a.e}).join(",") + "]"} rc4=(${b.a},${b.b})`)
+        }
         // skl.act(targets, smart, r, updates);
         s.v(o == null ? s.aa(0, smart, b) : o, smart, b, c)
         if (__tracing) console.log(`[eE] after act rc4=(${b.a},${b.b})`)
+        if (__action_probe) {
+            console.log(`[action_probe] after act actor=${this_.e} skill=${s.constructor.name} rc4=(${b.a},${b.b}) mp=${this_.go}`)
+        }
         if ((b.n() & 127) < this_.fr + 64) this_.go = this_.go + 16
         if (__tracing) console.log(`[eE] after recover rc4=(${b.a},${b.b})`)
+        if (__action_probe) {
+            console.log(`[action_probe] after recover actor=${this_.e} rc4=(${b.a},${b.b}) mp=${this_.go}`)
+        }
         // postAction
         this_.at(b, c)
         if (__tracing) console.log(`[eE] after postAction rc4=(${b.a},${b.b})`)
+        if (__action_probe) {
+            console.log(`[action_probe] after postAction actor=${this_.e} rc4=(${b.a},${b.b}) mp=${this_.go} hp=${this_.fx}`)
+        }
         if (this_.Z) this_.bL(k, c)
         if (__tracing) console.log(`[eE] end action#${globalThis.__probe_eE_count} rc4=(${b.a},${b.b})`)
+        if (__action_probe) {
+            console.log(`[action_probe] end actor=${this_.e} rc4=(${b.a},${b.b}) mp=${this_.go} hp=${this_.fx}`)
+        }
     },
     /**
   void clearStates(Plr caster, RunUpdates updates) {
@@ -18852,6 +18917,9 @@ T.Skill.prototype = {
         for (q = m.length, p = 0; p < m.length; m.length === q || (0, H.F)(m), ++p) {
             s = m[p]
             r.push(new T.bG(s, o.a9(s, b, c)))
+        }
+        if (globalThis.__probe_action_skill_target != null && H.iF(o.r.e, globalThis.__probe_action_skill_target, 0)) {
+            console.log(`[attack_aa] actor=${o.r.e} smart=${b} all_alive=[${o.gap().z.a.e.map(x => x.e).join(", ")}] ally_alive=[${o.gap().z.f.map(x => x.e).join(", ")}] picks=[${m.map(x => x.e).join(", ")}] scores=[${r.map(x => `${x.a.e}:${x.b}`).join(", ")}] rc4=(${c.a},${c.b})`)
         }
         C.Array.bb(r, T.v5())
         return r
@@ -19244,6 +19312,11 @@ T.SklReraise.prototype = {
             o = c.n(),
             n = p.f
         if ((o & 127) < n) {
+            // Reraise 只是在当前死亡链里把 owner.fx 拉回 1..16 并输出两条日志。
+            // 它不会像 Revive 那样重新 aZ()/addNew 把角色插回 grp.f / Engine.e，
+            // 因为 owner 在这条 bm() 链上本来就还没执行 dj() 移出 round/alive 视图。
+            // 对齐 Rust 时，这里如果额外走“queue_revival -> sync revive_player”会平白制造一次复活同步，
+            // 从而把后续 round cursor / 行动顺序带偏，正是 3v3v3 这类 case 会炸开的点。
             p.f = C.JsInt.P(n + 1, 2)
             o = C.String.B(LangData.get_lang("DWRn"), `<div class="smile s_revive"></div>`)
             n = p.r

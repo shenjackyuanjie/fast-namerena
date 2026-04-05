@@ -56,8 +56,20 @@ async function main() {
 		throw new Error("输入为空");
 	}
 
+	const probe_action_skill_target = process.env.TSWN_PROBE_ACTION_SKILL_TARGET?.trim();
+	if (probe_action_skill_target) {
+		(globalThis as typeof globalThis & { __probe_action_skill_target?: string }).__probe_action_skill_target =
+			probe_action_skill_target;
+	}
+
+	const probe_tick = process.env.TSWN_PROBE_TICK?.trim();
+	if (probe_tick) {
+		(globalThis as typeof globalThis & { __probe_tick?: boolean }).__probe_tick = true;
+	}
+
 	const result = await md5_module.fight_log(input_text);
 	const logs: string[] = Array.isArray(result?.updates) ? result.updates : [];
+	const debug_raw_seq = !!process.env.TSWN_DEBUG_RAW_SEQ?.trim();
 	const output_lines: string[] = [];
 	let pending_action_line = "";
 	let pending_misc_lines: string[] = [];
@@ -77,8 +89,16 @@ async function main() {
 		}
 	};
 
-	for (const raw_line of logs) {
+	for (let idx = 0; idx < logs.length; idx++) {
+		const raw_line = logs[idx];
 		const line = sanitize_output_line(String(raw_line));
+		if (debug_raw_seq) {
+			if (line === TURN_SPLITTER) {
+				console.error(`[raw_seq/${idx}] <NextLine>`);
+			} else if (line.length > 0) {
+				console.error(`[raw_seq/${idx}] ${line}`);
+			}
+		}
 		if (line === TURN_SPLITTER) {
 			emit_current_turn();
 			continue;
