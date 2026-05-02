@@ -83,7 +83,7 @@ export function actorToken(player, state, previousState, { showHp = true } = {})
         : "";
     const hpClass = hpMetrics ? " has-hp" : "";
 
-    return `<span class="actor-token${hpClass}"><span class="actor-avatar-wrap">${renderIconSprite(playerIconClassId(player), 'msg-avatar icon-sprite')}${hpBar}</span><span class="actor-name">${escapeHtml(player.displayName)}</span></span>`;
+    return `<span class="actor-token${hpClass}"><span class="actor-avatar-wrap">${renderIconSprite(playerIconClassId(player), 'msg-avatar icon-sprite')}${hpBar}</span><span class="actor-name">${escapeHtml(player.display_name)}</span></span>`;
 }
 
 /**
@@ -96,21 +96,21 @@ export function actorToken(player, state, previousState, { showHp = true } = {})
  */
 function syntheticPlayerFromState(playerId, state, playersById) {
     let icon = null;
-    let iconClassId = state?.ownerId ?? playerId;
-    if (state?.ownerId != null) {
-        const ownerPlayer = playersById.get(state.ownerId);
+    let iconClassId = state?.owner_id ?? playerId;
+    if (state?.owner_id != null) {
+        const ownerPlayer = playersById.get(state.owner_id);
         if (ownerPlayer) {
-            icon = ownerPlayer.iconPngBase64;
+            icon = ownerPlayer.icon_png_base64;
             iconClassId = ownerPlayer.iconClassId ?? ownerPlayer.id;
         }
     }
 
     return {
         id: playerId,
-        teamIndex: state?.teamIndex ?? 0,
-        idName: state?.idName ?? `player_${playerId}`,
-        displayName: replayDisplayName(state, playerId),
-        iconPngBase64: icon,
+        team_index: state?.team_index ?? 0,
+        id_name: state?.id_name ?? `player_${playerId}`,
+        display_name: replayDisplayName(state, playerId),
+        icon_png_base64: icon,
         iconClassId,
     };
 }
@@ -242,7 +242,7 @@ export function renderIdleState(playerList, battleRows, plistMeta, headerMeta) {
 }
 
 function sidebarStatusLabels(state) {
-    return Array.isArray(state?.statusLabels) ? state.statusLabels : [];
+    return Array.isArray(state?.status_labels) ? state.status_labels : [];
 }
 
 const POSITIVE_STATUS_LABELS = new Set(["聚气", "蓄力", "隐匿", "潜行", "狂暴", "疾走", "铁壁", "守护"]);
@@ -320,9 +320,9 @@ export function renderPlayers(players, states, previousStates = states, involved
         // —— 全量渲染（首次或玩家数量变化时） ——
         const teams = new Map();
         for (const player of allPlayers) {
-            const items = teams.get(player.teamIndex) ?? [];
+            const items = teams.get(player.team_index) ?? [];
             items.push(player);
-            teams.set(player.teamIndex, items);
+            teams.set(player.team_index, items);
         }
 
         const sortedTeams = [...teams.entries()].sort((left, right) => left[0] - right[0]);
@@ -354,17 +354,17 @@ export function renderPlayers(players, states, previousStates = states, involved
                         const nameClass = state.alive ? "name" : "name namedie";
                         const stateClass = !state.alive ? "status-pill dead" : state.frozen ? "status-pill frozen" : "status-pill";
 
-                        const maxMp = state.magic > 0 ? state.magic : (state.mp > 0 ? state.mp : 1);
+                        const maxMp = state.magic > 0 ? state.magic : (state.magic_point > 0 ? state.magic_point : 1);
                         const mpPercent = state.alive
-                            ? Math.max(0, Math.min(100, (state.mp / maxMp) * 100))
+                            ? Math.max(0, Math.min(100, (state.magic_point / maxMp) * 100))
                             : 0;
 
                         return `
-                        <tr class="player-row${deadClass}${involvedClass}" data-player-id="${player.id}" title="id: ${escapeHtml(player.idName)} · playerId: ${player.id}">
+                        <tr class="player-row${deadClass}${involvedClass}" data-player-id="${player.id}" title="id: ${escapeHtml(player.id_name)} · playerId: ${player.id}">
                             <td class="player-name-cell">
                                 <div class="player-name-wrap">
                                     ${renderIconSprite(playerIconClassId(player), 'sgl icon-sprite')}
-                                    <span class="${nameClass}">${escapeHtml(player.displayName)}</span>
+                                    <span class="${nameClass}">${escapeHtml(player.display_name)}</span>
                                     <span class="player-id"> #${player.id}</span>
                                 </div>
                                 <div class="hpwrap compact" style="width:${totalWidth}px">
@@ -378,8 +378,8 @@ export function renderPlayers(players, states, previousStates = states, involved
                                 </div>
                                 ${renderPlayerStatusPills(state)}
                             </td>
-                            <td class="player-stat-cell player-hp-cell">${state.hp}/${state.maxHp}</td>
-                            <td class="player-stat-cell player-mp-move-cell"><span class="mp-val">${state.mp}</span> / <span class="move-val">${(state.movePoint / 2048 * 100).toFixed(0)}%</span></td>
+                            <td class="player-stat-cell player-hp-cell">${state.hp}/${state.max_hp}</td>
+                            <td class="player-stat-cell player-mp-move-cell"><span class="mp-val">${state.magic_point}</span> / <span class="move-val">${(state.move_point / 2048 * 100).toFixed(0)}%</span></td>
                             <td class="player-state-cell"><span class="${stateClass}">${statusText(state)}</span></td>
                         </tr>
                     `;
@@ -475,9 +475,9 @@ export function renderPlayers(players, states, previousStates = states, involved
                 : "";
             const nameClass = state.alive ? "name" : "name namedie";
             const stateClass = !state.alive ? "status-pill dead" : state.frozen ? "status-pill frozen" : "status-pill";
-            const maxMp = state.magic > 0 ? state.magic : (state.mp > 0 ? state.mp : 1);
+            const maxMp = state.magic > 0 ? state.magic : (state.magic_point > 0 ? state.magic_point : 1);
             const mpPercent = state.alive
-                ? Math.max(0, Math.min(100, (state.mp / maxMp) * 100))
+                ? Math.max(0, Math.min(100, (state.magic_point / maxMp) * 100))
                 : 0;
 
             row.className = `player-row${deadClass}${involvedClass}`;
@@ -521,14 +521,14 @@ export function renderPlayers(players, states, previousStates = states, involved
             }
 
             const hpCell = row.querySelector('.player-hp-cell');
-            if (hpCell) hpCell.textContent = `${state.hp}/${state.maxHp}`;
+            if (hpCell) hpCell.textContent = `${state.hp}/${state.max_hp}`;
 
             const mpMoveCell = row.querySelector('.player-mp-move-cell');
             if (mpMoveCell) {
                 const mpSpan = mpMoveCell.querySelector('.mp-val');
                 const moveSpan = mpMoveCell.querySelector('.move-val');
-                if (mpSpan) mpSpan.textContent = `${state.mp}`;
-                if (moveSpan) moveSpan.textContent = (state.movePoint / 2048 * 100).toFixed(0) + '%';
+                if (mpSpan) mpSpan.textContent = `${state.magic_point}`;
+                if (moveSpan) moveSpan.textContent = (state.move_point / 2048 * 100).toFixed(0) + '%';
             }
 
             const stateEl = row.querySelector('.player-state-cell span');
@@ -590,11 +590,11 @@ export function buildFrameHtml(frame, roundIndex, previousStates = frame.states,
      */
     function applyDelta(id, hitState, tone, value) {
         const cur = hitState.get(id);
-        if (!cur || cur.maxHp <= 0) return;
+        if (!cur || cur.max_hp <= 0) return;
         if (tone === 'damage') {
             hitState.set(id, { ...cur, hp: Math.max(0, cur.hp - value) });
         } else if (tone === 'recover') {
-            hitState.set(id, { ...cur, hp: Math.min(cur.maxHp, cur.hp + value) });
+            hitState.set(id, { ...cur, hp: Math.min(cur.max_hp, cur.hp + value) });
         }
     }
 
@@ -726,11 +726,11 @@ export function buildFrameRows(frame, roundIndex, previousStates = frame.states,
 
     function applyDelta(id, hitState, tone, value) {
         const cur = hitState.get(id);
-        if (!cur || cur.maxHp <= 0) return;
+        if (!cur || cur.max_hp <= 0) return;
         if (tone === 'damage') {
             hitState.set(id, { ...cur, hp: Math.max(0, cur.hp - value) });
         } else if (tone === 'recover') {
-            hitState.set(id, { ...cur, hp: Math.min(cur.maxHp, cur.hp + value) });
+            hitState.set(id, { ...cur, hp: Math.min(cur.max_hp, cur.hp + value) });
         }
     }
 

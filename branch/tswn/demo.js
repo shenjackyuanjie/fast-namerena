@@ -86,14 +86,14 @@ function iconSrc(iconPngBase64) {
 function renderPlayers(players) {
     playersGrid.innerHTML = players
         .map((player) => {
-            const icon = `<img alt="${escapeHtml(player.displayName)}" src="${iconSrc(player.iconPngBase64)}">`;
+            const icon = `<img alt="${escapeHtml(player.display_name)}" src="${iconSrc(player.icon_png_base64)}">`;
             return `
                 <article class="player-card">
                     ${icon}
                     <div>
-                        <strong>${escapeHtml(player.displayName)}</strong>
-                        <span>id: ${escapeHtml(player.idName)}</span>
-                        <span>team: ${player.teamIndex}</span>
+                        <strong>${escapeHtml(player.display_name)}</strong>
+                        <span>id: ${escapeHtml(player.id_name)}</span>
+                        <span>team: ${player.team_index}</span>
                         <span>playerId: ${player.id}</span>
                     </div>
                 </article>
@@ -121,8 +121,8 @@ function renderStates(states) {
                     (state) => `
                         <tr>
                             <td>${state.id}</td>
-                            <td>${state.hp}/${state.maxHp}</td>
-                            <td>${state.mp}</td>
+                            <td>${state.hp}/${state.max_hp}</td>
+                            <td>${state.magic_point}</td>
                             <td>${state.attack}</td>
                             <td>${state.defense}</td>
                             <td>${state.speed}</td>
@@ -145,7 +145,7 @@ function appendFrame(frame) {
         lines.push(`- ${update.messageRendered}`);
     }
     if (frame.finished) {
-        lines.push(`winnerIds=${JSON.stringify(frame.winnerIds)}`);
+        lines.push(`winnerIds=${JSON.stringify(frame.winner_ids)}`);
     }
     battleLog.textContent += `${battleLog.textContent.trim() ? "\n\n" : ""}${lines.join("\n")}`;
     battleLog.scrollTop = battleLog.scrollHeight;
@@ -238,10 +238,10 @@ async function main() {
         summaryButton.addEventListener("click", () => {
             try {
                 setMode("fight");
-                const summary = fight_summary(rawInput.value, { includeIcons: true });
+                const summary = fight_summary(rawInput.value, { include_icons: true });
                 renderPlayers(summary.players);
-                renderStates(summary.finalStates);
-                summaryBox.textContent = `fight_summary 完成: finished=${summary.finished}, winnerIds=${JSON.stringify(summary.winnerIds)}`;
+                renderStates(summary.final_states);
+                summaryBox.textContent = `fight_summary 完成: finished=${summary.finished}, winnerIds=${JSON.stringify(summary.winner_ids)}`;
                 setStatus("fight_summary 已刷新。");
             } catch (error) {
                 setStatus(formatError(error), true);
@@ -251,7 +251,7 @@ async function main() {
         prepareButton.addEventListener("click", () => {
             try {
                 setMode("fight");
-                fightSession = new FightSession(rawInput.value, { includeIcons: true, captureReplay: true });
+                fightSession = new FightSession(rawInput.value, { include_icons: true, capture_replay: true });
                 renderPlayers(fightSession.players());
                 renderStates(fightSession.state());
                 summaryBox.textContent = "FightSession 已创建，可以逐帧推进。";
@@ -273,7 +273,7 @@ async function main() {
                 const frame = fightSession.step();
                 appendFrame(frame);
                 renderStates(frame.states);
-                summaryBox.textContent = `当前回合完成状态: finished=${frame.finished}, winnerIds=${JSON.stringify(frame.winnerIds)}`;
+                summaryBox.textContent = `当前回合完成状态: finished=${frame.finished}, winnerIds=${JSON.stringify(frame.winner_ids)}`;
                 if (frame.finished) {
                     setStatus("FightSession 已结束。");
                 } else {
@@ -293,8 +293,8 @@ async function main() {
                 for (const frame of replay.frames) {
                     appendFrame(frame);
                 }
-                renderStates(replay.finalStates);
-                summaryBox.textContent = `Run To End 完成: winnerIds=${JSON.stringify(replay.winnerIds)}, frames=${replay.frames.length}`;
+                renderStates(replay.final_states);
+                summaryBox.textContent = `Run To End 完成: winnerIds=${JSON.stringify(replay.winner_ids)}, frames=${replay.frames.length}`;
                 setStatus("FightSession 已直接跑到结束。");
             } catch (error) {
                 setStatus(formatError(error), true);
@@ -321,17 +321,17 @@ async function main() {
 
                 while (!session.is_finished()) {
                     const progress = session.step(250);
-                    const ratio = progress.totalRounds === 0 ? 0 : (progress.roundsDone / progress.totalRounds) * 100;
+                    const ratio = progress.total_rounds === 0 ? 0 : (progress.rounds_done / progress.total_rounds) * 100;
                     winRateProgress.value = ratio;
                     winRatePercent.textContent = `${ratio.toFixed(2)}%`;
-                    winRateText.textContent = `wins=${progress.wins}, rounds=${progress.roundsDone}/${progress.totalRounds}, percent=${progress.percent.toFixed(3)}%`;
+                    winRateText.textContent = `wins=${progress.wins}, rounds=${progress.rounds_done}/${progress.total_rounds}, percent=${progress.percent.toFixed(3)}%`;
                     await nextFrame();
                 }
 
                 const result = session.result();
                 winRateProgress.value = 100;
                 winRatePercent.textContent = `${result.percent.toFixed(3)}%`;
-                winRateText.textContent = `完成: wins=${result.wins}, rounds=${result.roundsDone}/${result.totalRounds}, init=${result.timing?.initNanos ?? 0}ns, fight=${result.timing?.fightNanos ?? 0}ns`;
+                winRateText.textContent = `完成: wins=${result.wins}, rounds=${result.rounds_done}/${result.total_rounds}, init=${result.timing?.init_nanos ?? 0}ns, fight=${result.timing?.fight_nanos ?? 0}ns`;
                 setStatus("WinRateSession 已完成。");
             } catch (error) {
                 setStatus(formatError(error), true);

@@ -99,7 +99,7 @@ function extractSpecifiedSeedLine(rawInput) {
  */
 export async function buildReplay(rawInput, versionInfo, coreVersionInfo, modulePathInfo) {
     const api = await ensureApi(versionInfo, coreVersionInfo, modulePathInfo);
-    const session = new api.FightSession(rawInput, { includeIcons: true, captureReplay: true });
+    const session = new api.FightSession(rawInput, { include_icons: true, capture_replay: true });
     const players = session.players();
     const initialStates = session.state();
     const wasmStart = performance.now();
@@ -111,8 +111,8 @@ export async function buildReplay(rawInput, versionInfo, coreVersionInfo, module
         players,
         initialStates,
         frames: replay.frames,
-        winnerIds: replay.winnerIds,
-        finalStates: replay.finalStates,
+        winner_ids: replay.winner_ids,
+        final_states: replay.final_states,
         wasmDurationMs,
     };
 }

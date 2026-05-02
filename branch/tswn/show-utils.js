@@ -53,7 +53,7 @@ export function iconClassName(iconId) {
  */
 export function buildIconClassCss(players) {
     return players
-    .map((player) => `.${iconClassName(player.id)} { background-image: url("${iconSrc(player.iconPngBase64)}"); }`)
+    .map((player) => `.${iconClassName(player.id)} { background-image: url("${iconSrc(player.icon_png_base64)}"); }`)
         .join("\n");
 }
 
@@ -66,10 +66,10 @@ export function buildIconClassCss(players) {
 export function withTeamIconClassIds(players) {
     const firstPlayerIdByTeam = new Map();
     return players.map((player) => {
-        const existing = firstPlayerIdByTeam.get(player.teamIndex);
+        const existing = firstPlayerIdByTeam.get(player.team_index);
         const iconClassId = existing ?? player.id;
         if (existing == null) {
-            firstPlayerIdByTeam.set(player.teamIndex, player.id);
+            firstPlayerIdByTeam.set(player.team_index, player.id);
         }
         return {
             ...player,
@@ -161,19 +161,19 @@ export function replayDisplayName(state, fallbackPlayerId) {
     if (!state) {
         return playerId == null ? "未知角色" : phantomDisplayName(playerId);
     }
-    if (state.minionKind === 'clone') {
-        return playerId == null ? state.displayName : `${state.displayName} #${playerId}`;
+    if (state.minion_kind === 'clone') {
+        return playerId == null ? state.display_name : `${state.display_name} #${playerId}`;
     }
-    if (state.minionKind === 'summon' || state.minionKind === 'shadow' || state.minionKind === 'zombie') {
-        const baseName = state.displayName
-            ?? (state.minionKind === 'shadow'
+    if (state.minion_kind === 'summon' || state.minion_kind === 'shadow' || state.minion_kind === 'zombie') {
+        const baseName = state.display_name
+            ?? (state.minion_kind === 'shadow'
                 ? '幻影'
-                : state.minionKind === 'zombie'
+                : state.minion_kind === 'zombie'
                     ? '丧尸'
                     : '使魔');
         return playerId == null ? baseName : `${baseName} #${playerId}`;
     }
-    return state.displayName ?? phantomDisplayName(playerId ?? 0);
+    return state.display_name ?? phantomDisplayName(playerId ?? 0);
 }
 
 /**
@@ -204,11 +204,11 @@ export function statusText(state) {
  * @returns {HpMetrics|null} 若 state 无效或 maxHp≤0 返回 null
  */
 export function actorHpMetrics(state, previousState = state) {
-    if (!state || state.maxHp <= 0) {
+    if (!state || state.max_hp <= 0) {
         return null;
     }
 
-    const maxHp = Math.max(1, state.maxHp, previousState?.maxHp ?? 0);
+    const maxHp = Math.max(1, state.max_hp, previousState?.max_hp ?? 0);
     const hp = Math.max(0, Math.min(maxHp, state.hp));
     const previousHp = Math.max(0, Math.min(maxHp, previousState?.hp ?? hp));
     // 基础宽度根据最大 HP 的平方根自适应，然后缩放 1.5 倍

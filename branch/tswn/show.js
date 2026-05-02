@@ -7,13 +7,13 @@
  * 典型的 State 结构（来自 WASM）：
  * @typedef {{
  *   id: number,
- *   idName: string,
- *   displayName: string,
- *   minionKind?: 'clone' | 'summon' | 'shadow' | 'zombie',
+ *   id_name: string,
+ *   display_name: string,
+ *   minion_kind?: 'clone' | 'summon' | 'shadow' | 'zombie',
  *   hp: number,
- *   maxHp: number,
- *   mp: number,
- *   movePoint: number,
+ *   max_hp: number,
+ *   magic_point: number,
+ *   move_point: number,
  *   speed: number,
  *   agility: number,
  *   magic: number,
@@ -22,24 +22,24 @@
  *   resistance: number,
  *   wisdom: number,
  *   point: number,
- *   allSum: number,
- *   nameFactor: number,
- *   atBoost: number,
+ *   all_sum: number,
+ *   name_factor: number,
+ *   at_boost: number,
  *   attract: number,
  *   alive: boolean,
  *   frozen: boolean,
- *   teamIndex: number,
- *   ownerId?: number,
- *   statusLabels?: string[]
+ *   team_index: number,
+ *   owner_id?: number,
+ *   status_labels?: string[]
  * }} FightState
  *
  * 典型的 Player 结构（来自 WASM）：
  * @typedef {{
  *   id: number,
- *   teamIndex: number,
- *   idName: string,
- *   displayName: string,
- *   iconPngBase64: string|null
+ *   team_index: number,
+ *   id_name: string,
+ *   display_name: string,
+ *   icon_png_base64: string|null
  * }} FightPlayer
  *
  * 一次 Replay 的结构：
@@ -47,10 +47,10 @@
  *   rawInput: string,
  *   seedLine?: string|null,
  *   players: FightPlayer[],
- *   initialStates: FightState[],
+ *   initial_states: FightState[],
  *   frames: FrameUpdate[],
- *   winnerIds: number[],
- *   finalStates: FightState[],
+ *   winner_ids: number[],
+ *   final_states: FightState[],
  *   wasmDurationMs: number
  * }} FightReplay
  *
@@ -59,8 +59,8 @@
  *   updates: FrameMessage[],
  *   states: FightState[],
  *   finished: boolean,
- *   winnerIds: number[],
- *   totalDelay: number
+ *   winner_ids: number[],
+ *   total_delay: number
  * }} FrameUpdate
  *
  * 单条消息的结构：
@@ -301,7 +301,7 @@ function buildInvolvedSet(frame) {
 
 function prepareReplayPlan(replay) {
     const workingPlayersById = new Map(replay.players.map((player) => [player.id, player]));
-    let previousStates = replay.initialStates;
+    let previousStates = replay.initial_states;
     const frames = replay.frames.map((frame, frameIndex) => {
         const framePlan = {
             frameIndex,
@@ -534,7 +534,7 @@ function renderPlaybackToCursor(cursor, { forceReset = false } = {}) {
     }
 
     if (playbackFinished) {
-        renderPlayers(currentReplay.players, currentReplay.finalStates, currentReplay.finalStates, null, playerList, playersById);
+        renderPlayers(currentReplay.players, currentReplay.final_states, currentReplay.final_states, null, playerList, playersById);
         renderEndPanel(currentReplay);
         appendReplayResultBlock(currentReplay);
         storePlaybackCheckpoint(playbackCursor);
@@ -554,7 +554,7 @@ function resolveChunkDelay(frame, rawDelay) {
     }
     if (speedMode === 'fast') {
         const targetDelay = playbackDelay(frame, speedMode);
-        return frame.totalDelay > 0 ? Math.round((targetDelay * rawDelay) / frame.totalDelay) : 0;
+        return frame.total_delay > 0 ? Math.round((targetDelay * rawDelay) / frame.total_delay) : 0;
     }
     return rawDelay;
 }
@@ -618,7 +618,7 @@ async function autoplayFromCurrentCursor() {
     }
 
     playbackFinished = true;
-    renderPlayers(currentReplay.players, currentReplay.finalStates, currentReplay.finalStates, null, playerList, playersById);
+    renderPlayers(currentReplay.players, currentReplay.final_states, currentReplay.final_states, null, playerList, playersById);
     renderEndPanel(currentReplay);
     appendReplayResultBlock(currentReplay);
     storePlaybackCheckpoint(playbackCursor);

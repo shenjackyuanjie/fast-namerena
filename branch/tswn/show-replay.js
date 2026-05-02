@@ -25,7 +25,7 @@ import { actorHpMetrics, escapeHtml, replayDisplayName, renderIconSprite } from 
  * @param {(players: FightPlayer[]) => void} rememberPlayers — 更新 playersById 的回调
  */
 export function renderReplayIntro(replay, speedMode, playerList, battleRows, plistMeta, headerMeta, playersById, rememberPlayers) {
-    const teamCount = new Set(replay.players.map((player) => player.teamIndex)).size;
+    const teamCount = new Set(replay.players.map((player) => player.team_index)).size;
     rememberPlayers(replay.players);
     if (replay.seedLine) {
         playerList.dataset.seedLine = replay.seedLine;
@@ -42,7 +42,7 @@ export function renderReplayIntro(replay, speedMode, playerList, battleRows, pli
             <div>右下角两个速度按钮可切换快进或极速模式。</div>
         </div>
     `;
-    renderPlayers(replay.players, replay.initialStates, replay.initialStates, null, playerList, playersById);
+    renderPlayers(replay.players, replay.initial_states, replay.initial_states, null, playerList, playersById);
 }
 
 /**
@@ -78,7 +78,7 @@ export function playbackDelay(frame, speedMode) {
     if (speedMode === 'fast') {
         return 40;
     }
-    return frame.totalDelay ?? 0;
+    return frame.total_delay ?? 0;
 }
 
 /**
@@ -89,14 +89,14 @@ export function playbackDelay(frame, speedMode) {
  */
 export function winnerNamesText(replay) {
     const playersById = new Map(replay.players.map((player) => [player.id, player]));
-    const finalStateNames = new Map(replay.finalStates.map((state) => [state.id, replayDisplayName(state)]));
-    const names = replay.winnerIds.map((winnerId) => playersById.get(winnerId)?.displayName ?? finalStateNames.get(winnerId) ?? `#${winnerId}`);
+    const finalStateNames = new Map(replay.final_states.map((state) => [state.id, replayDisplayName(state)]));
+    const names = replay.winner_ids.map((winnerId) => playersById.get(winnerId)?.display_name ?? finalStateNames.get(winnerId) ?? `#${winnerId}`);
     return names.length ? names.join("、") : "未分出胜负";
 }
 
 function collectKnownStates(replay) {
     const statesById = new Map();
-    for (const state of replay.initialStates) {
+    for (const state of replay.initial_states) {
         statesById.set(state.id, state);
     }
     for (const frame of replay.frames) {
@@ -104,7 +104,7 @@ function collectKnownStates(replay) {
             statesById.set(state.id, state);
         }
     }
-    for (const state of replay.finalStates) {
+    for (const state of replay.final_states) {
         statesById.set(state.id, state);
     }
     return statesById;
@@ -113,7 +113,7 @@ function collectKnownStates(replay) {
 function buildRootOwnerMap(replay, statesById) {
     const rootOwnerById = new Map(replay.players.map((player) => [player.id, player.id]));
     for (const state of statesById.values()) {
-        rootOwnerById.set(state.id, state.ownerId ?? state.id);
+        rootOwnerById.set(state.id, state.owner_id ?? state.id);
     }
     return rootOwnerById;
 }
@@ -144,11 +144,11 @@ function actorSummaryMeta(actorId, replayPlayersById, statesById) {
 
     const player = replayPlayersById.get(actorId);
     const state = statesById.get(actorId);
-    const displayName = player?.displayName ?? replayDisplayName(state, actorId);
-    let iconPngBase64 = player?.iconPngBase64 ?? null;
+    const displayName = player?.display_name ?? replayDisplayName(state, actorId);
+    let iconPngBase64 = player?.icon_png_base64 ?? null;
 
-    if (!iconPngBase64 && state?.ownerId != null) {
-        iconPngBase64 = replayPlayersById.get(state.ownerId)?.iconPngBase64 ?? null;
+    if (!iconPngBase64 && state?.owner_id != null) {
+        iconPngBase64 = replayPlayersById.get(state.owner_id)?.icon_png_base64 ?? null;
     }
 
     return {
@@ -156,8 +156,8 @@ function actorSummaryMeta(actorId, replayPlayersById, statesById) {
         displayName,
         iconPngBase64,
         iconClassId: player?.iconClassId
-            ?? replayPlayersById.get(state?.ownerId)?.iconClassId
-            ?? state?.ownerId
+            ?? replayPlayersById.get(state?.owner_id)?.iconClassId
+            ?? state?.owner_id
             ?? actorId,
     };
 }
@@ -212,14 +212,14 @@ function actorSummaryHtml(actor, { showHp = false } = {}) {
 export function buildReplayResultSummary(replay) {
     const replayPlayersById = new Map(replay.players.map((player) => [player.id, player]));
     const statesById = collectKnownStates(replay);
-    const finalStatesById = new Map(replay.finalStates.map((state) => [state.id, state]));
+    const finalStatesById = new Map(replay.final_states.map((state) => [state.id, state]));
     const rootOwnerById = buildRootOwnerMap(replay, statesById);
     const rowsById = new Map(
         replay.players.map((player, order) => [player.id, {
             id: player.id,
             order,
-            displayName: player.displayName,
-            iconPngBase64: player.iconPngBase64,
+            displayName: player.display_name,
+            iconPngBase64: player.icon_png_base64,
             iconClassId: player.iconClassId ?? player.id,
             finalState: finalStatesById.get(player.id) ?? statesById.get(player.id) ?? null,
             alive: finalStatesById.get(player.id)?.alive ?? statesById.get(player.id)?.alive ?? false,
@@ -229,7 +229,7 @@ export function buildReplayResultSummary(replay) {
         }]),
     );
 
-    let aliveById = new Map(replay.initialStates.map((state) => [state.id, state.alive]));
+    let aliveById = new Map(replay.initial_states.map((state) => [state.id, state.alive]));
     for (const frame of replay.frames) {
         const frameStateMap = new Map(frame.states.map((state) => [state.id, state]));
 
@@ -277,7 +277,7 @@ export function buildReplayResultSummary(replay) {
         aliveById = nextAliveById;
     }
 
-    const winnerIdSet = new Set(replay.winnerIds);
+    const winnerIdSet = new Set(replay.winner_ids);
     const rows = [...rowsById.values()].map((row) => ({
         ...row,
         killedBy: actorSummaryMeta(row.killedById, replayPlayersById, statesById),
