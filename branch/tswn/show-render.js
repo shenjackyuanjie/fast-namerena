@@ -15,13 +15,13 @@
  *   查找对应 FightPlayer，找不到则降级为幻影/未知角色的纯文本名称。
  *
  * ### 模板消息渲染
- * - {@link renderMessageParam} — 渲染 messageTemplate 中的 [2] 占位参数。
- *   若 update.targetIds 非空，将其渲染为逗号分隔的 actorToken 列表；否则
+ * - {@link renderMessageParam} — 渲染 message_template 中的 [2] 占位参数。
+ *   若 update.target_ids 非空，将其渲染为逗号分隔的 actorToken 列表；否则
  *   渲染 param/score 数值，damage/recover 类型包裹 .message-number 样式。
- * - {@link renderTemplateMessage} — 解析含 [0][1][2] 占位符的 messageTemplate
+ * - {@link renderTemplateMessage} — 解析含 [0][1][2] 占位符的 message_template
  *   字符串：[0] 渲染为施法者 token（不显示 HP），[1] 渲染为目标 token（显示
  *   HP），[2] 委托给 renderMessageParam。其余普通文本通过 formatMessageText
- *   应用 tone 对应的着色/样式。占位符不存在时走 messageRendered 降级路径。
+ *   应用 tone 对应的着色/样式。占位符不存在时走 message_rendered 降级路径。
  * - {@link highlightMessage} — renderTemplateMessage 的别名，语义上强调
  *   "高亮渲染一条消息"，便于调用侧阅读。
  *
@@ -41,7 +41,7 @@
  *   frame.updates，将多条消息用"，"拼接为一行，遇到 next_line 类型的
  *   update 则换行。帧内会维护一份模拟 HP 状态（running Map），每次
  *   damage/recover 消息都会更新该状态，使后续消息中角色 HP 条反映帧内
- *   累计效果。帧结束时若 finished 为 true，追加 winnerIds 行。
+ *   累计效果。帧结束时若 finished 为 true，追加 winner_ids 行。
  */
 
 import {
@@ -56,7 +56,7 @@ import {
 } from './show-utils.js';
 
 function playerIconClassId(player) {
-    return player?.iconClassId ?? player?.id;
+    return player?.icon_class_id ?? player?.id;
 }
 
 // ============================================================================
@@ -96,12 +96,12 @@ export function actorToken(player, state, previousState, { showHp = true } = {})
  */
 function syntheticPlayerFromState(playerId, state, playersById) {
     let icon = null;
-    let iconClassId = state?.owner_id ?? playerId;
+    let icon_class_id = state?.owner_id ?? playerId;
     if (state?.owner_id != null) {
         const ownerPlayer = playersById.get(state.owner_id);
         if (ownerPlayer) {
             icon = ownerPlayer.icon_png_base64;
-            iconClassId = ownerPlayer.iconClassId ?? ownerPlayer.id;
+            icon_class_id = ownerPlayer.icon_class_id ?? ownerPlayer.id;
         }
     }
 
@@ -111,7 +111,7 @@ function syntheticPlayerFromState(playerId, state, playersById) {
         id_name: state?.id_name ?? `player_${playerId}`,
         display_name: replayDisplayName(state, playerId),
         icon_png_base64: icon,
-        iconClassId,
+        icon_class_id,
     };
 }
 
@@ -145,8 +145,8 @@ export function renderActorById(playerId, stateMap, previousStateMap, playersByI
  * @returns {string} HTML 字符串
  */
 export function renderMessageParam(update, tone, stateMap, previousStateMap, playersById) {
-    if (Array.isArray(update.targetIds) && update.targetIds.length) {
-        return update.targetIds
+    if (Array.isArray(update.target_ids) && update.target_ids.length) {
+        return update.target_ids
             .map((playerId) => renderActorById(playerId, stateMap, previousStateMap, playersById, { showHp: true }))
             .join(",");
     }
@@ -173,9 +173,9 @@ export function renderMessageParam(update, tone, stateMap, previousStateMap, pla
  * @returns {string} HTML 字符串
  */
 export function renderTemplateMessage(update, tone, stateMap, previousStateMap, playersById) {
-    const template = `${update.messageTemplate ?? ""}`;
+    const template = `${update.message_template ?? ""}`;
     if (!template) {
-        return formatMessageText(`${update.messageRendered ?? ""}`, tone);
+        return formatMessageText(`${update.message_rendered ?? ""}`, tone);
     }
 
     return template
@@ -184,11 +184,11 @@ export function renderTemplateMessage(update, tone, stateMap, previousStateMap, 
         .map((part) => {
             if (part === "[0]") {
                 // 施法者 — 不显示 HP
-                return renderActorById(update.casterId, stateMap, previousStateMap, playersById, { showHp: false });
+                return renderActorById(update.caster_id, stateMap, previousStateMap, playersById, { showHp: false });
             }
             if (part === "[1]") {
                 // 目标 — 显示 HP
-                return renderActorById(update.targetId, stateMap, previousStateMap, playersById, { showHp: true });
+                return renderActorById(update.target_id, stateMap, previousStateMap, playersById, { showHp: true });
             }
             if (part === "[2]") {
                 // 参数（目标列表或数值）
@@ -599,12 +599,12 @@ export function buildFrameHtml(frame, roundIndex, previousStates = frame.states,
     }
 
     for (const update of frame.updates) {
-        if (update.updateType === "next_line") {
+        if (update.update_type === "next_line") {
             flushRow();
             continue;
         }
 
-        const message = `${update.messageRendered ?? ""}`.trim();
+        const message = `${update.message_rendered ?? ""}`.trim();
         if (!message) {
             continue;
         }
@@ -613,8 +613,8 @@ export function buildFrameHtml(frame, roundIndex, previousStates = frame.states,
         const hitState = new Map(running);
         const value = update.param ?? update.score ?? 0;
         if (value > 0) {
-            if (update.targetId != null) applyDelta(update.targetId, hitState, tone, value);
-            if (Array.isArray(update.targetIds)) update.targetIds.forEach((id) => applyDelta(id, hitState, tone, value));
+            if (update.target_id != null) applyDelta(update.target_id, hitState, tone, value);
+            if (Array.isArray(update.target_ids)) update.target_ids.forEach((id) => applyDelta(id, hitState, tone, value));
         }
         segments.push(`<span class="msg ${tone}">${highlightMessage(update, tone, hitState, running, playersById)}</span>`);
         running = hitState;
@@ -627,7 +627,7 @@ export function buildFrameHtml(frame, roundIndex, previousStates = frame.states,
     }
 
     const winnerLine = frame.finished
-        ? `<div class="row winner-line"><span class="winner-row">winnerIds=${escapeHtml(JSON.stringify(frame.winnerIds))}</span></div>`
+        ? `<div class="row winner-line"><span class="winner-row">winner_ids=${escapeHtml(JSON.stringify(frame.winner_ids))}</span></div>`
         : "";
 
     return `
@@ -737,13 +737,13 @@ export function buildFrameRows(frame, roundIndex, previousStates = frame.states,
     for (const update of frame.updates) {
         const delay = update.delay1 || update.delay0 || 0;
 
-        if (update.updateType === "next_line") {
+        if (update.update_type === "next_line") {
             rowStarted = false;
             recordHiddenDelay(delay);
             continue;
         }
 
-        const message = `${update.messageRendered ?? ""}`.trim();
+        const message = `${update.message_rendered ?? ""}`.trim();
         if (!message) {
             recordHiddenDelay(delay);
             continue;
@@ -755,8 +755,8 @@ export function buildFrameRows(frame, roundIndex, previousStates = frame.states,
         const hitState = new Map(running);
         const value = update.param ?? update.score ?? 0;
         if (value > 0) {
-            if (update.targetId != null) applyDelta(update.targetId, hitState, tone, value);
-            if (Array.isArray(update.targetIds)) update.targetIds.forEach((id) => applyDelta(id, hitState, tone, value));
+            if (update.target_id != null) applyDelta(update.target_id, hitState, tone, value);
+            if (Array.isArray(update.target_ids)) update.target_ids.forEach((id) => applyDelta(id, hitState, tone, value));
         }
 
         pushMessageChunk(
@@ -773,7 +773,7 @@ export function buildFrameRows(frame, roundIndex, previousStates = frame.states,
         }
     }
 
-    const winnerHtml = `<div class="row winner-line"><span class="winner-row">winnerIds=${escapeHtml(JSON.stringify(frame.winnerIds))}</span></div>`;
+    const winnerHtml = `<div class="row winner-line"><span class="winner-row">winner_ids=${escapeHtml(JSON.stringify(frame.winner_ids))}</span></div>`;
     if (frame.finished) {
         if (!frameStarted) {
             pushLeadingDelayChunk();

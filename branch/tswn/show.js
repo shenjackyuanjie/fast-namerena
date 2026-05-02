@@ -44,14 +44,14 @@
  *
  * 一次 Replay 的结构：
  * @typedef {{
- *   rawInput: string,
- *   seedLine?: string|null,
+ *   raw_input: string,
+ *   seed_line?: string|null,
  *   players: FightPlayer[],
  *   initial_states: FightState[],
  *   frames: FrameUpdate[],
  *   winner_ids: number[],
  *   final_states: FightState[],
- *   wasmDurationMs: number
+ *   wasm_duration_ms: number
  * }} FightReplay
  *
  * 单帧更新的结构：
@@ -65,12 +65,12 @@
  *
  * 单条消息的结构：
  * @typedef {{
- *   updateType?: string,
- *   messageRendered?: string,
- *   messageTemplate?: string,
- *   casterId?: number,
- *   targetId?: number,
- *   targetIds?: number[],
+ *   update_type?: string,
+ *   message_rendered?: string,
+ *   message_template?: string,
+ *   caster_id?: number,
+ *   target_id?: number,
+ *   target_ids?: number[],
  *   param?: number,
  *   score?: number,
  *   delay1?: number,
@@ -206,7 +206,7 @@ const ICON_STYLE_ID = 'tswn-show-icon-styles';
 const SEEK_CHECKPOINT_FRAME_INTERVAL = 20;
 /** @type {{ frames: Array<{ frameIndex: number, frame: FrameUpdate, previousStates: FightState[], involved: InvolvedSet, start: number, end: number }>, flatChunks: Array<{ target: 'battleRows' | 'frameBody' | 'row' | 'delay', html: string, delay: number, frameIndex: number, visible: boolean }>, totalChunks: number }|null} */
 let currentPlan = null;
-/** @type {Map<number, { battleRowsHtml: string, playerListHtml: string, seedLine: string }>} */
+/** @type {Map<number, { battle_rows_html: string, player_list_html: string, seed_line: string }>} */
 let playbackCheckpoints = new Map();
 /** @type {number} 当前已渲染到的 chunk 光标（指向“下一个要播放的 chunk”） */
 let playbackCursor = 0;
@@ -286,14 +286,14 @@ function stopPlaybackLoop() {
 function buildInvolvedSet(frame) {
     const involved = { casters: new Set(), targets: new Set() };
     for (const update of frame.updates) {
-        if (update.casterId != null) {
-            involved.casters.add(update.casterId);
+        if (update.caster_id != null) {
+            involved.casters.add(update.caster_id);
         }
-        if (update.targetId != null) {
-            involved.targets.add(update.targetId);
+        if (update.target_id != null) {
+            involved.targets.add(update.target_id);
         }
-        if (Array.isArray(update.targetIds)) {
-            update.targetIds.forEach((id) => involved.targets.add(id));
+        if (Array.isArray(update.target_ids)) {
+            update.target_ids.forEach((id) => involved.targets.add(id));
         }
     }
     return involved;
@@ -444,10 +444,10 @@ function restorePlaybackCheckpoint(cursor) {
     }
 
     closePanel(endPanel);
-    battleRows.innerHTML = checkpoint.battleRowsHtml;
-    playerList.innerHTML = checkpoint.playerListHtml;
-    if (checkpoint.seedLine) {
-        playerList.dataset.seedLine = checkpoint.seedLine;
+    battleRows.innerHTML = checkpoint.battle_rows_html;
+    playerList.innerHTML = checkpoint.player_list_html;
+    if (checkpoint.seed_line) {
+        playerList.dataset.seedLine = checkpoint.seed_line;
     } else {
         delete playerList.dataset.seedLine;
     }
@@ -461,9 +461,9 @@ function storePlaybackCheckpoint(cursor) {
 
     const clampedCursor = Math.max(0, Math.min(cursor, currentPlan.totalChunks));
     playbackCheckpoints.set(clampedCursor, {
-        battleRowsHtml: battleRows.innerHTML,
-        playerListHtml: playerList.innerHTML,
-        seedLine: playerList.dataset.seedLine ?? '',
+        battle_rows_html: battleRows.innerHTML,
+        player_list_html: playerList.innerHTML,
+        seed_line: playerList.dataset.seedLine ?? '',
     });
 }
 

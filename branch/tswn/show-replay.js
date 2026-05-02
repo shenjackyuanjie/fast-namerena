@@ -27,8 +27,8 @@ import { actorHpMetrics, escapeHtml, replayDisplayName, renderIconSprite } from 
 export function renderReplayIntro(replay, speedMode, playerList, battleRows, plistMeta, headerMeta, playersById, rememberPlayers) {
     const teamCount = new Set(replay.players.map((player) => player.team_index)).size;
     rememberPlayers(replay.players);
-    if (replay.seedLine) {
-        playerList.dataset.seedLine = replay.seedLine;
+    if (replay.seed_line) {
+        playerList.dataset.seedLine = replay.seed_line;
     } else {
         delete playerList.dataset.seedLine;
     }
@@ -65,7 +65,7 @@ export function updateSpeedButtons(fastBtn, turboBtn, speedMode, currentReplay, 
 
 /**
  * 根据当前速度模式和帧的延迟配置，计算本帧应等待的毫秒数。
- * turbo 模式返回 0；fast 模式固定 40ms；normal 使用 WASM 预计算的 totalDelay。
+ * turbo 模式返回 0；fast 模式固定 40ms；normal 使用 WASM 预计算的 total_delay。
  *
  * @param {FrameUpdate} frame
  * @param {SpeedMode} speedMode
@@ -82,7 +82,7 @@ export function playbackDelay(frame, speedMode) {
 }
 
 /**
- * 根据回放中的 winnerIds 拼接获胜者名字。
+ * 根据回放中的 winner_ids 拼接获胜者名字。
  *
  * @param {FightReplay} replay
  * @returns {string} 如 "张三、李四" 或 "未分出胜负"
@@ -121,17 +121,17 @@ function buildRootOwnerMap(replay, statesById) {
 function lastRelevantKillerId(frame, targetId) {
     for (let index = frame.updates.length - 1; index >= 0; index -= 1) {
         const update = frame.updates[index];
-        if (update.casterId == null) {
+        if (update.caster_id == null) {
             continue;
         }
         if (update.tone === 'recover') {
             continue;
         }
-        if (update.targetId === targetId) {
-            return update.casterId;
+        if (update.target_id === targetId) {
+            return update.caster_id;
         }
-        if (Array.isArray(update.targetIds) && update.targetIds.includes(targetId)) {
-            return update.casterId;
+        if (Array.isArray(update.target_ids) && update.target_ids.includes(targetId)) {
+            return update.caster_id;
         }
     }
     return null;
@@ -153,21 +153,21 @@ function actorSummaryMeta(actorId, replayPlayersById, statesById) {
 
     return {
         id: actorId,
-        displayName,
-        iconPngBase64,
-        iconClassId: player?.iconClassId
-            ?? replayPlayersById.get(state?.owner_id)?.iconClassId
+        display_name: displayName,
+        icon_png_base64: iconPngBase64,
+        icon_class_id: player?.icon_class_id
+            ?? replayPlayersById.get(state?.owner_id)?.icon_class_id
             ?? state?.owner_id
             ?? actorId,
     };
 }
 
 function summaryHpBarHtml(actor, showHp) {
-    if (!showHp || !actor?.finalState?.alive) {
+    if (!showHp || !actor?.final_state?.alive) {
         return '';
     }
 
-    const hpMetrics = actorHpMetrics(actor.finalState);
+    const hpMetrics = actorHpMetrics(actor.final_state);
     if (!hpMetrics) {
         return '';
     }
@@ -185,7 +185,7 @@ function actorSummaryHtml(actor, { showHp = false } = {}) {
         return '';
     }
 
-    const iconClassId = actor.iconClassId ?? actor.id;
+    const iconClassId = actor.icon_class_id ?? actor.id;
     const hpBar = summaryHpBarHtml(actor, showHp);
     const hpClass = hpBar ? ' has-hp' : '';
 
@@ -193,7 +193,7 @@ function actorSummaryHtml(actor, { showHp = false } = {}) {
         <span class="summary-actor${hpClass}" title="playerId: ${actor.id}">
             ${renderIconSprite(iconClassId, 'summary-actor-icon icon-sprite')}
             <span class="summary-actor-body">
-                <span class="summary-actor-name">${escapeHtml(actor.displayName)}</span>
+                <span class="summary-actor-name">${escapeHtml(actor.display_name)}</span>
                 ${hpBar}
             </span>
         </span>
@@ -204,7 +204,7 @@ function actorSummaryHtml(actor, { showHp = false } = {}) {
  * 按原版 renderer 口径统计战斗结算数据：
  * - score：累加每条 update.score，召唤物/分身归属到 root owner
  * - kills：统计真实死亡或消失的单位数，归属到造成最后一击的 root owner
- * - killedBy：记录原始最后一击单位，用于“致命一击”列显示
+ * - killed_by：记录原始最后一击单位，用于“致命一击”列显示
  *
  * @param {FightReplay} replay
  * @returns {{ winners: Array<object>, losers: Array<object> }}
@@ -218,14 +218,14 @@ export function buildReplayResultSummary(replay) {
         replay.players.map((player, order) => [player.id, {
             id: player.id,
             order,
-            displayName: player.display_name,
-            iconPngBase64: player.icon_png_base64,
-            iconClassId: player.iconClassId ?? player.id,
-            finalState: finalStatesById.get(player.id) ?? statesById.get(player.id) ?? null,
+            display_name: player.display_name,
+            icon_png_base64: player.icon_png_base64,
+            icon_class_id: player.icon_class_id ?? player.id,
+            final_state: finalStatesById.get(player.id) ?? statesById.get(player.id) ?? null,
             alive: finalStatesById.get(player.id)?.alive ?? statesById.get(player.id)?.alive ?? false,
             score: 0,
             kills: 0,
-            killedById: null,
+            killed_by_id: null,
         }]),
     );
 
@@ -234,10 +234,10 @@ export function buildReplayResultSummary(replay) {
         const frameStateMap = new Map(frame.states.map((state) => [state.id, state]));
 
         for (const update of frame.updates) {
-            if ((update.score ?? 0) <= 0 || update.casterId == null) {
+            if ((update.score ?? 0) <= 0 || update.caster_id == null) {
                 continue;
             }
-            const ownerId = rootOwnerById.get(update.casterId) ?? update.casterId;
+            const ownerId = rootOwnerById.get(update.caster_id) ?? update.caster_id;
             const row = rowsById.get(ownerId);
             if (row) {
                 row.score += update.score;
@@ -260,7 +260,7 @@ export function buildReplayResultSummary(replay) {
 
                 const targetRow = rowsById.get(id);
                 if (targetRow) {
-                    targetRow.killedById = killerId;
+                    targetRow.killed_by_id = killerId;
                 }
             }
         }
@@ -280,7 +280,7 @@ export function buildReplayResultSummary(replay) {
     const winnerIdSet = new Set(replay.winner_ids);
     const rows = [...rowsById.values()].map((row) => ({
         ...row,
-        killedBy: actorSummaryMeta(row.killedById, replayPlayersById, statesById),
+        killed_by: actorSummaryMeta(row.killed_by_id, replayPlayersById, statesById),
     }));
     const sortRows = (left, right) => (right.score - left.score) || (left.order - right.order);
 
@@ -304,7 +304,7 @@ function resultSectionRows(title, rows) {
                 <td class="result-name-cell">${actorSummaryHtml(row, { showHp: true })}</td>
                 <td class="result-score-cell">${row.score}</td>
                 <td class="result-kill-cell">${row.kills}</td>
-                <td class="result-killer-cell">${row.killedBy ? actorSummaryHtml(row.killedBy) : ''}</td>
+                <td class="result-killer-cell">${row.killed_by ? actorSummaryHtml(row.killed_by) : ''}</td>
             </tr>
         `).join('')
         : `

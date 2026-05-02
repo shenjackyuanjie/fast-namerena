@@ -138,14 +138,14 @@ function renderStates(states) {
 function appendFrame(frame) {
     const lines = [`# frame ${frameIndex}`];
     for (const update of frame.updates) {
-        if (update.updateType === "next_line") {
+        if (update.update_type === "next_line") {
             lines.push("");
             continue;
         }
-        lines.push(`- ${update.messageRendered}`);
+        lines.push(`- ${update.message_rendered}`);
     }
     if (frame.finished) {
-        lines.push(`winnerIds=${JSON.stringify(frame.winner_ids)}`);
+        lines.push(`winner_ids=${JSON.stringify(frame.winner_ids)}`);
     }
     battleLog.textContent += `${battleLog.textContent.trim() ? "\n\n" : ""}${lines.join("\n")}`;
     battleLog.scrollTop = battleLog.scrollHeight;
@@ -241,7 +241,7 @@ async function main() {
                 const summary = fight_summary(rawInput.value, { include_icons: true });
                 renderPlayers(summary.players);
                 renderStates(summary.final_states);
-                summaryBox.textContent = `fight_summary 完成: finished=${summary.finished}, winnerIds=${JSON.stringify(summary.winner_ids)}`;
+                summaryBox.textContent = `fight_summary 完成: finished=${summary.finished}, winner_ids=${JSON.stringify(summary.winner_ids)}`;
                 setStatus("fight_summary 已刷新。");
             } catch (error) {
                 setStatus(formatError(error), true);
@@ -273,7 +273,7 @@ async function main() {
                 const frame = fightSession.step();
                 appendFrame(frame);
                 renderStates(frame.states);
-                summaryBox.textContent = `当前回合完成状态: finished=${frame.finished}, winnerIds=${JSON.stringify(frame.winner_ids)}`;
+                summaryBox.textContent = `当前回合完成状态: finished=${frame.finished}, winner_ids=${JSON.stringify(frame.winner_ids)}`;
                 if (frame.finished) {
                     setStatus("FightSession 已结束。");
                 } else {
@@ -294,7 +294,7 @@ async function main() {
                     appendFrame(frame);
                 }
                 renderStates(replay.final_states);
-                summaryBox.textContent = `Run To End 完成: winnerIds=${JSON.stringify(replay.winner_ids)}, frames=${replay.frames.length}`;
+                summaryBox.textContent = `Run To End 完成: winner_ids=${JSON.stringify(replay.winner_ids)}, frames=${replay.frames.length}`;
                 setStatus("FightSession 已直接跑到结束。");
             } catch (error) {
                 setStatus(formatError(error), true);

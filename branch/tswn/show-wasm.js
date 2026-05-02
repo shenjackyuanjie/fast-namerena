@@ -101,18 +101,18 @@ export async function buildReplay(rawInput, versionInfo, coreVersionInfo, module
     const api = await ensureApi(versionInfo, coreVersionInfo, modulePathInfo);
     const session = new api.FightSession(rawInput, { include_icons: true, capture_replay: true });
     const players = session.players();
-    const initialStates = session.state();
+    const initial_states = session.state();
     const wasmStart = performance.now();
     const replay = session.run_to_end();
     const wasmDurationMs = performance.now() - wasmStart;
     return {
-        rawInput,
-        seedLine: extractSpecifiedSeedLine(rawInput),
+        raw_input: rawInput,
+        seed_line: extractSpecifiedSeedLine(rawInput),
         players,
-        initialStates,
+        initial_states,
         frames: replay.frames,
         winner_ids: replay.winner_ids,
         final_states: replay.final_states,
-        wasmDurationMs,
+        wasm_duration_ms: wasmDurationMs,
     };
 }

@@ -58,7 +58,7 @@ export function buildIconClassCss(players) {
 }
 
 /**
- * 为 show 回放玩家列表补齐 iconClassId。
+ * 为 show 回放玩家列表补齐 icon_class_id。
  * 多对多时，整队统一使用输入顺序中该队第一个玩家的头像编号。
  * @param {FightPlayer[]} players
  * @returns {FightPlayer[]}
@@ -67,13 +67,13 @@ export function withTeamIconClassIds(players) {
     const firstPlayerIdByTeam = new Map();
     return players.map((player) => {
         const existing = firstPlayerIdByTeam.get(player.team_index);
-        const iconClassId = existing ?? player.id;
+        const icon_class_id = existing ?? player.id;
         if (existing == null) {
             firstPlayerIdByTeam.set(player.team_index, player.id);
         }
         return {
             ...player,
-            iconClassId,
+            icon_class_id,
         };
     });
 }
