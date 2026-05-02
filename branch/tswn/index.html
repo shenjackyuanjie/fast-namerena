@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>tswn_wasm Show Demo</title>
+    <link rel="stylesheet" href="./show.css">
+</head>
+<body>
+    <div class="version-marker small">
+        <span id="versionInfo">wrapper: -</span>
+        <span id="coreVersionInfo">core: -</span>
+        <span id="modulePathInfo">module: -</span>
+    </div>
+
+    <div class="main" id="showApp">
+        <div class="battle-stage">
+            <aside class="hlist plist">
+                <div class="plist-header">
+                    <div class="plist-title">名字竞技场</div>
+                    <div class="plist-subtitle">tswn_wasm show demo，尽量复刻原版与 fast-namerena 的观感。</div>
+                    <div id="plistMeta" class="plist-meta">输入名字后点击开始，左侧会显示角色状态，右侧自动播放整场战斗。</div>
+                </div>
+                <div id="playerList" class="player-groups">
+                    <div class="welcome">
+                        <div><strong>战斗还没开始。</strong></div>
+                        <div>这个页面是 Fight-only 的 show 风格演示，不再混合胜率功能。</div>
+                        <div>点击右侧输入面板里的 <strong>开始</strong>，会按回放顺序自动推进整场战斗。</div>
+                    </div>
+                </div>
+            </aside>
+
+            <section class="hbody pbody">
+                <div class="pbody-shell">
+                    <div class="pbody-header">
+                        <div class="header-copy">
+                            <div class="header-title">战斗过程</div>
+                            <div id="headerMeta" class="small dim">目前显示的是 show 风格回放视图。</div>
+                        </div>
+                        <div class="version-note small dim">自动使用 FightSession 捕获 replay，并按帧播放。</div>
+                    </div>
+                    <div id="battleRows" class="battleRows">
+                        <div class="welcome">
+                            <div><strong>原始网页风格的 show 页面</strong></div>
+                            <div>这里会按回合追加战斗记录，数字伤害、回复、技能标签都会保留。</div>
+                            <div>你可以用右下角按钮切换快进、重新播放，或重新打开输入面板。</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="panels">
+            <div id="inputPanel" class="panel vertical">
+                <div class="paneltitle">名字竞技场</div>
+                <div id="textdiv">
+                    <textarea id="input_name" placeholder="每行输入一个名字&#10;&#10;组队对战时用空行隔开组队"></textarea>
+                </div>
+                <div id="inputStatus" class="panelstatus">会使用 show 风格自动播放整场战斗。</div>
+                <div class="panelfooter">
+                    <div class="input-note">每行输入一个名字。</div>
+                    <div class="input-note">组队战时用空行分组，效果与原站一致。</div>
+                </div>
+                <div class="goBar">
+                    <button id="startBtn" class="goBtn">开 始</button>
+                    <button id="sampleBtn" class="picon sampleBtn" title="填入示例输入" aria-label="填入示例输入">
+                        <svg class="svgicon" fill="white" height="24" width="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                    </button>
+                </div>
+                <button id="closeInputBtn" class="picon closeBtn" title="关闭输入面板" aria-label="关闭输入面板">
+                    <svg class="svgicon" fill="white" height="24" width="24" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                </button>
+            </div>
+
+            <div id="endPanel" class="panel vertical" hidden>
+                <div class="paneltitle">战斗结束</div>
+                <div class="endcard">
+                    <div class="winner-note">胜者</div>
+                    <div id="winnerNames" class="winner-names">-</div>
+                    <div id="winnerNote" class="winner-subnote">你可以重新播放当前回放，或者重新打开输入面板换一组名字。</div>
+                </div>
+                <div class="goBar">
+                    <button id="playAgainBtn" class="goBtn">再播一次</button>
+                    <button id="editNamesBtn" class="goBtn secondary">重新输入</button>
+                </div>
+                <button id="closeEndBtn" class="picon closeBtn" title="关闭结束面板" aria-label="关闭结束面板">
+                    <svg class="svgicon" fill="white" height="24" width="24" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="right-controls">
+            <div id="stepControls" class="step-controls" hidden>
+                <button id="stepBackEventBtn" class="micon" title="后退一个事件 (←)" aria-label="后退一个事件">
+                    <svg class="svgicon" fill="white" height="24" width="24" viewBox="0 0 24 24"><path d="M5 7v10h2V7zm5 5l8-5v10l-8-5z"/></svg>
+                </button>
+                <button id="stepForwardEventBtn" class="micon" title="前进一个事件 (→)" aria-label="前进一个事件">
+                    <svg class="svgicon" fill="white" height="24" width="24" viewBox="0 0 24 24"><path d="M17 7v10h2V7zm-3 5l-8-5v10l8-5z"/></svg>
+                </button>
+                <button id="stepBackFrameBtn" class="micon" title="后退一帧 (↑)" aria-label="后退一帧">
+                    <svg class="svgicon" fill="white" height="24" width="24" viewBox="0 0 24 24"><path d="M3 7v10h2V7zM8 12l8-5v10l-8-5zM19 7v10h2V7z"/></svg>
+                </button>
+                <button id="stepForwardFrameBtn" class="micon" title="前进一帧 (↓)" aria-label="前进一帧">
+                    <svg class="svgicon" fill="white" height="24" width="24" viewBox="0 0 24 24"><path d="M19 7v10h2V7zM16 12l-8-5v10l8-5zM3 7v10h2V7z"/></svg>
+                </button>
+            </div>
+
+            <div class="controlbar">
+                <button id="inputBtn" class="micon" title="打开输入面板" aria-label="打开输入面板">
+                <svg class="svgicon" fill="white" height="24" width="24" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75l11-11.03-3.75-3.75L3 17.25zm14.71-9.04a.996.996 0 0 0 0-1.41l-2.5-2.5a.996.996 0 1 0-1.41 1.41l2.5 2.5c.39.38 1.03.39 1.41 0z"/></svg>
+            </button>
+            <button id="pauseBtn" class="micon" title="暂停 / 继续播放" aria-label="暂停 / 继续播放">
+                <svg class="svgicon" fill="white" height="24" width="24" viewBox="0 0 24 24"><path d="M6 5h4v14H6V5zm8 0h4v14h-4V5z"/></svg>
+            </button>
+            <button id="fastBtn" class="micon" title="快进速度" aria-label="快进速度">
+                <svg class="svgicon" fill="white" height="24" width="24" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+            <button id="turboBtn" class="micon" title="极速模式（无延时）" aria-label="极速模式">
+                <svg class="svgicon" fill="white" height="24" width="24" viewBox="0 0 24 24"><path d="M2 18l6-6L2 6v12zm7-12v12l6-6L9 6zm7 0v12l6-6L16 6z"/></svg>
+            </button>
+            <button id="refreshBtn" class="micon" title="重新播放" aria-label="重新播放">
+                <svg class="svgicon" fill="white" height="24" width="24" viewBox="0 0 24 24"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+            </button>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="module" src="./show.js?v=20260429d"></script>
+</body>
+</html>

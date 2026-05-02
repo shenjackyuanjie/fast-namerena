@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>tswn_wasm Demo</title>
+    <link rel="stylesheet" href="./demo.css">
+</head>
+<body>
+    <main>
+        <section class="hero">
+            <p class="eyebrow">wasm demo</p>
+            <h1>tswn_wasm 浏览器演示</h1>
+            <p>这个页面直接调用 tswn_wasm 导出的 FightSession 和 WinRateSession，用最小静态页面验证 battle replay、summary 和增量胜率三条浏览器路径。</p>
+            <div class="version-bar">
+                <span id="versionInfo">wrapper: -</span>
+                <span id="coreVersionInfo">core: -</span>
+                <span id="modulePathInfo">module: -</span>
+            </div>
+        </section>
+
+        <section class="layout">
+            <div class="panel">
+                <h2>共享输入</h2>
+                <p class="panel-lead">Fight Demo 和 Win Rate Demo 共用同一份输入，切换模式时不会丢失当前文本。</p>
+                <textarea id="rawInput"></textarea>
+                <div id="statusText" class="status"></div>
+                <p class="small input-hint">当前输入默认按 2v2 文本格式解析，FightSummary、FightSession 和 WinRateSession 都直接读取这里的内容。</p>
+            </div>
+
+            <div class="panel workspace-panel">
+                <div class="mode-tabs" role="tablist" aria-label="Demo 模式">
+                    <button id="fightModeButton" class="mode-tab is-active" data-mode-tab="fight" type="button" role="tab" aria-selected="true" aria-controls="fightPanel">战斗回放</button>
+                    <button id="winRateModeButton" class="mode-tab" data-mode-tab="winRate" type="button" role="tab" aria-selected="false" aria-controls="winRatePanel">胜率计算</button>
+                </div>
+
+                <section id="fightPanel" class="mode-panel" data-mode-panel="fight" role="tabpanel" aria-labelledby="fightModeButton">
+                    <div>
+                        <h2>Fight Demo</h2>
+                        <p class="section-copy">读取 Summary、创建 FightSession，并逐帧查看战斗状态与回放日志。</p>
+                    </div>
+                    <div class="controls">
+                        <button id="summaryButton" class="secondary">读取 Summary</button>
+                        <button id="prepareButton">创建 FightSession</button>
+                    </div>
+                    <div id="summaryBox" class="summary-box small">尚未执行。</div>
+                    <div class="controls">
+                        <button id="stepButton" disabled>Step</button>
+                        <button id="runToEndButton" disabled class="secondary">Run To End</button>
+                        <button id="resetLogButton" disabled class="ghost">清空日志</button>
+                    </div>
+                    <div id="playersGrid" class="players"></div>
+                    <table id="stateTable"></table>
+                    <div id="battleLog" class="log">创建 FightSession 后可以逐帧查看回放。</div>
+                </section>
+
+                <section id="winRatePanel" class="mode-panel" data-mode-panel="winRate" role="tabpanel" aria-labelledby="winRateModeButton" hidden>
+                    <div>
+                        <h2>Win Rate Demo</h2>
+                        <p class="section-copy">使用同一份输入批量推进 WinRateSession，观察增量进度与最终统计结果。</p>
+                    </div>
+                    <label>
+                        胜率局数
+                        <input id="roundCountInput" type="number" min="1" step="100" value="5000">
+                    </label>
+                    <div class="controls">
+                        <button id="winRateButton" class="ghost">运行 WinRateSession</button>
+                    </div>
+                    <div class="summary-box">
+                        <h2 style="margin-bottom: 10px;">胜率进度</h2>
+                        <div class="progress-row">
+                            <progress id="winRateProgress" max="100" value="0"></progress>
+                            <span id="winRatePercent">0%</span>
+                        </div>
+                        <div id="winRateText" class="small" style="margin-top: 10px;">尚未开始。</div>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="./demo.js"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+/* tslint:disable */
+/* eslint-disable */
+export const memory: WebAssembly.Memory;
+export const __wbg_fightsession_free: (a: number, b: number) => void;
+export const fightsession_is_finished: (a: number) => number;
+export const fightsession_new: (a: number, b: number, c: number) => [number, number, number];
+export const fightsession_players: (a: number) => [number, number, number];
+export const fightsession_run_to_end: (a: number, b: number) => [number, number, number];
+export const fightsession_state: (a: number) => [number, number, number];
+export const fightsession_step: (a: number) => [number, number, number];
+export const fightsession_winner_ids: (a: number) => [number, number, number];
+export const core_version: () => [number, number];
+export const fight: (a: number, b: number, c: number) => [number, number, number];
+export const fight_summary: (a: number, b: number, c: number) => [number, number, number];
+export const name_to_png_base64: (a: number, b: number) => [number, number];
+export const version: () => [number, number];
+export const win_rate_sync: (a: number, b: number, c: number, d: number) => [number, number, number];
+export const wasm_start: () => void;
+export const __wbg_winratesession_free: (a: number, b: number) => void;
+export const winratesession_eval_rq: (a: number) => number;
+export const winratesession_is_finished: (a: number) => number;
+export const winratesession_new: (a: number, b: number, c: number, d: number) => [number, number, number];
+export const winratesession_progress: (a: number) => [number, number, number];
+export const winratesession_result: (a: number) => [number, number, number];
+export const winratesession_step: (a: number, b: number) => [number, number, number];
+export const __wbindgen_malloc: (a: number, b: number) => number;
+export const __wbindgen_realloc: (a: number, b: number, c: number, d: number) => number;
+export const __wbindgen_free: (a: number, b: number, c: number) => void;
+export const __wbindgen_externrefs: WebAssembly.Table;
+export const __externref_table_alloc: () => number;
+export const __externref_table_dealloc: (a: number) => void;
+export const __wbindgen_start: () => void;
