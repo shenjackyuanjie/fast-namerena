@@ -230,7 +230,7 @@ button:hover {
 }
 
 .player-name-head {
-    width: 118px;
+    width: 150px;
     text-align: left;
 }
 
@@ -239,7 +239,7 @@ button:hover {
 }
 
 .player-mix-head {
-    width: 48px;
+    width: 56px;
 }
 
 .player-state-head {
@@ -357,10 +357,30 @@ button:hover {
     font-weight: 700;
 }
 
+.player-mp-move-cell {
+    font-size: 0.85em;
+    line-height: 1.4;
+}
+
+.player-mp-move-cell .mp-val {
+    color: var(--sky-2, #2aa2d6);
+}
+
+.player-mp-move-cell .move-val {
+    color: var(--ink, #214052);
+}
+
 .detail-line {
     display: flex;
     flex-wrap: wrap;
     gap: 4px 8px;
+}
+
+.player-name-wrap .player-id {
+    color: var(--muted, #888);
+    font-size: 0.95em;
+    font-weight: 400;
+    margin-left: 4px;
 }
 
 .player-effects {

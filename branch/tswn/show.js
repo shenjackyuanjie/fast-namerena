@@ -937,8 +937,14 @@ stepForwardFrameBtn.addEventListener('click', () => {
     stepPlaybackTo(nextFrameCursor(playbackCursor));
 });
 
-// 键盘快捷键（仅暂停模式下有效）
+// 键盘快捷键
 document.addEventListener('keydown', (event) => {
+    if (event.key === ' ') {
+        if (!currentReplay) return;
+        togglePausePlayback();
+        event.preventDefault();
+        return;
+    }
     if (!playbackPaused || !currentReplay) {
         return;
     }

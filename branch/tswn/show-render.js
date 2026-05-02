@@ -365,6 +365,7 @@ export function renderPlayers(players, states, previousStates = states, involved
                                 <div class="player-name-wrap">
                                     ${renderIconSprite(playerIconClassId(player), 'sgl icon-sprite')}
                                     <span class="${nameClass}">${escapeHtml(player.displayName)}</span>
+                                    <span class="player-id"> #${player.id}</span>
                                 </div>
                                 <div class="hpwrap compact" style="width:${totalWidth}px">
                                     <div class="maxhp" style="width:${totalWidth}px"></div>
@@ -378,8 +379,7 @@ export function renderPlayers(players, states, previousStates = states, involved
                                 ${renderPlayerStatusPills(state)}
                             </td>
                             <td class="player-stat-cell player-hp-cell">${state.hp}/${state.maxHp}</td>
-                            <td class="player-stat-cell">${state.speed}</td>
-                            <td class="player-stat-cell">${state.mp}</td>
+                            <td class="player-stat-cell player-mp-move-cell"><span class="mp-val">${state.mp}</span> / <span class="move-val">${(state.movePoint / 2048 * 100).toFixed(0)}%</span></td>
                             <td class="player-state-cell"><span class="${stateClass}">${statusText(state)}</span></td>
                         </tr>
                     `;
@@ -393,8 +393,7 @@ export function renderPlayers(players, states, previousStates = states, involved
                             <tr>
                                 <th class="player-name-head">角色</th>
                                 <th class="player-hp-head">HP</th>
-                                <th class="player-mix-head">速度</th>
-                                <th class="player-mix-head">体力</th>
+                                <th class="player-mix-head">蓝量/体力</th>
                                 <th class="player-state-head">状态</th>
                             </tr>
                         </thead>` : "";
@@ -405,7 +404,6 @@ export function renderPlayers(players, states, previousStates = states, involved
                         <colgroup>
                             <col class="player-name-head">
                             <col class="player-hp-head">
-                            <col class="player-mix-head">
                             <col class="player-mix-head">
                             <col class="player-state-head">
                         </colgroup>
@@ -426,15 +424,13 @@ export function renderPlayers(players, states, previousStates = states, involved
                 <col class="player-name-head">
                 <col class="player-hp-head">
                 <col class="player-mix-head">
-                <col class="player-mix-head">
                 <col class="player-state-head">
             </colgroup>
             <thead>
                 <tr>
                     <th class="player-name-head">角色</th>
                     <th class="player-hp-head">HP</th>
-                    <th class="player-mix-head">速度</th>
-                    <th class="player-mix-head">体力</th>
+                    <th class="player-mix-head">蓝量/体力</th>
                     <th class="player-state-head">状态</th>
                 </tr>
             </thead>
@@ -506,6 +502,17 @@ export function renderPlayers(players, states, previousStates = states, involved
             const mpEl = row.querySelector('.mp');
             if (mpEl) mpEl.style.width = mpPercent.toFixed(2) + '%';
 
+            const nameWrap = row.querySelector('.player-name-wrap');
+            if (nameWrap) {
+                let idSpan = nameWrap.querySelector('.player-id');
+                if (!idSpan) {
+                    idSpan = document.createElement('span');
+                    idSpan.className = 'player-id';
+                    nameWrap.appendChild(idSpan);
+                }
+                idSpan.textContent = ' #' + player.id;
+            }
+
             const effectsEl = row.querySelector('.player-effects');
             if (effectsEl) {
                 const labels = sidebarStatusLabels(state);
@@ -513,11 +520,15 @@ export function renderPlayers(players, states, previousStates = states, involved
                 effectsEl.innerHTML = labels.map(renderStatusPill).join('');
             }
 
-            const statCells = row.querySelectorAll('.player-stat-cell');
-            if (statCells.length >= 3) {
-                statCells[0].textContent = `${state.hp}/${state.maxHp}`;
-                statCells[1].textContent = `${state.speed}`;
-                statCells[2].textContent = `${state.mp}`;
+            const hpCell = row.querySelector('.player-hp-cell');
+            if (hpCell) hpCell.textContent = `${state.hp}/${state.maxHp}`;
+
+            const mpMoveCell = row.querySelector('.player-mp-move-cell');
+            if (mpMoveCell) {
+                const mpSpan = mpMoveCell.querySelector('.mp-val');
+                const moveSpan = mpMoveCell.querySelector('.move-val');
+                if (mpSpan) mpSpan.textContent = `${state.mp}`;
+                if (moveSpan) moveSpan.textContent = (state.movePoint / 2048 * 100).toFixed(0) + '%';
             }
 
             const stateEl = row.querySelector('.player-state-cell span');
