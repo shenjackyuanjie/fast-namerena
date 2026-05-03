@@ -1015,4 +1015,41 @@ async function main() {
     }
 }
 
+// ============================================================================
+// 玩家联动高亮：鼠标悬停时高亮页面中所有该玩家的头像和名字
+// ============================================================================
+
+let highlightTimer = null;
+
+/**
+ * 高亮指定 playerId 对应的所有元素，其余淡化。
+ * @param {string|number|null} playerId
+ */
+function setPlayerHighlight(playerId) {
+    // 清除旧的高亮标记
+    document.querySelectorAll('[data-player-id].hl-active').forEach((el) => el.classList.remove('hl-active'));
+
+    if (playerId) {
+        document.body.classList.add('highlight-active');
+        document.querySelectorAll('[data-player-id="' + playerId + '"]').forEach((el) => el.classList.add('hl-active'));
+    } else {
+        document.body.classList.remove('highlight-active');
+    }
+}
+
+document.addEventListener('mouseover', (event) => {
+    const el = event.target.closest('[data-player-id]');
+    if (el) {
+        if (highlightTimer) {
+            clearTimeout(highlightTimer);
+            highlightTimer = null;
+        }
+        setPlayerHighlight(el.dataset.playerId);
+    } else if (!document.querySelector('[data-player-id]:hover')) {
+        highlightTimer = setTimeout(() => {
+            setPlayerHighlight(null);
+        }, 80);
+    }
+});
+
 void main();

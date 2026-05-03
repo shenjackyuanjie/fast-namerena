@@ -211,10 +211,10 @@ export function actorHpMetrics(state, previousState = state) {
     const maxHp = Math.max(1, state.max_hp, previousState?.max_hp ?? 0);
     const hp = Math.max(0, Math.min(maxHp, state.hp));
     const previousHp = Math.max(0, Math.min(maxHp, previousState?.hp ?? hp));
-    // 基础宽度根据最大 HP 的平方根自适应，然后缩放 1.5 倍
-    const totalWidth = Math.max(20, Math.min(56, 16 + Math.round(Math.sqrt(maxHp) * 2.8))) * 1.5;
-    const fillWidth = hp > 0 ? Math.max(1, Math.round((hp / maxHp) * totalWidth)) : 0;
-    const previousWidth = previousHp > 0 ? Math.max(1, Math.round((previousHp / maxHp) * totalWidth)) : 0;
+    // 血条长度调整为 血量 / 4 向上取整
+    const totalWidth = Math.max(20, Math.ceil(maxHp / 4));
+    const fillWidth = hp > 0 ? Math.max(1, Math.ceil(hp / 4)) : 0;
+    const previousWidth = previousHp > 0 ? Math.max(1, Math.ceil(previousHp / 4)) : 0;
     // 受伤变化量（红条）：上一帧比当前宽多少
     const deltaWidth = previousHp > hp ? Math.max(1, previousWidth - fillWidth) : 0;
 

@@ -11,7 +11,7 @@
     --line: #c6e1ef;
     --damage: #d84d45;
     --recover: #17985a;
-    --skill: #1877c7;
+    --skill: #0d7bce;
     --knockout: #b06a0e;
     --hp: #49c267;
     --oldhp: #ef7f79;
@@ -30,10 +30,6 @@ body {
     font-family: "Microsoft YaHei", Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Courier New", monospace, serif;
     font-size: 15px;
     color: var(--ink);
-    background:
-        radial-gradient(circle at top left, rgba(108, 196, 236, 0.45), transparent 28%),
-        radial-gradient(circle at bottom right, rgba(42, 162, 214, 0.28), transparent 36%),
-        linear-gradient(180deg, #eaf8ff 0%, #f8fcfe 60%, #edf7fb 100%);
 }
 
 * {
@@ -437,7 +433,7 @@ button:hover {
 }
 
 .hpwrap.compact {
-    height: 4px;
+    height: 2px;
     margin-top: 2px;
 }
 
@@ -478,7 +474,7 @@ button:hover {
 
 .mpwrap {
     position: relative;
-    height: 3px;
+    height: 2px;
     margin-top: 1px;
     overflow: hidden;
     background: rgba(198, 225, 239, 0.5);
@@ -611,17 +607,8 @@ button:hover {
     white-space: nowrap;
 }
 
-.msg.damage {
-    color: var(--damage);
-}
-
-.msg.recover {
-    color: var(--recover);
-}
-
 .msg.knockout {
     color: var(--knockout);
-    font-weight: 700;
 }
 
 .row.separator {
@@ -629,7 +616,6 @@ button:hover {
 }
 
 .message-number {
-    font-weight: 700;
 }
 
 .actor-token {
@@ -698,7 +684,6 @@ button:hover {
 
 .skill-token {
     color: var(--skill);
-    font-weight: 700;
 }
 
 .winner-row {
@@ -973,6 +958,13 @@ textarea {
     align-items: flex-start;
 }
 
+.summary-actor-avatar {
+    position: relative;
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: flex-start;
+}
+
 .summary-actor-icon {
     display: block;
 }
@@ -991,8 +983,30 @@ textarea {
     line-height: 20px;
 }
 
+.summary-actor-name.is-dead {
+    color: #80919b;
+    background: #edf2f5;
+    border-radius: 2px;
+    padding: 0 4px;
+}
+
 .summary-actor-hp {
+    position: absolute;
+    top: -2px;
+    left: calc(100% + 2px);
+    height: 2px;
+    overflow: hidden;
+    background: #d7dee4;
     margin-top: 0;
+    z-index: 2;
+}
+
+.summary-actor-hp .maxhp {
+    display: none;
+}
+
+.summary-actor-hp .hp {
+    background: var(--hp);
 }
 
 .right-controls {
@@ -1073,4 +1087,25 @@ textarea {
         right: 12px;
         bottom: 12px;
     }
+}
+
+/* ==========================================================================
+   玩家联动高亮
+   ========================================================================== */
+
+body.highlight-active [data-player-id].hl-active {
+    box-shadow: 0 0 0 1.5px #ff6a00;
+    border-radius: 3px;
+    background: rgba(255, 106, 0, 0.08);
+}
+
+body.highlight-active [data-player-id].hl-active .actor-name,
+body.highlight-active [data-player-id].hl-active .summary-actor-name {
+    color: #d4380d;
+    font-weight: 700;
+}
+
+body.highlight-active [data-player-id].hl-active.player-row .name {
+    color: #d4380d;
+    font-weight: 700;
 }

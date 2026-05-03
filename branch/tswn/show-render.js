@@ -83,7 +83,7 @@ export function actorToken(player, state, previousState, { showHp = true } = {})
         : "";
     const hpClass = hpMetrics ? " has-hp" : "";
 
-    return `<span class="actor-token${hpClass}"><span class="actor-avatar-wrap">${renderIconSprite(playerIconClassId(player), 'msg-avatar icon-sprite')}${hpBar}</span><span class="actor-name">${escapeHtml(player.display_name)}</span></span>`;
+    return `<span class="actor-token${hpClass}" data-player-id="${player.id}"><span class="actor-avatar-wrap">${renderIconSprite(playerIconClassId(player), 'msg-avatar icon-sprite')}${hpBar}</span><span class="actor-name">${escapeHtml(player.display_name)}</span></span>`;
 }
 
 /**
@@ -355,8 +355,9 @@ export function renderPlayers(players, states, previousStates = states, involved
                         const stateClass = !state.alive ? "status-pill dead" : state.frozen ? "status-pill frozen" : "status-pill";
 
                         const maxMp = state.magic > 0 ? state.magic : (state.magic_point > 0 ? state.magic_point : 1);
-                        const mpPercent = state.alive
-                            ? Math.max(0, Math.min(100, (state.magic_point / maxMp) * 100))
+                        const mpTotalWidth = Math.max(20, Math.ceil(maxMp / 4));
+                        const mpFillWidth = state.alive && state.magic_point > 0
+                            ? Math.max(1, Math.ceil(state.magic_point / 4))
                             : 0;
 
                         return `
@@ -373,8 +374,8 @@ export function renderPlayers(players, states, previousStates = states, involved
                                     <div class="healhp" style="left:${healStart}px;width:${healWidth}px"></div>
                                     <div class="hp" style="width:${fillWidth}px"></div>
                                 </div>
-                                <div class="mpwrap">
-                                    <div class="mp" style="width:${mpPercent.toFixed(2)}%"></div>
+                                <div class="mpwrap" style="width:${mpTotalWidth}px">
+                                    <div class="mp" style="width:${mpFillWidth}px"></div>
                                 </div>
                                 ${renderPlayerStatusPills(state)}
                             </td>
@@ -476,8 +477,9 @@ export function renderPlayers(players, states, previousStates = states, involved
             const nameClass = state.alive ? "name" : "name namedie";
             const stateClass = !state.alive ? "status-pill dead" : state.frozen ? "status-pill frozen" : "status-pill";
             const maxMp = state.magic > 0 ? state.magic : (state.magic_point > 0 ? state.magic_point : 1);
-            const mpPercent = state.alive
-                ? Math.max(0, Math.min(100, (state.magic_point / maxMp) * 100))
+            const mpTotalWidth = Math.max(20, Math.ceil(maxMp / 4));
+            const mpFillWidth = state.alive && state.magic_point > 0
+                ? Math.max(1, Math.ceil(state.magic_point / 4))
                 : 0;
 
             row.className = `player-row${deadClass}${involvedClass}`;
@@ -499,8 +501,10 @@ export function renderPlayers(players, states, previousStates = states, involved
                 healhpEl.style.width = healWidth + 'px';
             }
 
+            const mpwrapEl = row.querySelector('.mpwrap');
+            if (mpwrapEl) mpwrapEl.style.width = mpTotalWidth + 'px';
             const mpEl = row.querySelector('.mp');
-            if (mpEl) mpEl.style.width = mpPercent.toFixed(2) + '%';
+            if (mpEl) mpEl.style.width = mpFillWidth + 'px';
 
             const nameWrap = row.querySelector('.player-name-wrap');
             if (nameWrap) {
@@ -577,7 +581,7 @@ export function buildFrameHtml(frame, roundIndex, previousStates = frame.states,
         if (!segments.length) {
             return;
         }
-        rows.push(`<div class="row">${segments.join('<span class="msg-sep">，</span>')}</div>`);
+        rows.push(`<div class="row">${segments.join('<span class="msg-sep">, </span>')}</div>`);
         segments = [];
     }
 
@@ -721,7 +725,7 @@ export function buildFrameRows(frame, roundIndex, previousStates = frame.states,
             return;
         }
 
-        pushVisibleChunk('row', `<span class="msg-sep">，</span>${messageHtml}`, delay);
+        pushVisibleChunk('row', `<span class="msg-sep">, </span>${messageHtml}`, delay);
     }
 
     function applyDelta(id, hitState, tone, value) {
