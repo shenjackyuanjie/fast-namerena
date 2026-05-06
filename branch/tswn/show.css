@@ -279,7 +279,6 @@ button:hover {
 }
 
 .plr_list.is-dead {
-    background: linear-gradient(180deg, rgba(236, 240, 243, 0.98) 0%, rgba(226, 232, 237, 0.92) 100%);
     opacity: 0.82;
 }
 
@@ -326,7 +325,7 @@ button:hover {
 }
 
 .name.namedie {
-    background: #edf2f5;
+    background: #ddd;
     color: #80919b;
 }
 
@@ -608,7 +607,7 @@ button:hover {
 }
 
 .msg.knockout {
-    color: var(--knockout);
+    /* 无颜色 — 被击倒 */
 }
 
 .row.separator {
@@ -616,6 +615,7 @@ button:hover {
 }
 
 .message-number {
+    color: #d84d45;
 }
 
 .actor-token {
@@ -627,11 +627,11 @@ button:hover {
 }
 
 .actor-avatar-wrap {
-    position: relative;
-    top: -2px;
     display: block;
     flex: 0 0 auto;
     overflow: visible;
+    top: -2px;
+    left: 1.5px;
 }
 
 .msg-avatar {
@@ -640,18 +640,25 @@ button:hover {
 
 .actor-name {
     display: inline-block;
+    position: relative;
     white-space: nowrap;
     background: #f3f3f8;
     color: #2d4454;
+    padding: 0 2px;
+    text-shadow: 1px 1px #fff;
+}
+
+.actor-name.namedie {
+    background: #ddd;
 }
 
 
 .actor-hp {
     position: absolute;
-    display: block;
     top: -2px;
-    left: calc(100% + 2px);
+    left: 0;
     height: 2px;
+    display: block;
     overflow: hidden;
     background: #d7dee4;
     z-index: 2;
@@ -676,14 +683,23 @@ button:hover {
 
 .damage .message-number {
     color: var(--damage);
+    font-weight: normal;
 }
 
 .recover .message-number {
     color: var(--recover);
+    font-weight: normal;
 }
 
 .skill-token {
     color: var(--skill);
+    font-weight: normal;
+}
+
+/* [解除]/[中止]/[打消] 独立中括号标红 */
+.status-change-token {
+    color: #d84d45;
+    font-weight: normal;
 }
 
 .winner-row {
@@ -1102,10 +1118,8 @@ body.highlight-active [data-player-id].hl-active {
 body.highlight-active [data-player-id].hl-active .actor-name,
 body.highlight-active [data-player-id].hl-active .summary-actor-name {
     color: #d4380d;
-    font-weight: 700;
 }
 
 body.highlight-active [data-player-id].hl-active.player-row .name {
     color: #d4380d;
-    font-weight: 700;
 }

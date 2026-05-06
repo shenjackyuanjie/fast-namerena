@@ -52,18 +52,22 @@ export function renderReplayIntro(replay, speedMode, playerList, battleRows, pli
 }
 
 /**
- * 根据当前 speedMode 更新快进/极速按钮的激活样式。
+ * 根据当前 speedMode 更新播放/快进/暂停按钮的激活样式。
+ * 极速是一次性按钮，不参与互斥高亮。
  *
+ * @param {HTMLButtonElement} normalBtn
  * @param {HTMLButtonElement} fastBtn
- * @param {HTMLButtonElement} turboBtn
+ * @param {HTMLButtonElement} pauseBtn
+ * @param {boolean} playbackPaused
  * @param {SpeedMode} speedMode
  * @param {FightReplay|null} currentReplay
  * @param {HTMLElement} headerMeta
  */
-export function updateSpeedButtons(fastBtn, turboBtn, speedMode, currentReplay, headerMeta) {
-    // 切换两个速度按钮的激活状态
-    fastBtn.classList.toggle("is-active", speedMode === 'fast');
-    turboBtn.classList.toggle("is-active", speedMode === 'turbo');
+export function updateSpeedButtons(normalBtn, fastBtn, pauseBtn, playbackPaused, speedMode, currentReplay, headerMeta) {
+    // 三态互斥：暂停 / 播放(normal) / 快进(fast)
+    normalBtn.classList.toggle("is-active", speedMode === 'normal' && !playbackPaused);
+    fastBtn.classList.toggle("is-active", speedMode === 'fast' && !playbackPaused);
+    pauseBtn.classList.toggle("is-active", playbackPaused);
     if (currentReplay) {
         const labels = { normal: '正常速度', fast: '快进模式', turbo: '极速模式（无延时）' };
         // 同步更新顶部抬头的速度提示

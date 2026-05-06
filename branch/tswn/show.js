@@ -174,6 +174,8 @@ const editNamesBtn = document.querySelector("#editNamesBtn");
 /** @type {HTMLButtonElement} */
 const inputBtn = document.querySelector("#inputBtn");
 /** @type {HTMLButtonElement} */
+const normalBtn = document.querySelector("#normalBtn");
+/** @type {HTMLButtonElement} */
 const fastBtn = document.querySelector("#fastBtn");
 /** @type {HTMLButtonElement} */
 const turboBtn = document.querySelector("#turboBtn");
@@ -310,6 +312,7 @@ function prepareReplayPlan(replay) {
             involved: buildInvolvedSet(frame),
             start: 0,
             end: 0,
+            frameVisibleCount: 0,
         };
         framePlan.chunks = buildFrameRows(frame, frameIndex, previousStates, workingPlayersById);
         previousStates = frame.states;
@@ -327,6 +330,7 @@ function prepareReplayPlan(replay) {
             });
         }
         framePlan.end = flatChunks.length;
+        framePlan.frameVisibleCount = framePlan.chunks.filter(c => c.target !== 'delay').length;
     }
 
     return {
@@ -345,7 +349,9 @@ function currentFrameIndexFromCursor() {
 }
 
 function syncPlaybackUi() {
-    updateSpeedButtons(fastBtn, turboBtn, speedMode, currentReplay, headerMeta);
+    updateSpeedButtons(normalBtn, fastBtn, pauseBtn, playbackPaused, speedMode, currentReplay, headerMeta);
+    // 极速是一次性按钮，仅在 turbo 播放中高亮
+    turboBtn.classList.toggle('is-active', speedMode === 'turbo' && !playbackPaused);
 
     pauseBtn.disabled = !currentReplay;
     pauseBtn.classList.toggle('is-paused', playbackPaused);
@@ -548,7 +554,7 @@ function renderPlaybackToCursor(cursor, { forceReset = false } = {}) {
     syncPlaybackUi();
 }
 
-function resolveChunkDelay(frame, rawDelay) {
+function resolveChunkDelay(frame, rawDelay, frameVisibleCount) {
     if (speedMode === 'turbo') {
         return 0;
     }
@@ -556,7 +562,13 @@ function resolveChunkDelay(frame, rawDelay) {
         const targetDelay = playbackDelay(frame, speedMode);
         return frame.total_delay > 0 ? Math.round((targetDelay * rawDelay) / frame.total_delay) : 0;
     }
-    return rawDelay;
+    // normal 模式：逐句播放。若 WASM 给出的逐条延迟非零则原样使用；
+    // 否则将整帧 total_delay 均分到该帧每个可见 chunk，保证一句一句推进。
+    if (rawDelay > 0) {
+        return rawDelay;
+    }
+    const total = frame.total_delay ?? 0;
+    return frameVisibleCount > 0 ? Math.round(total / frameVisibleCount) : 0;
 }
 
 async function waitForPlaybackDelay(ms, token) {
@@ -604,7 +616,7 @@ async function autoplayFromCurrentCursor() {
             }
         }
 
-        const delay = resolveChunkDelay(framePlan.frame, chunk.delay);
+        const delay = resolveChunkDelay(framePlan.frame, chunk.delay, framePlan.frameVisibleCount);
         if (delay > 0) {
             const completed = await waitForPlaybackDelay(delay, token);
             if (!completed) {
@@ -622,20 +634,27 @@ async function autoplayFromCurrentCursor() {
     renderEndPanel(currentReplay);
     appendReplayResultBlock(currentReplay);
     storePlaybackCheckpoint(playbackCursor);
+    // 极速是一次性按钮：播完后自动回到暂停态
+    if (speedMode === 'turbo') {
+        playbackPaused = true;
+        speedMode = 'normal';
+    }
     syncPlaybackUi();
 }
 
-function beginReplayPlayback(replay) {
+function beginReplayPlayback(replay, { autoPlay = true } = {}) {
     currentReplay = replay;
     currentPlan = prepareReplayPlan(replay);
     playbackCheckpoints = new Map();
     playbackCursor = 0;
-    playbackPaused = false;
+    playbackPaused = !autoPlay;
     playbackFinished = false;
     playbackStartedAt = performance.now();
     stopPlaybackLoop();
     renderPlaybackToCursor(0, { forceReset: true });
-    void autoplayFromCurrentCursor();
+    if (autoPlay) {
+        void autoplayFromCurrentCursor();
+    }
 }
 
 function nextVisibleCursor(cursor) {
@@ -691,9 +710,6 @@ function pausePlayback() {
     if (!currentReplay) {
         return;
     }
-    if (speedMode !== 'normal') {
-        speedMode = 'normal';
-    }
     playbackPaused = true;
     stopPlaybackLoop();
     syncPlaybackUi();
@@ -733,15 +749,6 @@ function stepPlaybackTo(cursor) {
     playbackPaused = true;
     stopPlaybackLoop();
     renderPlaybackToCursor(cursor);
-}
-
-function resumeWithSpeed(nextSpeedMode) {
-    speedMode = nextSpeedMode;
-    if (playbackPaused && currentReplay && !playbackFinished) {
-        resumePlayback();
-    } else {
-        syncPlaybackUi();
-    }
 }
 
 // ============================================================================
@@ -855,7 +862,7 @@ async function replayCurrent() {
         openInputEditor();
         return;
     }
-    beginReplayPlayback(currentReplay);
+    beginReplayPlayback(currentReplay, { autoPlay: false });
 }
 
 // ============================================================================
@@ -901,24 +908,37 @@ editNamesBtn.addEventListener("click", () => {
     openInputEditor(true);
 });
 
-// 快进按钮：切换 normal ↔ fast
-fastBtn.addEventListener("click", () => {
+// 播放按钮：normal 速度播放
+normalBtn.addEventListener("click", () => {
+    speedMode = 'normal';
     if (playbackPaused && currentReplay && !playbackFinished) {
-        resumeWithSpeed('fast');
+        resumePlayback();
         return;
     }
-    speedMode = speedMode === 'fast' ? 'normal' : 'fast';
     syncPlaybackUi();
 });
 
-// 极速按钮：切换 normal ↔ turbo
-turboBtn.addEventListener("click", () => {
+// 快进按钮：fast 速度播放
+fastBtn.addEventListener("click", () => {
+    speedMode = 'fast';
     if (playbackPaused && currentReplay && !playbackFinished) {
-        resumeWithSpeed('turbo');
+        resumePlayback();
         return;
     }
-    speedMode = speedMode === 'turbo' ? 'normal' : 'turbo';
     syncPlaybackUi();
+});
+
+// 极速按钮：一次性快进至结束，完成后自动暂停
+turboBtn.addEventListener("click", () => {
+    if (!currentReplay || playbackFinished) {
+        return;
+    }
+    speedMode = 'turbo';
+    if (playbackPaused) {
+        resumePlayback();
+    } else {
+        syncPlaybackUi();
+    }
 });
 
 stepBackEventBtn.addEventListener('click', () => {

@@ -203,14 +203,16 @@ export function statusText(state) {
  * @param {FightState} [previousState=state] — 上一帧状态（默认同当前，表示无变化）
  * @returns {HpMetrics|null} 若 state 无效或 maxHp≤0 返回 null
  */
-export function actorHpMetrics(state, previousState = state) {
+export function actorHpMetrics(state, previousState) {
     if (!state || state.max_hp <= 0) {
         return null;
     }
 
     const maxHp = Math.max(1, state.max_hp, previousState?.max_hp ?? 0);
     const hp = Math.max(0, Math.min(maxHp, state.hp));
-    const previousHp = Math.max(0, Math.min(maxHp, previousState?.hp ?? hp));
+    // 新对象（无 previousState 或本帧刚出现）当作 hp 从 0 开始变化
+    const isNew = state?._is_new_in_frame || previousState?._is_new_in_frame;
+    const previousHp = (previousState && !isNew) ? Math.max(0, Math.min(maxHp, previousState.hp)) : 0;
     // 血条长度调整为 血量 / 4 向上取整
     const totalWidth = Math.max(20, Math.ceil(maxHp / 4));
     const fillWidth = hp > 0 ? Math.max(1, Math.ceil(hp / 4)) : 0;
@@ -239,16 +241,25 @@ export function actorHpMetrics(state, previousState = state) {
  */
 export function formatMessageText(text, tone) {
     let html = escapeHtml(text);
-    // [技能名] 包裹为 span
-    html = html.replace(/(\[[^\]]+\])/g, '<span class="skill-token">$1</span>');
+
+    // 解除/中止/打消所在句：从[xxx]中解除 → [xxx] 标橙色
+    html = html.replace(/从\[([^\]]+)\]中解除/g, '从<span class="status-change-token">$1</span>中解除');
+    // 独立 [解除]/[中止]/[打消] 标橙色
+    html = html.replace(/\[(解除|中止|打消)\]/g, '<span class="status-change-token">$1</span>');
+
+    // 其他技能或状态（包括回避、反击、识破、反弹、吸收等普通技能） → 去掉 []，蓝色
+    html = html.replace(/\[([^\]]+)\]/g, '<span class="skill-token">$1</span>');
 
     if (tone === "damage") {
-        // "XX点伤害" 中的数字高亮
+        // "XX点伤害" 中的数字标红
         html = html.replace(/(\d+)(?=点伤害)/g, '<span class="message-number">$1</span>');
     }
     if (tone === "recover") {
-        // "回复XX点" 中的数字高亮
+        // "回复XX点" 中的数字标绿
         html = html.replace(/(\d+)(?=点)/g, '<span class="message-number">$1</span>');
     }
+    // 瘟疫/体力减少等也标红（数字后跟%或"减少"）
+    html = html.replace(/(\d+)(?=%|减少)/g, '<span class="message-number">$1</span>');
+
     return html;
 }

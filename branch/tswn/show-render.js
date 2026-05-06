@@ -71,8 +71,13 @@ function playerIconClassId(player) {
  * @param {{ showHp?: boolean }} [options] — 是否显示 HP mini bar
  * @returns {string} HTML 字符串
  */
-export function actorToken(player, state, previousState, { showHp = true } = {}) {
-    const hpMetrics = showHp ? actorHpMetrics(state, previousState) : null;
+export function actorToken(player, state, previousState, update, { showHp = true } = {}) {
+    // 仅在血量变化时（或新对象首次出现时）显现血条。
+    // 被减速等 debuff 状态不会改变血量，因此不展示血条。
+    const isNew = state?._is_new_in_frame;
+    const hpChanged = isNew || previousState == null || Number(state.hp) !== Number(previousState.hp);
+    const shouldShowHp = showHp && hpChanged;
+    const hpMetrics = shouldShowHp ? actorHpMetrics(state, previousState) : null;
     const hpBar = hpMetrics
         ? `
             <span class="actor-hp" style="width:${hpMetrics.totalWidth}px">
@@ -82,8 +87,10 @@ export function actorToken(player, state, previousState, { showHp = true } = {})
         `
         : "";
     const hpClass = hpMetrics ? " has-hp" : "";
+    const isKnockout = update?.tone === "knockout" || (state && !state.alive);
+    const nameClass = `actor-name${isKnockout ? " namedie" : ""}`;
 
-    return `<span class="actor-token${hpClass}" data-player-id="${player.id}"><span class="actor-avatar-wrap">${renderIconSprite(playerIconClassId(player), 'msg-avatar icon-sprite')}${hpBar}</span><span class="actor-name">${escapeHtml(player.display_name)}</span></span>`;
+    return `<span class="actor-token${hpClass}" data-player-id="${player.id}"><span class="actor-avatar-wrap">${renderIconSprite(playerIconClassId(player), 'msg-avatar icon-sprite')}</span><span class="${nameClass}">${hpBar}${escapeHtml(player.display_name)}</span></span>`;
 }
 
 /**
@@ -124,15 +131,16 @@ function syntheticPlayerFromState(playerId, state, playersById) {
  * @param {{ showHp?: boolean }} [options]
  * @returns {string} HTML 字符串
  */
-export function renderActorById(playerId, stateMap, previousStateMap, playersById, options) {
+export function renderActorById(playerId, stateMap, previousStateMap, playersById, update, options) {
     const player = playersById.get(playerId);
     const state = stateMap.get(playerId);
-    const previousState = previousStateMap?.get(playerId) ?? state;
+    // 若上一帧不存在该对象则传 null，供 actorToken 识别为"新对象"以展示血条
+    const previousState = previousStateMap?.get(playerId) ?? null;
     if (!player) {
-        return actorToken(syntheticPlayerFromState(playerId, state, playersById), state, previousState, options);
+        return actorToken(syntheticPlayerFromState(playerId, state, playersById), state, previousState, update, options);
     }
 
-    return actorToken(player, state, previousState, options);
+    return actorToken(player, state, previousState, update, options);
 }
 
 /**
@@ -147,7 +155,7 @@ export function renderActorById(playerId, stateMap, previousStateMap, playersByI
 export function renderMessageParam(update, tone, stateMap, previousStateMap, playersById) {
     if (Array.isArray(update.target_ids) && update.target_ids.length) {
         return update.target_ids
-            .map((playerId) => renderActorById(playerId, stateMap, previousStateMap, playersById, { showHp: true }))
+            .map((playerId) => renderActorById(playerId, stateMap, previousStateMap, playersById, update, { showHp: true }))
             .join(",");
     }
 
@@ -178,17 +186,17 @@ export function renderTemplateMessage(update, tone, stateMap, previousStateMap, 
         return formatMessageText(`${update.message_rendered ?? ""}`, tone);
     }
 
-    return template
+    let result = template
         .split(/(\[[012]\])/g)
         .filter((part) => part.length > 0)
         .map((part) => {
             if (part === "[0]") {
-                // 施法者 — 不显示 HP
-                return renderActorById(update.caster_id, stateMap, previousStateMap, playersById, { showHp: false });
+                // 施法者 — 仅在血量变化时显示 HP
+                return renderActorById(update.caster_id, stateMap, previousStateMap, playersById, update, { showHp: true });
             }
             if (part === "[1]") {
                 // 目标 — 显示 HP
-                return renderActorById(update.target_id, stateMap, previousStateMap, playersById, { showHp: true });
+                return renderActorById(update.target_id, stateMap, previousStateMap, playersById, update, { showHp: true });
             }
             if (part === "[2]") {
                 // 参数（目标列表或数值）
@@ -197,6 +205,13 @@ export function renderTemplateMessage(update, tone, stateMap, previousStateMap, 
             return formatMessageText(part, tone);
         })
         .join("");
+
+    // 瘟疫/体力减少等场景：数字后跟 % 或"减少"时标红（即使 tone 不是 damage）
+    if (tone !== "damage" && tone !== "recover") {
+        result = result.replace(/(\d+)(?=%|减少)/g, '<span class="message-number">$1</span>');
+    }
+
+    return result;
 }
 
 /**
@@ -571,6 +586,11 @@ export function buildFrameHtml(frame, roundIndex, previousStates = frame.states,
     const previousStateMap = buildStateMap(previousStates);
     /** @type {Map<number, FightState>} 帧内逐步更新的模拟 HP 状态 */
     let running = new Map(previousStateMap);
+    for (const state of frame.states) {
+        if (!running.has(state.id)) {
+            running.set(state.id, { ...state, _is_new_in_frame: true });
+        }
+    }
     const rows = [];
     let segments = [];
 
@@ -624,6 +644,13 @@ export function buildFrameHtml(frame, roundIndex, previousStates = frame.states,
         running = hitState;
     }
 
+    // 帧内所有消息处理完后才清除 _is_new_in_frame，确保同一帧中的多条消息都能识别新对象
+    for (const [k, v] of running.entries()) {
+        if (v._is_new_in_frame) {
+            running.set(k, { ...v, _is_new_in_frame: false });
+        }
+    }
+
     flushRow();
 
     if (!rows.length && !frame.finished) {
@@ -668,6 +695,11 @@ export function buildFrameRows(frame, roundIndex, previousStates = frame.states,
     const previousStateMap = buildStateMap(previousStates);
     /** @type {Map<number, FightState>} */
     let running = new Map(previousStateMap);
+    for (const state of frame.states) {
+        if (!running.has(state.id)) {
+            running.set(state.id, { ...state, _is_new_in_frame: true });
+        }
+    }
     /** @type {Array<{target: 'battleRows' | 'frameBody' | 'row' | 'delay', html: string, delay: number}>} */
     const chunks = [];
     let frameStarted = false;
@@ -768,6 +800,13 @@ export function buildFrameRows(frame, roundIndex, previousStates = frame.states,
             delay,
         );
         running = hitState;
+    }
+
+    // 帧内所有消息处理完后才清除 _is_new_in_frame，确保同一帧中的多条消息都能识别新对象
+    for (const [k, v] of running.entries()) {
+        if (v._is_new_in_frame) {
+            running.set(k, { ...v, _is_new_in_frame: false });
+        }
     }
 
     if (!chunks.length) {
