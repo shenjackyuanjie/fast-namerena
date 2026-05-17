@@ -17430,7 +17430,7 @@ T.Engine.prototype = {
         let this_ = this;
         // 计算下一轮的玩家索引（循环取模）
         // var nextIndex = C.JsInt.V(this_.ch + 1, this_.c.length);
-        let nextIndex = (this_.ch + 1) % this_.c.length;
+        let nextIndex = C.JsInt.V(this_.ch + 1, this_.c.length);
         this_.ch = nextIndex;
 
         // __probe: trace tick
