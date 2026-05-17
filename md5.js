@@ -54,6 +54,10 @@ let run_env = {
      * 添加自: 0.5.0
      */
     use_external_gAd: false,
+    /**
+     * 是否抓取对战过程日志 (仅代码运行模式)
+     */
+    capture_fight_log: false,
 };
 
 /**
@@ -375,30 +379,105 @@ function compare_bO(a, b) {
  * @param {T.RunUpdate} update
  * @returns {message: string, source_plr: string, target_plr: string, affect: string} msg
  */
+function get_update_name(data, default_value = "none") {
+    if (data === null || data === undefined) {
+        return default_value
+    }
+    if (typeof data === "string" || typeof data === "number") {
+        return "" + data
+    }
+    if (data.a !== null && data.a !== undefined) {
+        return "" + data.a
+    }
+    if (data.e !== null && data.e !== undefined) {
+        return "" + data.e
+    }
+    return default_value
+}
+
+function get_update_affect(data, default_value = "none") {
+    if (data === null || data === undefined) {
+        return default_value
+    }
+    if (typeof data === "string" || typeof data === "number") {
+        return data
+    }
+    if (data.a !== null && data.a !== undefined) {
+        return data.a
+    }
+    return default_value
+}
+
 function fmt_RunUpdate(update) {
     let message = update.d;
-    let source_plr = "none"
-    if (update.e !== null && update.e.a !== null) {
-        source_plr = update.e.a
-    }
-    let target_plr = update.f;
-    if (target_plr !== null && target_plr.a !== null) {
-        target_plr = target_plr.a
-    } else {
-        target_plr = "none"
-    }
-    let affect = update.x;
-    if (affect !== null && affect.a !== null) {
-        affect = affect.a
-    } else {
-        affect = "none"
-    }
+    let source_plr = get_update_name(update.e, "none")
+    let target_plr = get_update_name(update.f, "none")
+    let affect = get_update_affect(update.x, "none")
     return {
         message: message,
         source_plr: source_plr,
         target_plr: target_plr,
         affect: affect,
     }
+}
+
+function fmt_RunUpdate_text(update) {
+    let message = update.d == null ? "" : "" + update.d
+
+    message = message.replace(/\[.*?\]/g, (token) => {
+        if (token === "[0]") {
+            return get_update_name(update.e, "")
+        }
+        if (token === "[1]") {
+            return get_update_name(update.f, "")
+        }
+        if (token === "[2]") {
+            return "" + get_update_affect(update.x, "")
+        }
+        return token.slice(1, token.length - 1)
+    })
+
+    message = message.replace(/<[^>]*>/g, "")
+    message = message.replace(/&nbsp;/g, " ")
+    message = message.replace(/\u2003/g, " ")
+    message = message.replace(/\u00A0/g, " ")
+    message = message.replace(/\((通用|雷击)\)/g, "")
+    message = message.replace(/[\u200B-\u200D\uFEFF]/g, "")
+    message = message.replace(/\r/g, "")
+    message = message.replace(/[ \t\u3000]+$/g, "")
+    return message
+}
+
+const FIGHT_LOG_TURN_SPLITTER = "__FIGHT_LOG_TURN_SPLITTER__"
+let fight_log_data = []
+
+function reset_fight_log_data() {
+    fight_log_data = []
+}
+
+function push_fight_log_data(update) {
+    let message = fmt_RunUpdate_text(update)
+    if (typeof message !== "string") {
+        return
+    }
+    message = message.replace(/[ \t\u3000]+$/g, "")
+    if (message.trim().length === 0) {
+        return
+    }
+    fight_log_data.push(message)
+}
+
+function push_fight_log_break() {
+    if (fight_log_data.length === 0) {
+        return
+    }
+    if (fight_log_data[fight_log_data.length - 1] !== FIGHT_LOG_TURN_SPLITTER) {
+        fight_log_data.push(FIGHT_LOG_TURN_SPLITTER)
+    }
+}
+
+function get_fight_log_data() {
+    return fight_log_data.slice()
 }
 
 /**
@@ -570,7 +649,7 @@ class NewRc4 {
 
     /**
      * xorBytes bO(a)
-     * @param {number[]} bytes 
+     * @param {number[]} bytes
      */
     xor_bytes(bytes) {
         const bytes_len = bytes.length;
@@ -904,7 +983,7 @@ var Sgls = {
         } else p = o
         n = $.nu().getContext("2d")
         o = p + 1
-        m = C.d.V(a[p], $.d7() - 6)
+        m = C.d.V(a[p], 21 - 6)
         l = $.mf[m]
         s = l[0]
         r = l[1]
@@ -916,10 +995,10 @@ var Sgls = {
         i = new Sgls.k6(j, m, d)
         for (p = o, h = 0; h < d.length; ++h) {
             o = p + 1
-            g = C.d.V(a[p], $.d7())
+            g = C.d.V(a[p], 21)
             for (p = o; !i.$1(g); p = o) {
                 o = p + 1
-                g = C.d.V(a[p], $.d7())
+                g = C.d.V(a[p], 21)
             }
             j.push(g)
             Sgls.o4(n, $.dZ[d[h]], $.mf[g])
@@ -993,6 +1072,11 @@ var H = {
     rY() {
         return new P.bJ("Too many elements")
     },
+    /**
+     * sort
+     * @param {Array} a
+     * @param {*} b
+     */
     tJ(a, b) {
         // H.hL(a, 0, J.aw(a) - 1, b)
         H.hL(a, 0, a.length - 1, b)
@@ -3657,6 +3741,7 @@ var J = {
     rz(a, b, c) {
         // call a.step()
         return J.uS(a).dN(a, b, c)
+        // return J.dN(a, b, c)
     },
     nB(a, b) {
         return J.aQ(a).ay(a, b)
@@ -4843,6 +4928,8 @@ var T = {
         // SklAbsorb 的 onDamage (static)
         // static void onDamage(Plr caster, Plr target, int dmg, R r, RunUpdates updates) {
         var s, r, q, p = 0
+        // 这里看的是 caster 当前 hp（a.fx），而不是 alive flag。
+        // 所以被魅惑后打到自己时，如果这一击已经把自己打到 0，吸血不会把人再抬起来。
         if (c > p && !(a.fx <= p)) {
             s = C.JsInt.P(c + 1, 2)
             p = a.fy
@@ -4866,14 +4953,14 @@ var T = {
     tA(a, b, c, d, e) {
         var s, r = 0
         if (c > r && !(b.fx <= r)) {
-            if (b.a7($.aJ(), d)) return
-            s = t.aJ.a(b.r2.h(0, $.aJ()))
+            if (b.a7("berserk", d)) return
+            s = t.aJ.a(b.r2.h(0, "berserk"))
             if (s == null) {
                 s = T.nC(b)
                 s.aP(0)
-                e.a.push(T.RunUpdate_init(C.String.B(LangData.get_lang("jIRA"), $.nc()), a, b, null, null, $.a6(), 1000, 100))
+                e.a.push(T.RunUpdate_init(C.String.B(LangData.get_lang("jIRA"), `<div class="smile s_berserk"></div>`), a, b, null, null, 60, 1000, 100))
             } else s.fr = s.fr + 1
-            if (a.r2.J(0, $.a7())) s.fr = s.fr + 1
+            if (a.r2.J(0, "charge")) s.fr = s.fr + 1
         }
     },
     CharmState_init(a, b) {
@@ -4883,12 +4970,15 @@ var T = {
     },
     getMinionName(plr) {
         var s, r, q
+        // 这里的编号不看“当前活着多少只使魔”，而是挂在 root owner 的持久计数器上。
+        // 只有 PlrClone 会继续沿 gap() 回溯；shadow / summon / zombie 自己不会再开新 root。
+        // 所以 clone 继续造出来的 ?N 会和本体共用一条序号，而不是从 clone 自己重新从 0 开始。
         for (s = t.fM; s.b(plr);) plr = plr.gap()
         s = plr.r2
-        r = t.f5.a(s.h(0, $.na()))
+        r = t.f5.a(s.h(0, "minionCount"))
         if (r == null) {
             r = new T.MinionCount(0)
-            s.m(0, $.na(), r)
+            s.m(0, "minionCount", r)
         }
         s = H.as_string(plr.a) + "?"
         q = r.b
@@ -4941,22 +5031,27 @@ var T = {
         g = new T.PlrClone(f, e, d, c, b, a, a0, a1, a2, a3, s, r, q, p, o, n, m, l, j, i, h, k, g, g, g, 32768, g)
         g.a1(f, e, d, c)
         g.cm = owner
+        // clone 的 raw/internal name 继续保留 owner.a；这里只单独写 e 作为日志里的 owner?N。
+        // 也就是说 clone 的 a 和 e 故意不是同一个字段，后续对齐 Rust 时不能把 a 直接覆盖成 ?N。
         g.e = T.getMinionName(owner instanceof T.PlrClone ? g.a6 = owner.a6 : g.a6 = owner)
         f = owner.t
         f = H.b(f.slice(0), H._arrayInstanceType(f))
         g.t = f
         return g
     },
+    /**
+     * onDamage SklCurse
+     */
     tC(a, b, c, d, e) {
         var s, r = 0
         if (c > r && !(b.fx <= r)) {
-            if (b.a7($.bh(), d)) return
+            if (b.a7("curse", d)) return
             r = b.r2
-            s = t.dK.a(r.h(0, $.bh()))
+            s = t.dK.a(r.h(0, "curse"))
             if (s == null) {
-                s = new T.CurseState(a, b, $.pK(), 2)
+                s = new T.CurseState(a, b, 42, 2)
                 s.y = new T.UpdateStateImpl(s)
-                r.m(0, $.bh(), s)
+                r.m(0, "curse", s)
                 b.y2.j(0, s)
                 b.rx.j(0, s.y)
                 b.F()
@@ -4964,94 +5059,124 @@ var T = {
                 s.z = s.z + 10
                 s.Q = s.Q + 1
             }
-            if (r.h(0, $.a7()) != null) {
+            if (r.h(0, "charge") != null) {
                 s.z = s.z + 10
                 s.Q = s.Q + 1
             }
-            e.a.push(T.RunUpdate_init(C.String.B(LangData.get_lang("spfN"), $.qx()), a, b, null, null, $.a6(), 1000, 100))
+            // [1]被[诅咒]了
+            e.a.push(T.RunUpdate_init(C.String.B(LangData.get_lang("spfN"), `<div class="smile s_curse"></div>`), a, b, null, null, 60, 1000, 100))
         }
     },
+    /**
+     * onDamage SklDisperse
+     *
+     * 功能说明（中文）：
+     * 当技能 Disperse 触发造成伤害时调用。
+     * - 遍历目标的 metaMap（状态/效果集合），对每个满足条件的 meta 触发其 K 方法。
+     * - 最后根据目标的 go 值对其 MP/推进量进行调整（类似击退/耗能的逻辑）。
+     *
+     * 参数：
+     * caster: 造成伤害的角色（施法者）
+     * target: 受伤的目标（被施法者）
+     * dmg: 伤害值
+     * r: 随机/RC4 等（未在此函数内使用，但保留以匹配调用签名）
+     * updates: RunUpdates 数组/容器，用于记录运行时事件
+     */
     tD(a, b, c, d, e) {
-        var s, r, q, p, o
-        if (c > 0) {
-            s = b.r2
-            r = s.gad(s)
-            q = P.List_List_of(r, true, H._instanceType(r).i("L.E"))
-            C.Array.aJ(q)
-            for (r = q.length, p = 0; p < q.length; q.length === r || (0, H.F)(q), ++p) {
-                o = s.h(0, q[p])
-                if (o.gT() > 0) o.K(a, e)
-            }
-            s = b.go
-            r = 64
-            if (s > r) b.go = s - r
-            else {
-                r = $.at()
-                if (s > r) b.go = 0
-                else b.go = s - r
-            }
+        var metaMap, keys, originalLen, i, meta;
+        // dmg 小于等于 0 则不处理
+        if (c <= 0) return;
+
+        // 收集 target.r2（meta map）的键（状态 id 列表）
+        metaMap = b.r2;
+        keys = metaMap.gad(metaMap);
+        // 转换为列表并确保内部类型信息（与 Dart / 转译逻辑对应）
+        keys = P.List_List_of(keys, true, H._instanceType(keys).i("L.E"));
+        C.Array.aJ(keys);
+
+        // 以稳定的遍历顺序遍历键（保持原始迭代模式）
+        for (originalLen = keys.length, i = 0; i < keys.length; keys.length === originalLen || (0, H.F)(keys), ++i) {
+            meta = metaMap.h(0, keys[i]);
+            // meta.gT() 用于判断 meta 的某个计数/状态，>0 时触发其 K 方法
+            if (meta.gT() > 0) meta.K(a, e);
+        }
+
+        // 调整目标的 go 值（类似 MP/推进/击退的处理逻辑）
+        var mp = b.go;
+        var high = 64;
+        if (mp > high) b.go = mp - high;
+        else {
+            var mid = 32;
+            if (mp > mid) b.go = 0;
+            else b.go = mp - mid;
         }
     },
     tE(a, b, c, d, e) {
         var s, r = 0
         if (c > r && !(b.fx <= r)) {
-            if (b.a7($.eY(), d)) return
+            if (b.a7("fire", d)) return
             r = b.r2
-            s = t.a.a(r.h(0, $.eY()))
+            s = t.a.a(r.h(0, "fire"))
             if (s == null) {
                 s = new T.FireState(0)
-                r.m(0, $.eY(), s)
+                r.m(0, "fire", s)
             }
-            s.b = s.b + $.b0()
+            s.b = s.b + 0.5
         }
     },
     tF(a, b, c, d, e) {
         var ica_state, r = 0
         if (c > r && !(b.fx <= r)) {
-            if (b.a7($.bS(), d)) return
+            if (b.a7("ice", d)) return
             r = b.r2
-            ica_state = t.ck.a(r.h(0, $.bS()))
+            ica_state = t.ck.a(r.h(0, "ice"))
             if (ica_state == null) {
-                ica_state = new T.IceState(b, $.cX())
+                ica_state = new T.IceState(b, 1024)
                 ica_state.x = new T.PreStepImpl(ica_state)
-                r.m(0, $.bS(), ica_state)
+                r.m(0, "ice", ica_state)
+                // 注意：IceState 本体留在 rx/update_state 链里，走默认 ga4()=10000；
+                // 真正的“回合开始扣冻结步数/到点解除”逻辑在 PreStepImpl 里，ga4()=Infinity，
+                // 所以它会追加到 pre_step 链尾。Rust 若把二者当成同一种优先级，很容易把解冻时机跑早。
                 b.rx.j(0, ica_state)
                 b.ry.j(0, ica_state.x)
                 b.F()
-            } else ica_state.y = ica_state.y + $.cX()
+            } else ica_state.y = ica_state.y + 1024
 
             // iceState.frozenStep += 2048;
-            if (a.r2.J(0, $.a7())) ica_state.y = ica_state.y + $.bx()
+            if (a.r2.J(0, "charge")) ica_state.y = ica_state.y + 2048
             // sklIceHit
             // [1]被[冰冻]了
-            r = T.RunUpdate_init(C.String.B(LangData.get_lang("HBga"), $.qF()), a, b, null, null, $.bg(), 1000, 100)
+            r = T.RunUpdate_init(C.String.B(LangData.get_lang("HBga"), `<div class="smile s_ice"></div>`), a, b, null, null, 40, 1000, 100)
             e.a.push(r)
         }
     },
     tI(a, b, c, d, e) {
         var s, r
         if (c > 4 && !(b.fx <= 0)) {
-            if (b.a7($.bT(), d)) return
+            if (b.a7("piston", d)) return
             s = b.r2
-            r = t.ax.a(s.h(0, $.bT()))
+            r = t.ax.a(s.h(0, "piston"))
             if (r == null) {
                 r = new T.PoisonState(a, b, 4)
-                r.y = T.getAt(a, true, d) * $.eV()
-                s.m(0, $.bT(), r)
+                r.y = T.getAt(a, true, d) * 1.2000000476837158
+                s.m(0, "piston", r)
+                // 注意：PoisonState 是直接挂进统一的 x2/postAction 链，
+                // 不是先走“状态阶段”再走“技能阶段”。所以它会和 Protect/Charge 共享同一条顺序，
+                // 排序结果要同时看 ga4() 和注册时机，排查 Rust 对齐问题时这里是关键入口。
                 b.x2.j(0, r)
             } else {
-                r.y = r.y + T.getAt(a, true, d) * $.eV()
+                r.y = r.y + T.getAt(a, true, d) * 1.2000000476837158
                 r.z = 4
                 r.r = a
             }
-            e.a.push(T.RunUpdate_init(C.String.B(LangData.get_lang("Okln"), $.qH()), a, b, null, null, $.a6(), 1000, 100))
+            e.a.push(T.RunUpdate_init(C.String.B(LangData.get_lang("Okln"), `<div class="smile s_poison"></div>`), a, b, null, null, 60, 1000, 100))
         }
     },
     /**
      * getAt
-     * @param {Plr} a 
-     * @param {boolean} b 
-     * @param {RC4} c 
+     * @param {Plr} a
+     * @param {boolean} b
+     * @param {RC4} c
      * @returns f64
      */
     getAt(a, b, c) {
@@ -5066,13 +5191,14 @@ var T = {
         p = 64
         n = H.b([(m & 63) + r, (q & 63) + p, o + p], n)
         C.Array.aJ(n)
+        if (globalThis.__probe_getAt) console.log(`[getAt] plr=${a.e} isMag=${b} atk=${o} a=${s} b=${n[1]} atboost=${a.id} result=${s * n[1] * a.id} rc4=(${c.a},${c.b})`)
         return s * n[1] * a.id
     },
     /**
      * getDf
-     * @param {Plr} a 
-     * @param {boolean} b 
-     * @param {RC4} c 
+     * @param {Plr} a
+     * @param {boolean} b
+     * @param {RC4} c
      * @returns i32
      */
     getDf(a, b, c) {
@@ -5081,28 +5207,32 @@ var T = {
     },
     /**
      * dodge
-     * @param {i32} a 
-     * @param {i32} b 
-     * @param {RC4} c 
+     * @param {i32} a
+     * @param {i32} b
+     * @param {RC4} c
      * @returns boolean
      */
     dodge(a, b, c) {
-        var s = $.eW() + b - a,
-            r = $.ap()
+        if (globalThis.__probe_dodge) {
+            var info = globalThis.__dodge_ctx || '';
+            console.log(`[dodge] ${info}accure=${a} dodgeval=${b} rc4=(${c.a},${c.b})`)
+        }
+        var s = 24 + b - a,
+            r = 7
         if (s < r) s = r
-        if (s > 64) s = C.JsInt.P(s, 4) + $.aI()
+        if (s > 64) s = C.JsInt.P(s, 4) + 48
         return c.n() <= s
     },
     rateHiHp(a) {
         var s = a.fx
-        if (s < $.as()) return $.pz()
-        if (s > $.mR()) return $.py()
+        if (s < 20) return 30
+        if (s > 300) return 300
         return s
     },
     choose_boss(name, clan_name, fgt, weapon_name) {
         // MARK: WTF 什么鬼这么长
         var team_name, fgt, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, a3 = null
-        if (clan_name == $.nk()) {
+        if (clan_name == "\u0002") {
             team_name = 0
             fgt = 1
             q = H.b([], t.q)
@@ -5148,7 +5278,7 @@ var T = {
         }
         // MARK: BOSS INIT(上面也是)
         // \u0003
-        if (clan_name == $.qR()) {
+        if (clan_name == "\u0003") {
             team_name = 0
             fgt = 1
             q = H.b([], t.q)
@@ -5194,11 +5324,11 @@ var T = {
         }
         // MARK: 强评?
         // cl -> !
-        team_name = $.cl()
+        team_name = "!"
         if (clan_name == team_name) {
-            if (name == $.lQ()) {
+            if (name == "mario") {
                 fgt = 0
-                q = H.as_string(name) + H.as_string($.aD())
+                q = H.as_string(name) + H.as_string("@!")
                 p = 0
                 o = 1
                 n = H.b([], t.q)
@@ -5242,8 +5372,8 @@ var T = {
                 a2.av(name, team_name)
                 return a2
             }
-            if (name == $.qP()) {
-                fgt = H.as_string(name) + H.as_string($.aD())
+            if (name == "sonic") {
+                fgt = H.as_string(name) + H.as_string("@!")
                 q = 0
                 p = 1
                 o = H.b([], t.q)
@@ -5287,8 +5417,8 @@ var T = {
                 a1.av(name, team_name)
                 return a1
             }
-            if (name == $.qo()) {
-                fgt = H.as_string(name) + H.as_string($.aD())
+            if (name == "mosquito") {
+                fgt = H.as_string(name) + H.as_string("@!")
                 q = 0
                 p = 1
                 o = H.b([], t.q)
@@ -5332,8 +5462,8 @@ var T = {
                 a1.av(name, team_name)
                 return a1
             }
-            if (name == $.qY()) {
-                fgt = H.as_string(name) + H.as_string($.aD())
+            if (name == "yuri") {
+                fgt = H.as_string(name) + H.as_string("@!")
                 q = 0
                 p = 1
                 o = H.b([], t.q)
@@ -5378,9 +5508,9 @@ var T = {
                 return a1
             }
             // slime
-            if (name == $.qO()) return T.init_BossSlime(name, team_name)
-            if (name == $.qh()) {
-                fgt = H.as_string(name) + H.as_string($.aD())
+            if (name == "slime") return T.init_BossSlime(name, team_name)
+            if (name == "ikaruga") {
+                fgt = H.as_string(name) + H.as_string("@!")
                 q = 0
                 p = 1
                 o = H.b([], t.q)
@@ -5424,8 +5554,8 @@ var T = {
                 a1.av(name, team_name)
                 return a1
             }
-            if (name == $.qb()) {
-                fgt = H.as_string(name) + H.as_string($.aD())
+            if (name == "conan") {
+                fgt = H.as_string(name) + H.as_string("@!")
                 q = 0
                 p = 1
                 o = H.b([], t.q)
@@ -5469,8 +5599,8 @@ var T = {
                 a1.av(name, team_name)
                 return a1
             }
-            if (name == $.q9()) {
-                fgt = H.as_string(name) + H.as_string($.aD())
+            if (name == "aokiji") {
+                fgt = H.as_string(name) + H.as_string("@!")
                 q = 0
                 p = 1
                 o = H.b([], t.q)
@@ -5514,8 +5644,8 @@ var T = {
                 a1.av(name, team_name)
                 return a1
             }
-            if (name == $.d5()) {
-                fgt = H.as_string(name) + H.as_string($.aD())
+            if (name == "lazy") {
+                fgt = H.as_string(name) + H.as_string("@!")
                 q = 0
                 p = 1
                 o = H.b([], t.q)
@@ -5560,8 +5690,8 @@ var T = {
                 return a1
             }
             // covid
-            if (name == $.ck()) {
-                fgt = H.as_string(name) + H.as_string($.aD())
+            if (name == "covid") {
+                fgt = H.as_string(name) + H.as_string("@!")
                 q = 0
                 p = 1
                 o = H.b([], t.q)
@@ -5605,8 +5735,8 @@ var T = {
                 a1.av(name, team_name)
                 return a1
             }
-            if (name == $.qL()) {
-                fgt = H.as_string(name) + H.as_string($.aD())
+            if (name == "saitama") {
+                fgt = H.as_string(name) + H.as_string("@!")
                 q = 0
                 p = 1
                 o = H.b([], t.q)
@@ -5650,12 +5780,12 @@ var T = {
                 a1.av(name, team_name)
                 return a1
             }
-            fgt = $.ni()
+            fgt = "seed:"
             // seed:
             if (J.m1(name, fgt)) {
                 // startwith seed:
                 // $.aD = @!
-                fgt = H.as_string(fgt) + H.as_string($.aD())
+                fgt = H.as_string(fgt) + H.as_string("@!")
                 q = 0
                 p = 1
                 o = H.b([], t.q)
@@ -5702,7 +5832,7 @@ var T = {
             }
             // boosted
             if ($.nr().J(0, name)) {
-                team_name = $.cl()
+                team_name = "!"
                 fgt = $.nr().h(0, name)
                 q = 0
                 p = 1
@@ -5747,7 +5877,7 @@ var T = {
                 a1.e1(name, team_name, fgt, weapon_name)
                 return a1
             }
-            team_name = $.cl()
+            team_name = "!"
             fgt = 0
             q = 1
             p = H.b([], t.q)
@@ -5795,7 +5925,7 @@ var T = {
     },
     oq(a) {
         var s = a.d
-        if (s != null) s = C.String.cl(s, $.qm()) || C.String.cl(s, $.qn())
+        if (s != null) s = C.String.cl(s, "dio") || C.String.cl(s, "口罩")
         else s = false
         return s
     },
@@ -5803,7 +5933,7 @@ var T = {
         // Plr caster, Plr target, int mutation, R r, RunUpdates updates
         var s, r, q, p, o, n = b.r2,
             m = t.cu,
-            l = m.a(n.h(0, $.ck()))
+            l = m.a(n.h(0, "covid"))
         if (l != null) s = l.b && !l.c.w(0, c)
         else s = true
         if (s) {
@@ -5811,7 +5941,7 @@ var T = {
             r = new T.CovidState(a, b, s, c, s)
             r.k1 = new T.PostActionImpl(r)
             r.k2 = new T.PreActionImpl(r)
-            m = m.a(n.h(0, $.ck()))
+            m = m.a(n.h(0, "covid"))
             r.id = m
             s = r.go
             if (m != null) m.c.j(0, s)
@@ -5820,7 +5950,7 @@ var T = {
                 q = new T.CovidMeta(m)
                 m.j(0, s)
                 r.id = q
-                n.m(0, $.ck(), q)
+                n.m(0, "covid", q)
             }
             b.x2.j(0, r.k1)
             b.x1.j(0, r.k2)
@@ -5833,10 +5963,10 @@ var T = {
                 // if (J.Y(o, b)) {
                 if (o === b) {
                     // p.spsum += 2048
-                    o.l = o.l + $.bx()
+                    o.l = o.l + 2048
                 } else {
                     // p.spsum -= 256
-                    o.l = o.l - $.eX()
+                    o.l = o.l - 256
                 }
             }
             return true
@@ -5844,7 +5974,7 @@ var T = {
         return false
     },
     tB(a, b, c, d, e) {
-        if (b.r2.h(0, $.ck()) == null && (d.n() & 63) + 1 < c) T.j7(a, b, $.bg(), d, e)
+        if (b.r2.h(0, "covid") == null && (d.n() & 63) + 1 < c) T.j7(a, b, 40, d, e)
     },
     LazyState_init(a, b) {
         var s = new T.LazyState(a, b, 0)
@@ -5857,10 +5987,10 @@ var T = {
         var s, r = null,
             q = 1000,
             p = b.n()
-        if (p < $.b1()) {
+        if (p < 50) {
             s = c.a
             s.push(T.RunUpdate_init(LangData.get_lang("yZbn"), a, r, r, r, 0, q, 100))
-        } else if (p < $.ci()) {
+        } else if (p < 100) {
             s = c.a
             s.push(T.RunUpdate_init(LangData.get_lang("PdCA"), a, r, r, r, 0, q, 100))
         } else if (p < $.mJ()) {
@@ -5879,7 +6009,7 @@ var T = {
         s.push(T.RunUpdate_init(LangData.get_lang("hXqA"), a, r, r, r, 0, q, 100))
     },
     tG(a, b, c, d, e) {
-        if (t.r.a(b.r2.h(0, $.d5())) == null && !(b instanceof T.PlrBossLazy)) {
+        if (t.r.a(b.r2.h(0, "lazy")) == null && !(b instanceof T.PlrBossLazy)) {
             T.LazyState_init(a, b).aP(0)
             e.a.push(T.RunUpdate_init(LangData.get_lang("JnTA"), a, b, null, null, 0, 1000, 100))
         }
@@ -5891,7 +6021,7 @@ var T = {
     },
     init_BossSlime(a2, a3) {
         var s, r, q, p, o, n, m, l, k, j, i, h, g, f = 0,
-            e = H.as_string(a2) + H.as_string($.aD()),
+            e = H.as_string(a2) + H.as_string("@!"),
             d = 0,
             c = 1,
             b = H.b([], t.q),
@@ -5937,7 +6067,7 @@ var T = {
     },
     init_BossSlime2(a2, a3, a4) {
         var s, r, q, p, o, n, m, l, k, j, i, h, g, f = 0,
-            e = H.as_string(a3) + H.as_string($.aD()),
+            e = H.as_string(a3) + H.as_string("@!"),
             d = 0,
             c = 1,
             b = H.b([], t.q),
@@ -6018,12 +6148,12 @@ var T = {
             }
             // if includes "+"
             // weapon
-            l = $.lO()
+            l = "+"
             m.toString
             // if (l == null) H.throw_expression(H.R(l))
             // if (H.iF(m, l, 0)) {
             if (m.includes("+")) {
-                k = C.String.aT(m, $.lO())
+                k = C.String.aT(m, "+")
                 // j = C.String.dF(C.String.ay(m, k + 1))
                 j = C.String.trim_name(C.String.ay(m, k + 1))
                 l = C.String.af(m, 0, k)
@@ -6033,10 +6163,10 @@ var T = {
             } else {
                 j = e
             }
-            l = $.n3() // @
+            l = "@" // @
             // if (l == null) H.throw_expression(H.R(l))
             if (H.iF(m, l, 0)) {
-                h = C.String.cK(m, $.n3())
+                h = C.String.cK(m, "@")
                 if (J.m1(h[0], " ")) {
                     l = 0
                     h[l] = J.nB(h[l], 1)
@@ -6044,7 +6174,7 @@ var T = {
                 // if (!J.Y(h[1], "")) {
                 if (h[1] !== "") {
                     l = h[1]
-                    i = $.n5()
+                    i = ":"
                     l.toString
                     // if (i == null) H.throw_expression(H.R(i))
                     g = J.a3(l)
@@ -6058,7 +6188,7 @@ var T = {
                 o.push(H.b([C.String.ay(m, 1), n, j], r))
             } else {
                 if (s + 1 < b.length) {
-                    l = $.n5()
+                    l = ":"
                     // if (l == null) H.throw_expression(H.R(l))
                     l = !H.iF(m, l, 0) && J.m1(b[s + 1], " ")
                 } else l = false
@@ -6155,12 +6285,12 @@ var T = {
         for (d = a.length, r = b; r < d; ++r) {
             q = C.String.a8(a, r)
             if (q < 128) { // 128
-                if (q === $.at()) { // 32
+                if (q === 32) { // 32
                     ++b
                     continue
                 }
                 if (q !== $.mW()) // 45
-                // {p = q >= $.aI() && q <= $.pO()}
+                // {p = q >= 48 && q <= $.pO()}
                 {
                     p = q >= 48 && q <= 57
                 }
@@ -6173,7 +6303,7 @@ var T = {
                     // s.$1(2) // 2
                     s.$1(2)
                 }
-                // else s.$1($.B())
+                // else s.$1(3)
                 else s.$1(3)
             } else if (char_in_common_char_lst(q)) {
                 s.$1(4)
@@ -6197,17 +6327,20 @@ var T = {
             n = m
         }
         p = e.c
-        o = $.av()
+        o = 8
         if (p > o) {
             l = 4
             o = p - o
             c[l] = c[l] + o
-            l = $.B()
+            l = 3
             c[l] = c[l] + o
             n += o * d
         }
         if (n > m) {
-            d = $.B()
+            d = 3
+            // 这里故意给 OTHER(3) 临时 +1，再从高位往下找“最后一个非零类别”。
+            // 不能改成 UPPER(2) 或其它类别；像 tOeyDD 这类大小写混合 ASCII 名字，
+            // 最终 name_factor 是否落在约 -0.97 还是约 -3.74，就取决于这个哨兵落在哪一类。
             c[d] = c[d] + 1
             for (k = 5; k >= m; --k) {
                 d = c[k]
@@ -6216,9 +6349,9 @@ var T = {
                     break
                 }
             }
-            d = $.B()
+            d = 3
             c[d] = c[d] - 1
-            for (r = m; r < $.a4(); ++r) {
+            for (r = m; r < 6; ++r) {
                 d = c[r]
                 if (d > m)
                     if (d >= n) {
@@ -6254,7 +6387,7 @@ var T = {
         // H.ar(l)
         l = Math.pow(d, l)
         d = 256
-        j = c[$.B()]
+        j = c[3]
         // H.ar(d)
         // H.ar(j)
         j = Math.pow(d, j)
@@ -6268,12 +6401,12 @@ var T = {
         // H.ar(d)
         // H.ar(h)
         g = Math.log(p * o * l * j * i * Math.pow(d, h))
-        if (g > $.aI()) {
+        if (g > 48) {
             f = 80
             if (g > f) { g = f }
-            g = g * $.b0() + $.eW()
-        } else if (g < $.eW()) { g = g * $.b0() + $.cY() }
-        g -= $.at()
+            g = g * 0.5 + 24
+        } else if (g < 24) { g = g * 0.5 + 12 }
+        g -= 32
         if (g > 0) { return g / ($.rp() - common_char_len()) }
         else {
             d = $.rq()
@@ -6344,12 +6477,12 @@ var T = {
         return s
     },
     NoWeapon(a, b) {
-        var s = new T.NoWeapon(a, b, P.aL($.av(), 0, false, t.B))
+        var s = new T.NoWeapon(a, b, P.aL(8, 0, false, t.B))
         s.a = a
         return s
     },
     Weapon_factory(a, b) {
-        var s = new T.Weapon(a, b, P.aL($.av(), 0, false, t.B))
+        var s = new T.Weapon(a, b, P.aL(8, 0, false, t.B))
         s.a = a
         return s
     },
@@ -6362,6 +6495,8 @@ var T = {
     SklAccumulate: function SklAccumulate(a, b) {
         var _ = this
         _.fr = null
+        // fx 不是整局恒定：构造时传入的是首用倍率（当前产物这里是 1.7000000476837158），
+        // 但 K()/clear_positive_runtime 路径会把它重置成 1.600000023841858，后续再次聚气就按 1.6 走。
         _.fx = a
         _.e = false
         _.f = b
@@ -8269,7 +8404,7 @@ var X = {
         // if (run_env.from_code) {
         //     console.log("X.k", a, b, result)
         // }
-        logger.info("X.k", a, b, result)
+        // logger.info("X.k", a, b, result)
         return result
     },
     D(a, b) {
@@ -8544,7 +8679,7 @@ var HtmlRenderer = {
             J.rx(s)
             r *= e
             s.fillStyle = "#888888"
-            HtmlRenderer.aA(s, $.qp(), 0, r + 2, 140, false)
+            HtmlRenderer.aA(s, "deepmess.com/namerena", 0, r + 2, 140, false)
         } catch (i) {
             H.unwrap_Exception(i)
         }
@@ -8915,6 +9050,11 @@ J.JsArray.prototype = {
         }
         return false
     },
+    /**
+     * sort a
+     * @param {Array} a
+     * @param {*} b prototype
+     */
     bb(a, b) {
         H.tJ(a, b == null ? J.bO() : b)
     },
@@ -9558,20 +9698,46 @@ H.RuntimeError.prototype = {
     }
 }
 H.JsLinkedHashMap.prototype = {
+  /**
+   * 获取元素数量。
+   * @param {*} _ 未用
+   * @returns {number} 元素个数
+   */
     gp(a) {
         return this.a
     },
+    /**
+     * 判断是否为空。
+     * @param {*} _ 未用
+     * @returns {boolean} 是否为空
+     */
     gbv(a) {
         return this.a === 0
     },
+    /**
+     * 判断是否为空。
+     * @param {*} _ 未用
+     * @returns {boolean} 是否为空
+     */
     gad(a) {
         return new H.dC(this, H._instanceType(this).i("dC<1>"))
     },
+    /**
+     * 判断是否为空。
+     * @param {*} _ 未用
+     * @returns {boolean} 是否为空
+     */
     gfP(a) {
         var s = this,
             r = H._instanceType(s)
         return H.t5(s.gad(s), new H.JsLinkedHashMap_values_closure(s), r.c, r.Q[1])
     },
+    /**
+     * 判断是否包含指定键。
+     * @param {*} _ 未用
+     * @param {string|number|any} key 键
+     * @returns {boolean} 是否包含
+     */
     J(a, b) {
         var s, r
         if (typeof b == "string") {
@@ -9583,12 +9749,23 @@ H.JsLinkedHashMap.prototype = {
             return r
         }
     },
+    /**
+     * 判断是否包含指定对象键（非字符串/小整数）。
+     * @param {any} key 键
+     * @returns {boolean} 是否包含
+     */
     f_(a) {
         var s = this,
             r = s.d
         if (r == null) return false
         return s.bR(s.bG(r, s.bQ(a)), a) >= 0
     },
+    /**
+     * 根据键获取值（不存在返回 null）。
+     * @param {*} _ 未用
+     * @param {string|number|any} key 键
+     * @returns {any|null} 值或 null
+     */
     h(a, b) {
         var s, r, q, p, o = this,
             n = null
@@ -9606,6 +9783,11 @@ H.JsLinkedHashMap.prototype = {
             return q
         } else return o.f0(b)
     },
+    /**
+     * 获取对象键（非字符串/小整数）的值。
+     * @param {any} key 键
+     * @returns {any|null} 值或 null
+     */
     f0(a) {
         var s, r, q = this,
             p = q.d
@@ -9615,6 +9797,12 @@ H.JsLinkedHashMap.prototype = {
         if (r < 0) return null
         return s[r].b
     },
+    /**
+     * 设置键值对（插入或更新）。
+     * @param {*} _ 未用
+     * @param {string|number|any} key 键
+     * @param {any} value 值
+     */
     m(a, b, c) {
         var s, r, q = this
         if (typeof b == "string") {
@@ -9625,6 +9813,11 @@ H.JsLinkedHashMap.prototype = {
             q.cQ(r == null ? q.c = q._newHashTable() : r, b, c)
         } else q.f2(b, c)
     },
+    /**
+     * 设置对象键（非字符串/小整数）的值。
+     * @param {any} key 键
+     * @param {any} value 值
+     */
     f2(a, b) {
         var s, r, q, p = this,
             o = p.d
@@ -9638,6 +9831,12 @@ H.JsLinkedHashMap.prototype = {
             else r.push(p.c_(a, b))
         }
     },
+    /**
+     * 删除指定键并返回其值（不存在返回 null）。
+     * @param {*} _ 未用
+     * @param {string|number|any} key 键
+     * @returns {any|null} 被删除的值或 null
+     */
     U(a, b) {
         var s
         if (typeof b == "string") return this.eu(this.b, b)
@@ -9646,6 +9845,11 @@ H.JsLinkedHashMap.prototype = {
             return s
         }
     },
+    /**
+     * 删除对象键（非字符串/小整数）并返回其值。
+     * @param {any} key 键
+     * @returns {any|null} 被删除的值或 null
+     */
     f1(a) {
         var s, r, q, p, o = this,
             n = o.d
@@ -9659,6 +9863,10 @@ H.JsLinkedHashMap.prototype = {
         if (r.length === 0) o.c4(n, s)
         return p.b
     },
+    /**
+     * 清空所有条目。
+     * @param {*} _ 未用
+     */
     ah(a) {
         var s = this
         if (s.a > 0) {
@@ -9667,12 +9875,20 @@ H.JsLinkedHashMap.prototype = {
             s.c9()
         }
     },
+    /**
+     * 按插入顺序遍历当前映射的所有键值对，并对每个项调用回调。
+     *
+     * 迭代期间若映射被结构性修改（插入/删除/清空等），将抛出异常以防止并发修改导致的不一致。
+     *
+     * @param {*} _ignored 未使用的占位参数（编译产物保留）
+     * @param {{ $2: function(any, any): void }} callback 接收 (key, value) 的回调对象，调用形式为 callback.$2(key, value)
+     * @throws {Error} 当遍历过程中映射被修改时抛出
+     */
     aw(a, b) {
         var this_ = this,
             r = this_.e,
             q = this_.r
         for (; r != null;) {
-            // 频率输出 call
             b.$2(r.a, r.b)
             if (q !== this_.r) {
                 throw H.wrap_expression(P.aK(this_))
@@ -9680,11 +9896,23 @@ H.JsLinkedHashMap.prototype = {
             r = r.c
         }
     },
+    /**
+     * 在指定哈希表中设置键值（若存在则更新）。
+     * @param {Object} table 目标哈希表
+     * @param {string|number} key 键
+     * @param {any} value 值
+     */
     cQ(a, b, c) {
         var s = this.bp(a, b)
         if (s == null) this.cd(a, b, this.c_(b, c))
         else s.b = c
     },
+    /**
+     * 从字符串键哈希表删除并返回值。
+     * @param {Object|null} table 哈希表
+     * @param {string} key 键
+     * @returns {any|null} 被删除的值或 null
+     */
     eu(a, b) {
         var s
         if (a == null) return null
@@ -9694,9 +9922,18 @@ H.JsLinkedHashMap.prototype = {
         this.c4(a, b)
         return s.b
     },
+    /**
+     * 增加结构修改计数（modCount）。
+     */
     c9() {
         this.r = this.r + 1 & 67108863
     },
+    /**
+     * 创建新节点并链接到尾部（维护插入顺序）。
+     * @param {any} key 键
+     * @param {any} value 值
+     * @returns {Object} 新节点
+     */
     c_(a, b) {
         var s, r = this,
             q = new H.jK(a, b)
@@ -9710,6 +9947,10 @@ H.JsLinkedHashMap.prototype = {
         r.c9()
         return q
     },
+    /**
+     * 从双向链表中移除节点并更新计数。
+     * @param {Object} node 节点
+     */
     d9(a) {
         var s = this,
             r = a.d,
@@ -9721,9 +9962,20 @@ H.JsLinkedHashMap.prototype = {
         --s.a
         s.c9()
     },
+    /**
+     * 计算键的哈希（归一到 26 位）。
+     * @param {any} key 键
+     * @returns {number} 哈希
+     */
     bQ(a) {
         return J.lZ(a) & 0x3ffffff
     },
+    /**
+     * 在桶数组中查找与键相等的元素索引。
+     * @param {Array<Object>|null} bucket 桶数组
+     * @param {any} key 键
+     * @returns {number} 索引，未找到为 -1
+     */
     bR(a, b) {
         var s, r
         if (a == null) return -1
@@ -9732,24 +9984,62 @@ H.JsLinkedHashMap.prototype = {
             if (J.Y(a[r].a, b)) return r
         return -1
     },
+    /**
+     * 返回字符串化表示。
+     * @param {*} _ 未用
+     * @returns {string} 字符串
+     */
     k(a) {
         return P.nR(this)
     },
+    /**
+     * 从对象表读取条目。
+     * @param {Object} table 哈希表/对象
+     * @param {string|number} key 键
+     * @returns {any} 条目或值
+     */
     bp(a, b) {
         return a[b]
     },
+    /**
+     * 从通用表读取桶/数组。
+     * @param {Object} table 哈希表/对象
+     * @param {number} hash 哈希键
+     * @returns {any} 桶或条目
+     */
     bG(a, b) {
         return a[b]
     },
+    /**
+     * 向表中写入条目。
+     * @param {Object} table 表
+     * @param {string|number} key 键
+     * @param {any} value 值
+     */
     cd(a, b, c) {
         a[b] = c
     },
+    /**
+     * 从表中删除条目。
+     * @param {Object} table 表
+     * @param {string|number} key 键
+     */
     c4(a, b) {
         delete a[b]
     },
+    /**
+     * 判断表中是否存在键（仅字符串键路径）。
+     * @param {Object|null} table 表
+     * @param {string} key 键
+     * @returns {boolean} 是否存在
+     */
     ei(a, b) {
         return this.bp(a, b) != null
     },
+    /**
+     * 创建新的哈希表（带占位键以避免原型链干扰）。
+     * @returns {Object} 新表
+     */
     _newHashTable() {
         var s = "<non-identifier-key>",
             r = Object.create(null)
@@ -12697,8 +12987,11 @@ L.ProfileWinChance.prototype = {
             }
         }
     },
+    /**
+     * nextUpdates
+     */
     O() {
-        logger.debug("胜率输出 main")
+        // logger.debug("胜率输出 main")
         var async_goto = 0,
             async_completer = P._makeAsyncAwaitCompleter(t.d),
             some_q, this_ = this,
@@ -12724,7 +13017,7 @@ L.ProfileWinChance.prototype = {
                         async_goto = 4
                         break
                     }
-                    h = H.b([m, l, [H.b([H.as_string($.ni()) + this_.d++, $.cl()], k)]], j)
+                    h = H.b([m, l, [H.b([H.as_string("seed:") + this_.d++, "!"], k)]], j)
                     if (this_.z === 0) h.pop()
                     async_goto = 5
                     return P._asyncAwait(T.start_main(h), $async$O)
@@ -12910,10 +13203,12 @@ V.ProfileMain.prototype = {
             this_.x = q[0]
         }
     },
+    /**
+     * nextUpdates
+     */
     O() {
         // 实力评分 main
-        // 普评? +
-        logger.debug("评分 输出")
+        // logger.debug("评分 输出")
         var async_goto = 0,
             async_completer = P._makeAsyncAwaitCompleter(t.d),
             result, this_ = this,
@@ -13112,10 +13407,10 @@ V.j_.prototype = {
         if (b / n.d > 0.005) {
             s = H.b([], t.U)
             r = H.b([], t.Y)
-            get_quote = $.iK()
+            get_quote = "??"
             // $.iK = ??
             // J.lW
-            if (J.lW(a, $.ne())) {
+            if (J.lW(a, `<div class="smile s_dmg0"></div>`)) {
                 get_quote = "0"
             }
             p = this.b
@@ -13166,8 +13461,11 @@ X.ProfileFind.prototype = {
             } else r.push(p)
         }
     },
+    /**
+     * nextUpdates
+     */
     O() {
-        logger.debug("搜索 主循环")
+        // logger.debug("搜索 主循环")
         var async_goto = 0,
             async_completer = P._makeAsyncAwaitCompleter(t.d),
             q, this_ = this,
@@ -13528,6 +13826,51 @@ HtmlRenderer.inner_render.prototype = {
             }
         }
     },
+    /**
+async nextUpdate() {
+  // 渲染器主 "循环"：取出下一条更新并交给 ft 处理
+  this.d = null;
+
+  if (this.Q == null || this.Q.a.length === 0) {
+    // 从外部获取下一组更新（异步） (nextUpdates)
+    this.Q = await this.c.O();
+
+    // 让出一次事件循环（等同于原来的 future_delayed 0ms）
+    await new Promise(resolve => setTimeout(resolve, 0));
+
+    // 重置渲染相关状态
+    this.db = null;
+    this.dx = true;
+    this.ch = 1800;
+  }
+
+  if (this.Q == null) return;
+
+  // 从队列头取出一条更新并处理
+  const update = this.Q.a.shift();
+  this.ft(update);
+}
+
+  nextUpdate() async {
+    timer = null;
+    DivElement div;
+    if (_updates == null || _updates.updates.isEmpty) {
+      f -> final Engine f;
+      _updates = await f.nextUpdates();
+
+      await new Future.delayed(new Duration(milliseconds: 1));
+
+      _lastRow = null;
+      _newTurnRow = true;
+      _nextWait = 1800;
+    }
+    if (_updates == null) {
+      return;
+    }
+    renderUpdate(_updates.updates.removeAt(0));
+  }
+
+     */
     b4() {
         // nextUpdate()
         // MARK: 渲染器主"循环"
@@ -13577,6 +13920,9 @@ HtmlRenderer.inner_render.prototype = {
         // renderUpdate()
         var s, r, q, p, this_ = this
         if (a == $.K()) {
+            if (run_env.from_code && run_env.capture_fight_log) {
+                push_fight_log_break()
+            }
             this_.db = null
             this_.cy = true
             this_.b4()
@@ -13610,7 +13956,9 @@ HtmlRenderer.inner_render.prototype = {
         if (this_.cx instanceof T.RunUpdateWin) {
             this_.fQ()
         } else if (run_env.from_code) {
-            // logger.debug(fmt_RunUpdate(this_.cx))
+            if (run_env.capture_fight_log) {
+                push_fight_log_data(this_.cx)
+            }
             this_.b4()
             return
         } else {
@@ -13652,18 +14000,22 @@ HtmlRenderer.inner_render.prototype = {
         s = this_.cx.e.gb2()
         r = $.ay.h(0, s).a
         q = t.ak
+        // p: 胜者
+        // (plr.a === r)
         p = H.b([], q)
+        // o: 败者
+        // (plr.a !== r)
         o = H.b([], q)
         n = []
         $.ay.aw(0, new HtmlRenderer.jA(r, p, n, o))
-        C.Array.bb(p, HtmlRenderer.oD())
+        C.Array.bb(p, HtmlRenderer.oD()) // sort
         C.Array.bb(o, HtmlRenderer.oD())
         m = document_.createElement("table")
         l = new HtmlRenderer.addPlrToTable(m)
         k = document_.createElement("tr")
         j = document_.createElement("td")
         k.appendChild(j)
-        C.j.by(j, C.String.B(J.iN($.nh(), LangData.get_lang("ePya")), $.nh()), $.bV())
+        C.j.by(j, C.String.B(J.iN(`<div class="smile s_win"></div>`, LangData.get_lang("ePya")), `<div class="smile s_win"></div>`), $.bV())
         q = j.style
         q.minWidth = "112px"
         q = j.style
@@ -13690,7 +14042,7 @@ HtmlRenderer.inner_render.prototype = {
         k = document_.createElement("tr")
         j = document_.createElement("td")
         k.appendChild(j)
-        C.j.by(j, C.String.B(J.iN($.nf(), LangData.get_lang("eFKN")), $.nf()), $.bV())
+        C.j.by(j, C.String.B(J.iN(`<div class="smile s_lose"></div>`, LangData.get_lang("eFKN")), `<div class="smile s_lose"></div>`), $.bV())
         q = j.style
         q.height = "32px"
         j = document_.createElement("td")
@@ -13721,7 +14073,7 @@ HtmlRenderer.inner_render.prototype = {
         g = document_.createElement("button")
         g.textContent = LangData.get_lang("Zvon") // 帮助
         h.appendChild(g)
-        W.es(g, "click", new HtmlRenderer.jD($.qq()), false)
+        W.es(g, "click", new HtmlRenderer.jD("https://deepmess.com/zh/namerena/"), false)
 
         d = h.style
         document_ = "" + (C.d.aI(m.offsetWidth) - C.d.aI(h.offsetWidth) - 8) + "px"
@@ -13892,7 +14244,7 @@ HtmlRenderer.PlrView.prototype = {
         r.toString
         q = Sgls.o6(i.fy)
         r.classList.add(q)
-        if (J.nz(i.fy, $.aD())) i.y.textContent = " " + H.as_string(i.dx) + " "
+        if (J.nz(i.fy, "@!")) i.y.textContent = " " + H.as_string(i.dx) + " "
         p = s.h(b, 4)
         o = J.m_(p, "+")
         if (o > -1) {
@@ -13939,16 +14291,16 @@ HtmlRenderer.PlrView.prototype = {
             if (s.h(b, 12) !== "") {
                 switch (s.h(b, 12)) {
                     case "2":
-                        C.h.bk(k, e, C.String.B(" ", $.qC()), h, $.bV())
+                        C.h.bk(k, e, C.String.B(" ", `<div class="smile s_elite3"></div>`), h, $.bV())
                         break
                     case "1":
-                        C.h.bk(k, e, C.String.B(" ", $.qB()), h, $.bV())
+                        C.h.bk(k, e, C.String.B(" ", `<div class="smile s_elite2"></div>`), h, $.bV())
                         break
                     case "0":
-                        C.h.bk(k, e, C.String.B(" ", $.qA()), h, $.bV())
+                        C.h.bk(k, e, C.String.B(" ", `<div class="smile s_elite1"></div>`), h, $.bV())
                         break
                     default:
-                        C.h.bk(k, e, C.String.B(" ", $.qv()), h, $.bV())
+                        C.h.bk(k, e, C.String.B(" ", `<div class="smile s_boss"></div>`), h, $.bV())
                 }
             }
         }
@@ -14068,17 +14420,17 @@ Sgls.k7.prototype = {
 }
 Sgls.k4.prototype = {
     $0() {
-        var s, r, q, p, o, n, m, l, k, j, i, h = new Array($.d7())
+        var s, r, q, p, o, n, m, l, k, j, i, h = new Array(21)
         h.fixed$length = Array
         s = H.b(h, t.gt)
-        for (h = t.he, r = 0; q = $.d7(), r < q; ++r) {
+        for (h = t.he, r = 0; q = 21, r < q; ++r) {
             q = new Array(q)
             q.fixed$length = Array
             q = H.b(q, h)
             s[r] = q
             q[r] = 0
         }
-        for (r = 1; r < $.d7(); ++r)
+        for (r = 1; r < 21; ++r)
             for (p = 0; p < r; ++p) {
                 h = $.mf
                 q = h[r]
@@ -14141,6 +14493,9 @@ Sgls.MList.prototype = {
     j(a, b) {
         var s, r, q, p = this
         if (b.a === p) return
+        // 关键：同一个 ga4() 的新 entry 不会插到旧 entry 前面。
+        // 这里会把它放到已有同优先级 entry 的后面，所以像 Protect / Poison 这类
+        // 共用默认 ga4()=10000 的 postAction hook，真实先后顺序取决于注册时机。
         if (b.ga4() === 1 / 0 || p.b === p) {
             p.bH(p.c, b)
             return
@@ -14264,14 +14619,14 @@ T.SklAbsorb.prototype = {
         var s
         if (b) {
             s = this.r
-            if (s.fy - s.fx < $.at()) return false
+            if (s.fy - s.fx < 32) return false
         }
         return this.aX(a, b)
     },
     v(a, b, c, d) {
         var s = a[0].a,
             r = T.getAt(this.r, true, c),
-            q = $.ph()
+            q = 1.2999999523162842
         // sklAbsorb
         // [0]发起[吸血攻击]
         d.a.push(T.RunUpdate_init(LangData.get_lang("FfpA"), this.r, s, null, null, 1, 1000, 100))
@@ -14284,8 +14639,8 @@ T.SklAccumulate.prototype = {
         if (this.fr.a != null) return false
         if (b) {
             s = this.r
-            if (s.fx < $.cZ()) return false
-            if (s.r2.h(0, $.lN()) != null) return false
+            if (s.fx < 120) return false
+            if (s.r2.h(0, "accumulate") != null) return false
         }
         return this.aX(a, b)
     },
@@ -14300,16 +14655,16 @@ T.SklAccumulate.prototype = {
             o = d.a
         o.push(T.RunUpdate_init(q, p, p, r, r, 1, 1000, 100))
         s.r.rx.j(0, s.fr)
-        s.r.r2.m(0, $.lN(), s)
-        if (s.r.r2.J(0, $.a7())) {
+        s.r.r2.m(0, "accumulate", s)
+        if (s.r.r2.J(0, "charge")) {
             s.fx = s.fx + 1
             q = s.r
-            q.l = q.l + $.pM()
+            q.l = q.l + 500
         }
         s.r.F()
         q = s.r
-        q.l = q.l + $.lM()
-        q = C.String.B(LangData.get_lang("gIKN"), $.qu())
+        q.l = q.l + 400
+        q = C.String.B(LangData.get_lang("gIKN"), `<div class="s_accumulate s_win"></div>`)
         p = s.r
         o.push(T.RunUpdate_init(q, p, p, r, r, 0, 1000, 100))
     },
@@ -14322,24 +14677,25 @@ T.SklAccumulate.prototype = {
     K(a, b) {
         var s, r = this
         r.fr.D()
-        r.r.r2.U(0, $.lN())
+        r.r.r2.U(0, "accumulate")
         r.r.F()
         if (a != null) {
             s = b.a
             s.push($.K())
             s.push(T.RunUpdateCancel_init(LangData.get_lang("xrNA"), a, r.r))
         }
-        r.fx = $.pi()
+        // 注意：accumulate 首次创建时的 fx 可能更高，但每次被清除后都会回到 1.600000023841858。
+        r.fx = 1.600000023841858
     },
     $ix: 1
 }
 T.SklAssassinate.prototype = {
     au(a, b) {
-        if (b && this.r.r2.J(0, $.bT())) return false
+        if (b && this.r.r2.J(0, "piston")) return false
         return this.aX(a, b)
     },
     as(a, b) {
-        if (b) return a.fx > $.eU()
+        if (b) return a.fx > 160
         return true
     },
     a9(a, b, c) {
@@ -14358,10 +14714,10 @@ T.SklAssassinate.prototype = {
             d.a.push(T.RunUpdate_init(LangData.get_lang("RmAN"), p.r, p.fy, o, o, 1, 1000, 100))
             p.r.x1.j(0, p.fr)
             n = p.r
-            n.l = n.l + n.dx * $.B()
-            n = n.r2.J(0, $.a7())
+            n.l = n.l + n.dx * 3
+            n = n.r2.J(0, "charge")
             s = p.r
-            if (n) s.l = s.l + $.p8()
+            if (n) s.l = s.l + 1600
             else s.G.j(0, p.fx)
         } else {
             p.ah(0)
@@ -14373,13 +14729,16 @@ T.SklAssassinate.prototype = {
                 if (q > r) r = q
                 q = T.getAt(p.r, true, c)
                 if (q > r) r = q
-                if (n.a7($.d2(), c)) {
+                if (globalThis.__probe_action_skill_target != null && H.iF(p.r.e, globalThis.__probe_action_skill_target, 0)) {
+                    console.log(`[assassinate_js_atp] actor=${p.r.e} target=${n.e} atp=${r * 4} rc4=(${c.a},${c.b})`)
+                }
+                if (n.a7("assassinate", c)) {
                     // dodge (通用回避)
                     // [0][回避]了攻击
                     s.push(T.RunUpdate_init(LangData.get_lang("BtqN"), n, p.r, o, o, 0, 1000, 100))
                     return
                 }
-                n.bN(r * $.mZ(), true, p.r, T.ad(), c, d)
+                n.bN(r * 4, true, p.r, T.ad(), c, d)
             }
         }
     },
@@ -14419,13 +14778,13 @@ T.BerserkState.prototype = {
     },
     aP(a) {
         var s = this
-        s.r.r2.m(0, $.aJ(), s)
+        s.r.r2.m(0, "berserk", s)
         s.r.x1.j(0, s)
     },
     K(a, b) {
         var s, r = this
         r.D()
-        r.r.r2.U(0, $.aJ())
+        r.r.r2.U(0, "berserk")
         if (r.r.fx > 0) {
             s = b.a
             s.push($.K())
@@ -14439,7 +14798,7 @@ T.BerserkState.prototype = {
         p.fr = p.fr - 1
         s = a[0].a
         r = T.getAt(p.r, false, c)
-        q = $.eV()
+        q = 1.2000000476837158
         d.a.push(T.RunUpdate_init(LangData.get_lang("UeAn"), p.r, s, null, null, 0, 1000, 100))
         s.a3(r * q, false, p.r, T.ad(), c, d)
         if (p.fr == 0) p.K(null, d)
@@ -14450,7 +14809,7 @@ T.BerserkState.prototype = {
 T.SklBerserk.prototype = {
     as(a, b) {
         if (b) {
-            if (a.r2.h(0, $.aJ()) != null) return false
+            if (a.r2.h(0, "berserk") != null) return false
             return !(a instanceof T.Minion)
         }
         return true
@@ -14458,7 +14817,7 @@ T.SklBerserk.prototype = {
     a9(a, b, c) {
         var s = this.bC(a, b, c),
             r = a.r2
-        return r.h(0, $.aJ()) != null || r.h(0, $.aE()) != null ? s / $.eV() : s
+        return r.h(0, "berserk") != null || r.h(0, "charm") != null ? s / 1.2000000476837158 : s
     },
     v(a, b, c, d) {
         var s = a[0].a,
@@ -14469,9 +14828,9 @@ T.SklBerserk.prototype = {
 }
 T.SklCharge.prototype = {
     au(a, b) {
-        if (this.r.r2.J(0, $.a7())) return false
+        if (this.r.r2.J(0, "charge")) return false
         if (b)
-            if (this.r.fx < $.ci()) return false
+            if (this.r.fx < 100) return false
         return this.aX(a, b)
     },
     aa(a, b, c) {
@@ -14483,12 +14842,14 @@ T.SklCharge.prototype = {
             q = s.r
         d.a.push(T.RunUpdate_init(r, q, q, null, null, 1, 1000, 100))
         s.fy = s.fy + 2
+        // Charge 注册的是 PostActionImpl(fx)，而 PostActionImpl.ga4()=Infinity，
+        // 所以会被追加到当前 x2 末尾，天然晚于默认 sortId 的 Poison/Protect。
         s.r.x2.j(0, s.fx)
         s.r.rx.j(0, s.fr)
-        s.r.r2.m(0, $.a7(), s)
+        s.r.r2.m(0, "charge", s)
         s.r.F()
         q = s.r
-        q.go = q.go + $.at()
+        q.go = q.go + 32
     },
     at(a, b) {
         var s = this.fy - 1
@@ -14496,7 +14857,7 @@ T.SklCharge.prototype = {
         if (s <= 0) this.K(null, b)
     },
     ar(a) {
-        a.id = a.id * $.B()
+        a.id = a.id * 3
     },
     gT() {
         return 1
@@ -14505,7 +14866,7 @@ T.SklCharge.prototype = {
         var s, r = this
         r.fx.D()
         r.fr.D()
-        r.r.r2.U(0, $.a7())
+        r.r.r2.U(0, "charge")
         r.r.F()
         if (a != null) {
             s = b.a
@@ -14520,6 +14881,9 @@ T.CharmState.prototype = {
         return -1
     },
     ar(a) {
+        // 这里把被魅惑者的 allyGroup 直接替换成 charmState.r。
+        // r 保存的是“当前应继承的队伍对象”，所以链式魅惑会沿用已解析后的 effective team，
+        // 后续友军技能选目标时不能再回头按 charm source 玩家自己的原始队伍重算。
         this.x.z = this.r
     },
     at(a, b) {
@@ -14530,7 +14894,7 @@ T.CharmState.prototype = {
     aP(a) {
         var s = this,
             r = s.x
-        r.r2.m(0, $.aE(), s)
+        r.r2.m(0, "charm", s)
         r.rx.j(0, s)
         r.x2.j(0, s.y)
         r.F()
@@ -14539,7 +14903,7 @@ T.CharmState.prototype = {
         var s, r
         this.D()
         s = this.x
-        s.r2.U(0, $.aE())
+        s.r2.U(0, "charm")
         this.y.D()
         s.F()
         if (s.fx > 0) {
@@ -14555,14 +14919,14 @@ T.SklCharm.prototype = {
         var s
         if (b) {
             s = a.r2
-            if (s.J(0, $.aE()) && t.o.a(s.h(0, $.aE())).z > 1) return false
+            if (s.J(0, "charm") && t.o.a(s.h(0, "charm")).z > 1) return false
         }
         return true
     },
     a9(a, b, c) {
         var s = this.bZ(a, b, c, true),
             r = a.r2
-        return r.h(0, $.aE()) != null || r.h(0, $.aJ()) != null ? s / 2 : s
+        return r.h(0, "charm") != null || r.h(0, "berserk") != null ? s / 2 : s
     },
     v(a, b, c, d) {
         var s, charm_state, this_ = this,
@@ -14572,27 +14936,28 @@ T.SklCharm.prototype = {
         // sklCharm
         // [0]使用[魅惑]
         n.push(T.RunUpdate_init(LangData.get_lang("UUan"), this_.r, o, p, p, 1, 1000, 100))
-        if (!o.a7($.aE(), c)) s = o.fx > 0 && !o.A && T.dodge(this_.r.dx, o.db + o.dy, c)
+        if (!o.a7("charm", c)) s = o.fx > 0 && !o.A && T.dodge(this_.r.dx, o.db + o.dy, c)
         else s = true
         if (s) {
             // dodge (通用回避)
             // [0][回避]了攻击
-            n.push(T.RunUpdate_init(LangData.get_lang("BtqN"), o, this_.r, p, p, $.as(), 1000, 100))
+            n.push(T.RunUpdate_init(LangData.get_lang("BtqN"), o, this_.r, p, p, 20, 1000, 100))
             return
         }
-        charm_state = t.o.a(o.r2.h(0, $.aE()))
+        charm_state = t.o.a(o.r2.h(0, "charm"))
         if (charm_state == null) {
             charm_state = T.CharmState_init(this_.r.z, o)
             charm_state.aP(0)
         } else {
             s = this_.r.z
+            // 重新魅惑时覆盖的是目标要继承的队伍对象；只有 effective team 没变时才单纯叠层数。
             if (s != charm_state.r) charm_state.r = s
             else charm_state.z = charm_state.z + 1
         }
-        if (this_.r.r2.J(0, $.a7())) charm_state.z = charm_state.z + $.B()
+        if (this_.r.r2.J(0, "charge")) charm_state.z = charm_state.z + 3
         // sklCharmHit
         // [1]被[魅惑]了
-        n.push(T.RunUpdate_init(C.String.B(LangData.get_lang("yjhn"), $.nd()), this_.r, o, p, p, $.cZ(), 1000, 100))
+        n.push(T.RunUpdate_init(C.String.B(LangData.get_lang("yjhn"), `<div class="smile s_charm"></div>`), this_.r, o, p, p, 120, 1000, 100))
     }
 }
 T.MinionCount.prototype = {
@@ -14626,7 +14991,7 @@ T.PlrClone.prototype = {
     bf() {
         var s = T.lC(this.a6.a),
             r = T.lC(this.b),
-            q = $.a4() // 6
+            q = 6 // 6
         this.x = Math.max(H.ar(s), r - q)
     },
     $ibC: 1
@@ -14639,19 +15004,19 @@ T.SklClone.prototype = {
         var s, r, q, p, o, n, m, l, this_ = this,
             j = null
         this_.f = C.d.R(this_.f * ((c.n() & 63) + 64) / 128)
-        if (!this_.r.r2.J(0, $.a7())) {
+        if (!this_.r.r2.J(0, "charge")) {
             s = this_.r.q
-            for (r = 0; q = $.ap(), r < q; ++r) s[r] = C.d.R(s[r] * $.p1())
-            s[q] = C.d.R(s[q] * $.b0())
+            for (r = 0; q = 7, r < q; ++r) s[r] = C.d.R(s[r] * 0.7799999713897705)
+            s[q] = C.d.R(s[q] * 0.5)
             q = this_.r
-            q.fx = C.d.R(q.fx * $.b0())
+            q.fx = C.d.R(q.fx * 0.5)
             this_.r.ci()
             this_.r.F()
         }
         p = T.init_PlrClone(this_.r)
         p.y = this_.r.y
         p.az()
-        p.l = c.n() * 4 + $.eX()
+        p.l = c.n() * 4 + 256
         q = this_.r
         p.fx = q.fx
         if (q.fx + q.dx < c.n()) {
@@ -14661,13 +15026,15 @@ T.SklClone.prototype = {
         }
         q = C.Array.dl(p.k1, new T.SklCloneCallback())
         if (q != null) q.f = C.d.R(Math.sqrt(H.ar(this_.f)))
+        // 注意：这里只是改共享技能对象的 level，不会重新跑 addSkillsToProc。
+        // 所以如果 clone skill 在 p.az()/bs() 时还是 0，它不会事后补进 p.k4。
         // sklClone
         // [0]使用[分身]
         q = LangData.get_lang("yWWn")
         o = new T.MPlr()
         o.cO(this_.r)
         n = d.a
-        n.push(T.RunUpdate_init(q, o, this_.r, j, j, $.a6(), 1000, 100))
+        n.push(T.RunUpdate_init(q, o, this_.r, j, j, 60, 1000, 100))
         this_.r.y.aZ(p)
         // sklCloned
         // 出现一个新的[1]
@@ -14690,10 +15057,10 @@ T.SklCritical.prototype = {
     v(a, b, c, d) {
         var s = this,
             r = a[0].a,
-            q = T.getAt(s.r, false, c) * $.pf(),
-            p = T.getAt(s.r, false, c) * $.eV()
+            q = T.getAt(s.r, false, c) * 1.149999976158142,
+            p = T.getAt(s.r, false, c) * 1.2000000476837158
         if (p > q) q = p
-        p = T.getAt(s.r, false, c) * $.pg()
+        p = T.getAt(s.r, false, c) * 1.25
         if (p > q) q = p
         d.a.push(T.RunUpdate_init(LangData.get_lang("mFkn"), s.r, r, null, null, 1, 1000, 100))
         r.a3(q, false, s.r, T.ad(), c, d)
@@ -14720,7 +15087,7 @@ T.CurseState.prototype = {
         var s, r
         this.D()
         s = this.x
-        s.r2.U(0, $.bh())
+        s.r2.U(0, "curse")
         s.rx.U(0, this.y)
         s.F()
         if (s.fx > 0) {
@@ -14739,7 +15106,7 @@ T.SklCurse.prototype = {
         if (b) {
             if (!(a.fx < 80)) {
                 s = a.r2
-                s = s.J(0, $.bh()) && t.dK.a(s.h(0, $.bh())).z > $.at()
+                s = s.J(0, "curse") && t.dK.a(s.h(0, "curse")).z > 32
             } else s = true
             if (s) return false
         }
@@ -14747,7 +15114,7 @@ T.SklCurse.prototype = {
     },
     a9(a, b, c) {
         var s = this.bC(a, b, c)
-        return a.r2.h(0, $.bh()) != null ? s / 2 : s
+        return a.r2.h(0, "curse") != null ? s / 2 : s
     },
     // act
     v(a, b, c, d) {
@@ -14764,7 +15131,7 @@ T.SklCurse.prototype = {
 T.SklDisperse.prototype = {
     a9(a, b, c) {
         var s = this.bC(a, b, c)
-        return b && a instanceof T.Minion && a.fx > $.ci() ? s * 2 : s
+        return b && a instanceof T.Minion && a.fx > 100 ? s * 2 : s
     },
     v(a, b, c, d) {
         var s = this,
@@ -14774,23 +15141,23 @@ T.SklDisperse.prototype = {
             o = T.getAt(s.r, true, c),
             n = d.a
         // sklDisperse [0]使用[净化]
-        n.push(T.RunUpdate_init(LangData.get_lang("cDPa"), s.r, p, r, r, $.as(), 1000, 100))
-        if (p.a7($.lP(), c)) {
+        n.push(T.RunUpdate_init(LangData.get_lang("cDPa"), s.r, p, r, r, 20, 1000, 100))
+        if (p.a7("disperse", c)) {
             // dodge (通用回避)
             // [0][回避]了攻击
-            n.push(T.RunUpdate_init(LangData.get_lang("BtqN"), p, s.r, r, r, $.as(), 1000, 100))
+            n.push(T.RunUpdate_init(LangData.get_lang("BtqN"), p, s.r, r, r, 20, 1000, 100))
             return
         }
         n = p.r2
         if (n.J(0, q)) n.h(0, q).K(s.r, d)
         if (n.J(0, "Dt.iron")) n.h(0, "Dt.iron").K(s.r, d)
-        if (p instanceof T.Minion) p.bN(o * $.pw(), true, s.r, T.oI(), c, d)
+        if (p instanceof T.Minion) p.bN(o * 2, true, s.r, T.oI(), c, d)
         else p.bN(o, true, s.r, T.oI(), c, d)
     }
 }
 T.SklExchange.prototype = {
     as(a, b) {
-        if (b) return a.fx - this.r.fx > $.at()
+        if (b) return a.fx - this.r.fx > 32
         return a.fx > this.r.fx
     },
     a9(a, b, c) {
@@ -14804,15 +15171,15 @@ T.SklExchange.prototype = {
         s = a[0].a
         r = d.a
         r.push(T.RunUpdate_init(LangData.get_lang("fcfa"), l.r, s, k, k, 1, 1000, 100))
-        if (!s.a7($.d3(), c)) q = s.fx > 0 && !s.A && !l.r.r2.J(0, $.a7()) && T.dodge(l.r.dx, s.dy + s.cx + s.db, c)
+        if (!s.a7("exchange", c)) q = s.fx > 0 && !s.A && !l.r.r2.J(0, "charge") && T.dodge(l.r.dx, s.dy + s.cx + s.db, c)
         else q = true
         if (q) {
             // dodge (通用回避)
             // [0][回避]了攻击
-            r.push(T.RunUpdate_init(LangData.get_lang("BtqN"), s, l.r, k, k, $.as(), 1000, 100))
+            r.push(T.RunUpdate_init(LangData.get_lang("BtqN"), s, l.r, k, k, 20, 1000, 100))
             return
         }
-        if (l.r.r2.J(0, $.a7())) {
+        if (l.r.r2.J(0, "charge")) {
             q = l.r
             q.l = q.l + s.l
             s.l = 0
@@ -14825,7 +15192,7 @@ T.SklExchange.prototype = {
         n = q.fx
         m = q.fy
         if (n > m) q.fx = m
-        q = C.String.B(LangData.get_lang("RQta"), $.qD())
+        q = C.String.B(LangData.get_lang("RQta"), `<div class="smile s_exchange"></div>`)
         n = l.r
         m = new T.HPlr(p)
         m.a = n.e
@@ -14845,12 +15212,12 @@ T.FireState.prototype = {
 T.SklFire.prototype = {
     v(a, b, c, d) {
         var s, r, q, p = a[0].a,
-            o = t.a.a(p.r2.h(0, $.eY()))
+            o = t.a.a(p.r2.h(0, "fire"))
         if (o == null) {
             o = new T.FireState(0)
         }
         s = T.getAt(this.r, true, c)
-        r = $.mM()
+        r = 1.5
         q = o.b
         // sklFire
         // [0]使用[火球术]
@@ -14864,7 +15231,7 @@ T.sklHalf.prototype = {
         var s
         if (b) {
             s = a.fx
-            return s > $.eU() && s < $.lM()
+            return s > 160 && s < 400
         }
         return true
     },
@@ -14877,15 +15244,15 @@ T.sklHalf.prototype = {
             g = a[0].a,
             f = d.a
         f.push(T.RunUpdate_init(LangData.get_lang("lSVA"), i.r, g, h, h, 1, 1000, 100))
-        s = i.r.fr + C.JsInt.P($.pG() - g.fx, $.B())
+        s = i.r.fr + C.JsInt.P(360 - g.fx, 3)
         r = 0
         if (s < r) s = r
-        if (!g.a7($.eZ(), c)) q = g.fx > 0 && !g.A && !i.r.r2.J(0, $.a7()) && T.dodge(s, g.dy + g.db, c)
+        if (!g.a7("half", c)) q = g.fx > 0 && !g.A && !i.r.r2.J(0, "charge") && T.dodge(s, g.dy + g.db, c)
         else q = true
         if (q) {
             // dodge (通用回避)
             // [0][回避]了攻击
-            f.push(T.RunUpdate_init(LangData.get_lang("BtqN"), g, i.r, h, h, $.as(), 1000, 100))
+            f.push(T.RunUpdate_init(LangData.get_lang("BtqN"), g, i.r, h, h, 20, 1000, 100))
             return
         }
         p = g.fx
@@ -14893,12 +15260,12 @@ T.sklHalf.prototype = {
         o = q.dx
         n = g.dy
         m = 2
-        l = C.JsInt.P(o - C.JsInt.P(n, m), m) + $.pL()
-        if (q.r2.J(0, $.a7())) l = i.r.dx + $.b1()
-        k = $.q7()
+        l = C.JsInt.P(o - C.JsInt.P(n, m), m) + 47
+        if (q.r2.J(0, "charge")) l = i.r.dx + 50
+        k = 99
         if (l > k) l = k
         q = g.fx
-        o = $.ci()
+        o = 100
         o = C.d.R(q * (o - l) / o)
         g.fx = o
         j = p - o
@@ -14928,7 +15295,7 @@ T.HasteState.prototype = {
         var s, r
         this.D()
         s = this.x
-        s.r2.U(0, $.d4())
+        s.r2.U(0, "haste")
         this.y.D()
         s.F()
         if (s.fx > 0) {
@@ -14948,9 +15315,9 @@ T.SklHaste.prototype = {
     as(a, b) {
         var s
         if (b) {
-            if (a.fx < $.a6()) return false
+            if (a.fx < 60) return false
             s = a.r2
-            if (s.h(0, $.d4()) != null && (t.e_.a(s.h(0, $.d4())).Q + 1) * $.a6() > a.fx) return false
+            if (s.h(0, "haste") != null && (t.e_.a(s.h(0, "haste")).Q + 1) * 60 > a.fx) return false
             return !(a instanceof T.Minion)
         }
         return true
@@ -14959,7 +15326,7 @@ T.SklHaste.prototype = {
         var s
         if (b) {
             s = T.rateHiHp(a) * a.M
-            return a.r2.h(0, $.d4()) != null ? s / 4 : s
+            return a.r2.h(0, "haste") != null ? s / 4 : s
         }
         return c.gbo()
     },
@@ -14968,26 +15335,31 @@ T.SklHaste.prototype = {
             o = null,
             n = a[0].a,
             m = d.a
-        m.push(T.RunUpdate_init(LangData.get_lang("pHka"), p.r, n, o, o, $.a6(), 1000, 100))
+        var __probe_target = globalThis.__probe_action_skill_target
+        var __probe_hit = __probe_target != null && (H.iF(p.r.e, __probe_target, 0) || H.iF(n.e, __probe_target, 0))
+        m.push(T.RunUpdate_init(LangData.get_lang("pHka"), p.r, n, o, o, 60, 1000, 100))
         s = p.r
         s.l = s.l + s.cy
         s = n.r2
-        r = t.e_.a(s.h(0, $.d4()))
+        r = t.e_.a(s.h(0, "haste"))
         if (r == null) {
-            r = new T.HasteState(n, 2, $.B())
+            r = new T.HasteState(n, 2, 3)
             r.y = new T.PostActionImpl(r)
-            s.m(0, $.d4(), r)
+            s.m(0, "haste", r)
             n.rx.j(0, r)
             n.x2.j(0, r.y)
             n.F()
         } else r.Q = r.Q + 2
-        if (p.r.r2.J(0, $.a7())) {
+        if (p.r.r2.J(0, "charge")) {
             s = r.z
             q = 2
             r.z = s + q
             r.Q = r.Q + q
         }
-        m.push(T.RunUpdate_init(C.String.B(LangData.get_lang("DDWN"), $.qE()), p.r, n, o, o, 0, 1000, 100))
+        if (__probe_hit) {
+            console.log(`[haste_js] owner=${p.r.e} target=${n.e} charge=${p.r.r2.J(0, "charge")} z=${r.z} Q=${r.Q} owner_mp=${p.r.l} target_spd=${n.cy}`)
+        }
+        m.push(T.RunUpdate_init(C.String.B(LangData.get_lang("DDWN"), `<div class="smile s_haste"></div>`), p.r, n, o, o, 0, 1000, 100))
     }
 }
 T.SklHeal.prototype = {
@@ -15010,9 +15382,9 @@ T.SklHeal.prototype = {
     v(a, b, c, d) {
         var s, r, q, p, o, n, m, l = this,
             k = l.f
-        if (k > $.av()) l.f = k - 1
+        if (k > 8) l.f = k - 1
         s = a[0].a
-        r = C.d.R(T.getAt(l.r, true, c) / $.pQ())
+        r = C.d.R(T.getAt(l.r, true, c) / 60)
         q = s.fy - s.fx
         if (r > q) r = q
         k = d.a
@@ -15057,7 +15429,7 @@ T.IceState.prototype = {
             if (s > q) {
                 r.y = s - a
                 return q
-            } else if (a + r.r.l >= $.bx()) {
+            } else if (a + r.r.l >= 2048) {
                 r.K(null, c)
                 return 0
             }
@@ -15068,7 +15440,7 @@ T.IceState.prototype = {
         var s, r
         this.D()
         s = this.r
-        s.r2.U(0, $.bS())
+        s.r2.U(0, "ice")
         this.x.D()
         s.F()
         if (s.fx > 0) {
@@ -15082,19 +15454,19 @@ T.IceState.prototype = {
 T.SklIce.prototype = {
     a9(a, b, c) {
         var s = this.bC(a, b, c)
-        return a.r2.h(0, $.bS()) != null ? s / 2 : s
+        return a.r2.h(0, "ice") != null ? s / 2 : s
     },
     v(a, b, c, d) {
         var s = a[0].a,
             r = T.getAt(this.r, true, c),
-            q = $.p0()
+            q = 0.699999988079071
         d.a.push(T.RunUpdate_init(LangData.get_lang("yMvn"), this.r, s, null, null, 1, 1000, 100))
         s.a3(r * q, true, this.r, T.mE(), c, d)
     }
 }
 T.SklIron.prototype = {
     ga4() {
-        return $.pJ()
+        return 4000
     },
     au(a, b) {
         if (this.fr.a != null) return false
@@ -15109,25 +15481,25 @@ T.SklIron.prototype = {
             q = LangData.get_lang("syPN"),
             p = s.r,
             o = d.a
-        o.push(T.RunUpdate_init(q, p, p, r, r, $.a6(), 1000, 100))
+        o.push(T.RunUpdate_init(q, p, p, r, r, 60, 1000, 100))
         s.r.y2.j(0, s.fr)
         s.r.x2.j(0, s.fx)
         s.r.rx.j(0, s.fy)
-        s.r.r2.m(0, $.n7(), s)
+        s.r.r2.m(0, "iron", s)
         s.r.F()
-        s.id = $.B()
-        p = $.p3()
+        s.id = 3
+        p = 110
         q = s.r
         s.go = p + q.dx
-        if (q.r2.J(0, $.a7())) {
+        if (q.r2.J(0, "charge")) {
             q = s.id
             p = 4
             s.id = q + p
-            s.go = s.go + ($.pq() + s.r.dx * p)
+            s.go = s.go + (240 + s.r.dx * p)
         }
         q = s.r
-        q.l = q.l - $.eX()
-        q = C.String.B(LangData.get_lang("RCnN"), $.qG())
+        q.l = q.l - 256
+        q = C.String.B(LangData.get_lang("RCnN"), `<div class="smile s_iron"></div>`)
         p = s.r
         o.push(T.RunUpdate_init(q, p, p, r, r, 0, 1000, 100))
     },
@@ -15158,7 +15530,7 @@ T.SklIron.prototype = {
     },
     ar(a) {
         var s = this.r
-        s.H = s.H * $.pe()
+        s.H = s.H * 1.1200000047683716
     },
     gT() {
         return this.id
@@ -15168,7 +15540,7 @@ T.SklIron.prototype = {
         p.fr.D()
         p.fx.D()
         p.fy.D()
-        p.r.r2.U(0, $.n7())
+        p.r.r2.U(0, "iron")
         p.r.F()
         s = b.a
         if (a != null) {
@@ -15195,7 +15567,7 @@ T.PoisonState.prototype = {
             s = n.y
             r = 1
             q = n.z
-            p = s * (r + (q - r) * $.oX()) / q
+            p = s * (r + (q - r) * 0.10000000149011612) / q
             n.y = s - p
             o = C.d.R(p / (m.dx + 64))
             // sklPoisonDamage
@@ -15209,7 +15581,7 @@ T.PoisonState.prototype = {
     },
     K(a, b) {
         var s, r = this.x
-        r.r2.U(0, $.bT())
+        r.r2.U(0, "piston")
         this.D()
         if (r.fx > 0) {
             s = b.a
@@ -15234,7 +15606,7 @@ T.SklQuake.prototype = {
         return 5
     },
     gb8() {
-        return $.a4()
+        return 6
     },
     v(a, b, c, d) {
         var s, r, q, p, o, n = c.n() < 128 ? 5 : 4,
@@ -15253,9 +15625,12 @@ T.SklQuake.prototype = {
         q.push(T.RunUpdate_init(s, r, null, null, m, 1, 1000, 100))
         for (k = 0; k < l.length; ++k) {
             m = T.getAt(this.r, true, c)
-            s = $.px()
+            // Keep these float32-style literals exact when porting.
+            // This quake split sometimes lands on ceil() boundaries after reflect/defense,
+            // so rounding them to plain 2.44 / 0.6 can change the visible damage by 1.
+            s = 2.440000057220459
             r = l.length
-            p = $.p_()
+            p = 0.6000000238418579
             o = l[k]
             if (o.fx > 0) {
                 q.push($.K())
@@ -15266,7 +15641,7 @@ T.SklQuake.prototype = {
 }
 T.SklRapid.prototype = {
     gb7() {
-        return $.B()
+        return 3
     },
     gb8() {
         return 5
@@ -15275,10 +15650,13 @@ T.SklRapid.prototype = {
         var s, r, q, p, o, n, m, l, k, j, i, h, g = this,
             f = null,
             e = 1000,
-            d = a1.n() < 128 ? $.B() : 2,
+            d = a1.n() < 128 ? 3 : 2,
             c = a.length,
-            b = $.B()
+            b = 3
         if (c > b) a = (a && C.Array).al(a, 0, b)
+        if (globalThis.__probe_rapid_target && g.r.e === globalThis.__probe_rapid_target) {
+            console.log("[rapid] caster=" + g.r.e + " targets=[" + a.map(function(x){return x.a.e}).join(",") + "] rc4=(" + a1.a + "," + a1.b + ")");
+        }
         for (c = a.length, s = 0; s < c; ++s) {
             a[s].b = 0
         }
@@ -15290,12 +15668,12 @@ T.SklRapid.prototype = {
             if (!(p > o && !b.A)) return
             n = a[r]
             p = n.a
-            if (p.fx <= o) q -= $.b0()
+            if (p.fx <= o) q -= 0.5
             else {
                 b = T.getAt(b, false, a1)
-                o = $.mI()
+                o = 0.75
                 m = n.b
-                l = $.oY()
+                l = 0.15000000596046448
                 n.b = m + 1
                 if (q === 0) {
                     k = LangData.get_lang("yGEA")
@@ -15315,6 +15693,9 @@ T.SklRapid.prototype = {
                 c.push($.K())
             }
             r = C.JsInt.V(r + (a1.n() & 3), a.length)
+            if (globalThis.__probe_rapid_target && g.r.e === globalThis.__probe_rapid_target) {
+                console.log("[rapid_pos] new_pos=" + r + " rc4=(" + a1.a + "," + a1.b + ")");
+            }
         }
     }
 }
@@ -15323,7 +15704,7 @@ T.SklRevive.prototype = {
         return a.b5(this.r.z.e)
     },
     as(a, b) {
-        return a.fx <= 0 && !(a instanceof T.Minion) && !a.r2.J(0, $.iJ())
+        return a.fx <= 0 && !(a instanceof T.Minion) && !a.r2.J(0, "corpose")
     },
     a9(a, b, c) {
         var s
@@ -15339,12 +15720,12 @@ T.SklRevive.prototype = {
             k = null
         l.f = C.JsInt.P(l.f + 1, 2)
         s = a[0].a
-        r = C.d.R(T.getAt(l.r, true, c) / $.pZ())
+        r = C.d.R(T.getAt(l.r, true, c) / 75)
         q = s.fy
         if (r > q) r = q
         p = d.a
         p.push(T.RunUpdate_init(LangData.get_lang("FXSa"), l.r, s, k, k, 1, 1000, 100))
-        p.push(T.RunUpdate_init(C.String.B(LangData.get_lang("rFJa"), $.ng()), l.r, s, k, k, r + $.a6(), 1000, 100))
+        p.push(T.RunUpdate_init(C.String.B(LangData.get_lang("rFJa"), `<div class="smile s_revive"></div>`), l.r, s, k, k, r + 60, 1000, 100))
         s.fx = r
         o = s.y
         if (!C.Array.w(o.f, s)) {
@@ -15369,7 +15750,7 @@ T.SklRevive.prototype = {
 T.SklPossess.prototype = {
     ao(a, b) {
         this.r = a
-        this.f = C.JsInt.P(b, 2) + $.mU()
+        this.f = C.JsInt.P(b, 2) + 36
     },
     v(a, b, c, d) {
         var s, r, q, p = this,
@@ -15379,15 +15760,15 @@ T.SklPossess.prototype = {
         // sklPossess
         // [0]使用[附体]
         m.push(T.RunUpdate_init(LangData.get_lang("dxVA"), p.r, n, o, o, 0, 1000, 100))
-        if (!n.a7($.aJ(), c)) s = n.fx > 0 && !n.A && T.dodge(p.r.dx, n.dy, c)
+        if (!n.a7("berserk", c)) s = n.fx > 0 && !n.A && T.dodge(p.r.dx, n.dy, c)
         else s = true
         if (s) {
             // dodge (通用回避)
             // [0][回避]了攻击
-            m.push(T.RunUpdate_init(LangData.get_lang("BtqN"), n, p.r, o, o, $.as(), 1000, 100))
+            m.push(T.RunUpdate_init(LangData.get_lang("BtqN"), n, p.r, o, o, 20, 1000, 100))
             return
         }
-        r = t.aJ.a(n.r2.h(0, $.aJ()))
+        r = t.aJ.a(n.r2.h(0, "berserk"))
         if (r == null) {
             r = T.nC(n)
             r.fr = 4
@@ -15395,7 +15776,7 @@ T.SklPossess.prototype = {
         } else r.fr = r.fr + 4
         // sklBerserkHit
         // [1]进入[狂暴]状态
-        m.push(T.RunUpdate_init(C.String.B(LangData.get_lang("jIRA"), $.nc()), p.r, n, o, o, 0, 1000, 100))
+        m.push(T.RunUpdate_init(C.String.B(LangData.get_lang("jIRA"), `<div class="smile s_berserk"></div>`), p.r, n, o, o, 0, 1000, 100))
         m = p.r
         q = m.fx
         m.fx = 0
@@ -15414,7 +15795,7 @@ T.PlrShadow.prototype = {
         var s, r
         this.bB()
         s = this.q
-        r = $.ap()
+        r = 7
         s[r] = C.d.P(s[r], 2)
     }
 }
@@ -15431,10 +15812,10 @@ T.SklShadow.prototype = {
     v(a7, a8, a9, b0) {
         var s, shadow_name, q, p, o, n, m, l, k, j, i, h, g, f, e, d, c, b, a, a0, a1, a2, a3, a4, this_ = this,
             a6 = null
-        this_.f = C.d.R(this_.f * $.mI())
+        this_.f = C.d.R(this_.f * 0.75)
         s = b0.a
-        s.push(T.RunUpdate_init(LangData.get_lang("USvA"), this_.r, a6, a6, a6, $.a6(), 1000, 100))
-        shadow_name = H.as_string(this_.r.a) + "?" + H.as_string($.qM())
+        s.push(T.RunUpdate_init(LangData.get_lang("USvA"), this_.r, a6, a6, a6, 60, 1000, 100))
+        shadow_name = H.as_string(this_.r.a) + "?" + H.as_string("shadow")
         // r = name + "?" + "shadow"
         q = this_.r
         p = q.b
@@ -15481,14 +15862,20 @@ T.SklShadow.prototype = {
         a4.a1(shadow_name, p, q, a6)
         a4.a6 = new T.cp(a4)
         a4.aj = this_
+        // shadow_name 写进 a：内部名仍是 owner.a + "?shadow"。
+        // e 才是战报/引用里使用的 owner?N，而 r 再额外覆盖成 UI 文案“幻影”。
         a4.e = T.getMinionName(this_.r)
         a4.r = LangData.get_lang("VdSN")
         q = this_.r
         a4.y = q.y
+        // addNew 立即把 shadow 插进 owner 当前队伍的 roster/alive。
+        // 如果 owner 在同一 action 后半段又因为 poison / postAction 死亡，
+        // cp.b1 仍会看到这只刚生成的 shadow，并在同一轮里把它移除；
+        // 这一步会额外推动 round cursor，是 Rust 对齐时必须保留的顺序语义。
         q.L.j(0, a4.a6)
         a4.az()
-        if (this_.r.r2.J(0, $.a7())) a4.l = $.bx()
-        else a4.l = -$.bx()
+        if (this_.r.r2.J(0, "charge")) a4.l = 2048
+        else a4.l = -2048
         this_.r.y.aZ(a4)
         shadow_name = LangData.get_lang("wHun")
         q = this_.r
@@ -15516,7 +15903,7 @@ T.SlowState.prototype = {
         var s, r
         this.D()
         s = this.x
-        s.r2.U(0, $.bi())
+        s.r2.U(0, "slow")
         this.y.D()
         s.F()
         if (s.fx > 0) {
@@ -15535,7 +15922,7 @@ T.SklSlow.prototype = {
         if (b) {
             if (!(a.fx < 80)) {
                 s = a.r2
-                s = s.J(0, $.bi()) && t.S.a(s.h(0, $.bi())).z > 1
+                s = s.J(0, "slow") && t.S.a(s.h(0, "slow")).z > 1
             } else s = true
             if (s) return false
         }
@@ -15543,7 +15930,7 @@ T.SklSlow.prototype = {
     },
     a9(a, b, c) {
         var s = this.bZ(a, b, c, true)
-        return a.r2.h(0, $.bi()) != null ? s / 2 : s
+        return a.r2.h(0, "slow") != null ? s / 2 : s
     },
     v(a, b, c, d) {
         var s, r, q = this,
@@ -15551,39 +15938,39 @@ T.SklSlow.prototype = {
             o = a[0].a,
             n = d.a
         n.push(T.RunUpdate_init(LangData.get_lang("hdla"), q.r, o, p, p, 1, 1000, 100))
-        if (!o.a7($.bi(), c)) s = o.fx > 0 && !o.A && T.dodge(q.r.dx, o.dy, c)
+        if (!o.a7("slow", c)) s = o.fx > 0 && !o.A && T.dodge(q.r.dx, o.dy, c)
         else s = true
         if (s) {
             // dodge (通用回避)
             // [0][回避]了攻击
-            n.push(T.RunUpdate_init(LangData.get_lang("BtqN"), o, q.r, p, p, $.as(), 1000, 100))
+            n.push(T.RunUpdate_init(LangData.get_lang("BtqN"), o, q.r, p, p, 20, 1000, 100))
             return
         }
         o.l = o.l - (o.cy + 64)
         s = o.r2
-        r = t.S.a(s.h(0, $.bi()))
+        r = t.S.a(s.h(0, "slow"))
         if (r == null) {
             r = new T.SlowState(o, 2)
             r.y = new T.PostActionImpl(r)
-            s.m(0, $.bi(), r)
+            s.m(0, "slow", r)
             o.rx.j(0, r)
             o.x2.j(0, r.y)
             o.F()
         } else r.z = r.z + 2
-        if (q.r.r2.J(0, $.a7())) r.z = r.z + 4
-        n.push(T.RunUpdate_init(C.String.B(LangData.get_lang("YNva"), $.qJ()), q.r, o, p, p, $.a6(), 1000, 100))
+        if (q.r.r2.J(0, "charge")) r.z = r.z + 4
+        n.push(T.RunUpdate_init(C.String.B(LangData.get_lang("YNva"), `<div class="smile s_slow"></div>`), q.r, o, p, p, 60, 1000, 100))
     }
 }
 T.SklExplode.prototype = {
     v(a, b, c, d) {
         var s, r, q, p, o, n = this,
             m = a[0].a,
-            l = t.a.a(m.r2.h(0, $.eY()))
+            l = t.a.a(m.r2.h(0, "fire"))
         if (l == null) {
             l = new T.FireState(0)
         }
         s = T.getAt(n.r, true, c)
-        r = $.mZ()
+        r = 4
         q = l.b
         // sklExplode
         // [0]使用[自爆]
@@ -15603,8 +15990,8 @@ T.PlrSummon.prototype = {
         var s, r, q, p
         this.bB()
         s = this.q
-        r = $.ap()
-        s[r] = C.d.P(s[r], $.B())
+        r = 7
+        s[r] = C.d.P(s[r], 3)
         r = 0
         s[r] = r
         q = 1
@@ -15617,6 +16004,9 @@ T.PlrSummon.prototype = {
     ac() {
         this.k3 = T.SklAttack_init(this)
         var s = this.k1
+        // PlrSummon 的固定技能槽位就是 k1[0..2] = [fire, fire, explode]。
+        // 后续 dm()/bs() 只会通过打乱后的 k2 改变“哪个对象拿到等级/先行动”，
+        // 但 merge 仍按 k1 的固定索引逐位吞技能，所以这里不能在构造期直接按 k2 顺序改槽位。
         s.push(new T.SklFire(0))
         s.push(new T.SklFire(0))
         s.push(new T.SklExplode(0))
@@ -15662,10 +16052,10 @@ T.SklSummon.prototype = {
             a5 = a9.a
         // sklSummon
         // [0]使用[血祭]
-        a5.push(T.RunUpdate_init(LangData.get_lang("sCza"), this_.r, a4, a4, a4, $.a6(), 1000, 100))
+        a5.push(T.RunUpdate_init(LangData.get_lang("sCza"), this_.r, a4, a4, a4, 60, 1000, 100))
         s = this_.fr
         if (s == null) {
-            s = H.as_string(this_.r.a) + "?" + H.as_string($.qQ())
+            s = H.as_string(this_.r.a) + "?" + H.as_string("summon")
             // name + ? + summon
             r = this_.r
             q = r.b
@@ -15711,6 +16101,8 @@ T.SklSummon.prototype = {
             summoned_plr.a1(s, q, r, a4)
             summoned_plr.a6 = new T.cp(summoned_plr)
             summoned_plr.aj = this_
+            // summon 也分三层：a 保留 owner.a + "?summon"，e 变成 owner?N，r 才是“使魔”。
+            // 所以后续若只看到日志里的 ?N，不能反推出内部名字段已经被覆盖。
             summoned_plr.e = T.getMinionName(this_.r)
             this_.fr = summoned_plr
             // sklSummonName
@@ -15727,9 +16119,9 @@ T.SklSummon.prototype = {
         this_.r.L.j(0, this_.fr.a6)
         // this_.fr.l = a8.n() * 4
         this_.fr.l = a8.n() * 4
-        if (this_.r.r2.J(0, $.a7())) {
+        if (this_.r.r2.J(0, "charge")) {
             this_.fr.bi.D()
-            this_.fr.l = $.bx()
+            this_.fr.l = 2048
         }
         this_.r.y.aZ(this_.fr)
         // sklSummoned
@@ -15751,8 +16143,8 @@ T.SklThunder.prototype = {
             h = a[0].a,
             updates = d.a
         updates.push(T.RunUpdate_init(LangData.get_lang("hyoA"), k.r, h, j, j, 1, i, 100))
-        s = $.B() + (c.n() & 3)
-        r = $.ci() + k.r.db
+        s = 3 + (c.n() & 3)
+        r = 100 + k.r.db
         for (q = 0, p = q, o = false; q < s; ++q) {
             n = k.r
             if (n.fx > p && !n.A && h.fx > p) {
@@ -15779,13 +16171,13 @@ T.SklThunder.prototype = {
                 }
                 r -= 10
                 p = T.getAt(k.r, true, c)
-                n = $.oZ()
+                n = 0.36000001430511475
                 l = updates.length
                 m = k.r
                 m = h.aF(h.aq(C.d.R(p * n / T.getDf(h, true, c)), m, T.ad(), c, d), m, T.ad(), c, d)
                 n = 0
                 if (m > n) o = true
-                updates[l].b = $.mR()
+                updates[l].b = 300
                 p = n
             }
         }
@@ -15793,8 +16185,8 @@ T.SklThunder.prototype = {
 }
 T.PlrBossAokiji.prototype = {
     gan() {
-        var s = $.bg()
-        return H.b([s, $.lI(), s, 10, $.lK(), 4, s, $.q5()], t.i)
+        var s = 40
+        return H.b([s, 30, s, 10, 35, 4, s, 96], t.i)
     },
     ac() {
         var s, r
@@ -15802,7 +16194,7 @@ T.PlrBossAokiji.prototype = {
         s = this.k1
         s.push(new T.SklAokijiDefend(0))
         r = new T.SklAokijiIceAge(0)
-        r.f = $.pW()
+        r.f = 70
         s.push(r)
         r = new T.SklIce(0)
         r.f = 80
@@ -15831,7 +16223,7 @@ T.SklAokijiIceAge.prototype = {
         return 5
     },
     gb8() {
-        return $.a4()
+        return 6
     },
     v(a, b, c, d) {
         var s, r, q, p, o, n, m = t.j,
@@ -15844,7 +16236,7 @@ T.SklAokijiIceAge.prototype = {
         m = H.b(l.slice(0), m)
         p = d.a
         p.push(T.RunUpdate_init(r, q, null, null, m, 1, 1000, 100))
-        o = T.getAt(this.r, true, c) * $.mQ() / (l.length + $.b0())
+        o = T.getAt(this.r, true, c) * 2.5 / (l.length + 0.5)
         for (s = 0; s < l.length; ++s) {
             n = l[s]
             if (n.fx > 0) {
@@ -15857,23 +16249,23 @@ T.SklAokijiIceAge.prototype = {
 T.PlrBoost.prototype = {
     e1(a, b, c, d) {
         var s, r, q, p, this_ = this
-        for (s = $.a4(), r = this_.a6; s < $.b1(); ++s) {
+        for (s = 6, r = this_.a6; s < 50; ++s) {
             q = this_.t
-            p = (q[s] | $.at()) >>> 0
+            p = (q[s] | 32) >>> 0
             q[s] = p
             q[s] = p + r
         }
-        for (s = $.p6(); s < $.aR(); ++s) {
+        for (s = 13; s < 16; ++s) {
             q = this_.t
             q[s] = q[s] + r
         }
-        for (s = $.mO(); s < $.iI(); ++s) {
+        for (s = 25; s < 28; ++s) {
             q = this_.t
             q[s] = q[s] + r
         }
         for (s = 64; s < 128; ++s) {
             q = this_.t
-            p = (q[s] | $.aR()) >>> 0
+            p = (q[s] | 16) >>> 0
             q[s] = p
             q[s] = p + r
         }
@@ -15885,10 +16277,10 @@ T.PlrBoost.prototype = {
 T.PlrBossTest.prototype = {
     e4(a, b, c) {
         var s, r, q
-        for (s = 0; s < $.b1(); ++s) {
+        for (s = 0; s < 50; ++s) {
             r = this.t
             q = r[s]
-            if (q < $.cY()) r[s] = 63 - q
+            if (q < 12) r[s] = 63 - q
         }
     },
     bf() {
@@ -15898,10 +16290,10 @@ T.PlrBossTest.prototype = {
 T.PlrBossTest2.prototype = {
     e5(a, b) {
         var s, r, q
-        for (s = 0; s < $.b1(); ++s) {
+        for (s = 0; s < 50; ++s) {
             r = this.t
             q = r[s]
-            if (q < $.at()) r[s] = 63 - q
+            if (q < 32) r[s] = 63 - q
         }
     },
     bf() {
@@ -15911,16 +16303,16 @@ T.PlrBossTest2.prototype = {
 T.PlrEx.prototype = {
     e2(a, b, c, d) {
         var s, r, q, p, o, this_ = this
-        for (s = $.a4(); r = $.b1(), s < r; ++s) {
+        for (s = 6; r = 50, s < r; ++s) {
             q = this_.t
             p = q[s]
-            o = $.mV()
-            if (p < o) q[s] = ((p & $.eT()) >>> 0) + o
+            o = 41
+            if (p < o) q[s] = ((p & 15) >>> 0) + o
         }
         for (s = r; s < 128; ++s) {
             q = this_.t
             p = q[s]
-            if (p < $.aR()) q[s] = p + $.at()
+            if (p < 16) q[s] = p + 32
         }
         q = H.b([], t.i)
         C.Array.a5(q, this_.t)
@@ -15933,8 +16325,8 @@ T.PlrEx.prototype = {
 }
 T.PlrBoss.prototype = {
     av(a, b) {
-        LangData.get_lang(LangData.eQ(H.as_string($.n4()) + H.as_string(a)))
-        this.r = LangData.get_lang(LangData.eQ(H.as_string($.n4()) + H.as_string(a)))
+        LangData.get_lang(LangData.eQ(H.as_string("bossName_") + H.as_string(a)))
+        this.r = LangData.get_lang(LangData.eQ(H.as_string("bossName_") + H.as_string(a)))
     },
     gan() {
         return null
@@ -15962,7 +16354,7 @@ T.PlrBoss.prototype = {
     },
     cE() {
         // getScoreStr()
-        // return $.iK()
+        // return "??"
         return "??"
     },
     gaS() {
@@ -15971,7 +16363,7 @@ T.PlrBoss.prototype = {
     },
     gaG() {
         // List<String> get immuned => [Dt.assassinate, Dt.charm, Dt.berserk, Dt.half, Dt.curse,  Dt.exchange, Dt.slow, Dt.ice];
-        return H.b([$.d2(), $.aE(), $.aJ(), $.eZ(), $.bh(), $.d3(), $.bi(), $.bS()], t.V)
+        return H.b(["assassinate", "charm", "berserk", "half", "curse", "exchange", "slow", "ice"], t.V)
     },
     a7(a, b) {
         // bool immune(String key, R r) {
@@ -15983,10 +16375,10 @@ T.PlrBoss.prototype = {
 T.PlrBossConan.prototype = {
     gan() {
         var s = 0
-        return H.b([s, $.aI(), -$.mT(), $.as(), s, $.mV(), $.lI(), $.po()], t.i)
+        return H.b([s, 48, -16, 20, s, 41, 30, 22], t.i)
     },
     gaS() {
-        return H.b([$.aE()], t.V)
+        return H.b(["charm"], t.V)
     },
     ac() {
         var s = new T.SklConan(this, -1, 0)
@@ -15996,7 +16388,7 @@ T.PlrBossConan.prototype = {
 }
 T.SklConan.prototype = {
     gb7() {
-        return $.B()
+        return 3
     },
     gb8() {
         return 4
@@ -16041,7 +16433,7 @@ T.SklConan.prototype = {
             q.push(T.RunUpdate_init(LangData.get_lang("dEsa"), m.r, l, l, l, 0, k, 100))
             // sklConanThinkingFinish2
             // 真相只有一个
-            q.push(T.RunUpdate_init(LangData.get_lang("RmQa"), m.r, l, l, l, l, $.eS(), $.lH()))
+            q.push(T.RunUpdate_init(LangData.get_lang("RmQa"), m.r, l, l, l, l, 1000, 2000))
             // sklConanThinkingFinish3
             // 凶手就是你
             q.push(T.RunUpdate_init(LangData.get_lang("imLn"), m.r, l, l, l, 0, k, 100))
@@ -16064,22 +16456,22 @@ T.SklConan.prototype = {
         }
         s.bm(p, m.r, c, d)
         r = m.r
-        q = r.l + s.y.f.length * $.eS()
+        q = r.l + s.y.f.length * 1000
         r.l = q
-        o = $.lJ()
+        o = 3000
         if (q > o) r.l = o
     }
 }
 T.PlrBossCovid.prototype = {
     gan() {
         var s = 10,
-            r = $.n2(),
+            r = 9,
             q = 0,
-            p = $.cY()
-        return H.b([s, r, q, p, q, p, q, $.a6()], t.i)
+            p = 12
+        return H.b([s, r, q, p, q, p, q, 60], t.i)
     },
     gaG() {
-        return H.b([$.aE(), $.aJ(), $.d3()], t.V)
+        return H.b(["charm", "berserk", "exchange"], t.V)
     },
     ac() {
         var s = 0
@@ -16123,7 +16515,7 @@ T.CovidState.prototype = {
                 q.push(T.RunUpdate_init(o, r, m, new T.HRecover(n), null, 0, 1000, 100))
             }
         }
-        if (l.fy > $.a4()) {
+        if (l.fy > 6) {
             l.D()
             l.id.b = true
             l.k1.D()
@@ -16140,7 +16532,7 @@ T.CovidState.prototype = {
             for (s = 0, r = k.fx, q = k.fr, p = t.cu; s < 5; ++s) {
                 o = c.b5(q.y.a.e)
                 if (o !== r && o != q) {
-                    n = p.a(o.r2.h(0, $.ck()))
+                    n = p.a(o.r2.h(0, "covid"))
                     if (n != null) {
                         m = k.go
                         m = !n.c.w(0, m)
@@ -16176,7 +16568,7 @@ T.CovidState.prototype = {
             p = c.a
         p.push(T.RunUpdate_init(LangData.get_lang("UFQa"), q, a, r, r, 0, 1000, 100))
         s = a.fr
-        s = T.oq(a) ? s + $.pd() : C.JsInt.am(s, 1)
+        s = T.oq(a) ? s + 192 : C.JsInt.am(s, 1)
         if (b.n() < s) {
             p.push(T.RunUpdate_init(LangData.get_lang("kloA"), q, a, r, r, 0, 1000, 100))
             return false
@@ -16203,9 +16595,9 @@ T.SklCovidDefend.prototype = {
         this.r.G.j(0, this)
     },
     aD(a, b, c, d) {
-        if (b.r2.h(0, $.ck()) == null) {
+        if (b.r2.h(0, "covid") == null) {
             if (T.oq(b) && c.n() < 192) return
-            T.j7(this.r, b, $.bg(), c, d)
+            T.j7(this.r, b, 40, c, d)
         }
     },
     $iah: 1
@@ -16226,13 +16618,13 @@ T.SklCovidAttack.prototype = {
 }
 T.PlrBossIkaruga.prototype = {
     gan() {
-        return H.b([$.aI(), $.iI(), $.mN(), $.mW(), 10, $.mL(), $.mT(), $.mJ()], t.i)
+        return H.b([48, 28, 21, $.mW(), 10, $.mL(), 16, $.mJ()], t.i)
     },
     gaG() {
-        return H.b([$.d2(), $.eZ(), $.d3(), $.bT(), $.bi(), $.bS()], t.V)
+        return H.b(["assassinate", "half", "exchange", "piston", "slow", "ice"], t.V)
     },
     a7(a, b) {
-        if (a == $.bh()) return false
+        if (a == "curse") return false
         return this.cM(a, b)
     },
     ac() {
@@ -16241,7 +16633,7 @@ T.PlrBossIkaruga.prototype = {
         s = this.k1
         s.push(new T.SklIkarugaDefend(0))
         r = new T.SklIkarugaAttack(0)
-        r.f = $.aI()
+        r.f = 48
         s.push(r)
     }
 }
@@ -16273,7 +16665,7 @@ T.SklIkarugaAttack.prototype = {
         return 5
     },
     gb8() {
-        return $.a4()
+        return 6
     },
     v(a, b, c, d) {
         var s, r, q, p, o, n, m = t.j,
@@ -16286,7 +16678,7 @@ T.SklIkarugaAttack.prototype = {
         m = H.b(l.slice(0), m)
         p = d.a
         p.push(T.RunUpdate_init(r, q, null, null, m, 1, 1000, 100))
-        o = T.getAt(this.r, true, c) * $.mQ() / (l.length + $.b0())
+        o = T.getAt(this.r, true, c) * 2.5 / (l.length + 0.5)
         for (s = 0; s < l.length; ++s) {
             n = l[s]
             if (n.fx > 0) {
@@ -16300,10 +16692,10 @@ T.SklIkarugaAttack.prototype = {
 T.PlrBossLazy.prototype = {
     gan() {
         var s = 0
-        return H.b([s, $.q2(), 10, -$.as(), s, $.b1(), s, $.cZ()], t.i)
+        return H.b([s, $.q2(), 10, -20, s, 50, s, 120], t.i)
     },
     gaG() {
-        return H.b([$.d2(), $.eZ(), $.bh(), $.d3()], t.V)
+        return H.b(["assassinate", "half", "curse", "exchange"], t.V)
     },
     ac() {
         var s = 1,
@@ -16334,7 +16726,7 @@ T.LazyState.prototype = {
     aP(a) {
         var this_ = this,
             r = this_.fx
-        r.r2.m(0, $.d5(), this_)
+        r.r2.m(0, "lazy", this_)
         r.rx.j(0, this_.go)
         r.x2.j(0, this_.fy)
         r.x1.j(0, this_.id)
@@ -16344,7 +16736,7 @@ T.LazyState.prototype = {
         var s, r = this
         r.D()
         s = r.fx
-        s.r2.U(0, $.d5())
+        s.r2.U(0, "lazy")
         r.fy.D()
         r.id.D()
         r.go.D()
@@ -16367,7 +16759,7 @@ T.SklLazyDefend.prototype = {
         this.r.G.j(0, this)
     },
     aD(a, b, c, d) {
-        if (t.r.a(b.r2.h(0, $.d5())) == null) {
+        if (t.r.a(b.r2.h(0, "lazy")) == null) {
             T.LazyState_init(this.r, b).aP(0)
             // sklLazyHit
             // [1]感染了[懒癌]
@@ -16380,9 +16772,9 @@ T.SklLazyAttack.prototype = {
     v(a, b, c, d) {
         var s, r, q, p = this,
             o = a[0].a
-        if (t.r.a(o.r2.h(0, $.d5())) != null && c.n() < 128) {
+        if (t.r.a(o.r2.h(0, "lazy")) != null && c.n() < 128) {
             T.beLazy(p.fr, c, d)
-            p.fx = p.fx + $.b0()
+            p.fx = p.fx + 0.5
             return
         }
         s = p.fr
@@ -16399,21 +16791,21 @@ T.SklLazyAttack.prototype = {
 }
 T.PlrBossMario.prototype = {
     gan() {
-        return H.b([0, $.lL(), $.d1(), $.mX(), $.iI(), $.iH(), $.eT(), $.n0()], t.i)
+        return H.b([0, $.lL(), $.d1(), $.mX(), 28, 18, 15, $.n0()], t.i)
     },
     F() {
         var s = this
         s.dT()
-        if (s.aC > 0) s.id = s.id * $.mM()
+        if (s.aC > 0) s.id = s.id * 1.5
     },
     gaS() {
         return []
     },
     gaG() {
-        return H.b([$.d2()], t.V)
+        return H.b(["assassinate"], t.V)
     },
     a7(a, b) {
-        if (a == $.lP()) return false
+        if (a == "disperse") return false
         return this.cM(a, b)
     },
     ac() {
@@ -16428,7 +16820,7 @@ T.PlrBossMario.prototype = {
         r = q.k1
         r.push(s)
         r.push(q.aj)
-        s = T.tH(q, $.B())
+        s = T.tH(q, 3)
         q.aR = s
         r.push(s)
     }
@@ -16444,7 +16836,7 @@ T.SklMarioGet.prototype = {
             q = 2
         if (r >= q) {
             if (s.aR.Q >= q) return false
-            return a.n() < $.ap()
+            return a.n() < 7
         }
         return a.n() < 128
     },
@@ -16456,7 +16848,7 @@ T.SklMarioGet.prototype = {
             p = null,
             o = 1000,
             n = q.fr
-        n.r2.m(0, $.lQ(), q)
+        n.r2.m(0, "mario", q)
         s = n.aC = n.aC + 1
         if (s === 1) {
             s = d.a
@@ -16467,7 +16859,7 @@ T.SklMarioGet.prototype = {
             r = d.a
             if (s === 2) {
                 r.push(T.RunUpdate_init(LangData.get_lang("LJOA"), q.r, p, p, p, 0, o, 100))
-                n.aj.f = $.cZ()
+                n.aj.f = 120
                 r.push(T.RunUpdate_init(LangData.get_lang("cZhN"), q.r, p, p, p, 0, o, 100))
             } else {
                 r.push(T.RunUpdate_init(LangData.get_lang("ovXA"), q.r, p, p, p, 0, o, 100))
@@ -16476,11 +16868,11 @@ T.SklMarioGet.prototype = {
                 r.push(T.RunUpdate_init(LangData.get_lang("FshN"), q.r, p, n.aR.Q, p, 0, o, 100))
             }
         }
-        n.l = n.l + $.lH()
+        n.l = n.l + 2000
     },
     K(a, b) {
         var s = this.fr
-        s.r2.U(0, $.lQ())
+        s.r2.U(0, "mario")
         s.aC = s.aj.f = 0
         s.F()
     },
@@ -16505,7 +16897,7 @@ T.SklMarioReraise.prototype = {
             r.a = s.e
             r.d = s.fx
             r = T.RunUpdate_init(o, r, p, p, p, 0, 1000, 100)
-            r.b = $.lJ()
+            r.b = 3000
             o = d.a
             o.push(r)
             o.push(T.RunUpdate_init(LangData.get_lang("FshN"), q.r, p, q.Q, p, 0, 1000, 100))
@@ -16527,18 +16919,18 @@ T.SklMarioReraise.prototype = {
 }
 T.PlrBossMosquito.prototype = {
     gan() {
-        return H.b([-$.B(), $.eW(), $.pv(), $.pY(), 5, $.ap(), $.cY(), -$.lK()], t.i)
+        return H.b([-3, 24, $.pv(), $.pY(), 5, 7, 12, -35], t.i)
     },
     gaS() {
-        return H.b([$.d2(), $.lP()], t.V)
+        return H.b(["assassinate", "disperse"], t.V)
     },
     gaG() {
-        return H.b([$.aJ(), $.aE()], t.V)
+        return H.b(["berserk", "charm"], t.V)
     },
     ac() {
         this.k3 = T.SklSimpleAttack_init(this)
         var s = new T.SklAbsorb(0)
-        s.f = $.ci()
+        s.f = 100
         this.k1.push(s)
     }
 }
@@ -16547,10 +16939,10 @@ T.PlrBossSaitama.prototype = {
         return H.b([$.pX(), $.pI(), $.n0(), $.q_(), $.pV(), $.pU(), 0, $.q1()], t.i)
     },
     gaS() {
-        return H.b([$.eZ(), $.d3()], t.V)
+        return H.b(["half", "exchange"], t.V)
     },
     gaG() {
-        return H.b([$.aJ(), $.bi(), $.bS()], t.V)
+        return H.b(["berserk", "slow", "ice"], t.V)
     },
     ac() {
         var s = 0,
@@ -16568,9 +16960,9 @@ T.SklSaitama.prototype = {
     v(a, b, c, d) {
         var s, r, q, p, o = this,
             n = null
-        if (o.fx / (o.fy.a + o.go.a / $.B() + 1) > $.mP()) {
+        if (o.fx / (o.fy.a + o.go.a / 3 + 1) > $.mP()) {
             s = d.a
-            s.push(T.RunUpdate_init(LangData.get_lang("dlfA"), o.r, n, n, n, n, $.eS(), $.lH()))
+            s.push(T.RunUpdate_init(LangData.get_lang("dlfA"), o.r, n, n, n, n, 1000, 2000))
             s.push($.K())
             s.push(T.RunUpdate_init(LangData.get_lang("tHLa"), o.r, n, n, n, 0, 1000, 100))
             s = o.r
@@ -16584,7 +16976,7 @@ T.SklSaitama.prototype = {
         }
         r = a[0].a
         s = T.getAt(o.r, false, c)
-        q = $.cY()
+        q = 12
         // sklAttack
         // [0]发起攻击
         d.a.push(T.RunUpdate_init(LangData.get_lang("EYAn"), o.r, r, n, n, 0, 1000, 100))
@@ -16600,22 +16992,22 @@ T.SklSaitama.prototype = {
             s.go.j(0, b)
         } else r.j(0, b)
         s.fx = s.fx + a
-        return C.JsInt.P(a, $.ci())
+        return C.JsInt.P(a, 100)
     }
 }
 T.PlrSeed_.prototype = {}
 T.PlrSeed.prototype = {}
 T.PlrBossSlime.prototype = {
     gan() {
-        var s = $.a4(),
-            r = $.mN()
-        return H.b([s, r, 5, $.mL(), $.lL(), r, $.cY(), $.n_()], t.i)
+        var s = 6,
+            r = 21
+        return H.b([s, r, 5, $.mL(), $.lL(), r, 12, $.n_()], t.i)
     },
     gaS() {
         return H.b([], t.V)
     },
     gaG() {
-        return H.b([$.bT()], t.V)
+        return H.b(["piston"], t.V)
     },
     ac() {
         this.k3 = T.SklSimpleAttack_init(this)
@@ -16629,16 +17021,16 @@ T.BossSlime2.prototype = {
     eV() {
         var s, r, q, p = this
         if (p.aC == 1) {
-            for (s = 0; r = 10, s < r; ++s) p.t[s] = $.aR()
-            for (s = r; s < $.b1(); ++s) {
+            for (s = 0; r = 10, s < r; ++s) p.t[s] = 16
+            for (s = r; s < 50; ++s) {
                 q = p.t
-                q[s] = (q[s] | $.aR()) >>> 0
+                q[s] = (q[s] | 16) >>> 0
             }
         } else {
             for (s = 0; r = 10, s < r; ++s) p.t[s] = -5
-            for (s = r; s < $.b1(); ++s) {
+            for (s = r; s < 50; ++s) {
                 q = p.t
-                q[s] = (q[s] | $.at()) >>> 0
+                q[s] = (q[s] | 32) >>> 0
             }
         }
     },
@@ -16654,10 +17046,10 @@ T.BossSlime2.prototype = {
         if (this_.aC == 1) s.push(new T.SklSlimeSpawn(0))
         else {
             r = new T.sklHalf(0)
-            r.f = $.at()
+            r.f = 32
             s.push(r)
             r = new T.SklHeal(0)
-            r.f = $.at()
+            r.f = 32
             s.push(r)
         }
     },
@@ -16678,7 +17070,7 @@ T.SklSlimeSpawn.prototype = {
     b1(a, b, c, d) {
         var s, r, q, p, o, n, m, this_ = this,
             k = null
-        this_.r.r2.m(0, $.iJ(), new T.SklSlimeSpawnState())
+        this_.r.r2.m(0, "corpose", new T.SklSlimeSpawnState())
         s = d.a
         s.push($.K())
         // sklSlimeSpawn
@@ -16719,35 +17111,35 @@ T.SklSlimeSpawn.prototype = {
 T.PlrBossSonic.prototype = {
     gan() {
         var s = 10,
-            r = $.a4(),
-            q = $.eS(),
+            r = 6,
+            q = 1000,
             p = 0
-        return H.b([s, -r, q, p, s, -$.eT(), r, p], t.i)
+        return H.b([s, -r, q, p, s, -15, r, p], t.i)
     },
     gaS() {
         return H.b([], t.V)
     },
     gaG() {
-        return H.b([$.bT()], t.V)
+        return H.b(["piston"], t.V)
     },
     ac() {
         var s, r
         this.k3 = T.SklSimpleAttack_init(this)
         s = this.k1
         r = new T.SklRapid(0)
-        r.f = $.aI()
+        r.f = 48
         s.push(r)
         r = new T.SklCritical(0)
-        r.f = $.aI()
+        r.f = 48
         s.push(r)
         r = new T.SklCounter(0)
-        r.f = $.aI()
+        r.f = 48
         s.push(r)
     }
 }
 T.PlrBossYuri.prototype = {
     gan() {
-        return H.b([$.pt(), $.d1(), $.mX(), $.n2(), $.bg(), 5, $.at(), $.eW()], t.i)
+        return H.b([$.pt(), $.d1(), $.mX(), 9, 40, 5, 32, 24], t.i)
     },
     gaS() {
         return H.b([], t.V)
@@ -16760,13 +17152,13 @@ T.PlrBossYuri.prototype = {
         this.k3 = T.SklSimpleAttack_init(this)
         s = this.k1
         r = new T.SklYuriControl(0)
-        r.f = $.eX()
+        r.f = 256
         s.push(r)
         r = new T.SklDefend(0)
-        r.f = $.aI()
+        r.f = 48
         s.push(r)
         r = new T.SklReflect(0)
-        r.f = $.aI()
+        r.f = 48
         s.push(r)
     }
 }
@@ -16774,7 +17166,7 @@ T.SklYuriControl.prototype = {
     as(a, b) {
         var s = a.y,
             r = this.r
-        return s != r.z && a !== r && !a.r2.J(0, $.aE())
+        return s != r.z && a !== r && !a.r2.J(0, "charm")
     },
     v(a, b, c, d) {
         var s, r, q, p, o = null,
@@ -16784,9 +17176,9 @@ T.SklYuriControl.prototype = {
         // [0]使用[心灵控制]
         m.push(T.RunUpdate_init(LangData.get_lang("wneN"), this.r, n, o, o, 1, 1000, 100))
         s = n.y.c.length
-        r = $.B()
+        r = 3
         if (s < r) s = r
-        q = t.o.a(n.r2.h(0, $.aE()))
+        q = t.o.a(n.r2.h(0, "charm"))
         p = this.r
         if (q == null) {
             q = T.CharmState_init(p.z, n)
@@ -16798,7 +17190,7 @@ T.SklYuriControl.prototype = {
         }
         // sklCharmHit
         // [1]被[魅惑]了
-        m.push(T.RunUpdate_init(C.String.B(LangData.get_lang("yjhn"), $.nd()), this.r, n, o, o, $.cZ(), 1000, 100))
+        m.push(T.RunUpdate_init(C.String.B(LangData.get_lang("yjhn"), `<div class="smile s_charm"></div>`), this.r, n, o, o, 120, 1000, 100))
     }
 }
 T.Engine.prototype = {
@@ -16907,9 +17299,23 @@ T.Engine.prototype = {
 
                     o = C.Array.aV(sorted_hash_names, "\r")
                     sorted_hash = C.e.gaB().ab(o)
+                    // __probe: init
+                    if (globalThis.__probe_init) {
+                        console.log("[init] sorted_hash_names:", JSON.stringify(sorted_hash_names));
+                        console.log("[init] join_str:", JSON.stringify(o));
+                        console.log("[init] sorted_hash bytes:", Array.from(sorted_hash).join(","));
+                    }
                     this_.b = new LangData.SuperRC4()
                     this_.b.bd(sorted_hash, 1) // init 1
+                    // __probe: after bd
+                    if (globalThis.__probe_init) {
+                        console.log("[init] after bd rc4=(" + this_.b.a + "," + this_.b.b + ")");
+                    }
                     this_.b.bO(sorted_hash) // xor bytes once
+                    // __probe: after bO
+                    if (globalThis.__probe_init) {
+                        console.log("[init] after bO rc4=(" + this_.b.a + "," + this_.b.b + ")");
+                    }
 
                     o = sorted_names.length
                     h = 0
@@ -16932,6 +17338,10 @@ T.Engine.prototype = {
                     m = this_.b // rc4_holder
                     // name2p[name].sortInt = r.rFFFFFF;
                     n.Q = (m.n() << 16 | m.n() << 8 | m.n()) >>> 0
+                    // __probe: sortInt
+                    if (globalThis.__probe_init) {
+                        console.log("[init] build+sortInt plr=" + b0 + " sortInt=" + n.Q + " rc4=(" + m.a + "," + m.b + ")");
+                    }
                 case 4:
                     sorted_names.length === o || (0, H.F)(sorted_names), ++h
                     async_goto = 3
@@ -16971,13 +17381,35 @@ T.Engine.prototype = {
                             player = k[b2]
                             i = this_.b
                             group = player.e
+                            // __probe: encrypt
+                            if (globalThis.__probe_init) {
+                                console.log("[init] encrypt plr=" + group + " rc4_before=(" + i.a + "," + i.b + ")");
+                            }
                             i.bO(C.e.gaB().ab(group))
+                            // __probe: after encrypt
+                            if (globalThis.__probe_init) {
+                                console.log("[init] after encrypt rc4=(" + i.a + "," + i.b + ")");
+                            }
                         }
                         this_.b.bO(H.b([0], m))
+                        // __probe: after group zero
+                        if (globalThis.__probe_init) {
+                            console.log("[init] after group_zero rc4=(" + this_.b.a + "," + this_.b.b + ")");
+                        }
                         C.Array.a5(name2p, b1.f)
                     }
                     // p.spsum = rander.r255;=
-                    for (o = this_.c, n = o.length, h = 0; h < o.length; o.length === n || (0, H.F)(o), ++h) o[h].l = this_.b.n()
+                    // __probe: before move_point
+                    if (globalThis.__probe_init) {
+                        console.log("[init] before move_point rc4=(" + this_.b.a + "," + this_.b.b + ") players=" + JSON.stringify(this_.c.map(p => p.e)));
+                    }
+                    for (o = this_.c, n = o.length, h = 0; h < o.length; o.length === n || (0, H.F)(o), ++h) {
+                        o[h].l = this_.b.n()
+                        // __probe: move_point
+                        if (globalThis.__probe_init) {
+                            console.log("[init] move_point plr=" + o[h].e + " mp=" + o[h].l + " rc4=(" + this_.b.a + "," + this_.b.b + ")");
+                        }
+                    }
                 // for each
                 case 1:
                     return P._asyncReturn(q, async_completer)
@@ -16988,41 +17420,117 @@ T.Engine.prototype = {
     bE() {
         why_ns = 0
     },
+    /**
+     * round
+     * @param {number} a ?
+     * @param {RunUpdates} b updates!
+     */
     fz(a, b) {
-        // void round(RunUpdates updates) {
-        var s, this_ = this,
-            q = this_.ch,
-            players = this_.c
-        let p = C.JsInt.V(q + 1, players.length)
-        this_.ch = p
+        // 更具可读性的实现，保持原有逻辑不变
+        let this_ = this;
+        // 计算下一轮的玩家索引（循环取模）
+        // var nextIndex = C.JsInt.V(this_.ch + 1, this_.c.length);
+        let nextIndex = C.JsInt.V(this_.ch + 1, this_.c.length);
+        this_.ch = nextIndex;
 
-        // players[roundPos].step(r, updates);
-        J.rz(players[p], this_.b, b)
+        // __probe: trace tick
+        var __rc4_before = globalThis.__probe_tick ? [this_.b.a, this_.b.b] : null;
 
-        for (q = t.Y; p = b.b, p.length !== 0;) {
-            b.b = H.b([], q)
-            for (players = p.length, s = 0; s < p.length; p.length === players || (0, H.F)(p), ++s) p[s].$2(this_.b, b)
+        // 执行该位置玩家的 step（原：J.rz(players[p], this_.b, b)）
+        J.rz(this_.c[nextIndex], this_.b, b);
+
+        // 处理 updates.b 中的回调，直到队列为空
+        var callbackType = t.Y;
+        while (true) {
+            var callbacks = b.b;
+            if (!callbacks || callbacks.length === 0) break;
+            // 重置 updates.b 为同类型的空数组（保持原行为：b.b = H.b([], q)）
+            b.b = H.b([], callbackType);
+            // 逐个执行之前收集的回调：每项调用 $2(this_.b, b)
+            var len = callbacks.length;
+            for (var i = 0; i < len; ++i) {
+                callbacks[i].$2(this_.b, b);
+            }
+        }
+
+        // __probe: log tick
+        if (__rc4_before) {
+            var plr = this_.c[nextIndex];
+            var rc4_after = [this_.b.a, this_.b.b];
+            console.log(`[tick] idx=${nextIndex} plr=${plr.e} mp=${plr.l} spd=${plr.cy} rc4=(${__rc4_before[0]},${__rc4_before[1]})->(${rc4_after[0]},${rc4_after[1]}) bytes=${(rc4_after[0]-__rc4_before[0]+256)%256}`);
         }
     },
+    /**
+     * nextUpdates
+// O: nextUpdates
+async function O() {
+  // _end: 是否已结束 (ended flag)
+  if (_end) {
+    return null;
+  }
+
+  // updates: RunUpdates 实例 (updates container)
+  var updates = new RunUpdates();
+
+  // _winner: 胜利方 (winner group)
+  if (_winner != null) {
+    // outputwin: 输出胜利信息占位 (output winner placeholder)
+    var outputwin;
+    updates.add(new RunUpdateWin(_winner.initPlayers[0], outputwin));
+    _end = true;
+
+    // _checktime: (awaitable) 时间检查函数
+    await _checktime();
+    return updates;
+  }
+
+  try {
+    // 当没有 winner 时循环执行回合处理
+    while (_winner == null) {
+      // round: 执行一轮更新，传入 updates
+      round(updates);
+      // 如果有输出更新则返回
+      if (updates.updates && updates.updates.length !== 0) {
+        return updates;
+      }
+    }
+  } catch (err) {
+    // err: 捕获的异常 (error)
+    // 如果异常是 Grp 类型则忽略，否则打印错误和堆栈
+    if (err instanceof Grp) {
+      // ignore
+    } else {
+      debug(err);
+      debug(err && err.stack);
+    }
+  }
+
+  if (updates.updates && updates.updates.length !== 0) {
+    return updates;
+  }
+  return null;
+}
+     */
     O() {
-        // 运行时?
-        // logger.debug("运行 主循环")
+        // engine main
         var async_goto = 0,
             async_completer = P._makeAsyncAwaitCompleter(t.d),
             result_, p = [],
             this_ = this,
-            rc4, m, l, k, j, i, h, g, f
+            updates, k, j, i, h, g
         var $async$O = P._wrapJsFunctionForAsync(function (a, b) {
             if (a === 1) return P.async_rethrow(b, async_completer)
             while (true) $async$outer: switch (async_goto) {
                 case 0:
-                    if (this_.cx) {
+                    if (this_.cx) { // end
                         result_ = null
                         async_goto = 1
                         break
                     }
-                    rc4 = new T.aq(H.b([], t.U), H.b([], t.Y))
+                    updates = new T.aq(H.b([], t.U), H.b([], t.Y)) // updates
                     k = this_.cy
+                    // if (winner != null) -> 3
+                    // else -> 4
                     async_goto = k != null ? 3 : 4
                     break
                 case 3:
@@ -17031,26 +17539,26 @@ T.Engine.prototype = {
                     // [2]获得胜利
                     j = LangData.get_lang("eTpN")
                     i = 0
-                    h = $.lJ()
+                    h = 3000
                     g = new T.RunUpdateWin(i, h, 100, j, k, null, null, null)
                     g.aK(j, k, null, null, null, i, h, 100)
-                    rc4.a.push(g)
+                    updates.a.push(g)
                     this_.cx = true
                     async_goto = 5
                     // return P._asyncAwait(this_.bE(), $async$O)
                     why_ns = 0
                 // $.mc = 0 // 来自bE()
                 case 5:
-                    result_ = rc4
+                    result_ = updates
                     async_goto = 1
                 // break
                 case 4:
                     try {
                         while (this_.cy == null) {
                             // round
-                            this_.fz(0, rc4)
-                            if (rc4.a.length !== 0) {
-                                result_ = rc4
+                            this_.fz(0, updates)
+                            if (updates.a.length !== 0) {
+                                result_ = updates
                                 async_goto = 1
                                 break $async$outer
                             }
@@ -17062,9 +17570,9 @@ T.Engine.prototype = {
                         // m = H.unwrap_Exception(e)
                         // l = H.getTraceFromException(e)
                     }
-                    if (rc4.a.length !== 0) {
+                    if (updates.a.length !== 0) {
                         // updates.updates.isNotEmpty
-                        result_ = rc4
+                        result_ = updates
                         async_goto = 1
                         // return updates
                         break
@@ -17097,7 +17605,7 @@ T.Engine.prototype = {
         //         case 0:
         //             this_.db = b
         //             p = Date.now()
-        //             o = $.bx()
+        //             o = 2048
         //             n = this_.dx
         //             n[0] = p + o
         //             o = this_.a
@@ -17123,7 +17631,7 @@ T.Engine.prototype = {
             p, o, n, m, l, k, j
         this_.db = b
         p = Date.now()
-        o = $.bx()
+        o = 2048
         n = this_.dx
         n[0] = p + o
         o = this_.a
@@ -17221,7 +17729,12 @@ T.Grp.prototype = {
         s = this.a
         r = s.e
         C.Array.U(r, a)
-        if (s.ch <= C.Array.aT(s.c, a)) --s.ch
+        var __idx = C.Array.aT(s.c, a)
+        if (globalThis.__probe_tick) console.log(`[dj] removing=${a.e} idx=${__idx} ch_before=${s.ch} ch_after=${s.ch <= __idx ? s.ch - 1 : s.ch} players_before=${s.c.map(p=>p.e).join(',')}`)
+        if (globalThis.__probe_action_skill_target != null && H.iF(a.e, globalThis.__probe_action_skill_target, 0)) {
+            console.log(`[dj_stack] removing=${a.e}\n${new Error().stack}`)
+        }
+        if (s.ch <= __idx) --s.ch
         C.Array.U(s.c, a)
         q = this.f.length
         p = 0
@@ -17418,8 +17931,8 @@ T.Plr.prototype = {
                 team = $.rj()
                 if (team.J(0, q)) {
                     p = team.h(0, q).$2(q, this_)
-                } else if (J.nz(q, $.cl())) {
-                    p = new T.BossWeapon(q, this_, P.aL($.av(), 0, false, t.B))
+                } else if (J.nz(q, "!")) {
+                    p = new T.BossWeapon(q, this_, P.aL(8, 0, false, t.B))
                     p.a = q
                     p.a = C.String.af(q, 0, q.length - 1)
                 } else {
@@ -17448,7 +17961,7 @@ T.Plr.prototype = {
         q = why_ns
         why_ns += 1
 
-        // q = C.JsInt.P(Math.abs(q), $.bx())
+        // q = C.JsInt.P(Math.abs(q), 2048)
         q = C.JsInt.P(Math.abs(q), 2048)
         q = Math.abs(q) / 2048
         n = 0
@@ -17467,7 +17980,7 @@ T.Plr.prototype = {
             j = name[k]
             // i = (j * $.nW + $.nV & $.mP()) >>> 0
             // if (i >= $.mb && i < $.r2()) {
-            //     C.Array.j(this_.t, (i + $.r3() * $.r4().ax($.eX()) & 63) >>> 0)
+            //     C.Array.j(this_.t, (i + $.r3() * $.r4().ax(256) & 63) >>> 0)
             // } else rc4.push(j)
             i = (j * 181 + 160 & 255) >>> 0
             if (i >= 89 && i < 217) {
@@ -17498,7 +18011,7 @@ T.Plr.prototype = {
         // if (p > 64) throw H.wrap_expression(p)
         q = T.lC(q) // name
         p = T.lC(this_.b) // team
-        // s = $.a4() // 6
+        // s = 6 // 6
         // this_.x = Math.max(H.ar(q), p - s)
         this_.x = Math.max(H.ar(q), p - 6)
         // logger.info("name", this.a, "team", this.b, "x(final)", this_.x, "p(team)", p, "q(name)", q)
@@ -17513,7 +18026,7 @@ T.Plr.prototype = {
         /// upgrade leader from team member
         var s, this_ = this
         if (a.length === this_.t.length) {
-            for (s = $.ap(); s < this_.t.length; ++s) {
+            for (s = 7; s < this_.t.length; ++s) {
                 if ((a[s - 1] === this_.E[s]) && a[s] > this_.t[s]) {
                     this_.t[s] = a[s]
                 }
@@ -17599,11 +18112,15 @@ T.Plr.prototype = {
         if (weapon != null) weapon.cs()
         this_.bs() // addSkillsToProc
         this_.cn() // initValues
+        // DEBUG PROBE: dump stats after build
+        if (typeof globalThis.__probe_dump === 'function') {
+            globalThis.__probe_dump(this_);
+        }
     },
     aU() {
         // initRawAttr
         var s, r, q, p, this_ = this
-        // for (s = 10; s < 31; s += $.B()) {
+        // for (s = 10; s < 31; s += 3) {
         for (s = 10; s < 31; s += 3) {
             r = this_.q
             q = C.Array.al(this_.t, s, s + 3)
@@ -17619,7 +18136,8 @@ T.Plr.prototype = {
         q = C.Array.al(this_.t, 0, 10)
         C.Array.aJ(q)
 
-        C.Array.j(r, C.Array.dz(C.Array.al(q, $.B(), $.ap()), new T.jX()) + $.mK())
+        // ap -> 7
+        C.Array.j(r, C.Array.dz(C.Array.al(q, 3, 7), new T.jX()) + 154)
         // 至此，属性初始化完毕，this_.q就是八围 但前7围要+36才是面板属性！！！
         // test
         //this_.q = [-36, 0, 0, 0, -36, 0, 0, 100]
@@ -17679,7 +18197,7 @@ T.Plr.prototype = {
         r.fx = new T.PostActionImpl(r)
         skills.push(r) // 19
 
-        r = new T.SklAccumulate($.pj(), 0)
+        r = new T.SklAccumulate(1.7000000476837158, 0)
         r.fr = new T.UpdateStateImpl(r)
         skills.push(r) // 20
 
@@ -17794,11 +18312,11 @@ T.Plr.prototype = {
 
             boostPassive = new T.BoostPassive()
             var skills = this_.k2
-            if (skills.length >= $.aR()) {
+            if (skills.length >= 16) {
                 skills = skills[$.p7()]
                 sortedSkills = this_.t
-                boostPassive.boostPassive(skills, sortedSkills[$.a6()], sortedSkills[$.pR()])
-                sortedSkills = this_.k2[$.eT()]
+                boostPassive.boostPassive(skills, sortedSkills[60], sortedSkills[$.pR()])
+                sortedSkills = this_.k2[15]
                 skills = this_.t
                 boostPassive.boostPassive(sortedSkills, skills[$.n_()], skills[63])
             }
@@ -17872,11 +18390,29 @@ T.Plr.prototype = {
         m = q[n]
         l = this_.q[4]
         k = this_.q[5]
-        j = $.B()
-        this_.N = (p - o + m + l - k) * n + q[j] + q[$.a4()]
+        j = 3
+        this_.N = (p - o + m + l - k) * n + q[j] + q[6]
         this_.Y = attr_sum * j + q[r]
         this_.H = 32768
     },
+    /**
+  void step(R r, RunUpdates updates) {
+    if (hp <= 0) {
+      return;
+    }
+    int stp = spd * (r.r3);
+    if (presteps.isNotEmpty) {
+      for (PreStepEntry entry in presteps) {
+        stp = entry.preStep(stp, r, updates);
+      }
+    }
+    spsum += stp;
+    if (spsum > 2048) {
+      spsum -= 2048;
+      action(r, updates);
+    }
+  }
+     */
     dN(a, b, c) {
         // void step(R r, RunUpdates updates) {
         var s, r, q, this_ = this
@@ -17888,43 +18424,139 @@ T.Plr.prototype = {
         if (!r.gbv(r))
             for (r = new Sgls.a_(r, r.b, r.$ti.i("a_<1*>")); r.u();) s = r.b.x.fo(s, b, c)
         r = this_.l = this_.l + s
-        q = $.bx()
-        if (r > q) {
-            this_.l = r - q
+        // 2048
+        if (r > 2048) {
+            this_.l = r - 2048
             this_.eE(0, b, c)
         }
     },
+    /**
+     * void action(R r, RunUpdates updates) {
+     * @param {number} a
+     * @param {*} b
+     * @param {*} c
+     * @returns
+     */
     eE(a, b, c) {
-        // void action(R r, RunUpdates updates) {
         var s, r, q, p, o, n, m, this_ = this,
-            k = null,
-            smart = (b.n() & 63) < this_.fr
+            k = null, smart
+        // __probe: trace action
+        var __tracing = false
+        if (globalThis.__probe_eE) {
+            __tracing = true
+            console.log(`[eE] start actor=${this_.e} rc4=(${b.a},${b.b})`)
+        }
+        var __action_probe_target = globalThis.__probe_action_skill_target
+        var __action_probe = __action_probe_target != null && H.iF(this_.e, __action_probe_target, 0)
+        if (__action_probe) {
+            console.log(`[action_probe] start actor=${this_.e} rc4=(${b.a},${b.b}) mp=${this_.go} wisdom=${this_.fr} frozen=${this_.A}`)
+        }
+        smart = (b.n() & 63) < this_.fr
+        if (__tracing) console.log(`[eE] after smart rc4=(${b.a},${b.b}) smart=${smart} wisdom=${this_.fr}`)
+        if (__action_probe) {
+            console.log(`[action_probe] after smart actor=${this_.e} rc4=(${b.a},${b.b}) smart=${smart} wisdom=${this_.fr}`)
+        }
         0
         // preAction
         s = this_.fn(smart, b, c)
+        if (__tracing) console.log(`[eE] after preAction rc4=(${b.a},${b.b}) forced=${s!=null}`)
+        if (__action_probe) {
+            console.log(`[action_probe] after preAction actor=${this_.e} rc4=(${b.a},${b.b}) forced=${s != null} forced_skill=${s == null ? "null" : s.constructor.name + ":" + s.f}`)
+        }
         // frozen
         if (this_.A) return
         if (s == null) {
-            r = (b.n() & 15) + $.av()
+            r = (b.n() & 15) + 8
+            if (__tracing) console.log(`[eE] req_mp=${r} mp=${this_.go} rc4=(${b.a},${b.b})`)
+            if (__action_probe) {
+                console.log(`[action_probe] req_mp actor=${this_.e} req_mp=${r} mp_before=${this_.go} rc4=(${b.a},${b.b})`)
+            }
             if (this_.go >= r) {
                 for (q = this_.k4, p = q.length, o = k, n = 0; n < q.length; q.length === p || (0, H.F)(q), ++n) {
                     m = q[n]
-                    if (!m.au(b, smart)) continue
+                    if (__tracing) console.log(`[eE] before prob skill_f=${m.f} rc4=(${b.a},${b.b})`)
+                    if (__action_probe) {
+                        console.log(`[action_probe] before prob actor=${this_.e} idx=${n} skill=${m.constructor.name} level=${m.f} rc4=(${b.a},${b.b})`)
+                    }
+                    if (!m.au(b, smart)) {
+                        if (__action_probe) {
+                            console.log(`[action_probe] prob failed actor=${this_.e} idx=${n} skill=${m.constructor.name} level=${m.f} rc4=(${b.a},${b.b})`)
+                        }
+                        continue
+                    }
+                    if (__tracing) console.log(`[eE] prob passed! rc4=(${b.a},${b.b})`)
+                    if (__action_probe) {
+                        console.log(`[action_probe] prob passed actor=${this_.e} idx=${n} skill=${m.constructor.name} level=${m.f} rc4=(${b.a},${b.b})`)
+                    }
                     o = m.aa(0, smart, b)
+                    if (__tracing) console.log(`[eE] after targets targets=${o?.length} rc4=(${b.a},${b.b})`)
+                    if (__action_probe) {
+                        console.log(`[action_probe] after targets actor=${this_.e} idx=${n} skill=${m.constructor.name} targets=${o == null ? "null" : "[" + o.map(function(x){return x.a.e}).join(",") + "]"} rc4=(${b.a},${b.b})`)
+                    }
                     if (o == null) continue
                     s = m
+                    if (__action_probe) {
+                        console.log(`[action_probe] selected skill actor=${this_.e} idx=${n} skill=${m.constructor.name} level=${m.f} rc4=(${b.a},${b.b})`)
+                    }
                     break
                 }
                 this_.go = this_.go - r
-            } else o = k
+                if (__action_probe) {
+                    console.log(`[action_probe] after mp pay actor=${this_.e} req_mp=${r} mp_after=${this_.go} rc4=(${b.a},${b.b})`)
+                }
+            } else {
+                if (__action_probe) {
+                    console.log(`[action_probe] insufficient mp actor=${this_.e} req_mp=${r} mp=${this_.go} rc4=(${b.a},${b.b})`)
+                }
+                o = k
+            }
         } else o = k
         if (s == null) s = this_.k3
+        if (__tracing) console.log(`[eE] before act isDefault=${s===this_.k3} hasTargets=${o!=null} rc4=(${b.a},${b.b})`)
+        if (__action_probe) {
+            console.log(`[action_probe] before act actor=${this_.e} isDefault=${s === this_.k3} skill=${s.constructor.name} targets=${o == null ? "null" : "[" + o.map(function(x){return x.a.e}).join(",") + "]"} rc4=(${b.a},${b.b})`)
+        }
         // skl.act(targets, smart, r, updates);
         s.v(o == null ? s.aa(0, smart, b) : o, smart, b, c)
-        if ((b.n() & 127) < this_.fr + 64) this_.go = this_.go + $.aR()
+        if (__tracing) console.log(`[eE] after act rc4=(${b.a},${b.b})`)
+        if (__action_probe) {
+            console.log(`[action_probe] after act actor=${this_.e} skill=${s.constructor.name} rc4=(${b.a},${b.b}) mp=${this_.go}`)
+        }
+        if ((b.n() & 127) < this_.fr + 64) this_.go = this_.go + 16
+        if (__tracing) console.log(`[eE] after recover rc4=(${b.a},${b.b})`)
+        if (__action_probe) {
+            console.log(`[action_probe] after recover actor=${this_.e} rc4=(${b.a},${b.b}) mp=${this_.go}`)
+        }
+        // postAction
         this_.at(b, c)
+        if (__tracing) console.log(`[eE] after postAction rc4=(${b.a},${b.b})`)
+        if (__action_probe) {
+            console.log(`[action_probe] after postAction actor=${this_.e} rc4=(${b.a},${b.b}) mp=${this_.go} hp=${this_.fx}`)
+        }
         if (this_.Z) this_.bL(k, c)
+        if (__tracing) console.log(`[eE] end action#${globalThis.__probe_eE_count} rc4=(${b.a},${b.b})`)
+        if (__action_probe) {
+            console.log(`[action_probe] end actor=${this_.e} rc4=(${b.a},${b.b}) mp=${this_.go} hp=${this_.fx}`)
+        }
     },
+    /**
+  void clearStates(Plr caster, RunUpdates updates) {
+    if (postAcioning) {
+      pendingClearStates = true;
+      return;
+    }
+    pendingClearStates = false;
+    for (String key in meta.keys.toList()..sort()) {
+      if (meta[key].metaType < 0) {
+        meta[key].destroy(caster, updates);
+        meta.remove(key);
+      }
+    }
+  }
+     * @param {*} a
+     * @param {*} b
+     * @returns
+     */
     bL(a, b) {
         var s, r, q, p, o, this_ = this
         if (this_.a_) {
@@ -17946,6 +18578,18 @@ T.Plr.prototype = {
         for (s = this.x1, s = new Sgls.a_(s, s.b, s.$ti.i("a_<1*>")), skl = null; s.u();) { skl = s.b.aN(skl, smart, r, updates) }
         return skl
     },
+    /**
+  void postAction(R r, RunUpdates updates) {
+    postAcioning = true;
+    updates.add(RunUpdate.newline);
+    for (PostActionEntry entry in postactions) {
+      entry.postAction(r, updates);
+    }
+    postAcioning = false;
+  }
+     * @param {*} a
+     * @param {*} b
+     */
     at(a, b) {
         var s
         this.a_ = true
@@ -17955,6 +18599,12 @@ T.Plr.prototype = {
     },
     du(a, b, c, d, e, f) {
         var s
+        // y1 是混合的 pre_defend 链：既有技能自己注册的 entry（如 Reflect），
+        // 也有战斗中动态插入的状态 entry（如 ProtectStat）。
+        // 这里直接按 y1 当前顺序执行，所以 ProtectStat/Reflect 的先后会改变 RC4 消耗；
+        // 对照 Rust 时不能把“技能 pre_defend”和“状态 pre_defend”拆成固定两段。
+        // 另外即使 a 一开始已经为 0，也还是会先跑当前顺序里的第一个 dv；
+        // 某些状态会在这里继续消耗 RC4，然后才返回 0 提前结束整条链。
         for (s = this.y1, s = new Sgls.a_(s, s.b, s.$ti.i("a_<1*>")); s.u();) {
             a = s.b.dv(a, b, c, this, d, e, f)
             if (a == 0) return 0
@@ -17981,7 +18631,7 @@ T.Plr.prototype = {
         if (p.fx > 0 && !p.A && T.dodge(q, r, e)) {
             // dodge (通用回避)
             // [0][回避]了攻击
-            f.a.push(T.RunUpdate_init(LangData.get_lang("BtqN"), p, c, null, null, $.as(), 1000, 100))
+            f.a.push(T.RunUpdate_init(LangData.get_lang("BtqN"), p, c, null, null, 20, 1000, 100))
             return 0
         }
         return p.bN(a, b, c, d, e, f)
@@ -18007,21 +18657,21 @@ T.Plr.prototype = {
         p = LangData.get_lang("kZsn")
         r = 0
         if (a === r) {
-            e.a.push(T.RunUpdate_init(C.String.B(C.String.fu(p, "1", "0"), $.ne()), n, n, new T.HDamage(0), null, 10, 1000, 100))
+            e.a.push(T.RunUpdate_init(C.String.B(C.String.fu(p, "1", "0"), `<div class="smile s_dmg0"></div>`), n, n, new T.HDamage(0), null, 10, 1000, 100))
             return 0
         }
         s = n.fx
         q = s - a
         n.fx = q
         if (q <= r) n.fx = r
-        if (a >= $.eU()) p = C.String.B(p, $.qz())
-        else if (a >= $.cZ()) p = C.String.B(p, $.qy())
+        if (a >= 160) p = C.String.B(p, `<div class="smile s_dmg160"></div>`)
+        else if (a >= 120) p = C.String.B(p, `<div class="smile s_dmg120"></div>`)
         r = new T.HPlr(s)
         r.a = n.e
         r.d = n.fx
         o = T.RunUpdate_init(p, b, r, new T.HDamage(a), null, a, 1000, 100)
         if (a > $.pr()) o.b = $.d0()
-        else o.b = $.eS() + a * 2
+        else o.b = 1000 + a * 2
         e.a.push(o)
         c.$5(b, n, a, d, e)
         return n.cr(a, s, b, d, e)
@@ -18044,7 +18694,7 @@ T.Plr.prototype = {
         s = this_.cD()
         r = new T.DPlr()
         r.a = this_.e
-        p.push(T.RunUpdate_init(s, b, r, null, null, $.b1(), 1000, 100))
+        p.push(T.RunUpdate_init(s, b, r, null, null, 50, 1000, 100))
         for (p = this_.L, p = new Sgls.a_(p, p.b, p.$ti.i("a_<1*>")); p.u();)
             if (p.b.b1(a, b, c, d)) break
         if (this_.fx > 0) return
@@ -18069,7 +18719,7 @@ T.Plr.prototype = {
         var s, r = this.Y,
             q = $.p4()
         if (r > q) {
-            s = C.JsInt.P(r - q, $.a6())
+            s = C.JsInt.P(r - q, 60)
             r = 2
             if (s > r) return C.JsInt.k(r)
             else return C.JsInt.k(s)
@@ -18082,8 +18732,8 @@ T.Plr.prototype = {
         if (o instanceof T.PlrBoss) n = C.N
         else {
             s = H.b([], t.i)
-            for (r = 10; r < $.d1(); r += $.B()) {
-                q = C.Array.al(o.E, r, r + $.B())
+            for (r = 10; r < $.d1(); r += 3) {
+                q = C.Array.al(o.E, r, r + 3)
                 p = q.length - 1
                 H.hL(q, 0, p, J.bO())
                 // if (p - 0 <= 32) H.ej(q, 0, p, J.bO())
@@ -18092,17 +18742,20 @@ T.Plr.prototype = {
             }
             q = C.Array.al(o.E, 0, 10)
             C.Array.aJ(q)
-            s.push(C.Array.dz(C.Array.al(q, $.B(), $.ap()), new T.jY()) + $.mK())
+            s.push(C.Array.dz(C.Array.al(q, 3, 7), new T.jY()) + $.mK())
             for (r = 0; r < s.length; ++r)
-                if (o.q[r] > s[r]) n.push(H.as_string($.lO()) + H.as_string(o.q[r] - s[r]))
+                if (o.q[r] > s[r]) n.push(H.as_string("+") + H.as_string(o.q[r] - s[r]))
                 else n.push("")
         }
-        return H.as_string(o.e) + "\t" + H.as_string(o.r) + "\t" + H.as_string(o.c) + "\t" + H.as_string(o.f) + "\t" + H.as_string(o.fy) + n[$.ap()] + "\t" + H.as_string(o.aY(o.q[0])) + n[0] + "\t" + H.as_string(o.aY(o.q[1])) + n[1] + "\t" + H.as_string(o.aY(o.q[2])) + n[2] + "\t" + H.as_string(o.aY(o.q[$.B()])) + n[$.B()] + "\t" + H.as_string(o.aY(o.q[4])) + n[4] + "\t" + H.as_string(o.aY(o.q[5])) + n[5] + "\t" + H.as_string(o.aY(o.q[$.a4()])) + n[$.a4()] + "\t" + H.as_string(o.cE())
+        let result = H.as_string(o.e) + "\t" + H.as_string(o.r) + "\t" + H.as_string(o.c) + "\t" + H.as_string(o.f) + "\t" + H.as_string(o.fy) + n[7] + "\t" + H.as_string(o.aY(o.q[0])) + n[0] + "\t" + H.as_string(o.aY(o.q[1])) + n[1] + "\t" + H.as_string(o.aY(o.q[2])) + n[2] + "\t" + H.as_string(o.aY(o.q[3])) + n[3] + "\t" + H.as_string(o.aY(o.q[4])) + n[4] + "\t" + H.as_string(o.aY(o.q[5])) + n[5] + "\t" + H.as_string(o.aY(o.q[6])) + n[6] + "\t" + H.as_string(o.cE());
+        // logger.info("角色信息", result)
+        return result
     },
     aY(a) {
-        var s = $.mU()
+        // var s = 36
+        var s = 36
         if (a > $.q4()) {
-            return $.iK() // ??
+            return "??" // ??
         }
         return C.JsInt.k(a + s)
     },
@@ -18164,14 +18817,18 @@ T.PostDefendImpl.prototype = {
         return this.r
     }
 }
+// PostDamageImpl - 包装器，用于将技能动态注册到 post_damage 列表
+// 关键：ga4() 返回 Infinity，意味着使用 MList.j() 插入时会被放到列表末尾
+// 这确保了动态添加的 post_damage hook（如 Assassinate 的潜行识破）在静态 hook 之后执行
 T.PostDamageImpl.prototype = {
     aD(a, b, c, d) {
-        return this.x.aD(a, b, c, d)
+        return this.x.aD(a, b, c, d)  // 委托给包装的技能
     },
     ga4() {
-        return 1 / 0
+        return 1 / 0  // Infinity - 排到最后执行
     }
 }
+// PreActionImpl - 同理，用于 pre_action 列表
 T.PreActionImpl.prototype = {
     aN(a, b, c, d) {
         return this.x.aN(a, b, c, d)
@@ -18180,6 +18837,7 @@ T.PreActionImpl.prototype = {
         return 1 / 0
     }
 }
+// PostActionImpl - 同理，用于 post_action 列表
 T.PostActionImpl.prototype = {
     at(a, b) {
         return this.x.at(a, b)
@@ -18208,6 +18866,9 @@ T.Skill.prototype = {
     },
     W() { },
     b9(a) {
+        // 默认选目标不是用“tick 开头拍下来的候选快照”，
+        // 而是每次直接回到当前的 gap().z live 视图里抽样。
+        // 所以同轮里 addNew / dj 造成的即时增删，会立刻改变 aa() 看到的 all_alive / ally_alive。
         var s = this.gap().z
         return a.fm(s.a.e, s.f)
     },
@@ -18228,7 +18889,7 @@ T.Skill.prototype = {
         return 2
     },
     gb8() {
-        return $.B()
+        return 3
     },
     aa(a, b, c) {
         var s, r, q, p, o = this,
@@ -18256,6 +18917,9 @@ T.Skill.prototype = {
         for (q = m.length, p = 0; p < m.length; m.length === q || (0, H.F)(m), ++p) {
             s = m[p]
             r.push(new T.bG(s, o.a9(s, b, c)))
+        }
+        if (globalThis.__probe_action_skill_target != null && H.iF(o.r.e, globalThis.__probe_action_skill_target, 0)) {
+            console.log(`[attack_aa] actor=${o.r.e} smart=${b} all_alive=[${o.gap().z.a.e.map(x => x.e).join(", ")}] ally_alive=[${o.gap().z.f.map(x => x.e).join(", ")}] picks=[${m.map(x => x.e).join(", ")}] scores=[${r.map(x => `${x.a.e}:${x.b}`).join(", ")}] rc4=(${c.a},${c.b})`)
         }
         C.Array.bb(r, T.v5())
         return r
@@ -18294,6 +18958,7 @@ T.SklAttack.prototype = {
             }
         }
         p = T.getAt(o.r, false, c)
+        // sklAttack
         // sklAttack
         // [0]发起攻击
         d.a.push(T.RunUpdate_init(LangData.get_lang("EYAn"), o.r, m, n, n, 0, 1000, 100))
@@ -18338,7 +19003,7 @@ T.SklCounter.prototype = {
             r = $.K()
             q = b.a
             q.push(r)
-            q.push(T.RunUpdate_init(C.String.B(LangData.get_lang("VgaN"), $.qw()), p.r, p.cx, null, null, 1, 1000, 100))
+            q.push(T.RunUpdate_init(C.String.B(LangData.get_lang("VgaN"), `<div class="smile s_counter"></div>`), p.r, p.cx, null, null, 1, 1000, 100))
             p.cx.a3(s, false, p.r, T.ad(), a, b)
         }
     },
@@ -18350,7 +19015,7 @@ T.SklDefend.prototype = {
     },
     aq(a, b, c, d, e) {
         if (d.n() < this.f && this.r.bw(d)) {
-            e.a.push(T.RunUpdate_init(LangData.get_lang("NIMn"), this.r, b, null, null, $.bg(), 1000, 100))
+            e.a.push(T.RunUpdate_init(LangData.get_lang("NIMn"), this.r, b, null, null, 40, 1000, 100))
             return C.JsInt.P(a, 2)
         }
         return a
@@ -18360,43 +19025,60 @@ T.SklDefend.prototype = {
     },
     $iaB: 1
 }
+// SklHide - 隐匿技能
+// 隐匿是一个被动技能，当玩家受到伤害时有概率触发
+// 触发后会降低吸引度(attract)到10%，使敌人更难选中该玩家
+// 关键机制：
+// - W(): 初始化时注册到 r.G (post_damage hooks) 和 r.x1 (pre_action hooks)
+// - aD(): post_damage 回调，检查概率触发隐匿
+// - ar(): update_state 回调，应用隐匿效果（attract /= 10, 高等级加属性）
+// - aN(): pre_action 回调，清除隐匿状态
+// 注意：隐匿的 aD 使用默认 ga4()=10000，而 Assassinate 的 PostDamageImpl 使用 ga4()=Infinity
+// 这意味着隐匿的 post_damage 会先于 Assassinate 执行
 T.SklHide.prototype = {
     W() {
         var s = this
-        s.r.G.j(0, s)
-        s.r.x1.j(0, s.Q)
+        s.r.G.j(0, s)  // 注册到 post_damage hooks
+        s.r.x1.j(0, s.Q)  // 注册到 pre_action hooks
     },
+    // aD: post_damage 回调
+    // a: 伤害值, b: 攻击者, c: RC4, d: updates
     aD(a, b, c, d) {
         var s = this,
-            r = s.f,
+            r = s.f,  // 技能等级
             q = 0
-        if (r <= q || s.ch.a != null) return
+        if (r <= q || s.ch.a != null) return  // 等级0或已触发，跳过
         r = s.r
+        // 触发条件：存活(fx>0) + 非冰冻(!A) + 队友>1 + 概率检定
+        // 这里的队友数读取的是当前 alive roster；如果同一 action 前半段刚用幻术 addNew 了 shadow，
+        // poison/post_damage 链来到这里时会立刻看到那只 shadow，因此会比延迟插入实现多推进 1 个 RC4 字节。
         if (r.fx > q && !r.A && r.z.f.length > 1 && (c.n() & 63) < s.f) {
-            s.r.rx.j(0, s.ch)
-            s.r.F()
-            r = LangData.get_lang("oIIa")
+            s.r.rx.j(0, s.ch)  // 注册到 update_state hooks
+            s.r.F()  // 调用 updateStates
+            r = LangData.get_lang("oIIa")  // "[0]发动[隐匿]"
             q = s.r
             d.a.push(T.RunUpdate_init(r, q, q, null, null, 10, 1000, 100))
         }
     },
+    // aN: pre_action 回调，清除隐匿状态
     aN(a, b, c, d) {
         var s = this.ch
         if (s.a != null) {
-            s.D()
-            this.r.F()
+            s.D()  // 移除 update_state hook
+            this.r.F()  // 重新计算状态
         }
     },
+    // ar: update_state 回调，应用隐匿效果
     ar(a) {
         var s, r, q, p = this.r
-        p.H = p.H / 10
+        p.H = p.H / 10  // attract 降到 10%
         s = this.f
         r = 63
-        if (s > r) {
+        if (s > r) {  // 高等级加属性
             q = s - r
-            p.db = p.db + q
-            p.cx = p.cx + q
-            p.dy = p.dy + q
+            p.db = p.db + q  // agility
+            p.cx = p.cx + q  // defense
+            p.dy = p.dy + q  // resistance
         }
     },
     $iah: 1
@@ -18454,11 +19136,11 @@ T.SklMerge.prototype = {
                 a.l = 0
             }
             if (o) {
-                a.r2.m(0, $.iJ(), new T.MergeState())
+                a.r2.m(0, "corpose", new T.MergeState())
                 this_.r.F()
                 r = c.a
                 r.push($.K())
-                r.push(T.RunUpdate_init(LangData.get_lang("yGkN"), this_.r, a, j, j, $.a6(), $.d0(), 100))
+                r.push(T.RunUpdate_init(LangData.get_lang("yGkN"), this_.r, a, j, j, 60, $.d0(), 100))
                 q = LangData.get_lang("PGSN")
                 p = new T.MPlr()
                 p.cO(this_.r)
@@ -18476,10 +19158,15 @@ T.ProtectStat.prototype = {
     },
     dG(a) {
         var s, r, q, p, o, n = this
+        var __dt = globalThis.__probe_protect_target
         for (s = n.x, r = n.r, q = r.r2; s.length !== 0;) {
+            if (__dt && r.e === __dt) console.log(`[dG] pick_from len=${s.length} rc4=(${a.a},${a.b})`)
             p = a.b5(s)
+            if (__dt && r.e === __dt) console.log(`[dG] picked=${p.r.e} lv=${p.f} rc4=(${a.a},${a.b})`)
             if (p.r.z == r.y && (a.n() & 127) < p.f && p.r.bw(a)) {
+                if (__dt && r.e === __dt) console.log(`[dG] trigger ok, before cI rc4=(${a.a},${a.b})`)
                 p.cI(a)
+                if (__dt && r.e === __dt) console.log(`[dG] after cI rc4=(${a.a},${a.b})`)
                 return p
             } else {
                 C.Array.U(s, p)
@@ -18491,7 +19178,7 @@ T.ProtectStat.prototype = {
                         --o.a
                         n.a = null
                     }
-                    q.U(0, $.d6())
+                    q.U(0, "protect")
                 }
                 p.Q = null
             }
@@ -18504,29 +19191,40 @@ T.ProtectStat.prototype = {
         C.Array.U(s, a)
         if (s.length === 0) {
             this.D()
-            this.r.r2.U(0, $.d6())
+            this.r.r2.U(0, "protect")
         }
     },
     dv(a, b, c, d, e, f, g) {
-        var s, r, q, p = this.dG(f)
+        var s, r, q, p
+        var __dt = globalThis.__probe_protect_target
+        if (__dt && d.e === __dt) console.log(`[dv_protect] start owner=${d.e} caster=${c.e} atp=${a} rc4=(${f.a},${f.b})`)
+        p = this.dG(f)
         if (p != null) {
             s = p.r
             // sklProtect
             // [0][守护][1]
-            g.a.push(T.RunUpdate_init(LangData.get_lang("JzmA"), s, d, null, null, $.bg(), 1000, 100))
+            g.a.push(T.RunUpdate_init(LangData.get_lang("JzmA"), s, d, null, null, 40, 1000, 100))
+            if (__dt && d.e === __dt) console.log(`[dv_protect] before protector_predefend protector=${s.e} rc4=(${f.a},${f.b})`)
             a = s.du(a, b, c, e, f, g)
+            if (__dt && d.e === __dt) console.log(`[dv_protect] after protector_predefend atp=${a} rc4=(${f.a},${f.b})`)
             r = 0
             if (a == 0) return 0
             q = T.getDf(s, b, f)
-            s.aF(s.aq(C.d.eW(a * $.b0() / q), c, e, f, g), c, e, f, g)
+            if (__dt && d.e === __dt) console.log(`[dv_protect] before damage dfp=${q} dmg=${C.d.eW(a * 0.5 / q)} rc4=(${f.a},${f.b})`)
+            s.aF(s.aq(C.d.eW(a * 0.5 / q), c, e, f, g), c, e, f, g)
+            if (__dt && d.e === __dt) console.log(`[dv_protect] after damage rc4=(${f.a},${f.b})`)
             return 0
         }
+        if (__dt && d.e === __dt) console.log(`[dv_protect] no protector rc4=(${f.a},${f.b})`)
         return a
     }
 }
 T.SklProtect.prototype = {
     b9(a) {
         var s = this.r
+        if (globalThis.__probe_protect_candidates && s.e === globalThis.__probe_protect_candidates) {
+            console.log(`[protect_b9] candidates=[${s.z.f.map(p => p.e).join(',')}] owner_pos=${s.z.f.indexOf(s)} rc4=(${a.a},${a.b})`)
+        }
         return a.fk(s.z.f, s)
     },
     as(a, b) {
@@ -18536,7 +19234,7 @@ T.SklProtect.prototype = {
         var s, r
         if (b) {
             s = 1
-            r = t.Q.a(a.r2.h(0, $.d6()))
+            r = t.Q.a(a.r2.h(0, "protect"))
             if (r != null) s = r.x.length + 1
             return 1 / T.rateHiHp(a) * a.N / s
         }
@@ -18547,19 +19245,25 @@ T.SklProtect.prototype = {
             p = q.aa(0, (a.n() & 127) < q.r.fr, a),
             o = p != null ? p[0].a : null,
             n = q.Q
+        if (globalThis.__probe_protect_all && q.r.e === globalThis.__probe_protect_all) {
+            console.log(`[protect_all] cI protector=${q.r.e} old=${n != null ? n.e : null} new=${o != null ? o.e : null} level=${q.f} rc4=(${a.a},${a.b})`)
+        }
         if (n == o) return
         if (n != null) {
-            s = t.Q.a(n.r2.h(0, $.d6()))
+            s = t.Q.a(n.r2.h(0, "protect"))
             if (s != null) s.fs(q)
         }
         q.Q = o
         if (o != null) {
             n = o.r2
-            r = t.Q.a(n.h(0, $.d6()))
+            r = t.Q.a(n.h(0, "protect"))
             if (r == null) {
                 r = new T.ProtectStat(o, H.b([], t.gN))
-                n.m(0, $.d6(), r)
+                n.m(0, "protect", r)
                 o.y1.j(0, r)
+                if (globalThis.__probe_protect_setup && o.e === globalThis.__probe_protect_setup) {
+                    console.log(`[protect_setup] NEW ProtectStat created on ${o.e} by protector=${q.r.e} rc4=(${a.a},${a.b})`)
+                }
             }
             r.x.push(q)
         }
@@ -18569,6 +19273,10 @@ T.SklProtect.prototype = {
         return false
     },
     W() {
+        // Protect 自身就是统一 x2/postAction 队列里的 entry，不是单独的“状态阶段”。
+        // 因此它和 PoisonState 会直接竞争同一条队列的相对顺序：
+        // 如果战斗中途才把 Protect 注册进来（例如当前 actor 刚获得这项被动），
+        // 已经挂在 x2 里的 PoisonState 仍可能排在它前面，先结算毒再重选守护目标。
         this.r.x2.j(0, this)
     },
     $ibq: 1
@@ -18578,9 +19286,11 @@ T.SklReflect.prototype = {
         var s, r, q = this
         if (c.fx <= 0) return a
         if (f.n() < q.f && f.n() < 128 && q.r.bw(f)) {
-            s = T.getAt(q.r, true, f) * $.b0()
+            s = T.getAt(q.r, true, f) * 0.5
             if (s > a) s = a
-            g.a.push(T.RunUpdate_init(C.String.B(LangData.get_lang("lnNA"), $.qI()), q.r, c, null, null, $.as(), $.d0(), 100))
+            g.a.push(T.RunUpdate_init(C.String.B(LangData.get_lang("lnNA"), `<div class="smile s_reflect"></div>`), q.r, c, null, null, 20, $.d0(), 100))
+            // 这里必须先结算反伤造成的 a3/死亡链，再扣反弹者自己的 move point。
+            // 否则像 Merge 这种依赖当前 move point 比较的 post-kill 逻辑会拿到错误快照。
             c.a3(s, true, q.r, e, f, g)
             r = q.r
             r.l = r.l - $.mY()
@@ -18602,8 +19312,13 @@ T.SklReraise.prototype = {
             o = c.n(),
             n = p.f
         if ((o & 127) < n) {
+            // Reraise 只是在当前死亡链里把 owner.fx 拉回 1..16 并输出两条日志。
+            // 它不会像 Revive 那样重新 aZ()/addNew 把角色插回 grp.f / Engine.e，
+            // 因为 owner 在这条 bm() 链上本来就还没执行 dj() 移出 round/alive 视图。
+            // 对齐 Rust 时，这里如果额外走“queue_revival -> sync revive_player”会平白制造一次复活同步，
+            // 从而把后续 round cursor / 行动顺序带偏，正是 3v3v3 这类 case 会炸开的点。
             p.f = C.JsInt.P(n + 1, 2)
-            o = C.String.B(LangData.get_lang("DWRn"), $.ng())
+            o = C.String.B(LangData.get_lang("DWRn"), `<div class="smile s_revive"></div>`)
             n = p.r
             s = d.a
             s.push(T.RunUpdate_init(o, n, n, null, null, 80, $.d0(), 100))
@@ -18649,23 +19364,23 @@ T.ShieldStat_.prototype = {
     },
     K(a, b) {
         this.D()
-        this.r.r2.U(0, $.lR())
+        this.r.r2.U(0, "shield")
     }
 }
 T.SklShield.prototype = {
     aN(a, b, c, d) {
         var s, r, q, this_ = this
         if (this_.f > 0) {
-            s = t.eb.a(this_.r.r2.h(0, $.lR()))
+            s = t.eb.a(this_.r.r2.h(0, "shield"))
             if (s == null) {
                 r = this_.r
                 s = new T.ShieldStat_(r, 0)
-                r.r2.m(0, $.lR(), s)
+                r.r2.m(0, "shield", s)
                 this_.r.y2.j(0, s)
             }
             r = this_.f
             q = s.x
-            if (r >= q) s.x = q + (c.ax(1 + C.JsInt.P(r * $.B(), 4)) + 1)
+            if (r >= q) s.x = q + (c.ax(1 + C.JsInt.P(r * 3, 4)) + 1)
         }
         return a
     },
@@ -18684,24 +19399,26 @@ T.SklUpgrade.prototype = {
             o = q.f,
             n = 0
         if (o <= n || q.Q.a != null) return
-        s = $.aR()
+        s = 16
         r = 63
         if (o > r) s += o - r
         o = q.r.fx
+        // Runtime ordering note: on the same owner, Hide.aD executes before Upgrade.aD.
+        // Upgrade consumes extra r63 rolls, so moving it ahead of Hide shifts Hide's RNG.
         if (o > n && o < s + (c.n() & 63) && (c.n() & 63) < q.f) {
-            q.r.r2.m(0, $.nl(), q)
+            q.r.r2.m(0, "upgrade", q)
             q.r.rx.j(0, q.Q)
             q.r.F()
             o = d.a
             o.push($.K())
             n = LangData.get_lang("TRcn")
             r = q.r
-            o.push(T.RunUpdate_init(n, r, r, p, p, $.a6(), $.d0(), 100))
-            r = C.String.B(LangData.get_lang("iTtn"), $.qK())
+            o.push(T.RunUpdate_init(n, r, r, p, p, 60, $.d0(), 100))
+            r = C.String.B(LangData.get_lang("iTtn"), `<div class="smile s_upgrade"></div>`)
             n = q.r
             o.push(T.RunUpdate_init(r, n, n, p, p, 0, 1000, 100))
             n = q.r
-            n.l = n.l + $.lM()
+            n.l = n.l + 400
         }
     },
     gT() {
@@ -18709,7 +19426,7 @@ T.SklUpgrade.prototype = {
     },
     K(a, b) {
         var s, r = this
-        r.r.r2.U(0, $.nl())
+        r.r.r2.U(0, "upgrade")
         r.Q.D()
         r.r.F()
         if (r.r.fx > 0) {
@@ -18721,14 +19438,14 @@ T.SklUpgrade.prototype = {
     ar(a) {
         var s = this.r,
             r = s.ch,
-            q = $.lI()
+            q = 30
         s.ch = r + q
         s.cx = s.cx + q
         s.db = s.db + q
         s.dx = s.dx + q
         s.dy = s.dy + q
         q = s.cy
-        r = $.as()
+        r = 20
         s.cy = q + r
         s.fr = s.fr + r
     },
@@ -18763,8 +19480,8 @@ T.PlrZombie.prototype = {
         s = this.q
         r = 0
         s[r] = r
-        s[$.a4()] = r
-        r = $.ap()
+        s[6] = r
+        r = 7
         s[r] = C.d.P(s[r], 2)
     }
 }
@@ -18781,8 +19498,8 @@ T.SklZombie.prototype = {
         var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e, dies, kills, b, a, a0, a1, a2, a3, this_ = this,
             a5 = null
         if (!(a6 instanceof T.Minion) && (a7.n() & 63) < this_.f && this_.r.bw(a7)) {
-            a6.r2.m(0, $.iJ(), new T.ZombieState())
-            s = H.as_string(this_.r.a) + "?" + H.as_string($.qZ())
+            a6.r2.m(0, "corpose", new T.ZombieState())
+            s = H.as_string(this_.r.a) + "?" + H.as_string("zombie")
             // name + ? + zombie
             r = this_.r
             q = r.b
@@ -18829,6 +19546,8 @@ T.SklZombie.prototype = {
             a3.a1(s, q, r, a5)
             a3.a6 = new T.cp(a3)
             a3.aj = this_
+            // zombie 和 shadow/summon 一样：a 是 owner.a + "?zombie"，e 是 owner?N，r 才是“丧尸”。
+            // 行为对齐时要保留这三层分工，不能把内部名和日志名压成同一列。
             a3.e = T.getMinionName(this_.r)
             // sklZombieName
             // 丧尸
@@ -18843,7 +19562,7 @@ T.SklZombie.prototype = {
             r.push($.K())
             // sklZombie
             // [0][召唤亡灵]
-            r.push(T.RunUpdate_init(LangData.get_lang("apma"), this_.r, a6, a5, a5, $.a6(), $.d0(), 100))
+            r.push(T.RunUpdate_init(LangData.get_lang("apma"), this_.r, a6, a5, a5, 60, $.d0(), 100))
             // sklZombied
             // [2]变成了[1]
             q = LangData.get_lang("kXba")
@@ -18873,14 +19592,14 @@ T.BossWeapon.prototype = {
         s = d + 2
         r = c[s]
         s = a[s]
-        for (q = 0, p = q; p < $.B(); ++p) {
+        for (q = 0, p = q; p < 3; ++p) {
             o = d + p
             n = c[o]
             m = b[o]
             l = n - m
             if (l > q) b[o] = m + l
             else {
-                n = $.at()
+                n = 32
                 if (m < n) b[o] = m + n
             }
         }
@@ -18889,7 +19608,7 @@ T.BossWeapon.prototype = {
     bn() {
         var s = this,
             r = s.c
-        s.cB(r.E, r.t, s.d, $.ap())
+        s.cB(r.E, r.t, s.d, 7)
         s.dW()
     }
 }
@@ -18909,11 +19628,11 @@ T.SklDeathNote.prototype = {
     },
     v(a, b, c, d) {
         var s, r, q, p = this
-        d.a.push(T.RunUpdate_init(LangData.get_lang("NbSn"), p.r, p.fx, null, null, $.as(), 1000, 100))
+        d.a.push(T.RunUpdate_init(LangData.get_lang("NbSn"), p.r, p.fx, null, null, 20, 1000, 100))
         s = p.fx
         s.aF(s.fx, p.r, T.ad(), c, d)
         s = p.r
-        s.cy = s.cy - $.cX()
+        s.cy = s.cy - 1024
         r = s.go
         q = 0
         if (r > q) s.go = q
@@ -18951,7 +19670,7 @@ T.GuiYue.prototype = {
     b3(a) { },
     bn() { },
     b6() {
-        this.c.r2.m(0, $.a7(), new T.DummyChargeMeta())
+        this.c.r2.m(0, "charge", new T.DummyChargeMeta())
     }
 }
 T.NoWeapon.prototype = {
@@ -18966,7 +19685,7 @@ T.RinickModifier.prototype = {
             p = H._arrayInstanceType(q).i("y<1,l*>")
         p = this.r = P.List_List_of(new H.y(q, new T.k3(), p), true, p.i("M.E"))
         r = r.q
-        q = $.ap()
+        q = 7
         r = r[q]
         s = $.r5()
         if (r < s) p[q] = s - r
@@ -18977,7 +19696,7 @@ T.RinickModifier.prototype = {
         var s, r, q, p, o, n, m, l = this.c
         l.rx.j(0, new T.RinickModifierUpdateState())
         // Rinick
-        if (l.e != $.iL()) {
+        if (l.e != "Rinick") {
             for (l = l.k2, s = l.length, r = 0; r < l.length; l.length === s || (0, H.F)(l), ++r) {
                 q = l[r]
                 p = q.f
@@ -18989,12 +19708,12 @@ T.RinickModifier.prototype = {
             return
         }
         lst = [0, 2, 15, 18, 27, 28, 32, 37, 38]
-        // for (s = [0, 2, $.eT(), $.iH(), $.pu(), $.iI(), $.at(), $.pH(), $.lL()], r = 0; r < 9; ++r) {
+        // for (s = [0, 2, 15, 18, $.pu(), 28, 32, $.pH(), $.lL()], r = 0; r < 9; ++r) {
         for (s = lst, r = 0; r < 9; ++r) {
             o = s[r]
             q = l.k2[o]
             if (q.f == 0) {
-                q.f = $.av()
+                q.f = 8
                 q.W()
             } else H.ve(J.b4(o))
         }
@@ -19003,13 +19722,13 @@ T.RinickModifier.prototype = {
             if (!(q instanceof T.ActionSkill)) {
                 n = q.f
                 if (n == 0) {
-                    q.f = $.aR()
+                    q.f = 16
                     q.W()
-                } else q.f = n + $.aR()
+                } else q.f = n + 16
             }
         }
         m = new T.SklAokijiIceAge(0)
-        m.ao(l, $.as())
+        m.ao(l, 20)
         s = l.k1
         s.push(m)
         p = l.k2;
@@ -19021,7 +19740,7 @@ T.RinickModifier.prototype = {
         (p && C.Array).j(p, m)
         m = new T.hy(2, 0)
         m.r = l
-        $.av()
+        8
         s.push(m)
         s = l.k2;
         (s && C.Array).j(s, m)
@@ -19051,7 +19770,7 @@ T.RinickModifierPreAction.prototype = {
             if (o.length !== r) {
                 // weaponRModifierUse
                 // [0]使用[属性修改器]
-                C.Array.co(o, r, T.RunUpdate_init(LangData.get_lang("UeyA"), s, null, null, null, $.a6(), 1000, 100))
+                C.Array.co(o, r, T.RunUpdate_init(LangData.get_lang("UeyA"), s, null, null, null, 60, 1000, 100))
                 o.push($.K())
             }
         }
@@ -19095,9 +19814,9 @@ T.RinickModifierUpdateState.prototype = {
         r = 2
         if (s[r] < p) {
             s[r] = p
-            a.cy = p + $.eU()
+            a.cy = p + 160
         }
-        r = $.B()
+        r = 3
         if (s[r] < p) {
             s[r] = p
             a.db = p
@@ -19112,7 +19831,7 @@ T.RinickModifierUpdateState.prototype = {
             s[r] = p
             a.dy = p
         }
-        r = $.a4()
+        r = 6
         if (s[r] < p) {
             s[r] = p
             a.fr = p
@@ -19123,16 +19842,16 @@ T.SklRinickModifierClone.prototype = {
     v(a, b, c, d) {
         var s, r, q, p, o, n, m, l, k = this,
             j = null
-        k.r.l = c.n() * 4 + $.cX()
+        k.r.l = c.n() * 4 + 1024
         s = d.a
         // weaponRModifierUse
         // [0]使用[属性修改器]
-        s.push(T.RunUpdate_init(LangData.get_lang("UeyA"), k.r, j, j, j, $.a6(), 1000, 100))
+        s.push(T.RunUpdate_init(LangData.get_lang("UeyA"), k.r, j, j, j, 60, 1000, 100))
         for (r = 0, q = k.fr; r < q; ++r) {
             p = T.init_PlrClone(k.r)
             p.y = k.r.y
             p.az()
-            p.l = c.n() * 4 + $.cX()
+            p.l = c.n() * 4 + 1024
             k.r.y.aZ(p)
             s.push($.K())
             // sklCloned
@@ -19186,8 +19905,8 @@ T.SklS11.prototype = {
             l.push(T.RunUpdate_init(LangData.get_lang("ibDN"), o.r, n, n, n, 0, m, 100))
             o.fr = o.fr - 1
         } else {
-            s = c.ax($.ap())
-            r = (c.n() & 31) + $.a4()
+            s = c.ax(7)
+            r = (c.n() & 31) + 6
             q = o.r
             p = q.q
             p[s] = p[s] + r
@@ -19195,19 +19914,19 @@ T.SklS11.prototype = {
             l.push(T.RunUpdate_init("[" + H.as_string($.r6()[s]) + "]" + LangData.get_lang("zbya"), o.r, n, r, n, 0, m, 100))
         }
         q = o.r
-        q.l = q.l + $.cX()
+        q.l = q.l + 1024
         q = o.fr - (c.n() & 3)
         o.fr = q
         if (q <= 0) {
             l.push(T.RunUpdate_init(LangData.get_lang("ToLa"), o.r, n, n, n, 0, m, 100))
-            if (o.f < $.as()) {
+            if (o.f < 20) {
                 l.push(T.RunUpdate_init(LangData.get_lang("BcJa"), o.r, n, n, n, 0, m, 100))
                 o.f = 0
             } else {
                 l.push(T.RunUpdate_init(LangData.get_lang("kHPN"), o.r, n, n, n, 0, m, 100))
                 o.f = 1
             }
-            o.r.aF((c.n() & 31) + $.aR(), o.r, T.ad(), c, d)
+            o.r.aF((c.n() & 31) + 16, o.r, T.ad(), c, d)
         }
     }
 }
@@ -19228,7 +19947,7 @@ T.WeaponS11.prototype = {
     b6() {
         var s = this.c,
             r = s.k2,
-            q = new T.SklS11($.B(), 0)
+            q = new T.SklS11(3, 0)
         q.e = true
         q.ao(s, $.d1());
         (r && C.Array).j(r, q)
@@ -19241,19 +19960,19 @@ T.Weapon.prototype = {
         e.toString
         s = H._arrayInstanceType(e).i("y<1,l*>")
         this_.d = P.List_List_of(new H.y(e, new T.ko(), s), true, s.i("M.E"))
-        this_.e = a.ax($.bg())
-        r = a.ax($.av())
-        e = $.a4()
+        this_.e = a.ax(40)
+        r = a.ax(8)
+        e = 6
         s = this_.d
         q = s && C.Array
         if (r === e) {
-            p = q.al(s, $.bg(), $.aI())
+            p = q.al(s, 40, 48)
 
         } else {
-            e = q.al(s, $.bg(), $.aI())
+            e = q.al(s, 40, 48)
             s = H._arrayInstanceType(e).i("y<1,l*>")
             p = P.List_List_of(new H.y(e, new T.kp(), s), true, s.i("M.E"))
-            p[r] = $.iH()
+            p[r] = 18
         }
         o = 0
         for (e = p.length, n = o, m = n, l = 0; l < e; ++l) {
@@ -19263,14 +19982,14 @@ T.Weapon.prototype = {
                 m += k
             }
         }
-        m *= $.B()
+        m *= 3
         e = this_.d
-        j = (e && C.Array).al(e, o, $.av())
+        j = (e && C.Array).al(e, o, 8)
         C.Array.aJ(j)
         i = j[1] + j[4] + n
-        for (k = 0, h = i; e = $.ap(), k < e; ++k) {
+        for (k = 0, h = i; e = 7, k < e; ++k) {
             g = C.d.P(i * p[k], m)
-            h -= g * $.B()
+            h -= g * 3
             this_.r[k] = g
         }
         if (p[e] > 0) this_.r[e] = h
@@ -19285,7 +20004,7 @@ T.Weapon.prototype = {
         r = c[s] - a[s]
         s = 0
         if (m > s && j > s && r > s) {
-            q = d + C.JsInt.V(m + j + r + $.q8(), $.B())
+            q = d + C.JsInt.V(m + j + r + $.q8(), 3)
             p = c[q]
             o = b[q]
             n = C.d.P(p - o, k) + l
@@ -19297,10 +20016,10 @@ T.Weapon.prototype = {
         // preUpgrade
         var s, r, q, this_ = this,
             o = 0
-        for (s = 10, r = this_.c; s < $.d1(); s += $.B()) {
+        for (s = 10, r = this_.c; s < $.d1(); s += 3) {
             o += this_.cB(r.E, r.t, this_.d, s)
         }
-        r = C.JsInt.P($.mY() - o, $.a4())
+        r = C.JsInt.P($.mY() - o, 6)
         this_.f = r
         q = 0
         if (r < q) {
@@ -19310,7 +20029,7 @@ T.Weapon.prototype = {
     cs() {
         // postUpgrade
         var s, r, q
-        for (s = 0, r = this.c; s < $.av(); ++s) {
+        for (s = 0, r = this.c; s < 8; ++s) {
             q = r.q
             q[s] = q[s] + this.r[s]
         }
@@ -19326,7 +20045,7 @@ T.Weapon.prototype = {
 }
 T.kq.prototype = {
     $2(a, b) {
-        var s = new T.WeaponS11(a, b, P.aL($.av(), 0, false, t.B))
+        var s = new T.WeaponS11(a, b, P.aL(8, 0, false, t.B))
         s.a = a
         return s
     },
@@ -19334,7 +20053,7 @@ T.kq.prototype = {
 }
 T.kr.prototype = {
     $2(a, b) {
-        var s = new T.WeaponDeathNote(a, b, P.aL($.av(), 0, false, t.B))
+        var s = new T.WeaponDeathNote(a, b, P.aL(8, 0, false, t.B))
         s.a = a
         return s
     },
@@ -19344,8 +20063,8 @@ T.ks.prototype = {
     $2(a, b) {
         var s
         // Rinick
-        if (b.b == $.iL()) {
-            s = new T.RinickModifier(a, b, P.aL($.av(), 0, false, t.B))
+        if (b.b == "Rinick") {
+            s = new T.RinickModifier(a, b, P.aL(8, 0, false, t.B))
             s.a = a
             return s
         } else return T.NoWeapon(a, b)
@@ -19356,7 +20075,7 @@ T.kt.prototype = {
     $2(a, b) {
         var s
         if (C.Array.w($.r1(), b.b)) {
-            s = new T.GuiYue(a, b, P.aL($.av(), 0, false, t.B))
+            s = new T.GuiYue(a, b, P.aL(8, 0, false, t.B))
             s.a = a
             return s
         } else return T.NoWeapon(a, b)
@@ -19367,7 +20086,7 @@ T.ku.prototype = {
     $2(a, b) {
         var s
         if (C.Array.w($.rk(), b.b)) {
-            s = new T.kv(a, b, P.aL($.av(), 0, false, t.B))
+            s = new T.kv(a, b, P.aL(8, 0, false, t.B))
             s.a = a
             return s
         } else return T.NoWeapon(a, b)
@@ -19382,7 +20101,7 @@ T.ko.prototype = {
 }
 T.kp.prototype = {
     $1(a) {
-        if (a > $.pN()) return a - $.b1()
+        if (a > $.pN()) return a - 50
         return 0
     },
     $S: 2
@@ -19487,6 +20206,10 @@ LangData.SuperRC4.prototype = {
         if (a.length > skip_len) {
             q = C.Array.aT(a, first)
             n = this.ax(a.length - skip_len)
+            // DEBUG PROBE
+            if (typeof globalThis.__probe_fl === 'function') {
+                globalThis.__probe_fl(a, skip_len, q, n, this.a, this.b);
+            }
             return a[n >= q ? n + skip_len : n]
         }
         return null
@@ -20628,7 +21351,7 @@ var t = (function rtii() {
         return "https://deepmess.com/zh/namerena/"
     })
     lazy_old($, "zN", "nr", function () {
-        // return P.dD([LangData.j("JIi6cgXO*d_", 22), $.iH(), LangData.j("Fmi6Vr!~c@]4ElFk,dC", 55), $.mO(), LangData.j("OeQh>Rep f~;YzR^Y%E", 16), $.lK()], t.X, t.B)
+        // return P.dD([LangData.j("JIi6cgXO*d_", 22), 18, LangData.j("Fmi6Vr!~c@]4ElFk,dC", 55), 25, LangData.j("OeQh>Rep f~;YzR^Y%E", 16), 35], t.X, t.B)
         /*  static Map<String, int> boosted = {
             b('田一人'):18,
             b('云剑狄卡敢'):25,
@@ -21186,7 +21909,7 @@ var t = (function rtii() {
         return 0
     })
     lazy_old($, "zH", "r1", function () {
-        // return H.b([$.iL(), $.n8(), $.qk(), $.n6(), $.n9(), $.no(), $.nm(), $.nb(), $.qa(), $.nn(), $.qW(), $.np(), $.qi(), $.nj(), $.qr(), $.qs(), $.qU()], t.V)
+        // return H.b(["Rinick", "库瓒", "庫瓒", "涵虚", "霛雲", "云剑", "新纪元", "琪拉拉", "纯菜", "学车中学", "学🚗🀄学", "昀澤", "锦依卫", "Σσ", "Ø", "∅", "斜眼笑"], t.V)
         return H.b(
             [
                 "Rinick", "库瓒", "庫瓒", "涵虚", "霛雲", "云剑", "新纪元", "琪拉拉", "纯菜", "学车中学",
@@ -21218,7 +21941,7 @@ var t = (function rtii() {
         ], t.X, H.findType("bL*(m*,u*)*"))
     })
     lazy_old($, "Ad", "rk", function () {
-        // return H.b([$.iL(), $.n8(), $.n6(), $.n9(), $.no(), $.nm(), $.nb(), $.nn(), $.np(), $.nj(), $.qg(), $.qj(), $.qt(), $.qX(), $.qf(), $.qN(), $.qd(), $.qT(), $.qV(), $.ql(), $.qS(), $.qe()], t.V)
+        // return H.b(["Rinick", "库瓒", "涵虚", "霛雲", "云剑", "新纪元", "琪拉拉", "学车中学", "昀澤", "Σσ", "滑稽", "坤灵剑", "RailGun", "巡洋舰", "Hell", "佘山", "房刚", "五班", "XJ联队", "乐正绫", "文哥", "geometrydash"], t.V)
         return H.b(
             [
                 "Rinick", "库瓒", "涵虚", "霛雲", "云剑", "新纪元", "琪拉拉", "学车中学", "昀澤",
@@ -21740,12 +22463,12 @@ function main(input_name) {
         while (true) switch (async_goto) {
             case 0:
                 team_1 = LangData.oC(true).c
-                team_2 = team_1[$.B()]
+                team_2 = team_1[3]
                 $.mb = team_2
                 $.ta = team_2 + 128
                 $.nV = team_1[4]
                 $.nW = team_1[5]
-                $.tb = team_1[$.a4()]
+                $.tb = team_1[6]
 
                 if (!run_env.from_code) {
                     a2 = window.localStorage.getItem("go​ogle_experiment_mod1")
@@ -21784,8 +22507,8 @@ function main(input_name) {
                 // 或者直接在这里输入一个原始字符串
                 h = T.parse_names(raw_names)
 
-                // if (J.Y(J.J(J.J(h, 0)[0], 0), $.qc())) {
-                if ($.qc() === h[0][0][0] && !run_env.fight_only) {
+                // if (J.Y(J.J(J.J(h, 0)[0], 0), "!test!")) {
+                if ("!test!" === h[0][0][0] && !run_env.fight_only) {
                     $.vr = 6
                     // if (J.aw(h) === 2)
                     if (h.length === 2) {
@@ -21806,11 +22529,11 @@ function main(input_name) {
                         } else {
                             logger.debug("官方测号-评分")
 
-                            e = $.nk()
-                            // if (J.J(h, 0).length === 2 && J.Y(J.J(J.J(h, 0)[1], 0), $.cl())) {
-                            if (h[0].length === 2 && h[0][1][0] === $.cl()) {
+                            e = "\u0002"
+                            // if (J.J(h, 0).length === 2 && J.Y(J.J(J.J(h, 0)[1], 0), "!")) {
+                            if (h[0].length === 2 && h[0][1][0] === "!") {
                                 team_1 = h[1]
-                                e = $.cl()
+                                e = "!"
                             }
                             team_1 = h[1]
                             team_2 = e
@@ -21887,6 +22610,22 @@ const runner = {
             finish_trigger.once("done_fight", (data) => {
                 resolve(fmt_RunUpdate(data));  // 解析Promise
             });
+            main(names);
+        })
+    },
+    fight_log: (names) => {
+        return new Promise((resolve) => {
+            reset_fight_log_data()
+            run_env.capture_fight_log = true
+
+            finish_trigger.once("done_fight", (data) => {
+                run_env.capture_fight_log = false
+                resolve({
+                    winner: fmt_RunUpdate(data),
+                    updates: get_fight_log_data(),
+                });
+            });
+
             main(names);
         })
     },
