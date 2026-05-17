@@ -39,7 +39,7 @@ export function iconSrc(iconPngBase64) {
 
 /**
  * 根据玩家/归属者 ID 生成 show 风格头像类名。
- * @param {number|null|undefined} iconId
+ * @param {number|string|null|undefined} iconId
  * @returns {string}
  */
 export function iconClassName(iconId) {
@@ -47,41 +47,100 @@ export function iconClassName(iconId) {
 }
 
 /**
- * 为当前回放中的玩家列表生成 `.icon_N { background-image: ... }` 样式规则。
- * @param {FightPlayer[]} players
+ * 为当前回放中的头像表生成 `.icon_N { background-image: ... }` 样式规则。
+ * @param {Array<{ icon_class_id?: number|string, id?: number|string, icon_png_base64?: string|null }>} iconEntries
  * @returns {string}
  */
-export function buildIconClassCss(players) {
-    return players
-    .map((player) => `.${iconClassName(player.id)} { background-image: url("${iconSrc(player.icon_png_base64)}"); }`)
+export function buildIconClassCss(iconEntries) {
+    const seen = new Set();
+    return iconEntries
+        .map((entry) => {
+            const iconId = entry.icon_class_id ?? entry.id;
+            if (iconId == null || seen.has(iconId)) {
+                return "";
+            }
+            seen.add(iconId);
+            return `.${iconClassName(iconId)} { background-image: url("${iconSrc(entry.icon_png_base64)}"); }`;
+        })
+        .filter(Boolean)
         .join("\n");
 }
 
 /**
- * 为 show 回放玩家列表补齐 icon_class_id。
- * 多对多时，整队统一使用输入顺序中该队第一个玩家的头像编号。
+ * 取混淆版 md5.js 中 Sgls.o6 使用的头像缓存 key。
+ * @param {{ icon_key?: string, id_name?: string, id?: number|string }|null|undefined} actor
+ * @returns {string}
+ */
+function iconCacheKey(actor) {
+    return actor?.icon_key ?? actor?.id_name ?? `#${actor?.id ?? "missing"}`;
+}
+
+/**
+ * 为完整回放补齐 icon_class_id，并收集需要注入的 CSS 背景图规则。
+ * 混淆版 md5.js 的 Sgls.o6 是按 fy/icon_key 缓存，再按出现顺序分配 icon_N。
+ * @param {FightReplay} replay
+ * @returns {FightReplay}
+ */
+export function normalizeReplayIconClasses(replay) {
+    const iconIdByKey = new Map();
+    const iconStyleById = new Map();
+    let nextIconId = 0;
+
+    const register = (actor) => {
+        if (!actor) {
+            return actor;
+        }
+        const key = iconCacheKey(actor);
+        let icon_class_id = iconIdByKey.get(key);
+        if (icon_class_id == null) {
+            icon_class_id = nextIconId;
+            nextIconId += 1;
+            iconIdByKey.set(key, icon_class_id);
+        }
+        if (actor.icon_png_base64 && !iconStyleById.has(icon_class_id)) {
+            iconStyleById.set(icon_class_id, {
+                icon_class_id,
+                icon_png_base64: actor.icon_png_base64,
+            });
+        }
+        return {
+            ...actor,
+            icon_class_id,
+        };
+    };
+
+    const normalizeStates = (states) => (states ?? []).map(register);
+    const players = (replay.players ?? []).map(register);
+    const initial_states = normalizeStates(replay.initial_states);
+    const frames = (replay.frames ?? []).map((frame) => ({
+        ...frame,
+        states: normalizeStates(frame.states),
+    }));
+    const final_states = normalizeStates(replay.final_states);
+
+    return {
+        ...replay,
+        players,
+        initial_states,
+        frames,
+        final_states,
+        icon_styles: Array.from(iconStyleById.values()),
+    };
+}
+
+/**
+ * @deprecated 使用 normalizeReplayIconClasses；保留导出避免旧页面直接引用时报错。
  * @param {FightPlayer[]} players
  * @returns {FightPlayer[]}
  */
 export function withTeamIconClassIds(players) {
-    const firstPlayerIdByTeam = new Map();
-    return players.map((player) => {
-        const existing = firstPlayerIdByTeam.get(player.team_index);
-        const icon_class_id = existing ?? player.id;
-        if (existing == null) {
-            firstPlayerIdByTeam.set(player.team_index, player.id);
-        }
-        return {
-            ...player,
-            icon_class_id,
-        };
-    });
+    return normalizeReplayIconClasses({ players }).players;
 }
 
 /**
  * 渲染一个 show 风格头像节点。
  * 头像图片由外部注入的 `.icon_N` 规则提供，这里只负责输出结构和类名。
- * @param {number|null|undefined} iconId
+ * @param {number|string|null|undefined} iconId
  * @param {string} className
  * @returns {string}
  */

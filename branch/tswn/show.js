@@ -8,7 +8,10 @@
  * @typedef {{
  *   id: number,
  *   id_name: string,
+ *   icon_key: string,
  *   display_name: string,
+ *   icon_png_base64?: string|null,
+ *   icon_class_id?: number,
  *   minion_kind?: 'clone' | 'summon' | 'shadow' | 'zombie',
  *   hp: number,
  *   max_hp: number,
@@ -38,8 +41,10 @@
  *   id: number,
  *   team_index: number,
  *   id_name: string,
+ *   icon_key: string,
  *   display_name: string,
- *   icon_png_base64: string|null
+ *   icon_png_base64: string|null,
+ *   icon_class_id?: number
  * }} FightPlayer
  *
  * 一次 Replay 的结构：
@@ -51,6 +56,7 @@
  *   frames: FrameUpdate[],
  *   winner_ids: number[],
  *   final_states: FightState[],
+ *   icon_styles?: Array<{ icon_class_id: number, icon_png_base64: string }>,
  *   wasm_duration_ms: number
  * }} FightReplay
  *
@@ -100,7 +106,7 @@
  * @typedef {'normal' | 'fast' | 'turbo'} SpeedMode
  */
 
-import { buildIconClassCss, formatError, sleep, withTeamIconClassIds } from './show-utils.js';
+import { buildIconClassCss, formatError, normalizeReplayIconClasses, sleep } from './show-utils.js';
 import { renderIdleState, renderPlayers, buildFrameRows } from './show-render.js';
 import {
     renderReplayIntro,
@@ -238,7 +244,7 @@ function rememberPlayers(players) {
     for (const player of players) {
         playersById.set(player.id, player);
     }
-    syncIconStyles(players);
+    syncIconStyles(currentReplay?.icon_styles ?? players);
 }
 
 function ensureIconStyleTag() {
@@ -251,15 +257,12 @@ function ensureIconStyleTag() {
     return styleEl;
 }
 
-function syncIconStyles(players) {
-    ensureIconStyleTag().textContent = buildIconClassCss(players);
+function syncIconStyles(iconEntries) {
+    ensureIconStyleTag().textContent = buildIconClassCss(iconEntries);
 }
 
 function normalizeReplayPlayers(replay) {
-    return {
-        ...replay,
-        players: withTeamIconClassIds(replay.players),
-    };
+    return normalizeReplayIconClasses(replay);
 }
 
 /**
@@ -554,7 +557,7 @@ function renderPlaybackToCursor(cursor, { forceReset = false } = {}) {
     syncPlaybackUi();
 }
 
-function resolveChunkDelay(frame, rawDelay, frameVisibleCount) {
+function resolveChunkDelay(frame, rawDelay) {
     if (speedMode === 'turbo') {
         return 0;
     }
@@ -562,13 +565,10 @@ function resolveChunkDelay(frame, rawDelay, frameVisibleCount) {
         const targetDelay = playbackDelay(frame, speedMode);
         return frame.total_delay > 0 ? Math.round((targetDelay * rawDelay) / frame.total_delay) : 0;
     }
-    // normal 模式：逐句播放。若 WASM 给出的逐条延迟非零则原样使用；
-    // 否则将整帧 total_delay 均分到该帧每个可见 chunk，保证一句一句推进。
-    if (rawDelay > 0) {
-        return rawDelay;
-    }
-    const total = frame.total_delay ?? 0;
-    return frameVisibleCount > 0 ? Math.round(total / frameVisibleCount) : 0;
+    // normal 模式：混淆版 md5.js 会先算原始等待，再按 sqrt(角色数 / 2) 缩放。
+    const playerCount = currentReplay?.players?.length ?? 0;
+    const divisor = Math.max(1, Math.round(Math.sqrt(playerCount / 2)));
+    return Math.trunc(rawDelay / divisor);
 }
 
 async function waitForPlaybackDelay(ms, token) {
@@ -601,6 +601,14 @@ async function autoplayFromCurrentCursor() {
 
         const chunk = currentPlan.flatChunks[playbackCursor];
         const framePlan = currentPlan.frames[chunk.frameIndex];
+        const delay = resolveChunkDelay(framePlan.frame, chunk.delay);
+        if (delay > 0) {
+            const completed = await waitForPlaybackDelay(delay, token);
+            if (!completed) {
+                return;
+            }
+        }
+
         appendPlaybackChunk(chunk);
         playbackCursor += 1;
 
@@ -612,14 +620,6 @@ async function autoplayFromCurrentCursor() {
         if (speedMode === 'turbo' && chunk.visible && playbackCursor % 24 === 0) {
             await sleep(0);
             if (token !== playbackLoopToken || playbackPaused) {
-                return;
-            }
-        }
-
-        const delay = resolveChunkDelay(framePlan.frame, chunk.delay, framePlan.frameVisibleCount);
-        if (delay > 0) {
-            const completed = await waitForPlaybackDelay(delay, token);
-            if (!completed) {
                 return;
             }
         }

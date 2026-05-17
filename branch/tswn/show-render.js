@@ -102,12 +102,14 @@ export function actorToken(player, state, previousState, update, { showHp = true
  * @returns {FightPlayer}
  */
 function syntheticPlayerFromState(playerId, state, playersById) {
-    let icon = null;
-    let icon_class_id = state?.owner_id ?? playerId;
+    let icon = state?.icon_png_base64 ?? null;
+    let icon_class_id = state?.icon_class_id ?? state?.owner_id ?? playerId;
     if (state?.owner_id != null) {
         const ownerPlayer = playersById.get(state.owner_id);
-        if (ownerPlayer) {
+        if (ownerPlayer && !icon) {
             icon = ownerPlayer.icon_png_base64;
+        }
+        if (ownerPlayer && state?.icon_class_id == null) {
             icon_class_id = ownerPlayer.icon_class_id ?? ownerPlayer.id;
         }
     }
@@ -116,6 +118,7 @@ function syntheticPlayerFromState(playerId, state, playersById) {
         id: playerId,
         team_index: state?.team_index ?? 0,
         id_name: state?.id_name ?? `player_${playerId}`,
+        icon_key: state?.icon_key ?? state?.id_name ?? `player_${playerId}`,
         display_name: replayDisplayName(state, playerId),
         icon_png_base64: icon,
         icon_class_id,
@@ -262,6 +265,7 @@ function sidebarStatusLabels(state) {
 
 const POSITIVE_STATUS_LABELS = new Set(["聚气", "蓄力", "隐匿", "潜行", "狂暴", "疾走", "铁壁", "守护"]);
 const NEGATIVE_STATUS_LABELS = new Set(["魅惑", "诅咒", "冰冻", "中毒", "迟缓", "垂死"]);
+const WIN_UPDATE_DELAY0_MS = 3000;
 
 function statusPillTone(label) {
     if (POSITIVE_STATUS_LABELS.has(label)) {
@@ -674,8 +678,9 @@ export function buildFrameHtml(frame, roundIndex, previousStates = frame.states,
 
 /**
  * 构建单帧的渲染 chunk 数组，用于 normal/fast 模式逐段渲染。
- * next_line 只负责切到新行，不再把整行消息聚合成一个大 chunk；每条可见消息
- * 都会成为独立 chunk，并直接携带该 update 的 delay1||delay0。
+ * next_line 只负责切到新行，不再把整行消息聚合成一个大 chunk。
+ * 每条可见消息都会成为独立 chunk，并携带混淆版 md5.js 原始渲染器的未缩放等待时间：
+ * 等待时间 = max(update.delay0, 上一条可见 update 的 delay1)，每帧起始上一条 delay1 为 1800。
  *
  * @param {FrameUpdate} frame
  * @param {number} roundIndex
@@ -704,32 +709,22 @@ export function buildFrameRows(frame, roundIndex, previousStates = frame.states,
     const chunks = [];
     let frameStarted = false;
     let rowStarted = false;
-    let leadingDelay = 0;
-    let lastVisibleChunk = null;
+    let nextWait = 1800;
 
     function pushVisibleChunk(target, html, delay) {
-        const chunk = { target, html, delay };
-        chunks.push(chunk);
-        lastVisibleChunk = chunk;
+        chunks.push({ target, html, delay });
     }
 
-    function recordHiddenDelay(delay) {
-        if (delay <= 0) {
-            return;
-        }
-        if (lastVisibleChunk) {
-            lastVisibleChunk.delay += delay;
-        } else {
-            leadingDelay += delay;
-        }
+    function visibleWait(update) {
+        const delay0 = Number.isFinite(update.delay0) ? update.delay0 : 0;
+        const delay1 = Number.isFinite(update.delay1) ? update.delay1 : 0;
+        const wait = Math.max(delay0, nextWait);
+        nextWait = delay1;
+        return wait;
     }
 
     function pushLeadingDelayChunk() {
-        if (leadingDelay <= 0) {
-            return;
-        }
-        chunks.push({ target: 'delay', html: '', delay: leadingDelay });
-        leadingDelay = 0;
+        // 混淆版 md5.js 的换行和空消息不会单独等待；保留函数让后续流程不需要分支。
     }
 
     function pushMessageChunk(messageHtml, delay) {
@@ -771,21 +766,18 @@ export function buildFrameRows(frame, roundIndex, previousStates = frame.states,
     }
 
     for (const update of frame.updates) {
-        const delay = update.delay1 || update.delay0 || 0;
-
         if (update.update_type === "next_line") {
             rowStarted = false;
-            recordHiddenDelay(delay);
             continue;
         }
 
         const message = `${update.message_rendered ?? ""}`.trim();
         if (!message) {
-            recordHiddenDelay(delay);
             continue;
         }
 
         pushLeadingDelayChunk();
+        const delay = visibleWait(update);
 
         const tone = update.tone ?? "normal";
         const hitState = new Map(running);
@@ -830,13 +822,13 @@ export function buildFrameRows(frame, roundIndex, previousStates = frame.states,
                         </div>
                     </section>
                 `,
-                delay: 0,
+                delay: WIN_UPDATE_DELAY0_MS,
             });
         } else {
             chunks.push({
                 target: 'frameBody',
                 html: winnerHtml,
-                delay: 0,
+                delay: WIN_UPDATE_DELAY0_MS,
             });
         }
     }
