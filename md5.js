@@ -10,7 +10,7 @@
  * 369s -> 340s
  * 测试样例: bencharms/045-050.md
  */
-const _version_ = "0.5.2";
+const _version_ = "0.5.3";
 
 /**
  * 用于在 api 模式下触发轮询

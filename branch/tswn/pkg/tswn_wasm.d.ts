@@ -26,15 +26,25 @@ export class WinRateSession {
 
 export function core_version(): string;
 
+export function default_eval_rq(): number;
+
 export function fight(raw_input: string, options?: any | null): any;
 
 export function fight_summary(raw_input: string, options?: any | null): any;
 
+export function group_win_rate(target: string, against: any, total_rounds: number, options?: any | null): any;
+
+export function name_to_icon_rgba(name: string): Uint8Array;
+
 export function name_to_png_base64(name: string): string;
+
+export function name_to_png_bytes(name: string): Uint8Array;
 
 export function version(): string;
 
 export function wasm_start(): void;
+
+export function win_rate_eval_rq(): number;
 
 export function win_rate_sync(raw_input: string, total_rounds: number, options?: any | null): any;
 
@@ -43,6 +53,11 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 export interface InitOutput {
     readonly memory: WebAssembly.Memory;
     readonly __wbg_fightsession_free: (a: number, b: number) => void;
+    readonly __wbg_winratesession_free: (a: number, b: number) => void;
+    readonly core_version: () => [number, number];
+    readonly default_eval_rq: () => number;
+    readonly fight: (a: number, b: number, c: number) => [number, number, number];
+    readonly fight_summary: (a: number, b: number, c: number) => [number, number, number];
     readonly fightsession_is_finished: (a: number) => number;
     readonly fightsession_new: (a: number, b: number, c: number) => [number, number, number];
     readonly fightsession_players: (a: number) => [number, number, number];
@@ -50,25 +65,26 @@ export interface InitOutput {
     readonly fightsession_state: (a: number) => [number, number, number];
     readonly fightsession_step: (a: number) => [number, number, number];
     readonly fightsession_winner_ids: (a: number) => [number, number, number];
-    readonly core_version: () => [number, number];
-    readonly fight: (a: number, b: number, c: number) => [number, number, number];
-    readonly fight_summary: (a: number, b: number, c: number) => [number, number, number];
+    readonly group_win_rate: (a: number, b: number, c: any, d: number, e: number) => [number, number, number];
+    readonly name_to_icon_rgba: (a: number, b: number) => [number, number];
     readonly name_to_png_base64: (a: number, b: number) => [number, number];
+    readonly name_to_png_bytes: (a: number, b: number) => [number, number];
     readonly version: () => [number, number];
+    readonly win_rate_eval_rq: () => number;
     readonly win_rate_sync: (a: number, b: number, c: number, d: number) => [number, number, number];
-    readonly wasm_start: () => void;
-    readonly __wbg_winratesession_free: (a: number, b: number) => void;
     readonly winratesession_eval_rq: (a: number) => number;
     readonly winratesession_is_finished: (a: number) => number;
     readonly winratesession_new: (a: number, b: number, c: number, d: number) => [number, number, number];
     readonly winratesession_progress: (a: number) => [number, number, number];
     readonly winratesession_result: (a: number) => [number, number, number];
     readonly winratesession_step: (a: number, b: number) => [number, number, number];
+    readonly wasm_start: () => void;
     readonly __wbindgen_malloc: (a: number, b: number) => number;
     readonly __wbindgen_realloc: (a: number, b: number, c: number, d: number) => number;
-    readonly __wbindgen_free: (a: number, b: number, c: number) => void;
-    readonly __wbindgen_externrefs: WebAssembly.Table;
+    readonly __wbindgen_exn_store: (a: number) => void;
     readonly __externref_table_alloc: () => number;
+    readonly __wbindgen_externrefs: WebAssembly.Table;
+    readonly __wbindgen_free: (a: number, b: number, c: number) => void;
     readonly __externref_table_dealloc: (a: number) => void;
     readonly __wbindgen_start: () => void;
 }
