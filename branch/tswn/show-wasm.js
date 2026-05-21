@@ -11,6 +11,13 @@
 
 /** @type {object|null} WASM 模块的 API 句柄，仅在首次 ensureApi() 时初始化 */
 let wasmApi = null;
+const MODULE_CACHE_BUST = Date.now().toString(36);
+
+function withCacheBust(url) {
+    const busted = new URL(url);
+    busted.searchParams.set('v', MODULE_CACHE_BUST);
+    return busted;
+}
 
 // ============================================================================
 // 模块加载
@@ -25,22 +32,30 @@ let wasmApi = null;
  *   - show-wasm.js 与 pkg/ 同级    → 尝试 ./pkg/tswn_wasm.js
  *
  * @param {HTMLElement} modulePathInfo — 用于展示加载路径的 DOM 元素
- * @returns {Promise<object>} WASM 模块的导出对象
+ * @returns {Promise<{ mod: object, wasmUrl: URL }>} WASM 模块及对应 wasm URL
  * @throws {Error} 若所有候选路径均加载失败
  */
 export async function loadModule(modulePathInfo) {
     const base = new URL('.', import.meta.url);
     const candidates = [
-        { label: '../pkg/tswn_wasm.js', url: new URL('../pkg/tswn_wasm.js', base) },
-        { label: './pkg/tswn_wasm.js', url: new URL('./pkg/tswn_wasm.js', base) },
+        {
+            label: '../pkg/tswn_wasm.js',
+            moduleUrl: withCacheBust(new URL('../pkg/tswn_wasm.js', base)),
+            wasmUrl: withCacheBust(new URL('../pkg/tswn_wasm_bg.wasm', base)),
+        },
+        {
+            label: './pkg/tswn_wasm.js',
+            moduleUrl: withCacheBust(new URL('./pkg/tswn_wasm.js', base)),
+            wasmUrl: withCacheBust(new URL('./pkg/tswn_wasm_bg.wasm', base)),
+        },
     ];
 
     let lastError = null;
     for (const candidate of candidates) {
         try {
-            const mod = await import(candidate.url);
+            const mod = await import(candidate.moduleUrl.href);
             modulePathInfo.textContent = `module: ${candidate.label}`;
-            return mod;
+            return { mod, wasmUrl: candidate.wasmUrl };
         } catch (error) {
             lastError = error;
         }
@@ -61,8 +76,8 @@ export async function ensureApi(versionInfo, coreVersionInfo, modulePathInfo) {
     if (wasmApi) {
         return wasmApi;
     }
-    const mod = await loadModule(modulePathInfo);
-    await mod.default();
+    const { mod, wasmUrl } = await loadModule(modulePathInfo);
+    await mod.default({ module_or_path: wasmUrl });
     versionInfo.textContent = `wrapper: ${mod.version()}`;
     coreVersionInfo.textContent = `core: ${mod.core_version()}`;
     wasmApi = mod;

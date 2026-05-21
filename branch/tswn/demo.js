@@ -39,6 +39,13 @@ const MODE_TO_HASH = Object.freeze({
 let fightSession = null;
 let frameIndex = 0;
 let currentMode = "fight";
+const MODULE_CACHE_BUST = Date.now().toString(36);
+
+function withCacheBust(path) {
+    const url = new URL(path, import.meta.url);
+    url.searchParams.set("v", MODULE_CACHE_BUST);
+    return url;
+}
 
 function setStatus(message, isError = false) {
     statusText.textContent = message;
@@ -200,16 +207,24 @@ async function nextFrame() {
 
 async function loadModule() {
     const candidates = [
-        { label: "../pkg/tswn_wasm.js", path: "../pkg/tswn_wasm.js" },
-        { label: "../dist/wasm/pkg/tswn_wasm.js", path: "../dist/wasm/pkg/tswn_wasm.js" },
+        {
+            label: "../pkg/tswn_wasm.js",
+            moduleUrl: withCacheBust("../pkg/tswn_wasm.js"),
+            wasmUrl: withCacheBust("../pkg/tswn_wasm_bg.wasm"),
+        },
+        {
+            label: "../dist/wasm/pkg/tswn_wasm.js",
+            moduleUrl: withCacheBust("../dist/wasm/pkg/tswn_wasm.js"),
+            wasmUrl: withCacheBust("../dist/wasm/pkg/tswn_wasm_bg.wasm"),
+        },
     ];
 
     let lastError = null;
     for (const candidate of candidates) {
         try {
-            const mod = await import(candidate.path);
+            const mod = await import(candidate.moduleUrl.href);
             modulePathInfo.textContent = `module: ${candidate.label}`;
-            return mod;
+            return { mod, wasmUrl: candidate.wasmUrl };
         } catch (error) {
             lastError = error;
         }
@@ -220,8 +235,8 @@ async function loadModule() {
 
 async function main() {
     try {
-        const mod = await loadModule();
-        await mod.default();
+        const { mod, wasmUrl } = await loadModule();
+        await mod.default({ module_or_path: wasmUrl });
 
         const {
             version,

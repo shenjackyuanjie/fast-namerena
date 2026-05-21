@@ -601,7 +601,9 @@ async function autoplayFromCurrentCursor() {
 
         const chunk = currentPlan.flatChunks[playbackCursor];
         const framePlan = currentPlan.frames[chunk.frameIndex];
-        const delay = resolveChunkDelay(framePlan.frame, chunk.delay);
+        const delay = playbackCursor === 0 && speedMode === 'normal'
+            ? 0
+            : resolveChunkDelay(framePlan.frame, chunk.delay);
         if (delay > 0) {
             const completed = await waitForPlaybackDelay(delay, token);
             if (!completed) {
