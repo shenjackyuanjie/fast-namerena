@@ -66,7 +66,7 @@ export function renderReplayIntro(replay, speedMode, playerList, battleRows, pli
 export function updateSpeedButtons(normalBtn, fastBtn, pauseBtn, playbackPaused, speedMode, currentReplay, headerMeta) {
     // 三态互斥：暂停 / 播放(normal) / 快进(fast)
     normalBtn.classList.toggle("is-active", speedMode === 'normal' && !playbackPaused);
-    fastBtn.classList.toggle("is-active", speedMode === 'fast' && !playbackPaused);
+    fastBtn.classList.toggle("is-active", (speedMode === 'fast' || speedMode === 'turbo') && !playbackPaused);
     pauseBtn.classList.toggle("is-active", playbackPaused);
     if (currentReplay) {
         const labels = { normal: '正常速度', fast: '快进模式', turbo: '极速模式（无延时）' };

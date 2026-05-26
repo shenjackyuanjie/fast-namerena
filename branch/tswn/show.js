@@ -353,20 +353,17 @@ function currentFrameIndexFromCursor() {
 
 function syncPlaybackUi() {
     updateSpeedButtons(normalBtn, fastBtn, pauseBtn, playbackPaused, speedMode, currentReplay, headerMeta);
-    // 极速是一次性按钮，仅在 turbo 播放中高亮
-    turboBtn.classList.toggle('is-active', speedMode === 'turbo' && !playbackPaused);
 
     pauseBtn.disabled = !currentReplay;
     pauseBtn.classList.toggle('is-paused', playbackPaused);
 
-    const showStepControls = playbackPaused && !!currentReplay;
-    stepControls.hidden = !showStepControls;
+    stepControls.hidden = false;
 
     const noReplay = !currentReplay;
-    stepBackEventBtn.disabled = noReplay || !playbackPaused || playbackCursor <= 0;
-    stepBackFrameBtn.disabled = noReplay || !playbackPaused || playbackCursor <= 0;
-    stepForwardEventBtn.disabled = noReplay || !playbackPaused || !currentPlan || playbackCursor >= currentPlan.totalChunks;
-    stepForwardFrameBtn.disabled = noReplay || !playbackPaused || !currentPlan || playbackCursor >= currentPlan.totalChunks;
+    stepBackEventBtn.disabled = noReplay || playbackCursor <= 0;
+    stepBackFrameBtn.disabled = noReplay || playbackCursor <= 0;
+    stepForwardEventBtn.disabled = noReplay || !currentPlan || playbackCursor >= currentPlan.totalChunks;
+    stepForwardFrameBtn.disabled = noReplay || !currentPlan || playbackCursor >= currentPlan.totalChunks;
 
     if (currentReplay) {
         if (playbackPaused) {
@@ -632,6 +629,7 @@ async function autoplayFromCurrentCursor() {
     }
 
     playbackFinished = true;
+    playbackPaused = true;
     renderPlayers(currentReplay.players, currentReplay.final_states, currentReplay.final_states, null, playerList, playersById);
     renderEndPanel(currentReplay);
     appendReplayResultBlock(currentReplay);
@@ -649,12 +647,12 @@ function beginReplayPlayback(replay, { autoPlay = true } = {}) {
     currentPlan = prepareReplayPlan(replay);
     playbackCheckpoints = new Map();
     playbackCursor = 0;
-    playbackPaused = !autoPlay;
+    playbackPaused = false;
     playbackFinished = false;
     playbackStartedAt = performance.now();
     stopPlaybackLoop();
     renderPlaybackToCursor(0, { forceReset: true });
-    if (autoPlay) {
+    if (autoPlay !== false) {
         void autoplayFromCurrentCursor();
     }
 }
@@ -723,7 +721,6 @@ function resumePlayback() {
     }
 
     if (playbackFinished) {
-        playbackPaused = false;
         syncPlaybackUi();
         return;
     }
@@ -864,7 +861,7 @@ async function replayCurrent() {
         openInputEditor();
         return;
     }
-    beginReplayPlayback(currentReplay, { autoPlay: false });
+    beginReplayPlayback(currentReplay);
 }
 
 // ============================================================================
@@ -967,7 +964,7 @@ document.addEventListener('keydown', (event) => {
         event.preventDefault();
         return;
     }
-    if (!playbackPaused || !currentReplay) {
+    if (!currentReplay) {
         return;
     }
     switch (event.key) {
