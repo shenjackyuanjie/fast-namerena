@@ -750,6 +750,21 @@ function stepPlaybackTo(cursor) {
     renderPlaybackToCursor(cursor);
 }
 
+/**
+ * @param {EventTarget|null} target
+ * @returns {boolean}
+ */
+function isEditableKeyTarget(target) {
+    if (!(target instanceof Element)) {
+        return false;
+    }
+    if (target.closest('textarea, select, input')) {
+        return true;
+    }
+    const editableTarget = target instanceof HTMLElement ? target : target.closest('[contenteditable]');
+    return editableTarget instanceof HTMLElement && editableTarget.isContentEditable;
+}
+
 // ============================================================================
 // localStorage 持久化
 // ============================================================================
@@ -958,6 +973,9 @@ stepForwardFrameBtn.addEventListener('click', () => {
 
 // 键盘快捷键
 document.addEventListener('keydown', (event) => {
+    if (event.defaultPrevented || isEditableKeyTarget(event.target)) {
+        return;
+    }
     if (event.key === ' ') {
         if (!currentReplay) return;
         togglePausePlayback();

@@ -155,6 +155,31 @@ export class WinRateSession {
 if (Symbol.dispose) WinRateSession.prototype[Symbol.dispose] = WinRateSession.prototype.free;
 
 /**
+ * @param {string[]} target_groups
+ * @param {string[]} player_groups
+ * @param {number} total_rounds
+ * @param {string[] | null} [player_labels]
+ * @param {boolean | null} [keep_rq]
+ * @param {number | null} [thread]
+ * @returns {CliBatchRateResult[]}
+ */
+export function batch_rate(target_groups, player_groups, total_rounds, player_labels, keep_rq, thread) {
+    const ptr0 = passArrayJsValueToWasm0(target_groups, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ptr1 = passArrayJsValueToWasm0(player_groups, wasm.__wbindgen_malloc);
+    const len1 = WASM_VECTOR_LEN;
+    var ptr2 = isLikeNone(player_labels) ? 0 : passArrayJsValueToWasm0(player_labels, wasm.__wbindgen_malloc);
+    var len2 = WASM_VECTOR_LEN;
+    const ret = wasm.batch_rate(ptr0, len0, ptr1, len1, total_rounds, ptr2, len2, isLikeNone(keep_rq) ? 0xFFFFFF : keep_rq ? 1 : 0, isLikeNone(thread) ? Number.MAX_SAFE_INTEGER : (thread) >>> 0);
+    if (ret[3]) {
+        throw takeFromExternrefTable0(ret[2]);
+    }
+    var v4 = getArrayJsValueFromWasm0(ret[0], ret[1]).slice();
+    wasm.__wbindgen_free(ret[0], ret[1] * 4, 4);
+    return v4;
+}
+
+/**
  * @returns {string}
  */
 export function core_version() {
@@ -230,6 +255,39 @@ export function group_win_rate(target, against, total_rounds, options) {
 }
 
 /**
+ * @param {string} target
+ * @param {string[]} against
+ * @param {number} total_rounds
+ * @param {number | null} [eval_rq]
+ * @param {number | null} [thread]
+ * @returns {CliGroupWinRateResult[]}
+ */
+export function group_win_rate_summary(target, against, total_rounds, eval_rq, thread) {
+    const ptr0 = passStringToWasm0(target, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ptr1 = passArrayJsValueToWasm0(against, wasm.__wbindgen_malloc);
+    const len1 = WASM_VECTOR_LEN;
+    const ret = wasm.group_win_rate_summary(ptr0, len0, ptr1, len1, total_rounds, !isLikeNone(eval_rq), isLikeNone(eval_rq) ? 0 : eval_rq, isLikeNone(thread) ? Number.MAX_SAFE_INTEGER : (thread) >>> 0);
+    if (ret[3]) {
+        throw takeFromExternrefTable0(ret[2]);
+    }
+    var v3 = getArrayJsValueFromWasm0(ret[0], ret[1]).slice();
+    wasm.__wbindgen_free(ret[0], ret[1] * 4, 4);
+    return v3;
+}
+
+/**
+ * @param {string} name
+ * @returns {CliIconInfo}
+ */
+export function icon_info(name) {
+    const ptr0 = passStringToWasm0(name, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.icon_info(ptr0, len0);
+    return ret;
+}
+
+/**
  * @param {string} name
  * @returns {Uint8Array}
  */
@@ -275,6 +333,153 @@ export function name_to_png_bytes(name) {
 }
 
 /**
+ * @param {string} raw_input
+ * @param {number} total_rounds
+ * @param {string[] | null} [modes]
+ * @param {boolean | null} [keep_rq]
+ * @param {number | null} [thread]
+ * @returns {CliNamerPfResult[]}
+ */
+export function namer_pf(raw_input, total_rounds, modes, keep_rq, thread) {
+    const ptr0 = passStringToWasm0(raw_input, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len0 = WASM_VECTOR_LEN;
+    var ptr1 = isLikeNone(modes) ? 0 : passArrayJsValueToWasm0(modes, wasm.__wbindgen_malloc);
+    var len1 = WASM_VECTOR_LEN;
+    const ret = wasm.namer_pf(ptr0, len0, total_rounds, ptr1, len1, isLikeNone(keep_rq) ? 0xFFFFFF : keep_rq ? 1 : 0, isLikeNone(thread) ? Number.MAX_SAFE_INTEGER : (thread) >>> 0);
+    if (ret[3]) {
+        throw takeFromExternrefTable0(ret[2]);
+    }
+    var v3 = getArrayJsValueFromWasm0(ret[0], ret[1]).slice();
+    wasm.__wbindgen_free(ret[0], ret[1] * 4, 4);
+    return v3;
+}
+
+/**
+ * @param {string[]} target_groups
+ * @param {string[]} players
+ * @param {string[]} teammates
+ * @param {number} head
+ * @param {number} total_rounds
+ * @param {boolean | null} [keep_rq]
+ * @param {number | null} [thread]
+ * @returns {CliPairRateResult[]}
+ */
+export function pair_rate(target_groups, players, teammates, head, total_rounds, keep_rq, thread) {
+    const ptr0 = passArrayJsValueToWasm0(target_groups, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ptr1 = passArrayJsValueToWasm0(players, wasm.__wbindgen_malloc);
+    const len1 = WASM_VECTOR_LEN;
+    const ptr2 = passArrayJsValueToWasm0(teammates, wasm.__wbindgen_malloc);
+    const len2 = WASM_VECTOR_LEN;
+    const ret = wasm.pair_rate(ptr0, len0, ptr1, len1, ptr2, len2, head, total_rounds, isLikeNone(keep_rq) ? 0xFFFFFF : keep_rq ? 1 : 0, isLikeNone(thread) ? Number.MAX_SAFE_INTEGER : (thread) >>> 0);
+    if (ret[3]) {
+        throw takeFromExternrefTable0(ret[2]);
+    }
+    var v4 = getArrayJsValueFromWasm0(ret[0], ret[1]).slice();
+    wasm.__wbindgen_free(ret[0], ret[1] * 4, 4);
+    return v4;
+}
+
+/**
+ * @param {string} content
+ * @param {boolean | null} [double_plus]
+ * @returns {string[]}
+ */
+export function parse_group_lines(content, double_plus) {
+    const ptr0 = passStringToWasm0(content, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.parse_group_lines(ptr0, len0, isLikeNone(double_plus) ? 0xFFFFFF : double_plus ? 1 : 0);
+    var v2 = getArrayJsValueFromWasm0(ret[0], ret[1]).slice();
+    wasm.__wbindgen_free(ret[0], ret[1] * 4, 4);
+    return v2;
+}
+
+/**
+ * @param {string} raw_input
+ * @param {number} total_rounds
+ * @param {string | null} [mode]
+ * @param {number | null} [eval_rq]
+ * @param {number | null} [thread]
+ * @returns {CliScoreResult}
+ */
+export function score(raw_input, total_rounds, mode, eval_rq, thread) {
+    const ptr0 = passStringToWasm0(raw_input, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len0 = WASM_VECTOR_LEN;
+    var ptr1 = isLikeNone(mode) ? 0 : passStringToWasm0(mode, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    var len1 = WASM_VECTOR_LEN;
+    const ret = wasm.score(ptr0, len0, total_rounds, ptr1, len1, !isLikeNone(eval_rq), isLikeNone(eval_rq) ? 0 : eval_rq, isLikeNone(thread) ? Number.MAX_SAFE_INTEGER : (thread) >>> 0);
+    if (ret[2]) {
+        throw takeFromExternrefTable0(ret[1]);
+    }
+    return takeFromExternrefTable0(ret[0]);
+}
+
+/**
+ * @param {string} team1
+ * @param {string} team2
+ * @param {number} total_rounds
+ * @param {number | null} [eval_rq]
+ * @param {number | null} [thread]
+ * @returns {CliWinRateResult}
+ */
+export function team_win_rate_summary(team1, team2, total_rounds, eval_rq, thread) {
+    const ptr0 = passStringToWasm0(team1, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ptr1 = passStringToWasm0(team2, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len1 = WASM_VECTOR_LEN;
+    const ret = wasm.team_win_rate_summary(ptr0, len0, ptr1, len1, total_rounds, !isLikeNone(eval_rq), isLikeNone(eval_rq) ? 0 : eval_rq, isLikeNone(thread) ? Number.MAX_SAFE_INTEGER : (thread) >>> 0);
+    if (ret[2]) {
+        throw takeFromExternrefTable0(ret[1]);
+    }
+    return takeFromExternrefTable0(ret[0]);
+}
+
+/**
+ * @param {string} name
+ * @param {boolean | null} [old]
+ * @param {boolean | null} [minions]
+ * @returns {string}
+ */
+export function to_diy(name, old, minions) {
+    let deferred3_0;
+    let deferred3_1;
+    try {
+        const ptr0 = passStringToWasm0(name, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.to_diy(ptr0, len0, isLikeNone(old) ? 0xFFFFFF : old ? 1 : 0, isLikeNone(minions) ? 0xFFFFFF : minions ? 1 : 0);
+        var ptr2 = ret[0];
+        var len2 = ret[1];
+        if (ret[3]) {
+            ptr2 = 0; len2 = 0;
+            throw takeFromExternrefTable0(ret[2]);
+        }
+        deferred3_0 = ptr2;
+        deferred3_1 = len2;
+        return getStringFromWasm0(ptr2, len2);
+    } finally {
+        wasm.__wbindgen_free(deferred3_0, deferred3_1, 1);
+    }
+}
+
+/**
+ * @param {string[]} names
+ * @param {boolean | null} [old]
+ * @param {boolean | null} [minions]
+ * @returns {string[]}
+ */
+export function to_diy_batch(names, old, minions) {
+    const ptr0 = passArrayJsValueToWasm0(names, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.to_diy_batch(ptr0, len0, isLikeNone(old) ? 0xFFFFFF : old ? 1 : 0, isLikeNone(minions) ? 0xFFFFFF : minions ? 1 : 0);
+    if (ret[3]) {
+        throw takeFromExternrefTable0(ret[2]);
+    }
+    var v2 = getArrayJsValueFromWasm0(ret[0], ret[1]).slice();
+    wasm.__wbindgen_free(ret[0], ret[1] * 4, 4);
+    return v2;
+}
+
+/**
  * @returns {string}
  */
 export function version() {
@@ -300,6 +505,23 @@ export function wasm_start() {
 export function win_rate_eval_rq() {
     const ret = wasm.win_rate_eval_rq();
     return ret;
+}
+
+/**
+ * @param {string} raw_input
+ * @param {number} total_rounds
+ * @param {number | null} [eval_rq]
+ * @param {number | null} [thread]
+ * @returns {CliWinRateResult}
+ */
+export function win_rate_summary(raw_input, total_rounds, eval_rq, thread) {
+    const ptr0 = passStringToWasm0(raw_input, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.win_rate_summary(ptr0, len0, total_rounds, !isLikeNone(eval_rq), isLikeNone(eval_rq) ? 0 : eval_rq, isLikeNone(thread) ? Number.MAX_SAFE_INTEGER : (thread) >>> 0);
+    if (ret[2]) {
+        throw takeFromExternrefTable0(ret[1]);
+    }
+    return takeFromExternrefTable0(ret[0]);
 }
 
 /**

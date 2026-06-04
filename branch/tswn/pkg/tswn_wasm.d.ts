@@ -1,5 +1,76 @@
 /* tslint:disable */
 /* eslint-disable */
+export interface CliBatchRateResult {
+    label: string;
+    avg_win_rate: number;
+    aggregate_win_rate: number;
+    wins: number;
+    total: number;
+    valid_matchups: number;
+    skipped_matchups: number;
+    init_nanos: number;
+    fight_nanos: number;
+}
+
+export interface CliGroupWinRateResult {
+    opponent: string;
+    result: CliWinRateResult;
+}
+
+export interface CliIconInfo {
+    border_style: number;
+    shapes: number[];
+    bg_color_idx: number;
+    bg_color: [number, number, number];
+    fg_color_indices: number[];
+    fg_colors: [number, number, number][];
+    colors_consumed: number;
+}
+
+export interface CliNamerPfResult {
+    group: string[];
+    modes: string[];
+    scores: number[];
+    total_score: number;
+}
+
+export interface CliPairRateEntry {
+    name: string;
+    rate: number;
+}
+
+export interface CliPairRateResult {
+    label: string;
+    final_score: number;
+    head: number;
+    selected: number;
+    top_pairs: CliPairRateEntry[];
+    aggregate_win_rate: number;
+    wins: number;
+    total: number;
+    valid_matchups: number;
+    skipped_matchups: number;
+    init_nanos: number;
+    fight_nanos: number;
+}
+
+export interface CliScoreResult {
+    score: number;
+    wins: number;
+    total: number;
+    errors: number;
+    init_nanos: number;
+    fight_nanos: number;
+}
+
+export interface CliWinRateResult {
+    wins: number;
+    total: number;
+    win_rate: number;
+    init_nanos: number;
+    fight_nanos: number;
+}
+
 export interface FightOptions {
     eval_rq?: number;
     include_icons?: boolean;
@@ -151,6 +222,8 @@ export class WinRateSession {
     step(batch_size?: number | null): WinRateProgress;
 }
 
+export function batch_rate(target_groups: string[], player_groups: string[], total_rounds: number, player_labels?: string[] | null, keep_rq?: boolean | null, thread?: number | null): CliBatchRateResult[];
+
 export function core_version(): string;
 
 export function default_eval_rq(): number;
@@ -161,17 +234,37 @@ export function fight_summary(raw_input: string, options?: FightOptions | null):
 
 export function group_win_rate(target: string, against: string[], total_rounds: number, options?: WinRateOptions | null): GroupWinRateResult[];
 
+export function group_win_rate_summary(target: string, against: string[], total_rounds: number, eval_rq?: number | null, thread?: number | null): CliGroupWinRateResult[];
+
+export function icon_info(name: string): CliIconInfo;
+
 export function name_to_icon_rgba(name: string): Uint8Array;
 
 export function name_to_png_base64(name: string): string;
 
 export function name_to_png_bytes(name: string): Uint8Array;
 
+export function namer_pf(raw_input: string, total_rounds: number, modes?: string[] | null, keep_rq?: boolean | null, thread?: number | null): CliNamerPfResult[];
+
+export function pair_rate(target_groups: string[], players: string[], teammates: string[], head: number, total_rounds: number, keep_rq?: boolean | null, thread?: number | null): CliPairRateResult[];
+
+export function parse_group_lines(content: string, double_plus?: boolean | null): string[];
+
+export function score(raw_input: string, total_rounds: number, mode?: string | null, eval_rq?: number | null, thread?: number | null): CliScoreResult;
+
+export function team_win_rate_summary(team1: string, team2: string, total_rounds: number, eval_rq?: number | null, thread?: number | null): CliWinRateResult;
+
+export function to_diy(name: string, old?: boolean | null, minions?: boolean | null): string;
+
+export function to_diy_batch(names: string[], old?: boolean | null, minions?: boolean | null): string[];
+
 export function version(): string;
 
 export function wasm_start(): void;
 
 export function win_rate_eval_rq(): number;
+
+export function win_rate_summary(raw_input: string, total_rounds: number, eval_rq?: number | null, thread?: number | null): CliWinRateResult;
 
 export function win_rate_sync(raw_input: string, total_rounds: number, options?: WinRateOptions | null): WinRateResult;
 
@@ -181,6 +274,7 @@ export interface InitOutput {
     readonly memory: WebAssembly.Memory;
     readonly __wbg_fightsession_free: (a: number, b: number) => void;
     readonly __wbg_winratesession_free: (a: number, b: number) => void;
+    readonly batch_rate: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number) => [number, number, number, number];
     readonly core_version: () => [number, number];
     readonly default_eval_rq: () => number;
     readonly fight: (a: number, b: number, c: number) => [number, number, number];
@@ -193,11 +287,21 @@ export interface InitOutput {
     readonly fightsession_step: (a: number) => [number, number, number];
     readonly fightsession_winner_ids: (a: number) => any;
     readonly group_win_rate: (a: number, b: number, c: number, d: number, e: number, f: number) => [number, number, number, number];
+    readonly group_win_rate_summary: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number) => [number, number, number, number];
+    readonly icon_info: (a: number, b: number) => any;
     readonly name_to_icon_rgba: (a: number, b: number) => [number, number];
     readonly name_to_png_base64: (a: number, b: number) => [number, number];
     readonly name_to_png_bytes: (a: number, b: number) => [number, number];
+    readonly namer_pf: (a: number, b: number, c: number, d: number, e: number, f: number, g: number) => [number, number, number, number];
+    readonly pair_rate: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number, j: number) => [number, number, number, number];
+    readonly parse_group_lines: (a: number, b: number, c: number) => [number, number];
+    readonly score: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number) => [number, number, number];
+    readonly team_win_rate_summary: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number) => [number, number, number];
+    readonly to_diy: (a: number, b: number, c: number, d: number) => [number, number, number, number];
+    readonly to_diy_batch: (a: number, b: number, c: number, d: number) => [number, number, number, number];
     readonly version: () => [number, number];
     readonly win_rate_eval_rq: () => number;
+    readonly win_rate_summary: (a: number, b: number, c: number, d: number, e: number, f: number) => [number, number, number];
     readonly win_rate_sync: (a: number, b: number, c: number, d: number) => [number, number, number];
     readonly winratesession_eval_rq: (a: number) => number;
     readonly winratesession_is_finished: (a: number) => number;
