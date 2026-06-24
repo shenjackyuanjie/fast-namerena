@@ -21,6 +21,7 @@
 - 支持 normal / fast / turbo 三种播放速度。
 - 支持从原始输入中提取 `seed:` 行并显示在玩家列表顶部。
 - 召唤单位（clone / summon / shadow / zombie）会按类型显示对应的中文名并附带 `#playerId`。
+- 优先消费 `RoundFrame.rows[].clips[]` 结构化 replay view，由 WASM 提供延迟、文本片段、血条变化和死亡特效信息，前端只负责渲染。
 
 ## 运行方式
 

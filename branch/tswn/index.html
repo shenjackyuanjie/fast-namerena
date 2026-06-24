@@ -87,9 +87,29 @@
                     <svg class="svgicon" fill="white" height="24" width="24" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
                 </button>
             </div>
+
+            <div id="detailPanel" class="panel vertical detail-panel" hidden>
+                <div class="paneltitle">角色详情</div>
+                <div id="detailContent" class="detail-card"></div>
+                <label class="nickname-field">
+                    <span>自定义昵称</span>
+                    <input id="nicknameInput" type="text" autocomplete="off" maxlength="40">
+                </label>
+                <div class="detail-actions">
+                    <button id="saveNicknameBtn" class="goBtn inline">保存</button>
+                    <button id="clearNicknameBtn" class="goBtn secondary inline">清除</button>
+                </div>
+                <button id="closeDetailBtn" class="picon closeBtn" title="关闭角色详情" aria-label="关闭角色详情">
+                    <svg class="svgicon" fill="white" height="24" width="24" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                </button>
+            </div>
         </div>
 
-        <div class="right-controls">
+        <div id="rightControls" class="right-controls">
+            <button id="toggleControlsBtn" class="micon controls-toggle" title="收起控制按钮" aria-label="收起控制按钮" aria-expanded="true">
+                <svg class="svgicon collapse-icon" fill="white" height="24" width="24" viewBox="0 0 24 24"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
+                <svg class="svgicon expand-icon" fill="white" height="24" width="24" viewBox="0 0 24 24"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
+            </button>
             <div id="stepControls" class="step-controls">
                 <button id="stepBackEventBtn" class="micon" title="后退一个事件 (←)" aria-label="后退一个事件">
                     <svg class="svgicon" fill="white" height="24" width="24" viewBox="0 0 24 24"><path d="M5 7v10h2V7zm5 5l8-5v10l-8-5z"/></svg>

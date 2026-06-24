@@ -135,10 +135,46 @@ export interface PlayerState {
     status_labels?: string[];
 }
 
+export interface ReplayClip {
+    delay: number;
+    text_template: string;
+    color: MessageTone;
+    player_id?: number;
+    data?: string;
+    show_hp: boolean;
+    hp_before: number;
+    hp_after: number;
+    death_effect: boolean;
+    emoji: string | undefined;
+    parts?: ReplayTextPart[];
+    caster_ids?: number[];
+    target_ids?: number[];
+    sidebar_states?: PlayerState[];
+    sidebar_previous_states?: PlayerState[];
+    winner: boolean;
+}
+
+export interface ReplayRow {
+    indent: boolean;
+    clips: ReplayClip[];
+}
+
+export interface ReplayTextPart {
+    kind: ReplayTextPartKind;
+    text: string;
+    player_id?: number;
+    show_hp: boolean;
+    hp_before: number;
+    hp_after: number;
+    death_effect: boolean;
+    emoji: string | undefined;
+}
+
 export interface RoundFrame {
     finished: boolean;
     winner_ids: number[];
     updates: UpdateView[];
+    rows?: ReplayRow[];
     states: PlayerState[];
     /**
      * 帧内所有可见 update 的原始等待总和（毫秒），按混淆版 md5.js 的 delay 规则计算，未按角色数量缩放。
@@ -157,6 +193,8 @@ export interface UpdateView {
     message_template: string;
     message_rendered: string;
     param?: number;
+    hp_delta?: number;
+    status_change_tokens: string[];
     /**
      * 消息色调，由 WASM 根据模板内容判定，JS 无需再通过关键词反推。
      */
@@ -193,6 +231,8 @@ export interface WinRateTiming {
 export type MessageTone = "normal" | "damage" | "recover" | "knockout";
 
 export type MinionKindView = "clone" | "summon" | "shadow" | "zombie";
+
+export type ReplayTextPartKind = "text" | "highlight" | "player" | "data";
 
 export type UpdateTypeView = "win" | "none" | "next_line";
 
