@@ -115,6 +115,14 @@ export function normalizeReplayIconClasses(replay) {
   const frames = (replay.frames ?? []).map((frame) => ({
     ...frame,
     states: normalizeStates(frame.states),
+    rows: (frame.rows ?? []).map((row) => ({
+      ...row,
+      clips: (row.clips ?? []).map((clip) => ({
+        ...clip,
+        sidebar_states: normalizeStates(clip.sidebar_states),
+        sidebar_previous_states: normalizeStates(clip.sidebar_previous_states),
+      })),
+    })),
   }));
   const final_states = normalizeStates(replay.final_states);
 
@@ -514,7 +522,7 @@ export function phantomDisplayName(playerId) {
 
 /**
  * 统一格式化回放状态里的显示名。
- * minion 会追加 #playerId，用来和其他同类单位区分。
+ * clone 使用底层给出的 display_index 表示同一名字下的第几个分身；左侧 playerId 另行显示。
  * @param {FightState|undefined} state
  * @param {number} [fallbackPlayerId]
  * @returns {string}
@@ -525,7 +533,8 @@ export function replayDisplayName(state, fallbackPlayerId) {
     return playerId == null ? "未知角色" : phantomDisplayName(playerId);
   }
   if (state.minion_kind === "clone") {
-    return playerId == null ? state.display_name : `${state.display_name} #${playerId}`;
+    const displayIndex = Number(state.display_index);
+    return Number.isFinite(displayIndex) && displayIndex > 0 ? `${state.display_name} #${displayIndex}` : state.display_name;
   }
   if (
     state.minion_kind === "summon" ||
@@ -535,7 +544,7 @@ export function replayDisplayName(state, fallbackPlayerId) {
     const baseName =
       state.display_name ??
       (state.minion_kind === "shadow" ? "幻影" : state.minion_kind === "zombie" ? "丧尸" : "使魔");
-    return playerId == null ? baseName : `${baseName} #${playerId}`;
+    return baseName;
   }
   return state.display_name ?? phantomDisplayName(playerId ?? 0);
 }
@@ -574,22 +583,23 @@ export function actorHpMetrics(state, previousState) {
 
   const maxHp = Math.max(1, state.max_hp, previousState?.max_hp ?? 0);
   const hp = Math.max(0, Math.min(maxHp, state.hp));
-  // 新对象（无 previousState 或本帧刚出现）当作 hp 从 0 开始变化
-  const isNew = state?._is_new_in_frame || previousState?._is_new_in_frame;
-  const previousHp = previousState && !isNew ? Math.max(0, Math.min(maxHp, previousState.hp)) : 0;
+  // 新对象按当前血量作为上一状态处理；复活/护符这类实体已存在的 0 -> x 仍正常显示回血。
+  const previousHp = previousState ? Math.max(0, Math.min(maxHp, previousState.hp)) : hp;
   // 血条长度调整为 血量 / 4 向上取整
   const totalWidth = Math.max(20, Math.ceil(maxHp / 4));
   const fillWidth = hp > 0 ? Math.max(1, Math.ceil(hp / 4)) : 0;
   const previousWidth = previousHp > 0 ? Math.max(1, Math.ceil(previousHp / 4)) : 0;
-  // 受伤变化量（红条）：上一帧比当前宽多少
-  const deltaWidth = previousHp > hp ? Math.max(1, previousWidth - fillWidth) : 0;
+  const isRecover = hp > previousHp;
+  const deltaWidth =
+    previousHp > hp ? Math.max(1, previousWidth - fillWidth) : isRecover ? Math.max(1, fillWidth - previousWidth) : 0;
 
   return {
     totalWidth,
     fillWidth,
     previousWidth,
-    deltaLeft: fillWidth,
+    deltaLeft: isRecover ? previousWidth : fillWidth,
     deltaWidth,
+    deltaKind: isRecover ? "recover" : previousHp > hp ? "damage" : "none",
   };
 }
 

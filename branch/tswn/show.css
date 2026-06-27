@@ -10,12 +10,13 @@
     --ink: #214052;
     --line: #c6e1ef;
     --damage: #d84d45;
-    --recover: #17985a;
-    --skill: #0d7bce;
+    --recover: #0077BB;
+    --status-exit: #bb7700;
+    --skill: #0077BB;
     --knockout: #b06a0e;
     --hp: #49c267;
     --oldhp: #ef7f79;
-    --healhp: #3ca9ff;
+    --healhp: #08f;
 }
 
 html,
@@ -480,6 +481,15 @@ button:hover {
     transition: width 260ms ease;
 }
 
+.player-row .maxhp,
+.player-row .oldhp,
+.player-row .healhp,
+.player-row .hp {
+    transition:
+        left 520ms ease,
+        width 520ms ease;
+}
+
 .maxhp {
     width: 100%;
     background: rgba(221, 221, 208, 0.58);
@@ -694,6 +704,7 @@ button:hover {
 
 .msg {
     display: inline;
+    color: #000;
 }
 
 .msg-sep {
@@ -749,7 +760,7 @@ button:hover {
     position: relative;
     white-space: nowrap;
     background: #f3f3f8;
-    color: #2d4454;
+    color: #000;
     padding: 0 2px;
     text-shadow: 1px 1px #fff;
 }
@@ -783,8 +794,15 @@ button:hover {
     position: absolute;
     top: 0;
     height: 100%;
-    background: var(--oldhp);
     transition: left 260ms ease, width 260ms ease;
+}
+
+.actor-hp-delta.is-damage {
+    background: var(--oldhp);
+}
+
+.actor-hp-delta.is-recover {
+    background: var(--healhp);
 }
 
 .damage .message-number {
@@ -804,7 +822,7 @@ button:hover {
 
 /* [解除]/[中止]/[打消] 独立中括号标红 */
 .status-change-token {
-    color: #d84d45;
+    color: var(--status-exit);
     font-weight: normal;
 }
 

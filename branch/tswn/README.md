@@ -20,8 +20,9 @@
   - `show-replay.js` — 回放介绍、播放速度控制、逐段推进逻辑
 - 支持 normal / fast / turbo 三种播放速度。
 - 支持从原始输入中提取 `seed:` 行并显示在玩家列表顶部。
-- 召唤单位（clone / summon / shadow / zombie）会按类型显示对应的中文名并附带 `#playerId`。
-- 优先消费 `RoundFrame.rows[].clips[]` 结构化 replay view，由 WASM 提供延迟、文本片段、血条变化和死亡特效信息，前端只负责渲染。
+- 召唤单位（clone / summon / shadow / zombie）会按类型显示对应的中文名；分身名字里的编号使用底层 `display_index`，左侧仍单独保留 `#playerId`。
+- 只消费 `RoundFrame.rows[].clips[]` 结构化 replay view，由 WASM 提供延迟、文本片段、血条变化、死亡特效和侧栏快照信息；战斗正文不再从 `message_template` / `message_rendered` / `hp_delta` 反推展示语义。
+- normal 播放模式下，对战结束后等待 `1500ms` 再显示底部结算表；fast / turbo / 单步跳转保持即时显示。左侧玩家 HP 条变化使用较慢动画，方便观察血量变化。
 
 ## 运行方式
 

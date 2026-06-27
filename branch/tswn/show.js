@@ -10,6 +10,7 @@
  *   id_name: string,
  *   icon_key: string,
  *   display_name: string,
+ *   display_index: number,
  *   icon_png_base64?: string|null,
  *   icon_class_id?: number,
  *   minion_kind?: 'clone' | 'summon' | 'shadow' | 'zombie',
@@ -93,6 +94,7 @@
  *   previousWidth: number,
  *   deltaLeft: number,
  *   deltaWidth: number
+ *   deltaKind: 'damage' | 'recover' | 'none'
  * }} HpMetrics
  *
  * 涉及高亮的角色集合（用于 renderPlayers 的 involved 参数）：
@@ -102,17 +104,19 @@
  * }} InvolvedSet
  *
  * 消息色调：
- * @typedef {'normal' | 'damage' | 'recover' | 'knockout'} MessageTone
+ * @typedef {'normal' | 'damage' | 'recover' | 'knockout' | 'status_exit'} MessageTone
  *
  * 播放速度模式：
  * @typedef {'normal' | 'fast' | 'turbo'} SpeedMode
  */
 
 import {
+  buildStateMap,
   buildIconClassCss,
   escapeHtml,
   formatError,
   normalizeReplayIconClasses,
+  replayDisplayName,
   sleep,
   validateReplayInput,
 } from "./show-utils.js";
@@ -121,7 +125,6 @@ import {
   renderReplayIntro,
   updateSpeedButtons,
   playbackDelay,
-  winnerNamesText,
   buildReplayResultTableHtml,
 } from "./show-replay.js";
 import { ensureApi, buildReplay } from "./show-wasm.js";
@@ -168,10 +171,6 @@ const inputStatus = document.querySelector("#inputStatus");
 const plistMeta = document.querySelector("#plistMeta");
 /** @type {HTMLElement} */
 const headerMeta = document.querySelector("#headerMeta");
-/** @type {HTMLElement} */
-const winnerNames = document.querySelector("#winnerNames");
-/** @type {HTMLElement} */
-const winnerNote = document.querySelector("#winnerNote");
 /** @type {HTMLElement} */
 const detailContent = document.querySelector("#detailContent");
 /** @type {HTMLInputElement} */
@@ -247,6 +246,7 @@ let speedMode = DEFAULT_SPEED_MODE;
 let playersById = new Map();
 const ICON_STYLE_ID = "tswn-show-icon-styles";
 const SEEK_CHECKPOINT_FRAME_INTERVAL = 20;
+const NORMAL_RESULT_REVEAL_DELAY_MS = 1500;
 /** @type {{ frames: Array<{ frameIndex: number, frame: FrameUpdate, previousStates: FightState[], start: number, end: number }>, flatChunks: Array<{ target: 'battleRows' | 'frameBody' | 'row' | 'delay', html: string, delay: number, frameIndex: number, visible: boolean, sidebarStates?: FightState[], sidebarPreviousStates?: FightState[], sidebarInvolved?: InvolvedSet }>, totalChunks: number }|null} */
 let currentPlan = null;
 /** @type {Map<number, { battle_rows_html: string, player_list_html: string, seed_line: string }>} */
@@ -307,6 +307,21 @@ function actorNicknameKey(actor) {
   return `${actor?.id_name ?? actor?._raw_display_name ?? actor?.display_name ?? ""}`.trim();
 }
 
+function baseNicknameKey(key) {
+  return `${key ?? ""}`
+    .trim()
+    .replace(/\s+#\d+$/, "")
+    .replace(/\?\d+(?=@|$)/, "");
+}
+
+function nicknameForKey(key) {
+  const normalizedKey = `${key ?? ""}`.trim();
+  if (!normalizedKey) {
+    return "";
+  }
+  return nicknameByIdName.get(normalizedKey) ?? nicknameByIdName.get(baseNicknameKey(normalizedKey)) ?? "";
+}
+
 function ensureRawDisplayName(actor) {
   if (!actor) {
     return "";
@@ -322,7 +337,7 @@ function applyNickname(actor, key) {
     return;
   }
   const rawDisplayName = ensureRawDisplayName(actor);
-  actor.display_name = nicknameByIdName.get(key) || rawDisplayName;
+  actor.display_name = nicknameForKey(key) || rawDisplayName;
 }
 
 function applyNicknamesToReplay(replay) {
@@ -336,19 +351,31 @@ function applyNicknamesToReplay(replay) {
     applyNickname(player, key);
   }
 
+  const nicknameKeyForState = (state) => {
+    if (!state) {
+      return "";
+    }
+    return (
+      inputKeysById.get(state.id) ??
+      inputKeysById.get(state.owner_id) ??
+      actorNicknameKey(state)
+    );
+  };
+
   const applyStateNickname = (state) => {
-    const key = inputKeysById.get(state.id);
+    const key = nicknameKeyForState(state);
     if (key) {
       applyNickname(state, key);
     }
   };
 
-  const applyPartNickname = (part) => {
+  const applyPartNickname = (part, stateById) => {
     if (part?.kind !== "player" || part.player_id == null) {
       return;
     }
-    const key = inputKeysById.get(part.player_id);
-    const nickname = key ? nicknameByIdName.get(key) : "";
+    const state = stateById.get(part.player_id);
+    const key = inputKeysById.get(part.player_id) || nicknameKeyForState(state) || part.text;
+    const nickname = nicknameForKey(key);
     if (nickname) {
       part.text = nickname;
     }
@@ -359,7 +386,10 @@ function applyNicknamesToReplay(replay) {
     (frame.states ?? []).forEach(applyStateNickname);
     for (const row of frame.rows ?? []) {
       for (const clip of row.clips ?? []) {
-        (clip.parts ?? []).forEach(applyPartNickname);
+        (clip.sidebar_states ?? []).forEach(applyStateNickname);
+        (clip.sidebar_previous_states ?? []).forEach(applyStateNickname);
+        const stateById = buildStateMap(clip.sidebar_states ?? frame.states ?? []);
+        (clip.parts ?? []).forEach((part) => applyPartNickname(part, stateById));
       }
     }
   }
@@ -607,11 +637,6 @@ function renderFrameSidebar(framePlan) {
   );
 }
 
-function renderEndPanel(replay) {
-  winnerNames.textContent = winnerNamesText(replay);
-  winnerNote.textContent = "你可以重新播放当前回放，或者重新打开输入面板换一组名字。";
-}
-
 function resetPlaybackView(replay) {
   clearPlayerHighlight();
   closePanel(endPanel);
@@ -756,7 +781,6 @@ function renderPlaybackToCursor(cursor, { forceReset = false } = {}) {
       playerList,
       playersById,
     );
-    renderEndPanel(currentReplay);
     appendReplayResultBlock(currentReplay);
     storePlaybackCheckpoint(playbackCursor);
   }
@@ -780,10 +804,8 @@ function resolveChunkDelay(frame, rawDelay) {
     const targetDelay = playbackDelay(frame, speedMode);
     return frame.total_delay > 0 ? Math.round((targetDelay * rawDelay) / frame.total_delay) : 0;
   }
-  // normal 模式：混淆版 md5.js 会先算原始等待，再按 sqrt(角色数 / 2) 缩放。
-  const playerCount = currentReplay?.players?.length ?? 0;
-  const divisor = Math.max(1, Math.round(Math.sqrt(playerCount / 2)));
-  return Math.trunc(rawDelay / divisor);
+  // normal 模式直接使用 core replay view 给出的句子级 delay。
+  return rawDelay;
 }
 
 async function waitForPlaybackDelay(ms, token) {
@@ -848,7 +870,6 @@ async function autoplayFromCurrentCursor() {
   }
 
   playbackFinished = true;
-  playbackPaused = true;
   currentVisibleStates = currentReplay.final_states;
   renderPlayers(
     currentReplay.players,
@@ -858,10 +879,15 @@ async function autoplayFromCurrentCursor() {
     playerList,
     playersById,
   );
-  renderEndPanel(currentReplay);
-  openPanel(endPanel);
+  if (speedMode === "normal") {
+    const completed = await waitForPlaybackDelay(NORMAL_RESULT_REVEAL_DELAY_MS, token);
+    if (!completed) {
+      return;
+    }
+  }
   appendReplayResultBlock(currentReplay);
   storePlaybackCheckpoint(playbackCursor);
+  playbackPaused = true;
   // 极速是一次性按钮：播完后自动回到暂停态
   if (speedMode === "turbo") {
     playbackPaused = true;
@@ -1058,7 +1084,7 @@ function detailRow(label, value) {
 }
 
 function buildPlayerDetailHtml(player, state, canEditNickname) {
-  const displayName = player?.display_name ?? state?.display_name ?? "未知角色";
+  const displayName = state ? replayDisplayName(state, state.id) : (player?.display_name ?? "未知角色");
   const rawName = player?._raw_display_name ?? state?._raw_display_name ?? displayName;
   const idName = player?.id_name ?? state?.id_name ?? "";
   const statusLabels = Array.isArray(state?.status_labels) ? state.status_labels.join("、") : "";

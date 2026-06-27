@@ -111,6 +111,7 @@ export interface PlayerState {
     id_name: string;
     icon_key: string;
     display_name: string;
+    display_index: number;
     icon_png_base64?: string;
     owner_id?: number;
     minion_kind?: MinionKindView;
@@ -138,7 +139,8 @@ export interface PlayerState {
 export interface ReplayClip {
     delay: number;
     text_template: string;
-    color: MessageTone;
+    color: string;
+    tone: MessageTone;
     player_id?: number;
     data?: string;
     show_hp: boolean;
@@ -228,7 +230,7 @@ export interface WinRateTiming {
     fight_nanos: number;
 }
 
-export type MessageTone = "normal" | "damage" | "recover" | "knockout";
+export type MessageTone = "normal" | "damage" | "recover" | "knockout" | "status_exit";
 
 export type MinionKindView = "clone" | "summon" | "shadow" | "zombie";
 
