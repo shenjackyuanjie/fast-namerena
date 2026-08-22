@@ -196,6 +196,21 @@ export function core_version() {
 }
 
 /**
+ * @param {string} raw_input
+ * @param {number} max_rounds
+ * @returns {RuntimeNormalizedRunView}
+ */
+export function default_custom_runtime_normalized_run(raw_input, max_rounds) {
+    const ptr0 = passStringToWasm0(raw_input, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    const len0 = WASM_VECTOR_LEN;
+    const ret = wasm.default_custom_runtime_normalized_run(ptr0, len0, max_rounds);
+    if (ret[2]) {
+        throw takeFromExternrefTable0(ret[1]);
+    }
+    return takeFromExternrefTable0(ret[0]);
+}
+
+/**
  * @returns {number}
  */
 export function default_eval_rq() {

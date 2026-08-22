@@ -5,6 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>tswn_wasm Show Demo</title>
     <link rel="stylesheet" href="./show.css">
+    <script>
+        (() => {
+            try {
+                const theme = localStorage.getItem("tswn-show-theme");
+                if (theme === "light" || theme === "dark") {
+                    document.documentElement.dataset.theme = theme;
+                    document.documentElement.dataset.themeSource = "user";
+                    return;
+                }
+            } catch {
+                // 隐私模式或禁用存储时，仍然可以使用系统主题。
+            }
+            document.documentElement.dataset.theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+            document.documentElement.dataset.themeSource = "system";
+        })();
+    </script>
 </head>
 <body>
     <div class="version-marker small">
@@ -37,7 +53,7 @@
                             <div class="header-title">战斗过程</div>
                             <div id="headerMeta" class="small dim">目前显示的是 show 风格回放视图。</div>
                         </div>
-                        <div class="version-note small dim">自动使用 FightSession 捕获 replay，并按帧播放。</div>
+                        <div id="runtimeModeInfo" class="version-note small dim">使用 runtime normalized run 生成 replay 适配视图。</div>
                     </div>
                     <div id="battleRows" class="battleRows">
                         <div class="welcome">
@@ -106,6 +122,7 @@
         </div>
 
         <div id="rightControls" class="right-controls">
+            <div id="shareToast" class="share-toast" role="status" aria-live="polite" hidden>分享链接已复制</div>
             <button id="toggleControlsBtn" class="micon controls-toggle" title="收起控制按钮" aria-label="收起控制按钮" aria-expanded="true">
                 <svg class="svgicon collapse-icon" fill="white" height="24" width="24" viewBox="0 0 24 24"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
                 <svg class="svgicon expand-icon" fill="white" height="24" width="24" viewBox="0 0 24 24"><path d="M7.41 15.41 12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
@@ -144,11 +161,18 @@
             <button id="refreshBtn" class="micon" title="重新播放" aria-label="重新播放">
                 <svg class="svgicon" fill="white" height="24" width="24" viewBox="0 0 24 24"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
             </button>
+            <button id="shareBtn" class="micon" title="复制分享链接" aria-label="复制分享链接">
+                <svg class="svgicon" fill="white" height="24" width="24" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11A2.99 2.99 0 1 0 15 5c0 .24.04.47.09.7L8.04 9.81A3 3 0 1 0 8.04 14.2l7.12 4.18c-.05.2-.08.41-.08.62a2.92 2.92 0 1 0 2.92-2.92z"/></svg>
+            </button>
+            <button id="themeBtn" class="micon" type="button" title="切换到深色模式" aria-label="切换到深色模式" aria-pressed="false">
+                <svg id="themeLightIcon" class="svgicon" fill="white" height="24" width="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4V2h-1v2h1zm0 18v-2h-1v2h1zM4 11H2v1h2v-1zm18 0h-2v1h2v-1zM5.64 6.36 4.22 4.93l-.71.71 1.42 1.43.71-.71zm14.14 12.71-1.42-1.42-.71.71 1.42 1.42.71-.71zM5.64 17.64l-.71-.71-1.42 1.42.71.71 1.42-1.42zM19.07 4.93l-1.42 1.43.71.71 1.42-1.43-.71-.71zM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/></svg>
+                <svg id="themeDarkIcon" class="svgicon" fill="white" height="24" width="24" viewBox="0 0 24 24" aria-hidden="true" hidden><path d="M20.74 15.06A8.5 8.5 0 0 1 8.94 3.26 8.5 8.5 0 1 0 20.74 15.06z"/></svg>
+            </button>
             </div>
         </div>
 
     </div>
 
-    <script type="module" src="./show.js?v=20260626a"></script>
+    <script type="module" src="./show.js?v=20260714a"></script>
 </body>
 </html>

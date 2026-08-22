@@ -138,16 +138,8 @@ export interface PlayerState {
 
 export interface ReplayClip {
     delay: number;
-    text_template: string;
     color: string;
     tone: MessageTone;
-    player_id?: number;
-    data?: string;
-    show_hp: boolean;
-    hp_before: number;
-    hp_after: number;
-    death_effect: boolean;
-    emoji: string | undefined;
     parts?: ReplayTextPart[];
     caster_ids?: number[];
     target_ids?: number[];
@@ -182,6 +174,53 @@ export interface RoundFrame {
      * 帧内所有可见 update 的原始等待总和（毫秒），按混淆版 md5.js 的 delay 规则计算，未按角色数量缩放。
      */
     total_delay: number;
+}
+
+export interface RuntimeActionBoundaryView {
+    round: number;
+    actor: number;
+    target: number;
+    amount: number;
+}
+
+export interface RuntimeNormalizedOutcomeView {
+    winner_team: number | undefined;
+    round: number;
+    total_score: number;
+    rng_i: number;
+    rng_j: number;
+    entity_ids: number[];
+    teams: number[];
+    hp: number[];
+    magic_point: number[];
+    defense: number[];
+    resistance: number[];
+    alive: boolean[];
+    round_order: number[];
+    flat_alive: number[];
+    team_alive: number[][];
+    alive_group_count: number;
+    actions: RuntimeActionBoundaryView[];
+    frames: RuntimeUpdateFrameView[];
+}
+
+export interface RuntimeNormalizedRunView {
+    rounds: RuntimeNormalizedOutcomeView[];
+    winner_team: number | undefined;
+    guard_exhausted: boolean;
+    total_score: number;
+}
+
+export interface RuntimeUpdateFrameView {
+    message: string;
+    caster: number;
+    target: number;
+    targets: number[];
+    param?: number;
+    score: number;
+    delay0: number;
+    delay1: number;
+    update_type: UpdateTypeView;
 }
 
 export interface UpdateView {
@@ -268,6 +307,8 @@ export function batch_rate(target_groups: string[], player_groups: string[], tot
 
 export function core_version(): string;
 
+export function default_custom_runtime_normalized_run(raw_input: string, max_rounds: number): RuntimeNormalizedRunView;
+
 export function default_eval_rq(): number;
 
 export function fight(raw_input: string, options?: FightOptions | null): FightReplay;
@@ -318,6 +359,7 @@ export interface InitOutput {
     readonly __wbg_winratesession_free: (a: number, b: number) => void;
     readonly batch_rate: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number) => [number, number, number, number];
     readonly core_version: () => [number, number];
+    readonly default_custom_runtime_normalized_run: (a: number, b: number, c: number) => [number, number, number];
     readonly default_eval_rq: () => number;
     readonly fight: (a: number, b: number, c: number) => [number, number, number];
     readonly fight_summary: (a: number, b: number, c: number) => [number, number, number];

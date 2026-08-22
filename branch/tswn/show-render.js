@@ -2,7 +2,7 @@
  * @fileoverview tswn_wasm 战斗回放展示页 — 渲染函数
  *
  * 本模块负责将战斗数据（FightPlayer、FightState、FrameUpdate）转换为 HTML
- * 字符串，供 show.html 页面直接插入 DOM。所有渲染函数均为纯函数，通过参数
+ * 字符串，供 index.html 页面直接插入 DOM。所有渲染函数均为纯函数，通过参数
  * 接收 DOM 引用和全局状态（playersById），不直接依赖模块级变量。
  *
  * ## 导出函数一览
@@ -144,7 +144,7 @@ export function renderIdleState(playerList, battleRows, plistMeta, headerMeta) {
     `;
   battleRows.innerHTML = `
         <div class="welcome">
-            <div><strong>show.html 是单独的 Fight 展示页。</strong></div>
+            <div><strong>index.html 是单独的 Fight 展示页。</strong></div>
             <div>它不再混合胜率功能，而是专门模仿原始名字竞技场与 fast-namerena 的战斗观感。</div>
         </div>
     `;
@@ -639,8 +639,8 @@ export function renderPlayers(
 
 /**
  * 构建单帧的战斗记录 HTML。
- * 每帧内部的多条消息用" ，"分隔，换行消息（next_line）触发新行。
- * HP 条会基于当前帧内累计伤害/回复进行模拟变化。
+ * 每帧内部的多条消息用" ，"分隔，换行消息（next_line）已经由 replay view 表达为新行。
+ * HP 条、死亡特效和文本分段都来自 core/WASM 提供的 clip.parts[]。
  *
  * @param {FrameUpdate} frame — 当前帧数据
  * @param {number} roundIndex — 帧序号

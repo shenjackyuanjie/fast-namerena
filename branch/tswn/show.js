@@ -64,11 +64,43 @@
  * 单帧更新的结构：
  * @typedef {{
  *   updates: FrameMessage[],
+ *   rows?: ReplayRow[],
  *   states: FightState[],
  *   finished: boolean,
  *   winner_ids: number[],
  *   total_delay: number
  * }} FrameUpdate
+ *
+ * replay view 行结构：
+ * @typedef {{
+ *   indent: boolean,
+ *   clips: ReplayClip[]
+ * }} ReplayRow
+ *
+ * replay view 片段结构；文本/玩家/血条/死亡特效语义都在 parts 内。
+ * @typedef {{
+ *   delay: number,
+ *   color: string,
+ *   tone: MessageTone,
+ *   parts: ReplayTextPart[],
+ *   caster_ids?: number[],
+ *   target_ids?: number[],
+ *   sidebar_states?: FightState[],
+ *   sidebar_previous_states?: FightState[],
+ *   winner?: boolean
+ * }} ReplayClip
+ *
+ * replay view 文本片段结构：
+ * @typedef {{
+ *   kind: 'text' | 'highlight' | 'player' | 'data',
+ *   text: string,
+ *   player_id?: number|null,
+ *   show_hp?: boolean,
+ *   hp_before?: number,
+ *   hp_after?: number,
+ *   death_effect?: boolean,
+ *   emoji?: string|null
+ * }} ReplayTextPart
  *
  * 单条消息的结构：
  * @typedef {{
@@ -127,7 +159,11 @@ import {
   playbackDelay,
   buildReplayResultTableHtml,
 } from "./show-replay.js";
-import { ensureApi, buildReplay } from "./show-wasm.js";
+import {
+  buildShowShareUrl,
+  readStaticReplayInputFromSearch,
+} from "./show-routing.js";
+import { ensureApi, buildMainNormalizedReplay } from "./show-wasm.js";
 
 // ============================================================================
 // 默认示例输入 — 可在页面中直接点击"示例"按钮填入
@@ -148,7 +184,6 @@ const INPUT_STORAGE_KEY = "tswn_wasm_show_input";
 const NICKNAME_STORAGE_KEY = "tswn_wasm_show_nicknames";
 /** @type {SpeedMode} 新战斗默认播放速度 */
 const DEFAULT_SPEED_MODE = "normal";
-
 // ============================================================================
 // DOM 元素引用
 // ============================================================================
@@ -182,7 +217,6 @@ const versionInfo = document.querySelector("#versionInfo");
 const coreVersionInfo = document.querySelector("#coreVersionInfo");
 /** @type {HTMLElement} */
 const modulePathInfo = document.querySelector("#modulePathInfo");
-
 /** @type {HTMLButtonElement} */
 const startBtn = document.querySelector("#startBtn");
 /** @type {HTMLButtonElement} */
@@ -213,6 +247,16 @@ const turboBtn = document.querySelector("#turboBtn");
 const pauseBtn = document.querySelector("#pauseBtn");
 /** @type {HTMLButtonElement} */
 const refreshBtn = document.querySelector("#refreshBtn");
+/** @type {HTMLButtonElement} */
+const shareBtn = document.querySelector("#shareBtn");
+/** @type {HTMLElement} */
+const shareToast = document.querySelector("#shareToast");
+/** @type {HTMLButtonElement} */
+const themeBtn = document.querySelector("#themeBtn");
+/** @type {SVGElement} */
+const themeLightIcon = document.querySelector("#themeLightIcon");
+/** @type {SVGElement} */
+const themeDarkIcon = document.querySelector("#themeDarkIcon");
 /** @type {HTMLElement} */
 const rightControls = document.querySelector("#rightControls");
 /** @type {HTMLButtonElement} */
@@ -263,7 +307,43 @@ let playbackPaused = false;
 let playbackFinished = false;
 /** @type {boolean} 右下角控制组是否收起 */
 let rightControlsCollapsed = window.matchMedia("(max-width: 640px)").matches;
+/** @type {number|null} 分享复制提示的隐藏定时器 */
+let shareToastTimer = null;
+const themeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+const THEME_STORAGE_KEY = "tswn-show-theme";
 
+function currentTheme() {
+  return document.documentElement.dataset.theme ?? (themeMediaQuery.matches ? "dark" : "light");
+}
+
+function syncThemeUi() {
+  const isDark = currentTheme() === "dark";
+  themeLightIcon.toggleAttribute("hidden", !isDark);
+  themeDarkIcon.toggleAttribute("hidden", isDark);
+  const label = isDark ? "切换到浅色模式" : "切换到深色模式";
+  themeBtn.title = label;
+  themeBtn.setAttribute("aria-label", label);
+  themeBtn.setAttribute("aria-pressed", String(isDark));
+}
+
+function setTheme(theme) {
+  document.documentElement.dataset.theme = theme;
+  document.documentElement.dataset.themeSource = "user";
+  try {
+    localStorage.setItem(THEME_STORAGE_KEY, theme);
+  } catch {
+    // 存储不可用时仍保留本次页面会话的主题。
+  }
+  syncThemeUi();
+}
+
+syncThemeUi();
+themeMediaQuery.addEventListener("change", () => {
+  if (document.documentElement.dataset.themeSource === "system") {
+    document.documentElement.dataset.theme = themeMediaQuery.matches ? "dark" : "light";
+    syncThemeUi();
+  }
+});
 // 页面初始化时尝试恢复上次保存的输入
 restoreInputValue();
 restoreNicknameMap();
@@ -322,6 +402,11 @@ function nicknameForKey(key) {
   return nicknameByIdName.get(normalizedKey) ?? nicknameByIdName.get(baseNicknameKey(normalizedKey)) ?? "";
 }
 
+function stateCanUsePlayerNickname(state) {
+  const minionKind = state?.minion_kind ?? null;
+  return minionKind == null || minionKind === "clone";
+}
+
 function ensureRawDisplayName(actor) {
   if (!actor) {
     return "";
@@ -355,6 +440,9 @@ function applyNicknamesToReplay(replay) {
     if (!state) {
       return "";
     }
+    if (!stateCanUsePlayerNickname(state)) {
+      return "";
+    }
     return (
       inputKeysById.get(state.id) ??
       inputKeysById.get(state.owner_id) ??
@@ -374,6 +462,9 @@ function applyNicknamesToReplay(replay) {
       return;
     }
     const state = stateById.get(part.player_id);
+    if (state && !stateCanUsePlayerNickname(state)) {
+      return;
+    }
     const key = inputKeysById.get(part.player_id) || nicknameKeyForState(state) || part.text;
     const nickname = nicknameForKey(key);
     if (nickname) {
@@ -531,6 +622,7 @@ function syncPlaybackUi() {
   );
 
   pauseBtn.disabled = !currentReplay;
+  shareBtn.disabled = !currentReplay;
   pauseBtn.classList.toggle("is-paused", playbackPaused);
 
   stepControls.hidden = false;
@@ -1020,6 +1112,86 @@ function isEditableKeyTarget(target) {
   return editableTarget instanceof HTMLElement && editableTarget.isContentEditable;
 }
 
+function showShareToast(message = "分享链接已复制") {
+  if (shareToastTimer != null) {
+    clearTimeout(shareToastTimer);
+    shareToastTimer = null;
+  }
+  shareToast.textContent = message;
+  shareToast.hidden = false;
+  window.requestAnimationFrame(() => {
+    shareToast.classList.add("is-visible");
+  });
+  shareToastTimer = window.setTimeout(() => {
+    shareToast.classList.remove("is-visible");
+    shareToastTimer = window.setTimeout(() => {
+      shareToast.hidden = true;
+      shareToastTimer = null;
+    }, 180);
+  }, 1600);
+}
+
+// ============================================================================
+// URL 静态输入参数
+// ============================================================================
+
+/**
+ * 将 URL-safe Base64 文本解码成 UTF-8 字符串。
+ * @param {string} encoded
+ * @returns {string}
+ * @throws {Error} 当参数为空、Base64 不合法或 UTF-8 解码失败时抛出错误
+ */
+/**
+ * 为当前对局输入生成分享链接。
+ * @param {string} rawInput
+ * @returns {string}
+ */
+function buildShareUrl(rawInput) {
+  return buildShowShareUrl(rawInput, {
+    href: window.location.href,
+  });
+}
+
+/**
+ * 复制文本到剪贴板，Clipboard API 不可用时使用 textarea fallback。
+ * @param {string} text
+ * @returns {Promise<void>}
+ */
+async function copyTextToClipboard(text) {
+  if (window.isSecureContext && navigator.clipboard?.writeText) {
+    await navigator.clipboard.writeText(text);
+    return;
+  }
+
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+  textarea.setAttribute("readonly", "");
+  textarea.style.position = "fixed";
+  textarea.style.left = "-9999px";
+  textarea.style.top = "0";
+  document.body.append(textarea);
+  textarea.select();
+  try {
+    if (!document.execCommand("copy")) {
+      throw new Error("浏览器拒绝复制操作。");
+    }
+  } finally {
+    textarea.remove();
+  }
+}
+
+/**
+ * 从当前页面 URL 中读取静态对局输入参数。
+ * @returns {{ ok: true, input: string, paramName: string }|{ ok: false, message: string }|null}
+ */
+function readStaticReplayInputFromUrl() {
+  return readStaticReplayInputFromSearch(window.location.search);
+}
+
+async function buildMainReplay(rawInput) {
+  return buildMainNormalizedReplay(rawInput, versionInfo, coreVersionInfo, modulePathInfo);
+}
+
 // ============================================================================
 // localStorage 持久化
 // ============================================================================
@@ -1228,9 +1400,10 @@ function clearCurrentNickname() {
  */
 /**
  * 开始一场新战斗：校验输入 → 生成回放 → 自动播放。
+ * @param {{ persistInput?: boolean }} [options]
  * @returns {Promise<void>}
  */
-async function startBattle() {
+async function startBattle({ persistInput = true } = {}) {
   const rawInput = inputName.value.trim();
   if (!rawInput) {
     setInputStatus("请输入至少一个名字。", true);
@@ -1245,17 +1418,19 @@ async function startBattle() {
   }
 
   speedMode = DEFAULT_SPEED_MODE;
-  persistInputValue();
+  if (persistInput) {
+    persistInputValue();
+  }
   stopPlaybackLoop();
   clearCurrentReplayView();
   setLoading(true);
-  setInputStatus("正在生成回放，请稍候...");
+  setInputStatus("正在使用 runtime normalized run 生成回放，请稍候...");
 
   try {
     currentReplay = applyNicknamesToReplay(
-      normalizeReplayPlayers(await buildReplay(rawInput, versionInfo, coreVersionInfo, modulePathInfo)),
+      normalizeReplayPlayers(await buildMainReplay(rawInput)),
     );
-    setInputStatus("回放已生成，开始自动播放。");
+    setInputStatus("runtime 回放已生成，开始自动播放。");
     closePanel(inputPanel);
     beginReplayPlayback(currentReplay);
   } catch (error) {
@@ -1276,6 +1451,22 @@ async function replayCurrent() {
     return;
   }
   beginReplayPlayback(currentReplay);
+}
+
+async function copyCurrentShareUrl() {
+  if (!currentReplay?.raw_input) {
+    setInputStatus("当前还没有可分享的对局。", true);
+    openInputEditor();
+    return;
+  }
+
+  try {
+    await copyTextToClipboard(buildShareUrl(currentReplay.raw_input));
+    setInputStatus("分享链接已复制到剪贴板。");
+    showShareToast();
+  } catch (error) {
+    setInputStatus(`复制分享链接失败：${formatError(error)}`, true);
+  }
 }
 
 // ============================================================================
@@ -1304,6 +1495,14 @@ playAgainBtn.addEventListener("click", () => {
 // 刷新按钮：重播当前回放
 refreshBtn.addEventListener("click", () => {
   void replayCurrent();
+});
+
+shareBtn.addEventListener("click", () => {
+  void copyCurrentShareUrl();
+});
+
+themeBtn.addEventListener("click", () => {
+  setTheme(currentTheme() === "dark" ? "light" : "dark");
 });
 
 toggleControlsBtn.addEventListener("click", () => {
@@ -1473,14 +1672,27 @@ nicknameInput.addEventListener("keydown", (event) => {
  * @returns {Promise<void>}
  */
 async function main() {
+  const staticInput = readStaticReplayInputFromUrl();
+  if (staticInput?.ok) {
+    inputName.value = staticInput.input;
+  }
+
   renderIdleState(playerList, battleRows, plistMeta, headerMeta);
   syncPlaybackUi();
   syncRightControlsUi();
-  setInputStatus("会使用 show 风格自动播放整场战斗。");
-  openInputEditor();
+  if (staticInput?.ok) {
+    setInputStatus(`已读取 URL 参数 ${staticInput.paramName}，正在使用 runtime normalized run 初始化回放...`);
+  } else {
+    setInputStatus(staticInput?.message ?? "会使用 show 风格自动播放整场战斗。", Boolean(staticInput));
+    openInputEditor();
+  }
 
   try {
     await ensureApi(versionInfo, coreVersionInfo, modulePathInfo);
+    if (staticInput?.ok) {
+      await startBattle({ persistInput: false });
+      return;
+    }
     setInputStatus("tswn_wasm 已初始化，可以开始。");
   } catch (error) {
     setInputStatus(`模块加载失败: ${formatError(error)}`, true);

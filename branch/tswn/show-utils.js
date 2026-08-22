@@ -119,6 +119,9 @@ export function normalizeReplayIconClasses(replay) {
       ...row,
       clips: (row.clips ?? []).map((clip) => ({
         ...clip,
+        parts: Array.isArray(clip.parts) ? clip.parts : [],
+        caster_ids: Array.isArray(clip.caster_ids) ? clip.caster_ids : [],
+        target_ids: Array.isArray(clip.target_ids) ? clip.target_ids : [],
         sidebar_states: normalizeStates(clip.sidebar_states),
         sidebar_previous_states: normalizeStates(clip.sidebar_previous_states),
       })),

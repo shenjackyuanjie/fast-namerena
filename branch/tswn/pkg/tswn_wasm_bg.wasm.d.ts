@@ -5,6 +5,7 @@ export const __wbg_fightsession_free: (a: number, b: number) => void;
 export const __wbg_winratesession_free: (a: number, b: number) => void;
 export const batch_rate: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number) => [number, number, number, number];
 export const core_version: () => [number, number];
+export const default_custom_runtime_normalized_run: (a: number, b: number, c: number) => [number, number, number];
 export const default_eval_rq: () => number;
 export const fight: (a: number, b: number, c: number) => [number, number, number];
 export const fight_summary: (a: number, b: number, c: number) => [number, number, number];
