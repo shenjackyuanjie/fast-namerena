@@ -67,88 +67,6 @@ export function buildIconClassCss(iconEntries) {
 }
 
 /**
- * 取混淆版 md5.js 中 Sgls.o6 使用的头像缓存 key。
- * @param {{ icon_key?: string, id_name?: string, id?: number|string }|null|undefined} actor
- * @returns {string}
- */
-function iconCacheKey(actor) {
-  return actor?.icon_key ?? actor?.id_name ?? `#${actor?.id ?? "missing"}`;
-}
-
-/**
- * 为完整回放补齐 icon_class_id，并收集需要注入的 CSS 背景图规则。
- * 混淆版 md5.js 的 Sgls.o6 是按 fy/icon_key 缓存，再按出现顺序分配 icon_N。
- * @param {FightReplay} replay
- * @returns {FightReplay}
- */
-export function normalizeReplayIconClasses(replay) {
-  const iconIdByKey = new Map();
-  const iconStyleById = new Map();
-  let nextIconId = 0;
-
-  const register = (actor) => {
-    if (!actor) {
-      return actor;
-    }
-    const key = iconCacheKey(actor);
-    let icon_class_id = iconIdByKey.get(key);
-    if (icon_class_id == null) {
-      icon_class_id = nextIconId;
-      nextIconId += 1;
-      iconIdByKey.set(key, icon_class_id);
-    }
-    if (actor.icon_png_base64 && !iconStyleById.has(icon_class_id)) {
-      iconStyleById.set(icon_class_id, {
-        icon_class_id,
-        icon_png_base64: actor.icon_png_base64,
-      });
-    }
-    return {
-      ...actor,
-      icon_class_id,
-    };
-  };
-
-  const normalizeStates = (states) => (states ?? []).map(register);
-  const players = (replay.players ?? []).map(register);
-  const initial_states = normalizeStates(replay.initial_states);
-  const frames = (replay.frames ?? []).map((frame) => ({
-    ...frame,
-    states: normalizeStates(frame.states),
-    rows: (frame.rows ?? []).map((row) => ({
-      ...row,
-      clips: (row.clips ?? []).map((clip) => ({
-        ...clip,
-        parts: Array.isArray(clip.parts) ? clip.parts : [],
-        caster_ids: Array.isArray(clip.caster_ids) ? clip.caster_ids : [],
-        target_ids: Array.isArray(clip.target_ids) ? clip.target_ids : [],
-        sidebar_states: normalizeStates(clip.sidebar_states),
-        sidebar_previous_states: normalizeStates(clip.sidebar_previous_states),
-      })),
-    })),
-  }));
-  const final_states = normalizeStates(replay.final_states);
-
-  return {
-    ...replay,
-    players,
-    initial_states,
-    frames,
-    final_states,
-    icon_styles: Array.from(iconStyleById.values()),
-  };
-}
-
-/**
- * @deprecated 使用 normalizeReplayIconClasses；保留导出避免旧页面直接引用时报错。
- * @param {FightPlayer[]} players
- * @returns {FightPlayer[]}
- */
-export function withTeamIconClassIds(players) {
-  return normalizeReplayIconClasses({ players }).players;
-}
-
-/**
  * 渲染一个 show 风格头像节点。
  * 头像图片由外部注入的 `.icon_N` 规则提供，这里只负责输出结构和类名。
  * @param {number|string|null|undefined} iconId
@@ -587,22 +505,29 @@ export function actorHpMetrics(state, previousState) {
   const maxHp = Math.max(1, state.max_hp, previousState?.max_hp ?? 0);
   const hp = Math.max(0, Math.min(maxHp, state.hp));
   // 新对象按当前血量作为上一状态处理；复活/护符这类实体已存在的 0 -> x 仍正常显示回血。
+  const isRevive = previousState?.alive === false && hp > 0;
   const previousHp = previousState ? Math.max(0, Math.min(maxHp, previousState.hp)) : hp;
   // 血条长度调整为 血量 / 4 向上取整
   const totalWidth = Math.max(20, Math.ceil(maxHp / 4));
-  const fillWidth = hp > 0 ? Math.max(1, Math.ceil(hp / 4)) : 0;
+  const currentWidth = hp > 0 ? Math.max(1, Math.ceil(hp / 4)) : 0;
+  const fillWidth = isRevive ? 0 : currentWidth;
   const previousWidth = previousHp > 0 ? Math.max(1, Math.ceil(previousHp / 4)) : 0;
   const isRecover = hp > previousHp;
-  const deltaWidth =
-    previousHp > hp ? Math.max(1, previousWidth - fillWidth) : isRecover ? Math.max(1, fillWidth - previousWidth) : 0;
+  const deltaWidth = isRevive
+    ? currentWidth
+    : previousHp > hp
+      ? Math.max(1, previousWidth - fillWidth)
+      : isRecover
+        ? Math.max(1, fillWidth - previousWidth)
+        : 0;
 
   return {
     totalWidth,
     fillWidth,
     previousWidth,
-    deltaLeft: isRecover ? previousWidth : fillWidth,
+    deltaLeft: isRevive ? 0 : isRecover ? previousWidth : fillWidth,
     deltaWidth,
-    deltaKind: isRecover ? "recover" : previousHp > hp ? "damage" : "none",
+    deltaKind: isRevive || isRecover ? "recover" : previousHp > hp ? "damage" : "none",
   };
 }
 

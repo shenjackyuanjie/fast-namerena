@@ -751,6 +751,10 @@ button:hover {
     word-break: break-word;
 }
 
+.row.indented {
+    padding-left: 14px;
+}
+
 .frame-body .row:not(.separator)+.row:not(.separator) {
     margin-top: 4px;
     padding-left: 14px;
@@ -1107,10 +1111,12 @@ input {
     overflow: auto;
     padding: 12px 14px;
     background: var(--surface-soft);
+    color: var(--ink);
 }
 
 .detail-name {
     margin-bottom: 8px;
+    color: var(--ink);
     font-size: 18px;
     line-height: 1.35;
     font-weight: 700;
@@ -1119,7 +1125,7 @@ input {
 
 .detail-subtitle {
     margin-bottom: 10px;
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--muted);
     font-size: 12px;
     line-height: 1.45;
     overflow-wrap: anywhere;
@@ -1134,12 +1140,12 @@ input {
 }
 
 .detail-grid dt {
-    color: rgba(255, 255, 255, 0.82);
+    color: var(--muted);
 }
 
 .detail-grid dd {
     margin: 0;
-    color: white;
+    color: var(--ink);
     font-weight: 700;
     overflow-wrap: anywhere;
 }

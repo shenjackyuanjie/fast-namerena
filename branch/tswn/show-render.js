@@ -60,7 +60,7 @@ function replayHighlightColorStyle(color) {
  * @param {{ showHp?: boolean, forceHp?: boolean, deathEffect?: boolean }} [options] — 是否显示 HP mini bar / 死亡效果
  * @returns {string} HTML 字符串
  */
-export function actorToken(player, state, previousState, update, { showHp = true, forceHp = false, deathEffect = null } = {}) {
+export function actorToken(player, state, previousState, update, { showHp = true, forceHp = false, deathEffect = false } = {}) {
   // 仅在血量变化时或新实体首次出现时显现血条。
   // 被减速等 debuff 状态不会改变血量，因此不展示血条。
   const isNew = state?._is_new_in_frame;
@@ -76,7 +76,7 @@ export function actorToken(player, state, previousState, update, { showHp = true
         `
     : "";
   const hpClass = hpMetrics ? " has-hp" : "";
-  const isKnockout = deathEffect ?? (update?.tone === "knockout" || (state && !state.alive));
+  const isKnockout = deathEffect === true;
   const nameClass = `actor-name${isKnockout ? " namedie" : ""}`;
 
   return `<span class="actor-token${hpClass}" data-player-id="${player.id}"><span class="actor-avatar-wrap">${renderIconSprite(playerIconClassId(player), "msg-avatar icon-sprite")}</span><span class="${nameClass}">${hpBar}${escapeHtml(player.display_name)}</span></span>`;
@@ -104,6 +104,7 @@ function syntheticPlayerFromState(playerId, state, playersById) {
   }
 
   return {
+    ...state,
     id: playerId,
     team_index: state?.team_index ?? 0,
     owner_id: state?.owner_id ?? null,
@@ -740,6 +741,7 @@ function buildStructuredFrameRows(frame, roundIndex, playersById) {
 
   for (const row of frame.rows ?? []) {
     rowStarted = false;
+    const rowClass = row.indent ? "row indented" : "row";
     for (const clip of row.clips ?? []) {
       const messageHtml = structuredClipHtml(clip, playersById);
       const delay = Number.isFinite(clip.delay) ? clip.delay : 0;
@@ -751,7 +753,7 @@ function buildStructuredFrameRows(frame, roundIndex, playersById) {
                     <section class="round-block">
                         <div class="frame-sidebar"><span class="frame-chip">#${roundIndex}</span></div>
                         <div class="frame-body">
-                            <div class="row${clip.winner ? " winner-line" : ""}">${messageHtml}</div>
+                            <div class="${rowClass}${clip.winner ? " winner-line" : ""}">${messageHtml}</div>
                         </div>
                     </section>
                 `,
@@ -765,7 +767,7 @@ function buildStructuredFrameRows(frame, roundIndex, playersById) {
       if (!rowStarted) {
         chunks.push({
           target: "frameBody",
-          html: `<div class="row${clip.winner ? " winner-line" : ""}">${messageHtml}</div>`,
+          html: `<div class="${rowClass}${clip.winner ? " winner-line" : ""}">${messageHtml}</div>`,
           delay,
           ...(sidebar ?? {}),
         });

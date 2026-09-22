@@ -1,5 +1,145 @@
 /* tslint:disable */
 /* eslint-disable */
+/**
+ * 跨绑定、可供 UI 使用的战斗回放 API 选项。
+ */
+export interface BattleOptions {
+    eval_rq?: number;
+    include_icons?: boolean;
+    max_rounds?: number;
+}
+
+// 规范 core DTO 形状。没有单独的 Rust 绑定 schema。
+export type BattleStatus = "running" | "finished" | "truncated";
+export type BattleStopReason = "winner" | "max_rounds" | "no_progress";
+export type BattleMinionKind = "clone" | "summon" | "shadow" | "zombie";
+export type BattleUpdateType = "win" | "none" | "next_line";
+export type BattleTone = "normal" | "damage" | "recover" | "knockout" | "status_exit";
+export type BattleReplayTextPartKind = "text" | "highlight" | "player" | "data";
+export type BattleReplayOptions = BattleOptions;
+
+export interface BattleReplay {
+    status: BattleStatus;
+    stop_reason: BattleStopReason;
+    rounds_advanced: number;
+    frames_emitted: number;
+    finished: boolean;
+    truncated: boolean;
+    initial_states: Array<BattlePlayerState>;
+    frames: Array<BattleReplayFrame>;
+    final_states: Array<BattlePlayerState>;
+    winner_ids: Array<number>;
+    winner_team_indices: Array<number>;
+    state_granularity: "round";
+}
+
+export interface BattlePlayerState {
+    id: number;
+    team_index: number;
+    input_team_index: number | null;
+    owner_id: number | null;
+    source_id: number | null;
+    id_name: string;
+    id_key_name: string;
+    icon_key: string;
+    display_name: string;
+    display_index: number;
+    base_name: string;
+    player_type: string;
+    minion_kind: BattleMinionKind | null;
+    icon_png_base64: string | null;
+    hp: number;
+    max_hp: number;
+    magic_point: number;
+    move_point: number;
+    attack: number;
+    defense: number;
+    speed: number;
+    agility: number;
+    magic: number;
+    resistance: number;
+    wisdom: number;
+    point: number;
+    all_sum: number;
+    name_factor: number;
+    at_boost: number;
+    attract: number;
+    frozen: boolean;
+    alive: boolean;
+    active: boolean;
+    status_labels: Array<string>;
+}
+
+export interface BattleReplayFrame {
+    frame_index: number;
+    round_index: number;
+    finished: boolean;
+    winner_ids: Array<number>;
+    updates: Array<BattleUpdate>;
+    rows: Array<BattleReplayRow>;
+    states: Array<BattlePlayerState>;
+    total_delay: number;
+}
+
+export interface BattleUpdate {
+    update_type: BattleUpdateType;
+    tone: BattleTone;
+    message_template: string;
+    message_rendered: string;
+    caster_id: number | null;
+    target_id: number | null;
+    target_ids: Array<number>;
+    param: number | null;
+    score: number;
+    delay0: number;
+    delay1: number;
+    hp_delta: number | null;
+    is_win: boolean;
+    is_next_line: boolean;
+}
+
+export interface BattleReplayRow {
+    indent: boolean;
+    clips: Array<BattleReplayClip>;
+}
+
+export interface BattleReplayClip {
+    delay: number;
+    color: string;
+    tone: BattleTone;
+    parts: Array<BattleReplayTextPart>;
+    caster_ids: Array<number>;
+    target_ids: Array<number>;
+    sidebar_states: Array<BattlePlayerState>;
+    sidebar_previous_states: Array<BattlePlayerState>;
+    winner: boolean;
+}
+
+export interface BattleReplayTextPart {
+    kind: BattleReplayTextPartKind;
+    text: string;
+    player_id: number | null;
+    show_hp: boolean;
+    hp_before: number;
+    hp_after: number;
+    death_effect: boolean;
+    emoji: string | null;
+}
+
+export interface BattleResult {
+    status: BattleStatus;
+    stop_reason: BattleStopReason;
+    finished: boolean;
+    truncated: boolean;
+    rounds_advanced: number;
+    frames_emitted: number;
+    winner_ids: Array<number>;
+    winner_team_indices: Array<number>;
+    final_states: Array<BattlePlayerState>;
+}
+
+
+
 export interface CliBatchRateResult {
     label: string;
     avg_win_rate: number;
@@ -280,9 +420,28 @@ export type UpdateTypeView = "win" | "none" | "next_line";
 export type WinnerIds = number[];
 
 
+export class BattleSession {
+    free(): void;
+    [Symbol.dispose](): void;
+    current_states(): BattlePlayerState[];
+    frames_emitted(): number;
+    initial_states(): BattlePlayerState[];
+    is_done(): boolean;
+    is_failed(): boolean;
+    is_finished(): boolean;
+    is_truncated(): boolean;
+    constructor(raw_input: string, options?: BattleOptions | null);
+    next_frame(): BattleReplayFrame | null;
+    result(): BattleResult | null;
+    rounds_advanced(): number;
+    status(): BattleStatus;
+    stop_reason(): BattleStopReason | null;
+}
+
 export class FightSession {
     free(): void;
     [Symbol.dispose](): void;
+    is_done(): boolean;
     is_finished(): boolean;
     constructor(raw_input: string, options?: FightOptions | null);
     players(): PlayerMeta[];
@@ -304,6 +463,13 @@ export class WinRateSession {
 }
 
 export function batch_rate(target_groups: string[], player_groups: string[], total_rounds: number, player_labels?: string[] | null, keep_rq?: boolean | null, thread?: number | null): CliBatchRateResult[];
+
+export function batch_rate_factored(target_groups: string[], target_factors: Float64Array, player_groups: string[], total_rounds: number, player_labels?: string[] | null, keep_rq?: boolean | null, thread?: number | null): CliBatchRateResult[];
+
+/**
+ * 运行完整战斗，并返回共用、可供 UI 使用的回放 JSON 形状。
+ */
+export function battle_replay(raw_input: string, options?: BattleOptions | null): BattleReplay;
 
 export function core_version(): string;
 
@@ -331,6 +497,8 @@ export function namer_pf(raw_input: string, total_rounds: number, modes?: string
 
 export function pair_rate(target_groups: string[], players: string[], teammates: string[], head: number, total_rounds: number, keep_rq?: boolean | null, thread?: number | null): CliPairRateResult[];
 
+export function pair_rate_factored(target_groups: string[], target_factors: Float64Array, players: string[], teammates: string[], head: number, total_rounds: number, keep_rq?: boolean | null, thread?: number | null): CliPairRateResult[];
+
 export function parse_group_lines(content: string, double_plus?: boolean | null): string[];
 
 export function score(raw_input: string, total_rounds: number, mode?: string | null, eval_rq?: number | null, thread?: number | null): CliScoreResult;
@@ -355,14 +523,31 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 
 export interface InitOutput {
     readonly memory: WebAssembly.Memory;
+    readonly __wbg_battlesession_free: (a: number, b: number) => void;
     readonly __wbg_fightsession_free: (a: number, b: number) => void;
     readonly __wbg_winratesession_free: (a: number, b: number) => void;
     readonly batch_rate: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number) => [number, number, number, number];
+    readonly batch_rate_factored: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number, j: number, k: number) => [number, number, number, number];
+    readonly battle_replay: (a: number, b: number, c: number) => [number, number, number];
+    readonly battlesession_current_states: (a: number) => [number, number, number];
+    readonly battlesession_frames_emitted: (a: number) => number;
+    readonly battlesession_initial_states: (a: number) => [number, number, number];
+    readonly battlesession_is_done: (a: number) => number;
+    readonly battlesession_is_failed: (a: number) => number;
+    readonly battlesession_is_finished: (a: number) => number;
+    readonly battlesession_is_truncated: (a: number) => number;
+    readonly battlesession_new: (a: number, b: number, c: number) => [number, number, number];
+    readonly battlesession_next_frame: (a: number) => [number, number, number];
+    readonly battlesession_result: (a: number) => [number, number, number];
+    readonly battlesession_rounds_advanced: (a: number) => number;
+    readonly battlesession_status: (a: number) => [number, number, number];
+    readonly battlesession_stop_reason: (a: number) => [number, number, number];
     readonly core_version: () => [number, number];
     readonly default_custom_runtime_normalized_run: (a: number, b: number, c: number) => [number, number, number];
     readonly default_eval_rq: () => number;
     readonly fight: (a: number, b: number, c: number) => [number, number, number];
     readonly fight_summary: (a: number, b: number, c: number) => [number, number, number];
+    readonly fightsession_is_done: (a: number) => number;
     readonly fightsession_is_finished: (a: number) => number;
     readonly fightsession_new: (a: number, b: number, c: number) => [number, number, number];
     readonly fightsession_players: (a: number) => [number, number];
@@ -378,12 +563,14 @@ export interface InitOutput {
     readonly name_to_png_bytes: (a: number, b: number) => [number, number];
     readonly namer_pf: (a: number, b: number, c: number, d: number, e: number, f: number, g: number) => [number, number, number, number];
     readonly pair_rate: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number, j: number) => [number, number, number, number];
+    readonly pair_rate_factored: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number, j: number, k: number, l: number) => [number, number, number, number];
     readonly parse_group_lines: (a: number, b: number, c: number) => [number, number];
     readonly score: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number) => [number, number, number];
     readonly team_win_rate_summary: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number) => [number, number, number];
     readonly to_diy: (a: number, b: number, c: number, d: number) => [number, number, number, number];
     readonly to_diy_batch: (a: number, b: number, c: number, d: number) => [number, number, number, number];
     readonly version: () => [number, number];
+    readonly wasm_start: () => void;
     readonly win_rate_eval_rq: () => number;
     readonly win_rate_summary: (a: number, b: number, c: number, d: number, e: number, f: number) => [number, number, number];
     readonly win_rate_sync: (a: number, b: number, c: number, d: number) => [number, number, number];
@@ -393,7 +580,6 @@ export interface InitOutput {
     readonly winratesession_progress: (a: number) => any;
     readonly winratesession_result: (a: number) => any;
     readonly winratesession_step: (a: number, b: number) => [number, number, number];
-    readonly wasm_start: () => void;
     readonly __wbindgen_malloc: (a: number, b: number) => number;
     readonly __wbindgen_realloc: (a: number, b: number, c: number, d: number) => number;
     readonly __wbindgen_free: (a: number, b: number, c: number) => void;

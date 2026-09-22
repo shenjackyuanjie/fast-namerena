@@ -5,8 +5,39 @@
  * playReplay 主循环因需要频繁读写全局状态（playbackToken 等），保留在 show.js 中。
  */
 
-import { renderPlayers } from './show-render.js';
+import { renderPlayers, buildFrameRows } from './show-render.js';
 import { actorHpMetrics, escapeHtml, replayDisplayName, renderIconSprite } from './show-utils.js';
+
+/** 显示计划随收到的规范帧增长。现有块保持不变。 */
+export function createReplayPlan(initialStates) {
+    return { initialStates, frames: [], flatChunks: [], totalChunks: 0, complete: false, result: null };
+}
+
+export function appendFrameToReplayPlan(plan, frame, previousStates, playersById) {
+    if (plan.complete) throw new Error("cannot append to a completed replay plan");
+    const frameIndex = plan.frames.length;
+    if (frame.frame_index != null && frame.frame_index !== frameIndex) {
+        throw new Error("replay plan frame_index must be consecutive");
+    }
+    const chunks = buildFrameRows(frame, frameIndex, previousStates, playersById);
+    const framePlan = {
+        frameIndex, frame, previousStates, chunks,
+        start: plan.flatChunks.length,
+        end: plan.flatChunks.length + chunks.length,
+        frameVisibleCount: chunks.filter(chunk => chunk.target !== "delay").length,
+    };
+    for (const chunk of chunks) {
+        plan.flatChunks.push({ ...chunk, frameIndex, visible: chunk.target !== "delay" });
+    }
+    plan.frames.push(framePlan);
+    plan.totalChunks = plan.flatChunks.length;
+    return framePlan;
+}
+
+export function markReplayPlanComplete(plan, result) {
+    plan.complete = true;
+    plan.result = result;
+}
 
 // ============================================================================
 // 回放介绍与速度控制
@@ -36,10 +67,10 @@ export function renderReplayIntro(replay, speedMode, playerList, battleRows, pli
         delete playerList.dataset.seedLine;
     }
     // 更新角色列表上方的概要信息
-    plistMeta.textContent = `${replay.players.length} 名角色 · ${teamCount} 支队伍 · ${replay.frames.length} 帧回放。`;
+    plistMeta.textContent = `${replay.players.length} 名角色 · ${teamCount} 支队伍 · 已接收 ${replay.frames.length} 帧。`;
     const labels = { normal: '正常速度', fast: '快进模式', turbo: '极速模式（无延时）' };
     // 更新顶部抬头，标明当前播放速度与总帧数
-    headerMeta.textContent = `当前是${labels[speedMode]}，会自动推进 ${replay.frames.length} 帧。`;
+    headerMeta.textContent = `当前是${labels[speedMode]}，正在逐帧推进战斗。`;
     battleRows.innerHTML = `
         <div class="welcome">
             <div><strong>战斗已经开始。</strong></div>
@@ -71,7 +102,7 @@ export function updateSpeedButtons(normalBtn, fastBtn, pauseBtn, playbackPaused,
     if (currentReplay) {
         const labels = { normal: '正常速度', fast: '快进模式', turbo: '极速模式（无延时）' };
         // 同步更新顶部抬头的速度提示
-        headerMeta.textContent = `当前是${labels[speedMode]}，会自动推进 ${currentReplay.frames.length} 帧。`;
+        headerMeta.textContent = `当前是${labels[speedMode]}，已接收 ${currentReplay.frames.length} 帧。`;
     }
 }
 
