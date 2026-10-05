@@ -277,6 +277,32 @@ const stepBackFrameBtn = document.querySelector("#stepBackFrameBtn");
 /** @type {HTMLButtonElement} */
 const stepForwardFrameBtn = document.querySelector("#stepForwardFrameBtn");
 
+// 仅给尚未绑定快捷键的控制按钮登记字母键。
+const BUTTON_SHORTCUTS = new Map([
+  ["c", toggleControlsBtn],
+  ["p", normalBtn],
+  ["f", fastBtn],
+  ["i", inputBtn],
+  ["t", turboBtn],
+  ["r", refreshBtn],
+  ["s", shareBtn],
+  ["d", themeBtn],
+]);
+
+for (const [key, button] of BUTTON_SHORTCUTS) {
+  button.setAttribute("aria-keyshortcuts", key.toUpperCase());
+  if (button !== toggleControlsBtn && button !== themeBtn) {
+    button.title = `${button.title} (${key.toUpperCase()})`;
+  }
+}
+
+pauseBtn.setAttribute("aria-keyshortcuts", "Space");
+pauseBtn.title = `${pauseBtn.title} (Space)`;
+stepBackEventBtn.setAttribute("aria-keyshortcuts", "ArrowLeft");
+stepForwardEventBtn.setAttribute("aria-keyshortcuts", "ArrowRight");
+stepBackFrameBtn.setAttribute("aria-keyshortcuts", "ArrowUp");
+stepForwardFrameBtn.setAttribute("aria-keyshortcuts", "ArrowDown");
+
 // ============================================================================
 // 全局状态
 // ============================================================================
@@ -334,7 +360,7 @@ function syncThemeUi() {
   themeLightIcon.toggleAttribute("hidden", !isDark);
   themeDarkIcon.toggleAttribute("hidden", isDark);
   const label = isDark ? "切换到浅色模式" : "切换到深色模式";
-  themeBtn.title = label;
+  themeBtn.title = `${label} (D)`;
   themeBtn.setAttribute("aria-label", label);
   themeBtn.setAttribute("aria-pressed", String(isDark));
 }
@@ -575,7 +601,7 @@ function syncRightControlsUi() {
   rightControls.classList.toggle("is-collapsed", rightControlsCollapsed);
   toggleControlsBtn.setAttribute("aria-expanded", String(!rightControlsCollapsed));
   const label = rightControlsCollapsed ? "展开控制按钮" : "收起控制按钮";
-  toggleControlsBtn.title = label;
+  toggleControlsBtn.title = `${label} (C)`;
   toggleControlsBtn.setAttribute("aria-label", label);
 }
 
@@ -1597,6 +1623,14 @@ stepForwardFrameBtn.addEventListener("click", () => {
 document.addEventListener("keydown", (event) => {
   if (event.defaultPrevented || isEditableKeyTarget(event.target)) {
     return;
+  }
+  if (!event.altKey && !event.ctrlKey && !event.metaKey) {
+    const shortcutButton = BUTTON_SHORTCUTS.get(event.key.toLowerCase());
+    if (shortcutButton) {
+      if (!event.repeat) shortcutButton.click();
+      event.preventDefault();
+      return;
+    }
   }
   if (event.key === " ") {
     if (!currentBattle) return;

@@ -40,6 +40,24 @@
 - `show-wasm.js` 通过 `createBattleStreamSource()` 创建 `BattleSession`；页面先展示初始状态，再由 `BattleStreamController` 按需获取 core 提供的 `rows/clips/parts`。
 - `show-wasm.test.mjs` 覆盖 replay adapter 的纯输出和 `buildFrameRows()` HTML chunk 渲染；`show-routing.test.mjs` 覆盖 URL-safe input、旧 runtime 参数清理和分享链接行为。
 
+#### 控制栏快捷键
+
+右下角控制栏支持以下快捷键。字母键不区分大小写，仅在焦点不位于输入框、文本域或可编辑元素，且没有按下 Ctrl、Alt、Meta 修饰键时生效。
+
+| 按键 | 操作 |
+| --- | --- |
+| `C` | 收起/展开控制栏 |
+| `P` | 普通速度播放 |
+| `F` | 快进播放 |
+| `T` | 极速播放至结束 |
+| `I` | 打开输入面板 |
+| `R` | 重新播放当前对局 |
+| `S` | 复制当前对局分享链接 |
+| `D` | 切换明暗主题 |
+| `Space` | 暂停/恢复播放或进入逐帧状态 |
+| `←` / `→` | 后退/前进一个事件 |
+| `↑` / `↓` | 后退/前进一帧 |
+
 生成参数示例：
 
 ```js

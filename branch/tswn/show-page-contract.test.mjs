@@ -13,7 +13,7 @@ async function readExampleFile(name) {
 test("show page starts a canonical streaming session", async () => {
   const [html, script] = await Promise.all([readExampleFile("index.html"), readExampleFile("show.js")]);
   assert.match(html, /使用 BattleSession 边计算边播放战斗。/);
-  assert.match(html, /show\.js\?v=20260907a/);
+  assert.match(html, /show\.js\?v=20260929a/);
   assert.match(script, /await createBattleStreamSource\(/);
   assert.match(script, /new BattleStreamController\(/);
   assert.doesNotMatch(script, /buildMainNormalizedReplay|battle_replay|FightSession/);
@@ -24,6 +24,28 @@ test("show page removes runtime choice from generated share links", async () => 
 
   assert.match(script, /buildShowShareUrl\(rawInput, \{\s*href: window\.location\.href,\s*\}\)/s);
   assert.doesNotMatch(script, /runtimeEngine/);
+});
+
+test("right controls expose shortcuts for every button", async () => {
+  const script = await readExampleFile("show.js");
+  const shortcutMap = script.match(/const BUTTON_SHORTCUTS = new Map\(\[([\s\S]*?)\n\]\);/);
+  assert.ok(shortcutMap);
+
+  const shortcuts = [...shortcutMap[1].matchAll(/\["([a-z])", (\w+)\]/g)].map((match) => [match[1], match[2]]);
+  assert.deepEqual(shortcuts, [
+    ["c", "toggleControlsBtn"],
+    ["p", "normalBtn"],
+    ["f", "fastBtn"],
+    ["i", "inputBtn"],
+    ["t", "turboBtn"],
+    ["r", "refreshBtn"],
+    ["s", "shareBtn"],
+    ["d", "themeBtn"],
+  ]);
+  assert.match(script, /shortcutButton\.click\(\)/);
+  assert.match(script, /isEditableKeyTarget\(event\.target\)/);
+  assert.match(script, /setAttribute\("aria-keyshortcuts", "Space"\)/);
+  assert.match(script, /setAttribute\("aria-keyshortcuts", "ArrowLeft"\)/);
 });
 
 test("detail panel keeps readable colors in light theme", async () => {
