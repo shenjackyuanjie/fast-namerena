@@ -531,6 +531,37 @@ export function actorHpMetrics(state, previousState) {
   };
 }
 
+/**
+ * 按与 HP 相同的每 4 点 1px 比例计算盾条，容量容纳当前与上一片段的盾值。
+ * 死亡、缺省和无效盾值按零处理；护盾可以超过 max_hp。
+ * @param {FightState} state
+ * @param {FightState} [previousState=state]
+ * @returns {(HpMetrics & { currentValue: number, previousValue: number })|null}
+ */
+export function actorShieldMetrics(state, previousState) {
+  if (!state) return null;
+  const value = (number) => Number.isFinite(Number(number)) ? Math.max(0, Number(number)) : 0;
+  const currentValue = state.alive === false ? 0 : value(state.shield);
+  const previousValue = previousState
+    ? previousState.alive === false ? 0 : value(previousState.shield)
+    : currentValue;
+  const maxValue = Math.max(value(state.max_hp), value(previousState?.max_hp), currentValue, previousValue);
+  const totalWidth = Math.max(20, Math.ceil(maxValue / 4));
+  const fillWidth = Math.ceil(currentValue / 4);
+  const previousWidth = Math.ceil(previousValue / 4);
+  const isRecover = currentValue > previousValue;
+  return {
+    currentValue,
+    previousValue,
+    totalWidth,
+    fillWidth,
+    previousWidth,
+    deltaLeft: isRecover ? previousWidth : fillWidth,
+    deltaWidth: currentValue === previousValue ? 0 : Math.max(1, Math.abs(fillWidth - previousWidth)),
+    deltaKind: isRecover ? "recover" : currentValue < previousValue ? "damage" : "none",
+  };
+}
+
 // ============================================================================
 // 消息格式化
 // ============================================================================

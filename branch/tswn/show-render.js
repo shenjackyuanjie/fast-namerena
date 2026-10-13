@@ -33,6 +33,7 @@
 import {
   escapeHtml,
   actorHpMetrics,
+  actorShieldMetrics,
   statusText,
   buildStateMap,
   replayDisplayName,
@@ -75,11 +76,19 @@ export function actorToken(player, state, previousState, update, { showHp = true
             </span>
         `
     : "";
+  const shieldMetrics = actorShieldMetrics(state, previousState);
+  const shieldChanged = shieldMetrics && (shieldMetrics.currentValue !== shieldMetrics.previousValue || (isNew && shieldMetrics.currentValue > 0));
+  const shieldBar = shieldChanged && !deathEffect
+    ? `<span class="actor-shield" style="width:${shieldMetrics.totalWidth}px" title="护盾：${shieldMetrics.currentValue}">
+        <span class="actor-shield-fill" style="width:${shieldMetrics.fillWidth}px"></span>
+        ${shieldMetrics.deltaWidth > 0 ? `<span class="actor-shield-delta is-${shieldMetrics.deltaKind}" style="left:${shieldMetrics.deltaLeft}px;width:${shieldMetrics.deltaWidth}px"></span>` : ""}
+      </span>`
+    : "";
   const hpClass = hpMetrics ? " has-hp" : "";
   const isKnockout = deathEffect === true;
   const nameClass = `actor-name${isKnockout ? " namedie" : ""}`;
 
-  return `<span class="actor-token${hpClass}" data-player-id="${player.id}"><span class="actor-avatar-wrap">${renderIconSprite(playerIconClassId(player), "msg-avatar icon-sprite")}</span><span class="${nameClass}">${hpBar}${escapeHtml(player.display_name)}</span></span>`;
+  return `<span class="actor-token${hpClass}" data-player-id="${player.id}"><span class="actor-avatar-wrap">${renderIconSprite(playerIconClassId(player), "msg-avatar icon-sprite")}</span><span class="${nameClass}">${hpBar}${shieldBar}${escapeHtml(player.display_name)}</span></span>`;
 }
 
 /**
@@ -154,7 +163,11 @@ export function renderIdleState(playerList, battleRows, plistMeta, headerMeta) {
 }
 
 function sidebarStatusLabels(state) {
-  return Array.isArray(state?.status_labels) ? state.status_labels : [];
+  const labels = Array.isArray(state?.status_labels) ? [...state.status_labels] : [];
+  const shield = actorShieldMetrics(state)?.currentValue ?? 0;
+  // 数值标签与其他状态常驻展示，盾条开关只控制条形显示。
+  if (shield > 0) labels.push(`护盾 +${shield}`);
+  return labels;
 }
 
 const POSITIVE_STATUS_LABELS = new Set([
@@ -170,7 +183,7 @@ const POSITIVE_STATUS_LABELS = new Set([
 const NEGATIVE_STATUS_LABELS = new Set(["魅惑", "诅咒", "冰冻", "中毒", "迟缓", "垂死"]);
 
 function statusPillTone(label) {
-  if (POSITIVE_STATUS_LABELS.has(label)) {
+  if (POSITIVE_STATUS_LABELS.has(label) || label.startsWith("护盾 +")) {
     return "positive";
   }
   if (NEGATIVE_STATUS_LABELS.has(label)) {
@@ -237,6 +250,14 @@ function playerMpMetrics(state, previousState) {
     costLeft,
     costWidth,
   };
+}
+
+function renderPlayerShieldBar(state, previousState) {
+  const metrics = actorShieldMetrics(state, previousState);
+  return `<div class="shieldwrap" style="width:${metrics.totalWidth}px" title="护盾：${metrics.currentValue}"${metrics.currentValue > 0 || metrics.previousValue > 0 ? "" : " hidden"}>
+    <div class="shield-fill" style="width:${metrics.fillWidth}px"></div>
+    <div class="shield-delta is-${metrics.deltaKind}" style="left:${metrics.deltaLeft}px;width:${metrics.deltaWidth}px"></div>
+  </div>`;
 }
 
 function seedRowHtml(seedLine) {
@@ -420,6 +441,7 @@ export function renderPlayers(
                                     <div class="healhp" style="left:${healStart}px;width:${healWidth}px"></div>
                                     <div class="hp" style="width:${fillWidth}px"></div>
                                 </div>
+                                ${renderPlayerShieldBar(state, previous)}
                                 <div class="mpwrap" style="width:${mpMetrics.totalWidth}px">
                                     <div class="mp-prev" style="width:${mpMetrics.previousWidth}px"></div>
                                     <div class="mp-recover" style="left:${mpMetrics.recoverLeft}px;width:${mpMetrics.recoverWidth}px"></div>
@@ -560,6 +582,19 @@ export function renderPlayers(
       if (healhpEl) {
         healhpEl.style.left = healStart + "px";
         healhpEl.style.width = healWidth + "px";
+      }
+
+      const shieldMetrics = actorShieldMetrics(state, previous);
+      const shieldwrapEl = row.querySelector(".shieldwrap");
+      if (shieldwrapEl) {
+        shieldwrapEl.hidden = shieldMetrics.currentValue === 0 && shieldMetrics.previousValue === 0;
+        shieldwrapEl.style.width = shieldMetrics.totalWidth + "px";
+        shieldwrapEl.title = `护盾：${shieldMetrics.currentValue}`;
+        shieldwrapEl.querySelector(".shield-fill").style.width = shieldMetrics.fillWidth + "px";
+        const deltaEl = shieldwrapEl.querySelector(".shield-delta");
+        deltaEl.className = `shield-delta is-${shieldMetrics.deltaKind}`;
+        deltaEl.style.left = shieldMetrics.deltaLeft + "px";
+        deltaEl.style.width = shieldMetrics.deltaWidth + "px";
       }
 
       const mpwrapEl = row.querySelector(".mpwrap");

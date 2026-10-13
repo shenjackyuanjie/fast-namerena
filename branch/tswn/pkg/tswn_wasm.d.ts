@@ -50,6 +50,8 @@ export interface BattlePlayerState {
     icon_png_base64: string | null;
     hp: number;
     max_hp: number;
+    /** 剩余吸收护盾，合计常规蓄盾与 ShieldValue；不含铁壁，死亡时为 0。 */
+    shield: number;
     magic_point: number;
     move_point: number;
     attack: number;
@@ -257,6 +259,10 @@ export interface PlayerState {
     minion_kind?: MinionKindView;
     hp: number;
     max_hp: number;
+    /**
+     * 剩余吸收护盾，合计常规蓄盾与 ShieldValue；不含铁壁，死亡时为 0。
+     */
+    shield: number;
     magic_point: number;
     move_point: number;
     attack: number;

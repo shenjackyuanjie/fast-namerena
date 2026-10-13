@@ -16,6 +16,7 @@
  *   minion_kind?: 'clone' | 'summon' | 'shadow' | 'zombie',
  *   hp: number,
  *   max_hp: number,
+ *   shield?: number,
  *   magic_point: number,
  *   move_point: number,
  *   speed: number,
@@ -258,6 +259,8 @@ const shareBtn = document.querySelector("#shareBtn");
 const shareToast = document.querySelector("#shareToast");
 /** @type {HTMLButtonElement} */
 const themeBtn = document.querySelector("#themeBtn");
+/** @type {HTMLButtonElement} */
+const shieldBtn = document.querySelector("#shieldBtn");
 /** @type {SVGElement} */
 const themeLightIcon = document.querySelector("#themeLightIcon");
 /** @type {SVGElement} */
@@ -287,11 +290,12 @@ const BUTTON_SHORTCUTS = new Map([
   ["r", refreshBtn],
   ["s", shareBtn],
   ["d", themeBtn],
+  ["b", shieldBtn],
 ]);
 
 for (const [key, button] of BUTTON_SHORTCUTS) {
   button.setAttribute("aria-keyshortcuts", key.toUpperCase());
-  if (button !== toggleControlsBtn && button !== themeBtn) {
+  if (button !== toggleControlsBtn && button !== themeBtn && button !== shieldBtn) {
     button.title = `${button.title} (${key.toUpperCase()})`;
   }
 }
@@ -350,6 +354,38 @@ let rightControlsCollapsed = window.matchMedia("(max-width: 640px)").matches;
 let shareToastTimer = null;
 const themeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
 const THEME_STORAGE_KEY = "tswn-show-theme";
+const SHIELD_STORAGE_KEY = "tswn-show-shield";
+let showShield = false;
+
+function syncShieldDisplayUi() {
+  // 用根节点开关同步侧栏、历史消息和检查点，保持播放计划与战斗数据不变。
+  document.documentElement.dataset.showShield = String(showShield);
+  const label = showShield ? "隐藏盾条" : "显示盾条";
+  shieldBtn.title = `${label} (B)`;
+  shieldBtn.setAttribute("aria-label", label);
+  shieldBtn.setAttribute("aria-pressed", String(showShield));
+  shieldBtn.classList.toggle("is-active", showShield);
+}
+
+function restoreShieldDisplay() {
+  showShield = false;
+  try {
+    showShield = localStorage.getItem(SHIELD_STORAGE_KEY) === "true";
+  } catch {
+    // 存储不可用时使用默认关闭状态。
+  }
+  syncShieldDisplayUi();
+}
+
+function setShieldDisplay(enabled) {
+  showShield = Boolean(enabled);
+  syncShieldDisplayUi();
+  try {
+    localStorage.setItem(SHIELD_STORAGE_KEY, String(showShield));
+  } catch {
+    // 存储不可用时仍允许切换本次页面会话的盾条。
+  }
+}
 
 function currentTheme() {
   return document.documentElement.dataset.theme ?? (themeMediaQuery.matches ? "dark" : "light");
@@ -377,6 +413,7 @@ function setTheme(theme) {
 }
 
 syncThemeUi();
+restoreShieldDisplay();
 themeMediaQuery.addEventListener("change", () => {
   if (document.documentElement.dataset.themeSource === "system") {
     document.documentElement.dataset.theme = themeMediaQuery.matches ? "dark" : "light";
@@ -1533,6 +1570,10 @@ refreshBtn.addEventListener("click", () => {
 
 shareBtn.addEventListener("click", () => {
   void copyCurrentShareUrl();
+});
+
+shieldBtn.addEventListener("click", () => {
+  setShieldDisplay(!showShield);
 });
 
 themeBtn.addEventListener("click", () => {
