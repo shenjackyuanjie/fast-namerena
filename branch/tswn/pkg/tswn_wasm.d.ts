@@ -52,6 +52,8 @@ export interface BattlePlayerState {
     max_hp: number;
     /** 剩余吸收护盾，合计常规蓄盾与 ShieldValue；不含铁壁，死亡时为 0。 */
     shield: number;
+    /** 当前护盾技能熟练度，随吞噬等技能变化更新；不是实际盾值的硬上限。 */
+    max_shield: number;
     magic_point: number;
     move_point: number;
     attack: number;
@@ -263,6 +265,10 @@ export interface PlayerState {
      * 剩余吸收护盾，合计常规蓄盾与 ShieldValue；不含铁壁，死亡时为 0。
      */
     shield: number;
+    /**
+     * 当前护盾技能熟练度，随吞噬等技能变化更新；不是实际盾值的硬上限。
+     */
+    max_shield: number;
     magic_point: number;
     move_point: number;
     attack: number;
@@ -426,18 +432,36 @@ export type UpdateTypeView = "win" | "none" | "next_line";
 export type WinnerIds = number[];
 
 
+/**
+ * wasm-bindgen 规范对局对象；按需取帧，并在 JS finally 中调用生成的 free()。
+ */
 export class BattleSession {
     free(): void;
     [Symbol.dispose](): void;
+    /**
+     * 返回当前边界的规范玩家快照数组。
+     */
     current_states(): BattlePlayerState[];
     frames_emitted(): number;
+    /**
+     * 返回创建时的规范玩家快照数组。
+     */
     initial_states(): BattlePlayerState[];
     is_done(): boolean;
     is_failed(): boolean;
     is_finished(): boolean;
     is_truncated(): boolean;
+    /**
+     * 解析 raw 和可选 options，创建 core 会话；错误转换为带 code 的 JS Error。
+     */
     constructor(raw_input: string, options?: BattleOptions | null);
+    /**
+     * 同步推进至下一可见帧，正常结束返回 JS null。
+     */
     next_frame(): BattleReplayFrame | null;
+    /**
+     * 读取正常 terminal 结果，运行中或失败时返回 JS null。
+     */
     result(): BattleResult | null;
     rounds_advanced(): number;
     status(): BattleStatus;
@@ -457,6 +481,9 @@ export class FightSession {
     winner_ids(): WinnerIds;
 }
 
+/**
+ * 保存准备阵容和累计结果的分批胜率对象；每次 step 同步执行，宿主安排批间调度。
+ */
 export class WinRateSession {
     free(): void;
     [Symbol.dispose](): void;

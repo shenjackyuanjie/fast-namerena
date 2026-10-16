@@ -34,6 +34,7 @@ import {
   escapeHtml,
   actorHpMetrics,
   actorShieldMetrics,
+  playerStatusLabels,
   statusText,
   buildStateMap,
   replayDisplayName,
@@ -58,7 +59,7 @@ function replayHighlightColorStyle(color) {
  * @param {FightPlayer} player — 玩家对象
  * @param {FightState} state — 当前状态
  * @param {FightState} previousState — 上一帧状态
- * @param {{ showHp?: boolean, forceHp?: boolean, deathEffect?: boolean }} [options] — 是否显示 HP mini bar / 死亡效果
+ * @param {{ showHp?: boolean, forceHp?: boolean, deathEffect?: boolean }} [options] — HP 变化段和死亡效果；常驻盾条会配上当前 HP 底轨
  * @returns {string} HTML 字符串
  */
 export function actorToken(player, state, previousState, update, { showHp = true, forceHp = false, deathEffect = false } = {}) {
@@ -67,6 +68,13 @@ export function actorToken(player, state, previousState, update, { showHp = true
   const isNew = state?._is_new_in_frame;
   const hpChanged = isNew || (previousState != null && Number(state.hp) !== Number(previousState.hp));
   const shouldShowHp = showHp && (forceHp || hpChanged);
+  const shieldMetrics = actorShieldMetrics(state, previousState);
+  // 盾条只在护盾变化（或新角色带盾出现）时出现，与体力条一样不做常驻底轨。
+  const shieldChanged = shieldMetrics != null
+    && (shieldMetrics.currentValue !== shieldMetrics.previousValue || (isNew && shieldMetrics.currentValue > 0));
+  const hasShield = shieldChanged && !deathEffect;
+  // 两条条形各自按自己的变化出现：只有护盾变化时不画体力条，让盾条占体力条的位置；
+  // 两条同时出现时由 CSS 竖排叠放。非扣血消息不凭快照差值制造额外扣血动画。
   const hpMetrics = shouldShowHp ? actorHpMetrics(state, previousState) : null;
   const hpBar = hpMetrics
     ? `
@@ -76,19 +84,19 @@ export function actorToken(player, state, previousState, update, { showHp = true
             </span>
         `
     : "";
-  const shieldMetrics = actorShieldMetrics(state, previousState);
-  const shieldChanged = shieldMetrics && (shieldMetrics.currentValue !== shieldMetrics.previousValue || (isNew && shieldMetrics.currentValue > 0));
-  const shieldBar = shieldChanged && !deathEffect
-    ? `<span class="actor-shield" style="width:${shieldMetrics.totalWidth}px" title="护盾：${shieldMetrics.currentValue}">
+  const shieldBar = hasShield
+    ? `<span class="actor-shield" style="width:${shieldMetrics.totalWidth}px" title="护盾：${shieldMetrics.currentValue} / ${shieldMetrics.maxValue}">
         <span class="actor-shield-fill" style="width:${shieldMetrics.fillWidth}px"></span>
         ${shieldMetrics.deltaWidth > 0 ? `<span class="actor-shield-delta is-${shieldMetrics.deltaKind}" style="left:${shieldMetrics.deltaLeft}px;width:${shieldMetrics.deltaWidth}px"></span>` : ""}
       </span>`
     : "";
   const hpClass = hpMetrics ? " has-hp" : "";
+  const shieldClass = shieldBar ? " has-shield" : "";
   const isKnockout = deathEffect === true;
   const nameClass = `actor-name${isKnockout ? " namedie" : ""}`;
+  const vitals = hpBar || shieldBar ? `<span class="actor-vitals">${hpBar}${shieldBar}</span>` : "";
 
-  return `<span class="actor-token${hpClass}" data-player-id="${player.id}"><span class="actor-avatar-wrap">${renderIconSprite(playerIconClassId(player), "msg-avatar icon-sprite")}</span><span class="${nameClass}">${hpBar}${shieldBar}${escapeHtml(player.display_name)}</span></span>`;
+  return `<span class="actor-token${hpClass}${shieldClass}" data-player-id="${player.id}"><span class="actor-avatar-wrap">${renderIconSprite(playerIconClassId(player), "msg-avatar icon-sprite")}</span><span class="${nameClass}">${vitals}${escapeHtml(player.display_name)}</span></span>`;
 }
 
 /**
@@ -162,14 +170,6 @@ export function renderIdleState(playerList, battleRows, plistMeta, headerMeta) {
   headerMeta.textContent = "目前显示的是 show 风格回放视图。";
 }
 
-function sidebarStatusLabels(state) {
-  const labels = Array.isArray(state?.status_labels) ? [...state.status_labels] : [];
-  const shield = actorShieldMetrics(state)?.currentValue ?? 0;
-  // 数值标签与其他状态常驻展示，盾条开关只控制条形显示。
-  if (shield > 0) labels.push(`护盾 +${shield}`);
-  return labels;
-}
-
 const POSITIVE_STATUS_LABELS = new Set([
   "聚气",
   "蓄力",
@@ -199,7 +199,7 @@ function renderStatusPill(label) {
 }
 
 function renderPlayerStatusPills(state) {
-  const labels = sidebarStatusLabels(state);
+  const labels = playerStatusLabels(state);
   const chips = labels.map(renderStatusPill).join("");
   return `<div class="detail-line player-effects"${labels.length ? "" : " hidden"}>${chips}</div>`;
 }
@@ -254,7 +254,7 @@ function playerMpMetrics(state, previousState) {
 
 function renderPlayerShieldBar(state, previousState) {
   const metrics = actorShieldMetrics(state, previousState);
-  return `<div class="shieldwrap" style="width:${metrics.totalWidth}px" title="护盾：${metrics.currentValue}"${metrics.currentValue > 0 || metrics.previousValue > 0 ? "" : " hidden"}>
+  return `<div class="shieldwrap" style="width:${metrics.totalWidth}px" title="护盾：${metrics.currentValue} / ${metrics.maxValue}"${metrics.currentValue > 0 || metrics.previousValue > 0 ? "" : " hidden"}>
     <div class="shield-fill" style="width:${metrics.fillWidth}px"></div>
     <div class="shield-delta is-${metrics.deltaKind}" style="left:${metrics.deltaLeft}px;width:${metrics.deltaWidth}px"></div>
   </div>`;
@@ -276,6 +276,7 @@ function playerWithCurrentState(player, state) {
   return {
     ...player,
     team_index: state?.team_index ?? player.team_index ?? 0,
+    input_team_index: state?.input_team_index ?? player.input_team_index ?? null,
     owner_id: state?.owner_id ?? player.owner_id ?? null,
     minion_kind: state?.minion_kind ?? player.minion_kind ?? null,
     display_index: state?.display_index ?? player.display_index ?? 0,
@@ -287,9 +288,25 @@ function playerWithCurrentState(player, state) {
   };
 }
 
+/**
+ * 左侧列表的排序、分组与队名都按输入分组序号（`input_team_index`）走，
+ * 保证名字顺序与输入一致；运行时 `team_index` 只用于胜负判定。
+ * 旧数据或召唤单位缺该字段时退回运行时队伍号。
+ * @param {{ input_team_index?: number|null, team_index?: number }} player
+ * @returns {number}
+ */
+function displayGroupIndex(player) {
+  const inputGroup = player?.input_team_index;
+  // 注意 null 会被 Number() 转成 0，必须先判空再判有限性。
+  if (inputGroup != null && Number.isFinite(Number(inputGroup))) {
+    return Number(inputGroup);
+  }
+  return player?.team_index ?? 0;
+}
+
 function compareDisplayPlayers(left, right) {
-  const leftTeam = left.team_index ?? 0;
-  const rightTeam = right.team_index ?? 0;
+  const leftTeam = displayGroupIndex(left);
+  const rightTeam = displayGroupIndex(right);
   if (leftTeam !== rightTeam) {
     return leftTeam - rightTeam;
   }
@@ -374,7 +391,8 @@ export function renderPlayers(
   const previousStateMap = buildStateMap(previousStates);
   const seedLine = playerList.dataset.seedLine ?? "";
   const allPlayers = orderedDisplayPlayers(players, states, stateMap, playersById);
-  const layoutKey = allPlayers.map((player) => `${player.team_index}:${player.id}`).join("|");
+  // 布局键带上输入分组序号：运行时分队号与输入顺序不同，换组时要重建整表。
+  const layoutKey = allPlayers.map((player) => `${displayGroupIndex(player)}:${player.id}`).join("|");
 
   const existingRows = playerList.querySelectorAll("tr[data-player-id]");
   const shouldRenderFullList =
@@ -383,16 +401,17 @@ export function renderPlayers(
     // —— 全量渲染（首次、玩家数量变化或展示顺序变化时） ——
     const teams = new Map();
     for (const player of allPlayers) {
-      const items = teams.get(player.team_index) ?? [];
+      const group = displayGroupIndex(player);
+      const items = teams.get(group) ?? [];
       items.push(player);
-      teams.set(player.team_index, items);
+      teams.set(group, items);
     }
 
     const sortedTeams = [...teams.entries()].sort((left, right) => left[0] - right[0]);
     const firstTeamIsSingle = sortedTeams.length > 0 && sortedTeams[0][1].length === 1;
 
     const teamHtml = sortedTeams
-      .map(([teamIndex, teamPlayers]) => {
+      .map(([groupIndex, teamPlayers]) => {
         const members = teamPlayers
           .map((player) => {
             const state = stateMap.get(player.id);
@@ -459,7 +478,7 @@ export function renderPlayers(
           .join("");
 
         const isSingle = teamPlayers.length === 1;
-        const labelHtml = !isSingle ? `<div class="team-label">Team ${teamIndex + 1}</div>` : "";
+        const labelHtml = !isSingle ? `<div class="team-label">Team ${groupIndex + 1}</div>` : "";
         const theadHtml = !isSingle
           ? `
                         <thead>
@@ -589,7 +608,7 @@ export function renderPlayers(
       if (shieldwrapEl) {
         shieldwrapEl.hidden = shieldMetrics.currentValue === 0 && shieldMetrics.previousValue === 0;
         shieldwrapEl.style.width = shieldMetrics.totalWidth + "px";
-        shieldwrapEl.title = `护盾：${shieldMetrics.currentValue}`;
+        shieldwrapEl.title = `护盾：${shieldMetrics.currentValue} / ${shieldMetrics.maxValue}`;
         shieldwrapEl.querySelector(".shield-fill").style.width = shieldMetrics.fillWidth + "px";
         const deltaEl = shieldwrapEl.querySelector(".shield-delta");
         deltaEl.className = `shield-delta is-${shieldMetrics.deltaKind}`;
@@ -644,7 +663,7 @@ export function renderPlayers(
 
       const effectsEl = row.querySelector(".player-effects");
       if (effectsEl) {
-        const labels = sidebarStatusLabels(state);
+        const labels = playerStatusLabels(state);
         effectsEl.hidden = labels.length === 0;
         effectsEl.innerHTML = labels.map(renderStatusPill).join("");
       }

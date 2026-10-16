@@ -1,0 +1,270 @@
+:root {
+    color-scheme: light;
+    --sidebar-width: 360px;
+    --sky-0: #c8eefc;
+    --sky-1: #6cc4ec;
+    --sky-2: #2aa2d6;
+    --sky-3: #1277ae;
+    --paper: #fbfdff;
+    --paper-2: #f1f8fc;
+    --ink: #214052;
+    --line: #c6e1ef;
+    --damage: #e07020;
+    --recover: #60e060;
+    --status-exit: #bb7700;
+    --skill: #0077BB;
+    --knockout: #b06a0e;
+    --hp: #60e060;
+    --oldhp: #e07020;
+    --healhp: #08f;
+    --button-bg: #888;
+    --button-hover-start: #888;
+    --button-hover-end: #999;
+    --stage-bg: rgba(255, 255, 255, 0.2);
+    --sidebar-bg: rgba(251, 253, 255, 0.92);
+    --body-bg: rgba(255, 255, 255, 0.76);
+    --surface: rgba(255, 255, 255, 0.94);
+    --surface-strong: rgba(255, 255, 255, 0.98);
+    --surface-soft: rgba(255, 255, 255, 0.92);
+    --surface-gradient-start: rgba(255, 255, 255, 0.98);
+    --surface-gradient-end: rgba(241, 248, 252, 0.92);
+    --border: rgba(198, 225, 239, 0.95);
+    --border-soft: rgba(198, 225, 239, 0.75);
+    --muted: #6d8794;
+    --name-bg: #f3f8fb;
+    --dead-bg: #ddd;
+    --dead-text: #80919b;
+    --message-bg: #f3f3f8;
+    --message-text: #000;
+    --message-shadow: #fff;
+    --shield: #35b5c5;
+    /* 浅色底上用深青色标出新增护盾，原来的浅青色几乎看不见。 */
+    --shield-recover: #076a78;
+    --shield-damage: #e4a545;
+    --shield-background: #d7e5e8;
+    /* 同时用于 Dark Reader 提醒框的描边。 */
+    --shield-outline: #27778a;
+    --hp-background: #d7dee4;
+    --maxhp-background: rgba(221, 221, 208, 0.58);
+    --loser-text: #405864;
+}
+
+:root[data-theme="dark"] {
+    color-scheme: dark;
+    --sky-0: #173b4d;
+    --sky-1: #2d8eb8;
+    --sky-2: #4bb8e8;
+    --sky-3: #74c9ef;
+    --paper: #111c26;
+    --paper-2: #192936;
+    --ink: #d9e8ef;
+    --line: #315263;
+    --button-bg: #465765;
+    --button-hover-start: #536675;
+    --button-hover-end: #627687;
+    --stage-bg: rgba(7, 15, 24, 0.45);
+    --sidebar-bg: rgba(17, 28, 38, 0.95);
+    --body-bg: rgba(11, 22, 32, 0.88);
+    --surface: rgba(24, 40, 53, 0.96);
+    --surface-strong: rgba(21, 35, 47, 0.98);
+    --surface-soft: rgba(27, 46, 60, 0.94);
+    --surface-gradient-start: rgba(27, 46, 60, 0.98);
+    --surface-gradient-end: rgba(17, 31, 43, 0.96);
+    --border: rgba(76, 119, 139, 0.75);
+    --border-soft: rgba(76, 119, 139, 0.55);
+    --muted: #9bb2bd;
+    --name-bg: #2c495d;
+    --dead-bg: #394550;
+    --dead-text: #c3cdd5;
+    --message-bg: #2c495d;
+    --message-text: #edf5fa;
+    --message-shadow: transparent;
+    --damage: #ffad66;
+    --status-exit: #e7b559;
+    --skill: #78c9ff;
+    --knockout: #edb56e;
+    --shield: #6de0df;
+    --shield-recover: #b3f2ff;
+    --shield-background: #314e60;
+    --shield-outline: #96ffff;
+    --hp-background: #40535d;
+    --maxhp-background: rgba(64, 83, 93, 0.8);
+    --loser-text: #9bb2bd;
+}
+
+/* 图标的深色描边属于原始像素，用浅色衬底保留原图的颜色与轮廓。 */
+:root[data-theme="dark"] .icon-sprite {
+    background-color: #bfd0da;
+    box-shadow: 0 0 0 1px #7d9aad;
+    border-radius: 2px;
+}
+
+:root[data-theme="dark"] .actor-name.namedie {
+    color: var(--dead-text);
+}
+
+:root[data-theme="dark"] .detail-pill,
+:root[data-theme="dark"] .status-pill {
+    color: #96d4ff;
+    background: rgba(83, 167, 225, 0.16);
+}
+
+:root[data-theme="dark"] .status-pill.positive {
+    color: #9ee4b7;
+    background: rgba(77, 175, 109, 0.18);
+}
+
+:root[data-theme="dark"] .status-pill.negative {
+    color: #ffb1b1;
+    background: rgba(218, 99, 99, 0.18);
+}
+
+:root[data-theme="dark"] .status-pill.dead {
+    color: var(--knockout);
+    background: rgba(218, 163, 78, 0.16);
+}
+
+:root[data-theme="dark"] .status-pill.frozen {
+    color: #a5ddff;
+}
+
+:root[data-theme="dark"] .frame-chip {
+    color: var(--muted);
+}
+
+/* 提亮 replay view 的高亮色，不改变技能与解除消息的色相区分。 */
+:root[data-theme="dark"] .skill-token {
+    filter: brightness(1.5);
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    overflow: hidden;
+    font-family: "Microsoft YaHei", Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Courier New", monospace, serif;
+    font-size: 15px;
+    color: var(--ink);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+button,
+textarea,
+input {
+    font: inherit;
+}
+
+button {
+    background: var(--button-bg);
+    border: solid white 1px;
+    border-radius: 20px;
+    font-style: normal;
+    font-size: 16px;
+    padding: 4px 8px;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.25);
+    outline: none;
+}
+
+button:hover {
+    background: var(--button-hover-end);
+    background: linear-gradient(0deg, var(--button-hover-start) 0%, var(--button-hover-end) 100%);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+.main {
+    position: absolute;
+    inset: 0;
+}
+
+.battle-stage {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    background: var(--stage-bg);
+}
+
+.hlist {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: var(--sidebar-width);
+    padding: 0;
+    overflow: auto;
+    border-right: 1px solid var(--sky-1);
+    background: var(--sidebar-bg);
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+}
+
+.hlist:hover {
+    scrollbar-color: rgba(0, 0, 0, 0.22) transparent;
+}
+
+.hlist::-webkit-scrollbar {
+    width: 5px;
+}
+
+.hlist::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 3px;
+}
+
+.hlist:hover::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.22);
+}
+
+.hlist::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.hbody {
+    position: absolute;
+    inset: 0 0 0 var(--sidebar-width);
+    overflow: auto;
+    background: var(--body-bg);
+    backdrop-filter: blur(12px);
+}
+
+.plist-header {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    display: grid;
+    gap: 4px;
+    padding: 10px 12px 9px;
+    background: linear-gradient(180deg, rgba(108, 196, 236, 0.98) 0%, rgba(42, 162, 214, 0.98) 100%);
+    color: white;
+}
+
+.plist-title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.plist-subtitle,
+.plist-meta,
+.version-note,
+.input-note,
+.winner-note,
+.winner-subnote {
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.plist-subtitle,
+.winner-subnote {
+    opacity: 0.9;
+}
+
+.plist-meta {
+    opacity: 0.95;
+}

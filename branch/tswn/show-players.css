@@ -1,0 +1,504 @@
+.player-groups {
+    display: grid;
+    gap: 4px;
+    padding: 6px;
+}
+
+.team-block {
+    display: grid;
+    gap: 2px;
+}
+
+.seed-row {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    padding: 4px 6px;
+    border: 1px solid var(--border);
+    background: rgba(24, 119, 199, 0.08);
+    color: var(--sky-3);
+    font-size: 11px;
+    line-height: 1.35;
+}
+
+.seed-label {
+    flex: none;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.seed-value {
+    min-width: 0;
+    color: var(--ink);
+    overflow-wrap: anywhere;
+}
+
+.team-label {
+    font-size: 11px;
+    line-height: 1.2;
+    color: var(--sky-3);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.player-table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    background: var(--surface);
+}
+
+.column-headers {
+    margin-bottom: 4px;
+}
+
+.column-headers th {
+    background: rgba(24, 119, 199, 0.12);
+}
+
+.player-table th,
+.player-table td {
+    padding: 2px 3px;
+    vertical-align: middle;
+    font-size: 10px;
+    line-height: 1.15;
+}
+
+.player-table th {
+    background: rgba(24, 119, 199, 0.08);
+    color: var(--sky-3);
+    font-weight: 700;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.player-table td {
+    border-top: 1px solid var(--border-soft);
+}
+
+.player-name-head {
+    width: 150px;
+    text-align: left;
+}
+
+.player-hp-head {
+    width: 60px;
+}
+
+.player-mix-head {
+    width: 56px;
+}
+
+.player-state-head {
+    width: 50px;
+}
+
+.player-row.is-dead {
+    opacity: 0.68;
+}
+
+.player-row.is-just-dead {
+    opacity: 1;
+    animation: player-death-tint 620ms cubic-bezier(0.45, 0, 0.18, 1) forwards;
+}
+
+.player-row.is-caster {
+    background: rgba(232, 168, 56, 0.14);
+}
+
+.player-row.is-target {
+    background: rgba(216, 77, 69, 0.14);
+}
+
+.player-row.is-caster.is-target {
+    background: rgba(192, 96, 160, 0.16);
+}
+
+.player-name-cell {
+    text-align: left;
+    padding-left: 4px;
+}
+
+.player-name-wrap {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    min-width: 0;
+}
+
+.detail-btn {
+    flex: 0 0 16px;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    border: 1px solid rgba(18, 119, 174, 0.55);
+    border-radius: 50%;
+    background: rgba(24, 119, 199, 0.12);
+    color: var(--sky-3);
+    box-shadow: none;
+    font-size: 11px;
+    line-height: 14px;
+    font-weight: 700;
+}
+
+.detail-btn:hover {
+    background: rgba(24, 119, 199, 0.22);
+    box-shadow: none;
+    transform: none;
+}
+
+.plr_list {
+    display: block;
+    position: relative;
+    padding: 10px;
+    background: linear-gradient(180deg, var(--surface-gradient-start) 0%, var(--surface-gradient-end) 100%);
+    border: 1px solid var(--border);
+}
+
+.plr_list.is-dead {
+    opacity: 0.82;
+}
+
+.plr_body {
+    display: grid;
+    gap: 6px;
+}
+
+.name-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.icon-sprite {
+    width: 16px;
+    height: 16px;
+    display: block;
+    flex: 0 0 auto;
+    background-color: var(--surface-soft);
+    background-image: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 16px 16px;
+    image-rendering: pixelated;
+}
+
+.sgl {
+    position: relative;
+    top: -2px;
+}
+
+.name {
+    display: inline-block;
+    margin: 0;
+    padding: 1px 4px;
+    background: var(--name-bg);
+    font-weight: 700;
+    line-height: 1.2;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.name.namedie {
+    background: var(--dead-bg);
+    color: var(--dead-text);
+}
+
+.small {
+    font-size: 11px;
+    line-height: 1.45;
+    color: var(--sky-3);
+}
+
+.small.dim {
+    color: var(--muted);
+}
+
+.player-stat-cell,
+.player-state-cell {
+    text-align: center;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+}
+
+.player-hp-cell {
+    color: var(--sky-3);
+    font-weight: 700;
+}
+
+.player-mp-move-cell {
+    font-size: 0.85em;
+    line-height: 1.4;
+}
+
+.player-mp-move-cell .mp-val {
+    color: var(--sky-2, #2aa2d6);
+}
+
+.player-mp-move-cell .move-val {
+    color: var(--ink, #214052);
+}
+
+.detail-line {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 8px;
+}
+
+.player-name-wrap .player-id {
+    color: var(--muted, #888);
+    font-size: 0.95em;
+    font-weight: 400;
+    margin-left: 4px;
+}
+
+.player-effects {
+    margin-top: 3px;
+    gap: 3px 4px;
+}
+
+.detail-pill,
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 1px 6px;
+    background: rgba(24, 119, 199, 0.08);
+    color: #0f74b9;
+}
+
+.status-pill.positive {
+    background: rgba(41, 144, 80, 0.14);
+    color: #17753c;
+}
+
+.status-pill.negative {
+    background: rgba(183, 57, 57, 0.14);
+    color: #a12a2a;
+}
+
+.status-pill.dead {
+    background: rgba(176, 106, 14, 0.15);
+    color: var(--knockout);
+}
+
+.status-pill.frozen {
+    background: rgba(58, 169, 255, 0.16);
+    color: #1277ae;
+}
+
+.player-table .status-pill {
+    padding: 0 4px;
+    font-size: 10px;
+    justify-content: center;
+}
+
+.player-effects .status-pill {
+    line-height: 1.35;
+}
+
+.hpwrap {
+    position: relative;
+    height: 8px;
+    margin-top: 2px;
+    overflow: hidden;
+    background: var(--border-soft);
+}
+
+.hpwrap.compact {
+    height: 2px;
+    margin-top: 2px;
+}
+
+.maxhp,
+.oldhp,
+.healhp,
+.hp {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    transition: width 260ms ease;
+}
+
+.player-row .maxhp,
+.player-row .oldhp,
+.player-row .healhp,
+.player-row .hp {
+    transition:
+        left 520ms ease,
+        width 520ms ease;
+}
+
+.maxhp {
+    width: 100%;
+    background: var(--maxhp-background);
+}
+
+.oldhp {
+    background: var(--oldhp);
+    opacity: 0.75;
+}
+
+.player-row.is-dead .oldhp,
+.player-row.is-dead .healhp {
+    transition: none;
+}
+
+.player-row.is-just-dead .oldhp {
+    animation: death-hp-drain 620ms cubic-bezier(0.45, 0, 0.18, 1) forwards;
+    transform-origin: left center;
+    opacity: 0.95;
+}
+
+.player-row.is-just-dead .hpwrap {
+    background: rgba(216, 77, 69, 0.18);
+}
+
+.player-row.is-just-dead .name.namedie,
+.player-row.is-just-dead .player-hp-cell {
+    animation: player-death-text-tint 620ms cubic-bezier(0.45, 0, 0.18, 1) forwards;
+}
+
+.healhp {
+    background: var(--healhp);
+    opacity: 0.4;
+}
+
+.hp {
+    background: linear-gradient(90deg, var(--hp) 0%, var(--hp) 100%);
+}
+
+/* 有护盾熟练度的角色在护盾出现时显示盾条，不受本地历史开关影响。 */
+.shieldwrap,
+.actor-shield {
+    display: block;
+    position: relative;
+    height: 2px;
+    overflow: hidden;
+    background: var(--shield-background);
+}
+
+.shieldwrap[hidden] {
+    display: none;
+}
+
+.shieldwrap {
+    margin-top: 1px;
+}
+
+.actor-shield {
+    flex: none;
+    z-index: 2;
+}
+
+.shield-fill,
+.shield-delta,
+.actor-shield-fill,
+.actor-shield-delta {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    transition: left 260ms ease, width 260ms ease;
+}
+
+.shield-fill,
+.actor-shield-fill {
+    background: var(--shield);
+}
+
+/* 盾条与体力条叠放时各占 2px，为这两行留出行高，不能盖到上一行文字；单盾条不需要额外留白。 */
+.actor-token.has-shield.has-hp {
+    margin-top: 4px;
+}
+
+.shield-delta.is-damage,
+.actor-shield-delta.is-damage {
+    background: var(--shield-damage);
+}
+
+.shield-delta.is-recover,
+.actor-shield-delta.is-recover {
+    background: var(--shield-recover);
+}
+
+.mpwrap {
+    position: relative;
+    height: 2px;
+    margin-top: 1px;
+    overflow: hidden;
+    background: var(--border-soft);
+}
+
+.mp-prev,
+.mp-recover,
+.mp-cost,
+.mp {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    transition:
+        left 260ms ease,
+        width 260ms ease;
+}
+
+.mp-prev {
+    background: rgba(60, 169, 255, 0.25);
+}
+
+.mp-recover {
+    background: rgba(23, 152, 90, 0.55);
+}
+
+.mp-cost {
+    background: rgba(239, 127, 121, 0.72);
+}
+
+.mp {
+    background: linear-gradient(90deg, #3ca9ff 0%, #1877c7 100%);
+}
+
+@keyframes death-hp-drain {
+    0% {
+        transform: scaleX(1);
+    }
+
+    42% {
+        transform: scaleX(0.44);
+    }
+
+    100% {
+        transform: scaleX(0);
+    }
+}
+
+@keyframes player-death-tint {
+    0% {
+        background: rgba(216, 77, 69, 0.26);
+    }
+
+    100% {
+        background: rgba(216, 77, 69, 0);
+    }
+}
+
+@keyframes player-death-text-tint {
+    0% {
+        color: #d84d45;
+        background: rgba(216, 77, 69, 0.14);
+    }
+
+    100% {
+        color: var(--dead-text);
+        background: var(--dead-bg);
+    }
+}

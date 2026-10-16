@@ -1,165 +1,25 @@
-/**
- * @fileoverview tswn_wasm 战斗回放展示页 — 入口模块
- *
- * 这是一个独立的 Fight 展示页，专门模仿原始名字竞技场与 fast-namerena 的战斗观感。
- * 左侧按队伍显示角色状态（HP/速度/体力），右侧按帧逐段追加战斗记录。
- *
- * 典型的 State 结构（来自 WASM）：
- * @typedef {{
- *   id: number,
- *   id_name: string,
- *   icon_key: string,
- *   display_name: string,
- *   display_index: number,
- *   icon_png_base64?: string|null,
- *   icon_class_id?: number,
- *   minion_kind?: 'clone' | 'summon' | 'shadow' | 'zombie',
- *   hp: number,
- *   max_hp: number,
- *   shield?: number,
- *   magic_point: number,
- *   move_point: number,
- *   speed: number,
- *   agility: number,
- *   magic: number,
- *   attack: number,
- *   defense: number,
- *   resistance: number,
- *   wisdom: number,
- *   point: number,
- *   all_sum: number,
- *   name_factor: number,
- *   at_boost: number,
- *   attract: number,
- *   alive: boolean,
- *   frozen: boolean,
- *   team_index: number,
- *   owner_id?: number,
- *   status_labels?: string[]
- * }} FightState
- *
- * 典型的 Player 结构（来自 WASM）：
- * @typedef {{
- *   id: number,
- *   team_index: number,
- *   id_name: string,
- *   icon_key: string,
- *   display_name: string,
- *   icon_png_base64: string|null,
- *   icon_class_id?: number
- * }} FightPlayer
- *
- * 一次 Replay 的结构：
- * @typedef {{
- *   raw_input: string,
- *   seed_line?: string|null,
- *   players: FightPlayer[],
- *   initial_states: FightState[],
- *   frames: FrameUpdate[],
- *   winner_ids: number[],
- *   final_states: FightState[],
- *   icon_styles?: Array<{ icon_class_id: number, icon_png_base64: string }>,
- *   wasm_duration_ms: number
- * }} FightReplay
- *
- * 单帧更新的结构：
- * @typedef {{
- *   updates: FrameMessage[],
- *   rows?: ReplayRow[],
- *   states: FightState[],
- *   finished: boolean,
- *   winner_ids: number[],
- *   total_delay: number
- * }} FrameUpdate
- *
- * replay view 行结构：
- * @typedef {{
- *   indent: boolean,
- *   clips: ReplayClip[]
- * }} ReplayRow
- *
- * replay view 片段结构；文本/玩家/血条/死亡特效语义都在 parts 内。
- * @typedef {{
- *   delay: number,
- *   color: string,
- *   tone: MessageTone,
- *   parts: ReplayTextPart[],
- *   caster_ids?: number[],
- *   target_ids?: number[],
- *   sidebar_states?: FightState[],
- *   sidebar_previous_states?: FightState[],
- *   winner?: boolean
- * }} ReplayClip
- *
- * replay view 文本片段结构：
- * @typedef {{
- *   kind: 'text' | 'highlight' | 'player' | 'data',
- *   text: string,
- *   player_id?: number|null,
- *   show_hp?: boolean,
- *   hp_before?: number,
- *   hp_after?: number,
- *   death_effect?: boolean,
- *   emoji?: string|null
- * }} ReplayTextPart
- *
- * 单条消息的结构：
- * @typedef {{
- *   update_type?: string,
- *   message_rendered?: string,
- *   message_template?: string,
- *   caster_id?: number,
- *   target_id?: number,
- *   target_ids?: number[],
- *   param?: number,
- *   score?: number,
- *   hp_delta?: number,
- *   status_change_tokens?: string[],
- *   delay1?: number,
- *   delay0?: number,
- *   tone?: MessageTone
- * }} FrameMessage
- *
- * HP 条的布局度量：
- * @typedef {{
- *   totalWidth: number,
- *   fillWidth: number,
- *   previousWidth: number,
- *   deltaLeft: number,
- *   deltaWidth: number
- *   deltaKind: 'damage' | 'recover' | 'none'
- * }} HpMetrics
- *
- * 涉及高亮的角色集合（用于 renderPlayers 的 involved 参数）：
- * @typedef {{
- *   casters: Set<number>,
- *   targets: Set<number>
- * }} InvolvedSet
- *
- * 消息色调：
- * @typedef {'normal' | 'damage' | 'recover' | 'knockout' | 'status_exit'} MessageTone
- *
- * 播放速度模式：
- * @typedef {'normal' | 'fast' | 'turbo'} SpeedMode
+/** 战斗展示页入口：组装会话、页面事件和独立播放控制器。
+ * @typedef {import("./show-types.js").FightState} FightState
+ * @typedef {import("./show-types.js").FightPlayer} FightPlayer
+ * @typedef {import("./show-types.js").FightReplay} FightReplay
+ * @typedef {import("./show-types.js").SpeedMode} SpeedMode
+ * @typedef {import("./show-types.js").FrameUpdate} FrameUpdate
+ * @typedef {import("./show-types.js").InvolvedSet} InvolvedSet
  */
 
+import { createShowPlayback } from "./show-playback.js";
+import { createThemeControls, setupPlayerHighlight, isEditableKeyTarget, copyTextToClipboard } from "./show-ui.js";
 import {
   buildIconClassCss,
-  escapeHtml,
   formatError,
-  replayDisplayName,
-  sleep,
   validateReplayInput,
 } from "./show-utils.js";
-import { renderIdleState, renderPlayers } from "./show-render.js";
+import { buildPlayerDetailHtml } from "./show-detail.js";
+import { renderIdleState } from "./show-render.js";
 import {
   createReplayPlan,
   appendFrameToReplayPlan,
   markReplayPlanComplete,
-  renderReplayIntro,
-  updateSpeedButtons,
-  playbackDelay,
-  buildReplayResultTableHtml,
 } from "./show-replay.js";
 import {
   buildShowShareUrl,
@@ -259,8 +119,6 @@ const shareBtn = document.querySelector("#shareBtn");
 const shareToast = document.querySelector("#shareToast");
 /** @type {HTMLButtonElement} */
 const themeBtn = document.querySelector("#themeBtn");
-/** @type {HTMLButtonElement} */
-const shieldBtn = document.querySelector("#shieldBtn");
 /** @type {SVGElement} */
 const themeLightIcon = document.querySelector("#themeLightIcon");
 /** @type {SVGElement} */
@@ -290,12 +148,11 @@ const BUTTON_SHORTCUTS = new Map([
   ["r", refreshBtn],
   ["s", shareBtn],
   ["d", themeBtn],
-  ["b", shieldBtn],
 ]);
 
 for (const [key, button] of BUTTON_SHORTCUTS) {
   button.setAttribute("aria-keyshortcuts", key.toUpperCase());
-  if (button !== toggleControlsBtn && button !== themeBtn && button !== shieldBtn) {
+  if (button !== toggleControlsBtn && button !== themeBtn) {
     button.title = `${button.title} (${key.toUpperCase()})`;
   }
 }
@@ -330,9 +187,6 @@ let speedMode = DEFAULT_SPEED_MODE;
 /** @type {Map<number, FightPlayer>} playerId → 玩家对象的快速索引 */
 let playersById = new Map();
 const ICON_STYLE_ID = "tswn-show-icon-styles";
-const SEEK_CHECKPOINT_FRAME_INTERVAL = 20;
-const NORMAL_RESULT_REVEAL_DELAY_MS = 1500;
-const TURBO_YIELD_VISIBLE_CHUNKS = 24;
 /** @type {{ frames: Array<{ frameIndex: number, frame: FrameUpdate, previousStates: FightState[], start: number, end: number }>, flatChunks: Array<{ target: 'battleRows' | 'frameBody' | 'row' | 'delay', html: string, delay: number, frameIndex: number, visible: boolean, sidebarStates?: FightState[], sidebarPreviousStates?: FightState[], sidebarInvolved?: InvolvedSet }>, totalChunks: number }|null} */
 let currentPlan = null;
 /** @type {Map<number, { battle_rows_html: string, player_list_html: string, seed_line: string }>} */
@@ -352,77 +206,37 @@ let playbackFinished = false;
 let rightControlsCollapsed = window.matchMedia("(max-width: 640px)").matches;
 /** @type {number|null} 分享复制提示的隐藏定时器 */
 let shareToastTimer = null;
-const themeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-const THEME_STORAGE_KEY = "tswn-show-theme";
-const SHIELD_STORAGE_KEY = "tswn-show-shield";
-let showShield = false;
-
-function syncShieldDisplayUi() {
-  // 用根节点开关同步侧栏、历史消息和检查点，保持播放计划与战斗数据不变。
-  document.documentElement.dataset.showShield = String(showShield);
-  const label = showShield ? "隐藏盾条" : "显示盾条";
-  shieldBtn.title = `${label} (B)`;
-  shieldBtn.setAttribute("aria-label", label);
-  shieldBtn.setAttribute("aria-pressed", String(showShield));
-  shieldBtn.classList.toggle("is-active", showShield);
-}
-
-function restoreShieldDisplay() {
-  showShield = false;
-  try {
-    showShield = localStorage.getItem(SHIELD_STORAGE_KEY) === "true";
-  } catch {
-    // 存储不可用时使用默认关闭状态。
-  }
-  syncShieldDisplayUi();
-}
-
-function setShieldDisplay(enabled) {
-  showShield = Boolean(enabled);
-  syncShieldDisplayUi();
-  try {
-    localStorage.setItem(SHIELD_STORAGE_KEY, String(showShield));
-  } catch {
-    // 存储不可用时仍允许切换本次页面会话的盾条。
-  }
-}
-
-function currentTheme() {
-  return document.documentElement.dataset.theme ?? (themeMediaQuery.matches ? "dark" : "light");
-}
-
-function syncThemeUi() {
-  const isDark = currentTheme() === "dark";
-  themeLightIcon.toggleAttribute("hidden", !isDark);
-  themeDarkIcon.toggleAttribute("hidden", isDark);
-  const label = isDark ? "切换到浅色模式" : "切换到深色模式";
-  themeBtn.title = `${label} (D)`;
-  themeBtn.setAttribute("aria-label", label);
-  themeBtn.setAttribute("aria-pressed", String(isDark));
-}
-
-function setTheme(theme) {
-  document.documentElement.dataset.theme = theme;
-  document.documentElement.dataset.themeSource = "user";
-  try {
-    localStorage.setItem(THEME_STORAGE_KEY, theme);
-  } catch {
-    // 存储不可用时仍保留本次页面会话的主题。
-  }
-  syncThemeUi();
-}
-
-syncThemeUi();
-restoreShieldDisplay();
-themeMediaQuery.addEventListener("change", () => {
-  if (document.documentElement.dataset.themeSource === "system") {
-    document.documentElement.dataset.theme = themeMediaQuery.matches ? "dark" : "light";
-    syncThemeUi();
-  }
-});
-// 页面初始化时尝试恢复上次保存的输入
+// 页面初始化时尝试恢复上次保存的输入与昵称。
 restoreInputValue();
 restoreNicknameMap();
+
+const { currentTheme, setTheme } = createThemeControls({ themeBtn, themeLightIcon, themeDarkIcon });
+const { clearPlayerHighlight } = setupPlayerHighlight();
+const {
+  stopPlaybackLoop, prepareReplayPlan, syncPlaybackUi, renderPlaybackToCursor,
+  autoplayFromCurrentCursor, beginReplayPlayback, previousVisibleCursor, previousFrameCursor,
+  pausePlayback, resumePlayback, togglePausePlayback, stepPlaybackTo,
+  stepPlaybackForward, nextVisibleCursor, nextFrameCursor,
+} = createShowPlayback({
+  get currentBattle() { return currentBattle; }, set currentBattle(value) { currentBattle = value; },
+  get streamController() { return streamController; }, set streamController(value) { streamController = value; },
+  get battleDisplay() { return battleDisplay; }, set battleDisplay(value) { battleDisplay = value; },
+  get battleMetrics() { return battleMetrics; }, set battleMetrics(value) { battleMetrics = value; },
+  get metricsReported() { return metricsReported; }, set metricsReported(value) { metricsReported = value; },
+  get streamError() { return streamError; }, set streamError(value) { streamError = value; },
+  get battleGenerationToken() { return battleGenerationToken; }, set battleGenerationToken(value) { battleGenerationToken = value; },
+  get currentVisibleStates() { return currentVisibleStates; }, set currentVisibleStates(value) { currentVisibleStates = value; },
+  get speedMode() { return speedMode; }, set speedMode(value) { speedMode = value; },
+  get playersById() { return playersById; }, set playersById(value) { playersById = value; },
+  get currentPlan() { return currentPlan; }, set currentPlan(value) { currentPlan = value; },
+  get playbackCheckpoints() { return playbackCheckpoints; }, set playbackCheckpoints(value) { playbackCheckpoints = value; },
+  get playbackCursor() { return playbackCursor; }, set playbackCursor(value) { playbackCursor = value; },
+  get historyResumeBoundary() { return historyResumeBoundary; }, set historyResumeBoundary(value) { historyResumeBoundary = value; },
+  get playbackLoopToken() { return playbackLoopToken; }, set playbackLoopToken(value) { playbackLoopToken = value; },
+  get playbackStartedAt() { return playbackStartedAt; }, set playbackStartedAt(value) { playbackStartedAt = value; },
+  get playbackPaused() { return playbackPaused; }, set playbackPaused(value) { playbackPaused = value; },
+  get playbackFinished() { return playbackFinished; }, set playbackFinished(value) { playbackFinished = value; },
+}, { playerList, battleRows, endPanel, headerMeta, plistMeta, normalBtn, fastBtn, pauseBtn, shareBtn, stepControls, stepBackEventBtn, stepForwardEventBtn, stepBackFrameBtn, stepForwardFrameBtn, rememberPlayers, clearPlayerHighlight, closePanel, visibleStatesForCursor });
 
 // ============================================================================
 // 胶水函数（直接操作 DOM 或全局状态）
@@ -566,74 +380,6 @@ function clearCurrentReplayView() {
   syncPlaybackUi();
 }
 
-function stopPlaybackLoop() {
-  playbackLoopToken += 1;
-}
-
-function prepareReplayPlan(replay) {
-  const display = battleDisplay.battle(replay);
-  const plan = createReplayPlan(display.initial_states);
-  const workingPlayersById = new Map(display.players.map((player) => [player.id, player]));
-  let previousStates = display.initial_states;
-  for (const frame of replay.frames) {
-    const displayFrame = battleDisplay.frame(frame);
-    appendFrameToReplayPlan(plan, displayFrame, previousStates, workingPlayersById);
-    previousStates = displayFrame.states;
-  }
-  if (replay.source_done) markReplayPlanComplete(plan, replay.result);
-  return plan;
-}
-
-function currentFrameIndexFromCursor() {
-  if (!currentPlan || currentPlan.frames.length === 0) {
-    return 0;
-  }
-  const framePlan = currentPlan.frames.find((item) => playbackCursor < item.end);
-  return framePlan
-    ? framePlan.frameIndex
-    : currentPlan.frames[currentPlan.frames.length - 1].frameIndex;
-}
-
-function syncPlaybackUi() {
-  updateSpeedButtons(
-    normalBtn,
-    fastBtn,
-    pauseBtn,
-    playbackPaused,
-    speedMode,
-    currentBattle,
-    headerMeta,
-  );
-
-  pauseBtn.disabled = !currentBattle;
-  shareBtn.disabled = !currentBattle;
-  pauseBtn.classList.toggle("is-paused", playbackPaused);
-
-  stepControls.hidden = false;
-
-  const noReplay = !currentBattle;
-  stepBackEventBtn.disabled = noReplay || playbackCursor <= 0;
-  stepBackFrameBtn.disabled = noReplay || playbackCursor <= 0;
-  stepForwardEventBtn.disabled =
-    noReplay || !currentPlan || (currentBattle.source_done && playbackCursor >= currentPlan.totalChunks);
-  stepForwardFrameBtn.disabled =
-    noReplay || !currentPlan || (currentBattle.source_done && playbackCursor >= currentPlan.totalChunks);
-
-  if (currentBattle) {
-    const teamCount = new Set(currentBattle.players.map(player => player.team_index)).size;
-    plistMeta.textContent = `${currentBattle.players.length} 名角色 · ${teamCount} 支队伍 · 已接收 ${currentBattle.frames.length} 帧。`;
-  }
-  if (streamError) {
-    headerMeta.textContent = `战斗读取失败：${formatError(streamError)}`;
-  } else if (currentBattle) {
-    if (playbackFinished) {
-      headerMeta.textContent = `回放已结束，共 ${currentBattle.frames.length} 帧。`;
-    } else if (playbackPaused) {
-      headerMeta.textContent = `已暂停，可单步前后移动。当前位置：frame ${currentFrameIndexFromCursor()} / ${Math.max(0, currentBattle.frames.length - 1)}。`;
-    }
-  }
-}
-
 function syncRightControlsUi() {
   rightControls.classList.toggle("is-collapsed", rightControlsCollapsed);
   toggleControlsBtn.setAttribute("aria-expanded", String(!rightControlsCollapsed));
@@ -645,493 +391,6 @@ function syncRightControlsUi() {
 function toggleRightControls() {
   rightControlsCollapsed = !rightControlsCollapsed;
   syncRightControlsUi();
-}
-
-function scrollBattleToBottom() {
-  const hbody = battleRows.closest(".hbody");
-  if (hbody) {
-    hbody.scrollTop = hbody.scrollHeight;
-  }
-}
-
-function appendPlaybackChunk(chunk) {
-  if (chunk.target === "delay") {
-    return;
-  }
-
-  const renderStart = performance.now();
-  if (chunk.target === "battleRows") {
-    battleRows.insertAdjacentHTML("beforeend", chunk.html);
-  } else if (chunk.target === "frameBody") {
-    const frameBody = battleRows.lastElementChild?.querySelector(".frame-body");
-    frameBody?.insertAdjacentHTML("beforeend", chunk.html);
-  } else if (chunk.target === "row") {
-    const frameBody = battleRows.lastElementChild?.querySelector(".frame-body");
-    const currentRow = frameBody?.lastElementChild;
-    currentRow?.insertAdjacentHTML("beforeend", chunk.html);
-  }
-
-  scrollBattleToBottom();
-  renderChunkSidebar(chunk);
-  battleMetrics?.chunkRendered(performance.now() - renderStart);
-}
-
-function renderSidebarSnapshot(states, previousStates, involved) {
-  currentVisibleStates = battleDisplay.states(states);
-  renderPlayers(
-    battleDisplay.states(currentBattle.players),
-    currentVisibleStates,
-    battleDisplay.states(previousStates),
-    involved,
-    playerList,
-    playersById,
-  );
-}
-
-function renderChunkSidebar(chunk) {
-  if (!currentBattle || !Array.isArray(chunk.sidebarStates)) {
-    return;
-  }
-  renderSidebarSnapshot(
-    chunk.sidebarStates,
-    chunk.sidebarPreviousStates ?? chunk.sidebarStates,
-    chunk.sidebarInvolved ?? null,
-  );
-}
-
-function lastSidebarChunkForFrame(framePlan) {
-  if (!currentPlan) {
-    return null;
-  }
-  for (let index = framePlan.end - 1; index >= framePlan.start; index -= 1) {
-    const chunk = currentPlan.flatChunks[index];
-    if (Array.isArray(chunk?.sidebarStates)) {
-      return chunk;
-    }
-  }
-  return null;
-}
-
-function renderFrameSidebar(framePlan) {
-  const lastSidebarChunk = lastSidebarChunkForFrame(framePlan);
-  renderSidebarSnapshot(
-    framePlan.frame.states,
-    lastSidebarChunk?.sidebarPreviousStates ?? framePlan.previousStates,
-    null,
-  );
-}
-
-function resetPlaybackView(replay) {
-  replay = battleDisplay.battle(replay);
-  clearPlayerHighlight();
-  closePanel(endPanel);
-  currentVisibleStates = replay.initial_states;
-  renderReplayIntro(
-    replay,
-    speedMode,
-    playerList,
-    battleRows,
-    plistMeta,
-    headerMeta,
-    playersById,
-    rememberPlayers,
-  );
-}
-
-function appendReplayResultBlock(replay) {
-  const existing = battleRows.querySelector(".battle-result-block");
-  if (existing) {
-    existing.remove();
-  }
-  battleRows.insertAdjacentHTML(
-    "beforeend",
-    `<section class="battle-result-block">${buildReplayResultTableHtml(battleDisplay.battle(replay))}</section>`,
-  );
-  scrollBattleToBottom();
-  reportBattleMetrics();
-}
-
-function reportBattleMetrics() {
-  if (!metricsReported && battleMetrics && currentBattle?.source_done) {
-    metricsReported = true;
-    if (new URLSearchParams(window.location.search).get("perf") === "1") {
-      console.table(battleMetrics.snapshot());
-    }
-  }
-}
-
-function findNearestPlaybackCheckpointCursor(cursor) {
-  let bestCursor = 0;
-  for (const checkpointCursor of playbackCheckpoints.keys()) {
-    if (checkpointCursor <= cursor && checkpointCursor > bestCursor) {
-      bestCursor = checkpointCursor;
-    }
-  }
-  return bestCursor;
-}
-
-function restorePlaybackCheckpoint(cursor) {
-  const checkpoint = playbackCheckpoints.get(cursor);
-  if (!checkpoint) {
-    return false;
-  }
-
-  closePanel(endPanel);
-  battleRows.innerHTML = checkpoint.battle_rows_html;
-  playerList.innerHTML = checkpoint.player_list_html;
-  if (checkpoint.seed_line) {
-    playerList.dataset.seedLine = checkpoint.seed_line;
-  } else {
-    delete playerList.dataset.seedLine;
-  }
-  return true;
-}
-
-function storePlaybackCheckpoint(cursor) {
-  if (!currentPlan) {
-    return;
-  }
-
-  const clampedCursor = Math.max(0, Math.min(cursor, currentPlan.totalChunks));
-  playbackCheckpoints.set(clampedCursor, {
-    battle_rows_html: battleRows.innerHTML,
-    player_list_html: playerList.innerHTML,
-    seed_line: playerList.dataset.seedLine ?? "",
-  });
-}
-
-function maybeStoreFrameCheckpoint(framePlan) {
-  if ((framePlan.frameIndex + 1) % SEEK_CHECKPOINT_FRAME_INTERVAL === 0) {
-    storePlaybackCheckpoint(framePlan.end);
-  }
-}
-
-function appendChunksBetween(startCursor, targetCursor) {
-  if (!currentPlan || targetCursor <= startCursor) {
-    return;
-  }
-
-  for (const framePlan of currentPlan.frames) {
-    if (targetCursor <= framePlan.start) {
-      break;
-    }
-    if (startCursor >= framePlan.end) {
-      continue;
-    }
-
-    const chunkStart = Math.max(startCursor, framePlan.start);
-    const limit = Math.min(targetCursor, framePlan.end);
-    for (let chunkIndex = chunkStart; chunkIndex < limit; chunkIndex += 1) {
-      appendPlaybackChunk(currentPlan.flatChunks[chunkIndex]);
-    }
-
-    if (targetCursor >= framePlan.end) {
-      renderFrameSidebar(framePlan);
-      maybeStoreFrameCheckpoint(framePlan);
-      continue;
-    }
-
-    break;
-  }
-}
-
-function renderPlaybackToCursor(cursor, { forceReset = false } = {}) {
-  if (!currentBattle || !currentPlan) {
-    return;
-  }
-
-  const previousCursor = playbackCursor;
-  const wasFinished = playbackFinished;
-  const targetCursor = Math.max(0, Math.min(cursor, currentPlan.totalChunks));
-  playbackCursor = targetCursor;
-  playbackFinished = currentBattle.source_done && playbackCursor >= currentPlan.totalChunks;
-
-  if (forceReset) {
-    resetPlaybackView(currentBattle);
-    appendChunksBetween(0, targetCursor);
-  } else if (targetCursor === previousCursor && wasFinished === playbackFinished) {
-    // 游标没动且完成状态没变，无需重新渲染
-    return;
-  } else if (targetCursor !== previousCursor) {
-    if (!wasFinished && targetCursor > previousCursor) {
-      appendChunksBetween(previousCursor, targetCursor);
-    } else {
-      const checkpointCursor = findNearestPlaybackCheckpointCursor(targetCursor);
-      if (checkpointCursor > 0 && restorePlaybackCheckpoint(checkpointCursor)) {
-        appendChunksBetween(checkpointCursor, targetCursor);
-      } else {
-        resetPlaybackView(currentBattle);
-        appendChunksBetween(0, targetCursor);
-      }
-    }
-  }
-
-  if (playbackFinished) {
-    renderSidebarSnapshot(currentBattle.final_states, currentBattle.final_states, null);
-    appendReplayResultBlock(currentBattle);
-    storePlaybackCheckpoint(playbackCursor);
-  }
-
-  if (playbackCursor === 0) {
-    storePlaybackCheckpoint(0);
-  }
-
-  if (!playbackFinished) {
-    currentVisibleStates = battleDisplay.states(visibleStatesForCursor(playbackCursor));
-  }
-  scrollBattleToBottom();
-  syncPlaybackUi();
-}
-
-function resolveChunkDelay(frame, rawDelay) {
-  if (speedMode === "turbo") {
-    return 0;
-  }
-  if (speedMode === "fast") {
-    const targetDelay = playbackDelay(frame, speedMode);
-    return frame.total_delay > 0 ? Math.round((targetDelay * rawDelay) / frame.total_delay) : 0;
-  }
-  // normal 模式直接使用 core replay view 给出的句子级延迟。
-  return rawDelay;
-}
-
-async function waitForPlaybackDelay(ms, token) {
-  let remaining = ms;
-  while (remaining > 0) {
-    if (token !== playbackLoopToken || playbackPaused) {
-      return false;
-    }
-    const slice = Math.min(remaining, 25);
-    await sleep(slice);
-    remaining -= slice;
-  }
-  return token === playbackLoopToken && !playbackPaused;
-}
-
-async function autoplayFromCurrentCursor() {
-  if (!currentBattle || !currentPlan || (playbackFinished && battleRows.querySelector(".battle-result-block"))) {
-    syncPlaybackUi();
-    return;
-  }
-
-  const token = ++playbackLoopToken;
-  let turboVisibleChunks = 0;
-  playbackPaused = false;
-  streamController?.setPaused(false);
-  syncPlaybackUi();
-
-  while (true) {
-    if (token !== playbackLoopToken || playbackPaused) {
-      return;
-    }
-
-    if (playbackCursor >= currentPlan.totalChunks) {
-      if (currentBattle.source_done) break;
-      if (streamError) { pausePlayback(); return; }
-      try { await streamController.ensureFrame(currentBattle.frames.length); }
-      catch { return; }
-      if (token !== playbackLoopToken || playbackPaused) return;
-      continue;
-    }
-    const chunk = currentPlan.flatChunks[playbackCursor];
-    const framePlan = currentPlan.frames[chunk.frameIndex];
-    if (!streamError) streamController?.setPlaybackFrame(framePlan.frameIndex);
-    if (playbackCursor >= historyResumeBoundary) {
-      void streamController?.ensureBuffered().catch(() => {});
-    }
-    const delay =
-      playbackCursor === 0 && speedMode === "normal"
-        ? 0
-        : resolveChunkDelay(framePlan.frame, chunk.delay);
-    if (delay > 0) {
-      const completed = await waitForPlaybackDelay(delay, token);
-      if (!completed) {
-        return;
-      }
-    }
-
-    appendPlaybackChunk(chunk);
-    playbackCursor += 1;
-
-    if (playbackCursor >= framePlan.end) {
-      renderFrameSidebar(framePlan);
-      maybeStoreFrameCheckpoint(framePlan);
-    }
-
-    if (speedMode === "turbo" && chunk.visible && ++turboVisibleChunks % TURBO_YIELD_VISIBLE_CHUNKS === 0) {
-      await sleep(0);
-      if (token !== playbackLoopToken || playbackPaused) {
-        return;
-      }
-    }
-  }
-
-  if (token !== playbackLoopToken) {
-    return;
-  }
-
-  playbackFinished = true;
-  renderSidebarSnapshot(currentBattle.final_states, currentBattle.final_states, null);
-  if (speedMode === "normal") {
-    const completed = await waitForPlaybackDelay(NORMAL_RESULT_REVEAL_DELAY_MS, token);
-    if (!completed) {
-      return;
-    }
-  }
-  appendReplayResultBlock(currentBattle);
-  storePlaybackCheckpoint(playbackCursor);
-  playbackPaused = true;
-  streamController?.setPaused(true);
-  // turbo 是一次性按钮：播完后自动回到暂停态。
-  if (speedMode === "turbo") {
-    playbackPaused = true;
-    speedMode = "normal";
-  }
-  syncPlaybackUi();
-}
-
-function beginReplayPlayback(replay, { autoPlay = true } = {}) {
-  currentBattle = replay;
-  currentPlan = prepareReplayPlan(replay);
-  playbackCheckpoints = new Map();
-  playbackCursor = 0;
-  historyResumeBoundary = currentPlan.totalChunks;
-  playbackPaused = false;
-  playbackFinished = false;
-  playbackStartedAt = performance.now();
-  stopPlaybackLoop();
-  if (!streamError) streamController?.setPlaybackFrame(-1);
-  renderPlaybackToCursor(0, { forceReset: true });
-  if (autoPlay !== false) {
-    void autoplayFromCurrentCursor();
-  }
-}
-
-function nextVisibleCursor(cursor) {
-  if (!currentPlan) {
-    return cursor;
-  }
-  for (let index = cursor; index < currentPlan.totalChunks; index += 1) {
-    if (currentPlan.flatChunks[index].visible) {
-      return index + 1;
-    }
-  }
-  return currentPlan.totalChunks;
-}
-
-function previousVisibleCursor(cursor) {
-  if (!currentPlan) {
-    return cursor;
-  }
-  for (let index = Math.min(cursor, currentPlan.totalChunks) - 1; index >= 0; index -= 1) {
-    if (currentPlan.flatChunks[index].visible) {
-      return index;
-    }
-  }
-  return 0;
-}
-
-function nextFrameCursor(cursor) {
-  if (!currentPlan) {
-    return cursor;
-  }
-  for (const framePlan of currentPlan.frames) {
-    if (cursor < framePlan.end) {
-      return framePlan.end;
-    }
-  }
-  return currentPlan.totalChunks;
-}
-
-function previousFrameCursor(cursor) {
-  if (!currentPlan) {
-    return cursor;
-  }
-  for (let index = currentPlan.frames.length - 1; index >= 0; index -= 1) {
-    const framePlan = currentPlan.frames[index];
-    if (cursor > framePlan.start) {
-      return index > 0 ? currentPlan.frames[index - 1].end : 0;
-    }
-  }
-  return 0;
-}
-
-function pausePlayback() {
-  if (!currentBattle) {
-    return;
-  }
-  playbackPaused = true;
-  streamController?.setPaused(true);
-  stopPlaybackLoop();
-  syncPlaybackUi();
-}
-
-function resumePlayback() {
-  if (!currentBattle) {
-    return;
-  }
-
-  if (playbackFinished && battleRows.querySelector(".battle-result-block")) {
-    syncPlaybackUi();
-    return;
-  }
-
-  playbackPaused = false;
-  syncPlaybackUi();
-  void autoplayFromCurrentCursor();
-}
-
-function togglePausePlayback() {
-  if (!currentBattle) {
-    return;
-  }
-  if (playbackPaused) {
-    resumePlayback();
-  } else {
-    pausePlayback();
-  }
-}
-
-function stepPlaybackTo(cursor) {
-  if (!currentBattle || !currentPlan) {
-    return;
-  }
-  playbackPaused = true;
-  streamController?.setPaused(true);
-  stopPlaybackLoop();
-  if (cursor < playbackCursor) historyResumeBoundary = currentPlan.totalChunks;
-  renderPlaybackToCursor(cursor);
-  const frameIndex = currentPlan.frames.findLastIndex(frame => playbackCursor > frame.start);
-  if (!streamError) streamController?.setPlaybackFrame(frameIndex);
-}
-
-async function stepPlaybackForward(byFrame = false) {
-  if (!currentBattle || !currentPlan) return;
-  pausePlayback();
-  const generation = battleGenerationToken;
-  const token = playbackLoopToken;
-  if (playbackCursor >= currentPlan.totalChunks && !currentBattle.source_done && !streamError) {
-    try { await streamController.ensureFrame(currentBattle.frames.length); }
-    catch { return; }
-    if (generation !== battleGenerationToken || token !== playbackLoopToken) return;
-  }
-  stepPlaybackTo(byFrame ? nextFrameCursor(playbackCursor) : nextVisibleCursor(playbackCursor));
-}
-
-/**
- * @param {EventTarget|null} target
- * @returns {boolean}
- */
-function isEditableKeyTarget(target) {
-  if (!(target instanceof Element)) {
-    return false;
-  }
-  if (target.closest("textarea, select, input")) {
-    return true;
-  }
-  const editableTarget =
-    target instanceof HTMLElement ? target : target.closest("[contenteditable]");
-  return editableTarget instanceof HTMLElement && editableTarget.isContentEditable;
 }
 
 function showShareToast(message = "分享链接已复制") {
@@ -1179,29 +438,6 @@ function buildShareUrl(rawInput) {
  * @param {string} text
  * @returns {Promise<void>}
  */
-async function copyTextToClipboard(text) {
-  if (window.isSecureContext && navigator.clipboard?.writeText) {
-    await navigator.clipboard.writeText(text);
-    return;
-  }
-
-  const textarea = document.createElement("textarea");
-  textarea.value = text;
-  textarea.setAttribute("readonly", "");
-  textarea.style.position = "fixed";
-  textarea.style.left = "-9999px";
-  textarea.style.top = "0";
-  document.body.append(textarea);
-  textarea.select();
-  try {
-    if (!document.execCommand("copy")) {
-      throw new Error("浏览器拒绝复制操作。");
-    }
-  } finally {
-    textarea.remove();
-  }
-}
-
 /**
  * 从当前页面 URL 中读取静态对局输入参数。
  * @returns {{ ok: true, input: string, paramName: string }|{ ok: false, message: string }|null}
@@ -1253,61 +489,6 @@ function persistNicknameMap() {
   } catch {
     // localStorage 不可用时，当前页面内的昵称仍会生效。
   }
-}
-
-function detailValue(value, fallback = "-") {
-  if (value == null || value === "") {
-    return fallback;
-  }
-  return escapeHtml(value);
-}
-
-function detailNumber(value, digits = 2) {
-  const number = Number(value);
-  if (!Number.isFinite(number)) {
-    return "-";
-  }
-  return Number.isInteger(number) ? String(number) : number.toFixed(digits);
-}
-
-function detailRow(label, value) {
-  return `<dt>${escapeHtml(label)}</dt><dd>${value}</dd>`;
-}
-
-function buildPlayerDetailHtml(player, state, canEditNickname) {
-  const source = state ?? player ?? null;
-  const displayName = state ? replayDisplayName(state, state.id) : (player?.display_name ?? "未知角色");
-  const rawName = player?._raw_display_name ?? state?._raw_display_name ?? displayName;
-  const idName = player?.id_name ?? state?.id_name ?? "";
-  const statusLabels = Array.isArray(source?.status_labels) ? source.status_labels.join("、") : "";
-  const rows = [
-    detailRow("原名", detailValue(rawName)),
-    detailRow("ID 名", detailValue(idName)),
-    detailRow("playerId", detailNumber(player?.id ?? source?.id)),
-    detailRow("队伍", detailNumber(player?.team_index ?? source?.team_index)),
-    detailRow("HP", source ? `${detailNumber(source.hp)} / ${detailNumber(source.max_hp)}` : "-"),
-    detailRow("蓝量", detailNumber(source?.magic_point)),
-    detailRow("体力", source ? `${detailNumber(((source.move_point ?? 0) / 2048) * 100, 0)}%` : "-"),
-    detailRow("攻击", detailNumber(source?.attack)),
-    detailRow("防御", detailNumber(source?.defense)),
-    detailRow("速度", detailNumber(source?.speed)),
-    detailRow("敏捷", detailNumber(source?.agility)),
-    detailRow("魔力", detailNumber(source?.magic)),
-    detailRow("抗性", detailNumber(source?.resistance)),
-    detailRow("智慧", detailNumber(source?.wisdom)),
-    detailRow("评价", detailNumber(source?.point)),
-    detailRow("总和", detailNumber(source?.all_sum)),
-    detailRow("短名系数", detailNumber(source?.name_factor)),
-    detailRow("攻击加成", detailNumber(source?.at_boost)),
-    detailRow("吸引", detailNumber(source?.attract)),
-    detailRow("状态", detailValue(statusLabels)),
-  ].join("");
-
-  return `
-    <div class="detail-name">${escapeHtml(displayName)}</div>
-    <div class="detail-subtitle">${canEditNickname ? "昵称会按 ID 名持久化，并应用到当前及后续回放。" : "召唤物或临时单位暂不支持保存昵称。"}</div>
-    <dl class="detail-grid">${rows}</dl>
-  `;
 }
 
 // ============================================================================
@@ -1572,10 +753,6 @@ shareBtn.addEventListener("click", () => {
   void copyCurrentShareUrl();
 });
 
-shieldBtn.addEventListener("click", () => {
-  setShieldDisplay(!showShield);
-});
-
 themeBtn.addEventListener("click", () => {
   setTheme(currentTheme() === "dark" ? "light" : "dark");
 });
@@ -1781,78 +958,5 @@ async function main() {
     setInputStatus(`模块加载失败: ${formatError(error)}`, true);
   }
 }
-
-// ============================================================================
-// 玩家联动高亮：鼠标悬停时高亮页面中所有该玩家的头像和名字
-// ============================================================================
-
-let highlightTimer = null;
-
-function clearHighlightTimer() {
-  if (highlightTimer) {
-    clearTimeout(highlightTimer);
-    highlightTimer = null;
-  }
-}
-
-/**
- * 高亮指定 playerId 对应的所有元素，其余淡化。
- * @param {string|number|null} playerId
- */
-function setPlayerHighlight(playerId) {
-  // 清除旧的高亮标记
-  document
-    .querySelectorAll("[data-player-id].hl-active")
-    .forEach((el) => el.classList.remove("hl-active"));
-
-  if (playerId) {
-    document.body.classList.add("highlight-active");
-    document
-      .querySelectorAll('[data-player-id="' + playerId + '"]')
-      .forEach((el) => el.classList.add("hl-active"));
-  } else {
-    document.body.classList.remove("highlight-active");
-  }
-}
-
-function clearPlayerHighlight() {
-  clearHighlightTimer();
-  setPlayerHighlight(null);
-}
-
-function clearPlayerHighlightSoon() {
-  clearHighlightTimer();
-  highlightTimer = setTimeout(() => {
-    setPlayerHighlight(null);
-    highlightTimer = null;
-  }, 80);
-}
-
-document.addEventListener("mouseover", (event) => {
-  const el = event.target instanceof Element ? event.target.closest("[data-player-id]") : null;
-  if (el) {
-    clearHighlightTimer();
-    setPlayerHighlight(el.dataset.playerId);
-  } else if (!document.querySelector("[data-player-id]:hover")) {
-    clearPlayerHighlightSoon();
-  }
-});
-
-document.addEventListener("mouseout", (event) => {
-  if (event.relatedTarget instanceof Node && document.documentElement.contains(event.relatedTarget)) {
-    if (!document.querySelector("[data-player-id]:hover")) {
-      clearPlayerHighlightSoon();
-    }
-    return;
-  }
-  clearPlayerHighlight();
-});
-
-window.addEventListener("blur", clearPlayerHighlight);
-document.addEventListener("visibilitychange", () => {
-  if (document.visibilityState === "hidden") {
-    clearPlayerHighlight();
-  }
-});
 
 void main();

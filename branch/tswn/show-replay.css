@@ -1,0 +1,273 @@
+.pbody-shell {
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr;
+}
+
+.pbody-header {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    background: var(--sidebar-bg);
+    backdrop-filter: blur(12px);
+}
+
+.header-copy {
+    display: grid;
+    gap: 2px;
+    min-width: 0;
+}
+
+.theme-notice {
+    flex-basis: 100%;
+    padding: 6px 8px;
+    border: 1px solid var(--shield-outline);
+    border-radius: 4px;
+    background: var(--surface);
+    color: var(--ink);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.theme-notice[hidden] {
+    display: none;
+}
+
+.header-title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.battleRows {
+    display: block;
+    padding: 8px 10px 20px;
+}
+
+.welcome {
+    display: grid;
+    gap: 6px;
+    padding: 8px 10px;
+    background: linear-gradient(180deg, var(--surface-gradient-start) 0%, var(--surface-gradient-end) 100%);
+    border: 1px solid var(--border);
+    line-height: 1.4;
+}
+
+.welcome strong {
+    color: var(--sky-3);
+}
+
+.round-block {
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 6px;
+    align-items: stretch;
+    margin-bottom: 2px;
+    padding: 1px 0 4px;
+}
+
+.frame-sidebar {
+    display: flex;
+    align-self: stretch;
+    align-items: flex-start;
+    padding-top: 1px;
+}
+
+.frame-body {
+    min-width: 0;
+}
+
+.round-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+    padding: 3px 10px;
+    background: rgba(42, 162, 214, 0.1);
+    color: var(--sky-3);
+    font-size: 11px;
+    line-height: 1.2;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.row {
+    display: block;
+    align-items: flex-end;
+    line-height: 1.28;
+    white-space: normal;
+    word-break: break-word;
+}
+
+.row.indented {
+    padding-left: 14px;
+}
+
+.frame-body .row:not(.separator)+.row:not(.separator) {
+    margin-top: 4px;
+    padding-left: 14px;
+}
+
+.frame-body .row:not(.separator)+.row.winner-line {
+    padding-left: 0;
+}
+
+.msg {
+    display: inline;
+    color: var(--message-text);
+}
+
+.msg-sep {
+    margin: 0 1px 0 0;
+    color: var(--ink);
+}
+
+.frame-chip {
+    display: inline-block;
+    min-width: 22px;
+    color: rgba(69, 104, 120, 0.42);
+    font-size: 9px;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.4;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.msg.knockout {
+    /* 无颜色 — 被击倒 */
+}
+
+.row.separator {
+    height: 4px;
+}
+
+.message-number {
+    color: var(--damage);
+}
+
+.actor-token {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 3px;
+    margin-right: 2px;
+    vertical-align: bottom;
+}
+
+.actor-avatar-wrap {
+    display: block;
+    flex: 0 0 auto;
+    overflow: visible;
+    top: -2px;
+    left: 1.5px;
+}
+
+.msg-avatar {
+    display: block;
+}
+
+.actor-name {
+    display: inline-block;
+    position: relative;
+    white-space: nowrap;
+    background: var(--message-bg);
+    color: var(--message-text);
+    padding: 0 2px;
+    text-shadow: 1px 1px var(--message-shadow);
+}
+
+.actor-name.namedie {
+    background: var(--dead-bg);
+}
+
+
+.actor-vitals {
+    position: absolute;
+    top: -2px;
+    left: 0;
+    display: flex;
+    align-items: center;
+    z-index: 2;
+}
+
+/*
+ * 两条条形同时出现时：盾条叠在体力条正上方（竖排、左端对齐、上下紧贴，总高度等于两条之和）。
+ * 只有盾条时不上移，直接占用体力条的位置（`.actor-vitals` 的默认 `top: -2px`）。
+ */
+.has-shield.has-hp .actor-vitals {
+    top: -4px;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+}
+
+.actor-hp {
+    position: relative;
+    flex: none;
+    height: 2px;
+    display: block;
+    overflow: hidden;
+    background: var(--hp-background);
+    z-index: 2;
+}
+
+.actor-hp-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: var(--hp);
+    transition: width 260ms ease;
+}
+
+.actor-hp-delta {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: left 260ms ease, width 260ms ease;
+}
+
+.actor-hp-delta.is-damage {
+    background: var(--oldhp);
+}
+
+.actor-hp-delta.is-recover {
+    background: var(--healhp);
+}
+
+.damage .message-number {
+    color: var(--damage);
+    font-weight: normal;
+}
+
+.recover .message-number {
+    color: var(--recover);
+    font-weight: normal;
+}
+
+.skill-token {
+    color: var(--skill);
+    font-weight: normal;
+}
+
+/* [解除]/[中止]/[打消] 独立中括号标红 */
+.status-change-token {
+    color: var(--status-exit);
+    font-weight: normal;
+}
+
+.winner-row {
+    display: inline-flex;
+    margin-top: 0;
+    padding: 4px 10px;
+    background: rgba(176, 106, 14, 0.12);
+    color: var(--knockout);
+    font-size: 12px;
+    line-height: 1.4;
+    font-weight: 700;
+}

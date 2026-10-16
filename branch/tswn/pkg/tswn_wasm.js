@@ -1,5 +1,8 @@
 /* @ts-self-types="./tswn_wasm.d.ts" */
 
+/**
+ * wasm-bindgen 规范对局对象；按需取帧，并在 JS finally 中调用生成的 free()。
+ */
 export class BattleSession {
     __destroy_into_raw() {
         const ptr = this.__wbg_ptr;
@@ -12,6 +15,7 @@ export class BattleSession {
         wasm.__wbg_battlesession_free(ptr, 0);
     }
     /**
+     * 返回当前边界的规范玩家快照数组。
      * @returns {BattlePlayerState[]}
      */
     current_states() {
@@ -29,6 +33,7 @@ export class BattleSession {
         return ret >>> 0;
     }
     /**
+     * 返回创建时的规范玩家快照数组。
      * @returns {BattlePlayerState[]}
      */
     initial_states() {
@@ -67,6 +72,7 @@ export class BattleSession {
         return ret !== 0;
     }
     /**
+     * 解析 raw 和可选 options，创建 core 会话；错误转换为带 code 的 JS Error。
      * @param {string} raw_input
      * @param {BattleOptions | null} [options]
      */
@@ -82,6 +88,7 @@ export class BattleSession {
         return this;
     }
     /**
+     * 同步推进至下一可见帧，正常结束返回 JS null。
      * @returns {BattleReplayFrame | null}
      */
     next_frame() {
@@ -92,6 +99,7 @@ export class BattleSession {
         return takeFromExternrefTable0(ret[0]);
     }
     /**
+     * 读取正常 terminal 结果，运行中或失败时返回 JS null。
      * @returns {BattleResult | null}
      */
     result() {
@@ -229,6 +237,9 @@ export class FightSession {
 }
 if (Symbol.dispose) FightSession.prototype[Symbol.dispose] = FightSession.prototype.free;
 
+/**
+ * 保存准备阵容和累计结果的分批胜率对象；每次 step 同步执行，宿主安排批间调度。
+ */
 export class WinRateSession {
     __destroy_into_raw() {
         const ptr = this.__wbg_ptr;

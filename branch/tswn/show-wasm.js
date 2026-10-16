@@ -109,7 +109,9 @@ function playersFromBattleReplayStates(states) {
         .map((state) => ({
             ...state,
             id: Number(state.id),
-            team_index: Number(state.team_index ?? state.input_team_index ?? 0),
+            team_index: Number(state.team_index ?? 0),
+            // 输入分组序号：左侧列表按它排序与分组，保证与输入的名字顺序一致。
+            input_team_index: state.input_team_index == null ? null : Number(state.input_team_index),
             id_name: state.id_name ?? state.base_name ?? `entity_${state.id}`,
             icon_key: state.icon_key ?? state.id_name ?? `entity_${state.id}`,
             display_name: state.display_name ?? state.base_name ?? `#${state.id}`,
