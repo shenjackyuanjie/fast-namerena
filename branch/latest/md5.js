@@ -604,54 +604,6 @@ if (run_env.from_code) {
 
 // console.log("run_env", run_env);
 
-/**
- * 用于替换 LangData.SuperRC4
- * @constructor
- * @param {number} _
- * @param {number[]} val
- * @param {number} round
- */
-class NewRc4 {
-    // bd(a, b)
-    constructor(input_val, round) {
-        this.i = 0;
-        this.j = 0;
-        this.val = new Array(256);
-        for (let i = 0; i < 256; i++) {
-            this.val[i] = i;
-        };
-        const val_len = input_val.length;
-        for (let r = 0; r < round; r++) {
-            for (let p = 0, o = 0; o < 256; o++) {
-                const n = o % val_len;
-                const m = this.val[o];
-                p = (this.val[o] + input_val[n] + p) % 256;
-                // swap
-                this.val[o] = this.val[p];
-                this.val[p] = m;
-            }
-        }
-    }
-
-    /**
-     * xorBytes bO(a)
-     * @param {number[]} bytes
-     */
-    xor_bytes(bytes) {
-        const bytes_len = bytes.length;
-        for (let i = 0; i < bytes_len; i++) {
-            this.i = (this.i + 1) % 256;
-            const o = this.val[this.i];
-            this.j = (this.j + o) % 256;
-            // swap
-            this.val[this.i] = this.val[this.j];
-            this.val[this.j] = o;
-            bytes[i] ^= this.val[(this.val[this.i] + this.val[this.j]) % 256];
-            this.j = (this.j + bytes[i]) % 256;
-        }
-    }
-};
-
 let why_ns = 0;
 
 function copyProperties(a, b) {
@@ -713,19 +665,6 @@ function lazyOld(holder, name, getterName, initializer) {
         return result;
     };
 }
-
-const lazy = (holder, name, getterName, initializer) => {
-    var uninitializedSentinel = holder;
-    holder[name] = uninitializedSentinel;
-    holder[getterName] = function () {
-        if (holder[name] === uninitializedSentinel)
-            holder[name] = initializer();
-        holder[getterName] = function () {
-            return this[name];
-        };
-        return holder[name];
-    };
-};
 
 const lazyFinal = (holder, name, getterName, initializer) => {
     var uninitializedSentinel = holder;
@@ -852,7 +791,6 @@ var hunkHelpers = function () {
         _static_1: r(1, null, ["$1"], 0),
         _static_2: r(2, null, ["$2"], 0),
         makeConstList: makeConstList,
-        lazy: lazy,
         lazyFinal: lazyFinal,
         lazyOld: lazyOld,
         updateHolder: updateHolder,
@@ -8661,7 +8599,6 @@ var HtmlRenderer = {
         this.b = b
     }
 }
-var w = [A, C, Sgls, H, J, L, LangData, P, S, T, V, W, X, Y, HtmlRenderer]
 
 var $ = {}
 
@@ -21385,8 +21322,8 @@ function main(input_name) {
                     $.vr = 6
                     // if (J.aw(h) === 2)
                     if (h.length === 2) {
-                        // LangData.j("S,AF", 5) -> ???
-                        if (h[1].length > 10 || J.lW(h[1][0][0], LangData.j("S,AF", 5))) {
+                        // 原调用 LangData.j("S,AF", 5)，解密结果固定为 "???"
+                        if (h[1].length > 10 || J.lW(h[1][0][0], "???")) {
                             logger.debug("官方搜号")
                             team_1 = h[1]
                             team_2 = H.b([], t.t)
