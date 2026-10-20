@@ -5635,7 +5635,7 @@ var T = {
                 a1.a1(name, team_name, fgt, a3)
                 fgt = a1.r = C.String.ay(name, 5)
                 team_name = 4
-                $.vq = fgt.length > team_name && C.String.a8(fgt, team_name) === $.q0() ? $.pE() : $.mS()
+                $.vq = fgt.length > team_name && C.String.a8(fgt, team_name) === 8208 ? 3501 : 32768
                 return a1
             }
             // boosted
@@ -5801,15 +5801,15 @@ var T = {
         } else if (p < 100) {
             s = c.a
             s.push(T.RunUpdate_init(LangData.get_lang("PdCA"), a, r, r, r, 0, q, 100))
-        } else if (p < $.mJ()) {
+        } else if (p < 150) {
             s = c.a
             s.push(T.RunUpdate_init(LangData.get_lang("gjTN"), a, r, r, r, 0, q, 100))
-        } else if (p < $.pc()) {
+        } else if (p < 190) {
             s = c.a
             s.push(T.RunUpdate_init(LangData.get_lang("xraA"), a, r, r, r, 0, q, 100))
         } else {
             s = c.a
-            if (p < $.pp())
+            if (p < 230)
                 s.push(T.RunUpdate_init(LangData.get_lang("OBXn"), a, r, r, r, 0, q, 100))
             else
                 s.push(T.RunUpdate_init(LangData.get_lang("fNKA"), a, r, r, r, 0, q, 100))
@@ -6097,17 +6097,17 @@ var T = {
                     ++b
                     continue
                 }
-                if (q !== $.mW()) // 45
+                if (q !== 45) // 45
                 // {p = q >= 48 && q <= $.pO()}
                 {
                     p = q >= 48 && q <= 57
                 }
                 else { p = true }
                 if (p) { s.$1(0) }
-                else if (q >= $.q6() && q <= $.p5()) { // 97 122
+                else if (q >= 97 && q <= 122) { // 97 122
                     s.$1(1)
                 }
-                else if (q >= $.pT() && q <= $.q3()) { // 65 90
+                else if (q >= 65 && q <= 90) { // 65 90
                     // s.$1(2) // 2
                     s.$1(2)
                 }
@@ -6218,7 +6218,7 @@ var T = {
         if (g > 0) { return g / ($.rp() - common_char_len()) }
         else {
             d = $.rq()
-            if (g < -d) return (g + d) / ($.pD() + d - common_char_len())
+            if (g < -d) return (g + d) / (3497 + d - common_char_len())
         }
         return 0
     },
@@ -16414,7 +16414,7 @@ T.SklCovidAttack.prototype = {
 }
 T.PlrBossIkaruga.prototype = {
     gan() {
-        return H.b([48, 28, 21, $.mW(), 10, $.mL(), 16, $.mJ()], t.i)
+        return H.b([48, 28, 21, 45, 10, 19, 16, 150], t.i)
     },
     gaG() {
         return H.b(["assassinate", "half", "exchange", "piston", "slow", "ice"], t.V)
@@ -16435,7 +16435,7 @@ T.PlrBossIkaruga.prototype = {
 }
 T.SklIkarugaDefend.prototype = {
     ga4() {
-        return $.pk()
+        return 20000
     },
     aq(a, b, c, d, e) {
         var s
@@ -16488,7 +16488,7 @@ T.SklIkarugaAttack.prototype = {
 T.PlrBossLazy.prototype = {
     gan() {
         var s = 0
-        return H.b([s, $.q2(), 10, -20, s, 50, s, 120], t.i)
+        return H.b([s, 88, 10, -20, s, 50, s, 120], t.i)
     },
     gaG() {
         return H.b(["assassinate", "half", "curse", "exchange"], t.V)
@@ -16587,7 +16587,7 @@ T.SklLazyAttack.prototype = {
 }
 T.PlrBossMario.prototype = {
     gan() {
-        return H.b([0, $.lL(), $.d1(), $.mX(), 28, 18, 15, $.n0()], t.i)
+        return H.b([0, 38, 31, 46, 28, 18, 15, 69], t.i)
     },
     F() {
         var s = this
@@ -16715,7 +16715,7 @@ T.SklMarioReraise.prototype = {
 }
 T.PlrBossMosquito.prototype = {
     gan() {
-        return H.b([-3, 24, $.pv(), $.pY(), 5, 7, 12, -35], t.i)
+        return H.b([-3, 24, 29, 729, 5, 7, 12, -35], t.i)
     },
     gaS() {
         return H.b(["assassinate", "disperse"], t.V)
@@ -16732,7 +16732,7 @@ T.PlrBossMosquito.prototype = {
 }
 T.PlrBossSaitama.prototype = {
     gan() {
-        return H.b([$.pX(), $.pI(), $.n0(), $.q_(), $.pV(), $.pU(), 0, $.q1()], t.i)
+        return H.b([72, 39, 69, 76, 67, 66, 0, 84], t.i)
     },
     gaS() {
         return H.b(["half", "exchange"], t.V)
@@ -16756,7 +16756,7 @@ T.SklSaitama.prototype = {
     v(a, b, c, d) {
         var s, r, q, p, o = this,
             n = null
-        if (o.fx / (o.fy.a + o.go.a / 3 + 1) > $.mP()) {
+        if (o.fx / (o.fy.a + o.go.a / 3 + 1) > 255) {
             s = d.a
             s.push(T.RunUpdate_init(LangData.get_lang("dlfA"), o.r, n, n, n, n, 1000, 2000))
             s.push($.K())
@@ -16778,7 +16778,7 @@ T.SklSaitama.prototype = {
         d.a.push(T.RunUpdate_init(LangData.get_lang("EYAn"), o.r, r, n, n, 0, 1000, 100))
         r.a3(s * q, false, o.r, T.ad(), c, d)
         for (s = o.r.y.a.e, q = s.length, p = 0; p < q; ++p) s[p].l = 0
-        o.r.l = $.pb()
+        o.r.l = 1700
     },
     aq(a, b, c, d, e) {
         var s = this,
@@ -16797,7 +16797,7 @@ T.PlrBossSlime.prototype = {
     gan() {
         var s = 6,
             r = 21
-        return H.b([s, r, 5, $.mL(), $.lL(), r, 12, $.n_()], t.i)
+        return H.b([s, r, 5, 19, 38, r, 12, 62], t.i)
     },
     gaS() {
         return H.b([], t.V)
@@ -16935,7 +16935,7 @@ T.PlrBossSonic.prototype = {
 }
 T.PlrBossYuri.prototype = {
     gan() {
-        return H.b([$.pt(), $.d1(), $.mX(), 9, 40, 5, 32, 24], t.i)
+        return H.b([26, 31, 46, 9, 40, 5, 32, 24], t.i)
     },
     gaS() {
         return H.b([], t.V)
@@ -17018,7 +17018,7 @@ T.Engine.prototype = {
                                 if (typeof b.h(obj, 1) == "string") {
                                     is_boss = J.aw(b.h(obj, 1))
                                     a0 = 1
-                                    is_boss = is_boss === a0 && J.ny(b.h(obj, a0), 0) < $.pC()
+                                    is_boss = is_boss === a0 && J.ny(b.h(obj, a0), 0) < 34
                                 } else
                                     is_boss = false
                                 if (is_boss) {
@@ -18109,12 +18109,12 @@ T.Plr.prototype = {
             boostPassive = new T.BoostPassive()
             var skills = this_.k2
             if (skills.length >= 16) {
-                skills = skills[$.p7()]
+                skills = skills[14]
                 sortedSkills = this_.t
-                boostPassive.boostPassive(skills, sortedSkills[60], sortedSkills[$.pR()])
+                boostPassive.boostPassive(skills, sortedSkills[60], sortedSkills[61])
                 sortedSkills = this_.k2[15]
                 skills = this_.t
-                boostPassive.boostPassive(sortedSkills, skills[$.n_()], skills[63])
+                boostPassive.boostPassive(sortedSkills, skills[62], skills[63])
             }
         }
         for (s = 0, skills = this_.k1; s < skills.length; ++s) {
@@ -18466,7 +18466,7 @@ T.Plr.prototype = {
         r.a = n.e
         r.d = n.fx
         o = T.RunUpdate_init(p, b, r, new T.HDamage(a), null, a, 1000, 100)
-        if (a > $.pr()) o.b = $.d0()
+        if (a > 250) o.b = 1500
         else o.b = 1000 + a * 2
         e.a.push(o)
         c.$5(b, n, a, d, e)
@@ -18513,7 +18513,7 @@ T.Plr.prototype = {
     cE() {
         // 1200 here
         var s, r = this.Y,
-            q = $.p4()
+            q = 1200
         if (r > q) {
             s = C.JsInt.P(r - q, 60)
             r = 2
@@ -18528,7 +18528,7 @@ T.Plr.prototype = {
         if (o instanceof T.PlrBoss) n = C.N
         else {
             s = H.b([], t.i)
-            for (r = 10; r < $.d1(); r += 3) {
+            for (r = 10; r < 31; r += 3) {
                 q = C.Array.al(o.E, r, r + 3)
                 p = q.length - 1
                 H.hL(q, 0, p, J.bO())
@@ -18538,7 +18538,7 @@ T.Plr.prototype = {
             }
             q = C.Array.al(o.E, 0, 10)
             C.Array.aJ(q)
-            s.push(C.Array.dz(C.Array.al(q, 3, 7), new T.jY()) + $.mK())
+            s.push(C.Array.dz(C.Array.al(q, 3, 7), new T.jY()) + 154)
             for (r = 0; r < s.length; ++r)
                 if (o.q[r] > s[r]) n.push(H.as_string("+") + H.as_string(o.q[r] - s[r]))
                 else n.push("")
@@ -18550,7 +18550,7 @@ T.Plr.prototype = {
     aY(a) {
         // var s = 36
         var s = 36
-        if (a > $.q4()) {
+        if (a > 91) {
             return "??" // ??
         }
         return C.JsInt.k(a + s)
@@ -18807,7 +18807,7 @@ T.SklCounter.prototype = {
 }
 T.SklDefend.prototype = {
     ga4() {
-        return $.pl()
+        return 2000
     },
     aq(a, b, c, d, e) {
         if (d.n() < this.f && this.r.bw(d)) {
@@ -18936,7 +18936,7 @@ T.SklMerge.prototype = {
                 this_.r.F()
                 r = c.a
                 r.push($.K())
-                r.push(T.RunUpdate_init(LangData.get_lang("yGkN"), this_.r, a, j, j, 60, $.d0(), 100))
+                r.push(T.RunUpdate_init(LangData.get_lang("yGkN"), this_.r, a, j, j, 60, 1500, 100))
                 q = LangData.get_lang("PGSN")
                 p = new T.MPlr()
                 p.cO(this_.r)
@@ -19084,12 +19084,12 @@ T.SklReflect.prototype = {
         if (f.n() < q.f && f.n() < 128 && q.r.bw(f)) {
             s = T.getAt(q.r, true, f) * 0.5
             if (s > a) s = a
-            g.a.push(T.RunUpdate_init(C.String.B(LangData.get_lang("lnNA"), `<div class="smile s_reflect"></div>`), q.r, c, null, null, 20, $.d0(), 100))
+            g.a.push(T.RunUpdate_init(C.String.B(LangData.get_lang("lnNA"), `<div class="smile s_reflect"></div>`), q.r, c, null, null, 20, 1500, 100))
             // 这里必须先结算反伤造成的 a3/死亡链，再扣反弹者自己的 move point。
             // 否则像 Merge 这种依赖当前 move point 比较的 post-kill 逻辑会拿到错误快照。
             c.a3(s, true, q.r, e, f, g)
             r = q.r
-            r.l = r.l - $.mY()
+            r.l = r.l - 480
             return 0
         }
         return a
@@ -19117,7 +19117,7 @@ T.SklReraise.prototype = {
             o = C.String.B(LangData.get_lang("DWRn"), `<div class="smile s_revive"></div>`)
             n = p.r
             s = d.a
-            s.push(T.RunUpdate_init(o, n, n, null, null, 80, $.d0(), 100))
+            s.push(T.RunUpdate_init(o, n, n, null, null, 80, 1500, 100))
             p.r.fx = (c.n() & 15) + 1
             n = LangData.get_lang("imin")
             o = p.r
@@ -19137,7 +19137,7 @@ T.SklReraise.prototype = {
 }
 T.ShieldStat_.prototype = {
     ga4() {
-        return $.pP()
+        return 6000
     },
     gT() {
         var s = this.x,
@@ -19209,7 +19209,7 @@ T.SklUpgrade.prototype = {
             o.push($.K())
             n = LangData.get_lang("TRcn")
             r = q.r
-            o.push(T.RunUpdate_init(n, r, r, p, p, 60, $.d0(), 100))
+            o.push(T.RunUpdate_init(n, r, r, p, p, 60, 1500, 100))
             r = C.String.B(LangData.get_lang("iTtn"), `<div class="smile s_upgrade"></div>`)
             n = q.r
             o.push(T.RunUpdate_init(r, n, n, p, p, 0, 1000, 100))
@@ -19358,7 +19358,7 @@ T.SklZombie.prototype = {
             r.push($.K())
             // sklZombie
             // [0][召唤亡灵]
-            r.push(T.RunUpdate_init(LangData.get_lang("apma"), this_.r, a6, a5, a5, 60, $.d0(), 100))
+            r.push(T.RunUpdate_init(LangData.get_lang("apma"), this_.r, a6, a5, a5, 60, 1500, 100))
             // sklZombied
             // [2]变成了[1]
             q = LangData.get_lang("kXba")
@@ -19736,7 +19736,7 @@ T.WeaponS11.prototype = {
     b3(a) {
         var s, r
         this.cN(a)
-        s = $.p2()
+        s = 11
         r = 0
         this.r = H.b([s, r, s, r, r, r, r, r], t.i)
     },
@@ -19745,7 +19745,7 @@ T.WeaponS11.prototype = {
             r = s.k2,
             q = new T.SklS11(3, 0)
         q.e = true
-        q.ao(s, $.d1());
+        q.ao(s, 31);
         (r && C.Array).j(r, q)
     }
 }
@@ -19800,7 +19800,7 @@ T.Weapon.prototype = {
         r = c[s] - a[s]
         s = 0
         if (m > s && j > s && r > s) {
-            q = d + C.JsInt.V(m + j + r + $.q8(), 3)
+            q = d + C.JsInt.V(m + j + r + 999, 3)
             p = c[q]
             o = b[q]
             n = C.d.P(p - o, k) + l
@@ -19812,10 +19812,10 @@ T.Weapon.prototype = {
         // preUpgrade
         var s, r, q, this_ = this,
             o = 0
-        for (s = 10, r = this_.c; s < $.d1(); s += 3) {
+        for (s = 10, r = this_.c; s < 31; s += 3) {
             o += this_.cB(r.E, r.t, this_.d, s)
         }
-        r = C.JsInt.P($.mY() - o, 6)
+        r = C.JsInt.P(480 - o, 6)
         this_.f = r
         q = 0
         if (r < q) {
@@ -19897,7 +19897,7 @@ T.ko.prototype = {
 }
 T.kp.prototype = {
     $1(a) {
-        if (a > $.pN()) return a - 50
+        if (a > 53) return a - 50
         return 0
     },
     $S: 2
@@ -20765,197 +20765,13 @@ var t = (function rtii() {
         return T.RunUpdate_init("\n", q, q, q, q, 0, 1000, 100)
     })
     lazy_old($, "vq", "rp", function () {
-        return $.mS()
+        return 32768
     })
     lazy_old($, "vr", "rq", function () {
         return 4
     })
     // MARK: 数字反混淆
-                                                                                                                                                                                                                                                                                                                                    lazy_old($, "xi", "mW", function () {
-        // return X.k("?B72]Go)^E", 57)
-        return 45
-    })
-    lazy_old($, "wf", "mL", function () {
-        // return X.k("'o:uEW5R/I", 51)
-        return 19
-    })
-    lazy_old($, "w5", "mJ", function () {
-        // return X.k(")J](DyK=VQ", 94)
-        return 150
-    })
-    lazy_old($, "wu", "pk", function () {
-        // return X.D("i]3&hT~B-H", 28)
-        return 20000
-    })
-    lazy_old($, "xR", "q2", function () {
-        // return X.k("x7KOo1~b6D", 21)
-        return 88
-    })
-    lazy_old($, "wg", "pc", function () {
-        // return X.k(",7Wg$o8b>A", 5)
-        return 190
-    })
-    lazy_old($, "wB", "pp", function () {
-        // return X.k("sy_Q{nF(@P", 92)
-        return 230
-    })
-    lazy_old($, "xa", "lL", function () {
-        // return X.k("F(#M*C?F`C", 34)
-        return 38
-    })
-    lazy_old($, "wW", "d1", function () {
-        // return X.k("p&kJ 5Q!{M", 75)
-        return 31
-    })
-    lazy_old($, "xj", "mX", function () {
-        // return X.k("^M0K:>w!&P", 91)
-        return 46
-    })
-    lazy_old($, "xF", "n0", function () {
-        // return X.k("ISp/mK84,M", 74)
-        return 69
-    })
-    lazy_old($, "wM", "pv", function () {
-        // return X.k("GiA5WP.8[B", 11)
-        return 29
-    })
-    lazy_old($, "xJ", "pY", function () {
-        // return X.k("EK3xBLQz4M", 73)
-        return 729
-    })
-    lazy_old($, "xI", "pX", function () {
-        // return X.k("Eh~/5KGoYM", 71)
-        return 72
-    })
-    lazy_old($, "xb", "pI", function () {
-        // return X.k("sL|G/'Bd^L", 69)
-        return 39
-    })
-    lazy_old($, "xL", "q_", function () {
-        // return X.k(">uy0Rt=+WC", 13)
-        return 76
-    })
-    lazy_old($, "xE", "pV", function () {
-        // return X.k("y&D50SrziP", 89)
-        return 67
-    })
-    lazy_old($, "xD", "pU", function () {
-        // return X.k("3M:L}N@i=O", 86)
-        return 66
-    })
-    lazy_old($, "xQ", "q1", function () {
-        // return X.k("~bL%3?)L?F", 34)
-        return 84
-    })
-    lazy_old($, "wG", "mP", function () {
-        // return X.k("[V-z)3H<`H", 46)
-        return 255
-    })
-    lazy_old($, "wd", "pb", function () {
-        // return X.k(",r=TU*tMlL", 66)
-        return 1700
-    })
-    lazy_old($, "xP", "q0", function () {
-        // return X.k("0X)=.x6uSP", 88)
-        return 8208
-    })
-    lazy_old($, "x5", "pE", function () {
-        // return X.k("w~Ou?!0.eC", 27)
-        return 3501
-    })
-    lazy_old($, "wZ", "mS", function () {
-        // return X.k("dG|*}T{.AF", 29)
-        return 32768
-    })
-    lazy_old($, "xy", "n_", function () {
-        // return X.k("*,uU([GoYM", 71)
-        return 62
-    })
-    lazy_old($, "wJ", "pt", function () {
-        // return X.k(")~>SOZS1PH", 83)
-        return 26
-    })
-    lazy_old($, "x2", "pC", function () {
-        // return X.k(">Lk@cu3H*Q", 97)
-        return 34
-    })
-        lazy_old($, "xW", "q6", function () {
-        // return X.k("!%REZf|.IF", 59)
-        return 97
-    })
-    lazy_old($, "w_", "p5", function () {
-        // return X.k("ssdUZ-o{jB", 16)
-        return 122
-    })
-    lazy_old($, "xC", "pT", function () {
-        // return X.k("3=FRq0=+WC", 13)
-        return 65
-    })
-    lazy_old($, "xT", "q3", function () {
-        // return X.k(">(E4.I@i=O", 86)
-        return 90
-    })
-    lazy_old($, "x3", "pD", function () {
-        // return X.k("AQI,4l~@gF", 31)
-        return 3497
-    })
-    lazy_old($, "w7", "mK", function () {
-        // return X.k(")pwk@R3QwA", 3)
-        return 154
-    })
-    lazy_old($, "vV", "p2", function () {
-        // return X.k("<hZu12tX)L", 68)
-        return 11
-    })
-    lazy_old($, "w3", "p7", function () {
-        // return X.k("jZ>0V$cSfO", 83)
-        return 14
-    })
-        lazy_old($, "xx", "pR", function () {
-        // return X.k("=mymvqAAAA", 0)
-        return 61
-    })
-    lazy_old($, "wF", "pr", function () {
-        // return X.k("OsofdmW-bN", 77)
-        return 250
-    })
-    lazy_old($, "w6", "d0", function () {
-        // return X.k("_lv_}:$R/I", 51)
-        return 1500
-    })
-    lazy_old($, "vZ", "p4", function () {
-        // return X.k("@:On3OXckG", 37)
-        return 1200
-    })
-    lazy_old($, "xU", "q4", function () {
-        // return X.k("0iPS=<oyHH", 41)
-        return 91
-    })
-    lazy_old($, "wv", "pl", function () {
-        // return X.D("WT)~pf:~hB", 91)
-        return 2000
-    })
-    lazy_old($, "xm", "mY", function () {
-        // return X.k("T)Ok_x`s]G", 40)
-        return 480
-    })
-    lazy_old($, "xv", "pP", function () {
-        // return X.D("wrWW R:IqQ", 26)
-        return 6000
-    })
-    lazy_old($, "wY", "pA", function () {
-        // return X.k("]F8Q`2,8[B", 11)
-        return 324
-    })
-        lazy_old($, "xr", "pN", function () {
-        // return X.k("09zY7g53tE", 26)
-        return 53
-    })
-    lazy_old($, "xY", "q8", function () {
-        // return X.k("}-?M/~zGrI", 98)
-        return 999
-    })
-    // lazy_old($, "mc", "ns", function () {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        // lazy_old($, "mc", "ns", function () {
     //     // return 0
     //     return 0
     // })
@@ -20976,7 +20792,7 @@ var t = (function rtii() {
         )
     })
     lazy_old($, "zQ", "r5", function () {
-        return $.pA()
+        return 324
     })
     lazy_old($, "zY", "r6", function () {
         return C.Array.f5(H.b(LangData.get_lang("ezfN").split("[]"), t.s), new T.kb(), t.X).fL(0)
