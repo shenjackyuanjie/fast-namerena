@@ -1,2 +1,3 @@
 isolate*.log
 processed.txt
+branch/latest/md5.stage*.js
