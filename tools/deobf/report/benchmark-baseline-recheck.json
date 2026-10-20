@@ -1,0 +1,91 @@
+{
+  "label": "baseline-recheck",
+  "candidate": "D:\\githubs\\namer\\fast-namerena\\branch\\latest\\md5.stage0.js",
+  "version": "0.5.3",
+  "runs": 5,
+  "runtime": {
+    "node": "26.3.0",
+    "bun": "1.4.0",
+    "boringssl": "2288897e2e716330490893d226b4f079f9da9e0c",
+    "openssl": "1.1.0",
+    "llhttp": "9.3.0",
+    "libarchive": "ded82291ab41d5e355831b96b0e1ff49e24d8939",
+    "mimalloc": "6a14aee24315e503fa295a1fa90fe8b24ad91774",
+    "picohttpparser": "066d2b1e9ab820703db0837a7255d92d30f0c9f5",
+    "uwebsockets": "34cbb9a40b4bd1bd767d134a7065e66c2432a676",
+    "webkit": "0f966e81b78c84bb23213e391bc679c4ef83e56b",
+    "zig": "04e7f6ac1e009525bc00934f20199c68f04e0a24",
+    "zlib": "12731092979c6d07f42da27da673a9f6c7b13586",
+    "tinycc": "05f0fafaa3be31e31d7b4b5c17dc60f62c991171",
+    "lolhtml": "725ce499aa9b71e38b7a2d0a9fbb6d7294a4079e",
+    "ares": "c7a3138dcfe3bb0eaaf10c0c24c36dc66dc790ab",
+    "libdeflate": "c8c56a20f8f621e6a966b716b31f1dedab6a41e3",
+    "usockets": "34cbb9a40b4bd1bd767d134a7065e66c2432a676",
+    "lshpack": "8905c024b6d052f083a3d11d0a169b3c2735c8a1",
+    "zstd": "f8745da6ff1ad1e7bab384bd1f9d742439278e99",
+    "v8": "14.6.202.34-node.20",
+    "uv": "1.51.1-dev",
+    "napi": "10",
+    "icu": "78.3",
+    "unicode": "17.0",
+    "sqlite": "3.53.2",
+    "modules": "147"
+  },
+  "median": {
+    "wallMs": 3266.8355999999994,
+    "loadMs": 21.3138,
+    "fightMs": 152.5141,
+    "fightRounds": 200,
+    "winRateMs": 223.633,
+    "scoreMs": 2804.8887,
+    "totalMs": 3206.8559999999998
+  },
+  "samples": [
+    {
+      "version": "0.5.3",
+      "loadMs": 21.3138,
+      "fightMs": 162.7303,
+      "fightRounds": 200,
+      "winRateMs": 225.8786,
+      "scoreMs": 2892.8022,
+      "totalMs": 3302.7249
+    },
+    {
+      "version": "0.5.3",
+      "loadMs": 21.4378,
+      "fightMs": 152.5141,
+      "fightRounds": 200,
+      "winRateMs": 219.31879999999998,
+      "scoreMs": 2797.8065,
+      "totalMs": 3191.0772
+    },
+    {
+      "version": "0.5.3",
+      "loadMs": 21.1657,
+      "fightMs": 149.228,
+      "fightRounds": 200,
+      "winRateMs": 231.57359999999997,
+      "scoreMs": 2804.8887,
+      "totalMs": 3206.8559999999998
+    },
+    {
+      "version": "0.5.3",
+      "loadMs": 25.388099999999998,
+      "fightMs": 158.23499999999999,
+      "fightRounds": 200,
+      "winRateMs": 223.633,
+      "scoreMs": 2857.9036,
+      "totalMs": 3265.1597
+    },
+    {
+      "version": "0.5.3",
+      "loadMs": 20.9294,
+      "fightMs": 151.0188,
+      "fightRounds": 200,
+      "winRateMs": 217.20979999999997,
+      "scoreMs": 2781.6596,
+      "totalMs": 3170.8176
+    }
+  ],
+  "created_at": "2026-10-20T16:29:06.456Z"
+}
