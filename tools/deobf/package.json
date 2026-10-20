@@ -1,0 +1,16 @@
+{
+  "name": "tswn-deobf-tools",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "snapshot": "bun run src/harness/snapshot.ts",
+    "verify": "bun run src/harness/verify.ts",
+    "bench": "bun run src/harness/bench.ts",
+    "inventory": "bun run src/passes/inventory.ts"
+  },
+  "dependencies": {
+    "@babel/parser": "^7.26.0",
+    "@babel/traverse": "^7.26.0",
+    "@babel/types": "^7.26.0"
+  }
+}

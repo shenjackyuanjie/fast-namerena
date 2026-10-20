@@ -1,4 +1,7 @@
-const md5_module = require("./md5.js");
+import * as fs from "fs";
+import * as process from "process";
+
+const md5_module = require(process.env.MD5_PATH ?? "./md5.js");
 
 /**
  * 对战结果的数据结构
@@ -176,8 +179,6 @@ async function wrap_any(names: string, round: number): Promise<string> {
 	return output_str;
 }
 
-import * as process from "process";
-import * as fs from "fs";
 async function cli() {
 	// 直接跑他
 	// 先获取命令行输入
@@ -269,11 +270,13 @@ ${runner} md5-api.ts <装着你名字的文件> <开箱类型>
 	}
 }
 
-// 运行 cli
-cli().catch((e) => {
-	console.error(e);
-	process.exit(1);
-});
+// 仅直接运行时执行 CLI，作为模块导入时（如 test.ts）保持安静
+if (import.meta.main) {
+	cli().catch((e) => {
+		console.error(e);
+		process.exit(1);
+	});
+}
 
 export {
 	type FightResult,

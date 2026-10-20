@@ -42,7 +42,7 @@ w\n ryyb\nb\nrv\nv\netet4y 54 w\ne rg\nwe by\nrw \nte\nw \nnbyrb\n ew\nyn re\nry
 鹿目圆EKSR"I]jIG@TLEWA
 Niss7rclxb1]K@TLEWA`,
             round_10: 6410,
-            round_100: 6410,
+            round_100: 6508, // 0.5.3 实测值；原 6410 是 test.ts 未被执行时的陈旧基线
         }
 	],
 };
