@@ -6,7 +6,11 @@
     "snapshot": "bun run src/harness/snapshot.ts",
     "verify": "bun run src/harness/verify.ts",
     "bench": "bun run src/harness/bench.ts",
-    "inventory": "bun run src/passes/inventory.ts"
+    "inventory": "bun run src/passes/inventory.ts",
+    "reachability": "bun run src/passes/reachability.ts",
+    "delete-dead": "bun run src/passes/delete-dead.ts",
+    "inline-lazy": "bun run src/passes/inline-lazy.ts",
+    "browser-smoke": "node src/harness/browser-smoke.cjs"
   },
   "dependencies": {
     "@babel/parser": "^7.26.0",
