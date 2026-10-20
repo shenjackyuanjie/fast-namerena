@@ -69,10 +69,6 @@ const logger = {
     // 显示等级
     //
     level: 30,
-    // 是否显示 trace 信息
-    show_trace: function () {
-        return this.level <= 10 && this.enable;
-    },
     // 是否显示 debug 信息
     show_debug: function () {
         return this.level <= 20 && this.enable;
@@ -84,16 +80,6 @@ const logger = {
     // 是否显示 warn 信息
     show_warn: function () {
         return this.level <= 40 && this.enable;
-    },
-    /**
-     * 在控制台输出一条 trace 信息
-     * @param  {...any} msg
-     */
-    trace: function (...msg) {
-        if (this.show_trace()) {
-            // 上个色
-            console.log("\x1b[35m", ...msg, "\x1b[0m")
-        }
     },
     /**
      * 在控制台输出一条 debug 信息
@@ -1799,91 +1785,6 @@ var H = {
             configurable: true
         })
     },
-    lookupAndCacheInterceptor(obj) {
-        var s, r, q, p, o, n = $.oB.$1(obj),
-            m = $.lt[n]
-        if (m != null) {
-            Object.defineProperty(obj, init.dispatchPropertyName, {
-                value: m,
-                enumerable: false,
-                writable: true,
-                configurable: true
-            })
-            return m.i
-        }
-        s = $.ly[n]
-        if (s != null) return s
-        r = init.interceptorsByTag[n]
-        if (r == null) {
-            q = $.ov.$2(obj, n)
-            if (q != null) {
-                m = $.lt[q]
-                if (m != null) {
-                    Object.defineProperty(obj, init.dispatchPropertyName, {
-                        value: m,
-                        enumerable: false,
-                        writable: true,
-                        configurable: true
-                    })
-                    return m.i
-                }
-                s = $.ly[q]
-                if (s != null) return s
-                r = init.interceptorsByTag[q]
-                n = q
-            }
-        }
-        if (r == null) return null
-        s = r.prototype
-        p = n[0]
-        if (p === "!") {
-            m = H.makeLeafDispatchRecord(s)
-            $.lt[n] = m
-            Object.defineProperty(obj, init.dispatchPropertyName, {
-                value: m,
-                enumerable: false,
-                writable: true,
-                configurable: true
-            })
-            return m.i
-        }
-        if (p === "~") {
-            $.ly[n] = s
-            return s
-        }
-        if (p === "-") {
-            o = H.makeLeafDispatchRecord(s)
-            Object.defineProperty(Object.getPrototypeOf(obj), init.dispatchPropertyName, {
-                value: o,
-                enumerable: false,
-                writable: true,
-                configurable: true
-            })
-            return o.i
-        }
-        if (p === "+") return H.patchInteriorProto(obj, s)
-        if (p === "*") throw H.wrap_expression(P.hT(n))
-        if (init.leafTags[n] === true) {
-            o = H.makeLeafDispatchRecord(s)
-            Object.defineProperty(Object.getPrototypeOf(obj), init.dispatchPropertyName, {
-                value: o,
-                enumerable: false,
-                writable: true,
-                configurable: true
-            })
-            return o.i
-        } else return H.patchInteriorProto(obj, s)
-    },
-    patchInteriorProto(a, b) {
-        var s = Object.getPrototypeOf(a)
-        Object.defineProperty(s, init.dispatchPropertyName, {
-            value: J.makeDispatchRecord(b, s, null, null),
-            enumerable: false,
-            writable: true,
-            configurable: true
-        })
-        return b
-    },
     makeLeafDispatchRecord(a) {
         return J.makeDispatchRecord(a, false, null, !!a.$iag)
     },
@@ -2510,12 +2411,6 @@ var H = {
         if (a instanceof P.Object) return !!a[s]
         return !!J.cV(a)[s]
     },
-    Au(a) {
-        var s = this
-        if (a == null) return a
-        else if (s.b(a)) return a
-        H._failedAsCheck(a, s)
-    },
     _generalNullableAsCheckImplementation(a) {
         var s = this
         if (a == null) return a
@@ -2553,87 +2448,19 @@ var H = {
     lm(a) {
         return true === a || false === a
     },
-    Ag(a) {
-        if (true === a) return true
-        if (false === a) return false
-        throw H.wrap_expression(H.aC(a, "bool"))
-    },
-    Ai(a) {
-        if (true === a) return true
-        if (false === a) return false
-        if (a == null) return a
-        throw H.wrap_expression(H.aC(a, "bool"))
-    },
-    Ah(a) {
-        if (true === a) return true
-        if (false === a) return false
-        if (a == null) return a
-        throw H.wrap_expression(H.aC(a, "bool?"))
-    },
-    Aj(a) {
-        if (typeof a == "number") return a
-        throw H.wrap_expression(H.aC(a, "double"))
-    },
-    Al(a) {
-        if (typeof a == "number") return a
-        if (a == null) return a
-        throw H.wrap_expression(H.aC(a, "double"))
-    },
-    Ak(a) {
-        if (typeof a == "number") return a
-        if (a == null) return a
-        throw H.wrap_expression(H.aC(a, "double?"))
-    },
     aP(a) {
         return typeof a == "number" && Math.floor(a) === a
-    },
-    Am(a) {
-        if (typeof a == "number" && Math.floor(a) === a) return a
-        throw H.wrap_expression(H.aC(a, "int"))
-    },
-    Ao(a) {
-        if (typeof a == "number" && Math.floor(a) === a) return a
-        if (a == null) return a
-        throw H.wrap_expression(H.aC(a, "int"))
-    },
-    An(a) {
-        if (typeof a == "number" && Math.floor(a) === a) return a
-        if (a == null) return a
-        throw H.wrap_expression(H.aC(a, "int?"))
     },
     up(a) {
         return typeof a == "number"
     },
-    Ap(a) {
-        if (typeof a == "number") return a
-        throw H.wrap_expression(H.aC(a, "num"))
-    },
-    Ar(a) {
-        if (typeof a == "number") return a
-        if (a == null) return a
-        throw H.wrap_expression(H.aC(a, "num"))
-    },
-    Aq(a) {
-        if (typeof a == "number") return a
-        if (a == null) return a
-        throw H.wrap_expression(H.aC(a, "num?"))
-    },
     ur(a) {
         return typeof a == "string"
-    },
-    As(a) {
-        if (typeof a == "string") return a
-        throw H.wrap_expression(H.aC(a, "String"))
     },
     lg(a) {
         if (typeof a == "string") return a
         if (a == null) return a
         throw H.wrap_expression(H.aC(a, "String"))
-    },
-    At(a) {
-        if (typeof a == "string") return a
-        if (a == null) return a
-        throw H.wrap_expression(H.aC(a, "String?"))
     },
     uB(a, b) {
         var s, r, q
@@ -3650,12 +3477,6 @@ var J = {
         if (typeof a != "object") return b != null && a === b
         return J.cV(a).aW(a, b)
     },
-    J(a, b) {
-        if (typeof b === "number")
-            if (a.constructor == Array || typeof a == "string" || H.oG(a, a[init.dispatchPropertyName]))
-                if (b >>> 0 === b && b < a.length) return a[b]
-        return J.a3(a).h(a, b)
-    },
     lT(a, b, c) {
         if (typeof b === "number")
             if ((a.constructor == Array || H.oG(a, a[init.dispatchPropertyName])) && !a.immutable$list && b >>> 0 === b && b < a.length) return a[b] = c
@@ -3730,10 +3551,6 @@ var J = {
     },
     rx(a) {
         return J.bv(a).fv(a)
-    },
-    ry(a, b) {
-        // set a length -> b
-        return J.a3(a).sp(a, b)
     },
     m1(a, b) {
         return J.aQ(a).bA(a, b)
@@ -4110,10 +3927,6 @@ var P = {
             return
         }
         P.cS(s, s, r, r.cf(a))
-    },
-    StreamIterator_StreamIterator(a) {
-        H.ls(a, "stream", t.K)
-        return new P.io()
     },
     mu(a) {
         // what?
@@ -4733,10 +4546,6 @@ var P = {
     da(a, b, c) {
         return new P.aS(true, a, b, c)
     },
-    tn(a) {
-        var s = null
-        return new P.cD(s, s, false, s, s, a)
-    },
     k0(a, b) {
         return new P.cD(null, null, true, a, b, "Value not in range")
     },
@@ -4916,7 +4725,6 @@ var P = {
     lF: function lF(a) {
         this.a = a
     },
-    kT: function kT() { },
     cF: function cF() { },
     p: function p() { }
 }
@@ -8405,18 +8213,6 @@ var X = {
         //     console.log("X.k", a, b, result)
         // }
         // logger.info("X.k", a, b, result)
-        return result
-    },
-    D(a, b) {
-        var s, r, q = new Uint8Array(H.on(X.f4(a, b))).buffer
-        H.mq(q, 0, null)
-        s = q.byteLength
-        r = C.JsInt.ag(s - 0, 4)
-        let result = new Float32Array(q, 0, r)[1];
-        // if (run_env.from_code) {
-        //     console.log("X.D", a, b, result)
-        // }
-        // logger.info("X.D", a, b, result)
         return result
     },
     je: function je() { },
