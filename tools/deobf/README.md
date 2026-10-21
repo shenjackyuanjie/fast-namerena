@@ -2,7 +2,7 @@
 
 用于清理 `branch/latest/md5.js` 的可重复管线。当前包含**死代码清理 + lazy 常量内联 + 领域方法/参数重命名**，不改战斗语义。
 
-## 当前状态（md5 0.5.3 第二轮）
+## 当前状态（md5 0.5.4）
 
 第一轮清理：
 
@@ -26,7 +26,7 @@
 | 行数 | 21,539（不变） |
 | 归一化（LF）体积 | 659,792 → 676,440 字节（名字变长） |
 
-行为门槛全部通过：golden 全语料逐字节一致、`bun test.ts` 通过、无头 Edge 跑完一场真实战斗、性能较第一轮基线约快 2.4%。
+行为门槛全部通过：golden 全语料除版本号外逐字节一致、`bun test.ts` 通过、无头 Edge 跑完一场真实战斗、性能较第一轮基线约快 1.7%（golden 已更新到 `v0.5.4`）。
 
 符号映射见 `branch/latest/md5.symbols.json` / `md5.symbols.md`，未解析项见 `report/rename-unresolved.md`。
 
@@ -47,7 +47,7 @@ D:/apps/bun/bin/bun install
 # 1. 行为快照：在全新进程里按固定顺序跑完整语料
 D:/apps/bun/bin/bun run verify -- \
   --candidate ../../branch/latest/md5.stageN.js \
-  --golden golden/v0.5.3
+  --golden golden/v0.5.4
 
 # 2. 项目自带用例（候选提升为 md5.js 之后）
 cd ../../branch/latest && D:/apps/bun/bin/bun test.ts
@@ -154,7 +154,7 @@ D:/apps/bun/bin/bun run symbols -- ../../branch/latest/md5.js
 已知不能放进固定序列的输入：
 
 - `seed:seed@!`：进入无限种子模式，Promise 不 resolve
-- `name+属性修改器`：在当前 0.5.3 产物里会抛错并破坏后续模块状态
+- `name+属性修改器`：在当前 0.5.4 产物里会抛错并破坏后续模块状态
 - `name+BossName!`：单独跑可以，但排在长序列末尾会不结束
 
 这些问题属于 md5.js 自身行为，清理阶段不修。

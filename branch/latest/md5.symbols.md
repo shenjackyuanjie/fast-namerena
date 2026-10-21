@@ -1,4 +1,4 @@
-# md5 0.5.3 符号映射
+# md5 0.5.4 符号映射
 
 由 `tools/deobf/src/harness/symbols.ts` 从 `md5.js` 生成。
 

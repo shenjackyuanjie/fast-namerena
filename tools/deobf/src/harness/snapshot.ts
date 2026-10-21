@@ -10,7 +10,7 @@ function main(): void {
 	const outDir =
 		typeof args.golden === "string"
 			? path.resolve(args.golden)
-			: path.join(GOLDEN_DIR, "v0.5.3");
+			: path.join(GOLDEN_DIR, "v0.5.4");
 
 	const result = runCandidate(candidate);
 	const sequenceFile = path.join(outDir, "sequence.json");

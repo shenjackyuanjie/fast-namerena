@@ -20,7 +20,7 @@ const DEBUG_PORT = Number(process.env.SMOKE_DEBUG_PORT || 9222);
 const EDGE = process.env.EDGE_PATH || "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe";
 const INPUT = "m@fAIgFUL\n1 1 @Ehlt s";
 const EXPECTED_WINNER = "m@fAIgFUL";
-const EXPECTED_VERSION = "0.5.3";
+const EXPECTED_VERSION = "0.5.4";
 
 const MIME = {
 	".html": "text/html; charset=utf-8",
