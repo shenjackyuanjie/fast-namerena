@@ -10,6 +10,10 @@
     "reachability": "bun run src/passes/reachability.ts",
     "delete-dead": "bun run src/passes/delete-dead.ts",
     "inline-lazy": "bun run src/passes/inline-lazy.ts",
+    "rename-analyze": "bun run src/passes/rename-analyze.ts",
+    "rename-members": "bun run src/passes/rename-members.ts",
+    "rename-params": "bun run src/passes/rename-params.ts",
+    "symbols": "bun run src/harness/symbols.ts",
     "browser-smoke": "node src/harness/browser-smoke.cjs"
   },
   "dependencies": {
