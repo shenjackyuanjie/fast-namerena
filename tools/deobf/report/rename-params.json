@@ -1,0 +1,5344 @@
+{
+  "input": "D:\\githubs\\namer\\fast-namerena\\branch\\latest\\md5.stage2.js",
+  "output": "D:\\githubs\\namer\\fast-namerena\\branch\\latest\\md5.stage3.js",
+  "inputSha256": "8eae330cb1bc91c9a7c7f7d4b35e080ab2261544486c151019384473ab5f0243",
+  "outputSha256": "5a3398321a0077dd16b9b31d837b66f0776c71f36ae0c8f8fe4b67362dba3f7a",
+  "bytes": {
+    "before": 687163,
+    "after": 697979
+  },
+  "params": [
+    {
+      "owner": "Y.RC4",
+      "method": "encryptBytes",
+      "line": 8200,
+      "index": 0,
+      "old": "a",
+      "new": "bytes",
+      "status": "applied"
+    },
+    {
+      "owner": "Y.RC4",
+      "method": "decryptBytes",
+      "line": 8216,
+      "index": 0,
+      "old": "a",
+      "new": "bytes",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklAbsorb",
+      "method": "prob",
+      "line": 14351,
+      "index": 0,
+      "old": "a",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklAbsorb",
+      "method": "prob",
+      "line": 14351,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklAbsorb",
+      "method": "act",
+      "line": 14359,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklAbsorb",
+      "method": "act",
+      "line": 14359,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklAbsorb",
+      "method": "act",
+      "line": 14359,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklAbsorb",
+      "method": "act",
+      "line": 14359,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklAccumulate",
+      "method": "prob",
+      "line": 14370,
+      "index": 0,
+      "old": "a",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklAccumulate",
+      "method": "prob",
+      "line": 14370,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklAccumulate",
+      "method": "act",
+      "line": 14383,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklAccumulate",
+      "method": "act",
+      "line": 14383,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklAccumulate",
+      "method": "act",
+      "line": 14383,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklAccumulate",
+      "method": "act",
+      "line": 14383,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklAccumulate",
+      "method": "updateState",
+      "line": 14404,
+      "index": 0,
+      "old": "a",
+      "new": "p",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklAccumulate",
+      "method": "destroy",
+      "line": 14410,
+      "index": 0,
+      "old": "a",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklAccumulate",
+      "method": "destroy",
+      "line": 14410,
+      "index": 1,
+      "old": "b",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklAssassinate",
+      "method": "prob",
+      "line": 14426,
+      "index": 0,
+      "old": "a",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklAssassinate",
+      "method": "prob",
+      "line": 14426,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklAssassinate",
+      "method": "validTarget",
+      "line": 14430,
+      "index": 0,
+      "old": "a",
+      "new": "target",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklAssassinate",
+      "method": "validTarget",
+      "line": 14430,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklAssassinate",
+      "method": "scoreTarget",
+      "line": 14434,
+      "index": 0,
+      "old": "a",
+      "new": "target",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklAssassinate",
+      "method": "scoreTarget",
+      "line": 14434,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklAssassinate",
+      "method": "scoreTarget",
+      "line": 14434,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklAssassinate",
+      "method": "act",
+      "line": 14441,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklAssassinate",
+      "method": "act",
+      "line": 14441,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklAssassinate",
+      "method": "act",
+      "line": 14441,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklAssassinate",
+      "method": "act",
+      "line": 14441,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklAssassinate",
+      "method": "postDamage",
+      "line": 14478,
+      "index": 0,
+      "old": "a",
+      "new": "dmg",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklAssassinate",
+      "method": "postDamage",
+      "line": 14478,
+      "index": 1,
+      "old": "b",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklAssassinate",
+      "method": "postDamage",
+      "line": 14478,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklAssassinate",
+      "method": "postDamage",
+      "line": 14478,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklAssassinate",
+      "method": "preAction",
+      "line": 14487,
+      "index": 0,
+      "old": "a",
+      "new": "skl",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklAssassinate",
+      "method": "preAction",
+      "line": 14487,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklAssassinate",
+      "method": "preAction",
+      "line": 14487,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklAssassinate",
+      "method": "preAction",
+      "line": 14487,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.BerserkState",
+      "method": "selectOneTarget",
+      "line": 14503,
+      "index": 0,
+      "old": "a",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.BerserkState",
+      "method": "scoreTarget",
+      "line": 14506,
+      "index": 0,
+      "old": "a",
+      "new": "target",
+      "status": "applied"
+    },
+    {
+      "owner": "T.BerserkState",
+      "method": "scoreTarget",
+      "line": 14506,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.BerserkState",
+      "method": "scoreTarget",
+      "line": 14506,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.BerserkState",
+      "method": "preAction",
+      "line": 14509,
+      "index": 0,
+      "old": "a",
+      "new": "skl",
+      "status": "applied"
+    },
+    {
+      "owner": "T.BerserkState",
+      "method": "preAction",
+      "line": 14509,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.BerserkState",
+      "method": "preAction",
+      "line": 14509,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.BerserkState",
+      "method": "preAction",
+      "line": 14509,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.BerserkState",
+      "method": "destroy",
+      "line": 14517,
+      "index": 0,
+      "old": "a",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.BerserkState",
+      "method": "destroy",
+      "line": 14517,
+      "index": 1,
+      "old": "b",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.BerserkState",
+      "method": "act",
+      "line": 14529,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.BerserkState",
+      "method": "act",
+      "line": 14529,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.BerserkState",
+      "method": "act",
+      "line": 14529,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.BerserkState",
+      "method": "act",
+      "line": 14529,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklBerserk",
+      "method": "validTarget",
+      "line": 14543,
+      "index": 0,
+      "old": "a",
+      "new": "target",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklBerserk",
+      "method": "validTarget",
+      "line": 14543,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklBerserk",
+      "method": "scoreTarget",
+      "line": 14550,
+      "index": 0,
+      "old": "a",
+      "new": "target",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklBerserk",
+      "method": "scoreTarget",
+      "line": 14550,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklBerserk",
+      "method": "scoreTarget",
+      "line": 14550,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklBerserk",
+      "method": "act",
+      "line": 14555,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklBerserk",
+      "method": "act",
+      "line": 14555,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklBerserk",
+      "method": "act",
+      "line": 14555,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklBerserk",
+      "method": "act",
+      "line": 14555,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklCharge",
+      "method": "prob",
+      "line": 14563,
+      "index": 0,
+      "old": "a",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklCharge",
+      "method": "prob",
+      "line": 14563,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklCharge",
+      "method": "act",
+      "line": 14572,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklCharge",
+      "method": "act",
+      "line": 14572,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklCharge",
+      "method": "act",
+      "line": 14572,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklCharge",
+      "method": "act",
+      "line": 14572,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklCharge",
+      "method": "postAction",
+      "line": 14587,
+      "index": 0,
+      "old": "a",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklCharge",
+      "method": "postAction",
+      "line": 14587,
+      "index": 1,
+      "old": "b",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklCharge",
+      "method": "updateState",
+      "line": 14592,
+      "index": 0,
+      "old": "a",
+      "new": "p",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklCharge",
+      "method": "destroy",
+      "line": 14598,
+      "index": 0,
+      "old": "a",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklCharge",
+      "method": "destroy",
+      "line": 14598,
+      "index": 1,
+      "old": "b",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.CharmState",
+      "method": "updateState",
+      "line": 14616,
+      "index": 0,
+      "old": "a",
+      "new": "p",
+      "status": "applied"
+    },
+    {
+      "owner": "T.CharmState",
+      "method": "postAction",
+      "line": 14622,
+      "index": 0,
+      "old": "a",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.CharmState",
+      "method": "postAction",
+      "line": 14622,
+      "index": 1,
+      "old": "b",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.CharmState",
+      "method": "destroy",
+      "line": 14635,
+      "index": 0,
+      "old": "a",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.CharmState",
+      "method": "destroy",
+      "line": 14635,
+      "index": 1,
+      "old": "b",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklCharm",
+      "method": "validTarget",
+      "line": 14651,
+      "index": 0,
+      "old": "a",
+      "new": "target",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklCharm",
+      "method": "validTarget",
+      "line": 14651,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklCharm",
+      "method": "scoreTarget",
+      "line": 14659,
+      "index": 0,
+      "old": "a",
+      "new": "target",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklCharm",
+      "method": "scoreTarget",
+      "line": 14659,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklCharm",
+      "method": "scoreTarget",
+      "line": 14659,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklCharm",
+      "method": "act",
+      "line": 14664,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklCharm",
+      "method": "act",
+      "line": 14664,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklCharm",
+      "method": "act",
+      "line": 14664,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklCharm",
+      "method": "act",
+      "line": 14664,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklClone",
+      "method": "act",
+      "line": 14736,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklClone",
+      "method": "act",
+      "line": 14736,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklClone",
+      "method": "act",
+      "line": 14736,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklClone",
+      "method": "act",
+      "line": 14736,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklCritical",
+      "method": "act",
+      "line": 14790,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklCritical",
+      "method": "act",
+      "line": 14790,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklCritical",
+      "method": "act",
+      "line": 14790,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklCritical",
+      "method": "act",
+      "line": 14790,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.CurseState",
+      "method": "postDefend",
+      "line": 14806,
+      "index": 0,
+      "old": "a",
+      "new": "dmg",
+      "status": "applied"
+    },
+    {
+      "owner": "T.CurseState",
+      "method": "postDefend",
+      "line": 14806,
+      "index": 1,
+      "old": "b",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.CurseState",
+      "method": "postDefend",
+      "line": 14806,
+      "index": 2,
+      "old": "c",
+      "new": "ondmg",
+      "status": "applied"
+    },
+    {
+      "owner": "T.CurseState",
+      "method": "postDefend",
+      "line": 14806,
+      "index": 3,
+      "old": "d",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.CurseState",
+      "method": "postDefend",
+      "line": 14806,
+      "index": 4,
+      "old": "e",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.CurseState",
+      "method": "updateState",
+      "line": 14816,
+      "index": 0,
+      "old": "a",
+      "new": "p",
+      "status": "applied"
+    },
+    {
+      "owner": "T.CurseState",
+      "method": "destroy",
+      "line": 14819,
+      "index": 0,
+      "old": "a",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.CurseState",
+      "method": "destroy",
+      "line": 14819,
+      "index": 1,
+      "old": "b",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklCurse",
+      "method": "validTarget",
+      "line": 14837,
+      "index": 0,
+      "old": "a",
+      "new": "target",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklCurse",
+      "method": "validTarget",
+      "line": 14837,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklCurse",
+      "method": "scoreTarget",
+      "line": 14848,
+      "index": 0,
+      "old": "a",
+      "new": "target",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklCurse",
+      "method": "scoreTarget",
+      "line": 14848,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklCurse",
+      "method": "scoreTarget",
+      "line": 14848,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklCurse",
+      "method": "act",
+      "line": 14853,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklCurse",
+      "method": "act",
+      "line": 14853,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklCurse",
+      "method": "act",
+      "line": 14853,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklCurse",
+      "method": "act",
+      "line": 14853,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklDisperse",
+      "method": "scoreTarget",
+      "line": 14865,
+      "index": 0,
+      "old": "a",
+      "new": "target",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklDisperse",
+      "method": "scoreTarget",
+      "line": 14865,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklDisperse",
+      "method": "scoreTarget",
+      "line": 14865,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklDisperse",
+      "method": "act",
+      "line": 14869,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklDisperse",
+      "method": "act",
+      "line": 14869,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklDisperse",
+      "method": "act",
+      "line": 14869,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklDisperse",
+      "method": "act",
+      "line": 14869,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklExchange",
+      "method": "validTarget",
+      "line": 14892,
+      "index": 0,
+      "old": "a",
+      "new": "target",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklExchange",
+      "method": "validTarget",
+      "line": 14892,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklExchange",
+      "method": "scoreTarget",
+      "line": 14896,
+      "index": 0,
+      "old": "a",
+      "new": "target",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklExchange",
+      "method": "scoreTarget",
+      "line": 14896,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklExchange",
+      "method": "scoreTarget",
+      "line": 14896,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklExchange",
+      "method": "act",
+      "line": 14900,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklExchange",
+      "method": "act",
+      "line": 14900,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklExchange",
+      "method": "act",
+      "line": 14900,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklExchange",
+      "method": "act",
+      "line": 14900,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklFire",
+      "method": "act",
+      "line": 14946,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklFire",
+      "method": "act",
+      "line": 14946,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklFire",
+      "method": "act",
+      "line": 14946,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklFire",
+      "method": "act",
+      "line": 14946,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.sklHalf",
+      "method": "scoreTarget",
+      "line": 14971,
+      "index": 0,
+      "old": "a",
+      "new": "target",
+      "status": "applied"
+    },
+    {
+      "owner": "T.sklHalf",
+      "method": "scoreTarget",
+      "line": 14971,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.sklHalf",
+      "method": "scoreTarget",
+      "line": 14971,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.sklHalf",
+      "method": "act",
+      "line": 14974,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.sklHalf",
+      "method": "act",
+      "line": 14974,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.sklHalf",
+      "method": "act",
+      "line": 14974,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.sklHalf",
+      "method": "act",
+      "line": 14974,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.HasteState",
+      "method": "updateState",
+      "line": 15018,
+      "index": 0,
+      "old": "a",
+      "new": "p",
+      "status": "applied"
+    },
+    {
+      "owner": "T.HasteState",
+      "method": "postAction",
+      "line": 15022,
+      "index": 0,
+      "old": "a",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.HasteState",
+      "method": "postAction",
+      "line": 15022,
+      "index": 1,
+      "old": "b",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.HasteState",
+      "method": "destroy",
+      "line": 15027,
+      "index": 0,
+      "old": "a",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.HasteState",
+      "method": "destroy",
+      "line": 15027,
+      "index": 1,
+      "old": "b",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklHaste",
+      "method": "selectOneTarget",
+      "line": 15045,
+      "index": 0,
+      "old": "a",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklHaste",
+      "method": "validTarget",
+      "line": 15048,
+      "index": 0,
+      "old": "a",
+      "new": "target",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklHaste",
+      "method": "validTarget",
+      "line": 15048,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklHaste",
+      "method": "scoreTarget",
+      "line": 15058,
+      "index": 0,
+      "old": "a",
+      "new": "target",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklHaste",
+      "method": "scoreTarget",
+      "line": 15058,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklHaste",
+      "method": "scoreTarget",
+      "line": 15058,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklHaste",
+      "method": "act",
+      "line": 15066,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklHaste",
+      "method": "act",
+      "line": 15066,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklHaste",
+      "method": "act",
+      "line": 15066,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklHaste",
+      "method": "act",
+      "line": 15066,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklHeal",
+      "method": "selectOneTarget",
+      "line": 15099,
+      "index": 0,
+      "old": "a",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklHeal",
+      "method": "validTarget",
+      "line": 15102,
+      "index": 0,
+      "old": "a",
+      "new": "target",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklHeal",
+      "method": "validTarget",
+      "line": 15102,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklHeal",
+      "method": "scoreTarget",
+      "line": 15106,
+      "index": 0,
+      "old": "a",
+      "new": "target",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklHeal",
+      "method": "scoreTarget",
+      "line": 15106,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklHeal",
+      "method": "scoreTarget",
+      "line": 15106,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklHeal",
+      "method": "act",
+      "line": 15115,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklHeal",
+      "method": "act",
+      "line": 15115,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklHeal",
+      "method": "act",
+      "line": 15115,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklHeal",
+      "method": "act",
+      "line": 15115,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.IceState",
+      "method": "updateState",
+      "line": 15154,
+      "index": 0,
+      "old": "a",
+      "new": "p",
+      "status": "applied"
+    },
+    {
+      "owner": "T.IceState",
+      "method": "destroy",
+      "line": 15172,
+      "index": 0,
+      "old": "a",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.IceState",
+      "method": "destroy",
+      "line": 15172,
+      "index": 1,
+      "old": "b",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklIce",
+      "method": "scoreTarget",
+      "line": 15188,
+      "index": 0,
+      "old": "a",
+      "new": "target",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklIce",
+      "method": "scoreTarget",
+      "line": 15188,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklIce",
+      "method": "scoreTarget",
+      "line": 15188,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklIce",
+      "method": "act",
+      "line": 15192,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklIce",
+      "method": "act",
+      "line": 15192,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklIce",
+      "method": "act",
+      "line": 15192,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklIce",
+      "method": "act",
+      "line": 15192,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklIron",
+      "method": "prob",
+      "line": 15204,
+      "index": 0,
+      "old": "a",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklIron",
+      "method": "prob",
+      "line": 15204,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklIron",
+      "method": "act",
+      "line": 15211,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklIron",
+      "method": "act",
+      "line": 15211,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklIron",
+      "method": "act",
+      "line": 15211,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklIron",
+      "method": "act",
+      "line": 15211,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklIron",
+      "method": "postDefend",
+      "line": 15239,
+      "index": 0,
+      "old": "a",
+      "new": "dmg",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklIron",
+      "method": "postDefend",
+      "line": 15239,
+      "index": 1,
+      "old": "b",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklIron",
+      "method": "postDefend",
+      "line": 15239,
+      "index": 2,
+      "old": "c",
+      "new": "ondmg",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklIron",
+      "method": "postDefend",
+      "line": 15239,
+      "index": 3,
+      "old": "d",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklIron",
+      "method": "postDefend",
+      "line": 15239,
+      "index": 4,
+      "old": "e",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklIron",
+      "method": "postAction",
+      "line": 15254,
+      "index": 0,
+      "old": "a",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklIron",
+      "method": "postAction",
+      "line": 15254,
+      "index": 1,
+      "old": "b",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklIron",
+      "method": "updateState",
+      "line": 15264,
+      "index": 0,
+      "old": "a",
+      "new": "p",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklIron",
+      "method": "destroy",
+      "line": 15271,
+      "index": 0,
+      "old": "a",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklIron",
+      "method": "destroy",
+      "line": 15271,
+      "index": 1,
+      "old": "b",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.PoisonState",
+      "method": "postAction",
+      "line": 15296,
+      "index": 0,
+      "old": "a",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.PoisonState",
+      "method": "postAction",
+      "line": 15296,
+      "index": 1,
+      "old": "b",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.PoisonState",
+      "method": "destroy",
+      "line": 15315,
+      "index": 0,
+      "old": "a",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.PoisonState",
+      "method": "destroy",
+      "line": 15315,
+      "index": 1,
+      "old": "b",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklPoison",
+      "method": "act",
+      "line": 15330,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklPoison",
+      "method": "act",
+      "line": 15330,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklPoison",
+      "method": "act",
+      "line": 15330,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklPoison",
+      "method": "act",
+      "line": 15330,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklQuake",
+      "method": "act",
+      "line": 15344,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklQuake",
+      "method": "act",
+      "line": 15344,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklQuake",
+      "method": "act",
+      "line": 15344,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklQuake",
+      "method": "act",
+      "line": 15344,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklRapid",
+      "method": "act",
+      "line": 15382,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklRapid",
+      "method": "act",
+      "line": 15382,
+      "index": 1,
+      "old": "a0",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklRapid",
+      "method": "act",
+      "line": 15382,
+      "index": 2,
+      "old": "a1",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklRapid",
+      "method": "act",
+      "line": 15382,
+      "index": 3,
+      "old": "a2",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklRevive",
+      "method": "selectOneTarget",
+      "line": 15436,
+      "index": 0,
+      "old": "a",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklRevive",
+      "method": "validTarget",
+      "line": 15439,
+      "index": 0,
+      "old": "a",
+      "new": "target",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklRevive",
+      "method": "validTarget",
+      "line": 15439,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklRevive",
+      "method": "scoreTarget",
+      "line": 15442,
+      "index": 0,
+      "old": "a",
+      "new": "target",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklRevive",
+      "method": "scoreTarget",
+      "line": 15442,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklRevive",
+      "method": "scoreTarget",
+      "line": 15442,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklRevive",
+      "method": "act",
+      "line": 15451,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklRevive",
+      "method": "act",
+      "line": 15451,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklRevive",
+      "method": "act",
+      "line": 15451,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklRevive",
+      "method": "act",
+      "line": 15451,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklPossess",
+      "method": "init",
+      "line": 15484,
+      "index": 0,
+      "old": "a",
+      "new": "owner",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklPossess",
+      "method": "init",
+      "line": 15484,
+      "index": 1,
+      "old": "b",
+      "new": "l",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklPossess",
+      "method": "act",
+      "line": 15488,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklPossess",
+      "method": "act",
+      "line": 15488,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklPossess",
+      "method": "act",
+      "line": 15488,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklPossess",
+      "method": "act",
+      "line": 15488,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklShadow",
+      "method": "prob",
+      "line": 15536,
+      "index": 0,
+      "old": "a",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklShadow",
+      "method": "prob",
+      "line": 15536,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklShadow",
+      "method": "act",
+      "line": 15545,
+      "index": 0,
+      "old": "a7",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklShadow",
+      "method": "act",
+      "line": 15545,
+      "index": 1,
+      "old": "a8",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklShadow",
+      "method": "act",
+      "line": 15545,
+      "index": 2,
+      "old": "a9",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklShadow",
+      "method": "act",
+      "line": 15545,
+      "index": 3,
+      "old": "b0",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SlowState",
+      "method": "updateState",
+      "line": 15626,
+      "index": 0,
+      "old": "a",
+      "new": "p",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SlowState",
+      "method": "postAction",
+      "line": 15630,
+      "index": 0,
+      "old": "a",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SlowState",
+      "method": "postAction",
+      "line": 15630,
+      "index": 1,
+      "old": "b",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SlowState",
+      "method": "destroy",
+      "line": 15635,
+      "index": 0,
+      "old": "a",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SlowState",
+      "method": "destroy",
+      "line": 15635,
+      "index": 1,
+      "old": "b",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklSlow",
+      "method": "validTarget",
+      "line": 15653,
+      "index": 0,
+      "old": "a",
+      "new": "target",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklSlow",
+      "method": "validTarget",
+      "line": 15653,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklSlow",
+      "method": "scoreTarget",
+      "line": 15664,
+      "index": 0,
+      "old": "a",
+      "new": "target",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklSlow",
+      "method": "scoreTarget",
+      "line": 15664,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklSlow",
+      "method": "scoreTarget",
+      "line": 15664,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklSlow",
+      "method": "act",
+      "line": 15668,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklSlow",
+      "method": "act",
+      "line": 15668,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklSlow",
+      "method": "act",
+      "line": 15668,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklSlow",
+      "method": "act",
+      "line": 15668,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklExplode",
+      "method": "act",
+      "line": 15698,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklExplode",
+      "method": "act",
+      "line": 15698,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklExplode",
+      "method": "act",
+      "line": 15698,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklExplode",
+      "method": "act",
+      "line": 15698,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.PlrSummon",
+      "method": "postDamage",
+      "line": 15754,
+      "index": 0,
+      "old": "a",
+      "new": "dmg",
+      "status": "applied"
+    },
+    {
+      "owner": "T.PlrSummon",
+      "method": "postDamage",
+      "line": 15754,
+      "index": 1,
+      "old": "b",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.PlrSummon",
+      "method": "postDamage",
+      "line": 15754,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.PlrSummon",
+      "method": "postDamage",
+      "line": 15754,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.PlrSummon",
+      "method": "die",
+      "line": 15759,
+      "index": 0,
+      "old": "a",
+      "new": "dmg",
+      "status": "applied"
+    },
+    {
+      "owner": "T.PlrSummon",
+      "method": "die",
+      "line": 15759,
+      "index": 1,
+      "old": "b",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.PlrSummon",
+      "method": "die",
+      "line": 15759,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.PlrSummon",
+      "method": "die",
+      "line": 15759,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklSummon",
+      "method": "prob",
+      "line": 15772,
+      "index": 0,
+      "old": "a",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklSummon",
+      "method": "prob",
+      "line": 15772,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklSummon",
+      "method": "act",
+      "line": 15782,
+      "index": 0,
+      "old": "a6",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklSummon",
+      "method": "act",
+      "line": 15782,
+      "index": 1,
+      "old": "a7",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklSummon",
+      "method": "act",
+      "line": 15782,
+      "index": 2,
+      "old": "a8",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklSummon",
+      "method": "act",
+      "line": 15782,
+      "index": 3,
+      "old": "a9",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklThunder",
+      "method": "act",
+      "line": 15872,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklThunder",
+      "method": "act",
+      "line": 15872,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklThunder",
+      "method": "act",
+      "line": 15872,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklThunder",
+      "method": "act",
+      "line": 15872,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 updates"
+    },
+    {
+      "owner": "T.SklAokijiDefend",
+      "method": "postDefend",
+      "line": 15938,
+      "index": 0,
+      "old": "a",
+      "new": "dmg",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklAokijiDefend",
+      "method": "postDefend",
+      "line": 15938,
+      "index": 1,
+      "old": "b",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklAokijiDefend",
+      "method": "postDefend",
+      "line": 15938,
+      "index": 2,
+      "old": "c",
+      "new": "ondmg",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklAokijiDefend",
+      "method": "postDefend",
+      "line": 15938,
+      "index": 3,
+      "old": "d",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklAokijiDefend",
+      "method": "postDefend",
+      "line": 15938,
+      "index": 4,
+      "old": "e",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklAokijiIceAge",
+      "method": "act",
+      "line": 15961,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklAokijiIceAge",
+      "method": "act",
+      "line": 15961,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklAokijiIceAge",
+      "method": "act",
+      "line": 15961,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklAokijiIceAge",
+      "method": "act",
+      "line": 15961,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.PlrBoost",
+      "method": "immune",
+      "line": 16006,
+      "index": 0,
+      "old": "a",
+      "new": "key",
+      "status": "applied"
+    },
+    {
+      "owner": "T.PlrBoost",
+      "method": "immune",
+      "line": 16006,
+      "index": 1,
+      "old": "b",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.PlrEx",
+      "method": "upgrade",
+      "line": 16054,
+      "index": 0,
+      "old": "a",
+      "new": "ssx",
+      "status": "applied"
+    },
+    {
+      "owner": "T.PlrBoss",
+      "method": "initSkills",
+      "line": 16073,
+      "index": 0,
+      "old": "a",
+      "new": "list",
+      "status": "applied"
+    },
+    {
+      "owner": "T.PlrBoss",
+      "method": "initSkills",
+      "line": 16073,
+      "index": 1,
+      "old": "b",
+      "new": "origin",
+      "status": "applied"
+    },
+    {
+      "owner": "T.PlrBoss",
+      "method": "immune",
+      "line": 16101,
+      "index": 0,
+      "old": "a",
+      "new": "key",
+      "status": "applied"
+    },
+    {
+      "owner": "T.PlrBoss",
+      "method": "immune",
+      "line": 16101,
+      "index": 1,
+      "old": "b",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklConan",
+      "method": "validTarget",
+      "line": 16129,
+      "index": 0,
+      "old": "a",
+      "new": "target",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklConan",
+      "method": "validTarget",
+      "line": 16129,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklConan",
+      "method": "act",
+      "line": 16132,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklConan",
+      "method": "act",
+      "line": 16132,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklConan",
+      "method": "act",
+      "line": 16132,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklConan",
+      "method": "act",
+      "line": 16132,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.CovidMeta",
+      "method": "destroy",
+      "line": 16219,
+      "index": 0,
+      "old": "a",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.CovidMeta",
+      "method": "destroy",
+      "line": 16219,
+      "index": 1,
+      "old": "b",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.CovidState",
+      "method": "postAction",
+      "line": 16223,
+      "index": 0,
+      "old": "a",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.CovidState",
+      "method": "postAction",
+      "line": 16223,
+      "index": 1,
+      "old": "b",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.CovidState",
+      "method": "act",
+      "line": 16259,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.CovidState",
+      "method": "act",
+      "line": 16259,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.CovidState",
+      "method": "act",
+      "line": 16259,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.CovidState",
+      "method": "act",
+      "line": 16259,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.CovidState",
+      "method": "preAction",
+      "line": 16313,
+      "index": 0,
+      "old": "a",
+      "new": "skl",
+      "status": "applied"
+    },
+    {
+      "owner": "T.CovidState",
+      "method": "preAction",
+      "line": 16313,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.CovidState",
+      "method": "preAction",
+      "line": 16313,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.CovidState",
+      "method": "preAction",
+      "line": 16313,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklCovidDefend",
+      "method": "postDamage",
+      "line": 16330,
+      "index": 0,
+      "old": "a",
+      "new": "dmg",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklCovidDefend",
+      "method": "postDamage",
+      "line": 16330,
+      "index": 1,
+      "old": "b",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklCovidDefend",
+      "method": "postDamage",
+      "line": 16330,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklCovidDefend",
+      "method": "postDamage",
+      "line": 16330,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklCovidAttack",
+      "method": "act",
+      "line": 16339,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklCovidAttack",
+      "method": "act",
+      "line": 16339,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklCovidAttack",
+      "method": "act",
+      "line": 16339,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklCovidAttack",
+      "method": "act",
+      "line": 16339,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.PlrBossIkaruga",
+      "method": "immune",
+      "line": 16359,
+      "index": 0,
+      "old": "a",
+      "new": "key",
+      "status": "applied"
+    },
+    {
+      "owner": "T.PlrBossIkaruga",
+      "method": "immune",
+      "line": 16359,
+      "index": 1,
+      "old": "b",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklIkarugaDefend",
+      "method": "postDefend",
+      "line": 16377,
+      "index": 0,
+      "old": "a",
+      "new": "dmg",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklIkarugaDefend",
+      "method": "postDefend",
+      "line": 16377,
+      "index": 1,
+      "old": "b",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklIkarugaDefend",
+      "method": "postDefend",
+      "line": 16377,
+      "index": 2,
+      "old": "c",
+      "new": "ondmg",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklIkarugaDefend",
+      "method": "postDefend",
+      "line": 16377,
+      "index": 3,
+      "old": "d",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklIkarugaDefend",
+      "method": "postDefend",
+      "line": 16377,
+      "index": 4,
+      "old": "e",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklIkarugaAttack",
+      "method": "act",
+      "line": 16403,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklIkarugaAttack",
+      "method": "act",
+      "line": 16403,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklIkarugaAttack",
+      "method": "act",
+      "line": 16403,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklIkarugaAttack",
+      "method": "act",
+      "line": 16403,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.LazyState",
+      "method": "updateState",
+      "line": 16444,
+      "index": 0,
+      "old": "a",
+      "new": "p",
+      "status": "applied"
+    },
+    {
+      "owner": "T.LazyState",
+      "method": "postAction",
+      "line": 16448,
+      "index": 0,
+      "old": "a",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.LazyState",
+      "method": "postAction",
+      "line": 16448,
+      "index": 1,
+      "old": "b",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.LazyState",
+      "method": "destroy",
+      "line": 16468,
+      "index": 0,
+      "old": "a",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.LazyState",
+      "method": "destroy",
+      "line": 16468,
+      "index": 1,
+      "old": "b",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.LazyState",
+      "method": "act",
+      "line": 16478,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.LazyState",
+      "method": "act",
+      "line": 16478,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.LazyState",
+      "method": "act",
+      "line": 16478,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.LazyState",
+      "method": "act",
+      "line": 16478,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.LazyState",
+      "method": "preAction",
+      "line": 16481,
+      "index": 0,
+      "old": "a",
+      "new": "skl",
+      "status": "applied"
+    },
+    {
+      "owner": "T.LazyState",
+      "method": "preAction",
+      "line": 16481,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.LazyState",
+      "method": "preAction",
+      "line": 16481,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.LazyState",
+      "method": "preAction",
+      "line": 16481,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklLazyDefend",
+      "method": "postDamage",
+      "line": 16494,
+      "index": 0,
+      "old": "a",
+      "new": "dmg",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklLazyDefend",
+      "method": "postDamage",
+      "line": 16494,
+      "index": 1,
+      "old": "b",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklLazyDefend",
+      "method": "postDamage",
+      "line": 16494,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklLazyDefend",
+      "method": "postDamage",
+      "line": 16494,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklLazyAttack",
+      "method": "act",
+      "line": 16505,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklLazyAttack",
+      "method": "act",
+      "line": 16505,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklLazyAttack",
+      "method": "act",
+      "line": 16505,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklLazyAttack",
+      "method": "act",
+      "line": 16505,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.PlrBossMario",
+      "method": "immune",
+      "line": 16540,
+      "index": 0,
+      "old": "a",
+      "new": "key",
+      "status": "applied"
+    },
+    {
+      "owner": "T.PlrBossMario",
+      "method": "immune",
+      "line": 16540,
+      "index": 1,
+      "old": "b",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklMarioGet",
+      "method": "init",
+      "line": 16565,
+      "index": 0,
+      "old": "a",
+      "new": "owner",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklMarioGet",
+      "method": "init",
+      "line": 16565,
+      "index": 1,
+      "old": "b",
+      "new": "l",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklMarioGet",
+      "method": "prob",
+      "line": 16566,
+      "index": 0,
+      "old": "a",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklMarioGet",
+      "method": "prob",
+      "line": 16566,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklMarioGet",
+      "method": "act",
+      "line": 16579,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklMarioGet",
+      "method": "act",
+      "line": 16579,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklMarioGet",
+      "method": "act",
+      "line": 16579,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklMarioGet",
+      "method": "act",
+      "line": 16579,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklMarioGet",
+      "method": "destroy",
+      "line": 16606,
+      "index": 0,
+      "old": "a",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklMarioGet",
+      "method": "destroy",
+      "line": 16606,
+      "index": 1,
+      "old": "b",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklMarioReraise",
+      "method": "init",
+      "line": 16618,
+      "index": 0,
+      "old": "a",
+      "new": "owner",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklMarioReraise",
+      "method": "init",
+      "line": 16618,
+      "index": 1,
+      "old": "b",
+      "new": "l",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklMarioReraise",
+      "method": "die",
+      "line": 16619,
+      "index": 0,
+      "old": "a",
+      "new": "dmg",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklMarioReraise",
+      "method": "die",
+      "line": 16619,
+      "index": 1,
+      "old": "b",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklMarioReraise",
+      "method": "die",
+      "line": 16619,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklMarioReraise",
+      "method": "die",
+      "line": 16619,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklSaitama",
+      "method": "act",
+      "line": 16693,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklSaitama",
+      "method": "act",
+      "line": 16693,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklSaitama",
+      "method": "act",
+      "line": 16693,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklSaitama",
+      "method": "act",
+      "line": 16693,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklSaitama",
+      "method": "postDefend",
+      "line": 16720,
+      "index": 0,
+      "old": "a",
+      "new": "dmg",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklSaitama",
+      "method": "postDefend",
+      "line": 16720,
+      "index": 1,
+      "old": "b",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklSaitama",
+      "method": "postDefend",
+      "line": 16720,
+      "index": 2,
+      "old": "c",
+      "new": "ondmg",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklSaitama",
+      "method": "postDefend",
+      "line": 16720,
+      "index": 3,
+      "old": "d",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklSaitama",
+      "method": "postDefend",
+      "line": 16720,
+      "index": 4,
+      "old": "e",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.BossSlime2",
+      "method": "immune",
+      "line": 16770,
+      "index": 0,
+      "old": "a",
+      "new": "key",
+      "status": "applied"
+    },
+    {
+      "owner": "T.BossSlime2",
+      "method": "immune",
+      "line": 16770,
+      "index": 1,
+      "old": "b",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklSlimeSpawn",
+      "method": "die",
+      "line": 16803,
+      "index": 0,
+      "old": "a",
+      "new": "dmg",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklSlimeSpawn",
+      "method": "die",
+      "line": 16803,
+      "index": 1,
+      "old": "b",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklSlimeSpawn",
+      "method": "die",
+      "line": 16803,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklSlimeSpawn",
+      "method": "die",
+      "line": 16803,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklYuriControl",
+      "method": "validTarget",
+      "line": 16899,
+      "index": 0,
+      "old": "a",
+      "new": "p",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklYuriControl",
+      "method": "validTarget",
+      "line": 16899,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklYuriControl",
+      "method": "act",
+      "line": 16904,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklYuriControl",
+      "method": "act",
+      "line": 16904,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklYuriControl",
+      "method": "act",
+      "line": 16904,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklYuriControl",
+      "method": "act",
+      "line": 16904,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Engine",
+      "method": "newPlayer",
+      "line": 17386,
+      "index": 0,
+      "old": "a",
+      "new": "p",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Engine",
+      "method": "newPlayer",
+      "line": 17386,
+      "index": 1,
+      "old": "b",
+      "new": "g",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Grp",
+      "method": "addNew",
+      "line": 17440,
+      "index": 0,
+      "old": "a",
+      "new": "p",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 p"
+    },
+    {
+      "owner": "T.Grp",
+      "method": "die",
+      "line": 17459,
+      "index": 0,
+      "old": "a",
+      "new": "p",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 p"
+    },
+    {
+      "owner": "T.Minion",
+      "method": "die",
+      "line": 17598,
+      "index": 0,
+      "old": "a",
+      "new": "dmg",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Minion",
+      "method": "die",
+      "line": 17598,
+      "index": 1,
+      "old": "b",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Minion",
+      "method": "die",
+      "line": 17598,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.Minion",
+      "method": "die",
+      "line": 17598,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "immune",
+      "line": 17620,
+      "index": 0,
+      "old": "a",
+      "new": "key",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "immune",
+      "line": 17620,
+      "index": 1,
+      "old": "b",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "mpReady",
+      "line": 17623,
+      "index": 0,
+      "old": "a",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "upgrade",
+      "line": 17757,
+      "index": 0,
+      "old": "a",
+      "new": "ssx",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "clearStates",
+      "line": 18293,
+      "index": 0,
+      "old": "a",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "clearStates",
+      "line": 18293,
+      "index": 1,
+      "old": "b",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "postAction",
+      "line": 18326,
+      "index": 0,
+      "old": "a",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "postAction",
+      "line": 18326,
+      "index": 1,
+      "old": "b",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "preDefend",
+      "line": 18333,
+      "index": 0,
+      "old": "a",
+      "new": "atp",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "preDefend",
+      "line": 18333,
+      "index": 1,
+      "old": "b",
+      "new": "isMag",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "preDefend",
+      "line": 18333,
+      "index": 2,
+      "old": "c",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "preDefend",
+      "line": 18333,
+      "index": 3,
+      "old": "d",
+      "new": "ondmg",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "preDefend",
+      "line": 18333,
+      "index": 4,
+      "old": "e",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "preDefend",
+      "line": 18333,
+      "index": 5,
+      "old": "f",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "postDefend",
+      "line": 18347,
+      "index": 0,
+      "old": "a",
+      "new": "dmg",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "postDefend",
+      "line": 18347,
+      "index": 1,
+      "old": "b",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "postDefend",
+      "line": 18347,
+      "index": 2,
+      "old": "c",
+      "new": "ondmg",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "postDefend",
+      "line": 18347,
+      "index": 3,
+      "old": "d",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "postDefend",
+      "line": 18347,
+      "index": 4,
+      "old": "e",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "attacked",
+      "line": 18352,
+      "index": 0,
+      "old": "a",
+      "new": "atp",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "attacked",
+      "line": 18352,
+      "index": 1,
+      "old": "b",
+      "new": "isMag",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "attacked",
+      "line": 18352,
+      "index": 2,
+      "old": "c",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "attacked",
+      "line": 18352,
+      "index": 3,
+      "old": "d",
+      "new": "ondmg",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "attacked",
+      "line": 18352,
+      "index": 4,
+      "old": "e",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "attacked",
+      "line": 18352,
+      "index": 5,
+      "old": "f",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "defend",
+      "line": 18372,
+      "index": 0,
+      "old": "a",
+      "new": "atp",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "defend",
+      "line": 18372,
+      "index": 1,
+      "old": "b",
+      "new": "isMag",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "defend",
+      "line": 18372,
+      "index": 2,
+      "old": "c",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "defend",
+      "line": 18372,
+      "index": 3,
+      "old": "d",
+      "new": "ondmg",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "defend",
+      "line": 18372,
+      "index": 4,
+      "old": "e",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "defend",
+      "line": 18372,
+      "index": 5,
+      "old": "f",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "damage",
+      "line": 18375,
+      "index": 0,
+      "old": "a",
+      "new": "dmg",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "damage",
+      "line": 18375,
+      "index": 1,
+      "old": "b",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "damage",
+      "line": 18375,
+      "index": 2,
+      "old": "c",
+      "new": "ondmg",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "damage",
+      "line": 18375,
+      "index": 3,
+      "old": "d",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "damage",
+      "line": 18375,
+      "index": 4,
+      "old": "e",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "onDamaged",
+      "line": 18412,
+      "index": 0,
+      "old": "a",
+      "new": "dmg",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "onDamaged",
+      "line": 18412,
+      "index": 1,
+      "old": "b",
+      "new": "oldhp",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "onDamaged",
+      "line": 18412,
+      "index": 2,
+      "old": "c",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "onDamaged",
+      "line": 18412,
+      "index": 3,
+      "old": "d",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "onDamaged",
+      "line": 18412,
+      "index": 4,
+      "old": "e",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "onDie",
+      "line": 18423,
+      "index": 0,
+      "old": "a",
+      "new": "oldhp",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "onDie",
+      "line": 18423,
+      "index": 1,
+      "old": "b",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "onDie",
+      "line": 18423,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "onDie",
+      "line": 18423,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "kill",
+      "line": 18437,
+      "index": 0,
+      "old": "a",
+      "new": "target",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "kill",
+      "line": 18437,
+      "index": 1,
+      "old": "b",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "kill",
+      "line": 18437,
+      "index": 2,
+      "old": "c",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.IMeta",
+      "method": "destroy",
+      "line": 18522,
+      "index": 0,
+      "old": "a",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.IMeta",
+      "method": "destroy",
+      "line": 18522,
+      "index": 1,
+      "old": "b",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.UpdateStateImpl",
+      "method": "updateState",
+      "line": 18533,
+      "index": 0,
+      "old": "a",
+      "new": "p",
+      "status": "applied"
+    },
+    {
+      "owner": "T.PostDefendImpl",
+      "method": "postDefend",
+      "line": 18546,
+      "index": 0,
+      "old": "a",
+      "new": "dmg",
+      "status": "applied"
+    },
+    {
+      "owner": "T.PostDefendImpl",
+      "method": "postDefend",
+      "line": 18546,
+      "index": 1,
+      "old": "b",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.PostDefendImpl",
+      "method": "postDefend",
+      "line": 18546,
+      "index": 2,
+      "old": "c",
+      "new": "ondmg",
+      "status": "applied"
+    },
+    {
+      "owner": "T.PostDefendImpl",
+      "method": "postDefend",
+      "line": 18546,
+      "index": 3,
+      "old": "d",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.PostDefendImpl",
+      "method": "postDefend",
+      "line": 18546,
+      "index": 4,
+      "old": "e",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.PostDamageImpl",
+      "method": "postDamage",
+      "line": 18557,
+      "index": 0,
+      "old": "a",
+      "new": "dmg",
+      "status": "applied"
+    },
+    {
+      "owner": "T.PostDamageImpl",
+      "method": "postDamage",
+      "line": 18557,
+      "index": 1,
+      "old": "b",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.PostDamageImpl",
+      "method": "postDamage",
+      "line": 18557,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.PostDamageImpl",
+      "method": "postDamage",
+      "line": 18557,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.PreActionImpl",
+      "method": "preAction",
+      "line": 18566,
+      "index": 0,
+      "old": "a",
+      "new": "skl",
+      "status": "applied"
+    },
+    {
+      "owner": "T.PreActionImpl",
+      "method": "preAction",
+      "line": 18566,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.PreActionImpl",
+      "method": "preAction",
+      "line": 18566,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.PreActionImpl",
+      "method": "preAction",
+      "line": 18566,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.PostActionImpl",
+      "method": "postAction",
+      "line": 18575,
+      "index": 0,
+      "old": "a",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.PostActionImpl",
+      "method": "postAction",
+      "line": 18575,
+      "index": 1,
+      "old": "b",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.cp",
+      "method": "die",
+      "line": 18583,
+      "index": 0,
+      "old": "a",
+      "new": "dmg",
+      "status": "applied"
+    },
+    {
+      "owner": "T.cp",
+      "method": "die",
+      "line": 18583,
+      "index": 1,
+      "old": "b",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.cp",
+      "method": "die",
+      "line": 18583,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.cp",
+      "method": "die",
+      "line": 18583,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Skill",
+      "method": "init",
+      "line": 18593,
+      "index": 0,
+      "old": "a",
+      "new": "owner",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Skill",
+      "method": "init",
+      "line": 18593,
+      "index": 1,
+      "old": "b",
+      "new": "l",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Skill",
+      "method": "selectOneTarget",
+      "line": 18601,
+      "index": 0,
+      "old": "a",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Skill",
+      "method": "validTarget",
+      "line": 18608,
+      "index": 0,
+      "old": "a",
+      "new": "target",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Skill",
+      "method": "validTarget",
+      "line": 18608,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Skill",
+      "method": "scoreTarget",
+      "line": 18611,
+      "index": 0,
+      "old": "a",
+      "new": "target",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Skill",
+      "method": "scoreTarget",
+      "line": 18611,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Skill",
+      "method": "scoreTarget",
+      "line": 18611,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Skill",
+      "method": "scoreTargetImpl",
+      "line": 18614,
+      "index": 0,
+      "old": "a",
+      "new": "target",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Skill",
+      "method": "scoreTargetImpl",
+      "line": 18614,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Skill",
+      "method": "scoreTargetImpl",
+      "line": 18614,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Skill",
+      "method": "scoreTargetImpl",
+      "line": 18614,
+      "index": 3,
+      "old": "d",
+      "new": "hihp",
+      "status": "applied"
+    },
+    {
+      "owner": "T.ActionSkill",
+      "method": "prob",
+      "line": 18665,
+      "index": 0,
+      "old": "a",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.ActionSkill",
+      "method": "prob",
+      "line": 18665,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklAttack",
+      "method": "act",
+      "line": 18671,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklAttack",
+      "method": "act",
+      "line": 18671,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklAttack",
+      "method": "act",
+      "line": 18671,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklAttack",
+      "method": "act",
+      "line": 18671,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklSimpleAttack",
+      "method": "act",
+      "line": 18702,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklSimpleAttack",
+      "method": "act",
+      "line": 18702,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklSimpleAttack",
+      "method": "act",
+      "line": 18702,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklSimpleAttack",
+      "method": "act",
+      "line": 18702,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklCounter",
+      "method": "postDamage",
+      "line": 18715,
+      "index": 0,
+      "old": "a",
+      "new": "dmg",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklCounter",
+      "method": "postDamage",
+      "line": 18715,
+      "index": 1,
+      "old": "b",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklCounter",
+      "method": "postDamage",
+      "line": 18715,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklCounter",
+      "method": "postDamage",
+      "line": 18715,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklDefend",
+      "method": "postDefend",
+      "line": 18749,
+      "index": 0,
+      "old": "a",
+      "new": "dmg",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklDefend",
+      "method": "postDefend",
+      "line": 18749,
+      "index": 1,
+      "old": "b",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklDefend",
+      "method": "postDefend",
+      "line": 18749,
+      "index": 2,
+      "old": "c",
+      "new": "ondmg",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklDefend",
+      "method": "postDefend",
+      "line": 18749,
+      "index": 3,
+      "old": "d",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklDefend",
+      "method": "postDefend",
+      "line": 18749,
+      "index": 4,
+      "old": "e",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklHide",
+      "method": "postDamage",
+      "line": 18779,
+      "index": 0,
+      "old": "a",
+      "new": "dmg",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklHide",
+      "method": "postDamage",
+      "line": 18779,
+      "index": 1,
+      "old": "b",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklHide",
+      "method": "postDamage",
+      "line": 18779,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklHide",
+      "method": "postDamage",
+      "line": 18779,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklHide",
+      "method": "preAction",
+      "line": 18797,
+      "index": 0,
+      "old": "a",
+      "new": "skl",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklHide",
+      "method": "preAction",
+      "line": 18797,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklHide",
+      "method": "preAction",
+      "line": 18797,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklHide",
+      "method": "preAction",
+      "line": 18797,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklHide",
+      "method": "updateState",
+      "line": 18805,
+      "index": 0,
+      "old": "a",
+      "new": "p",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 p"
+    },
+    {
+      "owner": "T.SklMerge",
+      "method": "kill",
+      "line": 18828,
+      "index": 0,
+      "old": "a",
+      "new": "target",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklMerge",
+      "method": "kill",
+      "line": 18828,
+      "index": 1,
+      "old": "b",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklMerge",
+      "method": "kill",
+      "line": 18828,
+      "index": 2,
+      "old": "c",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklProtect",
+      "method": "selectOneTarget",
+      "line": 18956,
+      "index": 0,
+      "old": "a",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklProtect",
+      "method": "validTarget",
+      "line": 18963,
+      "index": 0,
+      "old": "a",
+      "new": "target",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklProtect",
+      "method": "validTarget",
+      "line": 18963,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklProtect",
+      "method": "scoreTarget",
+      "line": 18966,
+      "index": 0,
+      "old": "a",
+      "new": "target",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklProtect",
+      "method": "scoreTarget",
+      "line": 18966,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklProtect",
+      "method": "scoreTarget",
+      "line": 18966,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklProtect",
+      "method": "postAction",
+      "line": 19004,
+      "index": 0,
+      "old": "a",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklProtect",
+      "method": "postAction",
+      "line": 19004,
+      "index": 1,
+      "old": "b",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklReraise",
+      "method": "die",
+      "line": 19043,
+      "index": 0,
+      "old": "a",
+      "new": "dmg",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklReraise",
+      "method": "die",
+      "line": 19043,
+      "index": 1,
+      "old": "b",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklReraise",
+      "method": "die",
+      "line": 19043,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklReraise",
+      "method": "die",
+      "line": 19043,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.ShieldStat_",
+      "method": "postDefend",
+      "line": 19085,
+      "index": 0,
+      "old": "a",
+      "new": "dmg",
+      "status": "applied"
+    },
+    {
+      "owner": "T.ShieldStat_",
+      "method": "postDefend",
+      "line": 19085,
+      "index": 1,
+      "old": "b",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.ShieldStat_",
+      "method": "postDefend",
+      "line": 19085,
+      "index": 2,
+      "old": "c",
+      "new": "ondmg",
+      "status": "applied"
+    },
+    {
+      "owner": "T.ShieldStat_",
+      "method": "postDefend",
+      "line": 19085,
+      "index": 3,
+      "old": "d",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.ShieldStat_",
+      "method": "postDefend",
+      "line": 19085,
+      "index": 4,
+      "old": "e",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.ShieldStat_",
+      "method": "destroy",
+      "line": 19098,
+      "index": 0,
+      "old": "a",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.ShieldStat_",
+      "method": "destroy",
+      "line": 19098,
+      "index": 1,
+      "old": "b",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklShield",
+      "method": "preAction",
+      "line": 19104,
+      "index": 0,
+      "old": "a",
+      "new": "skl",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklShield",
+      "method": "preAction",
+      "line": 19104,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklShield",
+      "method": "preAction",
+      "line": 19104,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklShield",
+      "method": "preAction",
+      "line": 19104,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklUpgrade",
+      "method": "postDamage",
+      "line": 19129,
+      "index": 0,
+      "old": "a",
+      "new": "dmg",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklUpgrade",
+      "method": "postDamage",
+      "line": 19129,
+      "index": 1,
+      "old": "b",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklUpgrade",
+      "method": "postDamage",
+      "line": 19129,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklUpgrade",
+      "method": "postDamage",
+      "line": 19129,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklUpgrade",
+      "method": "destroy",
+      "line": 19160,
+      "index": 0,
+      "old": "a",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklUpgrade",
+      "method": "destroy",
+      "line": 19160,
+      "index": 1,
+      "old": "b",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklUpgrade",
+      "method": "updateState",
+      "line": 19171,
+      "index": 0,
+      "old": "a",
+      "new": "p",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SkillVoid",
+      "method": "init",
+      "line": 19189,
+      "index": 0,
+      "old": "a",
+      "new": "owner",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SkillVoid",
+      "method": "init",
+      "line": 19189,
+      "index": 1,
+      "old": "b",
+      "new": "l",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SkillVoid",
+      "method": "prob",
+      "line": 19193,
+      "index": 0,
+      "old": "a",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SkillVoid",
+      "method": "prob",
+      "line": 19193,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SkillVoid",
+      "method": "act",
+      "line": 19199,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SkillVoid",
+      "method": "act",
+      "line": 19199,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SkillVoid",
+      "method": "act",
+      "line": 19199,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SkillVoid",
+      "method": "act",
+      "line": 19199,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklZombie",
+      "method": "kill",
+      "line": 19230,
+      "index": 0,
+      "old": "a6",
+      "new": "target",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklZombie",
+      "method": "kill",
+      "line": 19230,
+      "index": 1,
+      "old": "a7",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklZombie",
+      "method": "kill",
+      "line": 19230,
+      "index": 2,
+      "old": "a8",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.BossWeapon",
+      "method": "init",
+      "line": 19315,
+      "index": 0,
+      "old": "a",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.BossWeapon",
+      "method": "upgrade3Number",
+      "line": 19319,
+      "index": 0,
+      "old": "a",
+      "new": "base",
+      "status": "applied"
+    },
+    {
+      "owner": "T.BossWeapon",
+      "method": "upgrade3Number",
+      "line": 19319,
+      "index": 1,
+      "old": "b",
+      "new": "current",
+      "status": "applied"
+    },
+    {
+      "owner": "T.BossWeapon",
+      "method": "upgrade3Number",
+      "line": 19319,
+      "index": 2,
+      "old": "c",
+      "new": "up",
+      "status": "applied"
+    },
+    {
+      "owner": "T.BossWeapon",
+      "method": "upgrade3Number",
+      "line": 19319,
+      "index": 3,
+      "old": "d",
+      "new": "from",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklDeathNote",
+      "method": "prob",
+      "line": 19349,
+      "index": 0,
+      "old": "a",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklDeathNote",
+      "method": "prob",
+      "line": 19349,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklDeathNote",
+      "method": "act",
+      "line": 19362,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklDeathNote",
+      "method": "act",
+      "line": 19362,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklDeathNote",
+      "method": "act",
+      "line": 19362,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklDeathNote",
+      "method": "act",
+      "line": 19362,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklDeathNote",
+      "method": "postDamage",
+      "line": 19374,
+      "index": 0,
+      "old": "a",
+      "new": "dmg",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklDeathNote",
+      "method": "postDamage",
+      "line": 19374,
+      "index": 1,
+      "old": "b",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklDeathNote",
+      "method": "postDamage",
+      "line": 19374,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklDeathNote",
+      "method": "postDamage",
+      "line": 19374,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.DummyChargeMeta",
+      "method": "destroy",
+      "line": 19399,
+      "index": 0,
+      "old": "a",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.DummyChargeMeta",
+      "method": "destroy",
+      "line": 19399,
+      "index": 1,
+      "old": "b",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.GuiYue",
+      "method": "init",
+      "line": 19403,
+      "index": 0,
+      "old": "a",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.NoWeapon",
+      "method": "init",
+      "line": 19410,
+      "index": 0,
+      "old": "a",
+      "new": "r",
+      "status": "applied"
+    },
+    {
+      "owner": "T.RinickModifierPreAction",
+      "method": "preAction",
+      "line": 19494,
+      "index": 0,
+      "old": "a",
+      "new": "skl",
+      "status": "applied"
+    },
+    {
+      "owner": "T.RinickModifierPreAction",
+      "method": "preAction",
+      "line": 19494,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.RinickModifierPreAction",
+      "method": "preAction",
+      "line": 19494,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.RinickModifierPreAction",
+      "method": "preAction",
+      "line": 19494,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.RinickModifierUpdateState",
+      "method": "updateState",
+      "line": 19533,
+      "index": 0,
+      "old": "a",
+      "new": "p",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 p"
+    },
+    {
+      "owner": "T.SklRinickModifierClone",
+      "method": "act",
+      "line": 19575,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklRinickModifierClone",
+      "method": "act",
+      "line": 19575,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklRinickModifierClone",
+      "method": "act",
+      "line": 19575,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklRinickModifierClone",
+      "method": "act",
+      "line": 19575,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklS11",
+      "method": "prob",
+      "line": 19624,
+      "index": 0,
+      "old": "a",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklS11",
+      "method": "prob",
+      "line": 19624,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklS11",
+      "method": "act",
+      "line": 19631,
+      "index": 0,
+      "old": "a",
+      "new": "targets",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklS11",
+      "method": "act",
+      "line": 19631,
+      "index": 1,
+      "old": "b",
+      "new": "smart",
+      "status": "applied"
+    },
+    {
+      "owner": "T.SklS11",
+      "method": "act",
+      "line": 19631,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.SklS11",
+      "method": "act",
+      "line": 19631,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "T.WeaponS11",
+      "method": "init",
+      "line": 19673,
+      "index": 0,
+      "old": "a",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.Weapon",
+      "method": "init",
+      "line": 19690,
+      "index": 0,
+      "old": "a",
+      "new": "rc4",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Weapon",
+      "method": "upgrade3Number",
+      "line": 19730,
+      "index": 0,
+      "old": "a",
+      "new": "base",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Weapon",
+      "method": "upgrade3Number",
+      "line": 19730,
+      "index": 1,
+      "old": "b",
+      "new": "current",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Weapon",
+      "method": "upgrade3Number",
+      "line": 19730,
+      "index": 2,
+      "old": "c",
+      "new": "up",
+      "status": "applied"
+    },
+    {
+      "owner": "T.Weapon",
+      "method": "upgrade3Number",
+      "line": 19730,
+      "index": 3,
+      "old": "d",
+      "new": "from",
+      "status": "applied"
+    },
+    {
+      "owner": "T.hc",
+      "method": "postDamage",
+      "line": 19843,
+      "index": 0,
+      "old": "a",
+      "new": "dmg",
+      "status": "applied"
+    },
+    {
+      "owner": "T.hc",
+      "method": "postDamage",
+      "line": 19843,
+      "index": 1,
+      "old": "b",
+      "new": "caster",
+      "status": "applied"
+    },
+    {
+      "owner": "T.hc",
+      "method": "postDamage",
+      "line": 19843,
+      "index": 2,
+      "old": "c",
+      "new": "r",
+      "status": "skipped",
+      "reason": "函数内已存在同名标识符 r"
+    },
+    {
+      "owner": "T.hc",
+      "method": "postDamage",
+      "line": 19843,
+      "index": 3,
+      "old": "d",
+      "new": "updates",
+      "status": "applied"
+    },
+    {
+      "owner": "LangData.SuperRC4",
+      "method": "nextInt",
+      "line": 19957,
+      "index": 0,
+      "old": "a",
+      "new": "max",
+      "status": "applied"
+    }
+  ],
+  "selfAliases": {
+    "functions": 146,
+    "renamed": 146,
+    "skipped": []
+  }
+}

@@ -12,6 +12,15 @@
 
 管线与验收命令见 `tools/deobf/README.md`，旧行号映射见 `tools/deobf/report/line-map.json`。
 
+### 第二轮：方法名与参数还原
+
+- 90 条原型方法映射：技能/状态共享接口与 Plr、Engine、RC4、MList、Weapon、Boss 等核心类改用 Dart 原名
+- 203 个方法、483 个参数按 `namer-src` 的 Dart 签名还原；`var _ = this` 统一为 `var self = this`
+- 继承链派发校验拦下 6 处会改变解析结果的候选名（子类构造体、RC4 构造体等保留原名）
+- 行数保持 21,539；LF 体积 659,792 → 676,440 字节
+- 固定语料逐字节一致，`test.ts` 与无头 Edge 实测通过；性能较第一轮基线约快 2.4%
+- 符号映射见 `branch/latest/md5.symbols.json` 与 `md5.symbols.md`，未解析项见 `tools/deobf/report/rename-unresolved.md`
+
 ## md5 0.4.5
 
 添加了 `run_env.fight_only`, 为 `true` 时只会战斗, 不会进行其他操作

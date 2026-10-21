@@ -1,0 +1,892 @@
+{
+  "methods": [
+    {
+      "owner": "L.ProfileWinChance",
+      "method": "getError",
+      "arity": 1,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "L.ProfileWinChance",
+      "method": "start",
+      "arity": 2,
+      "reason": "Dart 签名参数数量不一致"
+    },
+    {
+      "owner": "LangData.SuperRC4",
+      "method": "getRFFFF",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "LangData.SuperRC4",
+      "method": "pick",
+      "arity": 1,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "LangData.SuperRC4",
+      "method": "pickSkip",
+      "arity": 2,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "LangData.SuperRC4",
+      "method": "pickSkipRange",
+      "arity": 2,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "LangData.SuperRC4",
+      "method": "round",
+      "arity": 3,
+      "reason": "Dart 签名参数数量不一致"
+    },
+    {
+      "owner": "LangData.SuperRC4",
+      "method": "sortList",
+      "arity": 2,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "Sgls.MEntry",
+      "method": "getList",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "Sgls.MEntry",
+      "method": "getNext",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "Sgls.MEntry",
+      "method": "getSortId",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "Sgls.MEntry",
+      "method": "setList",
+      "arity": 1,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "Sgls.MEntry",
+      "method": "setNext",
+      "arity": 1,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "Sgls.MEntry",
+      "method": "setPrevious",
+      "arity": 1,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "Sgls.MList",
+      "method": "getNext",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "Sgls.MList",
+      "method": "insertAfter",
+      "arity": 2,
+      "reason": "Dart 签名参数数量不一致"
+    },
+    {
+      "owner": "Sgls.MList",
+      "method": "setNext",
+      "arity": 1,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "Sgls.MList",
+      "method": "setPrevious",
+      "arity": 1,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "Sgls.MList",
+      "method": "unlinkInList",
+      "arity": 1,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.BerserkState",
+      "method": "add",
+      "arity": 1,
+      "reason": "Dart 签名参数数量不一致"
+    },
+    {
+      "owner": "T.BerserkState",
+      "method": "getMetaType",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.BossSlime2",
+      "method": "getAppendAttr",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.BossSlime2",
+      "method": "getOwner",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.CharmState",
+      "method": "add",
+      "arity": 1,
+      "reason": "Dart 签名参数数量不一致"
+    },
+    {
+      "owner": "T.CharmState",
+      "method": "getMetaType",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.CovidMeta",
+      "method": "getMetaType",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.CovidState",
+      "method": "getOwner",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.cp",
+      "method": "getSortId",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.CurseState",
+      "method": "getMetaType",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.DummyChargeMeta",
+      "method": "getMetaType",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.Engine",
+      "method": "getError",
+      "arity": 1,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.Engine",
+      "method": "newPlayerImpl",
+      "arity": 2,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.Engine",
+      "method": "round",
+      "arity": 2,
+      "reason": "Dart 签名参数数量不一致"
+    },
+    {
+      "owner": "T.Engine",
+      "method": "start",
+      "arity": 2,
+      "reason": "Dart 签名参数数量不一致"
+    },
+    {
+      "owner": "T.Engine",
+      "method": "startImpl",
+      "arity": 2,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.FireState",
+      "method": "getMetaType",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.HasteState",
+      "method": "getMetaType",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.IceState",
+      "method": "getMetaType",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.IPlr",
+      "method": "getDispName",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.kv",
+      "method": "init",
+      "arity": 1,
+      "reason": "Dart 同名方法的参数名不唯一"
+    },
+    {
+      "owner": "T.LazyState",
+      "method": "add",
+      "arity": 1,
+      "reason": "Dart 签名参数数量不一致"
+    },
+    {
+      "owner": "T.LazyState",
+      "method": "getMetaType",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.LazyState",
+      "method": "getOwner",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.MergeState",
+      "method": "getMetaType",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.Minion",
+      "method": "calcNameLength",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.MinionCount",
+      "method": "getMetaType",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "action",
+      "arity": 3,
+      "reason": "Dart 签名参数数量不一致"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "buildAsyncBody",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "calcNameLength",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "getDispName",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "init",
+      "arity": 4,
+      "reason": "Dart 签名参数数量不一致"
+    },
+    {
+      "owner": "T.Plr",
+      "method": "step",
+      "arity": 3,
+      "reason": "Dart 签名参数数量不一致"
+    },
+    {
+      "owner": "T.PlrBoss",
+      "method": "getAppendAttr",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PlrBoss",
+      "method": "getImmuned",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PlrBoss",
+      "method": "getImmunedX",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PlrBossAokiji",
+      "method": "getAppendAttr",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PlrBossConan",
+      "method": "getAppendAttr",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PlrBossConan",
+      "method": "getImmunedX",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PlrBossCovid",
+      "method": "getAppendAttr",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PlrBossCovid",
+      "method": "getImmuned",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PlrBossIkaruga",
+      "method": "getAppendAttr",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PlrBossIkaruga",
+      "method": "getImmuned",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PlrBossLazy",
+      "method": "getAppendAttr",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PlrBossLazy",
+      "method": "getImmuned",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PlrBossMario",
+      "method": "getAppendAttr",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PlrBossMario",
+      "method": "getImmuned",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PlrBossMario",
+      "method": "getImmunedX",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PlrBossMosquito",
+      "method": "getAppendAttr",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PlrBossMosquito",
+      "method": "getImmuned",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PlrBossMosquito",
+      "method": "getImmunedX",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PlrBossSaitama",
+      "method": "getAppendAttr",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PlrBossSaitama",
+      "method": "getImmuned",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PlrBossSaitama",
+      "method": "getImmunedX",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PlrBossSlime",
+      "method": "getAppendAttr",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PlrBossSlime",
+      "method": "getImmuned",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PlrBossSlime",
+      "method": "getImmunedX",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PlrBossSonic",
+      "method": "getAppendAttr",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PlrBossSonic",
+      "method": "getImmuned",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PlrBossSonic",
+      "method": "getImmunedX",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PlrBossTest",
+      "method": "calcNameLength",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PlrBossTest2",
+      "method": "calcNameLength",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PlrBossYuri",
+      "method": "getAppendAttr",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PlrBossYuri",
+      "method": "getImmuned",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PlrBossYuri",
+      "method": "getImmunedX",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PlrClone",
+      "method": "calcNameLength",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PlrClone",
+      "method": "getOwner",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PlrEx",
+      "method": "calcNameLength",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PlrShadow",
+      "method": "getOwner",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PlrSummon",
+      "method": "getOwner",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PlrZombie",
+      "method": "getOwner",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PoisonState",
+      "method": "getMetaType",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PostActionImpl",
+      "method": "getSortId",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PostDamageImpl",
+      "method": "getSortId",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PostDefendImpl",
+      "method": "getSortId",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PreActionImpl",
+      "method": "getSortId",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.PreStepImpl",
+      "method": "getSortId",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.ProtectStat",
+      "method": "getMetaType",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.RinickModifierPreAction",
+      "method": "getSortId",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.RinickModifierUpdateState",
+      "method": "getSortId",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.ShieldStat_",
+      "method": "getMetaType",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.ShieldStat_",
+      "method": "getSortId",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.Skill",
+      "method": "getOwner",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.Skill",
+      "method": "getSelCount",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.Skill",
+      "method": "getSelCountSmart",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.Skill",
+      "method": "select",
+      "arity": 3,
+      "reason": "Dart 签名参数数量不一致"
+    },
+    {
+      "owner": "T.SkillVoid",
+      "method": "select",
+      "arity": 3,
+      "reason": "Dart 签名参数数量不一致"
+    },
+    {
+      "owner": "T.SklAccumulate",
+      "method": "getMetaType",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.SklAccumulate",
+      "method": "select",
+      "arity": 3,
+      "reason": "Dart 签名参数数量不一致"
+    },
+    {
+      "owner": "T.SklAokijiIceAge",
+      "method": "getSelCount",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.SklAokijiIceAge",
+      "method": "getSelCountSmart",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.SklAssassinate",
+      "method": "select",
+      "arity": 3,
+      "reason": "Dart 签名参数数量不一致"
+    },
+    {
+      "owner": "T.SklCharge",
+      "method": "getMetaType",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.SklCharge",
+      "method": "select",
+      "arity": 3,
+      "reason": "Dart 签名参数数量不一致"
+    },
+    {
+      "owner": "T.SklClone",
+      "method": "select",
+      "arity": 3,
+      "reason": "Dart 签名参数数量不一致"
+    },
+    {
+      "owner": "T.SklConan",
+      "method": "getSelCount",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.SklConan",
+      "method": "getSelCountSmart",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.SklCovidAttack",
+      "method": "getOwner",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.SklDeathNote",
+      "method": "select",
+      "arity": 3,
+      "reason": "Dart 签名参数数量不一致"
+    },
+    {
+      "owner": "T.SklDefend",
+      "method": "getSortId",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.sklHalf",
+      "method": "validTarget",
+      "arity": 2,
+      "reason": "Dart 同名方法的参数名不唯一"
+    },
+    {
+      "owner": "T.SklIkarugaAttack",
+      "method": "getSelCount",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.SklIkarugaAttack",
+      "method": "getSelCountSmart",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.SklIkarugaDefend",
+      "method": "getSortId",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.SklIron",
+      "method": "getMetaType",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.SklIron",
+      "method": "getSortId",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.SklIron",
+      "method": "select",
+      "arity": 3,
+      "reason": "Dart 签名参数数量不一致"
+    },
+    {
+      "owner": "T.SklLazyAttack",
+      "method": "getOwner",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.SklMarioGet",
+      "method": "getMetaType",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.SklMarioGet",
+      "method": "select",
+      "arity": 3,
+      "reason": "Dart 签名参数数量不一致"
+    },
+    {
+      "owner": "T.SklMarioReraise",
+      "method": "getSortId",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.SklQuake",
+      "method": "getSelCount",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.SklQuake",
+      "method": "getSelCountSmart",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.SklRapid",
+      "method": "getSelCount",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.SklRapid",
+      "method": "getSelCountSmart",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.SklReraise",
+      "method": "getSortId",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.SklS11",
+      "method": "select",
+      "arity": 3,
+      "reason": "Dart 签名参数数量不一致"
+    },
+    {
+      "owner": "T.SklShadow",
+      "method": "select",
+      "arity": 3,
+      "reason": "Dart 签名参数数量不一致"
+    },
+    {
+      "owner": "T.SklSlimeSpawn",
+      "method": "getSortId",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.SklSlimeSpawnState",
+      "method": "getMetaType",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.SklSummon",
+      "method": "select",
+      "arity": 3,
+      "reason": "Dart 签名参数数量不一致"
+    },
+    {
+      "owner": "T.SklUpgrade",
+      "method": "getMetaType",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.SlowState",
+      "method": "getMetaType",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.UpdateStateImpl",
+      "method": "getSortId",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "T.ZombieState",
+      "method": "getMetaType",
+      "arity": 0,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "V.ProfileMain",
+      "method": "getError",
+      "arity": 1,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "V.ProfileMain",
+      "method": "start",
+      "arity": 2,
+      "reason": "Dart 签名参数数量不一致"
+    },
+    {
+      "owner": "X.ProfileFind",
+      "method": "getError",
+      "arity": 1,
+      "reason": "Dart 源中没有同名方法"
+    },
+    {
+      "owner": "X.ProfileFind",
+      "method": "start",
+      "arity": 2,
+      "reason": "Dart 签名参数数量不一致"
+    }
+  ]
+}

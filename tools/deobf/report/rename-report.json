@@ -1,0 +1,1551 @@
+{
+  "batches": {
+    "0": {
+      "input": "D:\\githubs\\namer\\fast-namerena\\branch\\latest\\md5.js",
+      "output": "D:\\githubs\\namer\\fast-namerena\\branch\\latest\\md5.identity.js",
+      "inputSha256": "bfb9860d0875b7ccc95eb731a328604e4b169dd57ab1980d6664ea302638103c",
+      "outputSha256": "bfb9860d0875b7ccc95eb731a328604e4b169dd57ab1980d6664ea302638103c",
+      "bytes": {
+        "before": 681331,
+        "after": 681331
+      },
+      "entries": []
+    },
+    "1": {
+      "input": "D:\\githubs\\namer\\fast-namerena\\branch\\latest\\md5.js",
+      "output": "D:\\githubs\\namer\\fast-namerena\\branch\\latest\\md5.stage1.js",
+      "inputSha256": "bfb9860d0875b7ccc95eb731a328604e4b169dd57ab1980d6664ea302638103c",
+      "outputSha256": "15db4f68e5995e035561b58740b4e4f4a2773d6cfd2fc8e7e3b78f9d47c99cea",
+      "bytes": {
+        "before": 681331,
+        "after": 683859
+      },
+      "entries": [
+        {
+          "old": "v",
+          "new": "act",
+          "status": "applied",
+          "definitions": 44,
+          "owners": [
+            "T.BerserkState",
+            "T.CovidState",
+            "T.LazyState",
+            "T.SkillVoid",
+            "T.SklAbsorb",
+            "T.SklAccumulate",
+            "T.SklAokijiIceAge",
+            "T.SklAssassinate",
+            "T.SklAttack",
+            "T.SklBerserk",
+            "T.SklCharge",
+            "T.SklCharm",
+            "T.SklClone",
+            "T.SklConan",
+            "T.SklCovidAttack",
+            "T.SklCritical",
+            "T.SklCurse",
+            "T.SklDeathNote",
+            "T.SklDisperse",
+            "T.SklExchange",
+            "T.SklExplode",
+            "T.SklFire",
+            "T.SklHaste",
+            "T.SklHeal",
+            "T.SklIce",
+            "T.SklIkarugaAttack",
+            "T.SklIron",
+            "T.SklLazyAttack",
+            "T.SklMarioGet",
+            "T.SklPoison",
+            "T.SklPossess",
+            "T.SklQuake",
+            "T.SklRapid",
+            "T.SklRevive",
+            "T.SklRinickModifierClone",
+            "T.SklS11",
+            "T.SklSaitama",
+            "T.SklShadow",
+            "T.SklSimpleAttack",
+            "T.SklSlow",
+            "T.SklSummon",
+            "T.SklThunder",
+            "T.SklYuriControl",
+            "T.sklHalf"
+          ],
+          "prototypeKeys": 44,
+          "memberAccesses": 2,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "W",
+          "new": "addToProcs",
+          "status": "applied",
+          "definitions": 19,
+          "owners": [
+            "T.Skill",
+            "T.SklAokijiDefend",
+            "T.SklCounter",
+            "T.SklCovidDefend",
+            "T.SklDeathNote",
+            "T.SklDefend",
+            "T.SklHide",
+            "T.SklIkarugaDefend",
+            "T.SklLazyDefend",
+            "T.SklMarioReraise",
+            "T.SklMerge",
+            "T.SklProtect",
+            "T.SklReflect",
+            "T.SklReraise",
+            "T.SklSaitama",
+            "T.SklShield",
+            "T.SklSlimeSpawn",
+            "T.SklUpgrade",
+            "T.SklZombie"
+          ],
+          "prototypeKeys": 19,
+          "memberAccesses": 6,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "b9",
+          "new": "selectOneTarget",
+          "status": "applied",
+          "definitions": 6,
+          "owners": [
+            "T.BerserkState",
+            "T.Skill",
+            "T.SklHaste",
+            "T.SklHeal",
+            "T.SklProtect",
+            "T.SklRevive"
+          ],
+          "prototypeKeys": 6,
+          "memberAccesses": 1,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "as",
+          "new": "validTarget",
+          "status": "applied",
+          "definitions": 14,
+          "owners": [
+            "T.Skill",
+            "T.SklAssassinate",
+            "T.SklBerserk",
+            "T.SklCharm",
+            "T.SklConan",
+            "T.SklCurse",
+            "T.SklExchange",
+            "T.SklHaste",
+            "T.SklHeal",
+            "T.SklProtect",
+            "T.SklRevive",
+            "T.SklSlow",
+            "T.SklYuriControl",
+            "T.sklHalf"
+          ],
+          "prototypeKeys": 14,
+          "memberAccesses": 1,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "a9",
+          "new": "scoreTarget",
+          "status": "applied",
+          "definitions": 15,
+          "owners": [
+            "T.BerserkState",
+            "T.Skill",
+            "T.SklAssassinate",
+            "T.SklBerserk",
+            "T.SklCharm",
+            "T.SklCurse",
+            "T.SklDisperse",
+            "T.SklExchange",
+            "T.SklHaste",
+            "T.SklHeal",
+            "T.SklIce",
+            "T.SklProtect",
+            "T.SklRevive",
+            "T.SklSlow",
+            "T.sklHalf"
+          ],
+          "prototypeKeys": 15,
+          "memberAccesses": 2,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "bx",
+          "new": "scoreTargetImpl",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "T.Skill"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 4,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "aa",
+          "new": "select",
+          "status": "applied",
+          "definitions": 12,
+          "owners": [
+            "T.Skill",
+            "T.SkillVoid",
+            "T.SklAccumulate",
+            "T.SklAssassinate",
+            "T.SklCharge",
+            "T.SklClone",
+            "T.SklDeathNote",
+            "T.SklIron",
+            "T.SklMarioGet",
+            "T.SklS11",
+            "T.SklShadow",
+            "T.SklSummon"
+          ],
+          "prototypeKeys": 12,
+          "memberAccesses": 5,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "au",
+          "new": "prob",
+          "status": "applied",
+          "definitions": 12,
+          "owners": [
+            "T.ActionSkill",
+            "T.SkillVoid",
+            "T.SklAbsorb",
+            "T.SklAccumulate",
+            "T.SklAssassinate",
+            "T.SklCharge",
+            "T.SklDeathNote",
+            "T.SklIron",
+            "T.SklMarioGet",
+            "T.SklS11",
+            "T.SklShadow",
+            "T.SklSummon"
+          ],
+          "prototypeKeys": 12,
+          "memberAccesses": 2,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "at",
+          "new": "postAction",
+          "status": "applied",
+          "definitions": 11,
+          "owners": [
+            "T.CharmState",
+            "T.CovidState",
+            "T.HasteState",
+            "T.LazyState",
+            "T.Plr",
+            "T.PoisonState",
+            "T.PostActionImpl",
+            "T.SklCharge",
+            "T.SklIron",
+            "T.SklProtect",
+            "T.SlowState"
+          ],
+          "prototypeKeys": 11,
+          "memberAccesses": 3,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "ar",
+          "new": "updateState",
+          "status": "applied",
+          "definitions": 13,
+          "owners": [
+            "T.CharmState",
+            "T.CurseState",
+            "T.HasteState",
+            "T.IceState",
+            "T.LazyState",
+            "T.RinickModifierUpdateState",
+            "T.SklAccumulate",
+            "T.SklCharge",
+            "T.SklHide",
+            "T.SklIron",
+            "T.SklUpgrade",
+            "T.SlowState",
+            "T.UpdateStateImpl"
+          ],
+          "prototypeKeys": 13,
+          "memberAccesses": 2,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "aD",
+          "new": "postDamage",
+          "status": "applied",
+          "definitions": 10,
+          "owners": [
+            "T.PlrSummon",
+            "T.PostDamageImpl",
+            "T.SklAssassinate",
+            "T.SklCounter",
+            "T.SklCovidDefend",
+            "T.SklDeathNote",
+            "T.SklHide",
+            "T.SklLazyDefend",
+            "T.SklUpgrade",
+            "T.hc"
+          ],
+          "prototypeKeys": 10,
+          "memberAccesses": 2,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "aN",
+          "new": "preAction",
+          "status": "applied",
+          "definitions": 8,
+          "owners": [
+            "T.BerserkState",
+            "T.CovidState",
+            "T.LazyState",
+            "T.PreActionImpl",
+            "T.RinickModifierPreAction",
+            "T.SklAssassinate",
+            "T.SklHide",
+            "T.SklShield"
+          ],
+          "prototypeKeys": 8,
+          "memberAccesses": 2,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "aq",
+          "new": "postDefend",
+          "status": "applied",
+          "definitions": 9,
+          "owners": [
+            "T.CurseState",
+            "T.Plr",
+            "T.PostDefendImpl",
+            "T.ShieldStat_",
+            "T.SklAokijiDefend",
+            "T.SklDefend",
+            "T.SklIkarugaDefend",
+            "T.SklIron",
+            "T.SklSaitama"
+          ],
+          "prototypeKeys": 9,
+          "memberAccesses": 6,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "K",
+          "new": "destroy",
+          "status": "applied",
+          "definitions": 17,
+          "owners": [
+            "T.BerserkState",
+            "T.CharmState",
+            "T.CovidMeta",
+            "T.CurseState",
+            "T.DummyChargeMeta",
+            "T.HasteState",
+            "T.IMeta",
+            "T.IceState",
+            "T.LazyState",
+            "T.PoisonState",
+            "T.ShieldStat_",
+            "T.SklAccumulate",
+            "T.SklCharge",
+            "T.SklIron",
+            "T.SklMarioGet",
+            "T.SklUpgrade",
+            "T.SlowState"
+          ],
+          "prototypeKeys": 17,
+          "memberAccesses": 14,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "gT",
+          "new": "getMetaType",
+          "status": "applied",
+          "definitions": 22,
+          "owners": [
+            "T.BerserkState",
+            "T.CharmState",
+            "T.CovidMeta",
+            "T.CurseState",
+            "T.DummyChargeMeta",
+            "T.FireState",
+            "T.HasteState",
+            "T.IceState",
+            "T.LazyState",
+            "T.MergeState",
+            "T.MinionCount",
+            "T.PoisonState",
+            "T.ProtectStat",
+            "T.ShieldStat_",
+            "T.SklAccumulate",
+            "T.SklCharge",
+            "T.SklIron",
+            "T.SklMarioGet",
+            "T.SklSlimeSpawnState",
+            "T.SklUpgrade",
+            "T.SlowState",
+            "T.ZombieState"
+          ],
+          "prototypeKeys": 22,
+          "memberAccesses": 4,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "ga4",
+          "new": "getSortId",
+          "status": "applied",
+          "definitions": 17,
+          "owners": [
+            "Sgls.MEntry",
+            "T.PostActionImpl",
+            "T.PostDamageImpl",
+            "T.PostDefendImpl",
+            "T.PreActionImpl",
+            "T.PreStepImpl",
+            "T.RinickModifierPreAction",
+            "T.RinickModifierUpdateState",
+            "T.ShieldStat_",
+            "T.SklDefend",
+            "T.SklIkarugaDefend",
+            "T.SklIron",
+            "T.SklMarioReraise",
+            "T.SklReraise",
+            "T.SklSlimeSpawn",
+            "T.UpdateStateImpl",
+            "T.cp"
+          ],
+          "prototypeKeys": 17,
+          "memberAccesses": 4,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "gb7",
+          "new": "getSelCount",
+          "status": "applied",
+          "definitions": 6,
+          "owners": [
+            "T.Skill",
+            "T.SklAokijiIceAge",
+            "T.SklConan",
+            "T.SklIkarugaAttack",
+            "T.SklQuake",
+            "T.SklRapid"
+          ],
+          "prototypeKeys": 6,
+          "memberAccesses": 1,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "gb8",
+          "new": "getSelCountSmart",
+          "status": "applied",
+          "definitions": 6,
+          "owners": [
+            "T.Skill",
+            "T.SklAokijiIceAge",
+            "T.SklConan",
+            "T.SklIkarugaAttack",
+            "T.SklQuake",
+            "T.SklRapid"
+          ],
+          "prototypeKeys": 6,
+          "memberAccesses": 1,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "gbo",
+          "new": "getRFFFF",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "LangData.SuperRC4"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 6,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "ao",
+          "new": "init",
+          "status": "applied",
+          "definitions": 5,
+          "owners": [
+            "T.Skill",
+            "T.SkillVoid",
+            "T.SklMarioGet",
+            "T.SklMarioReraise",
+            "T.SklPossess"
+          ],
+          "prototypeKeys": 5,
+          "memberAccesses": 12,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "aP",
+          "new": "add",
+          "status": "applied",
+          "definitions": 3,
+          "owners": [
+            "T.BerserkState",
+            "T.CharmState",
+            "T.LazyState"
+          ],
+          "prototypeKeys": 3,
+          "memberAccesses": 6,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "a7",
+          "new": "immune",
+          "status": "applied",
+          "definitions": 6,
+          "owners": [
+            "T.BossSlime2",
+            "T.Plr",
+            "T.PlrBoost",
+            "T.PlrBoss",
+            "T.PlrBossIkaruga",
+            "T.PlrBossMario"
+          ],
+          "prototypeKeys": 6,
+          "memberAccesses": 13,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "bS",
+          "new": "kill",
+          "status": "applied",
+          "definitions": 3,
+          "owners": [
+            "T.Plr",
+            "T.SklMerge",
+            "T.SklZombie"
+          ],
+          "prototypeKeys": 3,
+          "memberAccesses": 2,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "cD",
+          "new": "getDieMessage",
+          "status": "applied",
+          "definitions": 2,
+          "owners": [
+            "T.Minion",
+            "T.Plr"
+          ],
+          "prototypeKeys": 2,
+          "memberAccesses": 1,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "ac",
+          "new": "createSkills",
+          "status": "applied",
+          "definitions": 16,
+          "owners": [
+            "T.BossSlime2",
+            "T.Plr",
+            "T.PlrBossAokiji",
+            "T.PlrBossConan",
+            "T.PlrBossCovid",
+            "T.PlrBossIkaruga",
+            "T.PlrBossLazy",
+            "T.PlrBossMario",
+            "T.PlrBossMosquito",
+            "T.PlrBossSaitama",
+            "T.PlrBossSlime",
+            "T.PlrBossSonic",
+            "T.PlrBossYuri",
+            "T.PlrShadow",
+            "T.PlrSummon",
+            "T.PlrZombie"
+          ],
+          "prototypeKeys": 16,
+          "memberAccesses": 1,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "bs",
+          "new": "addSkillsToProc",
+          "status": "applied",
+          "definitions": 3,
+          "owners": [
+            "T.Plr",
+            "T.PlrBoss",
+            "T.PlrClone"
+          ],
+          "prototypeKeys": 3,
+          "memberAccesses": 3,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        }
+      ]
+    },
+    "2": {
+      "input": "D:\\githubs\\namer\\fast-namerena\\branch\\latest\\md5.stage1.js",
+      "output": "D:\\githubs\\namer\\fast-namerena\\branch\\latest\\md5.stage2.js",
+      "inputSha256": "15db4f68e5995e035561b58740b4e4f4a2773d6cfd2fc8e7e3b78f9d47c99cea",
+      "outputSha256": "8eae330cb1bc91c9a7c7f7d4b35e080ab2261544486c151019384473ab5f0243",
+      "bytes": {
+        "before": 683859,
+        "after": 687163
+      },
+      "entries": [
+        {
+          "old": "a1",
+          "new": "init",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "T.Plr"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 22,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "bw",
+          "new": "mpReady",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "T.Plr"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 5,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "bf",
+          "new": "calcNameLength",
+          "status": "applied",
+          "definitions": 6,
+          "owners": [
+            "T.Minion",
+            "T.Plr",
+            "T.PlrBossTest",
+            "T.PlrBossTest2",
+            "T.PlrClone",
+            "T.PlrEx"
+          ],
+          "prototypeKeys": 6,
+          "memberAccesses": 1,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "cA",
+          "new": "upgrade",
+          "status": "applied",
+          "definitions": 2,
+          "owners": [
+            "T.Plr",
+            "T.PlrEx"
+          ],
+          "prototypeKeys": 2,
+          "memberAccesses": 2,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "cg",
+          "new": "buildAsync",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "T.Plr"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 0,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "az",
+          "new": "buildAsyncBody",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "T.Plr"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 12,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "aU",
+          "new": "initRawAttr",
+          "status": "applied",
+          "definitions": 6,
+          "owners": [
+            "T.Plr",
+            "T.PlrBoss",
+            "T.PlrClone",
+            "T.PlrShadow",
+            "T.PlrSummon",
+            "T.PlrZombie"
+          ],
+          "prototypeKeys": 6,
+          "memberAccesses": 3,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "bP",
+          "new": "initLists",
+          "status": "applied",
+          "definitions": 2,
+          "owners": [
+            "T.Plr",
+            "T.PlrSummon"
+          ],
+          "prototypeKeys": 2,
+          "memberAccesses": 3,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "dm",
+          "new": "initSkills",
+          "status": "applied",
+          "definitions": 2,
+          "owners": [
+            "T.Plr",
+            "T.PlrBoss"
+          ],
+          "prototypeKeys": 2,
+          "memberAccesses": 1,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "cn",
+          "new": "initValues",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "T.Plr"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 3,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "F",
+          "new": "updateStates",
+          "status": "applied",
+          "definitions": 2,
+          "owners": [
+            "T.Plr",
+            "T.PlrBossMario"
+          ],
+          "prototypeKeys": 2,
+          "memberAccesses": 31,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "ci",
+          "new": "calcAttrSum",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "T.Plr"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 3,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "dN",
+          "new": "step",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "T.Plr"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 1,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "eE",
+          "new": "action",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "T.Plr"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 1,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "bL",
+          "new": "clearStates",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "T.Plr"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 4,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "fn",
+          "new": "preAction",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "T.Plr"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 1,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "du",
+          "new": "preDefend",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "T.Plr"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 2,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "a3",
+          "new": "attacked",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "T.Plr"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 21,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "bN",
+          "new": "defend",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "T.Plr"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 4,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "aF",
+          "new": "damage",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "T.Plr"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 10,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "cr",
+          "new": "onDamaged",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "T.Plr"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 3,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "bm",
+          "new": "onDie",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "T.Plr"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 6,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "fK",
+          "new": "toGroupString",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "T.Plr"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 0,
+          "computedAccesses": 0,
+          "registryStrings": 1
+        },
+        {
+          "old": "cE",
+          "new": "getScoreStr",
+          "status": "applied",
+          "definitions": 2,
+          "owners": [
+            "T.Plr",
+            "T.PlrBoss"
+          ],
+          "prototypeKeys": 2,
+          "memberAccesses": 1,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "dE",
+          "new": "toDetail",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "T.Plr"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 1,
+          "computedAccesses": 0,
+          "registryStrings": 1
+        },
+        {
+          "old": "gb2",
+          "new": "getDispName",
+          "status": "applied",
+          "definitions": 2,
+          "owners": [
+            "T.IPlr",
+            "T.Plr"
+          ],
+          "prototypeKeys": 2,
+          "memberAccesses": 6,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "gap",
+          "new": "getOwner",
+          "status": "applied",
+          "definitions": 10,
+          "owners": [
+            "T.BossSlime2",
+            "T.CovidState",
+            "T.LazyState",
+            "T.PlrClone",
+            "T.PlrShadow",
+            "T.PlrSummon",
+            "T.PlrZombie",
+            "T.Skill",
+            "T.SklCovidAttack",
+            "T.SklLazyAttack"
+          ],
+          "prototypeKeys": 10,
+          "memberAccesses": 7,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "gan",
+          "new": "getAppendAttr",
+          "status": "applied",
+          "definitions": 13,
+          "owners": [
+            "T.BossSlime2",
+            "T.PlrBoss",
+            "T.PlrBossAokiji",
+            "T.PlrBossConan",
+            "T.PlrBossCovid",
+            "T.PlrBossIkaruga",
+            "T.PlrBossLazy",
+            "T.PlrBossMario",
+            "T.PlrBossMosquito",
+            "T.PlrBossSaitama",
+            "T.PlrBossSlime",
+            "T.PlrBossSonic",
+            "T.PlrBossYuri"
+          ],
+          "prototypeKeys": 13,
+          "memberAccesses": 2,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "gaS",
+          "new": "getImmunedX",
+          "status": "applied",
+          "definitions": 8,
+          "owners": [
+            "T.PlrBoss",
+            "T.PlrBossConan",
+            "T.PlrBossMario",
+            "T.PlrBossMosquito",
+            "T.PlrBossSaitama",
+            "T.PlrBossSlime",
+            "T.PlrBossSonic",
+            "T.PlrBossYuri"
+          ],
+          "prototypeKeys": 8,
+          "memberAccesses": 1,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "gaG",
+          "new": "getImmuned",
+          "status": "applied",
+          "definitions": 10,
+          "owners": [
+            "T.PlrBoss",
+            "T.PlrBossCovid",
+            "T.PlrBossIkaruga",
+            "T.PlrBossLazy",
+            "T.PlrBossMario",
+            "T.PlrBossMosquito",
+            "T.PlrBossSaitama",
+            "T.PlrBossSlime",
+            "T.PlrBossSonic",
+            "T.PlrBossYuri"
+          ],
+          "prototypeKeys": 10,
+          "memberAccesses": 1,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "eV",
+          "new": "fixattr",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "T.BossSlime2"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 1,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "b1",
+          "new": "die",
+          "status": "applied",
+          "definitions": 6,
+          "owners": [
+            "T.Minion",
+            "T.PlrSummon",
+            "T.SklMarioReraise",
+            "T.SklReraise",
+            "T.SklSlimeSpawn",
+            "T.cp"
+          ],
+          "prototypeKeys": 6,
+          "memberAccesses": 2,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "b3",
+          "new": "init",
+          "status": "applied",
+          "definitions": 6,
+          "owners": [
+            "T.BossWeapon",
+            "T.GuiYue",
+            "T.NoWeapon",
+            "T.Weapon",
+            "T.WeaponS11",
+            "T.kv"
+          ],
+          "prototypeKeys": 6,
+          "memberAccesses": 2,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "cB",
+          "new": "upgrade3Number",
+          "status": "applied",
+          "definitions": 2,
+          "owners": [
+            "T.BossWeapon",
+            "T.Weapon"
+          ],
+          "prototypeKeys": 2,
+          "memberAccesses": 2,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "bn",
+          "new": "preUpgrade",
+          "status": "applied",
+          "definitions": 5,
+          "owners": [
+            "T.BossWeapon",
+            "T.GuiYue",
+            "T.NoWeapon",
+            "T.Weapon",
+            "T.kv"
+          ],
+          "prototypeKeys": 5,
+          "memberAccesses": 2,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "cs",
+          "new": "postUpgrade",
+          "status": "applied",
+          "definitions": 2,
+          "owners": [
+            "T.RinickModifier",
+            "T.Weapon"
+          ],
+          "prototypeKeys": 2,
+          "memberAccesses": 2,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "b6",
+          "new": "upgradeSkill",
+          "status": "applied",
+          "definitions": 7,
+          "owners": [
+            "T.GuiYue",
+            "T.NoWeapon",
+            "T.RinickModifier",
+            "T.Weapon",
+            "T.WeaponDeathNote",
+            "T.WeaponS11",
+            "T.kv"
+          ],
+          "prototypeKeys": 7,
+          "memberAccesses": 1,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "bO",
+          "new": "encryptBytes",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "Y.RC4"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 4,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "di",
+          "new": "decryptBytes",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "Y.RC4"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 2,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "n",
+          "new": "nextByte",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "Y.RC4"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 72,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "dB",
+          "new": "round",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "LangData.SuperRC4"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 2,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "dH",
+          "new": "sortList",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "LangData.SuperRC4"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 1,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "fi",
+          "new": "pick",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "LangData.SuperRC4"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 1,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "fj",
+          "new": "pickSkip",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "LangData.SuperRC4"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 1,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "fl",
+          "new": "pickSkipRange",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "LangData.SuperRC4"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 1,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "ax",
+          "new": "nextInt",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "LangData.SuperRC4"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 9,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "bH",
+          "new": "insertAfter",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "Sgls.MList"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 4,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "d8",
+          "new": "unlinkInList",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "Sgls.MList"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 2,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "D",
+          "new": "unlink",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "Sgls.MEntry"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 33,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "gc8",
+          "new": "getList",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "Sgls.MEntry"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 1,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "sc8",
+          "new": "setList",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "Sgls.MEntry"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 1,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "gaE",
+          "new": "getNext",
+          "status": "applied",
+          "definitions": 2,
+          "owners": [
+            "Sgls.MEntry",
+            "Sgls.MList"
+          ],
+          "prototypeKeys": 2,
+          "memberAccesses": 3,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "saE",
+          "new": "setNext",
+          "status": "applied",
+          "definitions": 2,
+          "owners": [
+            "Sgls.MEntry",
+            "Sgls.MList"
+          ],
+          "prototypeKeys": 2,
+          "memberAccesses": 4,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "sbq",
+          "new": "setPrevious",
+          "status": "applied",
+          "definitions": 2,
+          "owners": [
+            "Sgls.MEntry",
+            "Sgls.MList"
+          ],
+          "prototypeKeys": 2,
+          "memberAccesses": 4,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "bD",
+          "new": "main",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "T.Engine"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 1,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "fz",
+          "new": "round",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "T.Engine"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 1,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "O",
+          "new": "nextUpdates",
+          "status": "applied",
+          "definitions": 4,
+          "owners": [
+            "L.ProfileWinChance",
+            "T.Engine",
+            "V.ProfileMain",
+            "X.ProfileFind"
+          ],
+          "prototypeKeys": 4,
+          "memberAccesses": 5,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "ae",
+          "new": "start",
+          "status": "applied",
+          "definitions": 4,
+          "owners": [
+            "L.ProfileWinChance",
+            "T.Engine",
+            "V.ProfileMain",
+            "X.ProfileFind"
+          ],
+          "prototypeKeys": 4,
+          "memberAccesses": 1,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "dM",
+          "new": "startImpl",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "T.Engine"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 1,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "cq",
+          "new": "newPlayer",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "T.Engine"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 1,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "f7",
+          "new": "newPlayerImpl",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "T.Engine"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 1,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "gbu",
+          "new": "getError",
+          "status": "applied",
+          "definitions": 4,
+          "owners": [
+            "L.ProfileWinChance",
+            "T.Engine",
+            "V.ProfileMain",
+            "X.ProfileFind"
+          ],
+          "prototypeKeys": 4,
+          "memberAccesses": 2,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "aZ",
+          "new": "addNew",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "T.Grp"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 7,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        },
+        {
+          "old": "dj",
+          "new": "die",
+          "status": "applied",
+          "definitions": 1,
+          "owners": [
+            "T.Grp"
+          ],
+          "prototypeKeys": 1,
+          "memberAccesses": 2,
+          "computedAccesses": 0,
+          "registryStrings": 0
+        }
+      ]
+    }
+  }
+}

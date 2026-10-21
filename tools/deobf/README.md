@@ -1,10 +1,10 @@
 # deobf 工具
 
-用于清理 `branch/latest/md5.js` 的可重复管线。当前只做**死代码清理 + lazy 常量内联**，不改标识符、不改战斗语义。
+用于清理 `branch/latest/md5.js` 的可重复管线。当前包含**死代码清理 + lazy 常量内联 + 领域方法/参数重命名**，不改战斗语义。
 
-## 当前状态（md5 0.5.3 第一轮）
+## 当前状态（md5 0.5.3 第二轮）
 
-已落地的清理：
+第一轮清理：
 
 | 项目 | 变化 |
 | --- | --- |
@@ -16,7 +16,19 @@
 | 归一化（LF）体积 | 694,550 → 659,792 字节 |
 | 保留的 lazy 注册 | 277 → 44 |
 
-行为门槛全部通过：golden 全语料逐字节一致、`bun test.ts` 通过、无头 Edge 跑完一场真实战斗（胜者 `m@fAIgFUL`）。
+第二轮符号还原（不改变行数与行为）：
+
+| 项目 | 变化 |
+| --- | --- |
+| 原型方法重命名 | 90 条映射，批次 1 覆盖技能/状态共享接口，批次 2 覆盖 Plr/Engine/RC4/MList/Weapon/Boss 等 |
+| 参数重命名 | 203 个方法、483 个参数按 `namer-src` 的 Dart 签名还原 |
+| `var _ = this` | 146 处统一改为 `var self = this` |
+| 行数 | 21,539（不变） |
+| 归一化（LF）体积 | 659,792 → 676,440 字节（名字变长） |
+
+行为门槛全部通过：golden 全语料逐字节一致、`bun test.ts` 通过、无头 Edge 跑完一场真实战斗、性能较第一轮基线约快 2.4%。
+
+符号映射见 `branch/latest/md5.symbols.json` / `md5.symbols.md`，未解析项见 `report/rename-unresolved.md`。
 
 ## 环境
 
@@ -72,6 +84,52 @@ D:/apps/bun/bin/bun run inline-lazy -- \
 ```
 
 `delete-dead` 的 `--lazy N` 默认是 0（不删 lazy），要删必须显式给出上限；`--members-limit N` 可限制单批成员数。pass 的选取结果写入 `report/last-delete.json`、`report/last-inline.json`。
+
+## 重命名流程
+
+映射数据在 `src/data/rename-members.ts`（成员）与 `src/data/rename-params.ts`（参数，由 Dart 签名生成）。
+`branch/latest/md5.js` 已是第二轮产物；要复现，先从第一轮基线导出 stage0：
+
+```bash
+git show <第一轮封板提交>:branch/latest/md5.js > ../../branch/latest/md5.stage0.js
+```
+
+之后依次运行：
+
+```bash
+# 0. 只读盘点（输出 report/rename-inventory.json、rename-candidates.md）
+D:/apps/bun/bin/bun run rename-analyze -- --candidate ../../branch/latest/md5.stage1.js
+
+# 1. 成员：共享技能/状态接口（批次 1）
+D:/apps/bun/bin/bun run rename-members -- --batch 1 \
+  --candidate ../../branch/latest/md5.stage0.js \
+  --out ../../branch/latest/md5.stage1.js
+
+# 2. 成员：核心战斗类（批次 2）
+D:/apps/bun/bin/bun run rename-members -- --batch 2 \
+  --candidate ../../branch/latest/md5.stage1.js \
+  --out ../../branch/latest/md5.stage2.js
+
+# 3. 参数：从 namer-src 生成映射表，再应用（含 var _ = this -> var self = this）
+D:/apps/bun/bin/bun run rename-params -- --emit-map --candidate ../../branch/latest/md5.stage2.js
+D:/apps/bun/bin/bun run rename-params -- \
+  --candidate ../../branch/latest/md5.stage2.js \
+  --out ../../branch/latest/md5.stage3.js
+
+# 4. 符号表与未解析清单
+D:/apps/bun/bin/bun run symbols -- ../../branch/latest/md5.js
+```
+
+`rename-members --limit N` 只应用映射表中的前 N 条，用于二分定位行为回归；实际改写统计写入 `report/rename-report.json`。
+
+重命名的安全约束：
+
+- 成员只有 `owner` 集合与映射完全一致时才应用；目标名在每个 prototype 块内已存在则跳过
+- `findDispatchConflicts` 模拟 `inherit` / `inherit_many` / `mixin` 后的原型解析，任何类的方法解析结果变化都会剔除对应映射
+- `aliases()` 中的成员表达式随成员重命名一起改写；`installTearOffs` 注册表里的方法名字符串按参数位置同步改写
+- tear-off 描述符（`co/iS/iI/rC/fT/aI/nDA`）与 `_Parser_` / `_Universe_` / `_substitute` 运行时函数内的成员读取不改
+- 参数只按 Dart 签名数量一致且参数名唯一的映射应用；函数内已有同名标识符时跳过并记入 `report/rename-unresolved.md`
+- 每批都断言：行数不变、token 序列除 Identifier 外完全一致、输出可重新解析、prototype 无重复键
 
 ## 禁止项
 
