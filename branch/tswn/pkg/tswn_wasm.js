@@ -1,7 +1,10 @@
 /* @ts-self-types="./tswn_wasm.d.ts" */
 
 /**
- * wasm-bindgen 规范对局对象；按需取帧，并在 JS finally 中调用生成的 free()。
+ * 持有 core 运行时的 wasm-bindgen 对局对象，按需同步取帧。
+ *
+ * JS 宿主在 finally 中调用生成的 free()；释放前返回的普通 DTO 可继续读取。
+ * Runtime 失败不等同于正常终止，is_done 为 false 时也应检查 is_failed。
  */
 export class BattleSession {
     __destroy_into_raw() {
@@ -44,6 +47,7 @@ export class BattleSession {
         return takeFromExternrefTable0(ret[0]);
     }
     /**
+     * 只表示正常结束或截断；失败应另查 is_failed，不属于正常结果。
      * @returns {boolean}
      */
     is_done() {
@@ -72,7 +76,8 @@ export class BattleSession {
         return ret !== 0;
     }
     /**
-     * 解析 raw 和可选 options，创建 core 会话；错误转换为带 code 的 JS Error。
+     * 解析空行分队的 raw 和可选 options；max_rounds 为正数回合预算。
+     * 未提供选项时使用 core 默认值；错误抛出 `{code, message}`，不是 Error 实例。
      * @param {string} raw_input
      * @param {BattleOptions | null} [options]
      */
@@ -88,7 +93,8 @@ export class BattleSession {
         return this;
     }
     /**
-     * 同步推进至下一可见帧，正常结束返回 JS null。
+     * 同步推进至下一可见帧；正常结束或截断后返回 JS null，可重复调用。
+     * Runtime 失败会保留 sticky error 并重复抛错，应停止推进并释放会话。
      * @returns {BattleReplayFrame | null}
      */
     next_frame() {
@@ -139,6 +145,9 @@ export class BattleSession {
 }
 if (Symbol.dispose) BattleSession.prototype[Symbol.dispose] = BattleSession.prototype.free;
 
+/**
+ * 持有规范会话的兼容包装；capture_replay 仅控制批量收集是否保存帧，不阻止计算。
+ */
 export class FightSession {
     __destroy_into_raw() {
         const ptr = this.__wbg_ptr;
@@ -238,7 +247,10 @@ export class FightSession {
 if (Symbol.dispose) FightSession.prototype[Symbol.dispose] = FightSession.prototype.free;
 
 /**
- * 保存准备阵容和累计结果的分批胜率对象；每次 step 同步执行，宿主安排批间调度。
+ * 保存准备阵容与累计统计的分批胜率对象，不自行创建 Worker 或异步调度。
+ *
+ * 宿主在 step 之间让出事件循环，并在结束或失败后 free；total_rounds=0 时立即完成。
+ * 只有 thread=0/1 可用，其他值返回 UNSUPPORTED_OPTION。
  */
 export class WinRateSession {
     __destroy_into_raw() {
@@ -292,6 +304,7 @@ export class WinRateSession {
         return takeFromExternrefTable0(ret[0]);
     }
     /**
+     * 复制当前累计结果，不要求已完成；宿主应检查 done，percent 的分母是 rounds_done。
      * @returns {WinRateResult}
      */
     result() {
@@ -302,6 +315,7 @@ export class WinRateSession {
         return takeFromExternrefTable0(ret[0]);
     }
     /**
+     * 同步执行至多 batch_size 次剩余试验；省略为 100，0 按 1 处理，完成后不再新增试验。
      * @param {number | null} [batch_size]
      * @returns {WinRateProgress}
      */
@@ -341,6 +355,7 @@ export function batch_rate(target_groups, player_groups, total_rounds, player_la
 }
 
 /**
+ * 以正且有限的 target_factors 加权目标组；权重数组必须与目标组等长。
  * @param {string[]} target_groups
  * @param {Float64Array} target_factors
  * @param {string[]} player_groups
@@ -369,7 +384,10 @@ export function batch_rate_factored(target_groups, target_factors, player_groups
 }
 
 /**
- * 运行完整战斗，并返回共用、可供 UI 使用的回放 JSON 形状。
+ * 同步收集规范回放为普通 JS 对象，并不是 JSON 字符串。
+ *
+ * max_rounds 为正数回合预算；正常截断仍返回结果，Runtime 失败抛出带 code 的值。
+ * 完整帧和快照保存在内存中，长对局可用 BattleSession 按需取帧。
  * @param {string} raw_input
  * @param {BattleOptions | null} [options]
  * @returns {BattleReplay}
@@ -424,6 +442,8 @@ export function default_eval_rq() {
 }
 
 /**
+ * 同步收集旧页面格式回放；options.capture_replay=false 时仍推进，但不保存 frames。
+ * 需要明确截断原因与规范 DTO 时使用 battle_replay 或 BattleSession。
  * @param {string} raw_input
  * @param {FightOptions | null} [options]
  * @returns {FightReplay}
@@ -439,6 +459,7 @@ export function fight(raw_input, options) {
 }
 
 /**
+ * 同步运行旧页面兼容对局并返回最终摘要；整个调用完成前不让出事件循环。
  * @param {string} raw_input
  * @param {FightOptions | null} [options]
  * @returns {FightSummary}
@@ -454,6 +475,8 @@ export function fight_summary(raw_input, options) {
 }
 
 /**
+ * 按 against 顺序同步比较 target 与每个对手，每项文本表示一个多行队伍。
+ * 任一对局失败则整次调用抛错，不返回已完成的数组前缀。
  * @param {string} target
  * @param {string[]} against
  * @param {number} total_rounds
@@ -497,6 +520,7 @@ export function group_win_rate_summary(target, against, total_rounds, eval_rq, t
 }
 
 /**
+ * 返回图标形状和颜色索引的普通 JS 对象，不含 PNG 像素数据。
  * @param {string} name
  * @returns {CliIconInfo}
  */
@@ -511,6 +535,7 @@ export function icon_info(name) {
 }
 
 /**
+ * 返回按行排列的 16×16 RGBA 像素，共 1024 字节，可用于 ImageData。
  * @param {string} name
  * @returns {Uint8Array}
  */
@@ -524,6 +549,7 @@ export function name_to_icon_rgba(name) {
 }
 
 /**
+ * 返回带 `data:image/png;base64,` 前缀的图标文本，可直接作为图片 URL。
  * @param {string} name
  * @returns {string}
  */
@@ -543,6 +569,7 @@ export function name_to_png_base64(name) {
 }
 
 /**
+ * 返回独立的 PNG 文件字节，JS 侧为字节数组；不含 Base64/data URL 前缀。
  * @param {string} name
  * @returns {Uint8Array}
  */
@@ -556,6 +583,7 @@ export function name_to_png_bytes(name) {
 }
 
 /**
+ * 按行解析名字组合并计算选定模式；keep_rq 为真使用普通构建口径。
  * @param {string} raw_input
  * @param {number} total_rounds
  * @param {string[] | null} [modes]
@@ -604,6 +632,7 @@ export function pair_rate(target_groups, players, teammates, head, total_rounds,
 }
 
 /**
+ * 对带靶子权重的搭档组合评分；head 控制最终汇总的头部搭档数量。
  * @param {string[]} target_groups
  * @param {Float64Array} target_factors
  * @param {string[]} players
@@ -633,6 +662,7 @@ export function pair_rate_factored(target_groups, target_factors, players, teamm
 }
 
 /**
+ * 逐行解析名字组为多行队伍文本数组；double_plus 为真使用 ++，否则使用 +。
  * @param {string} content
  * @param {boolean | null} [double_plus]
  * @returns {string[]}
@@ -647,6 +677,7 @@ export function parse_group_lines(content, double_plus) {
 }
 
 /**
+ * 以 mode 指定单项评分，省略时用 normal；返回分数、胜场/总场、失败统计和耗时。
  * @param {string} raw_input
  * @param {number} total_rounds
  * @param {string | null} [mode]
@@ -667,6 +698,7 @@ export function score(raw_input, total_rounds, mode, eval_rq, thread) {
 }
 
 /**
+ * 比较两个多行队伍并返回 CLI 胜率摘要；所有计算同步完成后才返回。
  * @param {string} team1
  * @param {string} team2
  * @param {number} total_rounds
@@ -687,6 +719,7 @@ export function team_win_rate_summary(team1, team2, total_rounds, eval_rq, threa
 }
 
 /**
+ * 将单名转换为 DIY 文本；old/minions 省略时为 false，冲突选项由 core 校验。
  * @param {string} name
  * @param {boolean | null} [old]
  * @param {boolean | null} [minions]
@@ -714,6 +747,7 @@ export function to_diy(name, old, minions) {
 }
 
 /**
+ * 按输入顺序返回 DIY 文本数组；任一名字失败则抛错，不返回部分结果。
  * @param {string[]} names
  * @param {boolean | null} [old]
  * @param {boolean | null} [minions]
@@ -760,6 +794,7 @@ export function win_rate_eval_rq() {
 }
 
 /**
+ * 以 core CLI 口径计算第一组的计数、百分比胜率与纳秒耗时；省略 eval_rq 使用胜率默认值。
  * @param {string} raw_input
  * @param {number} total_rounds
  * @param {number | null} [eval_rq]
@@ -777,6 +812,8 @@ export function win_rate_summary(raw_input, total_rounds, eval_rq, thread) {
 }
 
 /**
+ * 同步执行全部试验，返回第一组的百分比胜率；输入按空行分队。
+ * total_rounds=0 返回已完成的零试验结果；thread 只接受 0/1，大批任务优先分步执行。
  * @param {string} raw_input
  * @param {number} total_rounds
  * @param {WinRateOptions | null} [options]

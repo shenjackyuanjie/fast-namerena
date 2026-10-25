@@ -1,7 +1,25 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * 跨绑定、可供 UI 使用的战斗回放 API 选项。
+ * 分批/同步胜率选项；eval_rq 默认胜率口径，thread 缺失或为 0/1 均使用当前线程。
+ */
+export interface WinRateOptions {
+    eval_rq?: number;
+    thread?: number;
+}
+
+/**
+ * 旧页面兼容对局选项；capture_replay 只控制完整回放是否保存帧，默认保存。
+ */
+export interface FightOptions {
+    eval_rq?: number;
+    include_icons?: boolean;
+    capture_replay?: boolean;
+}
+
+/**
+ * 规范战斗会话与完整回放共用选项；缺失字段使用 core 默认值。
+ * max_rounds 为正数回合预算，不是可见帧数；include_icons 会在快照中附图标 data URL。
  */
 export interface BattleOptions {
     eval_rq?: number;
@@ -215,12 +233,6 @@ export interface CliWinRateResult {
     fight_nanos: number;
 }
 
-export interface FightOptions {
-    eval_rq?: number;
-    include_icons?: boolean;
-    capture_replay?: boolean;
-}
-
 export interface FightReplay {
     players: PlayerMeta[];
     frames: RoundFrame[];
@@ -394,11 +406,6 @@ export interface UpdateView {
     tone: MessageTone;
 }
 
-export interface WinRateOptions {
-    eval_rq?: number;
-    thread?: number;
-}
-
 export interface WinRateProgress {
     done: boolean;
     rounds_done: number;
@@ -433,7 +440,10 @@ export type WinnerIds = number[];
 
 
 /**
- * wasm-bindgen 规范对局对象；按需取帧，并在 JS finally 中调用生成的 free()。
+ * 持有 core 运行时的 wasm-bindgen 对局对象，按需同步取帧。
+ *
+ * JS 宿主在 finally 中调用生成的 free()；释放前返回的普通 DTO 可继续读取。
+ * Runtime 失败不等同于正常终止，is_done 为 false 时也应检查 is_failed。
  */
 export class BattleSession {
     free(): void;
@@ -447,16 +457,21 @@ export class BattleSession {
      * 返回创建时的规范玩家快照数组。
      */
     initial_states(): BattlePlayerState[];
+    /**
+     * 只表示正常结束或截断；失败应另查 is_failed，不属于正常结果。
+     */
     is_done(): boolean;
     is_failed(): boolean;
     is_finished(): boolean;
     is_truncated(): boolean;
     /**
-     * 解析 raw 和可选 options，创建 core 会话；错误转换为带 code 的 JS Error。
+     * 解析空行分队的 raw 和可选 options；max_rounds 为正数回合预算。
+     * 未提供选项时使用 core 默认值；错误抛出 `{code, message}`，不是 Error 实例。
      */
     constructor(raw_input: string, options?: BattleOptions | null);
     /**
-     * 同步推进至下一可见帧，正常结束返回 JS null。
+     * 同步推进至下一可见帧；正常结束或截断后返回 JS null，可重复调用。
+     * Runtime 失败会保留 sticky error 并重复抛错，应停止推进并释放会话。
      */
     next_frame(): BattleReplayFrame | null;
     /**
@@ -468,6 +483,9 @@ export class BattleSession {
     stop_reason(): BattleStopReason | null;
 }
 
+/**
+ * 持有规范会话的兼容包装；capture_replay 仅控制批量收集是否保存帧，不阻止计算。
+ */
 export class FightSession {
     free(): void;
     [Symbol.dispose](): void;
@@ -482,7 +500,10 @@ export class FightSession {
 }
 
 /**
- * 保存准备阵容和累计结果的分批胜率对象；每次 step 同步执行，宿主安排批间调度。
+ * 保存准备阵容与累计统计的分批胜率对象，不自行创建 Worker 或异步调度。
+ *
+ * 宿主在 step 之间让出事件循环，并在结束或失败后 free；total_rounds=0 时立即完成。
+ * 只有 thread=0/1 可用，其他值返回 UNSUPPORTED_OPTION。
  */
 export class WinRateSession {
     free(): void;
@@ -491,16 +512,28 @@ export class WinRateSession {
     is_finished(): boolean;
     constructor(raw_input: string, total_rounds: number, options?: WinRateOptions | null);
     progress(): WinRateProgress;
+    /**
+     * 复制当前累计结果，不要求已完成；宿主应检查 done，percent 的分母是 rounds_done。
+     */
     result(): WinRateResult;
+    /**
+     * 同步执行至多 batch_size 次剩余试验；省略为 100，0 按 1 处理，完成后不再新增试验。
+     */
     step(batch_size?: number | null): WinRateProgress;
 }
 
 export function batch_rate(target_groups: string[], player_groups: string[], total_rounds: number, player_labels?: string[] | null, keep_rq?: boolean | null, thread?: number | null): CliBatchRateResult[];
 
+/**
+ * 以正且有限的 target_factors 加权目标组；权重数组必须与目标组等长。
+ */
 export function batch_rate_factored(target_groups: string[], target_factors: Float64Array, player_groups: string[], total_rounds: number, player_labels?: string[] | null, keep_rq?: boolean | null, thread?: number | null): CliBatchRateResult[];
 
 /**
- * 运行完整战斗，并返回共用、可供 UI 使用的回放 JSON 形状。
+ * 同步收集规范回放为普通 JS 对象，并不是 JSON 字符串。
+ *
+ * max_rounds 为正数回合预算；正常截断仍返回结果，Runtime 失败抛出带 code 的值。
+ * 完整帧和快照保存在内存中，长对局可用 BattleSession 按需取帧。
  */
 export function battle_replay(raw_input: string, options?: BattleOptions | null): BattleReplay;
 
@@ -510,36 +543,80 @@ export function default_custom_runtime_normalized_run(raw_input: string, max_rou
 
 export function default_eval_rq(): number;
 
+/**
+ * 同步收集旧页面格式回放；options.capture_replay=false 时仍推进，但不保存 frames。
+ * 需要明确截断原因与规范 DTO 时使用 battle_replay 或 BattleSession。
+ */
 export function fight(raw_input: string, options?: FightOptions | null): FightReplay;
 
+/**
+ * 同步运行旧页面兼容对局并返回最终摘要；整个调用完成前不让出事件循环。
+ */
 export function fight_summary(raw_input: string, options?: FightOptions | null): FightSummary;
 
+/**
+ * 按 against 顺序同步比较 target 与每个对手，每项文本表示一个多行队伍。
+ * 任一对局失败则整次调用抛错，不返回已完成的数组前缀。
+ */
 export function group_win_rate(target: string, against: string[], total_rounds: number, options?: WinRateOptions | null): GroupWinRateResult[];
 
 export function group_win_rate_summary(target: string, against: string[], total_rounds: number, eval_rq?: number | null, thread?: number | null): CliGroupWinRateResult[];
 
+/**
+ * 返回图标形状和颜色索引的普通 JS 对象，不含 PNG 像素数据。
+ */
 export function icon_info(name: string): CliIconInfo;
 
+/**
+ * 返回按行排列的 16×16 RGBA 像素，共 1024 字节，可用于 ImageData。
+ */
 export function name_to_icon_rgba(name: string): Uint8Array;
 
+/**
+ * 返回带 `data:image/png;base64,` 前缀的图标文本，可直接作为图片 URL。
+ */
 export function name_to_png_base64(name: string): string;
 
+/**
+ * 返回独立的 PNG 文件字节，JS 侧为字节数组；不含 Base64/data URL 前缀。
+ */
 export function name_to_png_bytes(name: string): Uint8Array;
 
+/**
+ * 按行解析名字组合并计算选定模式；keep_rq 为真使用普通构建口径。
+ */
 export function namer_pf(raw_input: string, total_rounds: number, modes?: string[] | null, keep_rq?: boolean | null, thread?: number | null): CliNamerPfResult[];
 
 export function pair_rate(target_groups: string[], players: string[], teammates: string[], head: number, total_rounds: number, keep_rq?: boolean | null, thread?: number | null): CliPairRateResult[];
 
+/**
+ * 对带靶子权重的搭档组合评分；head 控制最终汇总的头部搭档数量。
+ */
 export function pair_rate_factored(target_groups: string[], target_factors: Float64Array, players: string[], teammates: string[], head: number, total_rounds: number, keep_rq?: boolean | null, thread?: number | null): CliPairRateResult[];
 
+/**
+ * 逐行解析名字组为多行队伍文本数组；double_plus 为真使用 ++，否则使用 +。
+ */
 export function parse_group_lines(content: string, double_plus?: boolean | null): string[];
 
+/**
+ * 以 mode 指定单项评分，省略时用 normal；返回分数、胜场/总场、失败统计和耗时。
+ */
 export function score(raw_input: string, total_rounds: number, mode?: string | null, eval_rq?: number | null, thread?: number | null): CliScoreResult;
 
+/**
+ * 比较两个多行队伍并返回 CLI 胜率摘要；所有计算同步完成后才返回。
+ */
 export function team_win_rate_summary(team1: string, team2: string, total_rounds: number, eval_rq?: number | null, thread?: number | null): CliWinRateResult;
 
+/**
+ * 将单名转换为 DIY 文本；old/minions 省略时为 false，冲突选项由 core 校验。
+ */
 export function to_diy(name: string, old?: boolean | null, minions?: boolean | null): string;
 
+/**
+ * 按输入顺序返回 DIY 文本数组；任一名字失败则抛错，不返回部分结果。
+ */
 export function to_diy_batch(names: string[], old?: boolean | null, minions?: boolean | null): string[];
 
 export function version(): string;
@@ -548,8 +625,15 @@ export function wasm_start(): void;
 
 export function win_rate_eval_rq(): number;
 
+/**
+ * 以 core CLI 口径计算第一组的计数、百分比胜率与纳秒耗时；省略 eval_rq 使用胜率默认值。
+ */
 export function win_rate_summary(raw_input: string, total_rounds: number, eval_rq?: number | null, thread?: number | null): CliWinRateResult;
 
+/**
+ * 同步执行全部试验，返回第一组的百分比胜率；输入按空行分队。
+ * total_rounds=0 返回已完成的零试验结果；thread 只接受 0/1，大批任务优先分步执行。
+ */
 export function win_rate_sync(raw_input: string, total_rounds: number, options?: WinRateOptions | null): WinRateResult;
 
 export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
