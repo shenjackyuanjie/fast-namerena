@@ -64,6 +64,41 @@ function slotWriteEdits(source: string, slots: Set<string>): Edit[] {
 	return edits;
 }
 
+interface AssignTarget {
+	name: string;
+	line?: number;
+}
+
+/** 删除只写不读的独立赋值语句（`$.name = ...` 或裸标识符）；target 可带行号限定 */
+function deadAssignEdits(source: string, targets: AssignTarget[]): Edit[] {
+	const edits: Edit[] = [];
+	const ast = parseScript(source);
+	traverseAst(ast, {
+		ExpressionStatement(path: any) {
+			const expr = path.node.expression;
+			if (expr.type !== "AssignmentExpression" || expr.operator !== "=") return;
+			const left = expr.left;
+			let target: string | null = null;
+			if (left.type === "Identifier") target = left.name;
+			else if (
+				left.type === "MemberExpression" &&
+				!left.computed &&
+				left.object.type === "Identifier" &&
+				left.object.name === "$" &&
+				left.property.type === "Identifier"
+			)
+				target = `$.${left.property.name}`;
+			if (!target) return;
+			const line = lineOf(path.node);
+			const matched = targets.some((t) => t.name === target && (t.line === undefined || t.line === line));
+			if (!matched) return;
+			const edit = statementEdit(source, path.node.start, path.node.end, `${target} 死赋值@${line}`);
+			if (edit) edits.push(edit);
+		},
+	});
+	return edits;
+}
+
 /** 向上吞掉紧贴在属性上方的注释行（遇到空行停止） */
 function attachedCommentStart(source: string, start: number): number {
 	let cursor = lineStart(source, start);
@@ -163,6 +198,28 @@ function main(): void {
 		}
 	}
 
+	const assignTargets: AssignTarget[] =
+		typeof args.assign === "string"
+			? args.assign
+					.split(",")
+					.map((s) => s.trim())
+					.filter((s) => s.length > 0)
+					.map((spec) => {
+						const at = spec.lastIndexOf("@");
+						if (at === -1) return { name: spec };
+						const line = Number(spec.slice(at + 1));
+						if (!Number.isInteger(line) || line <= 0) throw new Error(`无效的 --assign 行号限定：${spec}`);
+						return { name: spec.slice(0, at), line };
+					})
+			: [];
+	const deletedAssign: string[] = [];
+	if (assignTargets.length > 0) {
+		for (const edit of deadAssignEdits(source, assignTargets)) {
+			edits.push(edit);
+			deletedAssign.push(edit.label);
+		}
+	}
+
 	if (edits.length === 0) {
 		console.log("没有可删除项");
 		return;
@@ -174,15 +231,16 @@ function main(): void {
 	ensureDir(REPORT_DIR);
 	fs.writeFileSync(
 		path.join(REPORT_DIR, "last-delete.json"),
-		JSON.stringify({ input, output, members: deletedMembers, lazy: deletedLazy }, null, 2),
+		JSON.stringify({ input, output, members: deletedMembers, lazy: deletedLazy, assignments: deletedAssign }, null, 2),
 		"utf-8",
 	);
 
 	console.log(
-		`删除成员 ${deletedMembers.length}，lazy ${deletedLazy.length}；${source.length} -> ${result.length} 字节`,
+		`删除成员 ${deletedMembers.length}，lazy ${deletedLazy.length}，死赋值 ${deletedAssign.length}；${source.length} -> ${result.length} 字节`,
 	);
 	if (deletedMembers.length > 0) console.log(`成员：${deletedMembers.join(", ")}`);
 	if (deletedLazy.length > 0) console.log(`lazy：${deletedLazy.join(", ")}`);
+	if (deletedAssign.length > 0) console.log(`死赋值：${deletedAssign.join(", ")}`);
 }
 
 if (import.meta.main) {
