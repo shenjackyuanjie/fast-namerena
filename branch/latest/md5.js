@@ -823,24 +823,24 @@ var C = {}
 var Sgls = {
     o6(a) {
         var s, r, q
-        if ($.k8.J(0, a)) return $.k8.h(0, a)
-        s = $.e_
-        $.e_ = s + 1
+        if ($.sgls.J(0, a)) return $.sgls.h(0, a)
+        s = $.iconidx
+        $.iconidx = s + 1
         r = "icon_" + s
-        $.k8.m(0, a, r)
+        $.sgls.m(0, a, r)
         q = Sgls.tt(a).toDataURL("image/png", null)
-        $.mg.m(0, a, q)
-        t.w.a(C.v.gbl(document.styleSheets)).insertRule("div." + r + ' { background-image:url("' + H.as_string(q) + '"); }', $.e_ - 1)
+        $.dataUrls.m(0, a, q)
+        t.w.a(C.v.gbl(document.styleSheets)).insertRule("div." + r + ' { background-image:url("' + H.as_string(q) + '"); }', $.iconidx - 1)
         return r
     },
     tw() {
-        $.rW.aw(0, new Sgls.k7())
+        $.bosses.aw(0, new Sgls.k7())
     },
     tv(a) {
         var s, r, q, p, o, n, m, l, k, j, i, h, g, f = W.j4()
         f.width = 128
         f.height = 128
-        f.getContext("2d").drawImage($.md, 0, 0)
+        f.getContext("2d").drawImage($.pattern, 0, 0)
         s = J.cm(P.my(f.getContext("2d").getImageData(0, 0, 128, 128)))
         for (r = t.i, q = 0; q < 38; ++q) {
             p = C.JsInt.V(q, 8) * 64 + C.JsInt.ag(q, 8) * 8192
@@ -852,7 +852,7 @@ var Sgls = {
                     if (j > s[k + 1]) o.push(j)
                     else o.push(0)
                 }
-            $.dZ.push(o)
+            $.datas.push(o)
         }
         for (q = 0; q < 8; ++q) {
             p = q * 64 + 57344
@@ -869,10 +869,10 @@ var Sgls = {
                     if (j > s[k + 2]) h.push(255 - j)
                     else h.push(255)
                 }
-            $.me.push(i)
-            $.o5.push(h)
+            $.borders.push(i)
+            $.masks.push(h)
         }
-        $.nt().bM(0, "")
+        $.initComplete().bM(0, "")
     },
     tt(a) {
         var s, r, q = new LangData.SuperRC4()
@@ -883,12 +883,12 @@ var Sgls = {
         return Sgls.ts(P.List_List_of(new H.y(s, new Sgls.k5(), r), true, r.i("M.E")))
     },
     ts(a) {
-        var s, r, q, p, o, n, m, l, k, j, i, h, g, f = C.d.V(a[0], $.me.length),
+        var s, r, q, p, o, n, m, l, k, j, i, h, g, f = C.d.V(a[0], $.borders.length),
             e = t.i,
             d = H.b([], e)
-        d.push(C.d.V(a[1], $.dZ.length))
+        d.push(C.d.V(a[1], $.datas.length))
         s = a[2]
-        r = $.dZ.length
+        r = $.datas.length
         q = C.d.V(s, r)
         if (q === d[0]) {
             q = C.d.V(a[3], r)
@@ -898,17 +898,17 @@ var Sgls = {
         o = p + 1
         if (a[p] < 4) {
             p = o + 1
-            d.push(C.d.V(a[o], $.dZ.length))
+            d.push(C.d.V(a[o], $.datas.length))
             o = p + 1
             if (a[p] < 64) {
                 p = o + 1
-                d.push(C.d.V(a[o], $.dZ.length))
+                d.push(C.d.V(a[o], $.datas.length))
             } else p = o
         } else p = o
-        n = $.nu().getContext("2d")
+        n = $.canvas().getContext("2d")
         o = p + 1
         m = C.d.V(a[p], 21 - 6)
-        l = $.mf[m]
+        l = $.sigColors[m]
         s = l[0]
         r = l[1]
         k = l[2]
@@ -925,10 +925,10 @@ var Sgls = {
                 g = C.d.V(a[p], 21)
             }
             j.push(g)
-            Sgls.o4(n, $.dZ[d[h]], $.mf[g])
+            Sgls.o4(n, $.datas[d[h]], $.sigColors[g])
         }
         Sgls.tu(n, f)
-        return $.nu()
+        return $.canvas()
     },
     o4(a, b, c) {
         var s, r, q, p, o
@@ -936,23 +936,23 @@ var Sgls = {
             for (p = 0; p < 16; ++p) {
                 o = r + 3
                 if (b[s] > 0) {
-                    J.cm($.d8())[r] = c[0]
-                    J.cm($.d8())[r + 1] = c[1]
-                    J.cm($.d8())[r + 2] = c[2]
-                    J.cm($.d8())[o] = b[s]
-                } else J.cm($.d8())[o] = 0;
+                    J.cm($.shapeImage())[r] = c[0]
+                    J.cm($.shapeImage())[r + 1] = c[1]
+                    J.cm($.shapeImage())[r + 2] = c[2]
+                    J.cm($.shapeImage())[o] = b[s]
+                } else J.cm($.shapeImage())[o] = 0;
                 ++s
                 r += 4
             }
-        o = $.lS().getContext("2d");
-        (o && C.k).dw(o, $.d8(), 0, 0)
-        a.drawImage($.lS(), 0, 0)
+        o = $.shapeCanvas().getContext("2d");
+        (o && C.k).dw(o, $.shapeImage(), 0, 0)
+        a.drawImage($.shapeCanvas(), 0, 0)
     },
     tu(a, b) {
         var s, r, q, p
-        Sgls.o4(a, $.me[b], H.b([64, 64, 64], t.i))
+        Sgls.o4(a, $.borders[b], H.b([64, 64, 64], t.i))
         s = P.my(a.getImageData(0, 0, 16, 16))
-        r = $.o5[b]
+        r = $.masks[b]
         for (q = J.bv(s), p = 0; p < 256; ++p) q.gck(s)[p * 4 + 3] = r[p]
         C.k.dw(a, s, 0, 0)
     },
@@ -3592,7 +3592,7 @@ var J = {
             return result
         },
         get_lang(a) {
-            var s = $.od.h(0, a)
+            var s = $.langDict.h(0, a)
             logger.debug("O.d", a, s)
             if (s == null) return ""
             return s
@@ -5577,9 +5577,9 @@ var T = {
                 return a1
             }
             // boosted
-            if ($.nr().J(0, name)) {
+            if ($.boosted().J(0, name)) {
                 team_name = "!"
-                fgt = $.nr().h(0, name)
+                fgt = $.boosted().h(0, name)
                 q = 0
                 p = 1
                 o = H.b([], t.q)
@@ -5863,13 +5863,13 @@ var T = {
         var s, r, q, p, o, n, m, l, k, j, i, h, g, f, e = null,
             d = t.E,
             result_team = H.b([], d),
-            b = C.String.cK(a, $.r_())
+            b = C.String.cK(a, $.regNewLine())
         for (s = 0; s < b.length; ++s) {
             r = b[s]
-            q = $.r0()
+            q = $.replaceSpace0()
             r.toString
             r = H.iG(r, q, " ", 0)
-            q = $.nq()
+            q = $.replaceSpace1()
             b[s] = H.iG(r, q, "", 0)
         }
         // for (; J.Y(C.Array.gbl(b), "");) {
@@ -5904,7 +5904,7 @@ var T = {
                 j = C.String.trim_name(C.String.ay(m, k + 1))
                 l = C.String.af(m, 0, k)
                 // nq = P.RegExp_RegExp("\\s+$")
-                i = $.nq()
+                i = $.replaceSpace1()
                 m = H.iG(l, i, "", 0)
             } else {
                 j = e
@@ -8283,12 +8283,12 @@ var HtmlRenderer = {
                     } else {
                         Sgls.tw()
                         q = W.nK()
-                        $.md = q
+                        $.pattern = q
                         W.es(q, "load", Sgls.vg(), false)
-                        $.md.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACAAgMAAAC+UIlYAAAADFBMVEX/AAD/AP8A/wD///8SU+EWAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wwaCg0BGtaVrQAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAADHUlEQVRYw+2WPY6jMBTHLejhMNOu4BRkpTTp5xIgzQGmilKmSjFUkbZFCpp6tN3mHGikpAK8/r/nZwhxMlllViOtFsWxsX/2+7SNKj941E7r/lr5Q6BNuW5iqqtv3xLlBtKW67jpd3XY75SyAF4wAwMAwpqLAVgEADuDANOu4iahCQ7AIAaUSrBalbYEDCI+BESPiyJk0KukmCnlzMybHHVXLD4M9w35oIJC6R4FbVm6UNw2QB0UoQcIawGaoIg9QNwI0AZF6gHSVgAdFNoDmH4BXp88gOl7FeD92QOYvvcTYDBvAAE5ET4AYpySPgCKOjO9gDHVOcoLGGc5V3sB424XLC9gAvYZ+WAT1Joa0KahxEWWx/0AkKntAJhBQANApjYEcDZhx+kB2JKpdTQA2GEjoGLzEidCN0kVW4BmKCilegGedRttU0RTgBpKhQ544iC+DkADpWIHFJwGwQCY5SFGACwPMU5JUtAoKkDFZicjoI5gqjOTze5HAOeFA2r0hWOAM+tiLCQ3z2LxGedDnVSjnNwqFU3OKDho6KDTltu049SuhYtT3os4Bu0BKjuOrTCFdjPaOERHVinMxip0HsixPPKLYvmKTxS5M0aeVWxBnWzjJqrCOhks4B3nAAwCOgNEBJaXg4vFWBGiJBSUg4sVFSWtmc5UAGyqNdM6CsvKwWWdZR01cfXI3dbVk2BNA/Yp+WCX5TSPxncFiZAXB5ivALIGXwM+ALcuANQ/Ht5+ngHbsI4AoK7eHpKrK5zcmxd18FkhLicdrgGkw00ioOhVJcfA2Eynw6UVnA5j4CYzT4J1fz5cGnDfD38RkM+DLwTc7f/VwLXb/37g/nz4D/yTwEuWPWbmKTN6ynI5K7P5JkNZZtlMLbWe5Vp3m1x35jdfLg6zfL/q8l/fu4XWB7XW+ghgpQHoPTrzwwJtKoo6TGPNHUcZcIA0FlwfLgLTIitfBES3rwROlLQvh8VkkDyJP+PFPZy0niyPmly90XoON6/sLDuhWx8WRwrWS949IlAIGIK1ybs5grXer44U7pKjXdKfCTe9I9zzzew3hQ1VpfX/zmMAAAAASUVORK5CYII="
+                        $.pattern.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACAAgMAAAC+UIlYAAAADFBMVEX/AAD/AP8A/wD///8SU+EWAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wwaCg0BGtaVrQAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAADHUlEQVRYw+2WPY6jMBTHLejhMNOu4BRkpTTp5xIgzQGmilKmSjFUkbZFCpp6tN3mHGikpAK8/r/nZwhxMlllViOtFsWxsX/2+7SNKj941E7r/lr5Q6BNuW5iqqtv3xLlBtKW67jpd3XY75SyAF4wAwMAwpqLAVgEADuDANOu4iahCQ7AIAaUSrBalbYEDCI+BESPiyJk0KukmCnlzMybHHVXLD4M9w35oIJC6R4FbVm6UNw2QB0UoQcIawGaoIg9QNwI0AZF6gHSVgAdFNoDmH4BXp88gOl7FeD92QOYvvcTYDBvAAE5ET4AYpySPgCKOjO9gDHVOcoLGGc5V3sB424XLC9gAvYZ+WAT1Joa0KahxEWWx/0AkKntAJhBQANApjYEcDZhx+kB2JKpdTQA2GEjoGLzEidCN0kVW4BmKCilegGedRttU0RTgBpKhQ544iC+DkADpWIHFJwGwQCY5SFGACwPMU5JUtAoKkDFZicjoI5gqjOTze5HAOeFA2r0hWOAM+tiLCQ3z2LxGedDnVSjnNwqFU3OKDho6KDTltu049SuhYtT3os4Bu0BKjuOrTCFdjPaOERHVinMxip0HsixPPKLYvmKTxS5M0aeVWxBnWzjJqrCOhks4B3nAAwCOgNEBJaXg4vFWBGiJBSUg4sVFSWtmc5UAGyqNdM6CsvKwWWdZR01cfXI3dbVk2BNA/Yp+WCX5TSPxncFiZAXB5ivALIGXwM+ALcuANQ/Ht5+ngHbsI4AoK7eHpKrK5zcmxd18FkhLicdrgGkw00ioOhVJcfA2Eynw6UVnA5j4CYzT4J1fz5cGnDfD38RkM+DLwTc7f/VwLXb/37g/nz4D/yTwEuWPWbmKTN6ynI5K7P5JkNZZtlMLbWe5Vp3m1x35jdfLg6zfL/q8l/fu4XWB7XW+ghgpQHoPTrzwwJtKoo6TGPNHUcZcIA0FlwfLgLTIitfBES3rwROlLQvh8VkkDyJP+PFPZy0niyPmly90XoON6/sLDuhWx8WRwrWS949IlAIGIK1ybs5grXer44U7pKjXdKfCTe9I9zzzew3hQ1VpfX/zmMAAAAASUVORK5CYII="
                         async_goto = 2
                         // 等待这个 callback 被调用
-                        return P._asyncAwait($.nt().a, $async$jv)
+                        return P._asyncAwait($.initComplete().a, $async$jv)
                     }
                 case 2:
                     if (run_env.from_code) {
@@ -8325,8 +8325,8 @@ var HtmlRenderer = {
         return s.width
     },
     ju(a, b, c, d) {
-        $.bU().src = $.mg.h(0, b.fy)
-        a.drawImage($.bU(), c + 4, d + 6)
+        $.img().src = $.dataUrls.h(0, b.fy)
+        a.drawImage($.img(), c + 4, d + 6)
         HtmlRenderer.aA(a, b.dx, c + 24, d + 5, 90, false)
     },
     rV(a, b) {
@@ -8358,11 +8358,11 @@ var HtmlRenderer = {
         HtmlRenderer.aA(s, LangData.get_lang("AoUA"), 114, r + 8, 46, true)
         HtmlRenderer.aA(s, LangData.get_lang("aXIa"), 160, r + 8, 46, true)
         HtmlRenderer.aA(s, LangData.get_lang("MdQa"), 206, r + 8, 114, true)
-        $.bU().src = "data:image/gif;base64,R0lGODlhFAAUALMAAAAAAP///98AJDsBRb3L09fi6NHf5ur2/JbFU63abcPuhcLthc/1mf///wAAAAAAACH5BAEAAA0ALAAAAAAUABQAAASCsMk5x6A4y6Gu/pyCXMJUaqGiJELbtCc1MOqiwnhl7aq675WAUGgIDYaBQ7FxTA4OyuIRengalr+fL2thWnrgcKLLLFS53ALh0nxWoe64mi1s1++BwZyJt+fre3p/g356axuEfQEFA4cbjIp5c44beowFl2sEax4yjY2aoZ0ZaEAUEQA7"
-        q = $.bU()
+        $.img().src = "data:image/gif;base64,R0lGODlhFAAUALMAAAAAAP///98AJDsBRb3L09fi6NHf5ur2/JbFU63abcPuhcLthc/1mf///wAAAAAAACH5BAEAAA0ALAAAAAAUABQAAASCsMk5x6A4y6Gu/pyCXMJUaqGiJELbtCc1MOqiwnhl7aq675WAUGgIDYaBQ7FxTA4OyuIRengalr+fL2thWnrgcKLLLFS53ALh0nxWoe64mi1s1++BwZyJt+fre3p/g356axuEfQEFA4cbjIp5c44beowFl2sEax4yjY2aoZ0ZaEAUEQA7"
+        q = $.img()
         o = C.d.ag(114 - p, 2) - 24
         J.iO(s, q, o, r + 6)
-        q = $.bU()
+        q = $.img()
         n = C.d.ag(114 + p, 2) + 4
         J.iO(s, q, n, r + 6)
         r += 32
@@ -8379,7 +8379,7 @@ var HtmlRenderer = {
             HtmlRenderer.aA(s, C.JsInt.k(l.c), 114, r + 5, 46, true)
             HtmlRenderer.aA(s, C.JsInt.k(l.d), 160, r + 5, 46, true)
             k = l.e
-            if (k != null) HtmlRenderer.ju(s, $.ay.h(0, k), 206, r)
+            if (k != null) HtmlRenderer.ju(s, $.plrViewDict.h(0, k), 206, r)
             r += 26
         }
         s.fillStyle = "#FAFAFA"
@@ -8391,9 +8391,9 @@ var HtmlRenderer = {
         HtmlRenderer.aA(s, LangData.get_lang("AoUA"), 114, r + 8, 46, true)
         HtmlRenderer.aA(s, LangData.get_lang("aXIa"), 160, r + 8, 46, true)
         HtmlRenderer.aA(s, LangData.get_lang("MdQa"), 206, r + 8, 114, true)
-        $.bU().src = "data:image/gif;base64,R0lGODlhFAAUAMQAAAAAAP///98AJDsBRd3y/vv+/4m4RpbFU6LPYqLOYqLPY6PPY6HNYq3abazYbbfgfcPuhc/1mdL1n9/9td78td36tHqpNYi3Q4i2Q4azQ5/JYZzEYMPqiv39/f///wAAACH5BAEAAB4ALAAAAAAUABQAAAWOoCeO4zCQaCoO0Km+LHScwlirMQQ1Qu/1N9IgoisCj6hhZFLcHYOryLKp4/mE0gmT6nStJBXKlru7eAcSMrXRcLHS6iLbcjLZ7cX73RPrEAhqfgR0fBASHQWAZIiDdQgNHZGBBR1mK5CSi5FnGpSKa5EEXnyeXGyeKaEOegMIoSkEfgMJCwkKDAYDsQQjIQA7"
-        J.iO(s, $.bU(), o, r + 6)
-        J.iO(s, $.bU(), n, r + 6)
+        $.img().src = "data:image/gif;base64,R0lGODlhFAAUAMQAAAAAAP///98AJDsBRd3y/vv+/4m4RpbFU6LPYqLOYqLPY6PPY6HNYq3abazYbbfgfcPuhc/1mdL1n9/9td78td36tHqpNYi3Q4i2Q4azQ5/JYZzEYMPqiv39/f///wAAACH5BAEAAB4ALAAAAAAUABQAAAWOoCeO4zCQaCoO0Km+LHScwlirMQQ1Qu/1N9IgoisCj6hhZFLcHYOryLKp4/mE0gmT6nStJBXKlru7eAcSMrXRcLHS6iLbcjLZ7cX73RPrEAhqfgR0fBASHQWAZIiDdQgNHZGBBR1mK5CSi5FnGpSKa5EEXnyeXGyeKaEOegMIoSkEfgMJCwkKDAYDsQQjIQA7"
+        J.iO(s, $.img(), o, r + 6)
+        J.iO(s, $.img(), n, r + 6)
         r += 32
         for (q = b.length, m = 0; m < b.length; b.length === q || (0, H.F)(b), ++m) {
             j = b[m]
@@ -8404,7 +8404,7 @@ var HtmlRenderer = {
             HtmlRenderer.aA(s, C.JsInt.k(j.c), 114, r + 5, 46, true)
             HtmlRenderer.aA(s, C.JsInt.k(j.d), 160, r + 5, 46, true)
             o = j.e
-            if (o != null) HtmlRenderer.ju(s, $.ay.h(0, o), 206, r)
+            if (o != null) HtmlRenderer.ju(s, $.plrViewDict.h(0, o), 206, r)
             r += 26
         }
         s.fillStyle = "#F8F8F8"
@@ -8437,8 +8437,8 @@ var HtmlRenderer = {
             p = HtmlRenderer.add_div("maxhp"),
             o = HtmlRenderer.add_div("oldhp"),
             n = HtmlRenderer.add_div("hp"),
-            m = $.jU + 1
-        $.jU = m
+            m = $.plrViewPid + 1
+        $.plrViewPid = m
         m = new HtmlRenderer.PlrView(a, s, r, q, p, o, n, m)
         m.cP(a, b, c, {})
         return m
@@ -8450,18 +8450,18 @@ var HtmlRenderer = {
             p = HtmlRenderer.add_div("maxhp"),
             o = HtmlRenderer.add_div("oldhp"),
             n = HtmlRenderer.add_div("hp"),
-            m = $.jU + 1
-        $.jU = m
+            m = $.plrViewPid + 1
+        $.plrViewPid = m
         m = new HtmlRenderer.fW(a, s, r, q, p, o, n, m)
         m.cP(a, b, false, {})
         return m
     },
     _updateToHtml(a) {
         var s, span_element, q, p, o, max_hp_element, m, l, k, j, i, h, g, f = a.a
-        if (f > 0 && a.e != null) $.ay.h(0, a.e.getDispName()).dc(f)
+        if (f > 0 && a.e != null) $.plrViewDict.h(0, a.e.getDispName()).dc(f)
         s = H.b([], t.j)
         span_element = HtmlRenderer.add_span("u")
-        C.R.by(span_element, H.oO(a.d, $.rm(), new HtmlRenderer.lq(new HtmlRenderer._renderItem(s, a), a), null), $.bV())
+        C.R.by(span_element, H.oO(a.d, $.updateReg(), new HtmlRenderer.lq(new HtmlRenderer._renderItem(s, a), a), null), $.noValidator())
         for (f = s.length, q = t.A, p = 0; p < s.length; s.length === f || (0, H.F)(s), ++p) {
             o = s[p]
             if (o instanceof T.HPlr) {
@@ -13218,7 +13218,7 @@ X.ProfileFind.prototype = {
                         this_.b = 0
                         e = H.b([], t.U)
                         o = H.b([], t.Y)
-                        e.push($.K())
+                        e.push($.newline())
                         if (d.length >>> 13 > 0) {
                             // searchInvalid
                             // 错误，目前最多支持8000人搜索
@@ -13311,7 +13311,7 @@ X.ProfileFind.prototype = {
                 case 4:
                     e = H.b([], t.U)
                     o = H.b([], t.Y)
-                    e.push($.K())
+                    e.push($.newline())
                     // 评分输出
                     if (this_.b >= d.length) {
                         e.push(T.RunUpdate_init(LangData.get_lang("tdaa"), null, null, null, null, 0, 1000, 100))
@@ -13524,7 +13524,7 @@ HtmlRenderer.inner_render.prototype = {
             // r -> 中间变量
             // this.y -> plrlen
             // this.r -> preboost
-            q = $.ay
+            q = $.plrViewDict
             q = this_.y = q.gp(q)
             r = q > 10 ? this_.y = 10 : q
             r += this_.r
@@ -13546,8 +13546,8 @@ HtmlRenderer.inner_render.prototype = {
             r = r.h(e, 1)
             // d = J.J(r, 0)
             d = r[0]
-            if (!$.ay.J(0, d)) {
-                c = $.ay.h(0, q)
+            if (!$.plrViewDict.J(0, d)) {
+                c = $.plrViewDict.h(0, q)
                 b = HtmlRenderer.t8(c.a, r, false)
                 b.b = c
                 b.x.setAttribute("class", "sgl")
@@ -13652,7 +13652,7 @@ async nextUpdate() {
     ft(a) {
         // renderUpdate()
         var s, r, q, p, this_ = this
-        if (a == $.K()) {
+        if (a == $.newline()) {
             if (run_env.from_code && run_env.capture_fight_log) {
                 push_fight_log_break()
             }
@@ -13731,7 +13731,7 @@ async nextUpdate() {
 
         d.appendChild(document_.createElement("br"))
         s = this_.cx.e.getDispName()
-        r = $.ay.h(0, s).a
+        r = $.plrViewDict.h(0, s).a
         q = t.ak
         // p: 胜者
         // (plr.a === r)
@@ -13740,7 +13740,7 @@ async nextUpdate() {
         // (plr.a !== r)
         o = H.b([], q)
         n = []
-        $.ay.aw(0, new HtmlRenderer.jA(r, p, n, o))
+        $.plrViewDict.aw(0, new HtmlRenderer.jA(r, p, n, o))
         C.Array.bb(p, HtmlRenderer.oD()) // sort
         C.Array.bb(o, HtmlRenderer.oD())
         m = document_.createElement("table")
@@ -13748,7 +13748,7 @@ async nextUpdate() {
         k = document_.createElement("tr")
         j = document_.createElement("td")
         k.appendChild(j)
-        C.j.by(j, C.String.B(J.iN(`<div class="smile s_win"></div>`, LangData.get_lang("ePya")), `<div class="smile s_win"></div>`), $.bV())
+        C.j.by(j, C.String.B(J.iN(`<div class="smile s_win"></div>`, LangData.get_lang("ePya")), `<div class="smile s_win"></div>`), $.noValidator())
         q = j.style
         q.minWidth = "112px"
         q = j.style
@@ -13775,7 +13775,7 @@ async nextUpdate() {
         k = document_.createElement("tr")
         j = document_.createElement("td")
         k.appendChild(j)
-        C.j.by(j, C.String.B(J.iN(`<div class="smile s_lose"></div>`, LangData.get_lang("eFKN")), `<div class="smile s_lose"></div>`), $.bV())
+        C.j.by(j, C.String.B(J.iN(`<div class="smile s_lose"></div>`, LangData.get_lang("eFKN")), `<div class="smile s_lose"></div>`), $.noValidator())
         q = j.style
         q.height = "32px"
         j = document_.createElement("td")
@@ -13812,7 +13812,7 @@ async nextUpdate() {
         document_ = "" + (C.d.aI(m.offsetWidth) - C.d.aI(h.offsetWidth) - 8) + "px"
         d.marginLeft = document_
         if (W.ll(window.parent) !== window) {
-            new HtmlRenderer.send_win_data(this_, p, o, n, $.ay.h(0, this_.z[0][0][0])).$0()
+            new HtmlRenderer.send_win_data(this_, p, o, n, $.plrViewDict.h(0, this_.z[0][0][0])).$0()
         }
 
         // 显示 done_target
@@ -13856,7 +13856,7 @@ HtmlRenderer.addPlrToTable.prototype = {
             o = p.createElement("tr"),
             n = p.createElement("td")
         o.appendChild(n)
-        C.j.bk(n, q, a.f.outerHTML, null, $.bV())
+        C.j.bk(n, q, a.f.outerHTML, null, $.noValidator())
         n.classList.add("namdtd")
         n = p.createElement("td")
         o.appendChild(n)
@@ -13866,7 +13866,7 @@ HtmlRenderer.addPlrToTable.prototype = {
         n.textContent = C.JsInt.k(a.d)
         s = a.e
         if (s != null) {
-            r = $.ay.h(0, s)
+            r = $.plrViewDict.h(0, s)
             n = p.createElement("td")
             o.appendChild(n)
             C.j.bk(n, q, r.fr, null, null)
@@ -13967,7 +13967,7 @@ HtmlRenderer.PlrView.prototype = {
         s = J.a3(b)
         i.db = s.h(b, 0)
         i.dx = s.h(b, 1)
-        $.ay.m(0, i.db, i)
+        $.plrViewDict.m(0, i.db, i)
         i.fy = s.h(b, 2)
         i.dy = s.h(b, 3)
         r = i.y
@@ -14024,16 +14024,16 @@ HtmlRenderer.PlrView.prototype = {
             if (s.h(b, 12) !== "") {
                 switch (s.h(b, 12)) {
                     case "2":
-                        C.h.bk(k, e, C.String.B(" ", `<div class="smile s_elite3"></div>`), h, $.bV())
+                        C.h.bk(k, e, C.String.B(" ", `<div class="smile s_elite3"></div>`), h, $.noValidator())
                         break
                     case "1":
-                        C.h.bk(k, e, C.String.B(" ", `<div class="smile s_elite2"></div>`), h, $.bV())
+                        C.h.bk(k, e, C.String.B(" ", `<div class="smile s_elite2"></div>`), h, $.noValidator())
                         break
                     case "0":
-                        C.h.bk(k, e, C.String.B(" ", `<div class="smile s_elite1"></div>`), h, $.bV())
+                        C.h.bk(k, e, C.String.B(" ", `<div class="smile s_elite1"></div>`), h, $.noValidator())
                         break
                     default:
-                        C.h.bk(k, e, C.String.B(" ", `<div class="smile s_boss"></div>`), h, $.bV())
+                        C.h.bk(k, e, C.String.B(" ", `<div class="smile s_boss"></div>`), h, $.noValidator())
                 }
             }
         }
@@ -14084,21 +14084,21 @@ HtmlRenderer._renderItem.prototype = {
     $1(a) {
         // _renderItem
         var s, r, q
-        if (a instanceof T.NPlr) return $.ay.h(0, a.a).fr
+        if (a instanceof T.NPlr) return $.plrViewDict.h(0, a.a).fr
         if (a instanceof T.HPlr) {
-            s = $.ay.h(0, a.a)
+            s = $.plrViewDict.h(0, a.a)
             s.bU(a.d)
             a.b = s.cy
             this.a.push(a)
             return s.fx
         }
         if (a instanceof T.DPlr) {
-            s = $.ay.h(0, a.a)
+            s = $.plrViewDict.h(0, a.a)
             r = this.b.e
             if (r != null) {
                 r = r.getDispName()
                 s.e = r
-                q = $.ay
+                q = $.plrViewDict
                 s.toString
                 q.h(0, r).da()
             }
@@ -14107,7 +14107,7 @@ HtmlRenderer._renderItem.prototype = {
             return s.fr
         }
         if (a instanceof T.MPlr) {
-            s = $.ay.h(0, a.a)
+            s = $.plrViewDict.h(0, a.a)
             s.bU(a.b)
             r = "" + C.d.R(a.c / 4) + "px"
             q = s.z.style
@@ -14139,14 +14139,14 @@ HtmlRenderer.lq.prototype = {
 Sgls.k7.prototype = {
     $2(a, b) {
         var s, r, q = "data:image/gif;base64," + H.as_string(b),
-            p = $.e_
-        $.e_ = p + 1
+            p = $.iconidx
+        $.iconidx = p + 1
         s = "icon_" + p
         r = H.as_string(a) + "@!"
-        $.k8.m(0, r, s)
-        $.mg.m(0, r, q)
+        $.sgls.m(0, r, s)
+        $.dataUrls.m(0, r, q)
         if (!run_env.from_code) {
-            t.w.a(C.v.gbl(document.styleSheets)).insertRule("div." + s + ' { background-image:url("' + q + '"); }', $.e_ - 1)
+            t.w.a(C.v.gbl(document.styleSheets)).insertRule("div." + s + ' { background-image:url("' + q + '"); }', $.iconidx - 1)
         }
     },
     $S: 65
@@ -14165,7 +14165,7 @@ Sgls.k4.prototype = {
         }
         for (r = 1; r < 21; ++r)
             for (p = 0; p < r; ++p) {
-                h = $.mf
+                h = $.sigColors
                 q = h[r]
                 o = q[0]
                 h = h[p]
@@ -14200,7 +14200,7 @@ Sgls.k6.prototype = {
         else s = false
         if (s) return true
         // if (J.J(J.J($.nv(), a), p.b) < 90)
-        if ($.nv()[a][p.b] < 90) {
+        if ($.cdif()[a][p.b] < 90) {
             return false
         }
         for (s = o.length, r = 0; r < s; ++r)
@@ -14208,7 +14208,7 @@ Sgls.k6.prototype = {
         for (r = 0; r < o.length; o.length === s || (0, H.F)(o), ++r) {
             q = o[r]
             // if (J.J(J.J($.nv(), a), q) < 90) {
-            if ($.nv()[a][q] < 90) {
+            if ($.cdif()[a][q] < 90) {
                 return false
             }
         }
@@ -14218,7 +14218,7 @@ Sgls.k6.prototype = {
 }
 LangData.lA.prototype = {
     $2(a, b) {
-        if (typeof b == "string" && !C.String.w(b, "<") && !C.String.w(b, ">")) $.od.m(0, LangData.eQ(H.lg(a)), b)
+        if (typeof b == "string" && !C.String.w(b, "<") && !C.String.w(b, ">")) $.langDict.m(0, LangData.eQ(H.lg(a)), b)
     },
     $S: 23
 }
@@ -14414,7 +14414,7 @@ T.SklAccumulate.prototype = {
         r.r.updateStates()
         if (caster != null) {
             s = updates.a
-            s.push($.K())
+            s.push($.newline())
             s.push(T.RunUpdateCancel_init(LangData.get_lang("xrNA"), caster, r.r))
         }
         // 注意：accumulate 首次创建时的 fx 可能更高，但每次被清除后都会回到 1.600000023841858。
@@ -14478,7 +14478,7 @@ T.SklAssassinate.prototype = {
     postDamage(dmg, caster, c, updates) {
         // postDamage
         var s = updates.a
-        s.push($.K())
+        s.push($.newline())
         // sklAssassinateFailed
         // [0]的[潜行]被识破
         s.push(T.RunUpdateCancel_init(LangData.get_lang("kMgn"), this.r, this.fy))
@@ -14520,7 +14520,7 @@ T.BerserkState.prototype = {
         r.r.r2.U(0, "berserk")
         if (r.r.fx > 0) {
             s = updates.a
-            s.push($.K())
+            s.push($.newline())
             // sklBerserkEnd
             // [1]从[狂暴]中解除
             s.push(T.RunUpdateCancel_init(LangData.get_lang("cHVa"), caster, r.r))
@@ -14603,7 +14603,7 @@ T.SklCharge.prototype = {
         r.r.updateStates()
         if (caster != null) {
             s = updates.a
-            s.push($.K())
+            s.push($.newline())
             s.push(T.RunUpdateCancel_init(LangData.get_lang("WNcn"), caster, r.r))
         }
     },
@@ -14641,7 +14641,7 @@ T.CharmState.prototype = {
         s.updateStates()
         if (s.fx > 0) {
             r = updates.a
-            r.push($.K())
+            r.push($.newline())
             r.push(T.RunUpdateCancel_init(LangData.get_lang("EsXa"), caster, s))
         }
     },
@@ -14825,7 +14825,7 @@ T.CurseState.prototype = {
         s.updateStates()
         if (s.fx > 0) {
             r = updates.a
-            r.push($.K())
+            r.push($.newline())
             // sklCurseEnd
             // [1]从[诅咒]中解除
             r.push(T.RunUpdateCancel_init(LangData.get_lang("yULA"), caster, s))
@@ -15033,7 +15033,7 @@ T.HasteState.prototype = {
         s.updateStates()
         if (s.fx > 0) {
             r = updates.a
-            r.push($.K())
+            r.push($.newline())
             // sklHasteEnd
             // [1]从[疾走]中解除
             r.push(T.RunUpdateCancel_init(LangData.get_lang("wlqa"), caster, s))
@@ -15178,7 +15178,7 @@ T.IceState.prototype = {
         s.updateStates()
         if (s.fx > 0) {
             r = updates.a
-            r.push($.K())
+            r.push($.newline())
             r.push(T.RunUpdateCancel_init(LangData.get_lang("aQYN"), caster, s))
         }
     },
@@ -15277,10 +15277,10 @@ T.SklIron.prototype = {
         p.r.updateStates()
         s = updates.a
         if (caster != null) {
-            s.push($.K())
+            s.push($.newline())
             s.push(T.RunUpdateCancel_init(LangData.get_lang("qomn"), caster, p.r))
         } else {
-            s.push($.K())
+            s.push($.newline())
             r = LangData.get_lang("GGuN")
             q = p.r
             s.push(T.RunUpdateCancel_init(r, q, q))
@@ -15318,7 +15318,7 @@ T.PoisonState.prototype = {
         this.unlink()
         if (r.fx > 0) {
             s = updates.a
-            s.push($.K())
+            s.push($.newline())
             // sklPoisonEnd
             // [1]从[中毒]中解除
             s.push(T.RunUpdateCancel_init(LangData.get_lang("hIga"), caster, r))
@@ -15366,7 +15366,7 @@ T.SklQuake.prototype = {
             p = 0.6000000238418579
             o = l[k]
             if (o.fx > 0) {
-                q.push($.K())
+                q.push($.newline())
                 o.attacked(m * s / (r + p), true, this.r, T.ad(), c, updates)
             }
         }
@@ -15423,7 +15423,7 @@ T.SklRapid.prototype = {
                     c.push(h)
                 }
                 if (p.attacked(b * (o - m * l), false, g.r, T.ad(), a1, updates) <= 0) return
-                c.push($.K())
+                c.push($.newline())
             }
             r = C.JsInt.V(r + (a1.nextByte() & 3), targets.length)
             if (globalThis.__probe_rapid_target && g.r.e === globalThis.__probe_rapid_target) {
@@ -15641,7 +15641,7 @@ T.SlowState.prototype = {
         s.updateStates()
         if (s.fx > 0) {
             r = updates.a
-            r.push($.K())
+            r.push($.newline())
             // sklSlowEnd
             // [1]从[迟缓]中解除
             r.push(T.RunUpdateCancel_init(LangData.get_lang("EJLN"), caster, s))
@@ -15881,7 +15881,7 @@ T.SklThunder.prototype = {
         for (q = 0, p = q, o = false; q < s; ++q) {
             n = k.r
             if (n.fx > p && !n.A && h.fx > p) {
-                updates.push($.K())
+                updates.push($.newline())
                 if (h.fx > 0 && !h.A && T.dodge(r, h.dy + h.db, c)) {
                     if (o) {
                         // sklThunderEnd
@@ -15973,7 +15973,7 @@ T.SklAokijiIceAge.prototype = {
         for (s = 0; s < l.length; ++s) {
             n = l[s]
             if (n.fx > 0) {
-                p.push($.K())
+                p.push($.newline())
                 n.attacked(o, true, this.r, T.mE(), c, updates)
             }
         }
@@ -16143,7 +16143,7 @@ T.SklConan.prototype = {
             // sklConanKillUnknown
             // [0]在一间密室中发现了一具无名尸体
             r.push(T.RunUpdate_init(LangData.get_lang("uMZa"), m.r, l, l, l, 0, k, 100))
-            r.push($.K())
+            r.push($.newline())
         }
         r = m.fx
         q = 0
@@ -16415,7 +16415,7 @@ T.SklIkarugaAttack.prototype = {
         for (s = 0; s < l.length; ++s) {
             n = l[s]
             if (n.fx > 0) {
-                p.push($.K())
+                p.push($.newline())
                 m = this.r
                 n.damage(n.postDefend(C.d.R(o / T.getDf(n, true, c)), m, T.ad(), c, updates), m, T.ad(), c, updates)
             }
@@ -16696,7 +16696,7 @@ T.SklSaitama.prototype = {
         if (o.fx / (o.fy.a + o.go.a / 3 + 1) > 255) {
             s = updates.a
             s.push(T.RunUpdate_init(LangData.get_lang("dlfA"), o.r, n, n, n, n, 1000, 2000))
-            s.push($.K())
+            s.push($.newline())
             s.push(T.RunUpdate_init(LangData.get_lang("tHLa"), o.r, n, n, n, 0, 1000, 100))
             s = o.r
             s.y.die(s)
@@ -16805,7 +16805,7 @@ T.SklSlimeSpawn.prototype = {
             k = null
         this_.r.r2.m(0, "corpose", new T.SklSlimeSpawnState())
         s = updates.a
-        s.push($.K())
+        s.push($.newline())
         // sklSlimeSpawn
         // [0][分裂]
         s.push(T.RunUpdate_init(LangData.get_lang("BJOA"), this_.r, k, k, k, 0, 1000, 100))
@@ -17661,7 +17661,7 @@ T.Plr.prototype = {
                 this_.f = H.as_string(team) + "+" + H.as_string(q)
 
                 // 武器列表
-                team = $.rj()
+                team = $.specialList()
                 if (team.J(0, q)) {
                     p = team.h(0, q).$2(q, this_)
                 } else if (J.nz(q, "!")) {
@@ -18326,7 +18326,7 @@ T.Plr.prototype = {
     postAction(r, updates) {
         var s
         this.a_ = true
-        updates.a.push($.K())
+        updates.a.push($.newline())
         for (s = this.x2, s = new Sgls.a_(s, s.b, s.$ti.i("a_<1*>")); s.u();) s.b.postAction(r, updates)
         this.a_ = false
     },
@@ -18423,7 +18423,7 @@ T.Plr.prototype = {
     onDie(oldhp, caster, c, updates) {
         var s, r, this_ = this,
             p = updates.a
-        p.push($.K())
+        p.push($.newline())
         s = this_.getDieMessage()
         r = new T.DPlr()
         r.a = this_.e
@@ -18733,7 +18733,7 @@ T.SklCounter.prototype = {
         p.ch = null
         if (p.cx.fx > 0 && p.r.mpReady(a)) {
             s = T.getAt(p.r, false, a)
-            r = $.K()
+            r = $.newline()
             q = b.a
             q.push(r)
             q.push(T.RunUpdate_init(C.String.B(LangData.get_lang("VgaN"), `<div class="smile s_counter"></div>`), p.r, p.cx, null, null, 1, 1000, 100))
@@ -18872,7 +18872,7 @@ T.SklMerge.prototype = {
                 target.r2.m(0, "corpose", new T.MergeState())
                 this_.r.updateStates()
                 r = updates.a
-                r.push($.K())
+                r.push($.newline())
                 r.push(T.RunUpdate_init(LangData.get_lang("yGkN"), this_.r, target, j, j, 60, 1500, 100))
                 q = LangData.get_lang("PGSN")
                 p = new T.MPlr()
@@ -19143,7 +19143,7 @@ T.SklUpgrade.prototype = {
             q.r.rx.j(0, q.Q)
             q.r.updateStates()
             o = updates.a
-            o.push($.K())
+            o.push($.newline())
             n = LangData.get_lang("TRcn")
             r = q.r
             o.push(T.RunUpdate_init(n, r, r, p, p, 60, 1500, 100))
@@ -19164,7 +19164,7 @@ T.SklUpgrade.prototype = {
         r.r.updateStates()
         if (r.r.fx > 0) {
             s = updates.a
-            s.push($.K())
+            s.push($.newline())
             s.push(T.RunUpdateCancel_init(LangData.get_lang("Ebza"), caster, r.r))
         }
     },
@@ -19292,7 +19292,7 @@ T.SklZombie.prototype = {
             a3.l = a7.nextByte() * 4
             this_.r.y.addNew(a3)
             r = updates.a
-            r.push($.K())
+            r.push($.newline())
             // sklZombie
             // [0][召唤亡灵]
             r.push(T.RunUpdate_init(LangData.get_lang("apma"), this_.r, target, a5, a5, 60, 1500, 100))
@@ -19420,7 +19420,7 @@ T.RinickModifier.prototype = {
         r = r.q
         q = 7
         r = r[q]
-        s = $.r5()
+        s = $.rinickModifierHP()
         if (r < s) p[q] = s - r
         else p[q] = 0
         this.dV()
@@ -19504,7 +19504,7 @@ T.RinickModifierPreAction.prototype = {
                 // weaponRModifierUse
                 // [0]使用[属性修改器]
                 C.Array.co(o, r, T.RunUpdate_init(LangData.get_lang("UeyA"), s, null, null, null, 60, 1000, 100))
-                o.push($.K())
+                o.push($.newline())
             }
         }
         o = s.y
@@ -19586,7 +19586,7 @@ T.SklRinickModifierClone.prototype = {
             p.buildAsyncBody()
             p.l = c.nextByte() * 4 + 1024
             k.r.y.addNew(p)
-            s.push($.K())
+            s.push($.newline())
             // sklCloned
             // 出现一个新的[1]
             o = LangData.get_lang("pKQn")
@@ -19613,7 +19613,7 @@ T.hy.prototype = {
         q = q.f.length
         s = C.JsInt.am(p - q, 1) - q
         if (s > 0) {
-            b.a.push($.K())
+            b.a.push($.newline())
             r = new T.SklRinickModifierClone(s, 0)
             r.init(this.r, 1)
             r.act(H.b([], t.F), true, a, b)
@@ -19644,7 +19644,7 @@ T.SklS11.prototype = {
             p = q.q
             p[s] = p[s] + r
             q.updateStates()
-            l.push(T.RunUpdate_init("[" + H.as_string($.r6()[s]) + "]" + LangData.get_lang("zbya"), o.r, n, r, n, 0, m, 100))
+            l.push(T.RunUpdate_init("[" + H.as_string($.s11AttrNames()[s]) + "]" + LangData.get_lang("zbya"), o.r, n, r, n, 0, m, 100))
         }
         q = o.r
         q.l = q.l + 1024
@@ -19807,7 +19807,7 @@ T.ks.prototype = {
 T.kt.prototype = {
     $2(a, b) {
         var s
-        if (C.Array.w($.r1(), b.b)) {
+        if (C.Array.w($.guiYueMembers(), b.b)) {
             s = new T.GuiYue(a, b, P.aL(8, 0, false, t.B))
             s.a = a
             return s
@@ -19818,7 +19818,7 @@ T.kt.prototype = {
 T.ku.prototype = {
     $2(a, b) {
         var s
-        if (C.Array.w($.rk(), b.b)) {
+        if (C.Array.w($.xuanYueMembers(), b.b)) {
             s = new T.kv(a, b, P.aL(8, 0, false, t.B))
             s.a = a
             return s
@@ -20500,32 +20500,32 @@ var t = (function rtii() {
     $.nJ = null
     $.nI = null
     $.et = P.cu(t.N, t.Z)
-    $.jU = 0
+    $.plrViewPid = 0
     // PlrView plv = PlrView.dict[update.caster.idName];
     // $.ay -> plv
-    $.ay = P.cu(t.X, H.findType("ax*"))
-    $.rW = function () {
+    $.plrViewDict = P.cu(t.X, H.findType("ax*"))
+    $.bosses = function () {
         var s = t.X
         return P.create_StringInt_map(["aokiji", "R0lGODlhEAAQAMIDAAAAAEB2/4Kl/////////////////////yH5BAEKAAQALAAAAAAQABAAAANISLrQsJC1MVwkLgSqLW6bQFFi4ACjIGxDoI7gqHFsO9UsXgFuPXIr0Or3691kHGSMxuRMSMPWi3IK/UqeTM7UuDio3YskDEkAADs=", "conan", "R0lGODlhEAAQAMIAAAAAANAYISpXyf///wAAAAAAAAAAAAAAACH5BAEKAAQALAAAAAAQABAAAANISATczkqBQasFcQlrBV6MsHGiEzQj5TEnELzM5cIsbdLLC+/6N/O/E6j3IP5ilVqrBUgNVi6HyDltSJoiVekTCU23me4DEkkAADs=", "covid", "R0lGODlhEAAQAIIAMf/GAOpK/f///wAAAP///wAAAAAAAAAAACH5BAEAAAQALAAAAAAQABAAAgNKSLrTvZC4AeqIqgEttoNU1wSOx1BBmoabNJGDGpjURlqBAJf6ba+WWgwmy3kcRYFO6AKolMuJBCAqmjIUJKd12moemNrxgnF9IgkAOw==", "ikaruga", "R0lGODlhEAAQAMIEAAAAAAcHB7MABFuV/////////////////yH5BAEKAAcALAAAAAAQABAAAANKeLrRsZA1Qlw8jmoCGgzaMAiC9iiTOFBk6WGUypLUk4pbW00EvhG0XWz1C2Z8o9kO1uuNSqUKCqR60l5MZ1AqAf0skczudJliFwkAOw==", "lazy", "R0lGODlhEAAQAMICAAAAAAgICP+3t/////+3t/+3t/+3t/+3tyH5BAEKAAQALAAAAAAQABAAAANPSLpM8K9JMCqQDoIwwp3VQG1fBnFeWFKW6GnL1rFi87raSQQcvXEhHkeQGwqOncBxKeAxj07io6kkQZXPKJM3YCa7yySwIhwnd5qAokhIAAA7", "mario", "R0lGODlhEAAQAIEAMQAAANgoAPz8/AAAACH5BAEAAAAALAAAAAAQABAAAQJBhD2px6AhRFgshRvvHCdJGH1CgoDhKXEWqLHboH2tvEItpq3ZvXvnfPIphooI0YgcLXyjpLKDQnE6g6hxSiVSAAUAOw==", "mosquito", "R0lGODlhEAAQAKECAAAAAP8AAP///////yH5BAEKAAMALAAAAAAQABAAAAJB3ICpaCnxRIRKoAkpsJu/AHpch4DgxR0kcK6GKrGB+zrylrzH2OL62or9SKcYYIgr5mq82eXI5AQtw1gxhVwwDAUAOw==", "saitama", "R0lGODlhEAAQAMIGAAAAAAgICGxsbP/AmP/PV/////jIUfjIUSH5BAEKAAcALAAAAAAQABAAAANKeLrRsZC1MVw8juraYNhUIVYSGIodZprPtG7ZC8YyFxSC8OZFAIi4nJAnAhgLx2DxZwQQCMZn7hmFOp/YKZZa3Xqth6bR1xADDgkAOw==", "seed", "R0lGODlhEAAQAMIDAAAAAG9tbUCy5////////////////////yH5BAEKAAQALAAAAAAQABAAAANFSLrQsJC1MVwkjuraVN6gA4CDIJCNSW5BkJon2LZpAMdzMLiAYN85HQ/28wWHpmJrN3sRjUya4xm0YJzNTmTKe1wkWkgCADs=", "slime", "R0lGODlhEAAQAMIEAAABAFaSRV6qSLn9qgAAAAAAAAAAAAAAACH5BAEKAAQALAAAAAAQABAAAANCSKrQvpA4QcWDrWoLsB5bxwDVYApB2jClaaaqRMIuCk92CuYBR8G9DSUjLBI3wMpRQzvhis4OqVUbjopKkczBvSQAADs=", "sonic", "R0lGODlhEAAQAMIDAAgICOgSJh9O/////////////////////yH5BAEKAAQALAAAAAAQABAAAANBSLrQsJA1IVwkjuraINDDsFUSFYZbh5knqj2T0LpUBp4jN9JpnJuc1S8UIGE+uUBRJRQonzXP5LlkSpCWy/URSQAAOw==", "yuri", "R0lGODlhEAAQAKEDAAAAAN4H28asxv///yH5BAEKAAMALAAAAAAQABAAAAI+hI85EB3s4DNBiFcvs3NjvmlL9WkesEDnKI7fw8Lpi6roMJ42jh8NNeEJVb+bsFc0HIfB5ZFhdPIO0mf0WAAAOw=="], s, s)
     }()
-    $.mg = function () {
+    $.dataUrls = function () {
         var s = t.X
         return P.cu(s, s)
     }()
-    $.k8 = function () {
+    $.sgls = function () {
         var s = t.X
         return P.cu(s, s)
     }()
-    $.e_ = 0
-    $.mf = function () {
+    $.iconidx = 0
+    $.sigColors = function () {
         var s = t.i
         return H.b([H.b([255, 255, 255], s), H.b([255, 255, 255], s), H.b([0, 0, 0], s), H.b([0, 180, 0], s), H.b([0, 255, 0], s), H.b([255, 0, 0], s), H.b([255, 192, 0], s), H.b([255, 255, 0], s), H.b([0, 224, 128], s), H.b([255, 0, 128], s), H.b([255, 108, 0], s), H.b([0, 108, 255], s), H.b([0, 192, 255], s), H.b([0, 255, 255], s), H.b([128, 120, 255], s), H.b([128, 224, 255], s), H.b([255, 0, 255], s), H.b([40, 40, 255], s), H.b([128, 0, 255], s), H.b([0, 144, 0], s), H.b([144, 0, 0], s)], t.f)
     }()
-    $.md = null
-    $.dZ = H.b([], t.f)
-    $.me = H.b([], t.f)
-    $.o5 = H.b([], t.f)
-    $.od = function () {
+    $.pattern = null
+    $.datas = H.b([], t.f)
+    $.borders = H.b([], t.f)
+    $.masks = H.b([], t.f)
+    $.langDict = function () {
         var s = t.X
         return P.cu(s, s)
     }()
@@ -20643,40 +20643,40 @@ var t = (function rtii() {
     lazy_old($, "Ay", "rn", function () {
         return P.RegExp_RegExp("\\?\\?\\?")
     })
-    lazy_old($, "Ax", "bV", function () {
+    lazy_old($, "Ax", "noValidator", function () {
         return new S.fK()
     })
-    lazy_old($, "zJ", "bU", function () {
+    lazy_old($, "zJ", "img", function () {
         return W.nK()
     })
-    lazy_old($, "Av", "rm", function () {
+    lazy_old($, "Av", "updateReg", function () {
         return P.RegExp_RegExp("\\[.*?\\]")
     })
-        lazy_old($, "zV", "nv", function () {
+        lazy_old($, "zV", "cdif", function () {
         return new Sgls.k4().$0()
     })
-    lazy_old($, "zS", "nt", function () {
+    lazy_old($, "zS", "initComplete", function () {
         return P.rM(t.X)
     })
-    lazy_old($, "zU", "nu", function () {
+    lazy_old($, "zU", "canvas", function () {
         var q = W.j4()
         q.width = 16
         q.height = 16
         return q
     })
-    lazy_old($, "zW", "lS", function () {
+    lazy_old($, "zW", "shapeCanvas", function () {
         var q = W.j4()
         q.width = 16
         q.height = 16
         return q
     })
-    lazy_old($, "zX", "d8", function () {
-        var q = $.lS()
+    lazy_old($, "zX", "shapeImage", function () {
+        var q = $.shapeCanvas()
         q = (q && C.H).geJ(q)
         return (q && C.k).eN(q, 16, 16)
     })
     // MARK: 字符串反混淆
-                                                                                                                                                                                                                                                                                                                                                                                                                        lazy_old($, "zN", "nr", function () {
+                                                                                                                                                                                                                                                                                                                                                                                                                        lazy_old($, "zN", "boosted", function () {
         // return P.dD([LangData.j("JIi6cgXO*d_", 22), 18, LangData.j("Fmi6Vr!~c@]4ElFk,dC", 55), 25, LangData.j("OeQh>Rep f~;YzR^Y%E", 16), 35], t.X, t.B)
         /*  static Map<String, int> boosted = {
             b('田一人'):18,
@@ -20687,17 +20687,17 @@ var t = (function rtii() {
             ["田一人", 18, "云剑狄卡敢", 25, "云剑穸跄祇", 35], t.X, t.B
         )
     })
-    lazy_old($, "zE", "r0", function () {
+    lazy_old($, "zE", "replaceSpace0", function () {
         return P.RegExp_RegExp("^\\s+[:@]*\\s*")
     })
-    lazy_old($, "zF", "nq", function () {
+    lazy_old($, "zF", "replaceSpace1", function () {
         return P.RegExp_RegExp("\\s+$")
     })
-    lazy_old($, "zD", "r_", function () {
+    lazy_old($, "zD", "regNewLine", function () {
         return P.RegExp_RegExp("\\r?\\n")
     })
     // MARK: 空 RunUpdate (newline)
-    lazy_old($, "zR", "K", function () {
+    lazy_old($, "zR", "newline", function () {
         var q = null
         return T.RunUpdate_init("\n", q, q, q, q, 0, 1000, 100)
     })
@@ -20708,7 +20708,7 @@ var t = (function rtii() {
         return 4
     })
     // MARK: 数字反混淆
-    lazy_old($, "zH", "r1", function () {
+    lazy_old($, "zH", "guiYueMembers", function () {
         // return H.b(["Rinick", "库瓒", "庫瓒", "涵虚", "霛雲", "云剑", "新纪元", "琪拉拉", "纯菜", "学车中学", "学🚗🀄学", "昀澤", "锦依卫", "Σσ", "Ø", "∅", "斜眼笑"], t.V)
         return H.b(
             [
@@ -20718,13 +20718,13 @@ var t = (function rtii() {
             t.V
         )
     })
-    lazy_old($, "zQ", "r5", function () {
+    lazy_old($, "zQ", "rinickModifierHP", function () {
         return 324
     })
-    lazy_old($, "zY", "r6", function () {
+    lazy_old($, "zY", "s11AttrNames", function () {
         return C.Array.f5(H.b(LangData.get_lang("ezfN").split("[]"), t.s), new T.kb(), t.X).fL(0)
     })
-    lazy_old($, "Ac", "rj", function () {
+    lazy_old($, "Ac", "specialList", function () {
         // 武器那一堆
         // return P.dD([LangData.j("e%XTi8O%`kSB", 94), new T.kq(), LangData.j("yz*^A*wx}^-:r`d", 95), new T.kr(), LangData.j("^dYkSp{^[&&o2d0:E2E", 59), new T.ks(), LangData.j("~47]&y= +_5ji7P", 85), new T.kt(), LangData.j("l+&iUIpO;.M(}FX", 23), new T.ku()], t.X, H.find_type("bL*(m*,u*)*"))
         return P.create_StringInt_map([
@@ -20740,7 +20740,7 @@ var t = (function rtii() {
             new T.ku()
         ], t.X, H.findType("bL*(m*,u*)*"))
     })
-    lazy_old($, "Ad", "rk", function () {
+    lazy_old($, "Ad", "xuanYueMembers", function () {
         // return H.b(["Rinick", "库瓒", "涵虚", "霛雲", "云剑", "新纪元", "琪拉拉", "学车中学", "昀澤", "Σσ", "滑稽", "坤灵剑", "RailGun", "巡洋舰", "Hell", "佘山", "房刚", "五班", "XJ联队", "乐正绫", "文哥", "geometrydash"], t.V)
         return H.b(
             [
