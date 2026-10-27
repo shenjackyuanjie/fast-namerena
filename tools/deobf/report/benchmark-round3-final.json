@@ -1,0 +1,110 @@
+{
+  "label": "round3-0.5.5-final",
+  "candidate": "D:\\githubs\\namer\\fast-namerena\\branch\\latest\\md5.js",
+  "version": "0.5.5",
+  "runs": 7,
+  "runtime": {
+    "node": "26.3.0",
+    "bun": "1.4.4",
+    "boringssl": "41bf9b59c2ebf277a7aa427e1ecad5cc80dd4d4f",
+    "openssl": "1.1.0",
+    "llhttp": "9.4.2",
+    "libarchive": "27cbc7827172698143e440801fc0ba39ccb4f1f5",
+    "mimalloc": "92ef6587c57b262f6e6abf513f7776a2f8d12aeb",
+    "picohttpparser": "f4d94b48b31e0abae029ebeafcfd9ca0680ede58",
+    "uwebsockets": "38afee6c84fcf48c0edb2466aa4b27d287a59c30",
+    "webkit": "d6375c72affe0f70222cdcb45012b10f0bf3a9d5",
+    "zig": "04e7f6ac1e009525bc00934f20199c68f04e0a24",
+    "zlib": "12731092979c6d07f42da27da673a9f6c7b13586",
+    "tinycc": "05f0fafaa3be31e31d7b4b5c17dc60f62c991171",
+    "lolhtml": "725ce499aa9b71e38b7a2d0a9fbb6d7294a4079e",
+    "ares": "c7a3138dcfe3bb0eaaf10c0c24c36dc66dc790ab",
+    "libdeflate": "92e6a0db9fa848d742f9eb286c92afc60f2c3dda",
+    "usockets": "38afee6c84fcf48c0edb2466aa4b27d287a59c30",
+    "lshpack": "cf0f70dd10b352194c97448eb5d00b4aa484f531",
+    "zstd": "f8745da6ff1ad1e7bab384bd1f9d742439278e99",
+    "v8": "14.6.202.34-node.20",
+    "uv": "1.51.1-dev",
+    "napi": "10",
+    "icu": "78.3",
+    "unicode": "17.0",
+    "sqlite": "3.53.4",
+    "typescript": "7.0.2",
+    "modules": "147"
+  },
+  "median": {
+    "wallMs": 3467.279599999999,
+    "loadMs": 17.363799999999998,
+    "fightMs": 149.8728,
+    "fightRounds": 200,
+    "winRateMs": 231.39759999999998,
+    "scoreMs": 3002.7283,
+    "totalMs": 3406.7475
+  },
+  "samples": [
+    {
+      "version": "0.5.5",
+      "loadMs": 24.821399999999997,
+      "fightMs": 194.0531,
+      "fightRounds": 200,
+      "winRateMs": 283.2433,
+      "scoreMs": 3016.6998,
+      "totalMs": 3518.8176
+    },
+    {
+      "version": "0.5.5",
+      "loadMs": 17.7648,
+      "fightMs": 160.3471,
+      "fightRounds": 200,
+      "winRateMs": 224.8754,
+      "scoreMs": 2844.6288,
+      "totalMs": 3247.6161
+    },
+    {
+      "version": "0.5.5",
+      "loadMs": 18.3089,
+      "fightMs": 155.3774,
+      "fightRounds": 200,
+      "winRateMs": 231.39759999999998,
+      "scoreMs": 3001.6636,
+      "totalMs": 3406.7475
+    },
+    {
+      "version": "0.5.5",
+      "loadMs": 17.3498,
+      "fightMs": 147.522,
+      "fightRounds": 200,
+      "winRateMs": 235.5411,
+      "scoreMs": 2945.4483,
+      "totalMs": 3345.8612
+    },
+    {
+      "version": "0.5.5",
+      "loadMs": 16.9161,
+      "fightMs": 148.09990000000002,
+      "fightRounds": 200,
+      "winRateMs": 226.0442,
+      "scoreMs": 3002.7283,
+      "totalMs": 3393.7885
+    },
+    {
+      "version": "0.5.5",
+      "loadMs": 17.2936,
+      "fightMs": 146.0793,
+      "fightRounds": 200,
+      "winRateMs": 231.584,
+      "scoreMs": 3026.9273,
+      "totalMs": 3421.8842
+    },
+    {
+      "version": "0.5.5",
+      "loadMs": 17.363799999999998,
+      "fightMs": 149.8728,
+      "fightRounds": 200,
+      "winRateMs": 228.77419999999998,
+      "scoreMs": 3022.9811999999997,
+      "totalMs": 3418.9919999999997
+    }
+  ],
+  "created_at": "2026-10-27T17:21:59.362Z"
+}

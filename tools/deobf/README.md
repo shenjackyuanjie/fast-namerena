@@ -1,8 +1,8 @@
 # deobf 工具
 
-用于清理 `branch/latest/md5.js` 的可重复管线。当前包含**死代码清理 + lazy 常量内联 + 领域方法/参数重命名**，不改战斗语义。
+用于清理 `branch/latest/md5.js` 的可重复管线。当前包含**死代码清理 + lazy 常量内联 + 领域方法/参数重命名 + 命名空间成员重命名**，不改战斗语义。
 
-## 当前状态（md5 0.5.4）
+## 当前状态（md5 0.5.5）
 
 第一轮清理：
 
@@ -28,6 +28,21 @@
 
 行为门槛全部通过：golden 全语料除版本号外逐字节一致、`bun test.ts` 通过、无头 Edge 跑完一场真实战斗、性能较第一轮基线约快 1.7%（golden 已更新到 `v0.5.4`）。
 
+第三轮清理与命名空间还原（不改变战斗语义）：
+
+| 项目 | 变化 |
+| --- | --- |
+| 无引用的 lazy 注册 | 删除 2 个（46 → 44），并清理对应 slot 的只写死写入 |
+| `$` 命名空间成员 | 30 个按 `namer-src` 原名改名（12 个字段 + 18 个 lazy getter），共改写 141 处访问 |
+| 只写死字段 | 删除 `$.ta` / `$.tb` 与 `$.mb` / `$.nV` / `$.nW`（后三者的读取代码早已注释化），连同 `main` 中对应初始化 |
+| 不可达成员 | 删除无调用的 `LangData.j`（base93 字符串解码） |
+| 行数 | 21,539 → 21,513 |
+| 归一化（LF）体积 | 676,440 → 676,235 字节 |
+
+第三轮同样通过全部行为门槛（golden 除 `_version_` 外逐字节一致、`test.ts`、无头 Edge、自对比基准差异在运行噪声内）。
+
+剩余 `$` 成员（`P`、`bk`、`cR/eN/eO`、`mH/oU/oV/oT/oW` 等）经 `namer-src` 与 `tswn-core` 对照，属于 dart2js / dart:html 运行时内部（root zone、微任务队列、浏览器探测等）或版本不对应的 LangData 表，未强行改名；`$.rq`（评分参数，profile 模式由 `$.vr = 6` 覆盖）与 `tswn-core` 的 `rq` 语义一致，保持原样。
+
 符号映射见 `branch/latest/md5.symbols.json` / `md5.symbols.md`，未解析项见 `report/rename-unresolved.md`。
 
 ## 环境
@@ -47,7 +62,7 @@ D:/apps/bun/bin/bun install
 # 1. 行为快照：在全新进程里按固定顺序跑完整语料
 D:/apps/bun/bin/bun run verify -- \
   --candidate ../../branch/latest/md5.stageN.js \
-  --golden golden/v0.5.4
+  --golden golden/v0.5.5
 
 # 2. 项目自带用例（候选提升为 md5.js 之后）
 cd ../../branch/latest && D:/apps/bun/bin/bun test.ts
@@ -83,7 +98,38 @@ D:/apps/bun/bin/bun run inline-lazy -- \
   --out ../../branch/latest/md5.stage3.js
 ```
 
-`delete-dead` 的 `--lazy N` 默认是 0（不删 lazy），要删必须显式给出上限；`--members-limit N` 可限制单批成员数。pass 的选取结果写入 `report/last-delete.json`、`report/last-inline.json`。
+`delete-dead` 的 `--lazy N` 默认是 0（不删 lazy），要删必须显式给出上限；`--members-limit N` 可限制单批成员数。`--assign` 用于删除只写不读的独立赋值语句，逗号分隔；`name@line` 形式可把匹配限定在指定行（同一标识符在别处是活代码时必须用行号限定）。pass 的选取结果写入 `report/last-delete.json`、`report/last-inline.json`。
+
+第三轮的实际用法（顺序与 0.5.5 产物一致，行号限定以重命名后的 stage 为准）：
+
+```bash
+# A. 删除 2 个 dead lazy 及其 slot 死写入
+D:/apps/bun/bin/bun run delete-dead -- \
+  --candidate ../../branch/latest/md5.stage1.js \
+  --out ../../branch/latest/md5.stage2.js \
+  --members 0 --lazy 100
+
+# B. 命名空间成员重命名（见下方“重命名流程”）
+D:/apps/bun/bin/bun run rename-namespace -- --batch 1 \
+  --candidate ../../branch/latest/md5.stage2.js \
+  --out ../../branch/latest/md5.stage3.js
+
+# C. 删除只写死字段与 main 中的首处初始化
+#    team_1/team_2 在后面会复用，必须用 @行号 限定到这一处
+D:/apps/bun/bin/bun run delete-dead -- \
+  --candidate ../../branch/latest/md5.stage3.js \
+  --out ../../branch/latest/md5.stage4.js \
+  --members 0 --lazy 0 \
+  --assign '$.mb,$.nV,$.nW,team_1@21265,team_2@21266'
+
+# D. 删除清理后新暴露的不可达成员（LangData.j）
+D:/apps/bun/bin/bun run delete-dead -- \
+  --candidate ../../branch/latest/md5.stage4.js \
+  --out ../../branch/latest/md5.stage5.js \
+  --members 100 --lazy 0
+```
+
+注意：`$.mb` / `$.nV` / `$.nW` 在每个文件中各出现两处（staticFields 初始化与 main），两处都是死写入，因此不需要行号限定；`team_1` / `team_2` 的其它赋值是活代码，只删 `@21265` / `@21266` 这两行。
 
 ## 重命名流程
 
@@ -131,6 +177,23 @@ D:/apps/bun/bin/bun run symbols -- ../../branch/latest/md5.js
 - 参数只按 Dart 签名数量一致且参数名唯一的映射应用；函数内已有同名标识符时跳过并记入 `report/rename-unresolved.md`
 - 每批都断言：行数不变、token 序列除 Identifier 外完全一致、输出可重新解析、prototype 无重复键
 
+### 命名空间成员（`$`）
+
+映射数据在 `src/data/rename-namespace.ts`，pass 位于 `src/passes/rename-namespace.ts`：
+
+```bash
+D:/apps/bun/bin/bun run rename-namespace -- --batch 1 \
+  --candidate ../../branch/latest/md5.stage2.js \
+  --out ../../branch/latest/md5.stage3.js
+```
+
+它同步改写 `$.old` 访问（含 `$["old"]`）与 `lazy_*(..., "getter", ...)` 的 getter 字符串，结果写入 `report/rename-namespace-report.json`。安全约束：
+
+- 旧名在代码访问与字符串里不能出现第三种形态；每个 lazy 目标必须恰好有一条注册
+- 新名不得与现有 `$` 成员、slot、getter 或本批其它目标冲突
+- 断言：行数不变、token 形状除目标标识符与注册字符串外一致、重解析通过、旧名代码零残留、新名引用数与预期相等
+- 剩余 `$` 成员属于 dart2js / dart:html 运行时内部（root zone、微任务队列、浏览器探测等）或版本不对应的 LangData 表，不做猜测性改名
+
 ## 禁止项
 
 - 只删除同时满足以下条件的命名空间成员：不可达、没有 prototype、没有字符串引用、不是普通数据属性
@@ -154,7 +217,7 @@ D:/apps/bun/bin/bun run symbols -- ../../branch/latest/md5.js
 已知不能放进固定序列的输入：
 
 - `seed:seed@!`：进入无限种子模式，Promise 不 resolve
-- `name+属性修改器`：在当前 0.5.4 产物里会抛错并破坏后续模块状态
+- `name+属性修改器`：在当前 0.5.5 产物里会抛错并破坏后续模块状态
 - `name+BossName!`：单独跑可以，但排在长序列末尾会不结束
 
 这些问题属于 md5.js 自身行为，清理阶段不修。
@@ -179,7 +242,7 @@ D:/apps/bun/bin/bun run symbols -- ../../branch/latest/md5.js
 
 ## 性能
 
-见 `report/benchmark.md`。Phase 0 基线在 `report/benchmark-baseline.json`；最终同机背靠背对比的两份原始数据是 `report/benchmark-baseline-recheck.json`（清理前）与 `report/benchmark-final.json`（清理后）。
+见 `report/benchmark.md`。第三轮最终的同机背靠背数据是 `report/benchmark-round3-old-final.json`（0.5.4）与 `report/benchmark-round3-final.json`（0.5.5，7 次采样）；其余采样文件 `report/benchmark-round3*.json` 用于确认噪声范围。早期基线仍在 `report/benchmark-baseline*.json` 与 `report/benchmark-final.json`。
 
 ## 行号映射
 
@@ -189,6 +252,7 @@ D:/apps/bun/bin/bun run symbols -- ../../branch/latest/md5.js
 
 ```
 src/lib/        参数、路径、JSON 工具
+src/data/       重命名映射数据（成员/参数/命名空间）
 src/harness/    语料、快照、验证、基准、浏览器烟雾测试
 src/passes/     AST 分析与清理 pass
 golden/         行为基线

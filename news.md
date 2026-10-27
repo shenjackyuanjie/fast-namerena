@@ -23,6 +23,20 @@
 - 固定语料输出除版本号外逐字节一致，`test.ts` 与无头 Edge 实测通过；性能较第一轮基线约快 1.7%（3153.9ms vs 3207.8ms）
 - 符号映射见 `branch/latest/md5.symbols.json` 与 `md5.symbols.md`，未解析项见 `tools/deobf/report/rename-unresolved.md`
 
+## md5 0.5.5
+
+第三轮反混淆：死代码清理与 `$` 命名空间成员还原（不改变战斗语义）。固定语料输出与 0.5.4 除 `_version_` 外逐字节一致。
+
+- 删除 2 个无引用的 lazy 注册（lazy 46 → 44）及其 slot 只写死写入
+- 30 个 `$` 成员按 `namer-src` 原名改名（12 个字段 + 18 个 lazy getter），共改写 141 处访问
+- 参照 `tswn-core` 复核评分公式：`$.rq` 即 `rq`（profile 模式由 `$.vr = 6` 覆盖），`$.rp` 等其余成员属运行时内部，不做猜测性改名
+- 清理 `$.mb` / `$.nV` / `$.nW` 只写死字段与 `main` 中对应初始化（读取代码早已注释化）
+- 删除无调用的 `LangData.j`（base93 字符串解码）
+- 行数 21,539 → 21,513；LF 体积 676,440 → 676,235 字节
+- 固定语料输出除版本号外逐字节一致，`test.ts` 与无头 Edge 实测通过；同分支自对比基准 total -0.9%（多组采样在 ±5% 噪声内）
+
+符号映射与命名空间清单见 `branch/latest/md5.symbols.json`，死代码与可达性见 `tools/deobf/report/dead-code.md`，第三轮命令见 `tools/deobf/README.md`。
+
 ## md5 0.4.5
 
 添加了 `run_env.fight_only`, 为 `true` 时只会战斗, 不会进行其他操作
