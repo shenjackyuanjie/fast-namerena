@@ -10,7 +10,7 @@
  * 369s -> 340s
  * 测试样例: bencharms/045-050.md
  */
-const _version_ = "0.5.4";
+const _version_ = "0.5.5";
 
 /**
  * 用于在 api 模式下触发轮询
@@ -3584,12 +3584,6 @@ var J = {
             q = q < 26 ? q + 65 : q + 71
             p = p < 26 ? p + 65 : p + 71
             return P.mh(H.b([r, q, p, o < 26 ? o + 65 : o + 71], t.i), 0, null)
-        },
-        j(a, b) {
-            // let result = C.e.bt(0, X.f4(a, b))
-            let result = C.T_kk.ab(X.f4(a, b))
-            logger.debug("O.j", a, b, result)
-            return result
         },
         get_lang(a) {
             var s = $.langDict.h(0, a)
@@ -20529,9 +20523,6 @@ var t = (function rtii() {
         var s = t.X
         return P.cu(s, s)
     }()
-    $.mb = 0
-    $.nV = 0
-    $.nW = 0
 })();
 (function lazyInitializers() {
     var lazy_final = hunkHelpers.lazyFinal,
@@ -21262,11 +21253,6 @@ function main(input_name) {
         }
         while (true) switch (async_goto) {
             case 0:
-                team_1 = LangData.oC(true).c
-                team_2 = team_1[3]
-                $.mb = team_2
-                $.nV = team_1[4]
-                $.nW = team_1[5]
 
                 if (!run_env.from_code) {
                     a2 = window.localStorage.getItem("go​ogle_experiment_mod1")

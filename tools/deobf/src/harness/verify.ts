@@ -57,7 +57,7 @@ function main(): void {
 	const goldenDir =
 		typeof args.golden === "string"
 			? path.resolve(args.golden)
-			: path.join(GOLDEN_DIR, "v0.5.4");
+			: path.join(GOLDEN_DIR, "v0.5.5");
 	const goldenFile = path.join(goldenDir, "sequence.json");
 	const golden = readJson<any>(goldenFile);
 

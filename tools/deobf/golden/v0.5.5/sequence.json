@@ -1,0 +1,1387 @@
+{
+  "version": "0.5.5",
+  "run_env": {
+    "from_code": true,
+    "is_node": false,
+    "is_bun": true
+  },
+  "load_console": [],
+  "results": [
+    {
+      "id": "golden-fight-1",
+      "kind": "fight",
+      "value": {
+        "message": "[2]获得胜利",
+        "source_plr": "rye",
+        "target_plr": "none",
+        "affect": "none"
+      },
+      "console": []
+    },
+    {
+      "id": "golden-fight-2",
+      "kind": "fight",
+      "value": {
+        "message": "[2]获得胜利",
+        "source_plr": "m@fAIgFUL",
+        "target_plr": "none",
+        "affect": "none"
+      },
+      "console": []
+    },
+    {
+      "id": "golden-win-rate",
+      "kind": "win_rate",
+      "value": {
+        "win_count": 5106,
+        "raw_data": [
+          {
+            "round": 100,
+            "win_count": 53
+          },
+          {
+            "round": 200,
+            "win_count": 113
+          },
+          {
+            "round": 300,
+            "win_count": 159
+          },
+          {
+            "round": 400,
+            "win_count": 209
+          },
+          {
+            "round": 500,
+            "win_count": 266
+          },
+          {
+            "round": 600,
+            "win_count": 321
+          },
+          {
+            "round": 700,
+            "win_count": 376
+          },
+          {
+            "round": 800,
+            "win_count": 422
+          },
+          {
+            "round": 900,
+            "win_count": 467
+          },
+          {
+            "round": 1000,
+            "win_count": 513
+          },
+          {
+            "round": 1100,
+            "win_count": 567
+          },
+          {
+            "round": 1200,
+            "win_count": 623
+          },
+          {
+            "round": 1300,
+            "win_count": 680
+          },
+          {
+            "round": 1400,
+            "win_count": 739
+          },
+          {
+            "round": 1500,
+            "win_count": 790
+          },
+          {
+            "round": 1600,
+            "win_count": 839
+          },
+          {
+            "round": 1700,
+            "win_count": 887
+          },
+          {
+            "round": 1800,
+            "win_count": 943
+          },
+          {
+            "round": 1900,
+            "win_count": 992
+          },
+          {
+            "round": 2000,
+            "win_count": 1054
+          },
+          {
+            "round": 2100,
+            "win_count": 1104
+          },
+          {
+            "round": 2200,
+            "win_count": 1152
+          },
+          {
+            "round": 2300,
+            "win_count": 1209
+          },
+          {
+            "round": 2400,
+            "win_count": 1263
+          },
+          {
+            "round": 2500,
+            "win_count": 1320
+          },
+          {
+            "round": 2600,
+            "win_count": 1368
+          },
+          {
+            "round": 2700,
+            "win_count": 1425
+          },
+          {
+            "round": 2800,
+            "win_count": 1477
+          },
+          {
+            "round": 2900,
+            "win_count": 1524
+          },
+          {
+            "round": 3000,
+            "win_count": 1570
+          },
+          {
+            "round": 3100,
+            "win_count": 1622
+          },
+          {
+            "round": 3200,
+            "win_count": 1683
+          },
+          {
+            "round": 3300,
+            "win_count": 1733
+          },
+          {
+            "round": 3400,
+            "win_count": 1773
+          },
+          {
+            "round": 3500,
+            "win_count": 1822
+          },
+          {
+            "round": 3600,
+            "win_count": 1872
+          },
+          {
+            "round": 3700,
+            "win_count": 1927
+          },
+          {
+            "round": 3800,
+            "win_count": 1987
+          },
+          {
+            "round": 3900,
+            "win_count": 2040
+          },
+          {
+            "round": 4000,
+            "win_count": 2092
+          },
+          {
+            "round": 4100,
+            "win_count": 2147
+          },
+          {
+            "round": 4200,
+            "win_count": 2199
+          },
+          {
+            "round": 4300,
+            "win_count": 2249
+          },
+          {
+            "round": 4400,
+            "win_count": 2307
+          },
+          {
+            "round": 4500,
+            "win_count": 2359
+          },
+          {
+            "round": 4600,
+            "win_count": 2414
+          },
+          {
+            "round": 4700,
+            "win_count": 2461
+          },
+          {
+            "round": 4800,
+            "win_count": 2509
+          },
+          {
+            "round": 4900,
+            "win_count": 2564
+          },
+          {
+            "round": 5000,
+            "win_count": 2607
+          },
+          {
+            "round": 5100,
+            "win_count": 2655
+          },
+          {
+            "round": 5200,
+            "win_count": 2702
+          },
+          {
+            "round": 5300,
+            "win_count": 2747
+          },
+          {
+            "round": 5400,
+            "win_count": 2796
+          },
+          {
+            "round": 5500,
+            "win_count": 2845
+          },
+          {
+            "round": 5600,
+            "win_count": 2891
+          },
+          {
+            "round": 5700,
+            "win_count": 2933
+          },
+          {
+            "round": 5800,
+            "win_count": 2980
+          },
+          {
+            "round": 5900,
+            "win_count": 3033
+          },
+          {
+            "round": 6000,
+            "win_count": 3087
+          },
+          {
+            "round": 6100,
+            "win_count": 3139
+          },
+          {
+            "round": 6200,
+            "win_count": 3194
+          },
+          {
+            "round": 6300,
+            "win_count": 3240
+          },
+          {
+            "round": 6400,
+            "win_count": 3275
+          },
+          {
+            "round": 6500,
+            "win_count": 3324
+          },
+          {
+            "round": 6600,
+            "win_count": 3375
+          },
+          {
+            "round": 6700,
+            "win_count": 3425
+          },
+          {
+            "round": 6800,
+            "win_count": 3471
+          },
+          {
+            "round": 6900,
+            "win_count": 3523
+          },
+          {
+            "round": 7000,
+            "win_count": 3573
+          },
+          {
+            "round": 7100,
+            "win_count": 3619
+          },
+          {
+            "round": 7200,
+            "win_count": 3667
+          },
+          {
+            "round": 7300,
+            "win_count": 3728
+          },
+          {
+            "round": 7400,
+            "win_count": 3773
+          },
+          {
+            "round": 7500,
+            "win_count": 3826
+          },
+          {
+            "round": 7600,
+            "win_count": 3871
+          },
+          {
+            "round": 7700,
+            "win_count": 3924
+          },
+          {
+            "round": 7800,
+            "win_count": 3972
+          },
+          {
+            "round": 7900,
+            "win_count": 4023
+          },
+          {
+            "round": 8000,
+            "win_count": 4071
+          },
+          {
+            "round": 8100,
+            "win_count": 4117
+          },
+          {
+            "round": 8200,
+            "win_count": 4178
+          },
+          {
+            "round": 8300,
+            "win_count": 4236
+          },
+          {
+            "round": 8400,
+            "win_count": 4277
+          },
+          {
+            "round": 8500,
+            "win_count": 4331
+          },
+          {
+            "round": 8600,
+            "win_count": 4383
+          },
+          {
+            "round": 8700,
+            "win_count": 4424
+          },
+          {
+            "round": 8800,
+            "win_count": 4477
+          },
+          {
+            "round": 8900,
+            "win_count": 4537
+          },
+          {
+            "round": 9000,
+            "win_count": 4587
+          },
+          {
+            "round": 9100,
+            "win_count": 4643
+          },
+          {
+            "round": 9200,
+            "win_count": 4691
+          },
+          {
+            "round": 9300,
+            "win_count": 4743
+          },
+          {
+            "round": 9400,
+            "win_count": 4794
+          },
+          {
+            "round": 9500,
+            "win_count": 4849
+          },
+          {
+            "round": 9600,
+            "win_count": 4905
+          },
+          {
+            "round": 9700,
+            "win_count": 4955
+          },
+          {
+            "round": 9800,
+            "win_count": 5003
+          },
+          {
+            "round": 9900,
+            "win_count": 5053
+          },
+          {
+            "round": 10000,
+            "win_count": 5106
+          }
+        ]
+      },
+      "console": []
+    },
+    {
+      "id": "golden-score-1",
+      "kind": "score",
+      "value": {
+        "score": 1903,
+        "raw_data": [
+          {
+            "round": 100,
+            "score": 11
+          },
+          {
+            "round": 200,
+            "score": 28
+          },
+          {
+            "round": 300,
+            "score": 42
+          },
+          {
+            "round": 400,
+            "score": 61
+          },
+          {
+            "round": 500,
+            "score": 76
+          },
+          {
+            "round": 600,
+            "score": 93
+          },
+          {
+            "round": 700,
+            "score": 105
+          },
+          {
+            "round": 800,
+            "score": 114
+          },
+          {
+            "round": 900,
+            "score": 126
+          },
+          {
+            "round": 1000,
+            "score": 148
+          },
+          {
+            "round": 1100,
+            "score": 166
+          },
+          {
+            "round": 1200,
+            "score": 191
+          },
+          {
+            "round": 1300,
+            "score": 210
+          },
+          {
+            "round": 1400,
+            "score": 234
+          },
+          {
+            "round": 1500,
+            "score": 253
+          },
+          {
+            "round": 1600,
+            "score": 273
+          },
+          {
+            "round": 1700,
+            "score": 293
+          },
+          {
+            "round": 1800,
+            "score": 310
+          },
+          {
+            "round": 1900,
+            "score": 337
+          },
+          {
+            "round": 2000,
+            "score": 354
+          },
+          {
+            "round": 2100,
+            "score": 378
+          },
+          {
+            "round": 2200,
+            "score": 401
+          },
+          {
+            "round": 2300,
+            "score": 421
+          },
+          {
+            "round": 2400,
+            "score": 443
+          },
+          {
+            "round": 2500,
+            "score": 464
+          },
+          {
+            "round": 2600,
+            "score": 485
+          },
+          {
+            "round": 2700,
+            "score": 503
+          },
+          {
+            "round": 2800,
+            "score": 524
+          },
+          {
+            "round": 2900,
+            "score": 546
+          },
+          {
+            "round": 3000,
+            "score": 563
+          },
+          {
+            "round": 3100,
+            "score": 586
+          },
+          {
+            "round": 3200,
+            "score": 609
+          },
+          {
+            "round": 3300,
+            "score": 627
+          },
+          {
+            "round": 3400,
+            "score": 644
+          },
+          {
+            "round": 3500,
+            "score": 659
+          },
+          {
+            "round": 3600,
+            "score": 682
+          },
+          {
+            "round": 3700,
+            "score": 702
+          },
+          {
+            "round": 3800,
+            "score": 720
+          },
+          {
+            "round": 3900,
+            "score": 744
+          },
+          {
+            "round": 4000,
+            "score": 772
+          },
+          {
+            "round": 4100,
+            "score": 800
+          },
+          {
+            "round": 4200,
+            "score": 817
+          },
+          {
+            "round": 4300,
+            "score": 843
+          },
+          {
+            "round": 4400,
+            "score": 864
+          },
+          {
+            "round": 4500,
+            "score": 879
+          },
+          {
+            "round": 4600,
+            "score": 898
+          },
+          {
+            "round": 4700,
+            "score": 915
+          },
+          {
+            "round": 4800,
+            "score": 933
+          },
+          {
+            "round": 4900,
+            "score": 950
+          },
+          {
+            "round": 5000,
+            "score": 967
+          },
+          {
+            "round": 5100,
+            "score": 986
+          },
+          {
+            "round": 5200,
+            "score": 1001
+          },
+          {
+            "round": 5300,
+            "score": 1019
+          },
+          {
+            "round": 5400,
+            "score": 1036
+          },
+          {
+            "round": 5500,
+            "score": 1053
+          },
+          {
+            "round": 5600,
+            "score": 1072
+          },
+          {
+            "round": 5700,
+            "score": 1089
+          },
+          {
+            "round": 5800,
+            "score": 1105
+          },
+          {
+            "round": 5900,
+            "score": 1121
+          },
+          {
+            "round": 6000,
+            "score": 1138
+          },
+          {
+            "round": 6100,
+            "score": 1156
+          },
+          {
+            "round": 6200,
+            "score": 1181
+          },
+          {
+            "round": 6300,
+            "score": 1202
+          },
+          {
+            "round": 6400,
+            "score": 1226
+          },
+          {
+            "round": 6500,
+            "score": 1247
+          },
+          {
+            "round": 6600,
+            "score": 1265
+          },
+          {
+            "round": 6700,
+            "score": 1283
+          },
+          {
+            "round": 6800,
+            "score": 1300
+          },
+          {
+            "round": 6900,
+            "score": 1319
+          },
+          {
+            "round": 7000,
+            "score": 1336
+          },
+          {
+            "round": 7100,
+            "score": 1356
+          },
+          {
+            "round": 7200,
+            "score": 1373
+          },
+          {
+            "round": 7300,
+            "score": 1385
+          },
+          {
+            "round": 7400,
+            "score": 1397
+          },
+          {
+            "round": 7500,
+            "score": 1415
+          },
+          {
+            "round": 7600,
+            "score": 1433
+          },
+          {
+            "round": 7700,
+            "score": 1454
+          },
+          {
+            "round": 7800,
+            "score": 1478
+          },
+          {
+            "round": 7900,
+            "score": 1496
+          },
+          {
+            "round": 8000,
+            "score": 1517
+          },
+          {
+            "round": 8100,
+            "score": 1540
+          },
+          {
+            "round": 8200,
+            "score": 1555
+          },
+          {
+            "round": 8300,
+            "score": 1573
+          },
+          {
+            "round": 8400,
+            "score": 1592
+          },
+          {
+            "round": 8500,
+            "score": 1617
+          },
+          {
+            "round": 8600,
+            "score": 1631
+          },
+          {
+            "round": 8700,
+            "score": 1650
+          },
+          {
+            "round": 8800,
+            "score": 1670
+          },
+          {
+            "round": 8900,
+            "score": 1688
+          },
+          {
+            "round": 9000,
+            "score": 1698
+          },
+          {
+            "round": 9100,
+            "score": 1718
+          },
+          {
+            "round": 9200,
+            "score": 1736
+          },
+          {
+            "round": 9300,
+            "score": 1753
+          },
+          {
+            "round": 9400,
+            "score": 1770
+          },
+          {
+            "round": 9500,
+            "score": 1798
+          },
+          {
+            "round": 9600,
+            "score": 1826
+          },
+          {
+            "round": 9700,
+            "score": 1840
+          },
+          {
+            "round": 9800,
+            "score": 1862
+          },
+          {
+            "round": 9900,
+            "score": 1887
+          },
+          {
+            "round": 10000,
+            "score": 1903
+          }
+        ]
+      },
+      "console": []
+    },
+    {
+      "id": "golden-score-2",
+      "kind": "score",
+      "value": {
+        "score": 6508,
+        "raw_data": [
+          {
+            "round": 100,
+            "score": 64
+          },
+          {
+            "round": 200,
+            "score": 125
+          },
+          {
+            "round": 300,
+            "score": 195
+          },
+          {
+            "round": 400,
+            "score": 256
+          },
+          {
+            "round": 500,
+            "score": 321
+          },
+          {
+            "round": 600,
+            "score": 387
+          },
+          {
+            "round": 700,
+            "score": 451
+          },
+          {
+            "round": 800,
+            "score": 512
+          },
+          {
+            "round": 900,
+            "score": 581
+          },
+          {
+            "round": 1000,
+            "score": 641
+          },
+          {
+            "round": 1100,
+            "score": 713
+          },
+          {
+            "round": 1200,
+            "score": 788
+          },
+          {
+            "round": 1300,
+            "score": 859
+          },
+          {
+            "round": 1400,
+            "score": 925
+          },
+          {
+            "round": 1500,
+            "score": 987
+          },
+          {
+            "round": 1600,
+            "score": 1048
+          },
+          {
+            "round": 1700,
+            "score": 1120
+          },
+          {
+            "round": 1800,
+            "score": 1181
+          },
+          {
+            "round": 1900,
+            "score": 1241
+          },
+          {
+            "round": 2000,
+            "score": 1315
+          },
+          {
+            "round": 2100,
+            "score": 1374
+          },
+          {
+            "round": 2200,
+            "score": 1437
+          },
+          {
+            "round": 2300,
+            "score": 1498
+          },
+          {
+            "round": 2400,
+            "score": 1573
+          },
+          {
+            "round": 2500,
+            "score": 1637
+          },
+          {
+            "round": 2600,
+            "score": 1694
+          },
+          {
+            "round": 2700,
+            "score": 1754
+          },
+          {
+            "round": 2800,
+            "score": 1814
+          },
+          {
+            "round": 2900,
+            "score": 1879
+          },
+          {
+            "round": 3000,
+            "score": 1948
+          },
+          {
+            "round": 3100,
+            "score": 2016
+          },
+          {
+            "round": 3200,
+            "score": 2088
+          },
+          {
+            "round": 3300,
+            "score": 2150
+          },
+          {
+            "round": 3400,
+            "score": 2214
+          },
+          {
+            "round": 3500,
+            "score": 2278
+          },
+          {
+            "round": 3600,
+            "score": 2354
+          },
+          {
+            "round": 3700,
+            "score": 2421
+          },
+          {
+            "round": 3800,
+            "score": 2492
+          },
+          {
+            "round": 3900,
+            "score": 2562
+          },
+          {
+            "round": 4000,
+            "score": 2628
+          },
+          {
+            "round": 4100,
+            "score": 2689
+          },
+          {
+            "round": 4200,
+            "score": 2757
+          },
+          {
+            "round": 4300,
+            "score": 2818
+          },
+          {
+            "round": 4400,
+            "score": 2882
+          },
+          {
+            "round": 4500,
+            "score": 2938
+          },
+          {
+            "round": 4600,
+            "score": 3009
+          },
+          {
+            "round": 4700,
+            "score": 3072
+          },
+          {
+            "round": 4800,
+            "score": 3133
+          },
+          {
+            "round": 4900,
+            "score": 3202
+          },
+          {
+            "round": 5000,
+            "score": 3263
+          },
+          {
+            "round": 5100,
+            "score": 3316
+          },
+          {
+            "round": 5200,
+            "score": 3391
+          },
+          {
+            "round": 5300,
+            "score": 3457
+          },
+          {
+            "round": 5400,
+            "score": 3525
+          },
+          {
+            "round": 5500,
+            "score": 3575
+          },
+          {
+            "round": 5600,
+            "score": 3637
+          },
+          {
+            "round": 5700,
+            "score": 3703
+          },
+          {
+            "round": 5800,
+            "score": 3764
+          },
+          {
+            "round": 5900,
+            "score": 3824
+          },
+          {
+            "round": 6000,
+            "score": 3893
+          },
+          {
+            "round": 6100,
+            "score": 3956
+          },
+          {
+            "round": 6200,
+            "score": 4017
+          },
+          {
+            "round": 6300,
+            "score": 4081
+          },
+          {
+            "round": 6400,
+            "score": 4147
+          },
+          {
+            "round": 6500,
+            "score": 4215
+          },
+          {
+            "round": 6600,
+            "score": 4281
+          },
+          {
+            "round": 6700,
+            "score": 4346
+          },
+          {
+            "round": 6800,
+            "score": 4416
+          },
+          {
+            "round": 6900,
+            "score": 4481
+          },
+          {
+            "round": 7000,
+            "score": 4545
+          },
+          {
+            "round": 7100,
+            "score": 4620
+          },
+          {
+            "round": 7200,
+            "score": 4691
+          },
+          {
+            "round": 7300,
+            "score": 4758
+          },
+          {
+            "round": 7400,
+            "score": 4821
+          },
+          {
+            "round": 7500,
+            "score": 4887
+          },
+          {
+            "round": 7600,
+            "score": 4945
+          },
+          {
+            "round": 7700,
+            "score": 5003
+          },
+          {
+            "round": 7800,
+            "score": 5075
+          },
+          {
+            "round": 7900,
+            "score": 5141
+          },
+          {
+            "round": 8000,
+            "score": 5207
+          },
+          {
+            "round": 8100,
+            "score": 5272
+          },
+          {
+            "round": 8200,
+            "score": 5343
+          },
+          {
+            "round": 8300,
+            "score": 5413
+          },
+          {
+            "round": 8400,
+            "score": 5475
+          },
+          {
+            "round": 8500,
+            "score": 5541
+          },
+          {
+            "round": 8600,
+            "score": 5605
+          },
+          {
+            "round": 8700,
+            "score": 5667
+          },
+          {
+            "round": 8800,
+            "score": 5721
+          },
+          {
+            "round": 8900,
+            "score": 5779
+          },
+          {
+            "round": 9000,
+            "score": 5844
+          },
+          {
+            "round": 9100,
+            "score": 5915
+          },
+          {
+            "round": 9200,
+            "score": 5972
+          },
+          {
+            "round": 9300,
+            "score": 6041
+          },
+          {
+            "round": 9400,
+            "score": 6107
+          },
+          {
+            "round": 9500,
+            "score": 6172
+          },
+          {
+            "round": 9600,
+            "score": 6243
+          },
+          {
+            "round": 9700,
+            "score": 6305
+          },
+          {
+            "round": 9800,
+            "score": 6373
+          },
+          {
+            "round": 9900,
+            "score": 6441
+          },
+          {
+            "round": 10000,
+            "score": 6508
+          }
+        ]
+      },
+      "console": []
+    },
+    {
+      "id": "fight-log",
+      "kind": "fight_log",
+      "value": {
+        "winner": {
+          "message": "[2]获得胜利",
+          "source_plr": "1 1 @Ehlt s",
+          "target_plr": "none",
+          "affect": "none"
+        },
+        "updates": [
+          "m@fAIgFUL发起攻击",
+          "1 1 @Ehlt s受到47点伤害",
+          "__FIGHT_LOG_TURN_SPLITTER__",
+          "1 1 @Ehlt s发起攻击",
+          "m@fAIgFUL受到55点伤害",
+          "__FIGHT_LOG_TURN_SPLITTER__",
+          "m@fAIgFUL使用净化",
+          "1 1 @Ehlt s受到94点伤害",
+          "__FIGHT_LOG_TURN_SPLITTER__",
+          "1 1 @Ehlt s发起攻击",
+          "m@fAIgFUL受到54点伤害",
+          "__FIGHT_LOG_TURN_SPLITTER__",
+          "1 1 @Ehlt s发起攻击",
+          "m@fAIgFUL受到53点伤害",
+          "__FIGHT_LOG_TURN_SPLITTER__",
+          "m@fAIgFUL发起攻击",
+          "1 1 @Ehlt s回避了攻击",
+          "__FIGHT_LOG_TURN_SPLITTER__",
+          "1 1 @Ehlt s使用加速术",
+          "1 1 @Ehlt s进入疾走状态",
+          "__FIGHT_LOG_TURN_SPLITTER__",
+          "1 1 @Ehlt s使用净化",
+          "m@fAIgFUL受到55点伤害",
+          "__FIGHT_LOG_TURN_SPLITTER__",
+          "1 1 @Ehlt s发起攻击",
+          "m@fAIgFUL受到71点伤害",
+          "__FIGHT_LOG_TURN_SPLITTER__",
+          "1 1 @Ehlt s从疾走中解除",
+          "m@fAIgFUL发起攻击",
+          "1 1 @Ehlt s受到38点伤害",
+          "__FIGHT_LOG_TURN_SPLITTER__",
+          "m@fAIgFUL发起攻击",
+          "1 1 @Ehlt s回避了攻击",
+          "__FIGHT_LOG_TURN_SPLITTER__",
+          "1 1 @Ehlt s发动铁壁",
+          "1 1 @Ehlt s防御力大幅上升",
+          "__FIGHT_LOG_TURN_SPLITTER__",
+          "m@fAIgFUL使用狂暴术",
+          "1 1 @Ehlt s回避了攻击",
+          "__FIGHT_LOG_TURN_SPLITTER__",
+          "1 1 @Ehlt s使用加速术",
+          "1 1 @Ehlt s进入疾走状态",
+          "__FIGHT_LOG_TURN_SPLITTER__",
+          "1 1 @Ehlt s使用净化",
+          "m@fAIgFUL受到42点伤害",
+          "__FIGHT_LOG_TURN_SPLITTER__",
+          "1 1 @Ehlt s从铁壁中解除",
+          "m@fAIgFUL发起攻击",
+          "1 1 @Ehlt s受到41点伤害",
+          "__FIGHT_LOG_TURN_SPLITTER__",
+          "1 1 @Ehlt s使用净化",
+          "m@fAIgFUL受到62点伤害",
+          "__FIGHT_LOG_TURN_SPLITTER__",
+          "m@fAIgFUL被击倒了"
+        ]
+      },
+      "console": []
+    },
+    {
+      "id": "multi-play",
+      "kind": "fight",
+      "value": {
+        "message": "[2]获得胜利",
+        "source_plr": "4bw",
+        "target_plr": "none",
+        "affect": "none"
+      },
+      "console": []
+    },
+    {
+      "id": "seed",
+      "kind": "fight",
+      "value": {
+        "message": "[2]获得胜利",
+        "source_plr": "adawada",
+        "target_plr": "none",
+        "affect": "none"
+      },
+      "console": []
+    },
+    {
+      "id": "strong-team",
+      "kind": "fight",
+      "value": {
+        "message": "[2]获得胜利",
+        "source_plr": "\\u5929\\u4F9D 'i[8S\\`Aw@LuoTianyi",
+        "target_plr": "none",
+        "affect": "none"
+      },
+      "console": []
+    },
+    {
+      "id": "diy",
+      "kind": "fight",
+      "value": {
+        "message": "[2]获得胜利",
+        "source_plr": "Normal",
+        "target_plr": "none",
+        "affect": "none"
+      },
+      "console": []
+    },
+    {
+      "id": "weapons",
+      "kind": "fight",
+      "value": {
+        "message": "[2]获得胜利",
+        "source_plr": "剑客",
+        "target_plr": "none",
+        "affect": "none"
+      },
+      "console": []
+    }
+  ]
+}

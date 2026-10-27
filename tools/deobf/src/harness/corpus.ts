@@ -130,8 +130,8 @@ const DIY =
 const WEAPONS = "刀客+剁手刀\n剑客+死亡笔记";
 
 export const CORPUS: Corpus = {
-	name: "v0.5.4-default",
-	version: "0.5.4",
+	name: "v0.5.5-default",
+	version: "0.5.5",
 	ops: [
 		// 前 5 项与 test.ts 顺序一致，用于复现既有 golden
 		{ id: "golden-fight-1", kind: "fight", input: FIGHT_A },
