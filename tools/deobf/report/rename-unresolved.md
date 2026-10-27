@@ -9,6 +9,10 @@
 - `e5`（T.PlrBossTest2）：dart2js 子类构造体；改名为 init 会遮蔽基类构造体 T.Plr.a1（已改名 init）
 - `av`（T.PlrBoss）：dart2js 子类构造体；改名为 init 会遮蔽基类构造体 T.Plr.a1（已改名 init）
 
+## 命名空间成员（$）
+
+- 无
+
 ## 参数（函数内已有同名标识符等）
 
 - T.BerserkState.act：#2 `c`→`r`：函数内已存在同名标识符 r

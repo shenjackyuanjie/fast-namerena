@@ -4,6 +4,7 @@ import { lineOf, parseScript } from "../lib/ast";
 import { collectMethodDefinitions } from "../lib/invariants";
 import { LATEST_DIR, REPORT_DIR, ensureDir, readJson, sha256File, writeJson } from "../lib/files";
 import { MEMBER_RENAMES, UNRESOLVED_MEMBERS } from "../data/rename-members";
+import { NAMESPACE_RENAMES } from "../data/rename-namespace";
 import { PARAM_RENAMES } from "../data/rename-params";
 
 interface MemberReportEntry {
@@ -38,6 +39,7 @@ function main(): void {
 	const version = source.match(/const _version_ = "([^"]+)"/)?.[1] ?? "unknown";
 
 	const memberReport = readJson<any>(path.join(REPORT_DIR, "rename-report.json"));
+	const namespaceReport = readJson<any>(path.join(REPORT_DIR, "rename-namespace-report.json"));
 	const paramReport = readJson<any>(path.join(REPORT_DIR, "rename-params.json"));
 	const unmatched = readJson<any>(path.join(REPORT_DIR, "param-unmatched.json")).methods as Array<{
 		owner: string;
@@ -75,6 +77,38 @@ function main(): void {
 		};
 	});
 
+	const namespaceBatchEntries: Array<{
+		old: string;
+		new: string;
+		kind: string;
+		dart: string;
+		status: string;
+		reason?: string;
+		memberRefs: number;
+		computedRefs: number;
+		registrationLine?: number;
+	}> = [];
+	for (const batch of Object.values<any>(namespaceReport.batches ?? {})) {
+		namespaceBatchEntries.push(...(batch.entries ?? []));
+	}
+
+	const namespace = NAMESPACE_RENAMES.map((entry) => {
+		const stats = namespaceBatchEntries.find((r) => r.old === entry.old && r.new === entry.new);
+		return {
+			old: entry.old,
+			new: entry.new,
+			kind: entry.kind,
+			dart: entry.dart,
+			evidence: entry.evidence,
+			batch: entry.batch,
+			status: stats?.status ?? "unknown",
+			reason: stats?.reason,
+			accesses: stats?.memberRefs ?? 0,
+			computedAccesses: stats?.computedRefs ?? 0,
+			registrationLine: stats?.registrationLine,
+		};
+	});
+
 	const paramReports = (paramReport.params ?? []) as ParamReportEntry[];
 	const params = PARAM_RENAMES.map((entry) => {
 		const reports = paramReports.filter((r) => r.owner === entry.owner && r.method === entry.method);
@@ -107,9 +141,11 @@ function main(): void {
 		version,
 		lines: source.replace(/\n$/, "").split("\n").length,
 		members,
+		namespace,
 		params,
 		unresolved: {
 			members: UNRESOLVED_MEMBERS,
+			namespace: namespace.filter((entry) => entry.status === "skipped"),
 			params: unresolvedParams,
 			unmatchedMethods: unmatched,
 		},
@@ -119,14 +155,16 @@ function main(): void {
 	writeJson(jsonPath, symbols);
 
 	const applied = members.filter((m) => m.status === "applied");
+	const appliedNamespace = namespace.filter((entry) => entry.status === "applied");
 	const md: string[] = [];
 	md.push(`# md5 ${version} 符号映射`);
 	md.push("");
 	md.push(`由 \`tools/deobf/src/harness/symbols.ts\` 从 \`${path.basename(candidate)}\` 生成。`);
 	md.push("");
 	md.push(
-		`- 行数：${symbols.lines}；成员映射 ${applied.length} 条；参数映射 ${params.length} 个方法；` +
-			`未解析成员 ${UNRESOLVED_MEMBERS.length} 条、参数 ${unresolvedParams.length} 处、方法签名 ${unmatched.length} 个。`,
+		`- 行数：${symbols.lines}；成员映射 ${applied.length} 条；命名空间映射 ${appliedNamespace.length} 条；` +
+			`参数映射 ${params.length} 个方法；未解析成员 ${UNRESOLVED_MEMBERS.length} 条、` +
+			`参数 ${unresolvedParams.length} 处、方法签名 ${unmatched.length} 个。`,
 	);
 	md.push("");
 	md.push("## 成员方法");
@@ -142,6 +180,18 @@ function main(): void {
 				`${member.registryStrings > 0 ? `，注册表 ${member.registryStrings} 处` : ""}）`,
 		);
 		if (owners) md.push(`  - ${owners}`);
+	}
+	md.push("");
+	md.push("## 命名空间成员（$）");
+	md.push("");
+	for (const entry of namespace) {
+		if (entry.status === "skipped") {
+			md.push(`- \`$.${entry.old}\` → \`$.${entry.new}\`（跳过：${entry.reason ?? "未知原因"}）`);
+			continue;
+		}
+		md.push(
+			`- \`$.${entry.old}\` → \`$.${entry.new}\`（${entry.kind}；${entry.dart}，${entry.evidence}；访问 ${entry.accesses} 次）`,
+		);
 	}
 	md.push("");
 	md.push("## 参数");
@@ -177,6 +227,14 @@ function main(): void {
 	unresolvedMd.push("");
 	for (const entry of UNRESOLVED_MEMBERS) {
 		unresolvedMd.push(`- \`${entry.old}\`（${entry.owners.join(", ")}）：${entry.reason}`);
+	}
+	unresolvedMd.push("");
+	unresolvedMd.push("## 命名空间成员（$）");
+	unresolvedMd.push("");
+	const unresolvedNamespace = symbols.unresolved.namespace;
+	if (unresolvedNamespace.length === 0) unresolvedMd.push("- 无");
+	for (const entry of unresolvedNamespace) {
+		unresolvedMd.push(`- \`$.${entry.old}\` → \`$.${entry.new}\`：${entry.reason ?? "未知原因"}`);
 	}
 	unresolvedMd.push("");
 	unresolvedMd.push("## 参数（函数内已有同名标识符等）");

@@ -1,7 +1,7 @@
 {
-  "source": "md5.js",
-  "sha256": "3a5476a9c19142ed632c3e6e54d2b0f291b59a54499c921891d2b5e9bb437778",
-  "version": "0.5.4",
+  "source": "md5.stage3.js",
+  "sha256": "5a3398321a0077dd16b9b31d837b66f0776c71f36ae0c8f8fe4b67362dba3f7a",
+  "version": "0.5.3",
   "lines": 21539,
   "members": [
     {
@@ -3585,6 +3585,356 @@
       "accesses": 2,
       "computedAccesses": 0,
       "registryStrings": 0
+    }
+  ],
+  "namespace": [
+    {
+      "old": "k8",
+      "new": "sgls",
+      "kind": "field",
+      "dart": "Sgls.sgls",
+      "evidence": "html/sgl.dart:15",
+      "batch": 1,
+      "status": "applied",
+      "accesses": 5,
+      "computedAccesses": 0
+    },
+    {
+      "old": "mg",
+      "new": "dataUrls",
+      "kind": "field",
+      "dart": "Sgls.dataUrls",
+      "evidence": "html/sgl.dart:14",
+      "batch": 1,
+      "status": "applied",
+      "accesses": 4,
+      "computedAccesses": 0
+    },
+    {
+      "old": "e_",
+      "new": "iconidx",
+      "kind": "field",
+      "dart": "Sgls.iconidx",
+      "evidence": "html/sgl.dart:16",
+      "batch": 1,
+      "status": "applied",
+      "accesses": 7,
+      "computedAccesses": 0
+    },
+    {
+      "old": "mf",
+      "new": "sigColors",
+      "kind": "field",
+      "dart": "Sgl.sig_colors",
+      "evidence": "html/sgl_gen.dart:5",
+      "batch": 1,
+      "status": "applied",
+      "accesses": 4,
+      "computedAccesses": 0
+    },
+    {
+      "old": "md",
+      "new": "pattern",
+      "kind": "field",
+      "dart": "Sgl._pattern",
+      "evidence": "html/sgl_gen.dart:71",
+      "batch": 1,
+      "status": "applied",
+      "accesses": 4,
+      "computedAccesses": 0
+    },
+    {
+      "old": "dZ",
+      "new": "datas",
+      "kind": "field",
+      "dart": "Sgl.datas",
+      "evidence": "html/sgl_gen.dart:129",
+      "batch": 1,
+      "status": "applied",
+      "accesses": 7,
+      "computedAccesses": 0
+    },
+    {
+      "old": "me",
+      "new": "borders",
+      "kind": "field",
+      "dart": "Sgl.borders",
+      "evidence": "html/sgl_gen.dart:131",
+      "batch": 1,
+      "status": "applied",
+      "accesses": 4,
+      "computedAccesses": 0
+    },
+    {
+      "old": "o5",
+      "new": "masks",
+      "kind": "field",
+      "dart": "Sgl.masks",
+      "evidence": "html/sgl_gen.dart:132",
+      "batch": 1,
+      "status": "applied",
+      "accesses": 3,
+      "computedAccesses": 0
+    },
+    {
+      "old": "nv",
+      "new": "cdif",
+      "kind": "lazy",
+      "dart": "Sgl.cdif",
+      "evidence": "html/sgl_gen.dart:44",
+      "batch": 1,
+      "status": "applied",
+      "accesses": 2,
+      "computedAccesses": 0,
+      "registrationLine": 20655
+    },
+    {
+      "old": "nt",
+      "new": "initComplete",
+      "kind": "lazy",
+      "dart": "Sgl._initComplete",
+      "evidence": "html/sgl_gen.dart:72",
+      "batch": 1,
+      "status": "applied",
+      "accesses": 2,
+      "computedAccesses": 0,
+      "registrationLine": 20658
+    },
+    {
+      "old": "nu",
+      "new": "canvas",
+      "kind": "lazy",
+      "dart": "Sgl.canvas",
+      "evidence": "html/sgl_gen.dart:142",
+      "batch": 1,
+      "status": "applied",
+      "accesses": 2,
+      "computedAccesses": 0,
+      "registrationLine": 20661
+    },
+    {
+      "old": "lS",
+      "new": "shapeCanvas",
+      "kind": "lazy",
+      "dart": "Sgl.shapeCanvas",
+      "evidence": "html/sgl_gen.dart:201",
+      "batch": 1,
+      "status": "applied",
+      "accesses": 3,
+      "computedAccesses": 0,
+      "registrationLine": 20667
+    },
+    {
+      "old": "d8",
+      "new": "shapeImage",
+      "kind": "lazy",
+      "dart": "Sgl.shapeImage",
+      "evidence": "html/sgl_gen.dart:202",
+      "batch": 1,
+      "status": "applied",
+      "accesses": 6,
+      "computedAccesses": 0,
+      "registrationLine": 20673
+    },
+    {
+      "old": "ay",
+      "new": "plrViewDict",
+      "kind": "field",
+      "dart": "PlrView.dict",
+      "evidence": "html/plrview.dart:41",
+      "batch": 1,
+      "status": "applied",
+      "accesses": 17,
+      "computedAccesses": 0
+    },
+    {
+      "old": "jU",
+      "new": "plrViewPid",
+      "kind": "field",
+      "dart": "PlrView.pid",
+      "evidence": "html/plrview.dart:40",
+      "batch": 1,
+      "status": "applied",
+      "accesses": 5,
+      "computedAccesses": 0
+    },
+    {
+      "old": "rW",
+      "new": "bosses",
+      "kind": "field",
+      "dart": "Images.bosses",
+      "evidence": "html/image.dart:2",
+      "batch": 1,
+      "status": "applied",
+      "accesses": 2,
+      "computedAccesses": 0
+    },
+    {
+      "old": "bU",
+      "new": "img",
+      "kind": "lazy",
+      "dart": "HtmlRenderer.img",
+      "evidence": "html/html.dart:427",
+      "batch": 1,
+      "status": "applied",
+      "accesses": 8,
+      "computedAccesses": 0,
+      "registrationLine": 20649
+    },
+    {
+      "old": "rm",
+      "new": "updateReg",
+      "kind": "lazy",
+      "dart": "renderer._updateReg",
+      "evidence": "html/renderer.dart:3",
+      "batch": 1,
+      "status": "applied",
+      "accesses": 1,
+      "computedAccesses": 0,
+      "registrationLine": 20652
+    },
+    {
+      "old": "bV",
+      "new": "noValidator",
+      "kind": "lazy",
+      "dart": "noValidator",
+      "evidence": "helper.dart:14",
+      "batch": 1,
+      "status": "applied",
+      "accesses": 8,
+      "computedAccesses": 0,
+      "registrationLine": 20646
+    },
+    {
+      "old": "r0",
+      "new": "replaceSpace0",
+      "kind": "lazy",
+      "dart": "Fgt.replaceSpace0",
+      "evidence": "fgt.dart:13",
+      "batch": 1,
+      "status": "applied",
+      "accesses": 1,
+      "computedAccesses": 0,
+      "registrationLine": 20690
+    },
+    {
+      "old": "nq",
+      "new": "replaceSpace1",
+      "kind": "lazy",
+      "dart": "Fgt.replaceSpace1",
+      "evidence": "fgt.dart:14",
+      "batch": 1,
+      "status": "applied",
+      "accesses": 2,
+      "computedAccesses": 0,
+      "registrationLine": 20693
+    },
+    {
+      "old": "r_",
+      "new": "regNewLine",
+      "kind": "lazy",
+      "dart": "Fgt.regNewLine",
+      "evidence": "fgt.dart:15",
+      "batch": 1,
+      "status": "applied",
+      "accesses": 1,
+      "computedAccesses": 0,
+      "registrationLine": 20696
+    },
+    {
+      "old": "rj",
+      "new": "specialList",
+      "kind": "lazy",
+      "dart": "Weapon.specialList",
+      "evidence": "weapon/weapon.dart:5",
+      "batch": 1,
+      "status": "applied",
+      "accesses": 1,
+      "computedAccesses": 0,
+      "registrationLine": 20727
+    },
+    {
+      "old": "r5",
+      "new": "rinickModifierHP",
+      "kind": "lazy",
+      "dart": "RinickModifierHP",
+      "evidence": "weapon/rinick_modifier.dart:3",
+      "batch": 1,
+      "status": "applied",
+      "accesses": 1,
+      "computedAccesses": 0,
+      "registrationLine": 20721
+    },
+    {
+      "old": "r6",
+      "new": "s11AttrNames",
+      "kind": "lazy",
+      "dart": "SklS11.attrNames",
+      "evidence": "weapon/s11.dart:5",
+      "batch": 1,
+      "status": "applied",
+      "accesses": 1,
+      "computedAccesses": 0,
+      "registrationLine": 20724
+    },
+    {
+      "old": "r1",
+      "new": "guiYueMembers",
+      "kind": "lazy",
+      "dart": "GuiYue.members",
+      "evidence": "weapon/gui_yue.dart:15",
+      "batch": 1,
+      "status": "applied",
+      "accesses": 1,
+      "computedAccesses": 0,
+      "registrationLine": 20711
+    },
+    {
+      "old": "rk",
+      "new": "xuanYueMembers",
+      "kind": "lazy",
+      "dart": "XuanYue.members",
+      "evidence": "namer-src 无 xuan_yue.dart；按 T.ku 工厂返回 T.kv 推断",
+      "batch": 1,
+      "status": "applied",
+      "accesses": 1,
+      "computedAccesses": 0,
+      "registrationLine": 20743
+    },
+    {
+      "old": "nr",
+      "new": "boosted",
+      "kind": "lazy",
+      "dart": "Boss.boosted",
+      "evidence": "boss/boss.dart:56",
+      "batch": 1,
+      "status": "applied",
+      "accesses": 2,
+      "computedAccesses": 0,
+      "registrationLine": 20679
+    },
+    {
+      "old": "K",
+      "new": "newline",
+      "kind": "lazy",
+      "dart": "RunUpdate.newline",
+      "evidence": "misc.dart:62",
+      "batch": 1,
+      "status": "applied",
+      "accesses": 33,
+      "computedAccesses": 0,
+      "registrationLine": 20700
+    },
+    {
+      "old": "od",
+      "new": "langDict",
+      "kind": "field",
+      "dart": "top-level _L",
+      "evidence": "lan_data.dart:19",
+      "batch": 1,
+      "status": "applied",
+      "accesses": 3,
+      "computedAccesses": 0
     }
   ],
   "params": [
@@ -8842,6 +9192,7 @@
         "reason": "dart2js 子类构造体；改名为 init 会遮蔽基类构造体 T.Plr.a1（已改名 init）"
       }
     ],
+    "namespace": [],
     "params": [
       {
         "owner": "T.SklAbsorb",

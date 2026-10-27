@@ -1,8 +1,8 @@
-# md5 0.5.4 符号映射
+# md5 0.5.3 符号映射
 
-由 `tools/deobf/src/harness/symbols.ts` 从 `md5.js` 生成。
+由 `tools/deobf/src/harness/symbols.ts` 从 `md5.stage3.js` 生成。
 
-- 行数：21539；成员映射 90 条；参数映射 203 个方法；未解析成员 6 条、参数 98 处、方法签名 148 个。
+- 行数：21539；成员映射 90 条；命名空间映射 30 条；参数映射 203 个方法；未解析成员 6 条、参数 98 处、方法签名 148 个。
 
 ## 成员方法
 
@@ -186,6 +186,39 @@
   - T.GuiYue, T.NoWeapon, T.RinickModifier, T.Weapon, T.WeaponDeathNote, T.WeaponS11, T.kv
 - `as` → `validTarget`（批次 1；访问 1 次）
   - T.Skill, T.SklAssassinate, T.SklBerserk, T.SklCharm, T.SklConan, T.SklCurse, T.SklExchange, T.SklHaste, T.SklHeal, T.SklProtect, T.SklRevive, T.SklSlow, T.SklYuriControl, T.sklHalf
+
+## 命名空间成员（$）
+
+- `$.k8` → `$.sgls`（field；Sgls.sgls，html/sgl.dart:15；访问 5 次）
+- `$.mg` → `$.dataUrls`（field；Sgls.dataUrls，html/sgl.dart:14；访问 4 次）
+- `$.e_` → `$.iconidx`（field；Sgls.iconidx，html/sgl.dart:16；访问 7 次）
+- `$.mf` → `$.sigColors`（field；Sgl.sig_colors，html/sgl_gen.dart:5；访问 4 次）
+- `$.md` → `$.pattern`（field；Sgl._pattern，html/sgl_gen.dart:71；访问 4 次）
+- `$.dZ` → `$.datas`（field；Sgl.datas，html/sgl_gen.dart:129；访问 7 次）
+- `$.me` → `$.borders`（field；Sgl.borders，html/sgl_gen.dart:131；访问 4 次）
+- `$.o5` → `$.masks`（field；Sgl.masks，html/sgl_gen.dart:132；访问 3 次）
+- `$.nv` → `$.cdif`（lazy；Sgl.cdif，html/sgl_gen.dart:44；访问 2 次）
+- `$.nt` → `$.initComplete`（lazy；Sgl._initComplete，html/sgl_gen.dart:72；访问 2 次）
+- `$.nu` → `$.canvas`（lazy；Sgl.canvas，html/sgl_gen.dart:142；访问 2 次）
+- `$.lS` → `$.shapeCanvas`（lazy；Sgl.shapeCanvas，html/sgl_gen.dart:201；访问 3 次）
+- `$.d8` → `$.shapeImage`（lazy；Sgl.shapeImage，html/sgl_gen.dart:202；访问 6 次）
+- `$.ay` → `$.plrViewDict`（field；PlrView.dict，html/plrview.dart:41；访问 17 次）
+- `$.jU` → `$.plrViewPid`（field；PlrView.pid，html/plrview.dart:40；访问 5 次）
+- `$.rW` → `$.bosses`（field；Images.bosses，html/image.dart:2；访问 2 次）
+- `$.bU` → `$.img`（lazy；HtmlRenderer.img，html/html.dart:427；访问 8 次）
+- `$.rm` → `$.updateReg`（lazy；renderer._updateReg，html/renderer.dart:3；访问 1 次）
+- `$.bV` → `$.noValidator`（lazy；noValidator，helper.dart:14；访问 8 次）
+- `$.r0` → `$.replaceSpace0`（lazy；Fgt.replaceSpace0，fgt.dart:13；访问 1 次）
+- `$.nq` → `$.replaceSpace1`（lazy；Fgt.replaceSpace1，fgt.dart:14；访问 2 次）
+- `$.r_` → `$.regNewLine`（lazy；Fgt.regNewLine，fgt.dart:15；访问 1 次）
+- `$.rj` → `$.specialList`（lazy；Weapon.specialList，weapon/weapon.dart:5；访问 1 次）
+- `$.r5` → `$.rinickModifierHP`（lazy；RinickModifierHP，weapon/rinick_modifier.dart:3；访问 1 次）
+- `$.r6` → `$.s11AttrNames`（lazy；SklS11.attrNames，weapon/s11.dart:5；访问 1 次）
+- `$.r1` → `$.guiYueMembers`（lazy；GuiYue.members，weapon/gui_yue.dart:15；访问 1 次）
+- `$.rk` → `$.xuanYueMembers`（lazy；XuanYue.members，namer-src 无 xuan_yue.dart；按 T.ku 工厂返回 T.kv 推断；访问 1 次）
+- `$.nr` → `$.boosted`（lazy；Boss.boosted，boss/boss.dart:56；访问 2 次）
+- `$.K` → `$.newline`（lazy；RunUpdate.newline，misc.dart:62；访问 33 次）
+- `$.od` → `$.langDict`（field；top-level _L，lan_data.dart:19；访问 3 次）
 
 ## 参数
 
