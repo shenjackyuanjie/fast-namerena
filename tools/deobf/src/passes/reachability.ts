@@ -346,7 +346,7 @@ export function analyze(file: string): Reachability {
 			}
 		},
 	});
-	// 普通（非调用）的 $.slot 读取
+	// 普通（非调用、非赋值写入）的 $.slot 读取
 	traverse(ast, {
 		MemberExpression(p: any) {
 			const node = p.node;
@@ -358,7 +358,8 @@ export function analyze(file: string): Reachability {
 			) {
 				const parent = p.parentPath?.node;
 				const isCall = parent?.type === "CallExpression" && parent.callee === node;
-				if (isCall) return;
+				const isWrite = parent?.type === "AssignmentExpression" && parent.operator === "=" && parent.left === node;
+				if (isCall || isWrite) return;
 				const name = node.property.name;
 				for (const l of lazy) {
 					if (l.slot === name) l.slotRefs++;

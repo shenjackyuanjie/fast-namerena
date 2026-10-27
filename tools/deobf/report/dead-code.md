@@ -1,36 +1,37 @@
 # md5.js 可达性与死代码清单
 
-- 源文件：`D:\githubs\namer\fast-namerena\branch\latest\md5.stage3.js`
-- SHA-256：`061cbc6447bcff1340478810184eed3493b6ac7ae91552b66641268a663397e6`
-- 命名空间成员：898，不可达 17，可自动删除 0
-- lazy 注册：46，无引用 0，可内联为字面量 0
+- 源文件：`D:\githubs\namer\fast-namerena\branch\latest\md5.js`
+- SHA-256：`7c0edbd83f0590554cb4a210d2919d9c2743400fa2c89dbcc81965ec0987dd31`
+- 命名空间成员：898，不可达 18，可自动删除 1
+- lazy 注册：44，无引用 0，可内联为字面量 0
 - 被枚举的命名空间：无
 
 ## 可删除的命名空间成员（不可达 + 非类 + 无字符串引用）
 
 | 行 | 成员 | 类型 |
 | --- | --- | --- |
+| 3588-3593 | `LangData.j` | method |
 
 ## 不可达但被保护（类/prototype 或字符串引用）
 
 | 行 | 成员 | 类型 | prototype | 字符串 |
 | --- | --- | --- | --- | --- |
-| 1779 | `H.defineProperty` | method |  | 是 |
-| 2096 | `H.on` | method |  | 是 |
-| 4735 | `T.ty` | method |  | 是 |
-| 4761 | `T.tA` | method |  | 是 |
-| 4853 | `T.tC` | method |  | 是 |
-| 4893 | `T.tD` | method |  | 是 |
-| 4922 | `T.tE` | method |  | 是 |
-| 4935 | `T.tF` | method |  | 是 |
-| 4961 | `T.tI` | method |  | 是 |
-| 5784 | `T.tB` | method |  | 是 |
-| 5819 | `T.tG` | method |  | 是 |
-| 6275 | `T.tx` | method |  | 是 |
-| 6276 | `T.tz` | method |  | 是 |
-| 7962 | `W.tT` | method |  | 是 |
-| 7965 | `W.tU` | method |  | 是 |
-| 8206 | `X.k` | method |  | 是 |
+| 1717 | `H.defineProperty` | method |  | 是 |
+| 2034 | `H.on` | method |  | 是 |
+| 4673 | `T.ty` | method |  | 是 |
+| 4699 | `T.tA` | method |  | 是 |
+| 4791 | `T.tC` | method |  | 是 |
+| 4831 | `T.tD` | method |  | 是 |
+| 4860 | `T.tE` | method |  | 是 |
+| 4873 | `T.tF` | method |  | 是 |
+| 4899 | `T.tI` | method |  | 是 |
+| 5722 | `T.tB` | method |  | 是 |
+| 5757 | `T.tG` | method |  | 是 |
+| 6213 | `T.tx` | method |  | 是 |
+| 6214 | `T.tz` | method |  | 是 |
+| 7900 | `W.tT` | method |  | 是 |
+| 7903 | `W.tU` | method |  | 是 |
+| 8144 | `X.k` | method |  | 是 |
 
 ## 无引用的 lazy 注册
 

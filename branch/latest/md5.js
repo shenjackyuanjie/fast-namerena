@@ -20708,16 +20708,6 @@ var t = (function rtii() {
         return 4
     })
     // MARK: 数字反混淆
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        // lazy_old($, "mc", "ns", function () {
-    //     // return 0
-    //     return 0
-    // })
-    lazy_old($, "ta", "r2", function () {
-        return $.mb + 128
-    })
-    lazy_old($, "tb", "r3", function () {
-        return 0
-    })
     lazy_old($, "zH", "r1", function () {
         // return H.b(["Rinick", "库瓒", "庫瓒", "涵虚", "霛雲", "云剑", "新纪元", "琪拉拉", "纯菜", "学车中学", "学🚗🀄学", "昀澤", "锦依卫", "Σσ", "Ø", "∅", "斜眼笑"], t.V)
         return H.b(
@@ -21275,10 +21265,8 @@ function main(input_name) {
                 team_1 = LangData.oC(true).c
                 team_2 = team_1[3]
                 $.mb = team_2
-                $.ta = team_2 + 128
                 $.nV = team_1[4]
                 $.nW = team_1[5]
-                $.tb = team_1[6]
 
                 if (!run_env.from_code) {
                     a2 = window.localStorage.getItem("go​ogle_experiment_mod1")

@@ -3,6 +3,7 @@ import * as fs from "node:fs";
 import * as path from "node:path";
 import { REPORT_DIR, ensureDir } from "../lib/files";
 import { parseArgs } from "../lib/args";
+import { lineOf, parseScript, traverseAst } from "../lib/ast";
 import { analyze } from "./reachability";
 
 interface Edit {
@@ -25,15 +26,42 @@ function isSpaceOrTab(ch: string | undefined): boolean {
 	return ch === " " || ch === "\t" || ch === "\r";
 }
 
-/** 删除一个独立的语句行（前导空白 + 语句 + 行尾换行） */
-function statementEdit(source: string, start: number, end: number, label: string): Edit {
-	let s = lineStart(source, start);
-	while (s < start && isSpaceOrTab(source[s])) s++;
+/** 删除一个独立占据整行的语句（含缩进与行尾换行）；不独立则返回 null */
+function statementEdit(source: string, start: number, end: number, label: string): Edit | null {
+	const s = lineStart(source, start);
+	let cursor = s;
+	while (cursor < start && isSpaceOrTab(source[cursor])) cursor++;
+	if (cursor !== start) return null;
 	let e = end;
 	while (e < source.length && isSpaceOrTab(source[e])) e++;
 	if (source[e] === ";") e++;
+	if (e < source.length && source[e] !== "\n") return null;
 	e = lineEnd(source, e);
 	return { start: s, end: e, label };
+}
+
+/** 已删除 lazy 的 slot 只写不读；把这种独立赋值语句一并删掉 */
+function slotWriteEdits(source: string, slots: Set<string>): Edit[] {
+	const edits: Edit[] = [];
+	const ast = parseScript(source);
+	traverseAst(ast, {
+		ExpressionStatement(path: any) {
+			const expr = path.node.expression;
+			if (expr.type !== "AssignmentExpression" || expr.operator !== "=") return;
+			const left = expr.left;
+			if (left.type !== "MemberExpression" || left.computed) return;
+			if (left.object.type !== "Identifier" || left.object.name !== "$") return;
+			if (left.property.type !== "Identifier" || !slots.has(left.property.name)) return;
+			const edit = statementEdit(
+				source,
+				path.node.start,
+				path.node.end,
+				`\$.${left.property.name} 死写入@${lineOf(path.node)}`,
+			);
+			if (edit) edits.push(edit);
+		},
+	});
+	return edits;
 }
 
 /** 向上吞掉紧贴在属性上方的注释行（遇到空行停止） */
@@ -121,8 +149,17 @@ function main(): void {
 	if (lazyLimit > 0) {
 		const candidates = report.lazy.filter((l) => !l.live).sort((a, b) => a.start - b.start).slice(0, lazyLimit);
 		for (const l of candidates) {
-			edits.push(statementEdit(source, l.start, l.end, `lazy $.${l.slot}/$.${l.getter}`));
+			const edit = statementEdit(source, l.start, l.end, `lazy $.${l.slot}/$.${l.getter}`);
+			if (!edit) continue;
+			edits.push(edit);
 			deletedLazy.push(`$.${l.slot}/$.${l.getter}@${l.line}`);
+		}
+		if (candidates.length > 0) {
+			const slots = new Set(candidates.map((l) => l.slot));
+			for (const edit of slotWriteEdits(source, slots)) {
+				edits.push(edit);
+				deletedLazy.push(`${edit.label}（slot 写入）`);
+			}
 		}
 	}
 
